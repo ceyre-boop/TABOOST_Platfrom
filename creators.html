@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creators - Taboost Agency</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo"><i class="fas fa-magic"></i></div>
+                <div class="sidebar-brand"><h2>Tab<span>oost</span></h2></div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                    <a href="creators.html" class="nav-item active"><i class="fas fa-users"></i><span>Creators</span><span class="nav-badge">831</span></a>
+                    <a href="diamonds.html" class="nav-item"><i class="fas fa-gem"></i><span>Diamonds</span></a>
+                    <a href="live-streams.html" class="nav-item"><i class="fas fa-video"></i><span>Live Streams</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Management</div>
+                    <a href="managers.html" class="nav-item"><i class="fas fa-user-tie"></i><span>Managers</span></a>
+                    <a href="rookies.html" class="nav-item"><i class="fas fa-seedling"></i><span>Rookies</span></a>
+                    <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Leaderboard</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Reports</div>
+                    <a href="reports.html" class="nav-item"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                    <a href="alerts.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span><span class="nav-badge">3</span></a>
+                    <a href="settings.html" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+                </div>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="creatorSearch" placeholder="Search creators by name, ID...">
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn"><i class="fas fa-bell"></i><span class="notification-dot"></span></button>
+                    <div class="user-profile" onclick="logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName">Marco</div>
+                            <div class="user-role" id="userRole">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="dashboard-content fade-in">
+                <div style="margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 8px;">All Creators</h1>
+                        <p style="color: #888;">Manage and view all 831 creators in your network</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="exportCreators()">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+                
+                <!-- Filters -->
+                <div class="content-card" style="margin-bottom: 20px;">
+                    <div class="card-body" style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <select class="form-control" id="groupFilter" style="width: auto; min-width: 150px;">
+                            <option value="">All Groups</option>
+                            <option value="Staff">Staff</option>
+                            <option value="Agents">Agents</option>
+                        </select>
+                        <select class="form-control" id="managerFilter" style="width: auto; min-width: 180px;">
+                            <option value="">All Managers</option>
+                            <option value="carrington@taboost.me">Carrington</option>
+                            <option value="bryton@taboost.me">Bryton</option>
+                            <option value="svendranoel@gmail.com">Sven</option>
+                        </select>
+                        <select class="form-control" id="statusFilter" style="width: auto; min-width: 150px;">
+                            <option value="">All Status</option>
+                            <option value="Rookie">Rookies</option>
+                            <option value="Graduated">Graduated</option>
+                            <option value="Quit">Quit</option>
+                        </select>
+                        <button class="btn btn-primary" style="padding: 10px 20px;" onclick="applyFilters()">
+                            <i class="fas fa-filter"></i> Apply
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 10px 20px;" onclick="resetFilters()">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Creators Table -->
+                <div class="content-card">
+                    <div class="card-body" style="padding: 0; overflow-x: auto;">
+                        <table class="data-table" style="min-width: 800px;">
+                            <thead>
+                                <tr>
+                                    <th>Creator</th>
+                                    <th>Group</th>
+                                    <th>Manager</th>
+                                    <th>Diamonds</th>
+                                    <th>Hours</th>
+                                    <th>Streams</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="creatorsTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="page-btn" id="prevBtn" onclick="changePage(-1)">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <span class="page-info">
+                            Page <span id="currentPage">1</span> of <span id="totalPages">17</span>
+                            (<span id="startRange">1</span>-<span id="endRange">50</span> of <span id="totalItems">831</span>)
+                        </span>
+                        <button class="page-btn" id="nextBtn" onclick="changePage(1)">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let currentPage = 1;
+        const itemsPerPage = 50;
+        let filteredCreators = [];
+        
+        // Check login
+        const user = JSON.parse(localStorage.getItem('taboost_user'));
+        if (!user) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? 'Admin' : 'Creator';
+            document.getElementById('userAvatar').textContent = user.avatar;
+        }
+        
+        function logout() {
+            localStorage.removeItem('taboost_user');
+            window.location.href = 'index.html';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCreators();
+            
+            // Add filter change listeners
+            document.getElementById('groupFilter').addEventListener('change', applyFilters);
+            document.getElementById('managerFilter').addEventListener('change', applyFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+            document.getElementById('creatorSearch').addEventListener('input', debounce(applyFilters, 300));
+        });
+        
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        function loadCreators() {
+            filteredCreators = ALL_CREATORS || [];
+            renderTable();
+            updatePagination();
+        }
+        
+        function applyFilters() {
+            const group = document.getElementById('groupFilter').value;
+            const manager = document.getElementById('managerFilter').value;
+            const status = document.getElementById('statusFilter').value;
+            const search = document.getElementById('creatorSearch').value.toLowerCase();
+            
+            filteredCreators = ALL_CREATORS.filter(c => {
+                if (group && c.group !== group) return false;
+                if (manager && !c.manager.toLowerCase().includes(manager.toLowerCase())) return false;
+                if (status && !c.status.includes(status)) return false;
+                if (search && !c.username.toLowerCase().includes(search)) return false;
+                return true;
+            });
+            
+            currentPage = 1;
+            renderTable();
+            updatePagination();
+        }
+        
+        function resetFilters() {
+            document.getElementById('groupFilter').value = '';
+            document.getElementById('managerFilter').value = '';
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('creatorSearch').value = '';
+            applyFilters();
+        }
+        
+        function renderTable() {
+            const tbody = document.getElementById('creatorsTableBody');
+            tbody.innerHTML = '';
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, filteredCreators.length);
+            const pageData = filteredCreators.slice(start, end);
+            
+            pageData.forEach(creator => {
+                const diamonds = parseInt(creator.diamonds) || 0;
+                const hours = parseFloat(creator.hours) || 0;
+                const streams = parseInt(creator.streams) || 0;
+                
+                let statusBadge = '<span class="badge badge-success">Active</span>';
+                if (creator.status && creator.status.includes('Rookie')) {
+                    statusBadge = '<span class="badge badge-warning">Rookie</span>';
+                } else if (creator.status && creator.status.includes('Quit')) {
+                    statusBadge = '<span class="badge badge-danger">Quit</span>';
+                }
+                
+                const row = `
+                    <tr>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar-sm">${creator.username ? creator.username.charAt(0).toUpperCase() : '?'}</div>
+                                <div class="user-details">
+                                    <h4>${creator.username || 'Unknown'}</h4>
+                                    <span>Joined ${creator.joined || 'N/A'}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>${creator.group || 'N/A'}</td>
+                        <td>${creator.manager || 'N/A'}</td>
+                        <td><strong style="color: var(--taboost-red);">${diamonds.toLocaleString()}</strong></td>
+                        <td>${hours.toFixed(1)}h</td>
+                        <td>${streams}</td>
+                        <td>${statusBadge}</td>
+                        <td>
+                            <button class="btn btn-secondary" style="padding: 8px 12px; font-size: 12px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+            
+            document.getElementById('startRange').textContent = start + 1;
+            document.getElementById('endRange').textContent = end;
+            document.getElementById('totalItems').textContent = filteredCreators.length;
+        }
+        
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredCreators.length / itemsPerPage);
+            document.getElementById('currentPage').textContent = currentPage;
+            document.getElementById('totalPages').textContent = totalPages;
+            
+            document.getElementById('prevBtn').disabled = currentPage === 1;
+            document.getElementById('nextBtn').disabled = currentPage === totalPages;
+        }
+        
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredCreators.length / itemsPerPage);
+            currentPage += direction;
+            
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            
+            renderTable();
+            updatePagination();
+        }
+        
+        function exportCreators() {
+            alert('Export feature - Downloads CSV of all creators');
+        }
+    </script>
+</body>
+</html>

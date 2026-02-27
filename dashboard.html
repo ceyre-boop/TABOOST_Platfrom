@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Taboost Agency</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-magic"></i>
+                </div>
+                <div class="sidebar-brand">
+                    <h2>Tab<span>oost</span></h2>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="dashboard.html" class="nav-item active">
+                        <i class="fas fa-th-large"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="creators.html" class="nav-item">
+                        <i class="fas fa-users"></i>
+                        <span>Creators</span>
+                        <span class="nav-badge">831</span>
+                    </a>
+                    <a href="diamonds.html" class="nav-item">
+                        <i class="fas fa-gem"></i>
+                        <span>Diamonds</span>
+                    </a>
+                    <a href="live-streams.html" class="nav-item">
+                        <i class="fas fa-video"></i>
+                        <span>Live Streams</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Management</div>
+                    <a href="managers.html" class="nav-item">
+                        <i class="fas fa-user-tie"></i>
+                        <span>Managers</span>
+                    </a>
+                    <a href="rookies.html" class="nav-item">
+                        <i class="fas fa-seedling"></i>
+                        <span>Rookies</span>
+                    </a>
+                    <a href="leaderboard.html" class="nav-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Leaderboard</span>
+                    </a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Reports</div>
+                    <a href="reports.html" class="nav-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Reports</span>
+                    </a>
+                    <a href="alerts.html" class="nav-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Alerts</span>
+                        <span class="nav-badge">3</span>
+                    </a>
+                    <a href="settings.html" class="nav-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search creators, metrics...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="header-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+                    <button class="header-btn">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <div class="user-profile" onclick="logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName">Marco</div>
+                            <div class="user-role" id="userRole">Admin</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: #666; font-size: 12px;"></i>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content fade-in">
+                <div style="margin-bottom: 25px;">
+                    <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 8px;">Dashboard Overview</h1>
+                    <p style="color: #888;">Welcome back! Here's what's happening with your creators.</p>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-value" id="totalCreators">831</div>
+                        <div class="stat-label">Total Creators</div>
+                        <span class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 12% this month
+                        </span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="stat-value" id="totalDiamonds">45.2M</div>
+                        <div class="stat-label">Total Diamonds</div>
+                        <span class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 8.5% vs last month
+                        </span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="stat-value" id="totalStreams">12.4K</div>
+                        <div class="stat-label">Live Streams</div>
+                        <span class="stat-change up">
+                            <i class="fas fa-arrow-up"></i> 15% this month
+                        </span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-value" id="totalHours">8.5K</div>
+                        <div class="stat-label">Hours Streamed</div>
+                        <span class="stat-change down">
+                            <i class="fas fa-arrow-down"></i> 3% this month
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="grid-2">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Diamonds Overview</h3>
+                                <p class="card-subtitle">Monthly diamond earnings comparison</p>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-secondary" style="padding: 8px 15px; font-size: 12px;" onclick="exportChart('diamonds')">
+                                    <i class="fas fa-download"></i> Export
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container">
+                                <canvas id="diamondsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Top Gainers 🔥</h3>
+                                <p class="card-subtitle">Creators with biggest % improvement vs last month</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="topGainersList" style="max-height: 300px; overflow-y: auto;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Streaming Hours Distribution -->
+                <div class="content-card" style="margin-bottom: 25px;">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Streaming Hours Distribution</h3>
+                            <p class="card-subtitle">Hours streamed per creator this month (hover segments for sample creators)</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container">
+                            <canvas id="hoursDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Top Creators</h3>
+                            <p class="card-subtitle">Highest earning creators this period</p>
+                        </div>
+                        <a href="creators.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 13px;">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="data-table" id="topCreatorsTable">
+                            <thead>
+                                <tr>
+                                    <th>Creator</th>
+                                    <th>Group</th>
+                                    <th>Manager</th>
+                                    <th>Diamonds</th>
+                                    <th>Streams</th>
+                                    <th>Hours</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topCreatorsBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats Row -->
+                <div class="grid-3">
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Staff Creators</h4>
+                                <i class="fas fa-user-shield" style="color: var(--taboost-red);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="staffCount">412</div>
+                            <div class="progress-bar" style="margin-top: 15px;">
+                                <div class="progress-fill" style="width: 49.5%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Agent Creators</h4>
+                                <i class="fas fa-user-friends" style="color: var(--taboost-warning);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="agentsCount">356</div>
+                            <div class="progress-bar" style="margin-top: 15px;">
+                                <div class="progress-fill" style="width: 42.8%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Rookies</h4>
+                                <i class="fas fa-seedling" style="color: var(--taboost-success);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="rookiesCount">63</div>
+                            <div class="progress-bar" style="margin-top: 15px;">
+                                <div class="progress-fill" style="width: 7.6%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/app.js"></script>
+    <script>
+        // Check login status
+        const user = JSON.parse(localStorage.getItem('taboost_user'));
+        if (!user) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? 'Admin' : 'Creator';
+            document.getElementById('userAvatar').textContent = user.avatar;
+            
+            // If creator, hide admin-only elements
+            if (user.role === 'creator') {
+                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+            }
+        }
+        
+        function logout() {
+            localStorage.removeItem('taboost_user');
+            window.location.href = 'index.html';
+        }
+        
+        function exportChart(type) {
+            alert('Exporting ' + type + ' chart data...');
+        }
+        
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            const stats = getTotalStats();
+            
+            // Update stat cards with real data
+            document.getElementById('totalCreators').textContent = stats.totalCreators;
+            document.getElementById('totalDiamonds').textContent = formatNumber(stats.totalDiamonds);
+            document.getElementById('totalStreams').textContent = formatNumber(stats.totalStreams);
+            document.getElementById('totalHours').textContent = formatNumber(stats.totalHours);
+            
+            // Populate Top Creators table
+            populateTopCreators();
+            
+            // Populate Top Gainers
+            populateTopGainers();
+            
+            // Initialize Charts
+            initDiamondsChart();
+            initHoursDistributionChart();
+        });
+        
+        function populateTopCreators() {
+            const tbody = document.getElementById('topCreatorsBody');
+            const topCreators = ALL_CREATORS.slice(0, 10);
+            
+            tbody.innerHTML = topCreators.map((c, i) => `
+                <tr>
+                    <td>
+                        <div class="user-cell">
+                            <div class="user-avatar-sm">${c.username.charAt(0).toUpperCase()}</div>
+                            <div class="user-details">
+                                <h4>${c.username}</h4>
+                                <span>${c.group}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${c.group}</td>
+                    <td>${c.manager}</td>
+                    <td><strong style="color: var(--taboost-red);">${formatNumber(c.diamonds)}</strong></td>
+                    <td>${c.streams}</td>
+                    <td>${c.hours.toFixed(1)}h</td>
+                    <td><span class="badge ${c.status.includes('Rookie') ? 'badge-warning' : 'badge-success'}">${c.status}</span></td>
+                </tr>
+            `).join('');
+        }
+        
+        function populateTopGainers() {
+            const container = document.getElementById('topGainersList');
+            const gainers = getTopGainers(10);
+            
+            container.innerHTML = gainers.map((c, i) => `
+                <div style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #222;">
+                    <div style="width: 30px; font-weight: 800; color: var(--taboost-red);">#${i+1}</div>
+                    <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                        <div class="user-avatar-sm">${c.username.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <div style="font-weight: 600;">${c.username}</div>
+                            <div style="font-size: 12px; color: #888;">${formatNumber(c.diamonds)} 💎</div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="color: var(--taboost-success); font-weight: 700;">+${c.growth.toFixed(1)}%</div>
+                        <div style="font-size: 11px; color: #666;">vs last month</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function initDiamondsChart() {
+            const ctx = document.getElementById('diamondsChart').getContext('2d');
+            const top10 = ALL_CREATORS.slice(0, 10);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top10.map(c => c.username.substring(0, 10)),
+                    datasets: [{
+                        label: 'Current Month',
+                        data: top10.map(c => c.diamonds),
+                        backgroundColor: '#ff0044',
+                        borderRadius: 6
+                    }, {
+                        label: 'Last Month',
+                        data: top10.map(c => c.diamondsLast),
+                        backgroundColor: '#333',
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: '#888' } }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#666', callback: v => formatNumber(v) }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#666' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initHoursDistributionChart() {
+            const ctx = document.getElementById('hoursDistributionChart').getContext('2d');
+            const dist = getHoursDistribution();
+            
+            // Beautiful gradient colors (purple/cyan theme)
+            const colors = [
+                '#6366f1', // Indigo
+                '#8b5cf6', // Violet
+                '#a855f7', // Purple
+                '#d946ef', // Fuchsia
+                '#06b6d4', // Cyan
+                '#10b981'  // Emerald
+            ];
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(dist).map(k => `${k} (${dist[k].count} creators)`),
+                    datasets: [{
+                        data: Object.values(dist).map(d => d.count),
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#1a1a1a',
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { 
+                                color: '#aaa',
+                                padding: 20,
+                                font: { size: 13 },
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(0,0,0,0.9)',
+                            titleColor: '#fff',
+                            bodyColor: '#ccc',
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    const tierKey = Object.keys(dist)[context.dataIndex];
+                                    const count = dist[tierKey].count;
+                                    const total = Object.values(dist).reduce((a,b) => a + b.count, 0);
+                                    const pct = ((count/total)*100).toFixed(1);
+                                    return `${count} creators (${pct}%)`;
+                                },
+                                afterLabel: function(context) {
+                                    const tierKey = Object.keys(dist)[context.dataIndex];
+                                    const creators = dist[tierKey].creators;
+                                    if (creators.length > 0) {
+                                        return 'Examples: ' + creators.join(', ');
+                                    }
+                                    return '';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

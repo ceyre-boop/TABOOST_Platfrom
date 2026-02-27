@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboost Agency - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-logo">
+            <div class="logo-icon">
+                <i class="fas fa-magic"></i>
+            </div>
+            <h1>Taboost</h1>
+            <p>Turn Your Hustle Into a Business</p>
+        </div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email / Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter email or username" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+            </div>
+            
+            <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox" style="accent-color: #ff0044;">
+                    <span style="text-transform: none; font-size: 13px;">Remember me</span>
+                </label>
+                <a href="#" style="color: #ff0044; font-size: 13px; text-decoration: none;">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+                <i class="fas fa-sign-in-alt"></i>
+                Sign In
+            </button>
+        </form>
+        
+        <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #333; text-align: center;">
+            <p style="color: #666; font-size: 13px; margin-bottom: 15px;">Demo Credentials</p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <span class="badge badge-info" style="cursor: pointer;" onclick="fillLogin('marco@taboost.me', 'admin')">
+                    <i class="fas fa-user-shield"></i> Admin
+                </span>
+                <span class="badge badge-success" style="cursor: pointer;" onclick="fillLogin('singleonthemove', 'creator')">
+                    <i class="fas fa-user"></i> Creator
+                </span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function fillLogin(username, password) {
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            // Admin login
+            if (username === 'marco@taboost.me' && password === 'admin') {
+                localStorage.setItem('taboost_user', JSON.stringify({
+                    username: 'marco@taboost.me',
+                    role: 'admin',
+                    name: 'Marco',
+                    avatar: 'M'
+                }));
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
+            // Creator login - redirect to creator dashboard
+            if (password === 'creator' && username.length > 0) {
+                localStorage.setItem('taboost_user', JSON.stringify({
+                    username: username,
+                    role: 'creator',
+                    name: username.split('@')[0] || username,
+                    avatar: username.charAt(0).toUpperCase()
+                }));
+                window.location.href = 'creator-dashboard.html';
+                return;
+            }
+            
+            alert('Invalid credentials. Try demo credentials below.');
+        });
+    </script>
+</body>
+</html>
