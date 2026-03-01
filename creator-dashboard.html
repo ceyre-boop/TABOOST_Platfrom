@@ -88,6 +88,166 @@
             </div>
         </div>
         
+        <!-- NEW: Creator Score & Activity Level -->
+        <div class="section-card score-section">
+            <div class="section-header">
+                <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
+                <span class="score-badge" id="scoreBadge">Score: --</span>
+            </div>
+            
+            <!-- Score Progress Bar -->
+            <div class="score-progress-container">
+                <div class="score-scale">
+                    <span>0</span>
+                    <span>25</span>
+                    <span>50</span>
+                    <span>75</span>
+                    <span>100</span>
+                </div>
+                <div class="score-bar-bg">
+                    <div class="score-bar-fill" id="scoreBarFill"></div>
+                    <!-- Reward markers -->
+                    <div class="score-marker" style="left: 70%" data-reward="$75"></div>
+                    <div class="score-marker" style="left: 75%" data-reward="$75"></div>
+                    <div class="score-marker" style="left: 80%" data-reward="$100"></div>
+                    <div class="score-marker" style="left: 85%" data-reward="$200"></div>
+                    <div class="score-marker" style="left: 90%" data-reward="$300"></div>
+                    <div class="score-marker" style="left: 95%" data-reward="$450"></div>
+                </div>
+                <div class="score-labels">
+                    <span class="score-reward" id="currentScoreReward">Current: --</span>
+                    <span class="score-next" id="nextScoreReward">Next: --</span>
+                </div>
+            </div>
+            
+            <!-- Score Breakdown -->
+            <div class="score-breakdown">
+                <div class="breakdown-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Activity Level</span>
+                    <strong id="scoreActivity">--</strong>
+                </div>
+                <div class="breakdown-item">
+                    <i class="fas fa-gem"></i>
+                    <span>3-Month Diamonds</span>
+                    <strong id="scoreDiamonds">--</strong>
+                </div>
+                <div class="breakdown-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Performance Trend</span>
+                    <strong id="scoreTrend">--</strong>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: Activity Level Tracker -->
+        <div class="section-card activity-level-section">
+            <div class="section-header">
+                <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> My Activity Level</h2>
+                <span class="level-badge" id="currentLevelBadge">Level --</span>
+            </div>
+            
+            <!-- Level Progress -->
+            <div class="level-tracker">
+                <div class="level-step ${(myData.level || 0) >= 1 ? 'completed' : ''}" data-level="1">
+                    <div class="level-icon">1</div>
+                    <div class="level-req">8 days<br>or 8 hrs</div>
+                    <div class="level-reward">$--</div>
+                </div>
+                <div class="level-connector"></div>
+                <div class="level-step ${(myData.level || 0) >= 2 ? 'completed' : ''}" data-level="2">
+                    <div class="level-icon">2</div>
+                    <div class="level-req">12 days<br>or 20 hrs</div>
+                    <div class="level-reward">$--</div>
+                </div>
+                <div class="level-connector"></div>
+                <div class="level-step ${(myData.level || 0) >= 3 ? 'completed' : ''}" data-level="3">
+                    <div class="level-icon">3</div>
+                    <div class="level-req">16 days<br>or 35 hrs</div>
+                    <div class="level-reward">$--</div>
+                </div>
+                <div class="level-connector"></div>
+                <div class="level-step ${(myData.level || 0) >= 4 ? 'completed' : ''}" data-level="4">
+                    <div class="level-icon">4</div>
+                    <div class="level-req">20 days<br>or 50 hrs</div>
+                    <div class="level-reward">$--</div>
+                </div>
+                <div class="level-connector"></div>
+                <div class="level-step ${(myData.level || 0) >= 5 ? 'completed' : ''}" data-level="5">
+                    <div class="level-icon">5</div>
+                    <div class="level-req">25 days<br>or 70 hrs</div>
+                    <div class="level-reward">$--</div>
+                </div>
+            </div>
+            
+            <!-- Current Progress -->
+            <div class="current-progress">
+                <div class="progress-stat">
+                    <span class="progress-label">Days Streamed</span>
+                    <span class="progress-value" id="daysStreamed">-- / --</span>
+                    <div class="mini-bar"><div class="mini-fill" id="daysFill"></div></div>
+                </div>
+                <div class="progress-stat">
+                    <span class="progress-label">Hours Streamed</span>
+                    <span class="progress-value" id="hoursStreamedLevel">-- / --</span>
+                    <div class="mini-bar"><div class="mini-fill" id="hoursFillLevel"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- NEW: My 3 Revenue Streams -->
+        <div class="section-card revenue-section">
+            <div class="section-header">
+                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
+            </div>
+            <div class="revenue-grid">
+                <div class="revenue-item">
+                    <div class="revenue-icon" style="background: rgba(255,0,68,0.1); color: var(--taboost-red);">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Level Bonus</span>
+                        <span class="revenue-value" id="levelRevenue">$--</span>
+                    </div>
+                    <span class="revenue-level">Level <span id="revenueLevelNum">--</span></span>
+                </div>
+                <div class="revenue-item">
+                    <div class="revenue-icon" style="background: rgba(0,212,255,0.1); color: #00d4ff;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Diamond Earnings</span>
+                        <span class="revenue-value" id="diamondRevenue">$--</span>
+                    </div>
+                    <span class="revenue-amount" id="diamondCount">-- 💎</span>
+                </div>
+                <div class="revenue-item">
+                    <div class="revenue-icon" style="background: rgba(255,215,0,0.1); color: #ffd700;">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Score Reward</span>
+                        <span class="revenue-value" id="scoreRevenue">$--</span>
+                    </div>
+                    <span class="revenue-score">Score <span id="revenueScoreNum">--</span></span>
+                </div>
+                <div class="revenue-item highlight">
+                    <div class="revenue-icon" style="background: rgba(0,255,136,0.1); color: var(--taboost-success);">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Rank Up Bonus</span>
+                        <span class="revenue-value" id="rankRevenue">NEW!</span>
+                    </div>
+                    <span class="revenue-note">Coming soon</span>
+                </div>
+            </div>
+            <div class="revenue-total">
+                <span>Total Potential Earnings</span>
+                <strong id="totalPotential">$--</strong>
+            </div>
+        </div>
+        
         <!-- Activity Stats Row -->
         <div class="activity-stats">
             <div class="activity-box">

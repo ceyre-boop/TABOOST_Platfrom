@@ -675,6 +675,338 @@
     font-weight: 600;
 }
 
+/* NEW: Score Section */
+.score-section {
+    background: linear-gradient(135deg, rgba(255,215,0,0.05), rgba(255,215,0,0.02));
+    border-color: rgba(255,215,0,0.15);
+}
+
+.score-badge {
+    background: linear-gradient(135deg, #ffd700, #ffaa00);
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.score-progress-container {
+    padding: 20px;
+}
+
+.score-scale {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.score-bar-bg {
+    position: relative;
+    height: 30px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    overflow: visible;
+    margin-bottom: 15px;
+}
+
+.score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff0044, #ffd700);
+    border-radius: 15px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.score-marker {
+    position: absolute;
+    top: -5px;
+    width: 12px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    transform: translateX(-50%);
+}
+
+.score-marker::after {
+    content: attr(data-reward);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    color: #ffd700;
+    white-space: nowrap;
+}
+
+.score-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.score-reward {
+    color: #888;
+}
+
+.score-next {
+    color: var(--taboost-success);
+    font-weight: 600;
+}
+
+.score-breakdown {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.breakdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.breakdown-item i {
+    font-size: 20px;
+    color: var(--taboost-red);
+    width: 45px;
+    height: 45px;
+    background: rgba(255,0,68,0.1);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.breakdown-item span {
+    font-size: 12px;
+    color: #888;
+}
+
+.breakdown-item strong {
+    font-size: 16px;
+    color: white;
+}
+
+/* NEW: Activity Level Section */
+.activity-level-section {
+    background: linear-gradient(135deg, rgba(255,0,68,0.05), rgba(255,0,68,0.02));
+    border-color: rgba(255,0,68,0.15);
+}
+
+.level-badge {
+    background: var(--taboost-red);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 14px;
+}
+
+.level-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 20px;
+    overflow-x: auto;
+}
+
+.level-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    min-width: 80px;
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+
+.level-step.completed {
+    opacity: 1;
+}
+
+.level-step.current {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.level-step.current .level-icon {
+    background: var(--taboost-red);
+    box-shadow: 0 0 20px rgba(255,0,68,0.5);
+}
+
+.level-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    border: 2px solid transparent;
+}
+
+.level-step.completed .level-icon {
+    background: var(--taboost-success);
+    border-color: var(--taboost-success);
+}
+
+.level-req {
+    font-size: 10px;
+    color: #888;
+    line-height: 1.4;
+}
+
+.level-reward {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--taboost-success);
+}
+
+.level-connector {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 10px;
+    position: relative;
+    top: -35px;
+    min-width: 20px;
+}
+
+.current-progress {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.progress-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.progress-label {
+    font-size: 12px;
+    color: #888;
+}
+
+.progress-value {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.mini-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.mini-fill {
+    height: 100%;
+    background: var(--taboost-success);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+}
+
+/* NEW: Revenue Section */
+.revenue-section {
+    background: linear-gradient(135deg, rgba(0,255,136,0.05), rgba(0,255,136,0.02));
+    border-color: rgba(0,255,136,0.15);
+}
+
+.revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 20px;
+}
+
+.revenue-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.revenue-item:hover {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.revenue-item.highlight {
+    background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.05));
+    border-color: rgba(0,255,136,0.3);
+}
+
+.revenue-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.revenue-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+}
+
+.revenue-name {
+    font-size: 13px;
+    color: #888;
+}
+
+.revenue-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+}
+
+.revenue-level,
+.revenue-amount,
+.revenue-score,
+.revenue-note {
+    font-size: 12px;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    color: #888;
+}
+
+.revenue-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    font-size: 16px;
+}
+
+.revenue-total strong {
+    font-size: 28px;
+    color: var(--taboost-success);
+}
+
 /* Footer */
 .creator-footer {
     text-align: center;

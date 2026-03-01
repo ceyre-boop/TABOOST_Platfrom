@@ -18,6 +18,7 @@ async function initCreatorDashboard(user) {
     updateGoals();
     updateRank();
     updateActivityStats();
+    updateScoreAndLevels(); // NEW: Score & Activity Level
     initPerformanceChart();
     updateAchievements();
     updateHistory();
@@ -362,6 +363,95 @@ function updateHistory() {
             </tr>
         `;
     }).join('');
+}
+
+function updateScoreAndLevels() {
+    // Score from Google Sheets (0-100)
+    const score = myData.score || 0;
+    
+    // Update Score Badge
+    document.getElementById('scoreBadge').textContent = `Score: ${score}`;
+    
+    // Score Bar Fill (0-100 scale)
+    document.getElementById('scoreBarFill').style.width = `${Math.min(100, score)}%`;
+    
+    // Current Score Reward
+    const rewardTiers = [
+        { min: 95, reward: 450 },
+        { min: 90, reward: 300 },
+        { min: 85, reward: 200 },
+        { min: 80, reward: 100 },
+        { min: 75, reward: 75 },
+        { min: 70, reward: 75 },
+        { min: 0, reward: 0 }
+    ];
+    
+    const currentTier = rewardTiers.find(t => score >= t.min);
+    const nextTier = rewardTiers.find(t => t.min > score);
+    
+    document.getElementById('currentScoreReward').textContent = 
+        score >= 70 ? `Current Reward: $${currentTier.reward}` : 'Need 70+ score for rewards';
+    document.getElementById('nextScoreReward').textContent = 
+        nextTier ? `Next: $${nextTier.reward} at ${nextTier.min}` : 'Max reward achieved!';
+    
+    // Score Breakdown
+    const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
+    const growth = parseFloat(myData.growthPercent) || 0;
+    
+    document.getElementById('scoreActivity').textContent = `Level ${myData.level || 1}`;
+    document.getElementById('scoreDiamonds').textContent = formatNumber(threeMonthDiamonds);
+    document.getElementById('scoreTrend').textContent = growth >= 0 ? `+${growth}%` : `${growth}%`;
+    document.getElementById('scoreTrend').style.color = growth >= 0 ? 'var(--taboost-success)' : 'var(--taboost-red)';
+    
+    // Activity Level Visual
+    const currentLevel = myData.level || 1;
+    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel}`;
+    
+    // Update level steps
+    document.querySelectorAll('.level-step').forEach(step => {
+        const levelNum = parseInt(step.dataset.level);
+        step.classList.remove('completed', 'current');
+        if (levelNum < currentLevel) {
+            step.classList.add('completed');
+        } else if (levelNum === currentLevel) {
+            step.classList.add('current');
+        }
+    });
+    
+    // Current progress toward next level
+    const levelReqs = [
+        { level: 1, days: 8, hours: 8 },
+        { level: 2, days: 12, hours: 20 },
+        { level: 3, days: 16, hours: 35 },
+        { level: 4, days: 20, hours: 50 },
+        { level: 5, days: 25, hours: 70 }
+    ];
+    
+    const nextLevelReq = levelReqs.find(r => r.level === currentLevel + 1) || levelReqs[4];
+    const currentDays = myData.validLiveDays || 0;
+    const currentHours = myData.hours || 0;
+    
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${nextLevelReq.days} days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${nextLevelReq.hours} hrs`;
+    
+    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
+    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
+    
+    // Revenue Streams
+    const levelPayments = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }; // Update with actual values
+    const scorePayment = currentTier ? currentTier.reward : 0;
+    const diamondUSD = (myData.diamonds || 0) * 0.005;
+    
+    document.getElementById('levelRevenue').textContent = '$' + (levelPayments[currentLevel] || 0);
+    document.getElementById('revenueLevelNum').textContent = currentLevel;
+    document.getElementById('diamondRevenue').textContent = '$' + diamondUSD.toFixed(2);
+    document.getElementById('diamondCount').textContent = formatNumber(myData.diamonds) + ' 💎';
+    document.getElementById('scoreRevenue').textContent = '$' + scorePayment;
+    document.getElementById('revenueScoreNum').textContent = score;
+    
+    // Total potential
+    const total = (levelPayments[currentLevel] || 0) + diamondUSD + scorePayment;
+    document.getElementById('totalPotential').textContent = '$' + total.toFixed(2);
 }
 
 function updateAwards() {
