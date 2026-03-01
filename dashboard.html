@@ -472,7 +472,7 @@
             setTimeout(() => btn.classList.remove('spinning'), 500);
         });
         
-        // AI Greeting for Marco
+        // AI Greeting for Marco - Multiple stock phrases
         function updateAIGreeting() {
             const hour = new Date().getHours();
             const stats = taboostData.calculateTotals();
@@ -486,26 +486,47 @@
             const lastMonthTotal = creators.reduce((sum, c) => sum + (c.diamondsLastMonth || 0), 0);
             const growth = lastMonthTotal > 0 ? ((currentTotal - lastMonthTotal) / lastMonthTotal * 100) : 0;
             
-            let greeting = "";
+            // Stock hello phrases (randomized)
+            const hellos = [
+                "Hey Marco,",
+                "Welcome back,",
+                "Hi Marco,",
+                "Hello Marco,"
+            ];
+            const hello = hellos[Math.floor(Math.random() * hellos.length)];
             
-            if (hour < 12) {
-                greeting = "Good morning, Marco! ";
-            } else if (hour < 18) {
-                greeting = "Good afternoon, Marco! ";
-            } else {
-                greeting = "Good evening, Marco! ";
-            }
+            // Time-based greeting
+            let timeGreeting = "";
+            if (hour < 12) timeGreeting = "morning";
+            else if (hour < 18) timeGreeting = "afternoon";
+            else timeGreeting = "evening";
             
-            // Generate insight based on data
+            // Stock insight phrases
+            let insight = "";
             if (growth > 10) {
-                greeting += `🚀 Agency is crushing it! ${growth.toFixed(1)}% growth this month. ${topCreator.username} is leading with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`;
+                const phrases = [
+                    `Agency is up ${growth.toFixed(1)}% this month. ${topCreator.username} is leading with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`,
+                    `Strong month—${growth.toFixed(1)}% growth. Top performer: ${topCreator.username} at ${(topCreator.diamonds / 1000000).toFixed(1)}M.`,
+                    `Trending up ${growth.toFixed(1)}%. ${topCreator.username} is crushing it with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
             } else if (growth < 0) {
-                greeting += `📊 Down ${Math.abs(growth).toFixed(1)}% from last month. Check in with managers to boost activity.`;
+                const phrases = [
+                    `Down ${Math.abs(growth).toFixed(1)}% from last month. Consider checking in with managers.`,
+                    `Activity is ${Math.abs(growth).toFixed(1)}% below last month. Might be worth a team check-in.`,
+                    `Month is trailing by ${Math.abs(growth).toFixed(1)}%. Good time to motivate the team.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
             } else {
-                greeting += `📈 Steady month so far. ${topCreator.username} is your top performer with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`;
+                const phrases = [
+                    `Steady month so far. ${topCreator.username} is your top performer with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`,
+                    `Flat month—holding steady. ${topCreator.username} leads with ${(topCreator.diamonds / 1000000).toFixed(1)}M.`,
+                    `No major changes this month. ${topCreator.username} still leading at ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
             }
             
-            document.getElementById('aiText').textContent = greeting;
+            document.getElementById('aiText').textContent = `${hello} ${insight}`;
         }
         
         // Initialize
