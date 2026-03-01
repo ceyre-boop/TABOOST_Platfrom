@@ -69,6 +69,17 @@
             
             <!-- Dashboard Content -->
             <div class="dashboard-content fade-in">
+                <!-- AI Greeting for Marco -->
+                <div class="ai-greeting" id="aiGreeting">
+                    <div class="ai-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="ai-message">
+                        <p id="aiText">Analyzing agency performance...</p>
+                        <span class="ai-badge"><i class="fas fa-bolt"></i> AI Insights</span>
+                    </div>
+                </div>
+                
                 <div style="margin-bottom: 25px;">
                     <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 8px;">Dashboard Overview</h1>
                     <p style="color: #888;">Welcome back! Live data from Google Sheets. Last updated: <span id="lastUpdated">--</span></p>
@@ -461,8 +472,45 @@
             setTimeout(() => btn.classList.remove('spinning'), 500);
         });
         
+        // AI Greeting for Marco
+        function updateAIGreeting() {
+            const hour = new Date().getHours();
+            const stats = taboostData.calculateTotals();
+            const creators = taboostData.getAllCreators();
+            
+            // Find top performer
+            const topCreator = creators.reduce((max, c) => (c.diamonds || 0) > (max.diamonds || 0) ? c : max);
+            
+            // Calculate growth
+            const currentTotal = stats.totalDiamonds;
+            const lastMonthTotal = creators.reduce((sum, c) => sum + (c.diamondsLastMonth || 0), 0);
+            const growth = lastMonthTotal > 0 ? ((currentTotal - lastMonthTotal) / lastMonthTotal * 100) : 0;
+            
+            let greeting = "";
+            
+            if (hour < 12) {
+                greeting = "Good morning, Marco! ";
+            } else if (hour < 18) {
+                greeting = "Good afternoon, Marco! ";
+            } else {
+                greeting = "Good evening, Marco! ";
+            }
+            
+            // Generate insight based on data
+            if (growth > 10) {
+                greeting += `🚀 Agency is crushing it! ${growth.toFixed(1)}% growth this month. ${topCreator.username} is leading with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`;
+            } else if (growth < 0) {
+                greeting += `📊 Down ${Math.abs(growth).toFixed(1)}% from last month. Check in with managers to boost activity.`;
+            } else {
+                greeting += `📈 Steady month so far. ${topCreator.username} is your top performer with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`;
+            }
+            
+            document.getElementById('aiText').textContent = greeting;
+        }
+        
         // Initialize
         init();
+        updateAIGreeting();
     </script>
 </body>
 </html>

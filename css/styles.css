@@ -383,6 +383,58 @@ body {
     color: #888;
 }
 
+/* AI Greeting for Admin */
+.ai-greeting {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(138, 43, 226, 0.1));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 16px;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    animation: slideIn 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00d4ff, #8a2be2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.ai-message {
+    flex: 1;
+}
+
+.ai-message p {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    color: #00d4ff;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 12px;
+}
+
 /* Stats Cards */
 .stats-grid {
     display: grid;
@@ -397,7 +449,7 @@ body {
     border-radius: 15px;
     padding: 25px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     transition: all 0.3s ease;
 }
 
