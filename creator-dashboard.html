@@ -412,6 +412,36 @@
             </div>
         </div>
         
+        <!-- Creator Info from Live Data -->
+        <div class="growth-section" id="creatorInfoSection" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-bolt" style="color: var(--taboost-red); margin-right: 10px;"></i>Live Creator Data</h2>
+                <span style="color: #666; font-size: 12px;"><i class="fas fa-sync"></i> Real-time from Google Sheets</span>
+            </div>
+            <div class="stats-row" style="margin-bottom: 0;">
+                <div class="stat-box">
+                    <div class="stat-box-icon" style="background: rgba(0, 255, 136, 0.1); color: var(--taboost-success);"><i class="fas fa-user-tie"></i></div>
+                    <div class="stat-box-value" id="liveManager" style="font-size: 18px;">-</div>
+                    <div class="stat-box-label">Creator Manager</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;"><i class="fas fa-gift"></i></div>
+                    <div class="stat-box-value" id="liveBonus" style="font-size: 18px;">-</div>
+                    <div class="stat-box-label">Current Bonus</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon" style="background: rgba(138, 43, 226, 0.1); color: #8a2be2;"><i class="fab fa-discord"></i></div>
+                    <div class="stat-box-value" id="liveDiscord" style="font-size: 16px;">-</div>
+                    <div class="stat-box-label">Discord</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-box-icon" style="background: rgba(0, 150, 255, 0.1); color: #0096ff;"><i class="fas fa-percentage"></i></div>
+                    <div class="stat-box-value" id="liveTier" style="font-size: 18px;">-</div>
+                    <div class="stat-box-label">Performance Tier</div>
+                </div>
+            </div>
+        </div>
+        
         <!-- Growth Chart -->
         <div class="growth-section">
             <div class="section-header">
@@ -639,6 +669,15 @@
             {username:"meglloyd0102",diamonds:0,diamondsLast:0,hours:0,streams:0,followers:0,days:0,manager:"canalespaul",joined:"2025-02-06"}
         ];
         
+        // Google Sheets Live Data Config
+        // TO SET UP: 
+        // 1. Open your "Live Data" Google Sheet
+        // 2. File → Share → Publish to web
+        // 3. Select "Current" sheet, choose "Comma-separated values (.csv)"
+        // 4. Click Publish, copy the URL
+        // 5. Replace the URL below with your actual published URL
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSAMPLE/pub?gid=0&single=true&output=csv';
+        
         // Check login and load creator data
         const user = JSON.parse(localStorage.getItem('taboost_user'));
         if (!user) {
@@ -647,6 +686,76 @@
             window.location.href = 'dashboard.html';
         } else {
             loadCreatorData(user.username);
+            loadLiveSheetData(user.username);
+        }
+        
+        async function loadLiveSheetData(username) {
+            try {
+                // Fetch published CSV from Google Sheets
+                const response = await fetch(SHEET_URL);
+                const csvText = await response.text();
+                
+                // Parse CSV
+                const rows = parseCSV(csvText);
+                if (rows.length < 2) return;
+                
+                // Find headers
+                const headers = rows[0];
+                const discordIdx = headers.findIndex(h => h.toLowerCase().includes('discord'));
+                const agentIdx = headers.findIndex(h => h.toLowerCase().includes('agent'));
+                const bonusIdx = headers.findIndex(h => h.toLowerCase().includes('bonus'));
+                
+                // Find matching creator by username (checking discord column which starts with @)
+                const creatorRow = rows.slice(1).find(row => {
+                    const discordHandle = row[discordIdx] || '';
+                    return discordHandle.toLowerCase().replace('@', '') === username.toLowerCase() ||
+                           discordHandle.toLowerCase() === username.toLowerCase();
+                });
+                
+                if (creatorRow) {
+                    document.getElementById('creatorInfoSection').style.display = 'block';
+                    document.getElementById('liveManager').textContent = creatorRow[agentIdx] || 'Not assigned';
+                    document.getElementById('liveBonus').textContent = creatorRow[bonusIdx] ? '$' + creatorRow[bonusIdx] : '$0';
+                    document.getElementById('liveDiscord').textContent = creatorRow[discordIdx] || '@' + username;
+                    
+                    // Calculate tier based on diamonds
+                    const diamonds = creatorsData.find(c => c.username.toLowerCase() === username.toLowerCase())?.diamonds || 0;
+                    let tier = 'Bronze';
+                    if (diamonds > 1000000) tier = 'Platinum';
+                    else if (diamonds > 500000) tier = 'Gold';
+                    else if (diamonds > 100000) tier = 'Silver';
+                    document.getElementById('liveTier').textContent = tier;
+                    document.getElementById('liveTier').style.color = tier === 'Platinum' ? '#e5e4e2' : tier === 'Gold' ? '#ffd700' : tier === 'Silver' ? '#c0c0c0' : '#cd7f32';
+                }
+            } catch (err) {
+                console.log('Live data not available:', err);
+                // Silently fail - embedded data still works
+            }
+        }
+        
+        function parseCSV(text) {
+            const rows = [];
+            const lines = text.split('\n');
+            for (const line of lines) {
+                if (!line.trim()) continue;
+                const cells = [];
+                let cell = '';
+                let inQuotes = false;
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        cells.push(cell.trim());
+                        cell = '';
+                    } else {
+                        cell += char;
+                    }
+                }
+                cells.push(cell.trim());
+                rows.push(cells);
+            }
+            return rows;
         }
         
         function loadCreatorData(username) {
