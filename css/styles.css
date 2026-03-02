@@ -55,24 +55,11 @@ body {
     margin-bottom: 40px;
 }
 
-.logo-icon {
-    width: 90px;
-    height: 90px;
-    background: rgba(255,0,85,0.1);
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 42px;
-    color: var(--taboost-red);
-    margin: 0 auto 24px;
-}
-
-.login-logo h1 {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    color: white;
+.logo-img {
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
 }
 
 .login-logo p {
