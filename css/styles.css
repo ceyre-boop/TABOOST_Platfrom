@@ -160,27 +160,17 @@ body {
 }
 
 .sidebar-header {
-    padding: 25px;
+    padding: 20px 25px;
     border-bottom: 1px solid #222;
     display: flex;
     align-items: center;
-    gap: 15px;
+    justify-content: center;
 }
 
-.sidebar-logo {
-    font-size: 36px;
-    color: var(--taboost-red);
-}
-
-.sidebar-brand h2 {
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.sidebar-brand span {
-    color: var(--taboost-red);
+.sidebar-logo-img {
+    max-width: 140px;
+    height: auto;
+    display: block;
 }
 
 .sidebar-nav {

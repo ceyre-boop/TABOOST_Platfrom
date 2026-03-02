@@ -12,6 +12,19 @@
     padding: 30px 20px;
 }
 
+/* Mobile Logo */
+.mobile-logo {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.mobile-logo img {
+    max-width: 150px;
+    height: auto;
+}
+
 /* Header */
 .creator-header {
     display: flex;
@@ -1312,6 +1325,12 @@
 }
 
 /* Small phones */
+@media (max-width: 768px) {
+    .mobile-logo {
+        display: block;
+    }
+}
+
 @media (max-width: 480px) {
     .creator-layout {
         padding: 15px 12px;
