@@ -11,6 +11,25 @@ async function initCreatorDashboard(user) {
     await taboostData.loadFromCSV();
     allCreators = taboostData.getAllCreators();
     
+    // ALSO load from data.js which has creatorId
+    if (typeof allCreatorsData !== 'undefined') {
+        // Merge creatorId from data.js into CSV data
+        const dataJsMap = {};
+        allCreatorsData.forEach(c => {
+            if (c.creatorId) {
+                dataJsMap[c.username.toLowerCase()] = c.creatorId;
+            }
+        });
+        
+        // Add creatorId to CSV-loaded creators
+        allCreators.forEach(c => {
+            const cid = dataJsMap[c.username?.toLowerCase()];
+            if (cid) {
+                c.creatorId = cid;
+            }
+        });
+    }
+    
     // Build Creator ID lookup map (internal tracking)
     creatorIdMap = {};
     allCreators.forEach(c => {
@@ -43,6 +62,7 @@ async function initCreatorDashboard(user) {
     
     // Store creatorId for internal tracking (never displayed)
     myData._creatorId = myData.creatorId;
+    console.log('myData.creatorId:', myData.creatorId, 'myData.username:', myData.username);
     
     updateProfile(user);
     updateStats();
