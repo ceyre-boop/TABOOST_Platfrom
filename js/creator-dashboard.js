@@ -191,12 +191,24 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards
-    const totalRewards = (myData.rewards?.earned || 0) + (myData.rewards?.bonus || 0);
-    document.getElementById('totalRewards').textContent = formatNumber(totalRewards);
+    // Rewards - Column AP (Last Label) for source, Column AG (Unlocked) for total
+    const lastLabel = myData.lastRewardLabel || '';
+    
+    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K")
+    const numberMatch = lastLabel.match(/([\d,.]+[KMB]?)/);
+    const lastRewardAmount = numberMatch ? numberMatch[1] : '0';
+    
+    // Extract description from Last Label (e.g., "Monthly Award" from "3/02 Monthly Award 20K")
+    const descMatch = lastLabel.replace(/^\d+\/\d+\s*/, '').replace(/\s+[\d,.]+[KMB]?$/, '').trim();
+    const lastRewardDesc = descMatch || '-';
+    
+    // Column AG = Total unlocked (lifetime)
+    const totalUnlocked = myData.totalUnlocked || '0';
+    
+    document.getElementById('totalRewards').textContent = lastRewardAmount;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Earned: ${formatNumber(myData.rewards?.earned || 0)}</span>
-        <span>Bonus: ${formatNumber(myData.rewards?.bonus || 0)}</span>
+        <span>${lastRewardDesc}</span>
+        <span>Unlocked: ${totalUnlocked}</span>
     `;
 }
 

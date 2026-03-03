@@ -93,6 +93,12 @@ class TaboostDataService {
                 unlocked: this.formatNumber(getValue('Unlocked'))
             },
             
+            // Reward source info (column AP = Last Label)
+            lastRewardLabel: getValue('Last Label'),
+            
+            // Total rewards ever unlocked (column AG)
+            totalUnlocked: this.formatNumber(getValue('Unlocked')),
+            
             // Performance metrics
             diamonds: this.formatNumber(getValue('Diamonds 💎')),
             diamondsLast30: this.formatNumber(getValue('💎 Last 30')),
