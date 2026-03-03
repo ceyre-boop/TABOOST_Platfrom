@@ -183,7 +183,6 @@
 
 .stat-card.primary {
     background: linear-gradient(135deg, rgba(255,0,68,0.1), rgba(255,0,68,0.02));
-    border-color: rgba(255,0,68,0.2);
 }
 
 .stat-card.primary .stat-value {
