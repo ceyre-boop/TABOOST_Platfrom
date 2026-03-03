@@ -118,9 +118,8 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier and Score from CSV (column D for Tier, Score column for Score)
+    // Get real Tier and Score from CSV (column U/Status for Tier, Score column for Score)
     const badgeData = creatorBadges[creatorId] || {};
-    console.log('Creator ID:', creatorId, 'Badge Data:', badgeData);
     const tier = badgeData.tier || '-';
     const score = badgeData.score || 0;
     

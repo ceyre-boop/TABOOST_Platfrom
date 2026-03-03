@@ -1,4 +1,4 @@
-# Extract Tier (4th column) and Score (Score column) from CSV
+# Extract Tier (column U/Status) and Score (Score column) from CSV
 import csv
 import json
 
@@ -11,7 +11,7 @@ with open('C:\\Users\\Admin\\.clawdbot\\media\\inbound\\4997df47-7a36-44c1-8ba8-
     for row in reader:
         if len(row) >= 29:
             creator_id = row[1].strip()  # Column B (Host)
-            tier = row[3].strip() if len(row) > 3 else ''  # Column D (4th column)
+            tier = row[20].strip() if len(row) > 20 else ''  # Column U (Status)
             score = row[28].strip() if len(row) > 28 else ''  # Column AC (Score)
             
             if creator_id:
