@@ -179,6 +179,8 @@
     border-radius: 16px;
     padding: 25px;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .stat-card.primary {
@@ -251,7 +253,7 @@
 }
 
 .stat-footer {
-    margin-top: 12px;
+    margin-top: auto;
     padding-top: 12px;
     border-top: 1px solid rgba(255,255,255,0.1);
 }
@@ -267,6 +269,9 @@
     gap: 15px;
     font-size: 13px;
     color: #888;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 /* Rank Display */
