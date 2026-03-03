@@ -75,6 +75,13 @@ body {
     text-shadow: 0 0 30px rgba(255, 0, 68, 0.8);
 }
 
+.login-logo .logo-img {
+    max-width: 120px;
+    height: auto;
+    margin: 0 auto 20px;
+    display: block;
+}
+
 .form-group {
     margin-bottom: 25px;
 }
