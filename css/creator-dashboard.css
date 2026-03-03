@@ -251,6 +251,17 @@
     color: var(--taboost-red);
 }
 
+.stat-footer {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.last-updated {
+    color: #666;
+    font-size: 11px;
+}
+
 .stat-breakdown {
     display: flex;
     gap: 15px;

@@ -60,6 +60,23 @@ async function initCreatorDashboard(user) {
     
     // Update footer manager
     document.getElementById('footerManager').textContent = myData.manager || 'your manager';
+    
+    // Update last updated timestamp
+    updateLastUpdated();
+}
+
+function updateLastUpdated() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('en-US', { 
+        hour: 'numeric', 
+        minute: '2-digit',
+        hour12: true 
+    });
+    const dateStr = now.toLocaleDateString('en-US', { 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at ${timeStr}`;
 }
 
 // Load real month data from CSV (column F - Month)
