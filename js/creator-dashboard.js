@@ -195,8 +195,13 @@ function updateStats() {
     const lastLabel = myData.lastRewardLabel || '';
     
     // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K")
-    const numberMatch = lastLabel.match(/([\d,.]+[KMB]?)/);
-    const lastRewardAmount = numberMatch ? numberMatch[1] : '0';
+    const numberMatch = lastLabel.match(/([\d,.]+)([KMB]?)/i);
+    let lastRewardAmount = '0';
+    if (numberMatch) {
+        const num = numberMatch[1];
+        const suffix = numberMatch[2] || 'K'; // Default to K if no suffix
+        lastRewardAmount = num + suffix;
+    }
     
     // Extract description from Last Label (e.g., "Monthly Award" from "3/02 Monthly Award 20K")
     const descMatch = lastLabel.replace(/^\d+\/\d+\s*/, '').replace(/\s+[\d,.]+[KMB]?$/, '').trim();
