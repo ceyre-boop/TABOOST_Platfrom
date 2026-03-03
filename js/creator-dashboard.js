@@ -46,9 +46,23 @@ function formatUSD(diamonds) {
 function updateProfile(user) {
     document.getElementById('creatorName').textContent = myData.username;
     document.getElementById('creatorAvatar').textContent = myData.username.charAt(0).toUpperCase();
-    document.getElementById('joinDate').textContent = new Date(myData.joinedTime || Date.now()).toLocaleDateString('en-US', {
-        month: 'long', day: 'numeric', year: 'numeric'
-    });
+    
+    // Calculate months from daysSinceJoining (real data from CSV)
+    const daysSinceJoining = parseInt(myData.daysSinceJoining) || 0;
+    const months = Math.floor(daysSinceJoining / 30);
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+    
+    let memberText = '';
+    if (years > 0 && remainingMonths > 0) {
+        memberText = `Member for ${years} year${years > 1 ? 's' : ''} ${remainingMonths} month${remainingMonths > 1 ? 's' : ''}`;
+    } else if (years > 0) {
+        memberText = `Member for ${years} year${years > 1 ? 's' : ''}`;
+    } else {
+        memberText = `Member for ${months} month${months > 1 ? 's' : ''}`;
+    }
+    
+    document.getElementById('joinDate').textContent = memberText;
     
     // Manager pill
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
