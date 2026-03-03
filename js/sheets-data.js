@@ -75,7 +75,7 @@ class TaboostDataService {
 
         return {
             rank: parseInt(getValue('Rank')) || 0,
-            hostId: getValue('Host'),
+            creatorId: getValue('Host'),
             username: username,
             level: parseInt(getValue('Level')) || 0,
             month: parseInt(getValue('Month')) || 0,

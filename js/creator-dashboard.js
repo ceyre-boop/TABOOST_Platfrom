@@ -11,30 +11,14 @@ async function initCreatorDashboard(user) {
     await taboostData.loadFromCSV();
     allCreators = taboostData.getAllCreators();
     
-    // ALSO load from data.js which has creatorId
-    if (typeof allCreatorsData !== 'undefined') {
-        // Merge creatorId from data.js into CSV data
-        const dataJsMap = {};
-        allCreatorsData.forEach(c => {
-            if (c.creatorId) {
-                dataJsMap[c.username.toLowerCase()] = c.creatorId;
-            }
-        });
-        
-        // Add creatorId to CSV-loaded creators
-        allCreators.forEach(c => {
-            const cid = dataJsMap[c.username?.toLowerCase()];
-            if (cid) {
-                c.creatorId = cid;
-            }
-        });
-    }
-    
     // Build Creator ID lookup map (internal tracking)
+    // Creator ID is in the data (column B = Host)
     creatorIdMap = {};
     allCreators.forEach(c => {
-        if (c.creatorId) {
-            creatorIdMap[c.creatorId] = c;
+        // Use creatorId if available, otherwise try to extract from data
+        const cid = c.creatorId || c._creatorId || c.id;
+        if (cid) {
+            creatorIdMap[cid] = c;
         }
     });
     
@@ -62,7 +46,6 @@ async function initCreatorDashboard(user) {
     
     // Store creatorId for internal tracking (never displayed)
     myData._creatorId = myData.creatorId;
-    console.log('myData.creatorId:', myData.creatorId, 'myData.username:', myData.username);
     
     updateProfile(user);
     updateStats();
@@ -139,10 +122,7 @@ function updateProfile(user) {
     document.getElementById('joinDate').textContent = memberText;
     
     // Get real Tier and Score from CSV (column U for Tier, column AF for Score)
-    console.log('All creatorBadges keys:', Object.keys(creatorBadges).slice(0, 5));
-    console.log('Looking up creatorId:', creatorId, 'Type:', typeof creatorId);
     const badgeData = creatorBadges[creatorId] || {};
-    console.log('Found badgeData:', badgeData);
     const tier = badgeData.tier || '-';
     const score = badgeData.score || 0;
     
