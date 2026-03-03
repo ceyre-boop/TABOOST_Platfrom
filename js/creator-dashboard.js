@@ -22,6 +22,9 @@ async function initCreatorDashboard(user) {
     // Load real month data from CSV (column F)
     await loadCreatorMonths();
     
+    // Load Tier and Score badges from CSV (columns U and AF)
+    await loadCreatorBadges();
+    
     // Load real 6-month historical trends
     await loadCreatorTrends();
     
@@ -67,6 +70,18 @@ async function loadCreatorMonths() {
     }
 }
 
+// Load Tier and Score data from CSV (columns U and AF)
+let creatorBadges = {};
+async function loadCreatorBadges() {
+    try {
+        const response = await fetch('data/creator_badges.json');
+        creatorBadges = await response.json();
+    } catch (e) {
+        console.error('Failed to load creator badges:', e);
+        creatorBadges = {};
+    }
+}
+
 function formatNumber(num) {
     if (!num) return '0';
     if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
@@ -103,14 +118,19 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
+    // Get real Tier and Score from CSV (columns U and AF)
+    const badgeData = creatorBadges[creatorId] || {};
+    const tier = badgeData.tier || myData.tier || 'NR';
+    const score = badgeData.score || parseInt(myData.score) || 0;
+    
     // Manager pill
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
-    // Badges
-    const tier = getTier(myData.diamonds);
+    // Badges - Level, Tier (from CSV column U), Score (from CSV column AF)
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${myData.level || '--'}</span>
-        <span class="badge badge-tier">${tier} Tier</span>
+        <span class="badge badge-tier">${tier}</span>
+        <span class="badge badge-score">Score ${score}</span>
     `;
     
     // Welcome message based on performance

@@ -90,6 +90,11 @@
     color: var(--gold);
 }
 
+.badge-score {
+    background: rgba(0, 255, 136, 0.1);
+    color: var(--success);
+}
+
 .header-actions {
     display: flex;
     align-items: center;
