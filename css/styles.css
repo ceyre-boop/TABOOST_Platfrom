@@ -80,6 +80,7 @@ body {
     height: auto;
     margin: 0 auto 20px;
     display: block;
+    border-radius: 12px;
 }
 
 .form-group {

@@ -23,6 +23,7 @@
 .mobile-logo img {
     max-width: 100px;
     height: auto;
+    border-radius: 8px;
 }
 
 /* Header */
