@@ -215,7 +215,8 @@ function updateRank() {
     if (myRank > 1) {
         const nextCreator = sorted[myRank - 2];
         const gap = (nextCreator.diamonds || 0) - (myData.diamonds || 0);
-        document.getElementById('rankGoal').textContent = formatNumber(gap) + ' more diamonds to rank up';
+        const targetRank = myRank - 1;
+        document.getElementById('rankGoal').textContent = formatNumber(gap) + ' more diamonds to reach #' + targetRank;
     } else {
         document.getElementById('rankGoal').textContent = "You're #1! Keep crushing it! 🔥";
     }
