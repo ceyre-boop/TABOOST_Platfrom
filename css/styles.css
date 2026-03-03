@@ -69,6 +69,12 @@ body {
     letter-spacing: 1px;
 }
 
+.logo-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(255, 0, 68, 0.8);
+}
+
 .form-group {
     margin-bottom: 25px;
 }
