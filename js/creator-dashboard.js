@@ -120,13 +120,14 @@ function updateProfile(user) {
     
     // Get real Tier and Score from CSV (column D for Tier, Score column for Score)
     const badgeData = creatorBadges[creatorId] || {};
+    console.log('Creator ID:', creatorId, 'Badge Data:', badgeData);
     const tier = badgeData.tier || '-';
     const score = badgeData.score || 0;
     
     // Manager pill
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
-    // Badges - Level, Tier (from CSV column U), Score (from CSV column AF)
+    // Badges - Level, Tier (from CSV column D), Score (from CSV column AF)
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${myData.level || '--'}</span>
         <span class="badge badge-tier">${tier}</span>
