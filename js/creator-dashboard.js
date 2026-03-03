@@ -322,48 +322,27 @@ function initPerformanceChart() {
         }
     });
     
-    // Chart tabs
+    // Chart tabs - only real data, no estimation
     document.querySelectorAll('.chart-tab').forEach(tab => {
         tab.addEventListener('click', function() {
             document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
-            if (this.dataset.period === 'history') {
-                // Show 6 month view with real data
-                if (hasRealData) {
-                    performanceChart.data.labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
-                    performanceChart.data.datasets[0].data = trends.diamondsHistory;
-                    if (performanceChart.data.datasets[1]) {
-                        performanceChart.data.datasets[1].data = trends.growthRates;
-                    }
-                } else {
-                    performanceChart.data.labels = ['2 Months Ago', 'Last Month', 'This Month'];
-                    performanceChart.data.datasets[0].data = [
-                        myData.diamondsTwoMonthsAgo || 0,
-                        myData.diamondsLastMonth || 0,
-                        myData.diamonds || 0
-                    ];
+            // Always show real 6-month historical data
+            if (hasRealData) {
+                performanceChart.data.labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
+                performanceChart.data.datasets[0].data = trends.diamondsHistory;
+                if (performanceChart.data.datasets[1]) {
+                    performanceChart.data.datasets[1].data = trends.growthRates;
                 }
             } else {
-                // Use actual stream data if available, otherwise estimate
-                const daily = [];
-                const labels = [];
-                const days = myData.validLiveDays || 20;
-                const avg = days > 0 ? (myData.diamonds || 0) / days : 0;
-                
-                // Generate realistic daily pattern based on actual data
-                for (let i = 1; i <= Math.min(days, 30); i++) {
-                    // Add some realistic variance
-                    const variance = 0.5 + Math.random(); // 50% to 150% of average
-                    daily.push(Math.floor(avg * variance));
-                    labels.push('Day ' + i);
-                }
-                
-                performanceChart.data.labels = labels;
-                performanceChart.data.datasets[0].data = daily;
-                if (performanceChart.data.datasets[1]) {
-                    performanceChart.data.datasets[1].data = [];
-                }
+                // Fallback to available data
+                performanceChart.data.labels = ['2 Months Ago', 'Last Month', 'This Month'];
+                performanceChart.data.datasets[0].data = [
+                    myData.diamondsTwoMonthsAgo || 0,
+                    myData.diamondsLastMonth || 0,
+                    myData.diamonds || 0
+                ];
             }
             performanceChart.update();
         });
