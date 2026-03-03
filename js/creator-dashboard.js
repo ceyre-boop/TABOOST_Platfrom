@@ -1,27 +1,52 @@
 // Creator Dashboard - Personal Analytics
+// Tracks creators by Creator ID (internal), displays by username
 
 let myData = null;
 let allCreators = [];
 let performanceChart = null;
+let creatorMonths = {}; // Real month data from CSV column F
+let creatorIdMap = {}; // Map creatorId to creator data
 
 async function initCreatorDashboard(user) {
     await taboostData.loadFromCSV();
     allCreators = taboostData.getAllCreators();
     
+    // Build Creator ID lookup map (internal tracking)
+    creatorIdMap = {};
+    allCreators.forEach(c => {
+        if (c.creatorId) {
+            creatorIdMap[c.creatorId] = c;
+        }
+    });
+    
+    // Load real month data from CSV (column F)
+    await loadCreatorMonths();
+    
     // Load real 6-month historical trends
     await loadCreatorTrends();
     
-    // Find my data - match by username from login
-    myData = allCreators.find(c => 
-        c.username.toLowerCase() === user.name.toLowerCase().replace(' ', '')
-    ) || allCreators.find(c => c.username === 'singleonthemove') || allCreators[0];
+    // Find my data - first try by Creator ID, then fallback to username
+    // In production, user.id would be the Creator ID from login
+    let creatorId = user.creatorId || user.id;
+    
+    if (creatorId && creatorIdMap[creatorId]) {
+        myData = creatorIdMap[creatorId];
+    } else {
+        // Fallback: try to match by username
+        myData = allCreators.find(c => 
+            c.username.toLowerCase() === user.name.toLowerCase().replace(' ', '')
+        ) || allCreators.find(c => c.username === 'singleonthemove') || allCreators[0];
+    }
+    
+    // Store creatorId for internal tracking (never displayed)
+    myData._creatorId = myData.creatorId;
     
     updateProfile(user);
     updateStats();
     updateGoals();
     updateRank();
     updateActivityStats();
-    updateScoreAndLevels(); // NEW: Score & Activity Level
+    updateScoreAndLevels();
     initPerformanceChart();
     updateAchievements();
     updateHistory();
@@ -29,6 +54,17 @@ async function initCreatorDashboard(user) {
     
     // Update footer manager
     document.getElementById('footerManager').textContent = myData.manager || 'your manager';
+}
+
+// Load real month data from CSV (column F - Month)
+async function loadCreatorMonths() {
+    try {
+        const response = await fetch('data/creator_months.json');
+        creatorMonths = await response.json();
+    } catch (e) {
+        console.error('Failed to load creator months:', e);
+        creatorMonths = {};
+    }
 }
 
 function formatNumber(num) {
@@ -47,9 +83,12 @@ function updateProfile(user) {
     document.getElementById('creatorName').textContent = myData.username;
     document.getElementById('creatorAvatar').textContent = myData.username.charAt(0).toUpperCase();
     
-    // Calculate months from daysSinceJoining (real data from CSV)
-    const daysSinceJoining = parseInt(myData.daysSinceJoining) || 0;
-    const months = Math.floor(daysSinceJoining / 30);
+    // Use REAL month data from CSV column F (creatorMonths)
+    // Lookup by Creator ID (internal), not username
+    const creatorId = myData.creatorId || myData._creatorId;
+    const months = creatorMonths[creatorId] || parseInt(myData.month) || 0;
+    
+    // Format: "Member for X months" or "Member for X years Y months"
     const years = Math.floor(months / 12);
     const remainingMonths = months % 12;
     
@@ -59,7 +98,7 @@ function updateProfile(user) {
     } else if (years > 0) {
         memberText = `Member for ${years} year${years > 1 ? 's' : ''}`;
     } else {
-        memberText = `Member for ${months} month${months > 1 ? 's' : ''}`;
+        memberText = `Member for ${months} month${months !== 1 ? 's' : ''}`;
     }
     
     document.getElementById('joinDate').textContent = memberText;
