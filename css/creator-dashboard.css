@@ -1384,9 +1384,9 @@
         text-overflow: ellipsis;
     }
     
-    /* Hide tier labels below 0 and 100 on mobile */
-    .scale-item:first-child .scale-tier,
-    .scale-item:last-child .scale-tier {
+    /* Hide AGENT and MAX tier labels on mobile */
+    .tier-agent,
+    .tier-max {
         display: none;
     }
     
@@ -1568,9 +1568,9 @@
         height: 15px;
     }
     
-    /* Hide tier labels below 0 and 100 on small phones */
-    .scale-item:first-child .scale-tier,
-    .scale-item:last-child .scale-tier {
+    /* Hide AGENT and MAX tier labels on small phones */
+    .tier-agent,
+    .tier-max {
         display: none;
     }
 }
