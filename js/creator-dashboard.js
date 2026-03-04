@@ -789,6 +789,10 @@ function updateScoreAndLevels() {
 }
 
 function updateAwards() {
+    console.log('DEBUG - updateAwards called for:', myData.username);
+    console.log('DEBUG - creatorRewards available:', typeof creatorRewards !== 'undefined');
+    console.log('DEBUG - creatorRewards keys:', typeof creatorRewards !== 'undefined' ? Object.keys(creatorRewards).slice(0, 5) : 'N/A');
+    
     const storageKey = `rewards_${myData.username}`;
     let storedRewards = [];
     
@@ -797,13 +801,16 @@ function updateAwards() {
         const saved = localStorage.getItem(storageKey);
         if (saved) {
             storedRewards = JSON.parse(saved);
+            console.log('DEBUG - Loaded from localStorage:', storedRewards);
         }
     } catch (e) {
         console.log('Could not load rewards from storage');
     }
     
     // Load existing rewards from CSV data (creator_rewards.json)
-    const existingRewards = creatorRewards[myData.username];
+    const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
+    console.log('DEBUG - existingRewards for', myData.username, ':', existingRewards);
+    
     if (existingRewards && existingRewards.length > 0) {
         // Add any rewards not already in storedRewards
         existingRewards.forEach(rewardText => {
@@ -850,6 +857,8 @@ function updateAwards() {
     }
     
     // Build the awards list to display
+    console.log('DEBUG - storedRewards final:', storedRewards);
+    
     const awards = storedRewards.length > 0 ? storedRewards.map(r => ({
         icon: r.icon || '🏆',
         title: r.title,
@@ -861,6 +870,8 @@ function updateAwards() {
         date: '',
         amount: ''
     }];
+    
+    console.log('DEBUG - Awards to display:', awards);
     
     document.getElementById('awardsList').innerHTML = awards.map(a => `
         <div class="award-item">
