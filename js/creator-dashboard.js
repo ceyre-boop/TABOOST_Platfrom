@@ -583,34 +583,12 @@ function updateScoreAndLevels() {
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
     
-    // Score Bar Fill - exact position based on scale: 0,10,30,50,70,90,100
-    // Marker positions: 0%, 16.67%, 33.33%, 50%, 66.67%, 83.33%, 100%
-    const scalePoints = [0, 10, 30, 50, 70, 90, 100];
-    const markerPositions = [0, 16.67, 33.33, 50, 66.67, 83.33, 100];
-    
-    let fillPercent = 0;
-    if (score <= 0) {
-        fillPercent = 0;
-    } else if (score >= 100) {
-        fillPercent = 100;
-    } else {
-        // Find which range the score falls into
-        for (let i = 0; i < scalePoints.length - 1; i++) {
-            if (score >= scalePoints[i] && score <= scalePoints[i + 1]) {
-                const rangeStart = scalePoints[i];
-                const rangeEnd = scalePoints[i + 1];
-                const posStart = markerPositions[i];
-                const posEnd = markerPositions[i + 1];
-                
-                // Calculate exact position within the range
-                const rangeProgress = (score - rangeStart) / (rangeEnd - rangeStart);
-                fillPercent = posStart + (rangeProgress * (posEnd - posStart));
-                break;
-            }
-        }
-    }
-    
+    // Score Bar Fill - Linear 0-100 scale
+    // Score 86 = 86% width, Score 100 = 100% width
+    const fillPercent = Math.min(100, Math.max(0, score));
     document.getElementById('scoreBarFill').style.width = `${fillPercent}%`;
+    
+    console.log(`DEBUG - Score: ${score}, Bar width: ${fillPercent}%`);
     
     // Current Score Reward
     const rewardTiers = [
