@@ -116,33 +116,37 @@
             
             <!-- Score Progress Bar -->
             <div class="score-progress-container">
-                <div class="score-scale">
-                    <span>0</span>
-                    <span>10</span>
-                    <span>30</span>
-                    <span>50</span>
-                    <span>70</span>
-                    <span>90</span>
-                    <span>100</span>
-                </div>
-                <div class="score-tiers">
-                    <span class="tier-label tier-0">AGENT</span>
-                    <span class="tier-label tier-10">STARTERS</span>
-                    <span class="tier-label tier-30">NEXT-UPS</span>
-                    <span class="tier-label tier-50">STARS</span>
-                    <span class="tier-label tier-70">PROS</span>
-                    <span class="tier-label tier-90">MASTERS</span>
+                <div class="score-chart-wrapper">
+                    <div class="score-row numbers">
+                        <span class="score-num">0</span>
+                        <span class="score-num">10</span>
+                        <span class="score-num">30</span>
+                        <span class="score-num">50</span>
+                        <span class="score-num">70</span>
+                        <span class="score-num">90</span>
+                        <span class="score-num">100</span>
+                    </div>
+                    <div class="score-row tiers">
+                        <span class="tier-label tier-agent">AGENT</span>
+                        <span class="tier-label tier-starters">STARTERS</span>
+                        <span class="tier-label tier-nextups">NEXT-UPS</span>
+                        <span class="tier-label tier-stars">STARS</span>
+                        <span class="tier-label tier-pros">PROS</span>
+                        <span class="tier-label tier-masters">MASTERS</span>
+                    </div>
                 </div>
                 <div class="score-bar-bg">
                     <div class="score-bar-fill" id="scoreBarFill"></div>
-                    <!-- Score markers centered under each number -->
-                    <div class="score-marker" style="left: 0%"></div>
-                    <div class="score-marker" style="left: 16.67%"></div>
-                    <div class="score-marker" style="left: 33.33%"></div>
-                    <div class="score-marker" style="left: 50%"></div>
-                    <div class="score-marker" style="left: 66.67%"></div>
-                    <div class="score-marker" style="left: 83.33%"></div>
-                    <div class="score-marker" style="left: 100%"></div>
+                    <!-- Score markers - 7 column grid for perfect symmetry -->
+                    <div class="score-marker-grid">
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                        <div class="score-marker-item"></div>
+                    </div>
                 </div>
             </div>
             
