@@ -100,6 +100,8 @@ class TaboostDataService {
             creatorId: getValue('Host'),
             username: username,
             level: parseInt(getValue('Level')) || 0,
+            _levelHeader: headers.indexOf('Level'),
+            _levelValue: getValue('Level'),
             month: parseInt(getValue('Month')) || 0,
             discord: getValue('Discord'),
             // Agent/Manager field from Google Sheet
