@@ -121,9 +121,9 @@ class TaboostDataService {
             // Total rewards ever unlocked (column AG)
             totalUnlocked: this.formatNumber(getValue('Unlocked')),
             
-            // Performance metrics
-            diamonds: this.formatNumber(getValue('Diamonds 💎')) || this.formatNumber(getValue('dY\'Z')),
-            diamondsLast30: this.formatNumber(getValue('💎 Last 30')) || this.formatNumber(getValue('dY\'Z Pace')),
+            // Performance metrics - column T (19) = dY'Z, column U (20) = dY'Z Pace
+            diamonds: values[19] ? this.formatNumber(values[19]) : 0,
+            diamondsLast30: values[20] ? this.formatNumber(values[20]) : 0,
             growthPercent: getValue('Growth %'),
             hours: parseFloat(getValue('Hours')) || 0,
             hrsGoal: parseInt(getValue('Hrs Goal')) || 80,
