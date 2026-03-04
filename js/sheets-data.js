@@ -159,6 +159,7 @@ class TaboostDataService {
             link: getValue('Link'),
             diamondLabel: getValue('Diamond Label'),
             lastLabel: getValue('Last Label'),
+            lastReward: getValue('Last Reward') || getValue('AQ') || '',
             
             // Internal grouping
             group: this.determineGroup(getValue('Agent')),

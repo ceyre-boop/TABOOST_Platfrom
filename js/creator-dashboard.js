@@ -789,34 +789,61 @@ function updateScoreAndLevels() {
 }
 
 function updateAwards() {
-    const awards = [];
+    const storageKey = `rewards_${myData.username}`;
+    let storedRewards = [];
     
-    if (myData.lastLabel) {
-        awards.push({
-            icon: '🏆',
-            title: myData.lastLabel,
-            date: 'Recent',
-            amount: 'Award'
-        });
+    // Load existing rewards from localStorage
+    try {
+        const saved = localStorage.getItem(storageKey);
+        if (saved) {
+            storedRewards = JSON.parse(saved);
+        }
+    } catch (e) {
+        console.log('Could not load rewards from storage');
     }
     
-    if ((myData.rewards?.bonus || 0) > 0) {
-        awards.push({
-            icon: '🎁',
-            title: 'Performance Bonus',
-            date: 'This month',
-            amount: formatNumber(myData.rewards.bonus)
-        });
+    // Check for new reward from column AQ (lastReward)
+    if (myData.lastReward && myData.lastReward.trim()) {
+        const currentReward = myData.lastReward.trim();
+        
+        // Check if this reward is already in the list
+        const alreadyExists = storedRewards.some(r => r.title === currentReward);
+        
+        if (!alreadyExists) {
+            // Add new reward with timestamp
+            storedRewards.unshift({
+                title: currentReward,
+                date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+                icon: '🏆',
+                amount: 'Reward'
+            });
+            
+            // Keep only last 10 rewards
+            if (storedRewards.length > 10) {
+                storedRewards = storedRewards.slice(0, 10);
+            }
+            
+            // Save back to localStorage
+            try {
+                localStorage.setItem(storageKey, JSON.stringify(storedRewards));
+            } catch (e) {
+                console.log('Could not save rewards to storage');
+            }
+        }
     }
     
-    if (awards.length === 0) {
-        awards.push({
-            icon: '⭐',
-            title: 'Keep streaming to earn awards!',
-            date: '',
-            amount: ''
-        });
-    }
+    // Build the awards list to display
+    const awards = storedRewards.length > 0 ? storedRewards.map(r => ({
+        icon: r.icon || '🏆',
+        title: r.title,
+        date: r.date,
+        amount: r.amount || 'Reward'
+    })) : [{
+        icon: '⭐',
+        title: 'Keep streaming to earn rewards!',
+        date: '',
+        amount: ''
+    }];
     
     document.getElementById('awardsList').innerHTML = awards.map(a => `
         <div class="award-item">
