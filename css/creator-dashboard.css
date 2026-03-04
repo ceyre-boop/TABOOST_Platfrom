@@ -800,14 +800,6 @@
     margin-bottom: 10px;
 }
 
-.tier-agent { color: #888; }
-.tier-starters { color: #4ade80; }
-.tier-nextups { color: #60a5fa; }
-.tier-stars { color: #fbbf24; }
-.tier-pros { color: #f97316; }
-.tier-masters { color: #ef4444; }
-.tier-max { color: #ffd700; font-weight: 800; }
-
 .score-marker-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -1376,13 +1368,32 @@
         padding: 15px 10px;
     }
     
-    .score-row.numbers {
-        font-size: 10px;
+    .score-scale-line {
+        height: 45px;
     }
     
-    .score-row.tiers {
-        font-size: 7px;
+    .scale-num {
+        font-size: 9px;
+    }
+    
+    .scale-tier {
+        font-size: 6px;
         letter-spacing: 0;
+        max-width: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .score-segmented-bar {
+        margin: 20px 0 10px 0;
+    }
+    
+    .score-segments {
+        height: 20px;
+    }
+    
+    .tier-tick {
+        height: 10px;
     }
     
     .score-breakdown {
@@ -1530,6 +1541,25 @@
     .creator-footer {
         padding: 30px 15px;
         font-size: 12px;
+    }
+    
+    /* Small phone score chart */
+    .score-scale-line {
+        height: 40px;
+    }
+    
+    .scale-num {
+        font-size: 8px;
+    }
+    
+    .scale-tier {
+        font-size: 5px;
+        max-width: 35px;
+    }
+    
+    .score-segments {
+        gap: 1px;
+        height: 15px;
     }
 }
 
