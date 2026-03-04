@@ -154,7 +154,7 @@ function updateProfile(user) {
     // Badges - Level, Tier (col V), Score (col AG)
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${myData.level || '--'}</span>
-        <span class="badge badge-tier">${tier}</span>
+        <span class="badge badge-tier">Tier ${tier}</span>
         <span class="badge badge-score">Score ${score}</span>
     `;
     
