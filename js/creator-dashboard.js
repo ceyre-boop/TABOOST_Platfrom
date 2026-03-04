@@ -619,7 +619,6 @@ function updateHistory() {
             period: 'Feb 2026',
             diamonds: myData.diamonds,
             usd: formatUSD(myData.diamonds),
-            hours: (myData.hours || 0).toFixed(1) + 'h',
             rewards: formatNumber(myData.rewards?.earned || 0),
             change: myData.growthPercent || '0%'
         },
@@ -627,7 +626,6 @@ function updateHistory() {
             period: 'Jan 2026',
             diamonds: myData.diamondsLastMonth,
             usd: formatUSD(myData.diamondsLastMonth),
-            hours: '--',
             rewards: '--',
             change: '--'
         },
@@ -635,7 +633,6 @@ function updateHistory() {
             period: 'Dec 2025',
             diamonds: myData.diamondsTwoMonthsAgo,
             usd: formatUSD(myData.diamondsTwoMonthsAgo),
-            hours: '--',
             rewards: '--',
             change: '--'
         }
@@ -651,7 +648,6 @@ function updateHistory() {
                 <td><strong>${r.period}</strong></td>
                 <td>${formatNumber(r.diamonds)} 💎</td>
                 <td style="color: var(--success);">${r.usd}</td>
-                <td>${r.hours}</td>
                 <td>${r.rewards}</td>
                 <td>
                     ${r.change !== '--' ? `
