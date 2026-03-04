@@ -754,10 +754,12 @@
     gap: 4px;
 }
 
+/* First item (0) - align left edge to 0% */
 .scale-item:first-child {
     transform: translateX(0);
 }
 
+/* Last item (100) - align right edge to 100% */
 .scale-item:last-child {
     transform: translateX(-100%);
 }
