@@ -583,12 +583,16 @@ function updateScoreAndLevels() {
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
     
-    // Score Bar Fill - Linear 0-100 scale
-    // Score 86 = 86% width, Score 100 = 100% width
-    const fillPercent = Math.min(100, Math.max(0, score));
-    document.getElementById('scoreBarFill').style.width = `${fillPercent}%`;
+    // Score Spot - exact position on 0-100 track
+    // Score 86 = 86% position, Score 100 = 100% position
+    const spotPosition = Math.min(100, Math.max(0, score));
+    const scoreSpot = document.getElementById('scoreSpot');
+    if (scoreSpot) {
+        scoreSpot.style.left = `${spotPosition}%`;
+        scoreSpot.title = `Score: ${score}`;
+    }
     
-    console.log(`DEBUG - Score: ${score}, Bar width: ${fillPercent}%`);
+    console.log(`DEBUG - Score: ${score}, Spot position: ${spotPosition}%`);
     
     // Current Score Reward
     const rewardTiers = [
