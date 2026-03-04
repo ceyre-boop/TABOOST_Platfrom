@@ -802,6 +802,23 @@ function updateAwards() {
         console.log('Could not load rewards from storage');
     }
     
+    // Load existing rewards from CSV data (creator_rewards.json)
+    const existingRewards = creatorRewards[myData.username];
+    if (existingRewards && existingRewards.length > 0) {
+        // Add any rewards not already in storedRewards
+        existingRewards.forEach(rewardText => {
+            const alreadyExists = storedRewards.some(r => r.title === rewardText);
+            if (!alreadyExists) {
+                storedRewards.push({
+                    title: rewardText,
+                    date: 'Earned',
+                    icon: '🏆',
+                    amount: 'Reward'
+                });
+            }
+        });
+    }
+    
     // Check for new reward from column AQ (lastReward)
     if (myData.lastReward && myData.lastReward.trim()) {
         const currentReward = myData.lastReward.trim();
@@ -817,19 +834,19 @@ function updateAwards() {
                 icon: '🏆',
                 amount: 'Reward'
             });
-            
-            // Keep only last 10 rewards
-            if (storedRewards.length > 10) {
-                storedRewards = storedRewards.slice(0, 10);
-            }
-            
-            // Save back to localStorage
-            try {
-                localStorage.setItem(storageKey, JSON.stringify(storedRewards));
-            } catch (e) {
-                console.log('Could not save rewards to storage');
-            }
         }
+    }
+    
+    // Keep only last 10 rewards
+    if (storedRewards.length > 10) {
+        storedRewards = storedRewards.slice(0, 10);
+    }
+    
+    // Save back to localStorage
+    try {
+        localStorage.setItem(storageKey, JSON.stringify(storedRewards));
+    } catch (e) {
+        console.log('Could not save rewards to storage');
     }
     
     // Build the awards list to display
