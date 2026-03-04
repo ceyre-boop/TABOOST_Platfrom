@@ -122,8 +122,8 @@ class TaboostDataService {
             totalUnlocked: this.formatNumber(getValue('Unlocked')),
             
             // Performance metrics
-            diamonds: this.formatNumber(getValue('Diamonds 💎')),
-            diamondsLast30: this.formatNumber(getValue('💎 Last 30')),
+            diamonds: this.formatNumber(getValue('Diamonds 💎')) || this.formatNumber(getValue('dY\'Z')),
+            diamondsLast30: this.formatNumber(getValue('💎 Last 30')) || this.formatNumber(getValue('dY\'Z Pace')),
             growthPercent: getValue('Growth %'),
             hours: parseFloat(getValue('Hours')) || 0,
             hrsGoal: parseInt(getValue('Hrs Goal')) || 80,
