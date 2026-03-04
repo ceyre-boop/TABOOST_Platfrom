@@ -766,21 +766,22 @@ function updateScoreAndLevels() {
     document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
     document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
     
-    // Revenue Streams
-    const levelPayments = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 }; // Update with actual values
-    const scorePayment = currentTier ? currentTier.reward : 0;
+    // Revenue Streams - only update elements that exist
     const diamondUSD = (myData.diamonds || 0) * 0.005;
     
-    document.getElementById('levelRevenue').textContent = '$' + (levelPayments[currentLevel] || 0);
-    document.getElementById('revenueLevelNum').textContent = currentLevel;
-    document.getElementById('diamondRevenue').textContent = '$' + diamondUSD.toFixed(2);
-    document.getElementById('diamondCount').textContent = formatNumber(myData.diamonds) + ' 💎';
-    document.getElementById('scoreRevenue').textContent = '$' + scorePayment;
-    document.getElementById('revenueScoreNum').textContent = score;
+    // Update Diamond Earnings (only remaining revenue item)
+    const diamondRevenueEl = document.getElementById('diamondRevenue');
+    if (diamondRevenueEl) {
+        diamondRevenueEl.textContent = '$' + diamondUSD.toFixed(2);
+    }
     
-    // Total potential
-    const total = (levelPayments[currentLevel] || 0) + diamondUSD + scorePayment;
-    document.getElementById('totalPotential').textContent = '$' + total.toFixed(2);
+    const diamondCountEl = document.getElementById('diamondCount');
+    if (diamondCountEl) {
+        diamondCountEl.textContent = formatNumber(myData.diamonds) + ' 💎';
+    }
+    
+    // Level Bonus and Score Reward removed - elements no longer exist
+    console.log('DEBUG - Revenue: Diamond USD =', diamondUSD.toFixed(2));
 }
 
 function updateAwards() {
