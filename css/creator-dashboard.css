@@ -1419,11 +1419,28 @@
         font-size: 16px;
     }
     
-    /* Mobile Level Tracker */
+    /* Mobile Level Tracker - Clean & Compact */
+    .activity-level-section {
+        padding: 15px;
+    }
+    
+    .activity-level-section .section-header {
+        margin-bottom: 15px;
+    }
+    
+    .activity-level-section .section-header h2 {
+        font-size: 16px;
+    }
+    
+    .level-badge {
+        font-size: 12px;
+        padding: 4px 12px;
+    }
+    
     .level-tracker {
         flex-direction: column;
-        gap: 15px;
-        padding: 20px 10px;
+        gap: 10px;
+        padding: 10px 0;
     }
     
     .level-step {
@@ -1431,18 +1448,27 @@
         width: 100%;
         min-width: auto;
         text-align: left;
-        gap: 15px;
+        gap: 12px;
+        padding: 8px 0;
+        opacity: 0.3;
+    }
+    
+    .level-step.completed,
+    .level-step.current {
+        opacity: 1;
     }
     
     .level-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
         flex-shrink: 0;
     }
     
     .level-req {
         flex: 1;
+        font-size: 12px;
+        line-height: 1.4;
     }
     
     .level-connector {
@@ -1572,6 +1598,39 @@
     .tier-agent,
     .tier-max {
         display: none;
+    }
+    
+    /* Small phone Activity Level */
+    .activity-level-section {
+        padding: 12px;
+    }
+    
+    .activity-level-section .section-header h2 {
+        font-size: 14px;
+    }
+    
+    .level-badge {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+    
+    .level-tracker {
+        gap: 8px;
+    }
+    
+    .level-step {
+        gap: 10px;
+        padding: 6px 0;
+    }
+    
+    .level-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    .level-req {
+        font-size: 11px;
     }
 }
 
