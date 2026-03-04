@@ -250,7 +250,13 @@ function updateRank() {
 function updateActivityStats() {
     document.getElementById('hoursValue').textContent = (myData.hours || 0).toFixed(1) + 'h';
     document.getElementById('streamsValue').textContent = myData.liveStreams || 0;
-    document.getElementById('followersValue').textContent = formatNumber(myData.followers);
+    
+    // Calculate hourly rate (diamonds per hour)
+    const hours = myData.hours || 0;
+    const diamonds = myData.diamonds || 0;
+    const hourlyRate = hours > 0 ? Math.round(diamonds / hours) : 0;
+    document.getElementById('hourlyRateValue').textContent = formatNumber(hourlyRate) + ' 💎/h';
+    
     document.getElementById('daysValue').textContent = myData.validLiveDays || 0;
     
     // Hours goal mini bar
