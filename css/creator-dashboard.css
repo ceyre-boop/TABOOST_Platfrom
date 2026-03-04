@@ -777,6 +777,7 @@
 .tier-stars { color: #fbbf24; }
 .tier-pros { color: #f97316; }
 .tier-masters { color: #ef4444; }
+.tier-max { color: #ffd700; font-weight: 800; }
 
 .score-marker-grid {
     display: grid;
