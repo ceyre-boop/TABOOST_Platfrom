@@ -125,13 +125,13 @@
                 </div>
                 <div class="score-bar-bg">
                     <div class="score-bar-fill" id="scoreBarFill"></div>
-                    <!-- Reward markers -->
-                    <div class="score-marker" style="left: 70%" data-reward="$75"></div>
-                    <div class="score-marker" style="left: 75%" data-reward="$75"></div>
-                    <div class="score-marker" style="left: 80%" data-reward="$100"></div>
-                    <div class="score-marker" style="left: 85%" data-reward="$200"></div>
-                    <div class="score-marker" style="left: 90%" data-reward="$300"></div>
-                    <div class="score-marker" style="left: 95%" data-reward="$450"></div>
+                    <!-- Score markers (no cash rewards displayed) -->
+                    <div class="score-marker" style="left: 70%"></div>
+                    <div class="score-marker" style="left: 75%"></div>
+                    <div class="score-marker" style="left: 80%"></div>
+                    <div class="score-marker" style="left: 85%"></div>
+                    <div class="score-marker" style="left: 90%"></div>
+                    <div class="score-marker" style="left: 95%"></div>
                 </div>
                 <div class="score-labels">
                     <span class="score-reward" id="currentScoreReward">Current: --</span>
@@ -171,31 +171,26 @@
                 <div class="level-step ${(myData.level || 0) >= 1 ? 'completed' : ''}" data-level="1">
                     <div class="level-icon">1</div>
                     <div class="level-req">8 days<br>or 8 hrs</div>
-                    <div class="level-reward">$--</div>
                 </div>
                 <div class="level-connector"></div>
                 <div class="level-step ${(myData.level || 0) >= 2 ? 'completed' : ''}" data-level="2">
                     <div class="level-icon">2</div>
                     <div class="level-req">12 days<br>or 20 hrs</div>
-                    <div class="level-reward">$--</div>
                 </div>
                 <div class="level-connector"></div>
                 <div class="level-step ${(myData.level || 0) >= 3 ? 'completed' : ''}" data-level="3">
                     <div class="level-icon">3</div>
                     <div class="level-req">16 days<br>or 35 hrs</div>
-                    <div class="level-reward">$--</div>
                 </div>
                 <div class="level-connector"></div>
                 <div class="level-step ${(myData.level || 0) >= 4 ? 'completed' : ''}" data-level="4">
                     <div class="level-icon">4</div>
                     <div class="level-req">20 days<br>or 50 hrs</div>
-                    <div class="level-reward">$--</div>
                 </div>
                 <div class="level-connector"></div>
                 <div class="level-step ${(myData.level || 0) >= 5 ? 'completed' : ''}" data-level="5">
                     <div class="level-icon">5</div>
                     <div class="level-req">25 days<br>or 70 hrs</div>
-                    <div class="level-reward">$--</div>
                 </div>
             </div>
             
