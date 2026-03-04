@@ -1384,6 +1384,12 @@
         text-overflow: ellipsis;
     }
     
+    /* Hide tier labels below 0 and 100 on mobile */
+    .scale-item:first-child .scale-tier,
+    .scale-item:last-child .scale-tier {
+        display: none;
+    }
+    
     .score-segmented-bar {
         margin: 20px 0 10px 0;
     }
@@ -1560,6 +1566,12 @@
     .score-segments {
         gap: 1px;
         height: 15px;
+    }
+    
+    /* Hide tier labels below 0 and 100 on small phones */
+    .scale-item:first-child .scale-tier,
+    .scale-item:last-child .scale-tier {
+        display: none;
     }
 }
 
