@@ -46,27 +46,41 @@ class TaboostDataService {
 
     // Parse the CSV data into structured objects
     parseCSVData(csvText) {
-        const lines = csvText.trim().split('\n');
+        // Handle different line endings
+        const normalizedText = csvText.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        const lines = normalizedText.trim().split('\n');
         console.log('DEBUG - Total lines:', lines.length);
-        if (lines.length < 2) return [];
+        if (lines.length < 2) {
+            console.log('DEBUG - Not enough lines');
+            return [];
+        }
 
         const headers = this.parseCSVLine(lines[0]);
-        console.log('DEBUG - Headers:', headers.slice(0, 10), '... Total:', headers.length);
+        console.log('DEBUG - Headers count:', headers.length);
+        console.log('DEBUG - First 10 headers:', headers.slice(0, 10));
         const creators = [];
 
-        for (let i = 1; i < Math.min(lines.length, 5); i++) {
-            const values = this.parseCSVLine(lines[i]);
-            console.log(`DEBUG - Row ${i}:`, values.slice(0, 5), '... Length:', values.length);
-        }
+        // Debug first data row
+        const firstDataRow = this.parseCSVLine(lines[1]);
+        console.log('DEBUG - First data row values count:', firstDataRow.length);
+        console.log('DEBUG - First data row first 5 values:', firstDataRow.slice(0, 5));
 
         for (let i = 1; i < lines.length; i++) {
             const values = this.parseCSVLine(lines[i]);
-            if (values.length < 10) continue; // Skip incomplete rows
+            if (values.length < 5) {
+                console.log(`DEBUG - Row ${i} skipped, length:`, values.length);
+                continue;
+            }
 
             const creator = this.mapRowToCreator(headers, values);
-            if (creator) creators.push(creator);
+            if (creator) {
+                creators.push(creator);
+            } else {
+                console.log(`DEBUG - Row ${i} mapRowToCreator returned null`);
+            }
         }
 
+        console.log('DEBUG - Total creators parsed:', creators.length);
         return creators;
     }
 
@@ -77,7 +91,8 @@ class TaboostDataService {
             return idx >= 0 ? values[idx] : '';
         };
 
-        const username = getValue('TikTok');
+        // TikTok username is in column C (header '3/1' in current CSV format)
+        const username = getValue('3/1') || getValue('TikTok');
         if (!username) return null;
 
         return {
