@@ -335,10 +335,16 @@ async function loadCreatorTrends() {
 
 function initPerformanceChart() {
     const ctx = document.getElementById('performanceChart');
+    if (!ctx) {
+        console.error('ERROR: performanceChart canvas not found');
+        return;
+    }
     
     // Use real 6-month data if available
     const trends = creatorTrends[myData.username];
+    console.log('DEBUG - Chart trends for', myData.username, ':', trends);
     const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
+    console.log('DEBUG - hasRealData:', hasRealData);
     
     const labels = hasRealData 
         ? ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month']
@@ -383,6 +389,13 @@ function initPerformanceChart() {
             pointRadius: 3
         });
     }
+    
+    // Destroy existing chart if it exists
+    if (performanceChart) {
+        performanceChart.destroy();
+    }
+    
+    console.log('DEBUG - Creating chart with data:', data);
     
     performanceChart = new Chart(ctx, {
         type: 'line',
