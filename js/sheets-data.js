@@ -146,6 +146,7 @@ class TaboostDataService {
             score: parseInt(getValue('Score')) || 0,
             _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),
+            rankUpReward: parseInt(getValue('Rank_up_Reward')) || 0,
             
             // Historical data
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
