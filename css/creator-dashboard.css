@@ -528,6 +528,12 @@
 .chart-container {
     height: 300px;
     margin-bottom: 20px;
+    position: relative;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .chart-insights {
