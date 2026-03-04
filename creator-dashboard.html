@@ -117,34 +117,48 @@
             <!-- Score Progress Bar -->
             <div class="score-progress-container">
                 <div class="score-chart-wrapper">
-                    <div class="score-row numbers">
-                        <span class="score-num">0</span>
-                        <span class="score-num">10</span>
-                        <span class="score-num">30</span>
-                        <span class="score-num">50</span>
-                        <span class="score-num">70</span>
-                        <span class="score-num">90</span>
-                        <span class="score-num">100</span>
-                    </div>
-                    <div class="score-row tiers">
-                        <span class="tier-label tier-agent">AGENT</span>
-                        <span class="tier-label tier-starters">STARTERS</span>
-                        <span class="tier-label tier-nextups">NEXT-UPS</span>
-                        <span class="tier-label tier-stars">STARS</span>
-                        <span class="tier-label tier-pros">PROS</span>
-                        <span class="tier-label tier-masters">MASTERS</span>
-                        <span class="tier-label tier-blank"></span>
+                    <div class="score-scale-line">
+                        <div class="scale-item" style="left: 0%">
+                            <span class="scale-num">0</span>
+                            <span class="scale-tier tier-agent">AGENT</span>
+                        </div>
+                        <div class="scale-item" style="left: 10%">
+                            <span class="scale-num">10</span>
+                            <span class="scale-tier tier-starters">STARTERS</span>
+                        </div>
+                        <div class="scale-item" style="left: 30%">
+                            <span class="scale-num">30</span>
+                            <span class="scale-tier tier-nextups">NEXT-UPS</span>
+                        </div>
+                        <div class="scale-item" style="left: 50%">
+                            <span class="scale-num">50</span>
+                            <span class="scale-tier tier-stars">STARS</span>
+                        </div>
+                        <div class="scale-item" style="left: 70%">
+                            <span class="scale-num">70</span>
+                            <span class="scale-tier tier-pros">PROS</span>
+                        </div>
+                        <div class="scale-item" style="left: 90%">
+                            <span class="scale-num">90</span>
+                            <span class="scale-tier tier-masters">MASTERS</span>
+                        </div>
+                        <div class="scale-item" style="left: 100%">
+                            <span class="scale-num">100</span>
+                            <span class="scale-tier tier-max">MAX</span>
+                        </div>
                     </div>
                 </div>
                 <div class="score-segmented-bar">
                     <div class="score-segments" id="scoreSegments"></div>
-                    <!-- Scale labels -->
-                    <div class="score-labels-row">
-                        <span>0</span>
-                        <span>25</span>
-                        <span>50</span>
-                        <span>75</span>
-                        <span>100</span>
+                    <!-- Tick marks at tier boundaries -->
+                    <div class="tier-ticks">
+                        <div class="tier-tick" style="left: 0%"></div>
+                        <div class="tier-tick" style="left: 10%"></div>
+                        <div class="tier-tick" style="left: 30%"></div>
+                        <div class="tier-tick" style="left: 50%"></div>
+                        <div class="tier-tick" style="left: 70%"></div>
+                        <div class="tier-tick" style="left: 90%"></div>
+                        <div class="tier-tick" style="left: 100%"></div>
                     </div>
                 </div>
             </div>

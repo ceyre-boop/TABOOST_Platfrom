@@ -737,29 +737,52 @@
     width: 100%;
 }
 
-.score-row {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    text-align: center;
-    gap: 0;
+.score-scale-line {
+    position: relative;
+    height: 60px;
     width: 100%;
+    margin-bottom: 10px;
 }
 
-.score-row .score-num:last-child,
-.score-row .tier-label:last-child {
-    text-align: right;
-    padding-right: 0;
+.scale-item {
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
 }
 
-.score-row .score-num:first-child,
-.score-row .tier-label:first-child {
-    text-align: left;
-    padding-left: 0;
+.scale-item:first-child {
+    transform: translateX(0);
 }
 
-.tier-blank {
-    visibility: hidden;
+.scale-item:last-child {
+    transform: translateX(-100%);
 }
+
+.scale-num {
+    font-size: 12px;
+    color: #666;
+    font-weight: 600;
+}
+
+.scale-tier {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.tier-agent { color: #888; }
+.tier-starters { color: #4ade80; }
+.tier-nextups { color: #60a5fa; }
+.tier-stars { color: #fbbf24; }
+.tier-pros { color: #f97316; }
+.tier-masters { color: #ef4444; }
+.tier-max { color: #ffd700; }
 
 .score-row.numbers {
     font-size: 12px;
@@ -817,7 +840,8 @@
 }
 
 .score-segmented-bar {
-    margin: 20px 0;
+    margin: 30px 0 10px 0;
+    position: relative;
 }
 
 .score-segments {
@@ -840,12 +864,29 @@
     box-shadow: 0 0 5px rgba(255, 0, 68, 0.5);
 }
 
-.score-labels-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-    font-size: 11px;
-    color: #666;
+.tier-ticks {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+.tier-tick {
+    position: absolute;
+    top: 0;
+    width: 2px;
+    height: 15px;
+    background: rgba(255,255,255,0.4);
+    transform: translateX(-50%);
+}
+
+.tier-tick:first-child {
+    transform: translateX(0);
+}
+
+.tier-tick:last-child {
+    transform: translateX(-100%);
 }
 
 /* Old .score-marker removed - using grid-based markers now */
