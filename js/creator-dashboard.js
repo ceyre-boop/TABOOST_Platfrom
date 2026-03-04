@@ -337,8 +337,10 @@ async function loadCreatorTrends() {
 }
 
 function initPerformanceChart() {
+    console.log('DEBUG - initPerformanceChart called');
     try {
         const ctx = document.getElementById('performanceChart');
+        console.log('DEBUG - Canvas element:', ctx);
         if (!ctx) {
             console.error('ERROR: performanceChart canvas not found');
             return;
