@@ -734,6 +734,7 @@
 
 .score-chart-wrapper {
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .score-row {
@@ -741,6 +742,19 @@
     grid-template-columns: repeat(7, 1fr);
     text-align: center;
     gap: 0;
+    width: 100%;
+}
+
+.score-row .score-num:last-child,
+.score-row .tier-label:last-child {
+    text-align: right;
+    padding-right: 0;
+}
+
+.score-row .score-num:first-child,
+.score-row .tier-label:first-child {
+    text-align: left;
+    padding-left: 0;
 }
 
 .score-row.numbers {
@@ -772,12 +786,21 @@
     left: 0;
     right: 0;
     height: 40px;
+    width: 100%;
 }
 
 .score-marker-item {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+}
+
+.score-marker-item:first-child {
+    justify-content: flex-start;
+}
+
+.score-marker-item:last-child {
+    justify-content: flex-end;
 }
 
 .score-marker-item::before {
