@@ -1426,6 +1426,8 @@
     
     .activity-level-section .section-header {
         margin-bottom: 15px;
+        justify-content: center;
+        gap: 15px;
     }
     
     .activity-level-section .section-header h2 {
@@ -1439,36 +1441,42 @@
     
     .level-tracker {
         flex-direction: column;
-        gap: 10px;
-        padding: 10px 0;
+        gap: 8px;
+        padding: 10px 5px;
+        align-items: center;
     }
     
     .level-step {
         flex-direction: row;
-        width: 100%;
+        width: 90%;
+        max-width: 280px;
         min-width: auto;
         text-align: left;
-        gap: 12px;
-        padding: 8px 0;
+        gap: 15px;
+        padding: 10px 15px;
         opacity: 0.3;
+        background: rgba(255,255,255,0.03);
+        border-radius: 10px;
+        justify-content: flex-start;
     }
     
     .level-step.completed,
     .level-step.current {
         opacity: 1;
+        background: rgba(255,0,68,0.1);
     }
     
     .level-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 14px;
+        width: 38px;
+        height: 38px;
+        font-size: 15px;
         flex-shrink: 0;
     }
     
     .level-req {
         flex: 1;
-        font-size: 12px;
-        line-height: 1.4;
+        font-size: 13px;
+        line-height: 1.5;
     }
     
     .level-connector {
@@ -1477,6 +1485,32 @@
     
     .current-progress {
         grid-template-columns: 1fr;
+        padding: 15px 10px;
+        gap: 15px;
+    }
+    
+    .progress-stat {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background: rgba(255,255,255,0.03);
+        border-radius: 8px;
+    }
+    
+    .progress-label {
+        font-size: 12px;
+        color: #888;
+    }
+    
+    .progress-value {
+        font-size: 14px;
+        font-weight: 600;
+    }
+    
+    .mini-bar {
+        width: 80px;
+        height: 4px;
     }
     
     /* Mobile Revenue */
@@ -1605,6 +1639,11 @@
         padding: 12px;
     }
     
+    .activity-level-section .section-header {
+        justify-content: center;
+        gap: 12px;
+    }
+    
     .activity-level-section .section-header h2 {
         font-size: 14px;
     }
@@ -1615,22 +1654,41 @@
     }
     
     .level-tracker {
-        gap: 8px;
+        gap: 6px;
+        padding: 8px 0;
     }
     
     .level-step {
-        gap: 10px;
-        padding: 6px 0;
+        gap: 12px;
+        padding: 8px 12px;
+        width: 95%;
     }
     
     .level-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 12px;
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
     }
     
     .level-req {
+        font-size: 12px;
+    }
+    
+    .current-progress {
+        padding: 12px 8px;
+        gap: 10px;
+    }
+    
+    .progress-stat {
+        padding: 8px 12px;
+    }
+    
+    .progress-label {
         font-size: 11px;
+    }
+    
+    .progress-value {
+        font-size: 13px;
     }
 }
 
