@@ -138,15 +138,17 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier and Score from CSV (column U for Tier, column AF for Score)
+    // Get real Tier from creator_badges and Score directly from myData (column AG)
     const badgeData = creatorBadges[creatorId] || {};
     const tier = badgeData.tier || '-';
-    const score = badgeData.score || 0;
+    const score = myData.score || 0; // Use score directly from CSV (column AG)
+    
+    console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
     
     // Manager pill
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
-    // Badges - Level, Tier (col U), Score (col AF)
+    // Badges - Level, Tier (col V), Score (col AG)
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${myData.level || '--'}</span>
         <span class="badge badge-tier">${tier}</span>
