@@ -47,10 +47,17 @@ class TaboostDataService {
     // Parse the CSV data into structured objects
     parseCSVData(csvText) {
         const lines = csvText.trim().split('\n');
+        console.log('DEBUG - Total lines:', lines.length);
         if (lines.length < 2) return [];
 
         const headers = this.parseCSVLine(lines[0]);
+        console.log('DEBUG - Headers:', headers.slice(0, 10), '... Total:', headers.length);
         const creators = [];
+
+        for (let i = 1; i < Math.min(lines.length, 5); i++) {
+            const values = this.parseCSVLine(lines[i]);
+            console.log(`DEBUG - Row ${i}:`, values.slice(0, 5), '... Length:', values.length);
+        }
 
         for (let i = 1; i < lines.length; i++) {
             const values = this.parseCSVLine(lines[i]);
@@ -118,6 +125,7 @@ class TaboostDataService {
             // Status & scoring
             status: getValue('Status'),
             score: parseInt(getValue('Score')) || 0,
+            _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),
             
             // Historical data
