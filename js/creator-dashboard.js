@@ -596,13 +596,7 @@ function updateScoreAndLevels() {
         { min: 0, reward: 0 }
     ];
     
-    const currentTier = rewardTiers.find(t => score >= t.min);
-    const nextTier = rewardTiers.find(t => t.min > score);
-    
-    document.getElementById('currentScoreReward').textContent = 
-        score >= 70 ? `Current Reward: $${currentTier.reward}` : 'Need 70+ score for rewards';
-    document.getElementById('nextScoreReward').textContent = 
-        nextTier ? `Next: $${nextTier.reward} at ${nextTier.min}` : 'Max reward achieved!';
+    // Score reward display removed - only showing score bar now
     
     // Score Breakdown
     const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
