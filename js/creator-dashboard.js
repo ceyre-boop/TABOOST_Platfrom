@@ -183,7 +183,9 @@ function getTier(diamonds) {
 
 function updateStats() {
     // Current diamonds
-    console.log('DEBUG - Diamonds:', myData.diamonds, 'Type:', typeof myData.diamonds);
+    console.log('DEBUG - myData:', myData);
+    console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
+    console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
     document.getElementById('currentUSD').textContent = '≈ ' + formatUSD(myData.diamonds);
     

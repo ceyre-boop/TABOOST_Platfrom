@@ -124,6 +124,8 @@ class TaboostDataService {
             // Performance metrics - column T (19) = dY'Z, column U (20) = dY'Z Pace
             diamonds: values[19] ? this.formatNumber(values[19]) : 0,
             diamondsLast30: values[20] ? this.formatNumber(values[20]) : 0,
+            _diamondsRaw: values[19],
+            _levelRaw: values[4],
             growthPercent: getValue('Growth %'),
             hours: parseFloat(getValue('Hours')) || 0,
             hrsGoal: parseInt(getValue('Hrs Goal')) || 80,
