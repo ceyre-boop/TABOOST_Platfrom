@@ -600,7 +600,25 @@ function updateScoreAndLevels() {
     const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
     const growth = parseFloat(myData.growthPercent) || 0;
     
-    document.getElementById('scoreActivity').textContent = `Level ${myData.level || 1}`;
+    // Activity Level based on Column U (💎 Pace)
+    const pace = myData.diamondPace || 0;
+    let activityLevel = 'Low';
+    let activityColor = '#888';
+    
+    if (pace > 300000) {
+        activityLevel = 'Great';
+        activityColor = '#4ade80'; // Green
+    } else if (pace >= 1000) {
+        activityLevel = 'Good';
+        activityColor = '#60a5fa'; // Blue
+    } else {
+        activityLevel = 'Low';
+        activityColor = '#ef4444'; // Red
+    }
+    
+    const activityEl = document.getElementById('scoreActivity');
+    activityEl.textContent = activityLevel;
+    activityEl.style.color = activityColor;
     document.getElementById('scoreDiamonds').textContent = formatNumber(threeMonthDiamonds);
     document.getElementById('scoreTrend').textContent = growth >= 0 ? `+${growth}%` : `${growth}%`;
     document.getElementById('scoreTrend').style.color = growth >= 0 ? 'var(--taboost-success)' : 'var(--taboost-red)';

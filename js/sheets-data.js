@@ -111,6 +111,7 @@ class TaboostDataService {
             liveStreams: parseInt(getValue('Days')) || 0, // Days = streaming days
             validLiveDays: parseInt(getValue('Days')) || 0,
             dayPace: getValue('Day Pace'),
+            diamondPace: parseInt(getValue('dY\'Z Pace')) || 0, // Column U - 💎 Pace
             followers: this.formatNumber(getValue('LF')),
             tickets: getValue('Tix'),
             
