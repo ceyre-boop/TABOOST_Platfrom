@@ -583,16 +583,32 @@ function updateScoreAndLevels() {
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
     
-    // Score Spot - exact position on 0-100 track
-    // Score 86 = 86% position, Score 100 = 100% position
-    const spotPosition = Math.min(100, Math.max(0, score));
-    const scoreSpot = document.getElementById('scoreSpot');
-    if (scoreSpot) {
-        scoreSpot.style.left = `${spotPosition}%`;
-        scoreSpot.title = `Score: ${score}`;
+    // Score Segmented Bar - 100 segments, fill based on score
+    // Score 86 = 86 segments filled, Score 100 = 100 segments filled
+    const segmentsContainer = document.getElementById('scoreSegments');
+    if (segmentsContainer) {
+        // Generate 100 segments if not already generated
+        if (segmentsContainer.children.length === 0) {
+            for (let i = 0; i < 100; i++) {
+                const segment = document.createElement('div');
+                segment.className = 'score-segment';
+                segmentsContainer.appendChild(segment);
+            }
+        }
+        
+        // Fill segments based on score
+        const filledCount = Math.min(100, Math.max(0, Math.round(score)));
+        const segments = segmentsContainer.querySelectorAll('.score-segment');
+        segments.forEach((seg, index) => {
+            if (index < filledCount) {
+                seg.classList.add('filled');
+            } else {
+                seg.classList.remove('filled');
+            }
+        });
     }
     
-    console.log(`DEBUG - Score: ${score}, Spot position: ${spotPosition}%`);
+    console.log(`DEBUG - Score: ${score}, Segments filled: ${Math.round(score)}`);
     
     // Current Score Reward
     const rewardTiers = [

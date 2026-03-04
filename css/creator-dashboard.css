@@ -812,34 +812,36 @@
     border-radius: 6px;
 }
 
-.score-track {
-    position: relative;
-    height: 4px;
+.score-segmented-bar {
+    margin: 20px 0;
+}
+
+.score-segments {
+    display: flex;
+    gap: 2px;
+    height: 30px;
+    align-items: flex-end;
+}
+
+.score-segment {
+    flex: 1;
+    height: 100%;
     background: rgba(255,255,255,0.1);
     border-radius: 2px;
-    margin: 30px 0 20px 0;
+    transition: background 0.3s ease;
 }
 
-.score-tick {
-    position: absolute;
-    top: -8px;
-    width: 2px;
-    height: 20px;
-    background: rgba(255,255,255,0.3);
-    transform: translateX(-50%);
+.score-segment.filled {
+    background: linear-gradient(180deg, #ff0044, #ff6b6b);
+    box-shadow: 0 0 5px rgba(255, 0, 68, 0.5);
 }
 
-.score-spot {
-    position: absolute;
-    top: 50%;
-    width: 16px;
-    height: 16px;
-    background: linear-gradient(135deg, #ff0044, #ffd700);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 15px rgba(255, 0, 68, 0.5);
-    transition: left 0.5s ease;
-    z-index: 10;
+.score-labels-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #666;
 }
 
 /* Old .score-marker removed - using grid-based markers now */
