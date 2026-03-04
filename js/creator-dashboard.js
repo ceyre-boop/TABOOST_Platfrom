@@ -322,41 +322,58 @@ let creatorTrends = {};
 
 async function loadCreatorTrends() {
     try {
-        const response = await fetch('data/creator_trends.json');
+        const response = await fetch('data/creator_trends.json?v=2');
+        if (!response.ok) throw new Error('Failed to load trends file');
         const trends = await response.json();
         creatorTrends = {};
         trends.forEach(t => {
             creatorTrends[t.username] = t;
         });
+        console.log('DEBUG - Loaded trends for', Object.keys(creatorTrends).length, 'creators');
     } catch (e) {
         console.error('Failed to load trends:', e);
+        creatorTrends = {};
     }
 }
 
 function initPerformanceChart() {
-    const ctx = document.getElementById('performanceChart');
-    if (!ctx) {
-        console.error('ERROR: performanceChart canvas not found');
-        return;
-    }
-    
-    // Use real 6-month data if available
-    const trends = creatorTrends[myData.username];
-    console.log('DEBUG - Chart trends for', myData.username, ':', trends);
-    const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
-    console.log('DEBUG - hasRealData:', hasRealData);
-    
-    const labels = hasRealData 
-        ? ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month']
-        : ['2 Months Ago', 'Last Month', 'This Month'];
-    
-    const dataPoints = hasRealData
-        ? trends.diamondsHistory
-        : [
-            myData.diamondsTwoMonthsAgo || 0,
-            myData.diamondsLastMonth || 0,
-            myData.diamonds || 0
-        ];
+    try {
+        const ctx = document.getElementById('performanceChart');
+        if (!ctx) {
+            console.error('ERROR: performanceChart canvas not found');
+            return;
+        }
+        
+        // Use real 6-month data if available
+        const trends = creatorTrends[myData.username];
+        console.log('DEBUG - Chart trends for', myData.username, ':', trends);
+        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
+        console.log('DEBUG - hasRealData:', hasRealData);
+        
+        // Always use 6-month view with real data or fallback
+        let labels, dataPoints;
+        if (hasRealData) {
+            labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
+            dataPoints = trends.diamondsHistory;
+        } else {
+            // Fallback: create 6 months with available data repeated or zeros
+            labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
+            const current = myData.diamonds || 0;
+            const lastMonth = myData.diamondsLastMonth || current;
+            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
+            // Stretch 3 data points across 6 months
+            dataPoints = [
+                twoMonthsAgo,
+                Math.round((twoMonthsAgo + lastMonth) / 2),
+                lastMonth,
+                Math.round((lastMonth + current) / 2),
+                Math.round((lastMonth + current) / 2),
+                current
+            ];
+        }
+        
+        console.log('DEBUG - Chart labels:', labels);
+        console.log('DEBUG - Chart dataPoints:', dataPoints);
     
     const data = {
         labels: labels,
@@ -507,6 +524,12 @@ function initPerformanceChart() {
             <span>${formatNumber((myData.diamonds || 0) / (myData.liveStreams || 1))} diamonds per stream</span>
         </div>
     `;
+    
+    console.log('DEBUG - Chart created successfully');
+    } catch (error) {
+        console.error('ERROR creating chart:', error);
+        document.querySelector('.chart-container').innerHTML = '<p style="text-align:center;color:#888;padding:20px;">Chart loading...</p>';
+    }
 }
 
 function updateAchievements() {
