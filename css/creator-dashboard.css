@@ -1322,7 +1322,24 @@
     }
     
     .chart-container {
-        height: 250px;
+        height: 220px;
+        padding: 10px;
+    }
+    
+    .chart-container canvas {
+        max-height: 200px;
+    }
+    
+    .chart-tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .chart-tab {
+        font-size: 12px;
+        padding: 8px 12px;
+        flex: 1;
+        min-width: 100px;
     }
     
     .chart-insights {

@@ -421,6 +421,9 @@ function initPerformanceChart() {
     
     console.log('DEBUG - Creating chart with data:', data);
     
+    // Detect mobile for smaller chart elements
+    const isMobile = window.innerWidth < 768;
+    
     performanceChart = new Chart(ctx, {
         type: 'line',
         data: data,
@@ -433,8 +436,11 @@ function initPerformanceChart() {
             },
             plugins: {
                 legend: { 
-                    display: hasRealData,
-                    labels: { color: '#888' }
+                    display: hasRealData && !isMobile,
+                    labels: { 
+                        color: '#888',
+                        font: { size: isMobile ? 10 : 12 }
+                    }
                 },
                 tooltip: {
                     backgroundColor: '#1a1a1a',
@@ -442,6 +448,8 @@ function initPerformanceChart() {
                     borderWidth: 1,
                     titleColor: '#fff',
                     bodyColor: '#ccc',
+                    titleFont: { size: isMobile ? 11 : 13 },
+                    bodyFont: { size: isMobile ? 10 : 12 },
                     callbacks: {
                         label: function(context) {
                             if (context.dataset.label === 'Growth %') {
@@ -457,22 +465,28 @@ function initPerformanceChart() {
                     grid: { color: 'rgba(255,255,255,0.05)' },
                     ticks: {
                         color: '#888',
+                        font: { size: isMobile ? 9 : 11 },
+                        maxTicksLimit: isMobile ? 4 : 6,
                         callback: v => formatNumber(v)
                     }
                 },
-                y1: hasRealData ? {
+                y1: hasRealData && !isMobile ? {
                     type: 'linear',
                     display: true,
                     position: 'right',
                     grid: { display: false },
                     ticks: {
                         color: '#00ff88',
+                        font: { size: 9 },
                         callback: v => v + '%'
                     }
                 } : undefined,
                 x: {
                     grid: { display: false },
-                    ticks: { color: '#888' }
+                    ticks: { 
+                        color: '#888',
+                        font: { size: isMobile ? 8 : 10 }
+                    }
                 }
             }
         }
