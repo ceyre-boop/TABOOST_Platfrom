@@ -568,13 +568,16 @@ function updateHistory() {
 }
 
 function updateScoreAndLevels() {
-    // Score from Google Sheets (0-100)
+    // Score from Google Sheets column AG (0-100)
     const score = myData.score || 0;
+    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
     
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
     
-    // Score Bar Fill (0-100 scale)
+    // Score Bar Fill (0-100 scale) - position on chart
+    // Chart scale: 0,10,30,50,70,90,100
+    // Bar fill percentage based on score
     document.getElementById('scoreBarFill').style.width = `${Math.min(100, score)}%`;
     
     // Current Score Reward
