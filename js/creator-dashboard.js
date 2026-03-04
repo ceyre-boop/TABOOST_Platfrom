@@ -348,11 +348,24 @@ function initPerformanceChart() {
         ctx.style.width = '100%';
         ctx.style.height = '100%';
         
-        // Use real 6-month data if available
-        const trends = creatorTrends[myData.username];
+        // Use real 6-month data if available - try exact match first, then case-insensitive
+        let trends = creatorTrends[myData.username];
+        
+        // If not found, try case-insensitive match
+        if (!trends) {
+            const usernameLower = myData.username.toLowerCase();
+            const matchingKey = Object.keys(creatorTrends).find(key => 
+                key.toLowerCase() === usernameLower
+            );
+            if (matchingKey) {
+                trends = creatorTrends[matchingKey];
+                console.log('DEBUG - Found trends via case-insensitive match:', matchingKey);
+            }
+        }
+        
         console.log('DEBUG - Looking for username:', myData.username);
-        console.log('DEBUG - Available usernames:', Object.keys(creatorTrends).slice(0, 10));
-        console.log('DEBUG - Chart trends found:', trends);
+        console.log('DEBUG - Available usernames count:', Object.keys(creatorTrends).length);
+        console.log('DEBUG - Chart trends found:', trends ? 'YES' : 'NO');
         
         const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
         console.log('DEBUG - hasRealData:', hasRealData);
@@ -362,6 +375,7 @@ function initPerformanceChart() {
         if (hasRealData) {
             labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
             dataPoints = trends.diamondsHistory;
+            console.log('DEBUG - Using real 6-month data:', dataPoints);
         } else {
             // Fallback: use CSV data columns
             labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
@@ -377,6 +391,7 @@ function initPerformanceChart() {
                 current * 0.99,
                 current
             ];
+            console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
         console.log('DEBUG - Chart labels:', labels);
@@ -547,9 +562,19 @@ function initPerformanceChart() {
     `;
     
     console.log('DEBUG - Chart created successfully');
+    
+    // Force chart to render
+    if (performanceChart) {
+        performanceChart.update();
+        console.log('DEBUG - Chart updated/rendered');
+    }
+    
     } catch (error) {
         console.error('ERROR creating chart:', error);
-        document.querySelector('.chart-container').innerHTML = '<p style="text-align:center;color:#888;padding:20px;">Chart loading...</p>';
+        const container = document.querySelector('.chart-container');
+        if (container) {
+            container.innerHTML = '<p style="text-align:center;color:#888;padding:40px 20px;">Chart data unavailable. Refresh to try again.</p>';
+        }
     }
 }
 

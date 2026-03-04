@@ -529,9 +529,13 @@
     height: 300px;
     margin-bottom: 20px;
     position: relative;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .chart-container canvas {
+    display: block !important;
     width: 100% !important;
     height: 100% !important;
 }
