@@ -34,14 +34,17 @@ async function initCreatorDashboard(user) {
     // Find my data - first try by Creator ID, then fallback to username
     // In production, user.id would be the Creator ID from login
     let creatorId = user.creatorId || user.id;
+    console.log('DEBUG - Looking for creatorId:', creatorId, 'user.name:', user.name);
     
     if (creatorId && creatorIdMap[creatorId]) {
         myData = creatorIdMap[creatorId];
+        console.log('DEBUG - Found by creatorId:', myData.username, 'Score:', myData.score);
     } else {
         // Fallback: try to match by username
         myData = allCreators.find(c => 
             c.username.toLowerCase() === user.name.toLowerCase().replace(' ', '')
         ) || allCreators.find(c => c.username === 'singleonthemove') || allCreators[0];
+        console.log('DEBUG - Found by fallback:', myData.username, 'Score:', myData.score, 'creatorId:', myData.creatorId);
     }
     
     // Store creatorId for internal tracking (never displayed)
