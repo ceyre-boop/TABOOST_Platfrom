@@ -175,10 +175,14 @@ class TaboostDataService {
             if (!response.ok) throw new Error('Failed to load CSV');
             
             const csvText = await response.text();
+            console.log('DEBUG - CSV loaded, length:', csvText.length);
             this.creators = this.parseCSVData(csvText);
             this.lastFetch = new Date();
             
             console.log(`✅ Loaded ${this.creators.length} creators from CSV`);
+            if (this.creators.length > 0) {
+                console.log('DEBUG - First creator:', this.creators[0].username, 'Score:', this.creators[0].score);
+            }
             return this.creators;
         } catch (error) {
             console.error('❌ Error loading CSV:', error);
