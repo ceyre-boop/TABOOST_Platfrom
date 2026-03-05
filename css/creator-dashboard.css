@@ -82,25 +82,25 @@
 }
 
 .badge {
-    padding: 4px 12px;
+    padding: 9px 20px;
     border-radius: 20px;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 700;
 }
 
 .badge-level {
-    background: rgba(255, 0, 68, 0.1);
-    color: var(--taboost-red);
+    background: rgba(255, 215, 0, 0.1);
+    color: #ffd700;
 }
 
 .badge-tier {
-    background: rgba(255, 215, 0, 0.1);
-    color: var(--gold);
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
 }
 
 .badge-score {
-    background: rgba(0, 255, 136, 0.1);
-    color: var(--success);
+    background: rgba(255, 0, 68, 0.1);
+    color: #ff0044;
 }
 
 .header-actions {
@@ -1606,8 +1606,8 @@
     }
     
     .badge {
-        font-size: 10px;
-        padding: 3px 10px;
+        font-size: 18px;
+        padding: 12px 24px;
     }
     
     .stat-value {
