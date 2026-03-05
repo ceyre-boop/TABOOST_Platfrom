@@ -973,31 +973,79 @@
     font-size: 14px;
 }
 
+/* Desktop: Horizontal layout (original single row) */
 .level-tracker {
     display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     padding: 30px 20px;
-    gap: 20px;
+    overflow-x: auto;
 }
 
-/* Level Columns for 2-column layout */
-.level-column {
+.level-step {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
+    text-align: center;
+    min-width: 80px;
+    opacity: 0.4;
+    transition: all 0.3s;
 }
 
-.desktop-only {
-    display: flex;
+.level-step.completed {
+    opacity: 1;
 }
 
-.level-connector-vertical {
-    width: 2px;
-    height: 30px;
+.level-step.current {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.level-step.current .level-icon {
+    background: var(--taboost-red);
+    box-shadow: 0 0 20px rgba(255,0,68,0.5);
+}
+
+.level-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     background: rgba(255,255,255,0.1);
-    display: none; /* Hidden on desktop */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+    border: 2px solid transparent;
+}
+
+.level-step.completed .level-icon {
+    background: var(--taboost-success);
+    border-color: var(--taboost-success);
+}
+
+.level-req {
+    font-size: 10px;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* Desktop horizontal connectors */
+.level-connector {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    margin: 0 10px;
+    position: relative;
+    top: -25px;
+    min-width: 20px;
+}
+
+/* Vertical connectors - hidden on desktop */
+.level-connector-vertical {
+    display: none;
 }
 
 .level-step {
@@ -1500,34 +1548,32 @@
         padding: 4px 12px;
     }
     
+    /* Mobile: 2-column grid layout */
     .level-tracker {
-        flex-direction: row;
-        gap: 15px;
-        padding: 10px 5px;
-        align-items: flex-start;
-        justify-content: center;
-    }
-    
-    /* Hide desktop horizontal connectors on mobile */
-    .desktop-only {
-        display: none !important;
-    }
-    
-    /* Show vertical connectors on mobile */
-    .level-connector-vertical {
-        display: block;
-        width: 2px;
-        height: 20px;
-        background: rgba(255,255,255,0.1);
-    }
-    
-    .level-column {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "step0 step3"
+            "step1 step4"
+            "step2 step5";
         gap: 10px;
-        flex: 1;
-        max-width: 140px;
+        padding: 10px 5px;
+        overflow-x: visible;
+    }
+    
+    /* Position each step in the grid */
+    .level-step[data-level="0"] { grid-area: step0; }
+    .level-step[data-level="1"] { grid-area: step1; }
+    .level-step[data-level="2"] { grid-area: step2; }
+    .level-step[data-level="3"] { grid-area: step3; }
+    .level-step[data-level="4"] { grid-area: step4; }
+    .level-step[data-level="5"] { grid-area: step5; }
+    
+    /* Hide all connectors on mobile (simpler 2-column layout) */
+    .level-connector,
+    .level-connector-vertical {
+        display: none !important;
     }
     
     .level-step {
@@ -1560,10 +1606,6 @@
         flex: 1;
         font-size: 11px;
         line-height: 1.4;
-    }
-    
-    .level-connector {
-        display: none;
     }
     
     .current-progress {
@@ -1742,24 +1784,23 @@
     }
     
     .level-tracker {
-        gap: 6px;
+        gap: 8px;
         padding: 8px 0;
     }
     
     .level-step {
-        gap: 12px;
-        padding: 8px 12px;
-        width: 95%;
+        gap: 10px;
+        padding: 8px 10px;
     }
     
     .level-icon {
-        width: 34px;
-        height: 34px;
-        font-size: 13px;
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
     }
     
     .level-req {
-        font-size: 12px;
+        font-size: 10px;
     }
     
     .current-progress {

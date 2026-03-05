@@ -173,7 +173,11 @@ function updateProfile(user) {
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    const levelDisplay = (myData.level !== undefined && myData.level !== null) ? myData.level : '--';
+    // Level can be 0-5, check properly
+    let levelDisplay = '--';
+    if (myData.level !== undefined && myData.level !== null && myData.level !== '') {
+        levelDisplay = myData.level;
+    }
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${levelDisplay}</span>
         <span class="badge badge-tier">Tier ${tier}</span>
