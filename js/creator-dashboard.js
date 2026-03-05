@@ -766,8 +766,20 @@ function updateScoreAndLevels() {
     activityEl.textContent = activityLevel;
     activityEl.style.color = activityColor;
     document.getElementById('scoreDiamonds').textContent = formatNumber(threeMonthDiamonds);
-    document.getElementById('scoreTrend').textContent = growth >= 0 ? `+${growth}%` : `${growth}%`;
-    document.getElementById('scoreTrend').style.color = growth >= 0 ? 'var(--taboost-success)' : 'var(--taboost-red)';
+    // Rank Change - Column Y (Tier Status: Up/Down)
+    const tierStatus = myData.tierStatus || '';
+    const rankChangeEl = document.getElementById('rankChange');
+    
+    if (tierStatus.toLowerCase().includes('up')) {
+        rankChangeEl.textContent = '⬆ Up';
+        rankChangeEl.style.color = '#00ff88'; // Green
+    } else if (tierStatus.toLowerCase().includes('down')) {
+        rankChangeEl.textContent = '⬇ Down';
+        rankChangeEl.style.color = '#ff0044'; // Red
+    } else {
+        rankChangeEl.textContent = '➡ Same';
+        rankChangeEl.style.color = '#888';
+    }
     
     // Activity Level Visual
     const currentLevel = myData.level || 1;
