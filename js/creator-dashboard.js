@@ -1012,57 +1012,71 @@ document.addEventListener('change', function(e) {
     }
 });
 
-// ===== EVENTS CALENDAR =====
+// ===== WEEKLY LIVE CALENDAR =====
 
 function updateEventsCalendar() {
-    const container = document.getElementById('eventsCalendar');
-    const countEl = document.getElementById('eventCount');
-    
-    if (!container || typeof taboostEvents === 'undefined') {
-        console.log('Events calendar not available');
+    // Check if weekly calendar data exists
+    if (typeof weeklyCalendar === 'undefined') {
+        console.log('Weekly calendar data not available');
         return;
     }
     
-    // Filter future events only
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    const upcomingEvents = taboostEvents.filter(event => {
-        const eventDate = new Date(event.date);
-        return eventDate >= today;
-    }).slice(0, 5); // Show max 5 events
-    
-    // Update count
-    if (countEl) {
-        countEl.textContent = `${upcomingEvents.length} event${upcomingEvents.length !== 1 ? 's' : ''}`;
+    // Update week header
+    const weekEl = document.getElementById('calendarWeek');
+    if (weekEl) {
+        weekEl.textContent = weeklyCalendar.currentWeek;
     }
     
-    // Render events
-    if (upcomingEvents.length === 0) {
-        container.innerHTML = '<p class="no-events">No upcoming events. Check back soon!</p>';
-        return;
-    }
-    
-    container.innerHTML = upcomingEvents.map(event => {
-        const when = formatEventDate(event.date);
-        const typeColor = getEventTypeColor(event.type);
-        
-        return `
-            <div class="event-item">
-                <div class="event-date-badge" style="background: ${typeColor}20; border-color: ${typeColor}40;">
-                    <span class="event-day">${new Date(event.date).getDate()}</span>
-                    <span class="event-month">${new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
-                </div>
-                <div class="event-content">
-                    <div class="event-header">
-                        <span class="event-icon">${event.icon}</span>
-                        <span class="event-when">${when}</span>
-                    </div>
-                    <h4 class="event-title">${event.title}</h4>
-                    <p class="event-time"><i class="fas fa-clock"></i> ${event.time}</p>
-                    <p class="event-desc">${event.description}</p>
-                </div>
+    // Update TABOOST Campaign Banner
+    const bannerEl = document.getElementById('taboostCampaignBanner');
+    if (bannerEl && weeklyCalendar.taboostCampaigns.length > 0) {
+        const campaign = weeklyCalendar.taboostCampaigns[0];
+        bannerEl.innerHTML = `
+            <div class="campaign-badge" style="background: ${campaign.color}20; border-color: ${campaign.color};">
+                <span class="campaign-tag">${campaign.tag}</span>
+                <span class="campaign-name">${campaign.name}</span>
+                <span class="campaign-status">${campaign.status}</span>
             </div>
         `;
-    }).join('');
+    }
+    
+    // Update Weekly Schedule Grid
+    const calendarEl = document.getElementById('weeklyCalendar');
+    if (calendarEl) {
+        calendarEl.innerHTML = weeklyCalendar.weeklySchedule.map(day => {
+            const hasEvents = day.events.length > 0;
+            const eventsHtml = day.events.map(evt => `
+                <div class="calendar-event ${evt.type}">
+                    <span class="event-time-badge">${evt.time}</span>
+                    <span class="event-title-small">${evt.title}</span>
+                </div>
+            `).join('');
+            
+            return `
+                <div class="calendar-day ${hasEvents ? 'has-events' : ''}">
+                    <div class="day-header">
+                        <span class="day-name">${day.day}</span>
+                        <span class="day-date">${day.date}</span>
+                    </div>
+                    <div class="day-events">
+                        ${hasEvents ? eventsHtml : '<span class="no-event">No events</span>'}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    // Update TikTok Campaigns
+    const tiktokEl = document.getElementById('tiktokCampaignsList');
+    if (tiktokEl) {
+        tiktokEl.innerHTML = weeklyCalendar.tiktokCampaigns.map(camp => `
+            <div class="tiktok-campaign-item">
+                <i class="fas fa-music"></i>
+                <div>
+                    <span class="campaign-title">${camp.name}</span>
+                    <span class="campaign-dates">${camp.dates}</span>
+                </div>
+            </div>
+        `).join('');
+    }
 }
