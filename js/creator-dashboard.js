@@ -215,8 +215,13 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Column AQ (Last Label) for current available, Column AG (Unlocked) for total earned
+    // Rewards - Column AQ (Last Label) for current available, Column AG (Earned) for total earned
     const lastLabel = myData.lastRewardLabel || '';
+    const earnedValue = myData.rewards?.earned || '0';
+    
+    console.log('DEBUG - lastRewardLabel:', lastLabel);
+    console.log('DEBUG - rewards.earned:', earnedValue);
+    console.log('DEBUG - totalUnlocked:', myData.totalUnlocked);
     
     // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K") - Column AQ
     const numberMatch = lastLabel.match(/([\d,.]+)([KMB]?)/i);
@@ -227,14 +232,22 @@ function updateStats() {
         currentRewardsAvailable = num + suffix;
     }
     
-    // Column AG = Total unlocked (lifetime earned)
-    const totalUnlocked = myData.totalUnlocked || '0';
+    // If no Last Label value, fall back to rewards.earned
+    if (currentRewardsAvailable === '0' && earnedValue) {
+        currentRewardsAvailable = formatNumber(earnedValue);
+    }
     
-    // Top: Current Rewards Available (from Column AQ)
+    // Column AG (Earned) = Total rewards earned
+    const totalEarned = earnedValue || myData.totalUnlocked || '0';
+    
+    console.log('DEBUG - currentRewardsAvailable:', currentRewardsAvailable);
+    console.log('DEBUG - totalEarned:', totalEarned);
+    
+    // Top: Current Rewards Available (from Column AQ/Last Label)
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned (from Column AG)
+    // Bottom: Total Rewards Earned (from Column AG/Earned)
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Rewards Earned: ${totalUnlocked}</span>
+        <span>Total Rewards Earned: ${formatNumber(totalEarned)}</span>
     `;
 }
 
