@@ -99,6 +99,7 @@
                                 <tr>
                                     <th style="width: 50px;">Rank</th>
                                     <th>Creator</th>
+                                    <th style="width: 80px;">Tier</th>
                                     <th style="width: 120px;">Manager</th>
                                     <th style="width: 90px;">Group</th>
                                     <th style="width: 130px;">Diamonds</th>
@@ -109,7 +110,7 @@
                                 </tr>
                             </thead>
                             <tbody id="creatorsTableBody">
-                                <tr><td colspan="9" style="text-align: center; padding: 40px; color: #888;">
+                                <tr><td colspan="10" style="text-align: center; padding: 40px; color: #888;">
                                     <i class="fas fa-spinner fa-spin" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
                                     Loading creators...
                                 </td></tr>
@@ -349,6 +350,7 @@
                                 </div>
                             </div>
                         </td>
+                        <td><strong style="color: #ffd700;">T${creator.tier || '-'}</strong></td>
                         <td>
                             <span class="manager-badge" style="color: ${managerColor};">
                                 ${creator.manager || 'Unassigned'}

@@ -151,6 +151,7 @@ class TaboostDataService {
             
             // Status & scoring
             status: getValue('Status'),
+            tier: parseInt(getValue('Tier')) || parseInt(values[21]) || 0, // Column V - Tier
             score: parseInt(getValue('Score')) || 0,
             _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),

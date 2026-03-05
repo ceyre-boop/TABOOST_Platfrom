@@ -79,6 +79,7 @@
                             <p class="profile-handle" id="profileHandle">@username</p>
                             <div class="profile-badges">
                                 <span class="profile-badge level-badge" id="levelBadge">Level --</span>
+                                <span class="profile-badge tier-badge" id="tierBadge">Tier --</span>
                                 <span class="profile-badge group-badge" id="groupBadge">Staff</span>
                                 <span class="profile-badge manager-badge" id="managerBadge">--</span>
                             </div>
@@ -366,6 +367,12 @@
             color: #0096ff;
         }
 
+        .tier-badge {
+            background: rgba(255, 215, 0, 0.15);
+            color: #ffd700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
         .profile-actions {
             display: flex;
             gap: 10px;
@@ -637,6 +644,7 @@
             document.getElementById('tiktokLink').href = creator.link || `https://www.tiktok.com/@${creator.username}`;
             
             document.getElementById('levelBadge').textContent = 'Level ' + (creator.level || '--');
+            document.getElementById('tierBadge').textContent = 'Tier ' + (creator.tier || '--');
             document.getElementById('groupBadge').textContent = creator.group || 'Staff';
             
             const managerBadge = document.getElementById('managerBadge');
