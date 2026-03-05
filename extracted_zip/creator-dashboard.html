@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Dashboard - Taboost</title>
-    <link rel="stylesheet" href="css/styles.css?v=202503051300">
-    <link rel="stylesheet" href="css/creator-dashboard.css?v=202503051300">
+    <link rel="stylesheet" href="css/styles.css?v=4">
+    <link rel="stylesheet" href="css/creator-dashboard.css?v=4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* FORCE REMOVE RED BAR - OVERRIDE ALL */
@@ -24,11 +24,9 @@
 </head>
 <body>
     <div class="creator-layout">
-        <!-- BUILD: 2025-03-05-13:00 -->
         <!-- Sidebar Logo for Mobile -->
         <div class="mobile-logo">
-            <img src="images/taboost-logo.jpg?v=20250305" alt="TABOOST">
-            <div style="color: #00ff88; font-size: 10px; text-align: center;">v2025.03.05.1300</div>
+            <img src="images/taboost-logo.jpg" alt="TABOOST">
         </div>
         
         <!-- Header -->
@@ -64,7 +62,6 @@
                 <div>
                     <h3 id="welcomeTitle">Welcome back!</h3>
                     <p id="welcomeMessage">Check out your latest earnings and goals.</p>
-                    <small style="color: #00ff88;">✓ BUILD: 2025-03-05-13:00</small>
                 </div>
             </div>
         </div>
@@ -103,11 +100,12 @@
             
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">Current Rewards Available</span>
+                    <span class="stat-label">Total Rewards Earned</span>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
                 <div class="stat-breakdown" id="rewardsBreakdown">
-                    <span>Total Rewards Earned: --</span>
+                    <span>Earned: --</span>
+                    <span>Bonus: --</span>
                 </div>
             </div>
         </div>
@@ -541,7 +539,7 @@
     <script src="js/events-data.js"></script>
     <script src="js/weekly-calendar-data.js"></script>
     <script src="js/sheets-data.js"></script>
-    <script src="js/creator-dashboard.js?v=202503051300"></script>
+    <script src="js/creator-dashboard.js?v=3"></script>
     <script>
         // Auth check
         const user = JSON.parse(localStorage.getItem('taboost_user'));

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboost Agency - Command Center</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/command-center.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo pulse"><i class="fas fa-magic"></i></div>
+                <div class="sidebar-brand"><h2>Tab<span>oost</span></h2></div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Command</div>
+                    <a href="dashboard.html" class="nav-item"><i class="fas fa-th-large"></i><span>Overview</span></a>
+                    <a href="command-center.html" class="nav-item active"><i class="fas fa-rocket"></i><span>Command Center</span><span class="nav-badge live">LIVE</span></a>
+                    <a href="creators.html" class="nav-item"><i class="fas fa-users"></i><span>Creators</span><span class="nav-badge" id="navCreatorCount">--</span></a>
+                    <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Leaderboard</span></a>
+                </div>
+                <div class="nav-section">
+                    <div class="nav-section-title">Management</div>
+                    <a href="managers.html" class="nav-item"><i class="fas fa-user-tie"></i><span>Managers</span></a>
+                    <a href="compare.html" class="nav-item"><i class="fas fa-code-branch"></i><span>Compare</span></a>
+                    <a href="achievements.html" class="nav-item"><i class="fas fa-medal"></i><span>Achievements</span></a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything...">
+                </div>
+                <div class="header-actions">
+                    <button class="header-btn" id="refreshBtn"><i class="fas fa-sync-alt"></i></button>
+                    <button class="header-btn notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-pulse"></span>
+                    </button>
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>LIVE DATA</span>
+                    </div>
+                    <div class="user-profile" onclick="logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName">Marco</div>
+                            <div class="user-role" id="userRole">Admin</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <div class="dashboard-content fade-in">
+                <!-- Hero Stats -->
+                <div class="hero-stats">
+                    <div class="hero-card diamonds-hero">
+                        <div class="hero-bg-icon"><i class="fas fa-gem"></i></div>
+                        <div class="hero-content">
+                            <div class="hero-label">Total Diamonds This Month</div>
+                            <div class="hero-value" id="heroDiamonds">--</div>
+                            <div class="hero-trend" id="diamondTrend">
+                                <span class="trend-up"><i class="fas fa-arrow-up"></i> <span id="diamondGrowth">--%</span></span>
+                                <span class="trend-label">vs last month</span>
+                            </div>
+                        </div>
+                        <div class="hero-chart">
+                            <canvas id="heroSparkline"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-card rewards-hero">
+                        <div class="hero-bg-icon"><i class="fas fa-coins"></i></div>
+                        <div class="hero-content">
+                            <div class="hero-label">Total Rewards Paid</div>
+                            <div class="hero-value" id="heroRewards">--</div>
+                            <div class="hero-breakdown">
+                                <span class="breakdown-item"><i class="fas fa-circle" style="color: var(--taboost-success);"></i> Earned: <span id="earnedTotal">--</span></span>
+                                <span class="breakdown-item"><i class="fas fa-circle" style="color: var(--taboost-warning);"></i> Bonus: <span id="bonusTotal">--</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-card activity-hero">
+                        <div class="hero-bg-icon"><i class="fas fa-broadcast-tower"></i></div>
+                        <div class="hero-content">
+                            <div class="hero-label">Currently Streaming</div>
+                            <div class="hero-value" id="streamingNow">--</div>
+                            <div class="streaming-avatars" id="streamingAvatars"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Grid -->
+                <div class="command-grid">
+                    <!-- Live Activity Feed -->
+                    <div class="command-card activity-feed">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt" style="color: #ffd700;"></i> Live Activity</h3>
+                            <span class="live-badge">LIVE</span>
+                        </div>
+                        <div class="activity-list" id="activityList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Top Movers -->
+                    <div class="command-card top-movers">
+                        <div class="card-header">
+                            <h3><i class="fas fa-chart-line" style="color: var(--taboost-success);"></i> Top Movers</h3>
+                            <select class="mini-select" id="moverFilter">
+                                <option value="growth">By Growth %</option>
+                                <option value="diamonds">By Diamonds</option>
+                                <option value="hours">By Hours</option>
+                            </select>
+                        </div>
+                        <div class="movers-grid" id="moversGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Goal Tracker -->
+                    <div class="command-card goal-tracker">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> Goal Tracker</h3>
+                            <span class="goal-summary"><span id="onTrackCount">--</span> on track</span>
+                        </div>
+                        <div class="goal-list" id="goalList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Achievement Showcase -->
+                    <div class="command-card achievements">
+                        <div class="card-header">
+                            <h3><i class="fas fa-crown" style="color: #ffd700;"></i> Trophy Room</h3>
+                        </div>
+                        <div class="trophy-grid" id="trophyGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    
+                    <!-- Predicted Month-End -->
+                    <div class="command-card prediction">
+                        <div class="card-header">
+                            <h3><i class="fas fa-crystal-ball" style="color: #a855f7;"></i> Projected Month-End</h3>
+                        </div>
+                        <div class="prediction-content">
+                            <div class="prediction-stat">
+                                <span class="pred-label">Projected Total</span>
+                                <span class="pred-value" id="projectedTotal">--</span>
+                                <span class="pred-change" id="projectedChange">--</span>
+                            </div>
+                            <div class="prediction-chart">
+                                <canvas id="predictionChart"></canvas>
+                            </div>
+                            <div class="prediction-insights" id="predictionInsights">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div class="command-card quick-actions">
+                        <div class="card-header">
+                            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                        </div>
+                        <div class="action-grid">
+                            <button class="action-btn" onclick="location.href='compare.html'">
+                                <i class="fas fa-code-branch"></i>
+                                <span>Compare Creators</span>
+                            </button>
+                            <button class="action-btn" onclick="exportReport()">
+                                <i class="fas fa-file-export"></i>
+                                <span>Export Report</span>
+                            </button>
+                            <button class="action-btn" onclick="location.href='leaderboard.html'">
+                                <i class="fas fa-list-ol"></i>
+                                <span>Full Leaderboard</span>
+                            </button>
+                            <button class="action-btn" onclick="location.href='creators.html'">
+                                <i class="fas fa-users"></i>
+                                <span>All Creators</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/data.js"></script>
+    <script src="js/sheets-data.js"></script>
+    <script src="js/command-center.js"></script>
+    <script>
+        // Auth
+        const user = JSON.parse(localStorage.getItem('taboost_user'));
+        if (!user) window.location.href = 'index.html';
+        else {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? 'Admin' : 'Creator';
+            document.getElementById('userAvatar').textContent = user.avatar;
+        }
+        function logout() {
+            localStorage.removeItem('taboost_user');
+            window.location.href = 'index.html';
+        }
+        
+        function exportReport() {
+            alert('Generating full agency report...');
+        }
+        
+        // Initialize
+        initCommandCenter();
+    </script>
+</body>
+</html>

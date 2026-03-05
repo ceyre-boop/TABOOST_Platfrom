@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Taboost Agency</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/taboost-logo.jpg" alt="TABOOST" class="sidebar-logo-img">
+            </div>
+            
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Main</div>
+                    <a href="dashboard.html" class="nav-item active"><i class="fas fa-th-large"></i><span>Dashboard</span></a>
+                    <a href="creators.html" class="nav-item"><i class="fas fa-users"></i><span>Creators</span><span class="nav-badge" id="navCreatorCount">831</span></a>
+                    <a href="diamonds.html" class="nav-item"><i class="fas fa-gem"></i><span>Diamonds</span></a>
+                    <a href="live-streams.html" class="nav-item"><i class="fas fa-video"></i><span>Live Streams</span></a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Management</div>
+                    <a href="managers.html" class="nav-item"><i class="fas fa-user-tie"></i><span>Managers</span></a>
+                    <a href="rookies.html" class="nav-item"><i class="fas fa-seedling"></i><span>Rookies</span></a>
+                    <a href="leaderboard.html" class="nav-item"><i class="fas fa-trophy"></i><span>Leaderboard</span></a>
+                </div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Reports</div>
+                    <a href="reports.html" class="nav-item"><i class="fas fa-chart-bar"></i><span>Reports</span></a>
+                    <a href="alerts.html" class="nav-item"><i class="fas fa-bell"></i><span>Alerts</span><span class="nav-badge">3</span></a>
+                    <a href="settings.html" class="nav-item"><i class="fas fa-cog"></i><span>Settings</span></a>
+                </div>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search creators, metrics...">
+                </div>
+                
+                <div class="header-actions">
+                    <button class="header-btn" id="refreshBtn" title="Refresh Data"><i class="fas fa-sync-alt"></i></button>
+                    <button class="header-btn"><i class="fas fa-bell"></i><span class="notification-dot"></span></button>
+                    <div class="user-profile" onclick="logout()">
+                        <div class="user-avatar" id="userAvatar">M</div>
+                        <div class="user-info">
+                            <div class="user-name" id="userName">Marco</div>
+                            <div class="user-role" id="userRole">Admin</div>
+                        </div>
+                        <i class="fas fa-chevron-down" style="color: #666; font-size: 12px;"></i>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Content -->
+            <div class="dashboard-content fade-in">
+                <!-- AI Greeting for Marco -->
+                <div class="ai-greeting" id="aiGreeting">
+                    <div class="ai-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="ai-message">
+                        <p id="aiText">Analyzing agency performance...</p>
+                        <span class="ai-badge"><i class="fas fa-bolt"></i> AI Insights</span>
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <h1 style="font-size: 28px; font-weight: 800; margin-bottom: 8px;">Dashboard Overview</h1>
+                    <p style="color: #888;">Welcome back! Live data from Google Sheets. Last updated: <span id="lastUpdated">--</span></p>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <div class="stat-value" id="totalCreators">--</div>
+                        <div class="stat-label">Total Creators</div>
+                        <span class="stat-change up"><i class="fas fa-arrow-up"></i> Live Data</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-gem"></i></div>
+                        <div class="stat-value" id="totalDiamonds">--</div>
+                        <div class="stat-label">Total Diamonds</div>
+                        <span class="stat-change up"><i class="fas fa-arrow-up"></i> This Month</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: rgba(0, 255, 136, 0.1); color: var(--taboost-success);"><i class="fas fa-dollar-sign"></i></div>
+                        <div class="stat-value" id="totalRewards">--</div>
+                        <div class="stat-label">Total Rewards</div>
+                        <span class="stat-change up" style="color: var(--taboost-success);"><i class="fas fa-coins"></i> Earned</span>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                        <div class="stat-value" id="totalHours">--</div>
+                        <div class="stat-label">Hours Streamed</div>
+                        <span class="stat-change"><i class="fas fa-broadcast-tower"></i> Total</span>
+                    </div>
+                </div>
+                
+                <!-- Charts Row -->
+                <div class="grid-2">
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Top Creators by Diamonds</h3>
+                                <p class="card-subtitle">Current month performance</p>
+                            </div>
+                            <a href="leaderboard.html" class="btn btn-secondary" style="padding: 8px 15px; font-size: 12px;">
+                                View All <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="diamondsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3 class="card-title">Top Earners 🏆</h3>
+                                <p class="card-subtitle">Creators with highest rewards earned</p>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div id="topEarnersList" style="max-height: 300px; overflow-y: auto;">
+                                <!-- Populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Managers Distribution -->
+                <div class="content-card" style="margin-bottom: 25px;">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Creator Managers</h3>
+                            <p class="card-subtitle">Distribution by manager assignment</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="height: 250px;">
+                            <canvas id="managersChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Recent Activity -->
+                <div class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3 class="card-title">Top Performers</h3>
+                            <p class="card-subtitle">Highest diamond earners this month</p>
+                        </div>
+                        <a href="creators.html" class="btn btn-secondary" style="padding: 10px 20px; font-size: 13px;">
+                            View All <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-body" style="padding: 0;">
+                        <table class="data-table" id="topCreatorsTable">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Creator</th>
+                                    <th>Manager</th>
+                                    <th>Diamonds</th>
+                                    <th>Rewards</th>
+                                    <th>Hours</th>
+                                    <th>Growth</th>
+                                </tr>
+                            </thead>
+                            <tbody id="topCreatorsBody">
+                                <tr><td colspan="7" style="text-align: center; padding: 40px;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Quick Stats Row -->
+                <div class="grid-3">
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Staff Creators</h4>
+                                <i class="fas fa-user-shield" style="color: var(--taboost-red);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="staffCount">--</div>
+                            <div class="progress-bar" style="margin-top: 15px;">
+                                <div class="progress-fill" id="staffProgress" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Agent Creators</h4>
+                                <i class="fas fa-user-friends" style="color: var(--taboost-warning);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="agentsCount">--</div>
+                            <div class="progress-bar" style="margin-top: 15px;">
+                                <div class="progress-fill" id="agentsProgress" style="width: 0%; background: var(--taboost-warning);"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="content-card">
+                        <div class="card-body">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;">
+                                <h4 style="font-size: 14px; color: #888;">Unique Managers</h4>
+                                <i class="fas fa-user-tie" style="color: var(--taboost-success);"></i>
+                            </div>
+                            <div style="font-size: 28px; font-weight: 800;" id="managersCount">--</div>
+                            <div style="margin-top: 15px; font-size: 12px; color: #666;" id="managerNames">
+                                Loading...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/data.js"></script>
+    <script src="js/sheets-data.js"></script>
+    <script>
+        // Auth check
+        const user = JSON.parse(localStorage.getItem('taboost_user'));
+        if (!user) {
+            window.location.href = 'index.html';
+        } else {
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? 'Admin' : 'Creator';
+            document.getElementById('userAvatar').textContent = user.avatar;
+        }
+        
+        function logout() {
+            localStorage.removeItem('taboost_user');
+            window.location.href = 'index.html';
+        }
+        
+        // Format number
+        function formatNumber(num) {
+            if (!num) return '0';
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toLocaleString();
+        }
+        
+        function formatFullNumber(num) {
+            return (num || 0).toLocaleString();
+        }
+        
+        // Get manager color
+        function getManagerColor(manager) {
+            if (!manager) return '#888';
+            const m = manager.toLowerCase();
+            if (m.includes('carrington')) return '#ff0044';
+            if (m.includes('bryton')) return '#00ff88';
+            if (m.includes('sven')) return '#0096ff';
+            return '#888';
+        }
+        
+        // Initialize Dashboard
+        async function init() {
+            // Load data
+            await taboostData.loadFromCSV();
+            
+            // Update timestamp
+            if (taboostData.lastFetch) {
+                document.getElementById('lastUpdated').textContent = 
+                    taboostData.lastFetch.toLocaleTimeString();
+            }
+            
+            // Get stats
+            const stats = taboostData.calculateTotals();
+            const managers = taboostData.getUniqueManagers();
+            
+            // Update stat cards
+            document.getElementById('totalCreators').textContent = formatFullNumber(stats.totalCreators);
+            document.getElementById('navCreatorCount').textContent = stats.totalCreators;
+            document.getElementById('totalDiamonds').textContent = formatNumber(stats.totalDiamonds);
+            document.getElementById('totalRewards').textContent = formatNumber(stats.totalEarned);
+            document.getElementById('totalHours').textContent = formatNumber(stats.totalHours);
+            
+            // Update group stats
+            document.getElementById('staffCount').textContent = stats.staffCount;
+            document.getElementById('agentsCount').textContent = stats.agentsCount;
+            document.getElementById('managersCount').textContent = managers.length;
+            document.getElementById('managerNames').textContent = managers.join(', ');
+            
+            // Update progress bars
+            const total = stats.staffCount + stats.agentsCount;
+            document.getElementById('staffProgress').style.width = 
+                total ? (stats.staffCount / total * 100) + '%' : '0%';
+            document.getElementById('agentsProgress').style.width = 
+                total ? (stats.agentsCount / total * 100) + '%' : '0%';
+            
+            // Populate tables and charts
+            populateTopCreators();
+            populateTopEarners();
+            initDiamondsChart();
+            initManagersChart();
+        }
+        
+        function populateTopCreators() {
+            const tbody = document.getElementById('topCreatorsBody');
+            const topCreators = taboostData.getTopCreators(10);
+            
+            tbody.innerHTML = topCreators.map((c, i) => {
+                const managerColor = getManagerColor(c.manager);
+                const growthClass = c.growthPercent && c.growthPercent.includes('-') 
+                    ? 'text-danger' : 'text-success';
+                
+                return `
+                    <tr onclick="location.href='creator-detail.html?user=${c.username}'" style="cursor: pointer;">
+                        <td><strong style="color: ${i < 3 ? 'var(--taboost-gold)' : '#888'};">#${i + 1}</strong></td>
+                        <td>
+                            <div class="user-cell">
+                                <div class="user-avatar-sm" style="${i < 3 ? 'background: linear-gradient(135deg, #ffd700, #ffaa00);' : ''}">
+                                    ${c.username.charAt(0).toUpperCase()}
+                                </div>
+                                <div class="user-details">
+                                    <h4>${c.username}</h4>
+                                    <span>Level ${c.level}</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="manager-badge" style="color: ${managerColor};">
+                                ${c.manager || 'Unassigned'}
+                            </span>
+                        </td>
+                        <td><strong style="color: var(--taboost-red);">${formatFullNumber(c.diamonds)}</strong></td>
+                        <td><strong style="color: var(--taboost-success);">${formatFullNumber(c.rewards?.earned)}</strong></td>
+                        <td>${(c.hours || 0).toFixed(1)}h</td>
+                        <td class="${growthClass}">${c.growthPercent || '0%'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        function populateTopEarners() {
+            const container = document.getElementById('topEarnersList');
+            const earners = taboostData.getTopEarners(10);
+            
+            container.innerHTML = earners.map((c, i) => `
+                <div style="display: flex; align-items: center; padding: 12px 0; border-bottom: 1px solid #222;">
+                    <div style="width: 30px; font-weight: 800; color: var(--taboost-success);">#${i+1}</div>
+                    <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                        <div class="user-avatar-sm">${c.username.charAt(0).toUpperCase()}</div>
+                        <div>
+                            <div style="font-weight: 600;">${c.username}</div>
+                            <div style="font-size: 12px; color: #888;">${c.manager || 'Unassigned'}</div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="color: var(--taboost-success); font-weight: 700;">${formatFullNumber(c.rewards?.earned)}</div>
+                        <div style="font-size: 11px; color: #666;">earned</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function initDiamondsChart() {
+            const ctx = document.getElementById('diamondsChart').getContext('2d');
+            const top10 = taboostData.getTopCreators(10);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: top10.map(c => c.username.substring(0, 12)),
+                    datasets: [{
+                        label: 'Diamonds',
+                        data: top10.map(c => c.diamonds || 0),
+                        backgroundColor: '#ff0044',
+                        borderRadius: 6,
+                        borderSkipped: false
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { 
+                                color: '#666', 
+                                callback: v => formatNumber(v) 
+                            }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#888' }
+                        }
+                    }
+                }
+            });
+        }
+        
+        function initManagersChart() {
+            const ctx = document.getElementById('managersChart').getContext('2d');
+            
+            // Count creators per manager
+            const managerCounts = {};
+            taboostData.getAllCreators().forEach(c => {
+                const manager = c.manager || 'Unassigned';
+                managerCounts[manager] = (managerCounts[manager] || 0) + 1;
+            });
+            
+            const labels = Object.keys(managerCounts);
+            const data = Object.values(managerCounts);
+            const colors = labels.map(m => getManagerColor(m));
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: colors,
+                        borderWidth: 2,
+                        borderColor: '#1a1a1a'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '60%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: { 
+                                color: '#aaa',
+                                padding: 15,
+                                font: { size: 12 }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Refresh button
+        document.getElementById('refreshBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('refreshBtn');
+            btn.classList.add('spinning');
+            await init();
+            setTimeout(() => btn.classList.remove('spinning'), 500);
+        });
+        
+        // AI Greeting for Marco - Multiple stock phrases
+        function updateAIGreeting() {
+            const hour = new Date().getHours();
+            const stats = taboostData.calculateTotals();
+            const creators = taboostData.getAllCreators();
+            
+            // Find top performer
+            const topCreator = creators.reduce((max, c) => (c.diamonds || 0) > (max.diamonds || 0) ? c : max);
+            
+            // Calculate growth
+            const currentTotal = stats.totalDiamonds;
+            const lastMonthTotal = creators.reduce((sum, c) => sum + (c.diamondsLastMonth || 0), 0);
+            const growth = lastMonthTotal > 0 ? ((currentTotal - lastMonthTotal) / lastMonthTotal * 100) : 0;
+            
+            // Stock hello phrases (randomized)
+            const hellos = [
+                "Hey Marco,",
+                "Welcome back,",
+                "Hi Marco,",
+                "Hello Marco,"
+            ];
+            const hello = hellos[Math.floor(Math.random() * hellos.length)];
+            
+            // Time-based greeting
+            let timeGreeting = "";
+            if (hour < 12) timeGreeting = "morning";
+            else if (hour < 18) timeGreeting = "afternoon";
+            else timeGreeting = "evening";
+            
+            // Stock insight phrases
+            let insight = "";
+            if (growth > 10) {
+                const phrases = [
+                    `Agency is up ${growth.toFixed(1)}% this month. ${topCreator.username} is leading with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`,
+                    `Strong month—${growth.toFixed(1)}% growth. Top performer: ${topCreator.username} at ${(topCreator.diamonds / 1000000).toFixed(1)}M.`,
+                    `Trending up ${growth.toFixed(1)}%. ${topCreator.username} is crushing it with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
+            } else if (growth < 0) {
+                const phrases = [
+                    `Down ${Math.abs(growth).toFixed(1)}% from last month. Consider checking in with managers.`,
+                    `Activity is ${Math.abs(growth).toFixed(1)}% below last month. Might be worth a team check-in.`,
+                    `Month is trailing by ${Math.abs(growth).toFixed(1)}%. Good time to motivate the team.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
+            } else {
+                const phrases = [
+                    `Steady month so far. ${topCreator.username} is your top performer with ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`,
+                    `Flat month—holding steady. ${topCreator.username} leads with ${(topCreator.diamonds / 1000000).toFixed(1)}M.`,
+                    `No major changes this month. ${topCreator.username} still leading at ${(topCreator.diamonds / 1000000).toFixed(1)}M diamonds.`
+                ];
+                insight = phrases[Math.floor(Math.random() * phrases.length)];
+            }
+            
+            document.getElementById('aiText').textContent = `${hello} ${insight}`;
+        }
+        
+        // Initialize
+        init();
+        updateAIGreeting();
+    </script>
+</body>
+</html>

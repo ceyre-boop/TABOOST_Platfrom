@@ -215,32 +215,28 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Column AQ (Last Label) for current available, Column AG (Earned) for total
+    // Rewards - Column AP (Last Label) for source, Column AG (Unlocked) for total
     const lastLabel = myData.lastRewardLabel || '';
-    const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
     
-    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K") - Column AQ
+    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K")
     const numberMatch = lastLabel.match(/([\d,.]+)([KMB]?)/i);
-    let currentRewardsAvailable = '0';
+    let lastRewardAmount = '0';
     if (numberMatch) {
         const num = numberMatch[1];
-        const suffix = numberMatch[2] || 'K';
-        currentRewardsAvailable = num + suffix;
+        const suffix = numberMatch[2] || 'K'; // Default to K if no suffix
+        lastRewardAmount = num + suffix;
     }
     
-    // If no Last Label value, fall back to earned value formatted
-    if (currentRewardsAvailable === '0' && earnedValue > 0) {
-        currentRewardsAvailable = formatNumber(earnedValue);
-    }
+    // Extract description from Last Label (e.g., "Monthly Award" from "3/02 Monthly Award 20K")
+    const descMatch = lastLabel.replace(/^\d+\/\d+\s*/, '').replace(/\s+[\d,.]+[KMB]?$/, '').trim();
+    const lastRewardDesc = descMatch || '-';
     
-    // Column AG (Earned) = Total rewards earned
-    const totalEarned = earnedValue || 0;
+    // Column AG = Total unlocked (lifetime)
+    const totalUnlocked = myData.totalUnlocked || '0';
     
-    // Top: Current Rewards Available (from Column AQ)
-    document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned (from Column AG)
+    document.getElementById('totalRewards').textContent = totalUnlocked;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Rewards Earned: ${formatNumber(totalEarned)}</span>
+        <span>Total Rewards Earned</span>
     `;
 }
 
