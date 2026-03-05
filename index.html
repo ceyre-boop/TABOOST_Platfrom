@@ -57,8 +57,11 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const username = document.getElementById('username').value.trim();
+            let username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
+            
+            // Strip @ symbol for creators (but not admin email)
+            const cleanUsername = username.replace(/^@/, '');
             
             // Admin login
             if (username === 'marco@taboost.me' && password === 'admin') {
@@ -73,12 +76,12 @@
             }
             
             // Creator login - redirect to creator dashboard
-            if (password === 'creator' && username.length > 0) {
+            if (password === 'creator' && cleanUsername.length > 0) {
                 localStorage.setItem('taboost_user', JSON.stringify({
-                    username: username,
+                    username: cleanUsername,
                     role: 'creator',
-                    name: username.split('@')[0] || username,
-                    avatar: username.charAt(0).toUpperCase()
+                    name: cleanUsername.split('@')[0] || cleanUsername,
+                    avatar: cleanUsername.charAt(0).toUpperCase()
                 }));
                 window.location.href = 'creator-dashboard.html';
                 return;
@@ -99,7 +102,10 @@
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const username = document.getElementById('signupUsername').value.trim();
+            // Strip @ symbol if user included it
+            let username = document.getElementById('signupUsername').value.trim();
+            username = username.replace(/^@/, ''); // Remove leading @
+            
             const email = document.getElementById('signupEmail').value.trim();
             const password = document.getElementById('signupPassword').value;
             const confirmPassword = document.getElementById('signupConfirmPassword').value;
