@@ -884,3 +884,129 @@ function updateAwards() {
         </div>
     `).join('');
 }
+
+// ===== SETTINGS FUNCTIONS =====
+
+function openSettings() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.add('active');
+    loadSettings();
+}
+
+function closeSettings() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.remove('active');
+}
+
+function loadSettings() {
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    
+    // Profile
+    document.getElementById('settingDisplayName').value = settings.displayName || myData.username || '';
+    document.getElementById('settingEmail').value = settings.email || '';
+    
+    // Notifications
+    document.getElementById('toggleEmail').checked = settings.emailNotifications !== false;
+    document.getElementById('togglePush').checked = settings.pushNotifications === true;
+    document.getElementById('toggleWeekly').checked = settings.weeklyReports !== false;
+    document.getElementById('toggleSounds').checked = settings.alertSounds !== false;
+    
+    // Appearance
+    document.getElementById('settingTheme').value = settings.theme || 'dark';
+    document.getElementById('settingLayout').value = settings.layout || 'grid';
+    document.getElementById('settingItemsPerPage').value = settings.itemsPerPage || '50';
+    
+    // Security
+    document.getElementById('toggle2FA').checked = settings.twoFAEnabled === true;
+    document.getElementById('setup2FA').style.display = settings.twoFAEnabled ? 'none' : 'none';
+}
+
+function saveProfileSettings() {
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    settings.displayName = document.getElementById('settingDisplayName').value;
+    settings.email = document.getElementById('settingEmail').value;
+    
+    localStorage.setItem('creator_settings', JSON.stringify(settings));
+    alert('Profile settings saved!');
+}
+
+function updatePassword() {
+    const currentPass = document.getElementById('settingCurrentPassword').value;
+    const newPass = document.getElementById('settingNewPassword').value;
+    const confirmPass = document.getElementById('settingConfirmPassword').value;
+    
+    if (!currentPass || !newPass || !confirmPass) {
+        alert('Please fill in all password fields');
+        return;
+    }
+    
+    if (newPass !== confirmPass) {
+        alert('New passwords do not match');
+        return;
+    }
+    
+    if (newPass.length < 8) {
+        alert('Password must be at least 8 characters');
+        return;
+    }
+    
+    // In production, this would verify current password with backend
+    alert('Password updated successfully!');
+    
+    // Clear fields
+    document.getElementById('settingCurrentPassword').value = '';
+    document.getElementById('settingNewPassword').value = '';
+    document.getElementById('settingConfirmPassword').value = '';
+}
+
+function toggle2FA() {
+    const enabled = document.getElementById('toggle2FA').checked;
+    const setupDiv = document.getElementById('setup2FA');
+    
+    if (enabled) {
+        setupDiv.style.display = 'block';
+    } else {
+        setupDiv.style.display = 'none';
+        const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+        settings.twoFAEnabled = false;
+        localStorage.setItem('creator_settings', JSON.stringify(settings));
+        alert('Two-Factor Authentication disabled');
+    }
+}
+
+function verify2FA() {
+    const code = document.getElementById('setting2FACode').value;
+    
+    if (code.length !== 6) {
+        alert('Please enter a 6-digit verification code');
+        return;
+    }
+    
+    // In production, this would verify with backend
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    settings.twoFAEnabled = true;
+    localStorage.setItem('creator_settings', JSON.stringify(settings));
+    
+    document.getElementById('setup2FA').style.display = 'none';
+    alert('Two-Factor Authentication enabled!');
+}
+
+// Save notification and appearance settings on change
+document.addEventListener('change', function(e) {
+    if (e.target.closest('.settings-modal')) {
+        const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+        
+        // Notifications
+        if (e.target.id === 'toggleEmail') settings.emailNotifications = e.target.checked;
+        if (e.target.id === 'togglePush') settings.pushNotifications = e.target.checked;
+        if (e.target.id === 'toggleWeekly') settings.weeklyReports = e.target.checked;
+        if (e.target.id === 'toggleSounds') settings.alertSounds = e.target.checked;
+        
+        // Appearance
+        if (e.target.id === 'settingTheme') settings.theme = e.target.value;
+        if (e.target.id === 'settingLayout') settings.layout = e.target.value;
+        if (e.target.id === 'settingItemsPerPage') settings.itemsPerPage = e.target.value;
+        
+        localStorage.setItem('creator_settings', JSON.stringify(settings));
+    }
+});

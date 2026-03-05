@@ -46,6 +46,9 @@
                     <i class="fas fa-user-tie"></i>
                     <span id="managerName">--</span>
                 </div>
+                <button class="settings-btn" onclick="openSettings()">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
                 <button class="logout-btn" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </button>
@@ -394,6 +397,140 @@
             <p>Questions? Contact <span id="footerManager">your manager</span> or <a href="mailto:support@taboost.me">support@taboost.me</a></p>
             <p>© 2026 Taboost Agency. All rights reserved.</p>
         </footer>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-overlay" onclick="closeSettings()"></div>
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <button class="settings-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="settings-content">
+                <!-- Profile Settings -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                    <div class="settings-field">
+                        <label>Display Name</label>
+                        <input type="text" id="settingDisplayName" placeholder="Your display name">
+                    </div>
+                    <div class="settings-field">
+                        <label>Email</label>
+                        <input type="email" id="settingEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="settings-field">
+                        <label>Role</label>
+                        <input type="text" id="settingRole" value="Creator" readonly>
+                    </div>
+                    <button class="settings-save-btn" onclick="saveProfileSettings()">Save Changes</button>
+                </div>
+                
+                <!-- Notifications -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-bell"></i> Notifications</h3>
+                    <div class="settings-toggle">
+                        <span>Email Notifications</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleEmail" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle">
+                        <span>Push Notifications</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="togglePush">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle">
+                        <span>Weekly Reports</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleWeekly" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-toggle">
+                        <span>Alert Sounds</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggleSounds" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <!-- Appearance -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
+                    <div class="settings-field">
+                        <label>Theme</label>
+                        <select id="settingTheme">
+                            <option value="dark">Dark (Default)</option>
+                            <option value="light">Light</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <div class="settings-field">
+                        <label>Dashboard Layout</label>
+                        <select id="settingLayout">
+                            <option value="grid">Grid</option>
+                            <option value="list">List</option>
+                        </select>
+                    </div>
+                    <div class="settings-field">
+                        <label>Items Per Page</label>
+                        <select id="settingItemsPerPage">
+                            <option value="25">25</option>
+                            <option value="50" selected>50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Security -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <div class="settings-field">
+                        <label>Current Password</label>
+                        <input type="password" id="settingCurrentPassword" placeholder="••••••••">
+                    </div>
+                    <div class="settings-field">
+                        <label>New Password</label>
+                        <input type="password" id="settingNewPassword" placeholder="Enter new password">
+                    </div>
+                    <div class="settings-field">
+                        <label>Confirm Password</label>
+                        <input type="password" id="settingConfirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <button class="settings-save-btn" onclick="updatePassword()">Update Password</button>
+                    
+                    <div class="settings-divider"></div>
+                    
+                    <div class="settings-2fa">
+                        <div class="settings-2fa-info">
+                            <h4><i class="fas fa-lock"></i> Two-Factor Authentication</h4>
+                            <p>Add an extra layer of security to your account</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="toggle2FA" onchange="toggle2FA()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-2fa-setup" id="setup2FA" style="display:none;">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                            <p>Scan QR code with authenticator app</p>
+                        </div>
+                        <div class="settings-field">
+                            <label>Verification Code</label>
+                            <input type="text" id="setting2FACode" placeholder="000000" maxlength="6">
+                        </div>
+                        <button class="settings-save-btn" onclick="verify2FA()">Verify & Enable</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="js/data.js"></script>
