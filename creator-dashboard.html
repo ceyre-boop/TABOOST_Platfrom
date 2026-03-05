@@ -62,19 +62,19 @@
             </div>
         </header>
         
-        <!-- Welcome Banner -->
+        <!-- 1. Welcome Message -->
         <div class="welcome-banner" id="welcomeBanner">
             <div class="welcome-content">
                 <i class="fas fa-rocket"></i>
                 <div>
                     <h3 id="welcomeTitle">Welcome back!</h3>
                     <p id="welcomeMessage">Check out your latest earnings and goals.</p>
-                    <small style="color: #00ff88; font-weight: bold;">✓ BUILD: 2025-03-05-13:00-FINAL</small>
+                    <small style="color: #00ff88; font-weight: bold;">✓ BUILD: 2025-03-05-14:10-FINAL</small>
                 </div>
             </div>
         </div>
         
-        <!-- Main Stats Cards -->
+        <!-- 2. Current Diamonds / Rank / Rewards -->
         <div class="stats-grid">
             <div class="stat-card primary">
                 <div class="stat-header">
@@ -117,7 +117,7 @@
             </div>
         </div>
         
-        <!-- NEW: Creator Score & Activity Level -->
+        <!-- 3. My Creator Score -->
         <div class="section-card score-section">
             <div class="section-header">
                 <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
@@ -193,7 +193,18 @@
             </div>
         </div>
         
-        <!-- NEW: Activity Level Tracker -->
+        <!-- 4. My Monthly Goals -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals</h2>
+                <span class="days-remaining" id="daysRemaining">-- days left</span>
+            </div>
+            <div class="goals-grid" id="goalsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 5. My Activity Level -->
         <div class="section-card activity-level-section">
             <div class="section-header">
                 <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> My Activity Level</h2>
@@ -264,7 +275,72 @@
             </div>
         </div>
         
-        <!-- NEW: My 3 Revenue Streams -->
+        <!-- 6. Tier Progression (placeholder - let me know if you want this section) -->
+        
+        <!-- 7. 6 Month Chart -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line" style="color: var(--taboost-red);"></i> My Performance</h2>
+                <div class="chart-tabs">
+                    <button class="chart-tab active" data-period="history">6 Month History</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="chart-insights" id="chartInsights">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 8. Recent Rewards -->
+        <div class="section-card awards-card">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy" style="color: #ffd700;"></i> Recent Rewards</h2>
+            </div>
+            <div class="awards-list" id="awardsList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 9. My Achievements -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-medal" style="color: #ffd700;"></i> My Achievements</h2>
+                <span class="achievement-count" id="achievementCount">-- unlocked</span>
+            </div>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 10. Weekly Calendar -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-week" style="color: var(--taboost-red);"></i> Weekly Live Calendar</h2>
+                <span class="calendar-week" id="calendarWeek">--</span>
+            </div>
+            
+            <!-- TABOOST Campaign Banner -->
+            <div class="campaign-banner" id="taboostCampaignBanner">
+                <!-- Populated by JS -->
+            </div>
+            
+            <!-- Weekly Schedule Grid -->
+            <div class="weekly-calendar" id="weeklyCalendar">
+                <!-- Populated by JS -->
+            </div>
+            
+            <!-- TikTok Campaigns -->
+            <div class="tiktok-campaigns">
+                <h4><i class="fab fa-tiktok"></i> TikTok Campaigns</h4>
+                <div id="tiktokCampaignsList">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- 11. My Revenue Streams -->
         <div class="section-card revenue-section">
             <div class="section-header">
                 <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
@@ -293,48 +369,10 @@
             </div>
         </div>
         
-                <!-- Goals Section -->
+        <!-- 12. Earnings History -->
         <div class="section-card">
             <div class="section-header">
-                <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals</h2>
-                <span class="days-remaining" id="daysRemaining">-- days left</span>
-            </div>
-            <div class="goals-grid" id="goalsGrid">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-        
-        <!-- Performance Chart -->
-        <div class="section-card">
-            <div class="section-header">
-                <h2>My Performance</h2>
-                <div class="chart-tabs">
-                    <button class="chart-tab active" data-period="history">6 Month History</button>
-                </div>
-            </div>
-            <div class="chart-container">
-                <canvas id="performanceChart"></canvas>
-            </div>
-            <div class="chart-insights" id="chartInsights">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-        
-        <!-- Achievements -->
-        <div class="section-card">
-            <div class="section-header">
-                <h2><i class="fas fa-medal" style="color: #ffd700;"></i> My Achievements</h2>
-                <span class="achievement-count" id="achievementCount">-- unlocked</span>
-            </div>
-            <div class="achievements-grid" id="achievementsGrid">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-        
-        <!-- History Table -->
-        <div class="section-card">
-            <div class="section-header">
-                <h2>Earnings History</h2>
+                <h2><i class="fas fa-history" style="color: var(--taboost-red);"></i> Earnings History</h2>
             </div>
             <table class="history-table">
                 <thead>
@@ -350,42 +388,6 @@
                     <!-- Populated by JS -->
                 </tbody>
             </table>
-        </div>
-        
-        <!-- Recent Rewards -->
-        <div class="section-card awards-card">
-            <div class="section-header">
-                <h2><i class="fas fa-trophy" style="color: #ffd700;"></i> Recent Rewards</h2>
-            </div>
-            <div class="awards-list" id="awardsList">
-                <!-- Populated by JS -->
-            </div>
-        </div>
-        
-        <!-- Weekly Live Calendar -->
-        <div class="section-card">
-            <div class="section-header">
-                <h2><i class="fas fa-calendar-week" style="color: var(--taboost-red);"></i> Weekly Live Calendar</h2>
-                <span class="calendar-week" id="calendarWeek">--</span>
-            </div>
-            
-            <!-- TABOOST Campaign Banner -->
-            <div class="campaign-banner" id="taboostCampaignBanner">
-                <!-- Populated by JS -->
-            </div>
-            
-            <!-- Weekly Schedule Grid -->
-            <div class="weekly-calendar" id="weeklyCalendar">
-                <!-- Populated by JS -->
-            </div>
-            
-            <!-- TikTok Campaigns -->
-            <div class="tiktok-campaigns">
-                <h4><i class="fab fa-tiktok"></i> TikTok Campaigns</h4>
-                <div id="tiktokCampaignsList">
-                    <!-- Populated by JS -->
-                </div>
-            </div>
         </div>
         
         <!-- Export Section -->
