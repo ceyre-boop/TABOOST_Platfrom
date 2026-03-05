@@ -41,15 +41,10 @@
         </form>
         
         <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #333; text-align: center;">
-            <p style="color: #666; font-size: 13px; margin-bottom: 15px;">Demo Credentials</p>
-            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <span class="badge badge-info" style="cursor: pointer;" onclick="fillLogin('marco@taboost.me', 'admin')">
-                    <i class="fas fa-user-shield"></i> Admin
-                </span>
-                <span class="badge badge-success" style="cursor: pointer;" onclick="fillLogin('singleonthemove', 'creator')">
-                    <i class="fas fa-user"></i> Creator
-                </span>
-            </div>
+            <p style="color: #888; font-size: 14px; margin-bottom: 10px;">New to Taboost?</p>
+            <a href="#" onclick="showSignupModal(); return false;" style="color: var(--taboost-red); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
+                <i class="fas fa-user-plus"></i> First Time Creator Sign Up
+            </a>
         </div>
     </div>
     
@@ -89,8 +84,110 @@
                 return;
             }
             
-            alert('Invalid credentials. Try demo credentials below.');
+            alert('Invalid credentials. Please check your email and password.');
+        });
+        
+        function showSignupModal() {
+            document.getElementById('signupModal').style.display = 'flex';
+        }
+        
+        function closeSignupModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+        
+        // Handle signup form
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long.');
+                return;
+            }
+            
+            // In production, this would send data to backend
+            // For now, create local account
+            localStorage.setItem('taboost_user', JSON.stringify({
+                username: username,
+                email: email,
+                role: 'creator',
+                name: username,
+                avatar: username.charAt(0).toUpperCase(),
+                isNewUser: true
+            }));
+            
+            alert('Account created successfully! Welcome to Taboost!');
+            window.location.href = 'creator-dashboard.html';
         });
     </script>
+    
+    <!-- Sign Up Modal -->
+    <div id="signupModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center;">
+        <div style="background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #333; border-radius: 20px; padding: 40px; width: 90%; max-width: 400px; position: relative;">
+            <button onclick="closeSignupModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 1.2rem; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #ff0044, #cc0033); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                    <i class="fas fa-user-plus" style="font-size: 1.5rem; color: white;"></i>
+                </div>
+                <h2 style="color: #fff; margin: 0 0 10px 0;">Creator Sign Up</h2>
+                <p style="color: #888; font-size: 0.9rem; margin: 0;">Join Taboost Agency</p>
+            </div>
+            
+            <form id="signupForm">
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">TikTok Username</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-user" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        <input type="text" id="signupUsername" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="@yourusername">
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Email Address</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-envelope" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        <input type="email" id="signupEmail" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="you@example.com">
+                    </div>
+                </div>
+                
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Password</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        <input type="password" id="signupPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="••••••••">
+                    </div>
+                    <p style="color: #666; font-size: 0.75rem; margin: 5px 0 0 0;">Min 8 characters</p>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Confirm Password</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        <input type="password" id="signupConfirmPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="••••••••">
+                    </div>
+                </div>
+                
+                <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #ff0044, #cc0033); border: none; border-radius: 10px; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+                    <i class="fas fa-rocket"></i> Create Account
+                </button>
+            </form>
+            
+            <p style="color: #666; font-size: 0.8rem; text-align: center; margin-top: 20px;">
+                Already have an account? <a href="#" onclick="closeSignupModal(); return false;" style="color: #ff0044;">Sign In</a>
+            </p>
+        </div>
+    </div>
 </body>
 </html>
