@@ -895,10 +895,12 @@ function updateAwards() {
         }
     }
     
-    // Keep only last 10 rewards
-    if (storedRewards.length > 10) {
-        storedRewards = storedRewards.slice(0, 10);
+    // Keep only last 5 rewards (CHANGED from 10 to 5)
+    if (storedRewards.length > 5) {
+        storedRewards = storedRewards.slice(0, 5);
     }
+    
+    console.log('DEBUG - Rewards limited to 5:', storedRewards.length);
     
     // Save back to localStorage
     try {
