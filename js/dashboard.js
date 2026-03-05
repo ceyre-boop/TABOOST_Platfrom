@@ -163,7 +163,13 @@ function updateProfile(user) {
     document.getElementById('joinDate').textContent = memberText;
     
     // Get Tier directly from myData (column V) and Score from myData (column AG)
-    const tier = myData.tier || (creatorBadges[creatorId] || {}).tier || '-';
+    // Tier can be 0-5, so we need to check if it's defined, not just truthy
+    let tier = '-';
+    if (myData.tier !== undefined && myData.tier !== null && myData.tier !== '') {
+        tier = myData.tier;
+    } else if (creatorBadges[creatorId] && creatorBadges[creatorId].tier !== undefined) {
+        tier = creatorBadges[creatorId].tier;
+    }
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);

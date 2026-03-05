@@ -6,9 +6,9 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>My Dashboard - Taboost (v2025.03.05.1300)</title>
-    <link rel="stylesheet" href="css/styles.css?v=202503051300">
-    <link rel="stylesheet" href="css/creator-dashboard.css?v=202503051300">
+    <title>My Dashboard - Taboost (v2025.03.05.1400)</title>
+    <link rel="stylesheet" href="css/styles.css?v=202503051400">
+    <link rel="stylesheet" href="css/creator-dashboard.css?v=202503051400">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -27,13 +27,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- BUILD TIMESTAMP: 2025-03-05-13:00-FINAL -->
+    <!-- BUILD TIMESTAMP: 2025-03-05-14:00-FINAL -->
     <div class="creator-layout">
-        <!-- BUILD: 2025-03-05-13:00 -->
+        <!-- BUILD: 2025-03-05-14:00 -->
         <!-- Sidebar Logo for Mobile -->
         <div class="mobile-logo">
             <img src="images/taboost-logo.jpg?v=20250305" alt="TABOOST">
-            <div style="color: #00ff88; font-size: 10px; text-align: center;">v2025.03.05.1300</div>
+            <div style="color: #00ff88; font-size: 10px; text-align: center;">v2025.03.05.1400</div>
         </div>
         
         <!-- Header -->
@@ -202,34 +202,43 @@
             
             <!-- Level Progress -->
             <div class="level-tracker">
-                <div class="level-step" data-level="0">
-                    <div class="level-icon">0</div>
-                    <div class="level-req">7 Days<br>15 Hours</div>
+                <!-- Left Column: Levels 0, 1, 2 -->
+                <div class="level-column level-column-left">
+                    <div class="level-step" data-level="0">
+                        <div class="level-icon">0</div>
+                        <div class="level-req">7 Days<br>15 Hours</div>
+                    </div>
+                    <div class="level-connector-vertical"></div>
+                    <div class="level-step" data-level="1">
+                        <div class="level-icon">1</div>
+                        <div class="level-req">8 Days<br>20 Hours</div>
+                    </div>
+                    <div class="level-connector-vertical"></div>
+                    <div class="level-step" data-level="2">
+                        <div class="level-icon">2</div>
+                        <div class="level-req">11 Days<br>30 Hours</div>
+                    </div>
                 </div>
-                <div class="level-connector"></div>
-                <div class="level-step ${(myData.level || 0) >= 1 ? 'completed' : ''}" data-level="1">
-                    <div class="level-icon">1</div>
-                    <div class="level-req">8 Days<br>20 Hours</div>
-                </div>
-                <div class="level-connector"></div>
-                <div class="level-step ${(myData.level || 0) >= 2 ? 'completed' : ''}" data-level="2">
-                    <div class="level-icon">2</div>
-                    <div class="level-req">11 Days<br>30 Hours</div>
-                </div>
-                <div class="level-connector"></div>
-                <div class="level-step ${(myData.level || 0) >= 3 ? 'completed' : ''}" data-level="3">
-                    <div class="level-icon">3</div>
-                    <div class="level-req">15 Days<br>40 Hours</div>
-                </div>
-                <div class="level-connector"></div>
-                <div class="level-step ${(myData.level || 0) >= 4 ? 'completed' : ''}" data-level="4">
-                    <div class="level-icon">4</div>
-                    <div class="level-req">18 Days<br>60 Hours</div>
-                </div>
-                <div class="level-connector"></div>
-                <div class="level-step ${(myData.level || 0) >= 5 ? 'completed' : ''}" data-level="5">
-                    <div class="level-icon">5</div>
-                    <div class="level-req">22 Days<br>80 Hours</div>
+                <!-- Desktop Horizontal Connectors -->
+                <div class="level-connector desktop-only"></div>
+                <div class="level-connector desktop-only"></div>
+                <div class="level-connector desktop-only"></div>
+                <!-- Right Column: Levels 3, 4, 5 -->
+                <div class="level-column level-column-right">
+                    <div class="level-step" data-level="3">
+                        <div class="level-icon">3</div>
+                        <div class="level-req">15 Days<br>40 Hours</div>
+                    </div>
+                    <div class="level-connector-vertical"></div>
+                    <div class="level-step" data-level="4">
+                        <div class="level-icon">4</div>
+                        <div class="level-req">18 Days<br>60 Hours</div>
+                    </div>
+                    <div class="level-connector-vertical"></div>
+                    <div class="level-step" data-level="5">
+                        <div class="level-icon">5</div>
+                        <div class="level-req">22 Days<br>80 Hours</div>
+                    </div>
                 </div>
             </div>
             
@@ -391,7 +400,7 @@
         </div>
         
         <footer class="creator-footer">
-            <p>Questions? Contact <span id="footerManager">your manager</span> or <a href="mailto:support@taboost.me">support@taboost.me</a></p>
+            <p>Questions? Contact <span id="footerManager">your manager</span> or <a href="mailto:info@taboost.me">info@taboost.me</a></p>
             <p>© 2026 Taboost Agency. All rights reserved.</p>
         </footer>
     </div>
@@ -546,7 +555,7 @@
     <script src="js/events-data.js"></script>
     <script src="js/weekly-calendar-data.js"></script>
     <script src="js/sheets-data.js"></script>
-    <script src="js/creator-dashboard.js?v=202503051300"></script>
+    <script src="js/creator-dashboard.js?v=202503051400"></script>
     <script>
         // Auth check
         const user = JSON.parse(localStorage.getItem('taboost_user'));

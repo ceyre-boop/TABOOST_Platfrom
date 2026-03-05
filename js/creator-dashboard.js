@@ -31,6 +31,10 @@ async function initCreatorDashboard(user) {
     // Load real 6-month historical trends
     await loadCreatorTrends();
     
+    // Load detailed rewards from rewards-history.csv
+    detailedRewardsData = await loadDetailedRewards();
+    console.log('DEBUG - Detailed rewards loaded for', Object.keys(detailedRewardsData).length, 'creators');
+    
     // Find my data - first try by Creator ID, then fallback to username
     // In production, user.id would be the Creator ID from login
     let creatorId = user.creatorId || user.id;
@@ -159,7 +163,8 @@ function updateProfile(user) {
     
     // Get real Tier from creator_badges and Score directly from myData (column AG)
     const badgeData = creatorBadges[creatorId] || {};
-    const tier = badgeData.tier || '-';
+    // Tier can be 0-5, check if defined not just truthy
+    const tier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? '-');
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
@@ -359,6 +364,53 @@ function updateGoals() {
 
 // Load creator historical trends from real 6-month data
 let creatorTrends = {};
+
+// Load detailed rewards from rewards-history.csv
+async function loadDetailedRewards() {
+    try {
+        const response = await fetch('data/rewards-history.csv');
+        if (!response.ok) throw new Error('Failed to load rewards file');
+        
+        const csvText = await response.text();
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        
+        const rewardsByCreator = {};
+        
+        // Parse CSV - find creator by TikTok username (column 0) or CID (column 8)
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            if (values.length < 6) continue;
+            
+            const username = values[0]?.trim().toLowerCase();
+            const cid = values[8]?.trim();
+            const type = values[1]?.trim();
+            const date = values[2]?.trim();
+            const points = values[5]?.trim();
+            const rewards = values[6]?.trim();
+            
+            if (!username) continue;
+            
+            if (!rewardsByCreator[username]) {
+                rewardsByCreator[username] = [];
+            }
+            
+            rewardsByCreator[username].push({
+                type: type,
+                date: date,
+                points: points,
+                amount: rewards,
+                icon: type.includes('Rumble') ? '🥊' : type.includes('Match') ? '🎵' : '🏆'
+            });
+        }
+        
+        console.log('DEBUG - Loaded rewards for', Object.keys(rewardsByCreator).length, 'creators');
+        return rewardsByCreator;
+    } catch (e) {
+        console.error('Failed to load detailed rewards:', e);
+        return {};
+    }
+}
 
 async function loadCreatorTrends() {
     try {
@@ -834,90 +886,75 @@ function updateScoreAndLevels() {
     console.log('DEBUG - Revenue: Diamond USD =', diamondUSD.toFixed(2));
 }
 
+// Global variable to store detailed rewards
+let detailedRewardsData = {};
+
 function updateAwards() {
     console.log('DEBUG - updateAwards called for:', myData.username);
-    console.log('DEBUG - creatorRewards available:', typeof creatorRewards !== 'undefined');
-    console.log('DEBUG - creatorRewards keys:', typeof creatorRewards !== 'undefined' ? Object.keys(creatorRewards).slice(0, 5) : 'N/A');
     
-    const storageKey = `rewards_${myData.username}`;
-    let storedRewards = [];
+    let awards = [];
     
-    // Load existing rewards from localStorage
-    try {
-        const saved = localStorage.getItem(storageKey);
-        if (saved) {
-            storedRewards = JSON.parse(saved);
-            console.log('DEBUG - Loaded from localStorage:', storedRewards);
+    // Use detailed rewards from rewards-history.csv if available
+    const username = myData.username?.toLowerCase();
+    if (detailedRewardsData && username && detailedRewardsData[username]) {
+        console.log('DEBUG - Found detailed rewards for creator:', username);
+        const myDetailedRewards = detailedRewardsData[username];
+        
+        // Take the LAST 5 rewards (most recent)
+        const last5Rewards = myDetailedRewards.slice(-5);
+        
+        awards = last5Rewards.map(r => ({
+            icon: r.icon || '🏆',
+            title: `${r.type}`,
+            date: r.date,
+            amount: r.amount
+        }));
+        
+        console.log('DEBUG - Using last 5 detailed rewards:', awards.length);
+    } else {
+        console.log('DEBUG - No detailed rewards found, using fallback');
+        
+        // Fallback to creatorRewards (old method)
+        const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
+        
+        if (existingRewards && existingRewards.length > 0) {
+            // Take last 5
+            const last5 = existingRewards.slice(-5);
+            awards = last5.map(rewardText => ({
+                icon: '🏆',
+                title: rewardText,
+                date: 'Earned',
+                amount: 'Reward'
+            }));
         }
-    } catch (e) {
-        console.log('Could not load rewards from storage');
-    }
-    
-    // Load existing rewards from CSV data (creator_rewards.json)
-    const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
-    console.log('DEBUG - existingRewards for', myData.username, ':', existingRewards);
-    
-    if (existingRewards && existingRewards.length > 0) {
-        // Add any rewards not already in storedRewards
-        existingRewards.forEach(rewardText => {
-            const alreadyExists = storedRewards.some(r => r.title === rewardText);
+        
+        // Check for last reward from column AQ
+        if (myData.lastReward && myData.lastReward.trim()) {
+            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward));
             if (!alreadyExists) {
-                storedRewards.push({
-                    title: rewardText,
-                    date: 'Earned',
+                awards.unshift({
                     icon: '🏆',
+                    title: myData.lastReward,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
                     amount: 'Reward'
                 });
+                // Keep only 5
+                if (awards.length > 5) awards = awards.slice(0, 5);
             }
-        });
-    }
-    
-    // Check for new reward from column AQ (lastReward)
-    if (myData.lastReward && myData.lastReward.trim()) {
-        const currentReward = myData.lastReward.trim();
-        
-        // Check if this reward is already in the list
-        const alreadyExists = storedRewards.some(r => r.title === currentReward);
-        
-        if (!alreadyExists) {
-            // Add new reward with timestamp
-            storedRewards.unshift({
-                title: currentReward,
-                date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-                icon: '🏆',
-                amount: 'Reward'
-            });
         }
     }
     
-    // Keep only last 10 rewards
-    if (storedRewards.length > 10) {
-        storedRewards = storedRewards.slice(0, 10);
+    console.log('DEBUG - Final awards to display:', awards.length);
+    
+    // Default message if no rewards
+    if (awards.length === 0) {
+        awards = [{
+            icon: '⭐',
+            title: 'Keep streaming to earn rewards!',
+            date: '',
+            amount: ''
+        }];
     }
-    
-    // Save back to localStorage
-    try {
-        localStorage.setItem(storageKey, JSON.stringify(storedRewards));
-    } catch (e) {
-        console.log('Could not save rewards to storage');
-    }
-    
-    // Build the awards list to display
-    console.log('DEBUG - storedRewards final:', storedRewards);
-    
-    const awards = storedRewards.length > 0 ? storedRewards.map(r => ({
-        icon: r.icon || '🏆',
-        title: r.title,
-        date: r.date,
-        amount: r.amount || 'Reward'
-    })) : [{
-        icon: '⭐',
-        title: 'Keep streaming to earn rewards!',
-        date: '',
-        amount: ''
-    }];
-    
-    console.log('DEBUG - Awards to display:', awards);
     
     document.getElementById('awardsList').innerHTML = awards.map(a => `
         <div class="award-item">
