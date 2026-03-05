@@ -2095,3 +2095,133 @@
         display: none;
     }
 }
+
+/* ===== EVENTS CALENDAR ===== */
+.event-count {
+    color: #888;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.events-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.no-events {
+    text-align: center;
+    color: #666;
+    padding: 30px 20px;
+    font-style: italic;
+}
+
+.event-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: all 0.2s;
+}
+
+.event-item:hover {
+    background: rgba(0,0,0,0.3);
+    border-color: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+.event-date-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 55px;
+    height: 55px;
+    border-radius: 12px;
+    border: 2px solid;
+}
+
+.event-day {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+
+.event-month {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #888;
+    margin-top: 2px;
+}
+
+.event-content {
+    flex: 1;
+}
+
+.event-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.event-icon {
+    font-size: 1.2rem;
+}
+
+.event-when {
+    font-size: 0.75rem;
+    color: var(--taboost-red);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.event-title {
+    color: #fff;
+    font-size: 1rem;
+    margin: 0 0 5px 0;
+    font-weight: 600;
+}
+
+.event-time {
+    color: #888;
+    font-size: 0.8rem;
+    margin: 0 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.event-desc {
+    color: #aaa;
+    font-size: 0.85rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .event-item {
+        padding: 12px;
+    }
+    
+    .event-date-badge {
+        min-width: 50px;
+        height: 50px;
+    }
+    
+    .event-day {
+        font-size: 1.1rem;
+    }
+    
+    .event-title {
+        font-size: 0.95rem;
+    }
+    
+    .event-desc {
+        font-size: 0.8rem;
+    }
+}

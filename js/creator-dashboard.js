@@ -60,6 +60,7 @@ async function initCreatorDashboard(user) {
     updateAchievements();
     updateHistory();
     updateAwards();
+    updateEventsCalendar();
     
     // Update footer manager
     document.getElementById('footerManager').textContent = myData.manager || 'your manager';
@@ -1010,3 +1011,58 @@ document.addEventListener('change', function(e) {
         localStorage.setItem('creator_settings', JSON.stringify(settings));
     }
 });
+
+// ===== EVENTS CALENDAR =====
+
+function updateEventsCalendar() {
+    const container = document.getElementById('eventsCalendar');
+    const countEl = document.getElementById('eventCount');
+    
+    if (!container || typeof taboostEvents === 'undefined') {
+        console.log('Events calendar not available');
+        return;
+    }
+    
+    // Filter future events only
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const upcomingEvents = taboostEvents.filter(event => {
+        const eventDate = new Date(event.date);
+        return eventDate >= today;
+    }).slice(0, 5); // Show max 5 events
+    
+    // Update count
+    if (countEl) {
+        countEl.textContent = `${upcomingEvents.length} event${upcomingEvents.length !== 1 ? 's' : ''}`;
+    }
+    
+    // Render events
+    if (upcomingEvents.length === 0) {
+        container.innerHTML = '<p class="no-events">No upcoming events. Check back soon!</p>';
+        return;
+    }
+    
+    container.innerHTML = upcomingEvents.map(event => {
+        const when = formatEventDate(event.date);
+        const typeColor = getEventTypeColor(event.type);
+        
+        return `
+            <div class="event-item">
+                <div class="event-date-badge" style="background: ${typeColor}20; border-color: ${typeColor}40;">
+                    <span class="event-day">${new Date(event.date).getDate()}</span>
+                    <span class="event-month">${new Date(event.date).toLocaleDateString('en-US', { month: 'short' })}</span>
+                </div>
+                <div class="event-content">
+                    <div class="event-header">
+                        <span class="event-icon">${event.icon}</span>
+                        <span class="event-when">${when}</span>
+                    </div>
+                    <h4 class="event-title">${event.title}</h4>
+                    <p class="event-time"><i class="fas fa-clock"></i> ${event.time}</p>
+                    <p class="event-desc">${event.description}</p>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
