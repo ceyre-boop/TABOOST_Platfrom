@@ -215,40 +215,51 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Column AQ (Last Label) for current available, Column AG (Earned) for total earned
+    // Rewards - Get data from myData
     const lastLabel = myData.lastRewardLabel || '';
-    const earnedValue = myData.rewards?.earned || '0';
+    const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
     
-    console.log('DEBUG - lastRewardLabel:', lastLabel);
-    console.log('DEBUG - rewards.earned:', earnedValue);
-    console.log('DEBUG - totalUnlocked:', myData.totalUnlocked);
+    console.log('REWARDS DEBUG - lastRewardLabel:', lastLabel);
+    console.log('REWARDS DEBUG - earnedValue:', earnedValue);
+    console.log('REWARDS DEBUG - totalUnlocked:', myData.totalUnlocked);
     
-    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K") - Column AQ
+    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K")
     const numberMatch = lastLabel.match(/([\d,.]+)([KMB]?)/i);
     let currentRewardsAvailable = '0';
     if (numberMatch) {
         const num = numberMatch[1];
-        const suffix = numberMatch[2] || 'K'; // Default to K if no suffix
+        const suffix = numberMatch[2] || 'K';
         currentRewardsAvailable = num + suffix;
     }
     
-    // If no Last Label value, fall back to rewards.earned
-    if (currentRewardsAvailable === '0' && earnedValue) {
+    // If no Last Label, use earned value formatted
+    if (currentRewardsAvailable === '0' && earnedValue > 0) {
         currentRewardsAvailable = formatNumber(earnedValue);
     }
     
-    // Column AG (Earned) = Total rewards earned
-    const totalEarned = earnedValue || myData.totalUnlocked || '0';
+    // Total earned = earned column
+    const totalEarned = earnedValue || 0;
     
-    console.log('DEBUG - currentRewardsAvailable:', currentRewardsAvailable);
-    console.log('DEBUG - totalEarned:', totalEarned);
+    console.log('REWARDS DEBUG - Final currentRewardsAvailable:', currentRewardsAvailable);
+    console.log('REWARDS DEBUG - Final totalEarned:', totalEarned);
     
-    // Top: Current Rewards Available (from Column AQ/Last Label)
-    document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned (from Column AG/Earned)
-    document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Rewards Earned: ${formatNumber(totalEarned)}</span>
-    `;
+    // Update the DOM
+    const totalRewardsEl = document.getElementById('totalRewards');
+    const rewardsBreakdownEl = document.getElementById('rewardsBreakdown');
+    
+    if (totalRewardsEl) {
+        totalRewardsEl.textContent = currentRewardsAvailable;
+        console.log('REWARDS DEBUG - Set totalRewards to:', currentRewardsAvailable);
+    } else {
+        console.error('REWARDS DEBUG - totalRewards element NOT FOUND');
+    }
+    
+    if (rewardsBreakdownEl) {
+        rewardsBreakdownEl.innerHTML = `<span>Total Rewards Earned: ${formatNumber(totalEarned)}</span>`;
+        console.log('REWARDS DEBUG - Set rewardsBreakdown to:', formatNumber(totalEarned));
+    } else {
+        console.error('REWARDS DEBUG - rewardsBreakdown element NOT FOUND');
+    }
 }
 
 function updateRank() {
