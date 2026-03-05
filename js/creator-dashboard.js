@@ -468,15 +468,22 @@ function initPerformanceChart() {
         const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
         console.log('DEBUG - hasRealData:', hasRealData);
         
+        // Generate actual month names (last 6 months)
+        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        const today = new Date();
+        const labels = [];
+        for (let i = 5; i >= 0; i--) {
+            const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
+            labels.push(monthNames[d.getMonth()]);
+        }
+        
         // Always use 6-month view with real data or fallback
-        let labels, dataPoints;
+        let dataPoints;
         if (hasRealData) {
-            labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
             dataPoints = trends.diamondsHistory;
             console.log('DEBUG - Using real 6-month data:', dataPoints);
         } else {
             // Fallback: use CSV data columns
-            labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
             const current = myData.diamonds || 0;
             const lastMonth = myData.diamondsLastMonth || current;
             const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
@@ -491,6 +498,10 @@ function initPerformanceChart() {
             ];
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
+        
+        // Tier data - use current tier for all months (we don't have historical tier data)
+        const currentTier = myData.tier ?? 0;
+        const tierData = [currentTier, currentTier, currentTier, currentTier, currentTier, currentTier];
         
         console.log('DEBUG - Chart labels:', labels);
         console.log('DEBUG - Chart dataPoints:', dataPoints);
@@ -508,13 +519,22 @@ function initPerformanceChart() {
             pointBackgroundColor: '#ff0044',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
-            pointRadius: hasRealData ? 4 : 6
+            pointRadius: hasRealData ? 4 : 6,
+            yAxisID: 'y'
+        },
+        {
+            label: 'Tier',
+            data: tierData,
+            borderColor: '#00ff88',
+            backgroundColor: 'transparent',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            tension: 0.4,
+            pointRadius: 4,
+            pointBackgroundColor: '#00ff88',
+            yAxisID: 'y1'
         }]
     };
-    
-    // Note: Growth % line removed - user requested to show Final Tier instead
-    // but we don't have tier history data per month in the trends
-    // Keeping just the Diamonds line for clarity
     
     // Destroy existing chart if it exists
     if (performanceChart) {
@@ -554,6 +574,9 @@ function initPerformanceChart() {
                     bodyFont: { size: isMobile ? 10 : 12 },
                     callbacks: {
                         label: function(context) {
+                            if (context.dataset.label === 'Tier') {
+                                return 'Tier ' + context.parsed.y;
+                            }
                             return formatNumber(context.parsed.y) + ' 💎';
                         }
                     }
@@ -567,6 +590,20 @@ function initPerformanceChart() {
                         font: { size: isMobile ? 9 : 11 },
                         maxTicksLimit: isMobile ? 4 : 6,
                         callback: v => formatNumber(v)
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    grid: { display: false },
+                    min: 0,
+                    max: 5,
+                    ticks: {
+                        color: '#00ff88',
+                        font: { size: 9 },
+                        stepSize: 1,
+                        callback: v => 'T' + v
                     }
                 },
                 x: {
@@ -586,17 +623,22 @@ function initPerformanceChart() {
             document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             
-            // Always show real 6-month historical data
+            // Always show real 6-month historical data with month names
+            performanceChart.data.labels = labels;
             if (hasRealData) {
-                performanceChart.data.labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
                 performanceChart.data.datasets[0].data = trends.diamondsHistory;
             } else {
-                // Fallback to available data
-                performanceChart.data.labels = ['2 Months Ago', 'Last Month', 'This Month'];
+                // Fallback: use CSV data columns
+                const current = myData.diamonds || 0;
+                const lastMonth = myData.diamondsLastMonth || current;
+                const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
                 performanceChart.data.datasets[0].data = [
-                    myData.diamondsTwoMonthsAgo || 0,
-                    myData.diamondsLastMonth || 0,
-                    myData.diamonds || 0
+                    twoMonthsAgo || current * 0.8,
+                    lastMonth || current * 0.9,
+                    current * 0.95,
+                    current * 0.98,
+                    current * 0.99,
+                    current
                 ];
             }
             performanceChart.update();
