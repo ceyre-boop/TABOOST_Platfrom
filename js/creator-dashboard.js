@@ -263,30 +263,34 @@ function updateRank() {
 }
 
 function updateActivityStats() {
-    // These elements may have been removed from HTML - check before updating
-    const hoursValue = document.getElementById('hoursValue');
-    if (hoursValue) hoursValue.textContent = (myData.hours || 0).toFixed(1) + 'h';
-    
-    const streamsValue = document.getElementById('streamsValue');
-    if (streamsValue) streamsValue.textContent = myData.liveStreams || 0;
-    
-    // Calculate hourly rate (diamonds per hour)
-    const hours = myData.hours || 0;
-    const diamonds = myData.diamonds || 0;
-    const hourlyRate = hours > 0 ? Math.round(diamonds / hours) : 0;
-    const hourlyRateValue = document.getElementById('hourlyRateValue');
-    if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
-    
-    const daysValue = document.getElementById('daysValue');
-    if (daysValue) daysValue.textContent = myData.validLiveDays || 0;
-    
-    // Hours goal mini bar
-    const hoursFill = document.getElementById('hoursFill');
-    const hoursGoalText = document.getElementById('hoursGoalText');
-    if (hoursFill && hoursGoalText) {
-        const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hrsGoal || 80)) * 100);
-        hoursFill.style.width = hourPct + '%';
-        hoursGoalText.textContent = (myData.hrsGoal || 80) + 'h';
+    // Activity Stats Row may have been removed - safely check all elements
+    try {
+        const hoursValue = document.getElementById('hoursValue');
+        if (hoursValue) hoursValue.textContent = (myData.hours || 0).toFixed(1) + 'h';
+        
+        const streamsValue = document.getElementById('streamsValue');
+        if (streamsValue) streamsValue.textContent = myData.liveStreams || 0;
+        
+        const daysValue = document.getElementById('daysValue');
+        if (daysValue) daysValue.textContent = myData.validLiveDays || 0;
+        
+        // Calculate hourly rate (diamonds per hour)
+        const hours = myData.hours || 0;
+        const diamonds = myData.diamonds || 0;
+        const hourlyRate = hours > 0 ? Math.round(diamonds / hours) : 0;
+        const hourlyRateValue = document.getElementById('hourlyRateValue');
+        if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
+        
+        // Hours goal mini bar
+        const hoursFill = document.getElementById('hoursFill');
+        const hoursGoalText = document.getElementById('hoursGoalText');
+        if (hoursFill && hoursGoalText) {
+            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hrsGoal || 80)) * 100);
+            hoursFill.style.width = hourPct + '%';
+            hoursGoalText.textContent = (myData.hrsGoal || 80) + 'h';
+        }
+    } catch (e) {
+        console.log('Activity Stats elements not found (may have been removed):', e.message);
     }
 }
 
