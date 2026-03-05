@@ -307,6 +307,13 @@ function updateGoals() {
     
     const goals = [
         {
+            name: 'Streaming Days',
+            icon: 'fa-calendar',
+            current: myData.liveStreams || 0,
+            target: 25,
+            unit: ' days'
+        },
+        {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
@@ -319,13 +326,6 @@ function updateGoals() {
             current: myData.diamonds || 0,
             target: (myData.diamondsLastMonth || 0) * 1.1,
             unit: ''
-        },
-        {
-            name: 'Streaming Days',
-            icon: 'fa-calendar',
-            current: myData.liveStreams || 0,
-            target: 25,
-            unit: ' days'
         }
     ];
     
