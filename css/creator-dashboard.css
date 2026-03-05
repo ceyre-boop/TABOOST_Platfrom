@@ -280,6 +280,7 @@
     margin-top: auto;
     padding-top: 12px;
     border-top: 1px solid rgba(255,255,255,0.1);
+    justify-content: flex-start;
 }
 
 /* Rank Display */

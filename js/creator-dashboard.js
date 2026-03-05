@@ -219,10 +219,9 @@ function updateStats() {
     // Column AG = Total unlocked (lifetime)
     const totalUnlocked = myData.totalUnlocked || '0';
     
-    document.getElementById('totalRewards').textContent = lastRewardAmount;
+    document.getElementById('totalRewards').textContent = totalUnlocked;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>${lastRewardDesc}</span>
-        <span>Unlocked: ${totalUnlocked}</span>
+        <span>Total Rewards Earned</span>
     `;
 }
 
