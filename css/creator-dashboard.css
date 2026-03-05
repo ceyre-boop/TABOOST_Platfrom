@@ -1228,7 +1228,12 @@
         height: 70px;
         font-size: 28px;
     }
-    
+
+    .creator-avatar-img {
+        width: 70px;
+        height: 70px;
+    }
+
     .creator-info h1 {
         font-size: 22px;
     }
@@ -1585,7 +1590,12 @@
         height: 60px;
         font-size: 24px;
     }
-    
+
+    .creator-avatar-img {
+        width: 60px;
+        height: 60px;
+    }
+
     .creator-info h1 {
         font-size: 20px;
     }
