@@ -334,10 +334,63 @@ class TaboostDataService {
     }
 }
 
+// Load detailed rewards from rewards CSV
+async function loadDetailedRewards() {
+    try {
+        const response = await fetch('data/rewards-history.csv');
+        if (!response.ok) throw new Error('Rewards file not found');
+        
+        const csvText = await response.text();
+        const lines = csvText.trim().split('\n');
+        const headers = lines[0].split(',');
+        
+        // Parse rewards by Creator ID
+        const rewardsByCreator = {};
+        
+        for (let i = 1; i < lines.length; i++) {
+            const values = lines[i].split(',');
+            if (values.length < 9) continue;
+            
+            const creatorId = values[8].trim(); // CID column
+            const username = values[0].trim();  // TikTok column
+            const type = values[1].trim();      // Type column
+            const date = values[2].trim();      // Date column
+            const rewardAmount = values[6].trim(); // Rewards column
+            
+            if (!creatorId) continue;
+            
+            if (!rewardsByCreator[creatorId]) {
+                rewardsByCreator[creatorId] = [];
+            }
+            
+            rewardsByCreator[creatorId].push({
+                username,
+                type,
+                date,
+                amount: rewardAmount,
+                title: `${type} - ${rewardAmount} points`
+            });
+        }
+        
+        // Sort by date (newest first) and keep only last 5
+        Object.keys(rewardsByCreator).forEach(cid => {
+            rewardsByCreator[cid].sort((a, b) => new Date(b.date) - new Date(a.date));
+            rewardsByCreator[cid] = rewardsByCreator[cid].slice(0, 5);
+        });
+        
+        console.log('✅ Loaded detailed rewards for', Object.keys(rewardsByCreator).length, 'creators');
+        return rewardsByCreator;
+        
+    } catch (e) {
+        console.error('❌ Error loading detailed rewards:', e);
+        return {};
+    }
+}
+
 // Create global instance
 const taboostData = new TaboostDataService();
 
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { TaboostDataService, taboostData };
+    module.exports = { TaboostDataService, taboostData, loadDetailedRewards };
 }

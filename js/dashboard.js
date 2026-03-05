@@ -6,6 +6,7 @@ let allCreators = [];
 let performanceChart = null;
 let creatorMonths = {}; // Real month data from CSV column F
 let creatorIdMap = {}; // Map creatorId to creator data
+let detailedRewards = {}; // Detailed rewards from rewards-history.csv
 
 async function initCreatorDashboard(user) {
     await taboostData.loadFromCSV();
@@ -30,6 +31,10 @@ async function initCreatorDashboard(user) {
     
     // Load real 6-month historical trends
     await loadCreatorTrends();
+    
+    // Load detailed rewards from rewards-history.csv
+    detailedRewards = await loadDetailedRewards();
+    console.log('DEBUG - Detailed rewards loaded for', Object.keys(detailedRewards).length, 'creators');
     
     // Find my data - first try by Creator ID, then fallback to username
     // In production, user.id would be the Creator ID from login
@@ -840,91 +845,69 @@ function updateScoreAndLevels() {
 }
 
 function updateAwards() {
-    console.log('DEBUG - updateAwards called for:', myData.username);
-    console.log('DEBUG - creatorRewards available:', typeof creatorRewards !== 'undefined');
-    console.log('DEBUG - creatorRewards keys:', typeof creatorRewards !== 'undefined' ? Object.keys(creatorRewards).slice(0, 5) : 'N/A');
+    console.log('DEBUG - updateAwards called for:', myData.username, 'CreatorID:', myData.creatorId);
     
-    const storageKey = `rewards_${myData.username}`;
-    let storedRewards = [];
+    let awards = [];
     
-    // Load existing rewards from localStorage
-    try {
-        const saved = localStorage.getItem(storageKey);
-        if (saved) {
-            storedRewards = JSON.parse(saved);
-            console.log('DEBUG - Loaded from localStorage:', storedRewards);
+    // NEW: Use detailed rewards from rewards-history.csv if available
+    const creatorId = myData.creatorId || myData._creatorId;
+    if (detailedRewards && creatorId && detailedRewards[creatorId]) {
+        console.log('DEBUG - Found detailed rewards for creator:', creatorId);
+        const myDetailedRewards = detailedRewards[creatorId];
+        
+        awards = myDetailedRewards.map(r => ({
+            icon: '🏆',
+            title: `${r.type} - ${r.amount} pts`,
+            date: r.date,
+            amount: r.amount
+        }));
+        
+        console.log('DEBUG - Using detailed rewards:', awards.length);
+    } else {
+        console.log('DEBUG - No detailed rewards found, using fallback');
+        
+        // Fallback to creatorRewards (old method)
+        const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
+        
+        if (existingRewards && existingRewards.length > 0) {
+            awards = existingRewards.map(rewardText => ({
+                icon: '🏆',
+                title: rewardText,
+                date: 'Earned',
+                amount: 'Reward'
+            }));
         }
-    } catch (e) {
-        console.log('Could not load rewards from storage');
-    }
-    
-    // Load existing rewards from CSV data (creator_rewards.json)
-    const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
-    console.log('DEBUG - existingRewards for', myData.username, ':', existingRewards);
-    
-    if (existingRewards && existingRewards.length > 0) {
-        // Add any rewards not already in storedRewards
-        existingRewards.forEach(rewardText => {
-            const alreadyExists = storedRewards.some(r => r.title === rewardText);
+        
+        // Check for last reward from column AQ
+        if (myData.lastReward && myData.lastReward.trim()) {
+            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward));
             if (!alreadyExists) {
-                storedRewards.push({
-                    title: rewardText,
-                    date: 'Earned',
+                awards.unshift({
                     icon: '🏆',
+                    title: myData.lastReward,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
                     amount: 'Reward'
                 });
             }
-        });
-    }
-    
-    // Check for new reward from column AQ (lastReward)
-    if (myData.lastReward && myData.lastReward.trim()) {
-        const currentReward = myData.lastReward.trim();
-        
-        // Check if this reward is already in the list
-        const alreadyExists = storedRewards.some(r => r.title === currentReward);
-        
-        if (!alreadyExists) {
-            // Add new reward with timestamp
-            storedRewards.unshift({
-                title: currentReward,
-                date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-                icon: '🏆',
-                amount: 'Reward'
-            });
         }
     }
     
-    // Keep only last 5 rewards (CHANGED from 10 to 5)
-    if (storedRewards.length > 5) {
-        storedRewards = storedRewards.slice(0, 5);
+    // Keep only last 5 rewards
+    if (awards.length > 5) {
+        awards = awards.slice(0, 5);
     }
     
-    console.log('DEBUG - Rewards limited to 5:', storedRewards.length);
+    console.log('DEBUG - Final awards to display:', awards.length);
     
-    // Save back to localStorage
-    try {
-        localStorage.setItem(storageKey, JSON.stringify(storedRewards));
-    } catch (e) {
-        console.log('Could not save rewards to storage');
+    // Default message if no rewards
+    if (awards.length === 0) {
+        awards = [{
+            icon: '⭐',
+            title: 'Keep streaming to earn rewards!',
+            date: '',
+            amount: ''
+        }];
     }
-    
-    // Build the awards list to display
-    console.log('DEBUG - storedRewards final:', storedRewards);
-    
-    const awards = storedRewards.length > 0 ? storedRewards.map(r => ({
-        icon: r.icon || '🏆',
-        title: r.title,
-        date: r.date,
-        amount: r.amount || 'Reward'
-    })) : [{
-        icon: '⭐',
-        title: 'Keep streaming to earn rewards!',
-        date: '',
-        amount: ''
-    }];
-    
-    console.log('DEBUG - Awards to display:', awards);
     
     document.getElementById('awardsList').innerHTML = awards.map(a => `
         <div class="award-item">
