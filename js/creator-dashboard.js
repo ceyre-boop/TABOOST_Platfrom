@@ -50,17 +50,32 @@ async function initCreatorDashboard(user) {
     // Store creatorId for internal tracking (never displayed)
     myData._creatorId = myData.creatorId;
     
-    updateProfile(user);
-    updateStats();
-    updateGoals();
-    updateRank();
-    updateActivityStats();
-    updateScoreAndLevels();
-    initPerformanceChart();
-    updateAchievements();
-    updateHistory();
-    updateAwards();
-    updateEventsCalendar();
+    try {
+        console.log('DEBUG - Starting updateProfile');
+        updateProfile(user);
+        console.log('DEBUG - Starting updateStats');
+        updateStats();
+        console.log('DEBUG - Starting updateGoals');
+        updateGoals();
+        console.log('DEBUG - Starting updateRank');
+        updateRank();
+        console.log('DEBUG - Starting updateActivityStats');
+        updateActivityStats();
+        console.log('DEBUG - Starting updateScoreAndLevels');
+        updateScoreAndLevels();
+        console.log('DEBUG - Starting initPerformanceChart');
+        initPerformanceChart();
+        console.log('DEBUG - Starting updateAchievements');
+        updateAchievements();
+        console.log('DEBUG - Starting updateHistory');
+        updateHistory();
+        console.log('DEBUG - Starting updateAwards');
+        updateAwards();
+        console.log('DEBUG - Starting updateEventsCalendar');
+        updateEventsCalendar();
+    } catch (e) {
+        console.error('ERROR in dashboard update:', e);
+    }
     
     // Update footer manager
     document.getElementById('footerManager').textContent = myData.manager || 'your manager';
