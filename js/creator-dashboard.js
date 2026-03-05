@@ -512,20 +512,9 @@ function initPerformanceChart() {
         }]
     };
     
-    // Add growth rate line if we have real 6-month data
-    if (hasRealData && trends.growthRates) {
-        data.datasets.push({
-            label: 'Growth %',
-            data: trends.growthRates,
-            borderColor: '#00ff88',
-            backgroundColor: 'transparent',
-            borderWidth: 2,
-            borderDash: [5, 5],
-            yAxisID: 'y1',
-            tension: 0.4,
-            pointRadius: 3
-        });
-    }
+    // Note: Growth % line removed - user requested to show Final Tier instead
+    // but we don't have tier history data per month in the trends
+    // Keeping just the Diamonds line for clarity
     
     // Destroy existing chart if it exists
     if (performanceChart) {
@@ -565,9 +554,6 @@ function initPerformanceChart() {
                     bodyFont: { size: isMobile ? 10 : 12 },
                     callbacks: {
                         label: function(context) {
-                            if (context.dataset.label === 'Growth %') {
-                                return context.parsed.y + '% growth';
-                            }
                             return formatNumber(context.parsed.y) + ' 💎';
                         }
                     }
@@ -583,17 +569,6 @@ function initPerformanceChart() {
                         callback: v => formatNumber(v)
                     }
                 },
-                y1: hasRealData && !isMobile ? {
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    grid: { display: false },
-                    ticks: {
-                        color: '#00ff88',
-                        font: { size: 9 },
-                        callback: v => v + '%'
-                    }
-                } : undefined,
                 x: {
                     grid: { display: false },
                     ticks: { 
@@ -615,9 +590,6 @@ function initPerformanceChart() {
             if (hasRealData) {
                 performanceChart.data.labels = ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'This Month'];
                 performanceChart.data.datasets[0].data = trends.diamondsHistory;
-                if (performanceChart.data.datasets[1]) {
-                    performanceChart.data.datasets[1].data = trends.growthRates;
-                }
             } else {
                 // Fallback to available data
                 performanceChart.data.labels = ['2 Months Ago', 'Last Month', 'This Month'];
@@ -635,24 +607,11 @@ function initPerformanceChart() {
     const avg = allCreators.reduce((a, c) => a + (c.diamonds || 0), 0) / allCreators.length;
     const diff = ((myData.diamonds || 0) - avg) / avg * 100;
     
-    let trendInsight = '';
-    if (hasRealData && trends.growthRates) {
-        const avgGrowth = trends.growthRates.slice(1).reduce((a, b) => a + b, 0) / 5;
-        const growthClass = avgGrowth >= 0 ? 'positive' : 'negative';
-        trendInsight = `
-            <div class="insight-item ${growthClass}">
-                <i class="fas fa-chart-line"></i>
-                <span>6-month avg growth: ${avgGrowth >= 0 ? '+' : ''}${avgGrowth.toFixed(1)}%</span>
-            </div>
-        `;
-    }
-    
     document.getElementById('chartInsights').innerHTML = `
         <div class="insight-item ${diff >= 0 ? 'positive' : 'negative'}">
             <i class="fas fa-chart-bar"></i>
             <span>${diff >= 0 ? '+' : ''}${diff.toFixed(1)}% vs agency average</span>
         </div>
-        ${trendInsight}
         <div class="insight-item">
             <i class="fas fa-calculator"></i>
             <span>${formatNumber((myData.diamonds || 0) / (myData.liveStreams || 1))} diamonds per stream</span>
