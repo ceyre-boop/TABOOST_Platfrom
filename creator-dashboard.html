@@ -435,6 +435,17 @@
             </div>
             
             <div class="settings-content">
+                <!-- Admin Data Source (Admin Only) -->
+                <div class="settings-section" id="adminSection" style="display:none;">
+                    <h3><i class="fas fa-database"></i> Data Source</h3>
+                    <div class="settings-field">
+                        <label>Google Sheets CSV URL</label>
+                        <input type="text" id="settingSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?gid=0&single=true&output=csv">
+                        <p style="color:#666;font-size:0.75rem;margin-top:5px;">Paste the "Publish to web" CSV URL from Google Sheets</p>
+                    </div>
+                    <button class="settings-save-btn" onclick="saveSheetUrl()">Update Data Source</button>
+                </div>
+                
                 <!-- Profile Settings -->
                 <div class="settings-section">
                     <h3><i class="fas fa-user"></i> Profile Settings</h3>

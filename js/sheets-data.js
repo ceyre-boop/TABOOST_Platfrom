@@ -3,11 +3,19 @@
 
 class TaboostDataService {
     constructor() {
-        // Google Sheet published CSV URL (replace with actual published URL)
-        // For dev, we'll load from local CSV file
-        this.csvUrl = './data/live-data-current.csv';
+        // Google Sheet published CSV URL - Marco needs to publish and paste URL here
+        // Instructions: File → Share → Publish to web → Select sheet → CSV → Copy URL
+        this.csvUrl = localStorage.getItem('taboost_sheet_url') || './data/live-data-current.csv';
+        
         this.creators = [];
         this.lastFetch = null;
+    }
+    
+    // Set the Google Sheets CSV URL
+    setSheetUrl(url) {
+        this.csvUrl = url;
+        localStorage.setItem('taboost_sheet_url', url);
+        console.log('Google Sheets URL set:', url);
     }
 
     // Parse CSV line handling quoted fields
@@ -198,16 +206,24 @@ class TaboostDataService {
         return 'Staff';
     }
 
-    // Load data from CSV file
+    // Load data from CSV file (Google Sheets or local)
     async loadFromCSV() {
         try {
+            console.log('Fetching data from:', this.csvUrl);
             const response = await fetch(this.csvUrl);
-            if (!response.ok) throw new Error('Failed to load CSV');
+            if (!response.ok) throw new Error('Failed to load CSV: ' + response.status);
             
             const csvText = await response.text();
             console.log('DEBUG - CSV loaded, length:', csvText.length);
+            
+            // Check if we got valid CSV data (should have commas and newlines)
+            if (!csvText.includes(',') || csvText.length < 100) {
+                throw new Error('Invalid CSV data received');
+            }
+            
             this.creators = this.parseCSVData(csvText);
             this.lastFetch = new Date();
+            console.log('✅ Successfully loaded', this.creators.length, 'creators from Google Sheets');
             
             console.log(`✅ Loaded ${this.creators.length} creators from CSV`);
             if (this.creators.length > 0) {

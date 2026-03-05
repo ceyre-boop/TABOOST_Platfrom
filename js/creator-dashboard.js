@@ -901,6 +901,18 @@ function closeSettings() {
 
 function loadSettings() {
     const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    
+    // Show admin section for admins
+    if (user.role === 'admin') {
+        const adminSection = document.getElementById('adminSection');
+        if (adminSection) adminSection.style.display = 'block';
+    }
+    
+    // Data Source
+    const savedUrl = localStorage.getItem('taboost_sheet_url') || '';
+    const sheetUrlInput = document.getElementById('settingSheetUrl');
+    if (sheetUrlInput) sheetUrlInput.value = savedUrl;
     
     // Profile
     document.getElementById('settingDisplayName').value = settings.displayName || myData.username || '';
@@ -920,6 +932,23 @@ function loadSettings() {
     // Security
     document.getElementById('toggle2FA').checked = settings.twoFAEnabled === true;
     document.getElementById('setup2FA').style.display = settings.twoFAEnabled ? 'none' : 'none';
+}
+
+function saveSheetUrl() {
+    const url = document.getElementById('settingSheetUrl').value.trim();
+    if (!url) {
+        alert('Please enter a valid Google Sheets CSV URL');
+        return;
+    }
+    
+    localStorage.setItem('taboost_sheet_url', url);
+    
+    // Update the data service
+    if (typeof taboostData !== 'undefined') {
+        taboostData.setSheetUrl(url);
+    }
+    
+    alert('Data source updated! Refresh the page to load from the new source.');
 }
 
 function saveProfileSettings() {
