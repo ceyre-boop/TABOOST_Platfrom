@@ -55,6 +55,14 @@
     box-shadow: 0 0 30px rgba(255, 0, 68, 0.3);
 }
 
+.creator-avatar-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    object-fit: cover;
+    box-shadow: 0 0 30px rgba(255, 0, 68, 0.3);
+}
+
 .creator-info h1 {
     font-size: 28px;
     font-weight: 800;
