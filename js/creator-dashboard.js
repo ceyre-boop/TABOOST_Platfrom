@@ -1157,25 +1157,28 @@ document.addEventListener('change', function(e) {
     }
 });
 
-// ===== WEEKLY LIVE CALENDAR =====
+// ===== 3x3 ROLLING CALENDAR =====
 
 function updateEventsCalendar() {
-    // Check if weekly calendar data exists
-    if (typeof weeklyCalendar === 'undefined') {
-        console.log('Weekly calendar data not available');
+    // Use the new rolling calendar data
+    const calendarData = typeof getRollingCalendarData === 'function' ? getRollingCalendarData() : 
+                         (typeof rollingCalendar !== 'undefined' ? rollingCalendar : null);
+    
+    if (!calendarData) {
+        console.log('Calendar data not available');
         return;
     }
     
-    // Update week header
+    // Update date range header
     const weekEl = document.getElementById('calendarWeek');
     if (weekEl) {
-        weekEl.textContent = weeklyCalendar.currentWeek;
+        weekEl.textContent = calendarData.currentDateRange;
     }
     
     // Update TABOOST Campaign Banner
     const bannerEl = document.getElementById('taboostCampaignBanner');
-    if (bannerEl && weeklyCalendar.taboostCampaigns.length > 0) {
-        const campaign = weeklyCalendar.taboostCampaigns[0];
+    if (bannerEl && calendarData.taboostCampaigns && calendarData.taboostCampaigns.length > 0) {
+        const campaign = calendarData.taboostCampaigns[0];
         bannerEl.innerHTML = `
             <div class="campaign-badge" style="background: ${campaign.color}20; border-color: ${campaign.color};">
                 <span class="campaign-tag">${campaign.tag}</span>
@@ -1185,26 +1188,38 @@ function updateEventsCalendar() {
         `;
     }
     
-    // Update Weekly Schedule Grid
+    // Update 3x3 Rolling Calendar Grid
     const calendarEl = document.getElementById('weeklyCalendar');
-    if (calendarEl) {
-        calendarEl.innerHTML = weeklyCalendar.weeklySchedule.map(day => {
-            const hasEvents = day.events.length > 0;
-            const eventsHtml = day.events.map(evt => `
-                <div class="calendar-event ${evt.type}">
-                    <span class="event-time-badge">${evt.time}</span>
-                    <span class="event-title-small">${evt.title}</span>
-                </div>
-            `).join('');
+    if (calendarEl && calendarData.days) {
+        calendarEl.innerHTML = calendarData.days.map((day, index) => {
+            const hasEvents = day.events && day.events.length > 0;
+            const isToday = day.isToday;
+            
+            const eventsHtml = day.events.map(evt => {
+                let eventClass = `calendar-event ${evt.type}`;
+                if (evt.isMultiDay) {
+                    eventClass += ' multiday';
+                    if (evt.isStart) eventClass += ' multiday-start';
+                    else if (evt.isEnd) eventClass += ' multiday-end';
+                    else eventClass += ' multiday-middle';
+                }
+                
+                return `
+                    <div class="${eventClass}" style="${evt.color ? `border-left-color: ${evt.color}` : ''}">
+                        ${evt.isMultiDay ? `<span class="event-status">${evt.time}</span>` : `<span class="event-time-badge">${evt.time}</span>`}
+                        <span class="event-title-small">${evt.title}</span>
+                    </div>
+                `;
+            }).join('');
             
             return `
-                <div class="calendar-day ${hasEvents ? 'has-events' : ''}">
+                <div class="calendar-day ${hasEvents ? 'has-events' : ''} ${isToday ? 'is-today' : ''}">
                     <div class="day-header">
-                        <span class="day-name">${day.day}</span>
+                        <span class="day-name">${isToday ? 'TODAY' : day.dayName}</span>
                         <span class="day-date">${day.date}</span>
                     </div>
                     <div class="day-events">
-                        ${hasEvents ? eventsHtml : '<span class="no-event">No events</span>'}
+                        ${hasEvents ? eventsHtml : '<span class="no-event">-</span>'}
                     </div>
                 </div>
             `;
@@ -1213,8 +1228,8 @@ function updateEventsCalendar() {
     
     // Update TikTok Campaigns
     const tiktokEl = document.getElementById('tiktokCampaignsList');
-    if (tiktokEl) {
-        tiktokEl.innerHTML = weeklyCalendar.tiktokCampaigns.map(camp => `
+    if (tiktokEl && calendarData.tiktokCampaigns) {
+        tiktokEl.innerHTML = calendarData.tiktokCampaigns.map(camp => `
             <div class="tiktok-campaign-item">
                 <i class="fas fa-music"></i>
                 <div>

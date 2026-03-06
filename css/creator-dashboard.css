@@ -2242,19 +2242,27 @@
 
 .weekly-calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
     padding: 0 25px 20px;
-    overflow-x: auto;
 }
 
 .calendar-day {
     background: rgba(0,0,0,0.2);
     border-radius: 10px;
     padding: 12px 8px;
-    min-width: 100px;
+    min-height: 80px;
     border: 1px solid rgba(255,255,255,0.05);
     transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-day.is-today {
+    background: rgba(255,0,68,0.15);
+    border-color: rgba(255,0,68,0.5);
+    box-shadow: 0 0 15px rgba(255,0,68,0.2);
 }
 
 .calendar-day.has-events {
@@ -2312,6 +2320,41 @@
 
 .calendar-event.live {
     border-left-color: #0088ff;
+}
+
+.calendar-event.campaign {
+    border-left-color: #00ff88;
+}
+
+/* Multi-day event styles */
+.calendar-event.multiday {
+    background: rgba(0,255,136,0.1);
+    border-left-width: 4px;
+}
+
+.calendar-event.multiday-start {
+    border-radius: 8px 0 0 8px;
+    border-right: none;
+}
+
+.calendar-event.multiday-middle {
+    border-radius: 0;
+    border-left: 2px dashed rgba(0,255,136,0.5);
+    border-right: none;
+}
+
+.calendar-event.multiday-end {
+    border-radius: 0 8px 8px 0;
+    border-left: 2px dashed rgba(0,255,136,0.5);
+}
+
+.calendar-event .event-status {
+    display: block;
+    font-size: 0.6rem;
+    color: #00ff88;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
 }
 
 .event-time-badge {
@@ -2379,23 +2422,25 @@
 
 @media (max-width: 768px) {
     .weekly-calendar {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         overflow-x: visible;
         padding: 0 15px 20px;
-        gap: 6px;
+        gap: 8px;
     }
     
     .calendar-day {
         min-width: auto;
+        min-height: 70px;
         padding: 8px 5px;
     }
     
     .day-name {
-        font-size: 0.6rem;
+        font-size: 0.65rem;
     }
     
     .day-date {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
     }
     
     .calendar-event {

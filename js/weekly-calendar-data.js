@@ -1,71 +1,105 @@
-// Taboost Weekly Live Calendar - Auto-rotating
-// Events repeat weekly, dates auto-update to current week
+// Taboost 3x3 Rolling Calendar - Top-left is always today
+// Supports multi-day events
 
-function getCurrentWeekRange() {
+function generateRollingCalendar() {
     const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    today.setHours(0, 0, 0, 0);
     
-    // Calculate Monday of current week
-    const monday = new Date(today);
-    monday.setDate(today.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
-    monday.setHours(0, 0, 0, 0);
-    
-    // Calculate Sunday of current week
-    const sunday = new Date(monday);
-    sunday.setDate(monday.getDate() + 6);
-    
-    // Format month/day
-    const formatDate = (d) => {
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        return `${months[d.getMonth()]} ${d.getDate()}`;
-    };
-    
-    return {
-        monday: monday,
-        sunday: sunday,
-        label: `${formatDate(monday)} - ${formatDate(sunday)}`,
-        dates: []
-    };
-}
-
-function generateWeeklySchedule() {
-    const week = getCurrentWeekRange();
-    const days = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     
-    // Generate dates for each day
-    const schedule = days.map((dayName, index) => {
-        const date = new Date(week.monday);
-        date.setDate(week.monday.getDate() + index);
+    // Generate 9 days starting from today (3x3 grid)
+    const days = [];
+    for (let i = 0; i < 9; i++) {
+        const date = new Date(today);
+        date.setDate(today.getDate() + i);
         
-        return {
-            day: dayName,
+        days.push({
+            dayName: dayNames[date.getDay()],
             date: `${monthNames[date.getMonth()]} ${date.getDate()}`,
-            fullDate: date
-        };
-    });
+            fullDate: date,
+            isToday: i === 0,
+            events: []
+        });
+    }
     
-    // Define recurring weekly events (day index 0-6, where 0 = Monday)
-    const recurringEvents = [
-        { dayIndex: 1, time: "6:00PM PT", title: "Sunday Knockout", type: "live" },      // Tuesday
-        { dayIndex: 3, time: "6:00PM PT", title: "Music Cypher", type: "cypher" },      // Thursday
-        { dayIndex: 6, time: "6:00PM PT", title: "Sunday Knockout", type: "live" }       // Sunday
+    // Define events with start/end dates (can span multiple days)
+    const events = [
+        {
+            id: 1,
+            title: "Sunday Knockout",
+            type: "live",
+            time: "6:00PM PT",
+            // Recurring every Tuesday (day 2 in our 3x3 if it falls there)
+            recurring: { dayOfWeek: 2 }, // Tuesday
+            color: "#ff0044"
+        },
+        {
+            id: 2,
+            title: "Music Cypher",
+            type: "cypher",
+            time: "6:00PM PT",
+            recurring: { dayOfWeek: 4 }, // Thursday
+            color: "#00d4ff"
+        },
+        {
+            id: 3,
+            title: "Sunday Knockout",
+            type: "live",
+            time: "6:00PM PT",
+            recurring: { dayOfWeek: 0 }, // Sunday
+            color: "#ff0044"
+        },
+        {
+            id: 4,
+            title: "Multi-Day Campaign",
+            type: "campaign",
+            // Example multi-day event
+            startDate: new Date(2026, 2, 8), // March 8
+            endDate: new Date(2026, 2, 10),  // March 10
+            color: "#00ff88"
+        }
     ];
     
-    // Add events to schedule
-    schedule.forEach((day, index) => {
-        day.events = recurringEvents
-            .filter(evt => evt.dayIndex === index)
-            .map(evt => ({
-                time: evt.time,
-                title: evt.title,
-                type: evt.type
-            }));
+    // Add events to days
+    days.forEach(day => {
+        events.forEach(event => {
+            // Check recurring events
+            if (event.recurring) {
+                if (day.fullDate.getDay() === event.recurring.dayOfWeek) {
+                    day.events.push({
+                        title: event.title,
+                        type: event.type,
+                        time: event.time,
+                        color: event.color,
+                        isMultiDay: false
+                    });
+                }
+            }
+            // Check specific date range events (multi-day)
+            if (event.startDate && event.endDate) {
+                const dayTime = day.fullDate.getTime();
+                const startTime = event.startDate.getTime();
+                const endTime = event.endDate.getTime();
+                
+                if (dayTime >= startTime && dayTime <= endTime) {
+                    day.events.push({
+                        title: event.title,
+                        type: event.type,
+                        time: dayTime === startTime ? 'Starts' : dayTime === endTime ? 'Ends' : 'Ongoing',
+                        color: event.color,
+                        isMultiDay: true,
+                        isStart: dayTime === startTime,
+                        isEnd: dayTime === endTime
+                    });
+                }
+            }
+        });
     });
     
     return {
-        currentWeek: week.label,
-        weeklySchedule: schedule,
+        currentDateRange: `${days[0].date} - ${days[8].date}`,
+        days: days,
         taboostCampaigns: [
             {
                 name: "Open Registration",
@@ -82,4 +116,9 @@ function generateWeeklySchedule() {
 }
 
 // Generate the calendar data
-const weeklyCalendar = generateWeeklySchedule();
+const rollingCalendar = generateRollingCalendar();
+
+// Also export for use in updateEventsCalendar function
+function getRollingCalendarData() {
+    return generateRollingCalendar();
+}
