@@ -499,11 +499,15 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data - use same logic as badge: creatorBadges first, then myData.tier
-        const creatorId = myData.creatorId || myData._creatorId;
-        const badgeData = creatorBadges[creatorId] || {};
-        const currentTier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? 0);
-        const tierData = [currentTier, currentTier, currentTier, currentTier, currentTier, currentTier];
+        // Tier data - only show for months we have data (Feb onwards)
+        // Column V = This Month's Tier, Column Z = Last Month's Tier
+        // Leave as null for months before we have data (chart will skip them)
+        const thisMonthTier = myData.tier;
+        const lastMonthTier = myData.lastMonthTier;
+        
+        // Build tier array - only last 2 months have data, rest are null
+        // Array order: [Month 1, Month 2, Month 3, Month 4, Month 5, This Month]
+        const tierData = [null, null, null, null, lastMonthTier, thisMonthTier];
         
         console.log('DEBUG - Chart labels:', labels);
         console.log('DEBUG - Chart dataPoints:', dataPoints);
@@ -599,8 +603,8 @@ function initPerformanceChart() {
                     display: true,
                     position: 'right',
                     grid: { display: false },
-                    min: 0,
-                    max: 5,
+                    min: 1,
+                    max: 10,
                     ticks: {
                         color: '#00ff88',
                         font: { size: 9 },
