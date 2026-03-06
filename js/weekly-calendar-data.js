@@ -27,10 +27,10 @@ function generateRollingCalendar() {
     const events = [
         {
             id: 1,
-            title: "Sunday Knockout",
+            title: "Royal Rumble",
             type: "live",
             time: "6:00PM PT",
-            // Recurring every Tuesday (day 2 in our 3x3 if it falls there)
+            // Recurring every Tuesday
             recurring: { dayOfWeek: 2 }, // Tuesday
             color: "#ff0044"
         },
@@ -44,7 +44,7 @@ function generateRollingCalendar() {
         },
         {
             id: 3,
-            title: "Sunday Knockout",
+            title: "Royal Rumble",
             type: "live",
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
@@ -52,12 +52,12 @@ function generateRollingCalendar() {
         },
         {
             id: 4,
-            title: "Multi-Day Campaign",
+            title: "Wish Upon a Beat",
             type: "campaign",
-            // Example multi-day event
-            startDate: new Date(2026, 2, 8), // March 8
-            endDate: new Date(2026, 2, 10),  // March 10
-            color: "#00ff88"
+            // March 5-15, 2026
+            startDate: new Date(2026, 2, 5), // March 5
+            endDate: new Date(2026, 2, 15),  // March 15
+            color: "#ffd700"
         }
     ];
     
