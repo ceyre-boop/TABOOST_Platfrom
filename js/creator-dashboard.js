@@ -499,8 +499,10 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data - use current tier for all months (we don't have historical tier data)
-        const currentTier = myData.tier ?? 0;
+        // Tier data - use same logic as badge: creatorBadges first, then myData.tier
+        const creatorId = myData.creatorId || myData._creatorId;
+        const badgeData = creatorBadges[creatorId] || {};
+        const currentTier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? 0);
         const tierData = [currentTier, currentTier, currentTier, currentTier, currentTier, currentTier];
         
         console.log('DEBUG - Chart labels:', labels);
