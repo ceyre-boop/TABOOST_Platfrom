@@ -759,9 +759,9 @@
 
 .score-scale-line {
     position: relative;
-    height: 60px;
+    height: 80px;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .scale-item {
@@ -791,10 +791,10 @@
 }
 
 .scale-tier {
-    font-size: 9px;
+    font-size: 18px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     white-space: nowrap;
 }
 
@@ -1478,7 +1478,7 @@
     }
     
     .score-scale-line {
-        height: 45px;
+        height: 70px;
     }
     
     .scale-num {
@@ -1486,9 +1486,9 @@
     }
     
     .scale-tier {
-        font-size: 6px;
-        letter-spacing: 0;
-        max-width: 40px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+        max-width: 60px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -1741,16 +1741,16 @@
     
     /* Small phone score chart */
     .score-scale-line {
-        height: 40px;
+        height: 60px;
     }
     
     .scale-num {
-        font-size: 8px;
+        font-size: 10px;
     }
     
     .scale-tier {
-        font-size: 5px;
-        max-width: 35px;
+        font-size: 10px;
+        max-width: 50px;
     }
     
     .score-segments {

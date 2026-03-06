@@ -151,7 +151,8 @@ class TaboostDataService {
             
             // Status & scoring
             status: getValue('Status'),
-            tier: parseInt(getValue('Tier') !== '' ? getValue('Tier') : values[21]) ?? 0, // Column V - Tier (0-5 valid)
+            tier: parseInt(getValue('Tier') !== '' ? getValue('Tier') : values[21]) ?? 0, // Column V - Tier (1-10, blank if 0)
+            lastMonthTier: parseInt(getValue('Last Month Tier') !== '' ? getValue('Last Month Tier') : values[25]) ?? null, // Column Z - Last Month's Tier
             score: parseInt(getValue('Score')) || 0,
             _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),

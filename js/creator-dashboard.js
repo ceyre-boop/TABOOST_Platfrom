@@ -161,18 +161,22 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier from creator_badges and Score directly from myData (column AG)
-    const badgeData = creatorBadges[creatorId] || {};
-    // Tier can be 0-5, check if defined not just truthy
-    const tier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? '-');
-    const score = myData.score || 0; // Use score directly from CSV (column AG)
+    // Get Last Month's Tier for display (column Z), show blank if 0 or not set
+    let tierDisplay = '-';
+    const lastMonthTier = myData.lastMonthTier;
+    if (lastMonthTier !== undefined && lastMonthTier !== null && lastMonthTier !== '' && lastMonthTier > 0) {
+        tierDisplay = lastMonthTier;
+    }
+    
+    // Get Score directly from myData (column AG)
+    const score = myData.score || 0;
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
     
     // Manager pill
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
-    // Badges - Level (0-5), Tier (col V), Score (col AG)
+    // Badges - Level (from column E), Tier (Last Month from column Z), Score (col AG)
     // Level can be 0-5, check properly
     let levelDisplay = '--';
     if (myData.level !== undefined && myData.level !== null && myData.level !== '') {
@@ -180,7 +184,7 @@ function updateProfile(user) {
     }
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${levelDisplay}</span>
-        <span class="badge badge-tier">Tier ${tier}</span>
+        <span class="badge badge-tier">Tier ${tierDisplay}</span>
         <span class="badge badge-score">Score ${score}</span>
     `;
     
@@ -499,10 +503,12 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data - use same logic as badge: creatorBadges first, then myData.tier
-        const creatorId = myData.creatorId || myData._creatorId;
-        const badgeData = creatorBadges[creatorId] || {};
-        const currentTier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? 0);
+        // Tier data - use Last Month's Tier (column Z) like the badge, blank if 0
+        let currentTier = 0;
+        const lastMonthTierChart = myData.lastMonthTier;
+        if (lastMonthTierChart !== undefined && lastMonthTierChart !== null && lastMonthTierChart !== '' && lastMonthTierChart > 0) {
+            currentTier = lastMonthTierChart;
+        }
         const tierData = [currentTier, currentTier, currentTier, currentTier, currentTier, currentTier];
         
         console.log('DEBUG - Chart labels:', labels);
