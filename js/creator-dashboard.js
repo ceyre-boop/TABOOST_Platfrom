@@ -868,17 +868,26 @@ function updateScoreAndLevels() {
         rankChangeEl.style.color = '#888';
     }
     
-    // Activity Level Visual
-    const currentLevel = myData.level || 1;
-    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel}`;
+    // Activity Level Visual - DEBUG
+    console.log('DEBUG - Activity Level data:', myData.level, 'Raw:', myData._levelRaw, 'Header:', myData._levelHeader);
+    
+    // Use level from CSV column E, but handle 0 as unset/blank
+    let currentLevel = 0;
+    if (myData.level !== undefined && myData.level !== null && myData.level !== '') {
+        currentLevel = parseInt(myData.level) || 0;
+    }
+    
+    console.log('DEBUG - Parsed currentLevel:', currentLevel, 'for creator:', myData.username);
+    
+    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel > 0 ? currentLevel : '--'}`;
     
     // Update level steps
     document.querySelectorAll('.level-step').forEach(step => {
         const levelNum = parseInt(step.dataset.level);
         step.classList.remove('completed', 'current');
-        if (levelNum < currentLevel) {
+        if (currentLevel > 0 && levelNum < currentLevel) {
             step.classList.add('completed');
-        } else if (levelNum === currentLevel) {
+        } else if (levelNum === currentLevel && currentLevel > 0) {
             step.classList.add('current');
         }
     });
