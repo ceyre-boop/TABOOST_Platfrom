@@ -660,6 +660,27 @@
     border-radius: 10px;
 }
 
+.award-item.active-reward {
+    background: linear-gradient(135deg, rgba(0,255,136,0.1), rgba(0,255,136,0.05));
+    border: 1px solid rgba(0,255,136,0.3);
+    animation: pulse-green 2s infinite;
+}
+
+.award-item.active-reward .award-icon {
+    background: rgba(0,255,136,0.2);
+    animation: bounce 1s infinite;
+}
+
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,255,136,0.4); }
+    50% { box-shadow: 0 0 0 10px rgba(0,255,136,0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
 .award-icon {
     width: 40px;
     height: 40px;

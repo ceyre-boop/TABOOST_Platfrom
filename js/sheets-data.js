@@ -117,12 +117,15 @@ class TaboostDataService {
             rawManager: getValue('Agent'),
             
             // Rewards data from sheet
+            // Column G = Available (what they have), Column H = Cashed (what they claimed)
             rewards: {
                 earned: this.formatNumber(getValue('Earned')),
                 gifted: this.formatNumber(getValue('Gifted')),
                 bonus: this.formatNumber(getValue('Bonus')),
                 running: this.formatNumber(getValue('Running')),
-                unlocked: this.formatNumber(getValue('Unlocked'))
+                unlocked: this.formatNumber(getValue('Unlocked')),
+                available: this.formatNumber(getValue('Available')),  // Column G
+                cashed: this.formatNumber(getValue('Cashed'))         // Column H
             },
             
             // Reward source info (column AP = Last Label)

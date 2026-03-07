@@ -926,80 +926,92 @@ let detailedRewardsData = {};
 function updateAwards() {
     console.log('DEBUG - updateAwards called for:', myData.username);
     
-    let awards = [];
+    // NEW: Show only ACTIVE (unclaimed) rewards
+    // Column G = Available, Column H = Cashed
+    const available = myData.rewards?.available || 0;
+    const cashed = myData.rewards?.cashed || 0;
+    const unclaimed = available - cashed;
     
-    // Use detailed rewards from rewards-history.csv if available
-    const username = myData.username?.toLowerCase();
-    if (detailedRewardsData && username && detailedRewardsData[username]) {
-        console.log('DEBUG - Found detailed rewards for creator:', username);
-        const myDetailedRewards = detailedRewardsData[username];
-        
-        // Take the LAST 5 rewards (most recent)
-        const last5Rewards = myDetailedRewards.slice(-5);
-        
-        awards = last5Rewards.map(r => ({
-            icon: r.icon || '🏆',
-            title: `${r.type}`,
-            date: r.date,
-            amount: r.amount
-        }));
-        
-        console.log('DEBUG - Using last 5 detailed rewards:', awards.length);
-    } else {
-        console.log('DEBUG - No detailed rewards found, using fallback');
-        
-        // Fallback to creatorRewards (old method)
-        const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
-        
-        if (existingRewards && existingRewards.length > 0) {
-            // Take last 5
-            const last5 = existingRewards.slice(-5);
-            awards = last5.map(rewardText => ({
-                icon: '🏆',
-                title: rewardText,
-                date: 'Earned',
-                amount: 'Reward'
-            }));
-        }
-        
-        // Check for last reward from column AQ
-        if (myData.lastReward && myData.lastReward.trim()) {
-            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward));
-            if (!alreadyExists) {
-                awards.unshift({
-                    icon: '🏆',
-                    title: myData.lastReward,
-                    date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-                    amount: 'Reward'
-                });
-                // Keep only 5
-                if (awards.length > 5) awards = awards.slice(0, 5);
-            }
-        }
-    }
+    console.log('DEBUG - Available:', available, 'Cashed:', cashed, 'Unclaimed:', unclaimed);
     
-    console.log('DEBUG - Final awards to display:', awards.length);
+    let awardsHtml = '';
     
-    // Default message if no rewards
-    if (awards.length === 0) {
-        awards = [{
-            icon: '⭐',
-            title: 'Keep streaming to earn rewards!',
-            date: '',
-            amount: ''
-        }];
-    }
-    
-    document.getElementById('awardsList').innerHTML = awards.map(a => `
-        <div class="award-item">
-            <div class="award-icon">${a.icon}</div>
-            <div class="award-content">
-                <div class="award-title">${a.title}</div>
-                <div class="award-date">${a.date}</div>
+    if (unclaimed > 0) {
+        // Show active rewards
+        awardsHtml = `
+            <div class="award-item active-reward">
+                <div class="award-icon">🎁</div>
+                <div class="award-content">
+                    <div class="award-title">Unclaimed Rewards Available</div>
+                    <div class="award-date">Contact your manager to claim</div>
+                </div>
+                <div class="award-amount">${formatNumber(unclaimed)} pts</div>
             </div>
-            <div class="award-amount">${a.amount}</div>
-        </div>
-    `).join('');
+        `;
+    } else {
+        // FUN EMPTY STATE - No rewards available
+        const emptyStates = [
+            {
+                icon: '🎯',
+                title: 'On the Grind!',
+                subtitle: 'Stream consistently to unlock rewards',
+                color: '#ff0044'
+            },
+            {
+                icon: '🔥',
+                title: 'Keep the Fire Burning!',
+                subtitle: 'Your next reward is just around the corner',
+                color: '#ff6b00'
+            },
+            {
+                icon: '🚀',
+                title: 'Blast Off Soon!',
+                subtitle: 'Build momentum to earn big',
+                color: '#00d4ff'
+            },
+            {
+                icon: '💎',
+                title: 'Diamonds in the Rough',
+                subtitle: 'Every stream brings you closer to rewards',
+                color: '#00ff88'
+            },
+            {
+                icon: '🎪',
+                title: 'The Show Goes On!',
+                subtitle: 'Entertain your audience and earn',
+                color: '#ffaa00'
+            }
+        ];
+        
+        // Pick a random empty state (changes on each refresh for fun)
+        const randomState = emptyStates[Math.floor(Math.random() * emptyStates.length)];
+        
+        awardsHtml = `
+            <div class="awards-empty-state" style="text-align: center; padding: 30px 20px;">
+                <div class="empty-icon" style="font-size: 48px; margin-bottom: 15px; animation: bounce 2s infinite;">${randomState.icon}</div>
+                <div class="empty-title" style="font-size: 18px; font-weight: 700; color: ${randomState.color}; margin-bottom: 8px;">${randomState.title}</div>
+                <div class="empty-subtitle" style="font-size: 13px; color: #888;">${randomState.subtitle}</div>
+                <div class="empty-progress" style="margin-top: 20px;">
+                    <div style="background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="background: linear-gradient(90deg, ${randomState.color}, transparent); height: 100%; width: ${Math.random() * 40 + 20}%; border-radius: 3px; animation: pulse 2s infinite;"></div>
+                    </div>
+                    <div style="font-size: 11px; color: #666; margin-top: 8px;">Progress to next reward</div>
+                </div>
+            </div>
+            <style>
+                @keyframes bounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; }
+                    50% { opacity: 0.6; }
+                }
+            </style>
+        `;
+    }
+    
+    document.getElementById('awardsList').innerHTML = awardsHtml;
 }
 
 // ===== SETTINGS FUNCTIONS =====
