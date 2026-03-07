@@ -102,9 +102,10 @@ function generateRollingCalendar() {
         days: days,
         taboostCampaigns: [
             {
-                name: "Open Registration",
-                tag: "@tiktok-live",
-                status: "Hot Campaign",
+                name: "",
+                tag: "TABOOST",
+                tagLink: "https://discord.gg/Akfwz536BW",
+                status: "",
                 color: "#ff0044"
             }
         ],

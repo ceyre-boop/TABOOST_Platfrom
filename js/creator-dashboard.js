@@ -1179,11 +1179,16 @@ function updateEventsCalendar() {
     const bannerEl = document.getElementById('taboostCampaignBanner');
     if (bannerEl && calendarData.taboostCampaigns && calendarData.taboostCampaigns.length > 0) {
         const campaign = calendarData.taboostCampaigns[0];
+        const tagHtml = campaign.tagLink 
+            ? `<a href="${campaign.tagLink}" target="_blank" class="campaign-tag" style="text-decoration: none; color: #fff;">${campaign.tag}</a>`
+            : `<span class="campaign-tag">${campaign.tag}</span>`;
+        const nameHtml = campaign.name ? `<span class="campaign-name">${campaign.name}</span>` : '';
+        const statusHtml = campaign.status ? `<span class="campaign-status">${campaign.status}</span>` : '';
         bannerEl.innerHTML = `
             <div class="campaign-badge" style="background: ${campaign.color}20; border-color: ${campaign.color};">
-                <span class="campaign-tag">${campaign.tag}</span>
-                <span class="campaign-name">${campaign.name}</span>
-                <span class="campaign-status">${campaign.status}</span>
+                ${tagHtml}
+                ${nameHtml}
+                ${statusHtml}
             </div>
         `;
     }
