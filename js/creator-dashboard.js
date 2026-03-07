@@ -161,10 +161,13 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier from creator_badges and Score directly from myData (column AG)
-    const badgeData = creatorBadges[creatorId] || {};
-    // Tier can be 0-5, check if defined not just truthy
-    const tier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? '-');
+    // Get Last Month's Tier for badge (column Z), show "__" if blank/0
+    let tierDisplay = '__';
+    const lastMonthTier = myData.lastMonthTier;
+    if (lastMonthTier !== undefined && lastMonthTier !== null && lastMonthTier !== '' && lastMonthTier > 0) {
+        tierDisplay = lastMonthTier;
+    }
+    
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
@@ -180,7 +183,7 @@ function updateProfile(user) {
     }
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${levelDisplay}</span>
-        <span class="badge badge-tier">Tier ${tier}</span>
+        <span class="badge badge-tier">Tier ${tierDisplay}</span>
         <span class="badge badge-score">Score ${score}</span>
     `;
     
