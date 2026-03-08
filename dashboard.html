@@ -310,7 +310,7 @@ tbody tr:last-child td{border-bottom:none}
   <nav>
     <div class="nav-section-lbl">Main</div>
     <div class="nav-link active" onclick="showPage('dashboard',this)"><span class="nav-icon">◈</span><span>Dashboard</span></div>
-    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g">802</span></div>
+    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g" id="navCreatorCount">--</span></div>
     <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">◆</span><span>Diamonds</span></div>
     <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">▶</span><span>Live Streams</span></div>
     <div class="nav-section-lbl">Management</div>
@@ -350,52 +350,13 @@ tbody tr:last-child td{border-bottom:none}
   <div id="page-dashboard" class="page active">
 
     <!-- TODAY P&L row (prop-firm style) -->
-    <div style="background:var(--bg2);border:1px solid rgba(255,0,68,0.3);border-radius:var(--r);padding:14px 20px;display:flex;align-items:center;gap:20px;animation:glowPulse 4s ease infinite" class="fu">
-      <div style="display:flex;align-items:center;gap:8px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite"></div>
-        <span style="font-family:var(--fm);font-size:10px;color:var(--t4);letter-spacing:0.1em">TODAY'S PERFORMANCE</span>
-      </div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:0.05em">+47,203</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">DIAMONDS TODAY</span></div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--t1);letter-spacing:0.05em">47</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">STREAMING NOW</span></div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--amber);letter-spacing:0.05em">94%</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">MARCH GOAL</span></div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div style="flex:1"><div style="font-family:var(--fm);font-size:9px;color:var(--t4);margin-bottom:5px;letter-spacing:0.1em">MARCH TARGET PROGRESS</div><div class="pb" style="height:5px"><div class="pf" style="width:94%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div></div>
-      <div style="font-family:var(--fd);font-size:16px;color:var(--amber)">$150K TO GO</div>
+    <div id="kpi-bar" style="background:var(--bg2);border:1px solid rgba(255,0,68,0.3);border-radius:var(--r);padding:14px 20px;display:flex;align-items:center;gap:20px;animation:glowPulse 4s ease infinite" class="fu">
+      <!-- Filled dynamically -->
     </div>
 
     <!-- KPI grid -->
-    <div class="g4 fu1">
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
-        <div class="kpi-label">Total Creators</div>
-        <div class="kpi-val">802</div>
-        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
-        <div class="pnl-bar" style="opacity:0.5"></div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
-        <div class="kpi-label">Total Diamonds</div>
-        <div class="kpi-val" style="color:var(--t1)">12.3M</div>
-        <div class="kpi-sub"><span class="up">↑ 8.5%</span> vs last month</div>
-        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
-        <div class="kpi-label">Total Rewards</div>
-        <div class="kpi-val" style="color:var(--green)">37.6M</div>
-        <div class="kpi-sub">Earned this period</div>
-        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
-        <div class="kpi-label">Hours Streamed</div>
-        <div class="kpi-val">2,251</div>
-        <div class="kpi-sub">Active creators: <strong style="color:var(--t1)">301</strong></div>
-        <div class="pnl-bar" style="background:linear-gradient(90deg,#2979ff,transparent)"></div>
-      </div>
+    <div id="kpi-grid" class="g4 fu1">
+      <!-- Filled dynamically -->
     </div>
 
     <div class="g21 fu2">
@@ -439,7 +400,7 @@ tbody tr:last-child td{border-bottom:none}
   <!-- ══════ CREATORS ══════ -->
   <div id="page-creators" class="page">
     <div class="sec-h fu">
-      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators · Live from Google Sheets</div></div>
+      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub" id="creators-subtitle">Loading...</div></div>
       <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">↓ Export CSV</button></div>
     </div>
     <div class="filter-bar fu1" id="cr-filters"></div>
@@ -487,11 +448,8 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ MANAGERS ══════ -->
   <div id="page-managers" class="page">
-    <div class="g4 fu">
-      <div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">21</div><div class="kpi-sub">Active assignments</div></div>
-      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">38</div><div class="kpi-sub">Per manager</div></div>
-      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">CARRINGTON</div><div class="kpi-sub">9.4M diamonds</div></div>
-      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+347%</div><div class="kpi-sub">Best — MARCO</div></div>
+    <div id="mgr-kpis" class="g4 fu">
+      <!-- Filled dynamically -->
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="fu1" id="mgr-grid"></div>
     <div class="card fu2">
@@ -502,12 +460,9 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ LEADERBOARD ══════ -->
   <div id="page-leaderboard" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live from Google Sheets</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
-    <div class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
-      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">12.3M</div></div>
-      <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">37.6M</div></div>
-      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">2,251</div></div>
-      <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">802</div></div>
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live data</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
+    <div id="lb-kpis" class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
+      <!-- Filled dynamically -->
     </div>
     <div class="filter-bar fu2" id="lb-filters"></div>
     <div class="card fu3">
@@ -518,13 +473,10 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ CREATOR HEALTH (prop-firm style) ══════ -->
   <div id="page-health" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r">14 AT RISK</span></div>
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r" id="health-risk-badge">-- AT RISK</span></div>
 
-    <div class="g4 fu1">
-      <div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">248</div><div class="kpi-sub">Score 70+</div></div>
-      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">39</div><div class="kpi-sub">Score 40–69</div></div>
-      <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">14</div><div class="kpi-sub">Score below 40</div></div>
-      <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">56<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>
+    <div id="health-kpis" class="g4 fu1">
+      <!-- Filled dynamically -->
     </div>
 
     <div class="g2 fu2">
@@ -933,8 +885,101 @@ function renderReports(){
   document.getElementById('rep-grid').innerHTML=reps.map(r=>`<div class="rep-card"><div class="rep-icon">${r.icon}</div><div class="rep-title">${r.title}</div><div class="rep-sub">${r.sub}</div><button class="rep-btn" onclick="alert('Generating report...')">${r.btn}</button></div>`).join('');
 }
 
+// ── RENDER KPIs with REAL DATA ──
+function renderKPIs(){
+  const totalCreators=D.length;
+  const totalDiamonds=D.reduce((a,c)=>a+(c.d||0),0);
+  const totalRewards=D.reduce((a,c)=>a+(c.r||0),0);
+  const totalHours=D.reduce((a,c)=>a+(c.h||0),0);
+  const activeCreators=D.filter(c=>(c.h||0)>0).length;
+  
+  // P&L Bar
+  document.getElementById('kpi-bar').innerHTML=`<div style="display:flex;align-items:center;gap:8px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite"></div>
+        <span style="font-family:var(--fm);font-size:10px;color:var(--t4);letter-spacing:0.1em">LIVE AGENCY METRICS</span>
+      </div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--t1);letter-spacing:0.05em">${f(totalDiamonds)}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">TOTAL DIAMONDS</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:0.05em">${totalCreators}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">CREATORS</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--amber);letter-spacing:0.05em">${f(totalRewards)}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">REWARDS</span></div>`;
+  
+  // KPI Grid
+  document.getElementById('kpi-grid').innerHTML=`<div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
+        <div class="kpi-label">Total Creators</div>
+        <div class="kpi-val">${totalCreators}</div>
+        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
+        <div class="kpi-label">Total Diamonds</div>
+        <div class="kpi-val" style="color:var(--t1)">${f(totalDiamonds)}</div>
+        <div class="kpi-sub"><span class="up">↑ Live</span></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
+        <div class="kpi-label">Total Rewards</div>
+        <div class="kpi-val" style="color:var(--green)">${f(totalRewards)}</div>
+        <div class="kpi-sub">Earned this period</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
+        <div class="kpi-label">Hours Streamed</div>
+        <div class="kpi-val">${f(totalHours)}</div>
+        <div class="kpi-sub">Active: <strong style="color:var(--t1)">${activeCreators}</strong></div>
+      </div>`;
+}
+
+// ── RENDER PAGE KPIs ──
+function renderPageKPIs(){
+  const totalDiamonds=D.reduce((a,c)=>a+(c.d||0),0);
+  const totalRewards=D.reduce((a,c)=>a+(c.r||0),0);
+  const totalHours=D.reduce((a,c)=>a+(c.h||0),0);
+  
+  // Leaderboard KPIs
+  const lbKpis=document.getElementById('lb-kpis');
+  if(lbKpis){
+    lbKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">${f(totalDiamonds)}</div></div>
+      <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">${f(totalRewards)}</div></div>
+      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">${f(totalHours)}</div></div>
+      <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">${D.length}</div></div>`;
+  }
+  
+  // Manager KPIs
+  const mgrKpis=document.getElementById('mgr-kpis');
+  if(mgrKpis&&MGRS.length>0){
+    const topMgr=MGRS[0];
+    const avgCreators=Math.round(D.length/MGRS.length);
+    mgrKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">${MGRS.length}</div><div class="kpi-sub">Active assignments</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">${avgCreators}</div><div class="kpi-sub">Per manager</div></div>
+      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">${topMgr.n}</div><div class="kpi-sub">${f(topMgr.d)} diamonds</div></div>
+      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+Live</div><div class="kpi-sub">Best — ${topMgr.n}</div></div>`;
+  }
+  
+  // Health KPIs
+  const healthKpis=document.getElementById('health-kpis');
+  const healthRiskBadge=document.getElementById('health-risk-badge');
+  if(healthKpis){
+    const scores=D.map(c=>c.s||0);
+    const healthy=D.filter(c=>(c.s||0)>=70).length;
+    const watch=D.filter(c=>(c.s||0)>=40&&(c.s||0)<70).length;
+    const atRisk=D.filter(c=>(c.s||0)<40).length;
+    const avgScore=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+    healthKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">${healthy}</div><div class="kpi-sub">Score 70+</div></div>
+      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">${watch}</div><div class="kpi-sub">Score 40–69</div></div>
+      <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">${atRisk}</div><div class="kpi-sub">Score below 40</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">${avgScore}<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>`;
+    if(healthRiskBadge)healthRiskBadge.textContent=atRisk+' AT RISK';
+  }
+}
+
 // ── INIT ──
 function initDashboard(){
+  renderKPIs();
+  renderPageKPIs();
+  document.getElementById('creators-subtitle').textContent=D.length+' creators · Live data';
   buildTicker();
   renderDash();renderRewards();renderAgencyHealth();renderEquity();
   renderCR();renderCRFilters();
