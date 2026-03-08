@@ -241,50 +241,30 @@ function updateStats() {
     let importRewardsTotal = 0;
     let importGiftedTotal = 0;
     
-    // Calculate from detailed rewards data (import file)
     const username = myData.username?.toLowerCase();
-    console.log('DEBUG - User:', username);
     
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
-        console.log('DEBUG - Records found:', myRewards.length);
-        myRewards.forEach((r, i) => {
-            // Parse Rewards (Column G) and Gifted (Column H) - remove commas
-            const rewardClean = r.rewards?.replace(/,/g, '') || '0';
-            const giftedClean = r.gifted?.replace(/,/g, '') || '0';
-            const rewardAmount = parseInt(rewardClean) || 0;
-            const giftedAmount = parseInt(giftedClean) || 0;
+        myRewards.forEach(r => {
+            const rewardAmount = parseInt(r.rewards?.replace(/,/g, '') || 0) || 0;
+            const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0) || 0;
             importRewardsTotal += rewardAmount;
             importGiftedTotal += giftedAmount;
-            if (i < 5) console.log(`Row ${i}: rewards=${r.rewards}(${rewardAmount}), gifted=${r.gifted}(${giftedAmount})`);
         });
-        console.log('DEBUG - Totals: G=', importRewardsTotal, 'H=', importGiftedTotal, 'Available=', importRewardsTotal - importGiftedTotal);
-    } else {
-        console.log('DEBUG - No data found for', username, 'in', Object.keys(detailedRewardsData || {}));
     }
     
-    // Get CSV data for fallback/comparison
-    const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
-    
-    // Current Rewards Available = Import Rewards - Import Gifted (what's actually available)
+    // Current Available = Column G total - Column H total (can be negative)
     const currentAvailable = importRewardsTotal - importGiftedTotal;
+    const currentRewardsAvailable = currentAvailable >= 0 
+        ? formatNumberPlain(currentAvailable)
+        : '-' + formatNumberPlain(Math.abs(currentAvailable));
     
-    // Use import calculation if we have data, otherwise fallback to CSV
-    let currentRewardsAvailable;
-    if (importRewardsTotal > 0) {
-        currentRewardsAvailable = formatNumberPlain(currentAvailable > 0 ? currentAvailable : 0);
-    } else {
-        // Fallback to CSV Column AL (unlocked) if no import data
-        const csvUnlocked = parseInt(myData.unlocked?.replace(/,/g, '') || 0);
-        currentRewardsAvailable = formatNumberPlain(csvUnlocked > 0 ? csvUnlocked : earnedValue);
-    }
+    // Total Earned = Column G total from import
+    const totalEarned = importRewardsTotal > 0 
+        ? importRewardsTotal 
+        : (myData.rewards?.earned || 0);
     
-    // Total Rewards Earned = lifetime total from main CSV (column AG)
-    const totalEarned = earnedValue || 0;
-    
-    // Top: Current Rewards Available (from import file)
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned (from main CSV)
     document.getElementById('rewardsBreakdown').innerHTML = `
         <span>Total Rewards Earned: ${formatNumberPlain(totalEarned)}</span>
     `;
@@ -971,41 +951,22 @@ function updateScoreAndLevels() {
 let detailedRewardsData = {};
 
 function updateAwards() {
-    console.log('DEBUG - updateAwards called for:', myData.username);
-    
     let awards = [];
     const username = myData.username?.toLowerCase();
     
-    // Use detailed rewards from rewards-history.csv - show ALL
+    // Use detailed rewards from rewards-history.csv - show LAST 5 only
     if (detailedRewardsData && username && detailedRewardsData[username]) {
-        console.log('DEBUG - Found detailed rewards for creator:', username);
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Show ALL rewards (including negatives), sorted by date (newest first)
-        const sortedRewards = [...myDetailedRewards].reverse(); // Newest first
+        // Take LAST 5 rewards (most recent), sorted by date
+        const last5 = myDetailedRewards.slice(-5).reverse();
         
-        awards = sortedRewards.map(r => {
-            // Calculate net: Rewards - Gifted (can be negative)
-            const rewardsVal = parseInt(r.rewards?.replace(/,/g, '') || 0) || 0;
-            const giftedVal = parseInt(r.gifted?.replace(/,/g, '') || 0) || 0;
-            const netAmount = rewardsVal - giftedVal;
-            
-            // Format amount (show negative if net is negative)
-            const formattedAmount = netAmount !== 0 ? formatNumberPlain(Math.abs(netAmount)) : '';
-            const prefix = netAmount < 0 ? '-' : '';
-            
-            return {
-                icon: r.icon || '🏆',
-                title: r.type,
-                date: r.date,
-                amount: prefix + formattedAmount,
-                rawAmount: netAmount,
-                rewards: r.rewards,
-                gifted: r.gifted
-            };
-        });
-        
-        console.log('DEBUG - Showing all', awards.length, 'rewards');
+        awards = last5.map(r => ({
+            icon: r.icon || '🏆',
+            title: r.type,
+            date: r.date,
+            amount: r.rewards || '0'
+        }));
     }
     
     // Default message if no rewards
@@ -1014,50 +975,20 @@ function updateAwards() {
             icon: '⭐',
             title: 'Keep streaming to earn rewards!',
             date: '',
-            amount: '',
-            rawAmount: 0
+            amount: ''
         }];
     }
     
-    // Add summary at the top
-    const totalAvailable = awards.reduce((sum, a) => sum + (a.rawAmount || 0), 0);
-    const summaryHtml = `
-        <div class="award-summary" style="padding: 15px; background: rgba(0,255,136,0.1); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0,255,136,0.3);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-weight: 600;">Total Available</span>
-                <span style="font-size: 20px; font-weight: 800; color: ${totalAvailable >= 0 ? 'var(--success)' : 'var(--taboost-red)'};">
-                    ${totalAvailable >= 0 ? '' : '-'}${formatNumberPlain(Math.abs(totalAvailable))}
-                </span>
-            </div>
-            <div style="font-size: 11px; color: #888; margin-top: 5px;">
-                ${awards.length} transactions (including negatives)
-            </div>
-        </div>
-    `;
-    
-    // Show all rewards in a scrollable list
-    const awardsListHtml = awards.map(a => {
-        const isNegative = (a.rawAmount || 0) < 0;
-        const isZero = (a.rawAmount || 0) === 0;
-        return `
-        <div class="award-item" style="${isNegative ? 'background: rgba(255,0,68,0.1); border-left: 3px solid var(--taboost-red);' : isZero ? 'opacity: 0.6;' : ''}">
+    document.getElementById('awardsList').innerHTML = awards.map(a => `
+        <div class="award-item">
             <div class="award-icon">${a.icon}</div>
             <div class="award-content">
                 <div class="award-title">${a.title}</div>
                 <div class="award-date">${a.date}</div>
-                ${a.rewards || a.gifted ? `<div style="font-size: 10px; color: #666; margin-top: 2px;">R: ${a.rewards || '0'} | G: ${a.gifted || '0'}</div>` : ''}
             </div>
-            <div class="award-amount" style="color: ${isNegative ? 'var(--taboost-red)' : isZero ? '#888' : 'var(--gold)'}; font-weight: 700;">
-                ${a.amount || '-'}
-            </div>
+            <div class="award-amount">${a.amount}</div>
         </div>
-    `}).join('');
-    
-    document.getElementById('awardsList').innerHTML = summaryHtml + `
-        <div style="max-height: 400px; overflow-y: auto;">
-            ${awardsListHtml}
-        </div>
-    `;
+    `).join('');
 }
 
 // ===== SETTINGS FUNCTIONS =====
