@@ -407,19 +407,19 @@ async function loadDetailedRewards() {
         
         const rewardsByCreator = {};
         
-        // Parse CSV - find creator by TikTok username (column 0) or CID (column 8)
+        // Parse CSV properly handling quoted values with commas
         for (let i = 1; i < lines.length; i++) {
-            const values = lines[i].split(',');
+            // Use regex to split CSV line properly (handles "70,000" with commas inside quotes)
+            const values = lines[i].match(/("[^"]*"|[^,]*)/g)?.map(v => v.replace(/^"|"$/g, '').trim()) || [];
             if (values.length < 6) continue;
             
-            const username = values[0]?.trim().toLowerCase();
-            const type = values[1]?.trim();
-            const date = values[2]?.trim();
+            const username = values[0]?.toLowerCase();
+            const type = values[1];
+            const date = values[2];
             
             // Column G (index 6) = Rewards, Column H (index 7) = Gifted
-            // Handle quoted CSV values like "70,000"
-            const rewards = values[6]?.replace(/^"|"$/g, '').trim() || '0';
-            const gifted = values[7]?.replace(/^"|"$/g, '').trim() || '0';
+            const rewards = values[6] || '0';
+            const gifted = values[7] || '0';
             
             if (!username) continue;
             
@@ -970,15 +970,22 @@ function updateAwards() {
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Take LAST 5 rewards (most recent), sorted by date
+        // Take LAST 5 rewards (most recent), sorted by date (newest first)
         const last5 = myDetailedRewards.slice(-5).reverse();
         
-        awards = last5.map(r => ({
-            icon: r.icon || '🏆',
-            title: r.type,
-            date: r.date,
-            amount: r.rewards || '0'
-        }));
+        awards = last5.map(r => {
+            // Show Rewards (Column G) and Gifted (Column H) from import file
+            const rewardsVal = r.rewards || '0';
+            const giftedVal = r.gifted || '0';
+            
+            return {
+                icon: r.icon || '🏆',
+                title: r.type,
+                date: r.date,
+                rewards: rewardsVal,
+                gifted: giftedVal
+            };
+        });
     }
     
     // Default message if no rewards
@@ -987,7 +994,8 @@ function updateAwards() {
             icon: '⭐',
             title: 'Keep streaming to earn rewards!',
             date: '',
-            amount: ''
+            rewards: '',
+            gifted: ''
         }];
     }
     
@@ -998,7 +1006,10 @@ function updateAwards() {
                 <div class="award-title">${a.title}</div>
                 <div class="award-date">${a.date}</div>
             </div>
-            <div class="award-amount">${a.amount}</div>
+            <div class="award-amount">
+                ${a.rewards ? `<span style="color: var(--success);">${a.rewards}</span>` : '-'}
+                ${a.gifted && a.gifted !== '0' ? `<span style="color: var(--taboost-red); font-size: 11px;"> / ${a.gifted}</span>` : ''}
+            </div>
         </div>
     `).join('');
 }
