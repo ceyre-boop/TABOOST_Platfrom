@@ -310,7 +310,7 @@ tbody tr:last-child td{border-bottom:none}
   <nav>
     <div class="nav-section-lbl">Main</div>
     <div class="nav-link active" onclick="showPage('dashboard',this)"><span class="nav-icon">◈</span><span>Dashboard</span></div>
-    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g" id="navCreatorCount">--</span></div>
+    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g">802</span></div>
     <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">◆</span><span>Diamonds</span></div>
     <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">▶</span><span>Live Streams</span></div>
     <div class="nav-section-lbl">Management</div>
@@ -350,13 +350,52 @@ tbody tr:last-child td{border-bottom:none}
   <div id="page-dashboard" class="page active">
 
     <!-- TODAY P&L row (prop-firm style) -->
-    <div id="kpi-bar" style="background:var(--bg2);border:1px solid rgba(255,0,68,0.3);border-radius:var(--r);padding:14px 20px;display:flex;align-items:center;gap:20px;animation:glowPulse 4s ease infinite" class="fu">
-      <!-- Filled dynamically -->
+    <div style="background:var(--bg2);border:1px solid rgba(255,0,68,0.3);border-radius:var(--r);padding:14px 20px;display:flex;align-items:center;gap:20px;animation:glowPulse 4s ease infinite" class="fu">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite"></div>
+        <span style="font-family:var(--fm);font-size:10px;color:var(--t4);letter-spacing:0.1em">TODAY'S PERFORMANCE</span>
+      </div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:0.05em">+47,203</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">DIAMONDS TODAY</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--t1);letter-spacing:0.05em">47</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">STREAMING NOW</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--amber);letter-spacing:0.05em">94%</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">MARCH GOAL</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div style="flex:1"><div style="font-family:var(--fm);font-size:9px;color:var(--t4);margin-bottom:5px;letter-spacing:0.1em">MARCH TARGET PROGRESS</div><div class="pb" style="height:5px"><div class="pf" style="width:94%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div></div>
+      <div style="font-family:var(--fd);font-size:16px;color:var(--amber)">$150K TO GO</div>
     </div>
 
     <!-- KPI grid -->
-    <div id="kpi-grid" class="g4 fu1">
-      <!-- Filled dynamically -->
+    <div class="g4 fu1">
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
+        <div class="kpi-label">Total Creators</div>
+        <div class="kpi-val">802</div>
+        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
+        <div class="pnl-bar" style="opacity:0.5"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
+        <div class="kpi-label">Total Diamonds</div>
+        <div class="kpi-val" style="color:var(--t1)">12.3M</div>
+        <div class="kpi-sub"><span class="up">↑ 8.5%</span> vs last month</div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
+        <div class="kpi-label">Total Rewards</div>
+        <div class="kpi-val" style="color:var(--green)">37.6M</div>
+        <div class="kpi-sub">Earned this period</div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
+        <div class="kpi-label">Hours Streamed</div>
+        <div class="kpi-val">2,251</div>
+        <div class="kpi-sub">Active creators: <strong style="color:var(--t1)">301</strong></div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,#2979ff,transparent)"></div>
+      </div>
     </div>
 
     <div class="g21 fu2">
@@ -400,7 +439,7 @@ tbody tr:last-child td{border-bottom:none}
   <!-- ══════ CREATORS ══════ -->
   <div id="page-creators" class="page">
     <div class="sec-h fu">
-      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub" id="creators-subtitle">Loading...</div></div>
+      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators · Live from Google Sheets</div></div>
       <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">↓ Export CSV</button></div>
     </div>
     <div class="filter-bar fu1" id="cr-filters"></div>
@@ -448,8 +487,11 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ MANAGERS ══════ -->
   <div id="page-managers" class="page">
-    <div id="mgr-kpis" class="g4 fu">
-      <!-- Filled dynamically -->
+    <div class="g4 fu">
+      <div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">21</div><div class="kpi-sub">Active assignments</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">38</div><div class="kpi-sub">Per manager</div></div>
+      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">CARRINGTON</div><div class="kpi-sub">9.4M diamonds</div></div>
+      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+347%</div><div class="kpi-sub">Best — MARCO</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="fu1" id="mgr-grid"></div>
     <div class="card fu2">
@@ -460,9 +502,12 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ LEADERBOARD ══════ -->
   <div id="page-leaderboard" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live data</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
-    <div id="lb-kpis" class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
-      <!-- Filled dynamically -->
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live from Google Sheets</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
+    <div class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">12.3M</div></div>
+      <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">37.6M</div></div>
+      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">2,251</div></div>
+      <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">802</div></div>
     </div>
     <div class="filter-bar fu2" id="lb-filters"></div>
     <div class="card fu3">
@@ -473,10 +518,13 @@ tbody tr:last-child td{border-bottom:none}
 
   <!-- ══════ CREATOR HEALTH (prop-firm style) ══════ -->
   <div id="page-health" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r" id="health-risk-badge">-- AT RISK</span></div>
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r">14 AT RISK</span></div>
 
-    <div id="health-kpis" class="g4 fu1">
-      <!-- Filled dynamically -->
+    <div class="g4 fu1">
+      <div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">248</div><div class="kpi-sub">Score 70+</div></div>
+      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">39</div><div class="kpi-sub">Score 40–69</div></div>
+      <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">14</div><div class="kpi-sub">Score below 40</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">56<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>
     </div>
 
     <div class="g2 fu2">
@@ -574,55 +622,73 @@ tbody tr:last-child td{border-bottom:none}
 </div><!-- main -->
 
 <script>
-// ── DATA (Loaded dynamically from JSON) ──
-let D=[];
-let MGRS=[];
-let MTOTAL=0;
+// ── DATA ──
+const D=[
+  {n:"samanthasingsit",m:"CARRINGTON",b:"Music",d:1064591,r:1586275,h:17,t:6,l30:1872927,p1:1653571,p2:1270834,s:81,tg:3000000},
+  {n:"bryton.39",m:"MARCO",b:"Gaming",d:671274,r:6834850,h:27,t:5,l30:5105288,p1:3264869,p2:4620580,s:90,tg:5000000},
+  {n:"freekbass",m:"CARRINGTON",b:"Music",d:651869,r:2035700,h:17,t:5,l30:367312,p1:2927760,p2:4925433,s:86,tg:3000000},
+  {n:"coloreomusic",m:"CARRINGTON",b:"Music/Gaming",d:617110,r:605450,h:25,t:5,l30:34740,p1:1521625,p2:1376333,s:87,tg:1600000},
+  {n:"singleonthemove",m:"CARRINGTON",b:"",d:602088,r:3037100,h:16,t:5,l30:2734569,p1:5226194,p2:5828132,s:88,tg:8000000},
+  {n:"shanellenikolee",m:"CARRINGTON",b:"",d:440463,r:132000,h:23,t:4,l30:35430,p1:1900960,p2:2331637,s:87,tg:3000000},
+  {n:"jayden_egg",m:"CARRINGTON",b:"Gaming",d:438680,r:296000,h:19,t:4,l30:1723427,p1:2330821,p2:2191553,s:84,tg:3000000},
+  {n:"daisy_dew4",m:"CARRINGTON",b:"",d:428965,r:164000,h:39,t:4,l30:113690,p1:389163,p2:301118,s:39,tg:500000},
+  {n:"hotterjakepaul",m:"CARRINGTON",b:"",d:380732,r:929800,h:14,t:4,l30:2266822,p1:798841,p2:856560,s:66,tg:1000000},
+  {n:"skylerclarkk",m:"CARRINGTON",b:"Music",d:348922,r:217150,h:13,t:4,l30:2530076,p1:2530421,p2:2765414,s:79,tg:3000000},
+  {n:"smity194",m:"CARRINGTON",b:"",d:332799,r:2920750,h:15,t:4,l30:306479,p1:1171166,p2:1137993,s:65,tg:1600000},
+  {n:"cwdetroit",m:"CARRINGTON",b:"",d:287037,r:112000,h:24,t:3,l30:6602,p1:1366037,p2:1039231,s:82,tg:1600000},
+  {n:"tha_dripp_phamily",m:"CARRINGTON",b:"",d:282618,r:188375,h:19,t:3,l30:10830803,p1:501009,p2:340183,s:47,tg:1000000},
+  {n:"pcdrums76",m:"CARRINGTON",b:"Music",d:269571,r:3287650,h:18,t:3,l30:9018,p1:682236,p2:1311281,s:59,tg:1000000},
+  {n:"thebellaflora__",m:"CARRINGTON",b:"",d:256880,r:78250,h:34,t:3,l30:106025,p1:997055,p2:497820,s:67,tg:1000000},
+  {n:"mirsowavy",m:"CARRINGTON",b:"Gaming",d:185400,r:5000,h:33,t:2,l30:57945,p1:517352,p2:368966,s:64,tg:1000000},
+  {n:"gaywhonotme",m:"SVEN + CARRINGTON",b:"",d:179515,r:69000,h:21,t:2,l30:604230,p1:1124167,p2:864252,s:75,tg:1600000},
+  {n:"koryskitchen",m:"CARRINGTON",b:"Food",d:164809,r:95750,h:10,t:2,l30:227986,p1:619960,p2:459866,s:53,tg:1000000},
+  {n:"redrumstudios",m:"BRYTON",b:"",d:164287,r:4000,h:31,t:2,l30:61261,p1:105356,p2:2994,s:19,tg:200000},
+  {n:"theviolution",m:"CARRINGTON",b:"Music",d:156702,r:2533600,h:21,t:2,l30:120679,p1:252697,p2:833320,s:37,tg:300000},
+  {n:"alexaraeemusic",m:"CARRINGTON",b:"Music",d:145995,r:458000,h:6,t:2,l30:1807341,p1:2340757,p2:1490015,s:67,tg:3000000},
+  {n:"oregonstargirl",m:"CARRINGTON",b:"",d:136987,r:1120500,h:10,t:2,l30:142500,p1:1531102,p2:1579057,s:75,tg:1600000},
+  {n:"burnt.tatertot",m:"CARRINGTON",b:"Gaming",d:134674,r:130000,h:7,t:2,l30:198797,p1:1329052,p2:735549,s:72,tg:1600000},
+  {n:"sam_g_89",m:"BRYTON + CARRINGTON",b:"Gaming",d:130027,r:633500,h:9,t:2,l30:31821,p1:613809,p2:399965,s:54,tg:1000000},
+  {n:"stefanielauryn415",m:"CARRINGTON",b:"",d:127477,r:115800,h:6,t:2,l30:2092050,p1:1020019,p2:1239134,s:61,tg:1600000},
+  {n:"thetrapviolinist",m:"CARRINGTON",b:"Music",d:125870,r:189000,h:3,t:2,l30:10351388,p1:504310,p2:326036,s:33,tg:1000000},
+  {n:"sarahegant",m:"CARRINGTON",b:"",d:123880,r:76000,h:4,t:2,l30:26868,p1:860680,p2:269557,s:37,tg:1000000},
+  {n:"growandglowasmr",m:"BRYTON + CARRINGTON",b:"ASMR",d:120316,r:303500,h:21,t:2,l30:21203,p1:641272,p2:595296,s:64,tg:1000000},
+  {n:"jordan.borges",m:"DYLAN + CARRINGTON",b:"",d:120039,r:22000,h:32,t:2,l30:1117,p1:439792,p2:431151,s:61,tg:500000},
+  {n:"imjustnicob",m:"BRYTON + CARRINGTON",b:"Gaming",d:120010,r:119000,h:27,t:2,l30:362436,p1:976773,p2:1175237,s:72,tg:1000000},
+  {n:"b.herbz",m:"CARRINGTON",b:"",d:119258,r:99150,h:2,t:2,l30:49463,p1:395806,p2:448700,s:34,tg:500000},
+  {n:"titancosplays",m:"CARRINGTON",b:"",d:118446,r:31000,h:25,t:2,l30:193697,p1:671705,p2:245249,s:52,tg:1000000},
+  {n:"ageofangel",m:"CARRINGTON",b:"",d:115896,r:353750,h:31,t:2,l30:123291,p1:1957973,p2:1584028,s:77,tg:3000000},
+  {n:"mystiquedejello",m:"CARRINGTON",b:"",d:99117,r:15425,h:9,t:1,l30:241183,p1:655346,p2:574136,s:37,tg:1000000},
+  {n:"muthafknsid",m:"BRYTON + CARRINGTON",b:"",d:96400,r:7000,h:24,t:1,l30:2946,p1:276018,p2:148034,s:52,tg:300000},
+  {n:"maiazakay",m:"MARCO",b:"Music",d:87412,r:61000,h:5,t:1,l30:2152380,p1:268133,p2:3098,s:17,tg:300000},
+  {n:"cpayne_04",m:"CARRINGTON",b:"",d:84241,r:26625,h:6,t:1,l30:667759,p1:209042,p2:396884,s:30,tg:300000},
+  {n:"aaronhunt30575",m:"CARRINGTON",b:"",d:80968,r:384250,h:4,t:1,l30:38635,p1:409997,p2:888661,s:36,tg:500000},
+  {n:"rockylanemusic",m:"CARRINGTON",b:"Music",d:79740,r:1064364,h:12,t:1,l30:172743,p1:1339912,p2:1342827,s:68,tg:1600000},
+  {n:"thecyrilia",m:"CARRINGTON",b:"Music",d:79394,r:929850,h:5,t:1,l30:48882,p1:1692837,p2:2104021,s:67,tg:3000000},
+  {n:"basswizrd",m:"CARRINGTON",b:"Gaming",d:77022,r:5000,h:25,t:1,l30:1158,p1:113368,p2:179383,s:45,tg:200000},
+  {n:"bobbyjwil",m:"CARRINGTON",b:"",d:69394,r:120250,h:26,t:1,l30:1902637,p1:629282,p2:596896,s:58,tg:1000000},
+  {n:"deearnnap",m:"LEVI",b:"",d:62675,r:0,h:14,t:1,l30:759739,p1:90368,p2:0,s:19,tg:200000},
+  {n:"averynoelles",m:"CARRINGTON",b:"",d:61519,r:19375,h:6,t:1,l30:47239,p1:417517,p2:422251,s:37,tg:500000},
+  {n:"threehundredseventytwo",m:"LEVI",b:"",d:61472,r:0,h:6,t:1,l30:1539,p1:8374,p2:0,s:3,tg:100000},
+  {n:"jeremiahboutross",m:"CARRINGTON",b:"Gaming",d:61439,r:138100,h:24,t:1,l30:107593,p1:758627,p2:162773,s:55,tg:1000000},
+  {n:"imamberleybriana",m:"SVEN",b:"",d:59802,r:2000,h:13,t:1,l30:59666,p1:109786,p2:3842,s:11,tg:200000},
+  {n:"luke.h.reynoldsmusic",m:"CARRINGTON",b:"Music",d:59654,r:131500,h:13,t:1,l30:470332,p1:101630,p2:848108,s:31,tg:200000},
+  {n:"sebbythecatdad",m:"LEVI",b:"",d:54508,r:328000,h:9,t:1,l30:24725,p1:19385,p2:390278,s:14,tg:100000},
+  {n:"natalianope",m:"CARRINGTON",b:"",d:53356,r:750450,h:4,t:1,l30:45622,p1:320189,p2:418901,s:28,tg:1000000},
+];
 
-// Load data from JSON and transform to expected format
-async function loadData(){
-  try{
-    const res=await fetch('data/creators_full.json?v='+Date.now());
-    const data=await res.json();
-    // Transform to expected format: n=name, m=manager, b=badge, d=diamonds, r=rewards, h=hours, t=tier, l30=last30, p1=prev month, p2=2 months ago, s=score, tg=tier goal
-    D=data.map(c=>({
-      n:c.username,
-      m:c.agent||'Unassigned',
-      b:'', // badge not in current data
-      d:c.diamonds||0,
-      r:c.earned||0,
-      h:c.hours||0,
-      t:c.tier||1,
-      l30:c.diamondsLastMonth||0,
-      p1:c.diamondsLastMonth||0,
-      p2:c.diamondsTwoMonthsAgo||0,
-      s:c.score||0,
-      tg:c.tierGoal||1000000*(c.tier||1)
-    })).sort((a,b)=>b.d-a.d);
-    
-    // Calculate manager stats
-    const mgrMap={};
-    D.forEach(c=>{
-      if(!mgrMap[c.m])mgrMap[c.m]={n:c.m,c:0,d:0,r:0,h:0,top:[]};
-      mgrMap[c.m].c++;
-      mgrMap[c.m].d+=c.d;
-      mgrMap[c.m].r+=c.r;
-      mgrMap[c.m].h+=c.h;
-      mgrMap[c.m].top.push(c.n);
-    });
-    MGRS=Object.values(mgrMap).sort((a,b)=>b.d-a.d).map(m=>({...m,top:m.top.slice(0,3)}));
-    MTOTAL=D.reduce((a,c)=>a+c.d,0);
-    
-    // Update creator count
-    document.getElementById('navCreatorCount').textContent=D.length;
-    
-    // Initialize everything
-    initDashboard();
-  }catch(e){
-    console.error('Failed to load data:',e);
-    D=[];
-  }
-}
+const MGRS=[
+  {n:"CARRINGTON",c:63,d:9375067,r:26050214,h:854,top:["samanthasingsit","freekbass","coloreomusic"]},
+  {n:"LEVI",c:149,d:875206,r:1249800,h:800,top:["deearnnap","threehundredseventytwo","sebbythecatdad"]},
+  {n:"MARCO",c:2,d:758686,r:6895850,h:32,top:["bryton.39","maiazakay"]},
+  {n:"BRYTON + CARRINGTON",c:4,d:466753,r:1063000,h:81,top:["sam_g_89","growandglowasmr","imjustnicob"]},
+  {n:"BRYTON",c:45,d:337693,r:242469,h:173,top:["redrumstudios","ardy.afshar","thatbrokeguy2024"]},
+  {n:"SVEN + CARRINGTON",c:1,d:179515,r:69000,h:21,top:["gaywhonotme"]},
+  {n:"DYLAN + CARRINGTON",c:1,d:120039,r:22000,h:32,top:["jordan.borges"]},
+  {n:"SVEN",c:28,d:71451,r:35300,h:67,top:["imamberleybriana"]},
+  {n:"ASHLEY",c:8,d:60773,r:65900,h:19,top:["davidwilliamwatts"]},
+  {n:"SIERRA",c:7,d:28746,r:49750,h:42,top:["smilinjacks69"]},
+];
+const MTOTAL=12314155;
 
 // ── UTILS ──
 const f=(n)=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n.toLocaleString();
@@ -885,119 +951,21 @@ function renderReports(){
   document.getElementById('rep-grid').innerHTML=reps.map(r=>`<div class="rep-card"><div class="rep-icon">${r.icon}</div><div class="rep-title">${r.title}</div><div class="rep-sub">${r.sub}</div><button class="rep-btn" onclick="alert('Generating report...')">${r.btn}</button></div>`).join('');
 }
 
-// ── RENDER KPIs with REAL DATA ──
-function renderKPIs(){
-  const totalCreators=D.length;
-  const totalDiamonds=D.reduce((a,c)=>a+(c.d||0),0);
-  const totalRewards=D.reduce((a,c)=>a+(c.r||0),0);
-  const totalHours=D.reduce((a,c)=>a+(c.h||0),0);
-  const activeCreators=D.filter(c=>(c.h||0)>0).length;
-  
-  // P&L Bar
-  document.getElementById('kpi-bar').innerHTML=`<div style="display:flex;align-items:center;gap:8px">
-        <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite"></div>
-        <span style="font-family:var(--fm);font-size:10px;color:var(--t4);letter-spacing:0.1em">LIVE AGENCY METRICS</span>
-      </div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--t1);letter-spacing:0.05em">${f(totalDiamonds)}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">TOTAL DIAMONDS</span></div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:0.05em">${totalCreators}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">CREATORS</span></div>
-      <div style="height:20px;width:1px;background:var(--border)"></div>
-      <div><span style="font-family:var(--fd);font-size:22px;color:var(--amber);letter-spacing:0.05em">${f(totalRewards)}</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">REWARDS</span></div>`;
-  
-  // KPI Grid
-  document.getElementById('kpi-grid').innerHTML=`<div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
-        <div class="kpi-label">Total Creators</div>
-        <div class="kpi-val">${totalCreators}</div>
-        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
-        <div class="kpi-label">Total Diamonds</div>
-        <div class="kpi-val" style="color:var(--t1)">${f(totalDiamonds)}</div>
-        <div class="kpi-sub"><span class="up">↑ Live</span></div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
-        <div class="kpi-label">Total Rewards</div>
-        <div class="kpi-val" style="color:var(--green)">${f(totalRewards)}</div>
-        <div class="kpi-sub">Earned this period</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
-        <div class="kpi-label">Hours Streamed</div>
-        <div class="kpi-val">${f(totalHours)}</div>
-        <div class="kpi-sub">Active: <strong style="color:var(--t1)">${activeCreators}</strong></div>
-      </div>`;
-}
-
-// ── RENDER PAGE KPIs ──
-function renderPageKPIs(){
-  const totalDiamonds=D.reduce((a,c)=>a+(c.d||0),0);
-  const totalRewards=D.reduce((a,c)=>a+(c.r||0),0);
-  const totalHours=D.reduce((a,c)=>a+(c.h||0),0);
-  
-  // Leaderboard KPIs
-  const lbKpis=document.getElementById('lb-kpis');
-  if(lbKpis){
-    lbKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">${f(totalDiamonds)}</div></div>
-      <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">${f(totalRewards)}</div></div>
-      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">${f(totalHours)}</div></div>
-      <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">${D.length}</div></div>`;
-  }
-  
-  // Manager KPIs
-  const mgrKpis=document.getElementById('mgr-kpis');
-  if(mgrKpis&&MGRS.length>0){
-    const topMgr=MGRS[0];
-    const avgCreators=Math.round(D.length/MGRS.length);
-    mgrKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">${MGRS.length}</div><div class="kpi-sub">Active assignments</div></div>
-      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">${avgCreators}</div><div class="kpi-sub">Per manager</div></div>
-      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">${topMgr.n}</div><div class="kpi-sub">${f(topMgr.d)} diamonds</div></div>
-      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+Live</div><div class="kpi-sub">Best — ${topMgr.n}</div></div>`;
-  }
-  
-  // Health KPIs
-  const healthKpis=document.getElementById('health-kpis');
-  const healthRiskBadge=document.getElementById('health-risk-badge');
-  if(healthKpis){
-    const scores=D.map(c=>c.s||0);
-    const healthy=D.filter(c=>(c.s||0)>=70).length;
-    const watch=D.filter(c=>(c.s||0)>=40&&(c.s||0)<70).length;
-    const atRisk=D.filter(c=>(c.s||0)<40).length;
-    const avgScore=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
-    healthKpis.innerHTML=`<div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">${healthy}</div><div class="kpi-sub">Score 70+</div></div>
-      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">${watch}</div><div class="kpi-sub">Score 40–69</div></div>
-      <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">${atRisk}</div><div class="kpi-sub">Score below 40</div></div>
-      <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">${avgScore}<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>`;
-    if(healthRiskBadge)healthRiskBadge.textContent=atRisk+' AT RISK';
-  }
-}
-
 // ── INIT ──
-function initDashboard(){
-  renderKPIs();
-  renderPageKPIs();
-  document.getElementById('creators-subtitle').textContent=D.length+' creators · Live data';
-  buildTicker();
-  renderDash();renderRewards();renderAgencyHealth();renderEquity();
-  renderCR();renderCRFilters();
-  renderLB();renderLBFilters();
-  renderDBars();renderTierDist();renderDTable();
-  renderSBars();renderHDist();renderEffTable();
-  renderMgrGrid();renderMgrTable();
-  renderHealth();
-  renderMilestones();
-  renderReports();
+buildTicker();
+renderDash();renderRewards();renderAgencyHealth();renderEquity();
+renderCR();renderCRFilters();
+renderLB();renderLBFilters();
+renderDBars();renderTierDist();renderDTable();
+renderSBars();renderHDist();renderEffTable();
+renderMgrGrid();renderMgrTable();
+renderHealth();
+renderMilestones();
+renderReports();
 
-  // Animate bars on scroll/load
-  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
-  document.querySelectorAll('.card,.kpi,.mgr-card,.health-card,.milestone').forEach(c=>io.observe(c));
-}
-
-// Start loading
-document.addEventListener('DOMContentLoaded',loadData);
+// Animate bars on scroll/load
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
+document.querySelectorAll('.card,.kpi,.mgr-card,.health-card,.milestone').forEach(c=>io.observe(c));
 </script>
 </body>
 </html>
