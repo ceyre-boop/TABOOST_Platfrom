@@ -237,21 +237,15 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Column AQ (Last Label) for current available, Column AG (Earned) for total
-    const lastLabel = myData.lastRewardLabel || '';
+    // Rewards - Column AL (Unlocked) for current available, Column AG (Earned) for total
     const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
     
-    // Extract number from Last Label (e.g., "20K" from "3/02 Monthly Award 20K") - Column AQ
-    const numberMatch = lastLabel.match(/([\d,.]+)([KMB]?)/i);
+    // Column AL (Unlocked) = Current rewards available
     let currentRewardsAvailable = '0';
-    if (numberMatch) {
-        const num = numberMatch[1];
-        const suffix = numberMatch[2] || 'K';
-        currentRewardsAvailable = num + suffix;
-    }
-    
-    // If no Last Label value, fall back to earned value formatted
-    if (currentRewardsAvailable === '0' && earnedValue > 0) {
+    if (myData.unlocked && myData.unlocked !== '0') {
+        currentRewardsAvailable = myData.unlocked;
+    } else if (earnedValue > 0) {
+        // Fallback to earned if no unlocked value
         currentRewardsAvailable = formatNumberPlain(earnedValue);
     }
     
