@@ -216,32 +216,60 @@ class TaboostDataService {
         return 'Staff';
     }
 
-    // Load data from CSV file (Google Sheets or local)
+    // Load data from local JSON file (updated from CSV)
     async loadFromCSV() {
         try {
-            console.log('Fetching data from:', this.csvUrl);
-            const response = await fetch(this.csvUrl);
-            if (!response.ok) throw new Error('Failed to load CSV: ' + response.status);
+            console.log('Loading data from local JSON...');
             
-            const csvText = await response.text();
-            console.log('DEBUG - CSV loaded, length:', csvText.length);
+            // Load creators data from local JSON
+            const response = await fetch('data/creators_full.json?v=' + Date.now());
+            if (!response.ok) throw new Error('Failed to load JSON: ' + response.status);
             
-            // Check if we got valid CSV data (should have commas and newlines)
-            if (!csvText.includes(',') || csvText.length < 100) {
-                throw new Error('Invalid CSV data received');
-            }
+            const creatorsData = await response.json();
+            console.log('DEBUG - JSON loaded, creators:', creatorsData.length);
             
-            this.creators = this.parseCSVData(csvText);
+            // Transform JSON data to match expected format
+            this.creators = creatorsData.map(c => ({
+                creatorId: c.creatorId,
+                username: c.username,
+                level: c.level,
+                month: c.month,
+                discord: '',
+                manager: c.agent || 'Unassigned',
+                status: 'Active',
+                validLiveDays: c.days,
+                hours: c.hours,
+                diamonds: c.diamonds,
+                tier: c.tier,
+                score: c.score,
+                lastMonthTier: c.lastMonthTier,
+                tierStatus: c.tierStatus,
+                growthPercent: 0,
+                growthDirection: '',
+                daysGoal: c.daysGoal || 25,
+                hoursGoal: c.hoursGoal || 80,
+                diamondsLastMonth: c.diamondsLastMonth,
+                diamondsTwoMonthsAgo: c.diamondsTwoMonthsAgo,
+                rewards: {
+                    earned: c.earned || 0,
+                    gifted: 0,
+                    bonus: 0,
+                    running: 0,
+                    unlocked: 0
+                },
+                link: '',
+                lastUpdated: new Date().toISOString()
+            }));
+            
             this.lastFetch = new Date();
-            console.log('✅ Successfully loaded', this.creators.length, 'creators from Google Sheets');
+            console.log('✅ Successfully loaded', this.creators.length, 'creators from local JSON');
             
-            console.log(`✅ Loaded ${this.creators.length} creators from CSV`);
             if (this.creators.length > 0) {
                 console.log('DEBUG - First creator:', this.creators[0].username, 'Score:', this.creators[0].score);
             }
             return this.creators;
         } catch (error) {
-            console.error('❌ Error loading CSV:', error);
+            console.error('❌ Error loading JSON:', error);
             // Fallback to embedded data if available
             return this.loadFallbackData();
         }
