@@ -269,10 +269,8 @@ function updateStats() {
     const currentAvailable = Math.max(0, importRewardsTotal - importGiftedTotal);
     const currentRewardsAvailable = formatNumberPlain(currentAvailable);
     
-    // Total Earned = Column G total from import
-    const totalEarned = importRewardsTotal > 0 
-        ? importRewardsTotal 
-        : (myData.rewards?.earned || 0);
+    // Total Earned = Column G total from import (or 0 if no data)
+    const totalEarned = importRewardsTotal;
     
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     document.getElementById('rewardsBreakdown').innerHTML = `
