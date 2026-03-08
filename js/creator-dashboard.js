@@ -237,22 +237,30 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Calculate from import file
+    // Rewards - Calculate from import file (Column G - Column H)
     let importRewardsTotal = 0;
     let importGiftedTotal = 0;
     
     // Calculate from detailed rewards data (import file)
     const username = myData.username?.toLowerCase();
+    console.log('DEBUG - Calculating for:', username);
     
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
-        myRewards.forEach(r => {
-            // Parse Rewards column (amount) and Gifted column (remove commas)
-            const rewardAmount = parseInt(r.amount?.replace(/,/g, '') || 0);
-            const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0);
+        console.log('DEBUG - Found', myRewards.length, 'records');
+        myRewards.forEach((r, idx) => {
+            // Column G (index 6) = Rewards, Column H (index 7) = Gifted
+            const rewardVal = r.rewards?.replace(/,/g, '') || '0';
+            const giftedVal = r.gifted?.replace(/,/g, '') || '0';
+            const rewardAmount = parseInt(rewardVal) || 0;
+            const giftedAmount = parseInt(giftedVal) || 0;
             importRewardsTotal += rewardAmount;
             importGiftedTotal += giftedAmount;
+            if (idx < 3) console.log(`DEBUG - Row ${idx}: Rewards=${r.rewards}, Gifted=${r.gifted}`);
         });
+        console.log('DEBUG - Totals: Rewards=', importRewardsTotal, 'Gifted=', importGiftedTotal);
+    } else {
+        console.log('DEBUG - No rewards data found');
     }
     
     // Get CSV data for fallback/comparison
@@ -415,11 +423,11 @@ async function loadDetailedRewards() {
             if (values.length < 6) continue;
             
             const username = values[0]?.trim().toLowerCase();
-            const cid = values[8]?.trim();
+            const cid = values[9]?.trim(); // CID is column J (index 9)
             const type = values[1]?.trim();
             const date = values[2]?.trim();
-            const points = values[5]?.trim();
-            const rewards = values[6]?.trim();
+            const rewards = values[6]?.trim(); // Column G = Rewards
+            const gifted = values[7]?.trim();  // Column H = Gifted
             
             if (!username) continue;
             
@@ -430,9 +438,8 @@ async function loadDetailedRewards() {
             rewardsByCreator[username].push({
                 type: type,
                 date: date,
-                points: points,
-                amount: rewards,
-                gifted: values[7]?.trim(), // Gifted column
+                rewards: rewards,      // Column G
+                gifted: gifted,        // Column H
                 icon: type.includes('Rumble') ? '🥊' : type.includes('Match') ? '🎵' : '🏆'
             });
         }
