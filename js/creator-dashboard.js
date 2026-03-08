@@ -972,23 +972,34 @@ function updateAwards() {
         if (existingRewards && existingRewards.length > 0) {
             // Take last 5
             const last5 = existingRewards.slice(-5);
-            awards = last5.map(rewardText => ({
-                icon: '🏆',
-                title: rewardText,
-                date: 'Earned',
-                amount: 'Reward'
-            }));
+            awards = last5.map(rewardText => {
+                // Extract amount from reward text (e.g., "20K" from "3/02 Monthly Award 20K")
+                const amountMatch = rewardText.match(/(\d+[KMB]?)/);
+                const amount = amountMatch ? amountMatch[1] : '';
+                // Remove amount from title to avoid duplication
+                const title = rewardText.replace(/\s+\d+[KMB]?$/, '');
+                return {
+                    icon: '🏆',
+                    title: title,
+                    date: 'Earned',
+                    amount: amount
+                };
+            });
         }
         
         // Check for last reward from column AQ
         if (myData.lastReward && myData.lastReward.trim()) {
-            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward));
+            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward.replace(/\s+\d+[KMB]?$/, '')));
             if (!alreadyExists) {
+                // Extract amount from lastReward
+                const amountMatch = myData.lastReward.match(/(\d+[KMB]?)/);
+                const amount = amountMatch ? amountMatch[1] : '';
+                const title = myData.lastReward.replace(/\s+\d+[KMB]?$/, '');
                 awards.unshift({
                     icon: '🏆',
-                    title: myData.lastReward,
+                    title: title,
                     date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-                    amount: 'Reward'
+                    amount: amount
                 });
                 // Keep only 5
                 if (awards.length > 5) awards = awards.slice(0, 5);
