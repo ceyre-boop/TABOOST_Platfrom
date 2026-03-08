@@ -310,17 +310,17 @@ tbody tr:last-child td{border-bottom:none}
   <nav>
     <div class="nav-section-lbl">Main</div>
     <div class="nav-link active" onclick="showPage('dashboard',this)"><span class="nav-icon">◈</span><span>Dashboard</span></div>
-    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g" id="navCreatorCount">--</span></div>
+    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g">802</span></div>
     <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">◆</span><span>Diamonds</span></div>
     <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">▶</span><span>Live Streams</span></div>
     <div class="nav-section-lbl">Management</div>
     <div class="nav-link" onclick="showPage('managers',this)"><span class="nav-icon">⊞</span><span>Managers</span></div>
     <div class="nav-link" onclick="showPage('leaderboard',this)"><span class="nav-icon">≡</span><span>Leaderboard</span></div>
-    <div class="nav-link" onclick="showPage('health',this)"><span class="nav-icon">♡</span><span>Creator Health</span></div>
+    <div class="nav-link" onclick="showPage('health',this)"><span class="nav-icon">♡</span><span>Creator Health</span><span class="nav-badge">!</span></div>
     <div class="nav-link" onclick="showPage('milestones',this)"><span class="nav-icon">◎</span><span>Milestones</span></div>
     <div class="nav-section-lbl">Reports</div>
     <div class="nav-link" onclick="showPage('reports',this)"><span class="nav-icon">⊡</span><span>Reports</span></div>
-    <div class="nav-link" onclick="showPage('alerts',this)"><span class="nav-icon">⚑</span><span>Alerts</span></div>
+    <div class="nav-link" onclick="showPage('alerts',this)"><span class="nav-icon">⚑</span><span>Alerts</span><span class="nav-badge">3</span></div>
     <div class="nav-link" onclick="showPage('settings',this)"><span class="nav-icon">⊙</span><span>Settings</span></div>
   </nav>
   <div class="sidebar-user">
@@ -337,23 +337,622 @@ tbody tr:last-child td{border-bottom:none}
     <div class="tb-title" id="tb-title">DASHBOARD</div>
     <div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div>
     <div class="tb-clock" id="tb-clock">--:--:--</div>
-    <button class="tb-btn tb-btn-ghost">↓ EXPORT</button>
-    <button class="tb-btn tb-btn-red" onclick="logout()">LOGOUT</button>
+    <button class="tb-btn tb-btn-ghost" onclick="showPage('reports',null)">↓ EXPORT</button>
+    <button class="tb-btn tb-btn-red" onclick="showPage('alerts',null)">⚑ 3 ALERTS</button>
   </div>
 
   <!-- TICKER -->
   <div class="ticker-wrap" id="ticker"></div>
 
-  <div class="content" id="main-content">
-    <!-- Content loaded dynamically -->
-    <div style="text-align:center;padding:100px 20px">
-      <i class="fas fa-spinner fa-spin" style="font-size:32px;color:var(--red)"></i>
-      <p style="margin-top:20px;color:var(--t4)">Loading agency data...</p>
+  <div class="content">
+
+  <!-- ══════ DASHBOARD ══════ -->
+  <div id="page-dashboard" class="page active">
+
+    <!-- TODAY P&L row (prop-firm style) -->
+    <div style="background:var(--bg2);border:1px solid rgba(255,0,68,0.3);border-radius:var(--r);padding:14px 20px;display:flex;align-items:center;gap:20px;animation:glowPulse 4s ease infinite" class="fu">
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite"></div>
+        <span style="font-family:var(--fm);font-size:10px;color:var(--t4);letter-spacing:0.1em">TODAY'S PERFORMANCE</span>
+      </div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--green);letter-spacing:0.05em">+47,203</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">DIAMONDS TODAY</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--t1);letter-spacing:0.05em">47</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">STREAMING NOW</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div><span style="font-family:var(--fd);font-size:22px;color:var(--amber);letter-spacing:0.05em">94%</span> <span style="font-size:10px;color:var(--t4);font-family:var(--fm)">MARCH GOAL</span></div>
+      <div style="height:20px;width:1px;background:var(--border)"></div>
+      <div style="flex:1"><div style="font-family:var(--fm);font-size:9px;color:var(--t4);margin-bottom:5px;letter-spacing:0.1em">MARCH TARGET PROGRESS</div><div class="pb" style="height:5px"><div class="pf" style="width:94%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div></div>
+      <div style="font-family:var(--fd);font-size:16px;color:var(--amber)">$150K TO GO</div>
+    </div>
+
+    <!-- KPI grid -->
+    <div class="g4 fu1">
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
+        <div class="kpi-label">Total Creators</div>
+        <div class="kpi-val">802</div>
+        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
+        <div class="pnl-bar" style="opacity:0.5"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
+        <div class="kpi-label">Total Diamonds</div>
+        <div class="kpi-val" style="color:var(--t1)">12.3M</div>
+        <div class="kpi-sub"><span class="up">↑ 8.5%</span> vs last month</div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
+        <div class="kpi-label">Total Rewards</div>
+        <div class="kpi-val" style="color:var(--green)">37.6M</div>
+        <div class="kpi-sub">Earned this period</div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
+        <div class="kpi-label">Hours Streamed</div>
+        <div class="kpi-val">2,251</div>
+        <div class="kpi-sub">Active creators: <strong style="color:var(--t1)">301</strong></div>
+        <div class="pnl-bar" style="background:linear-gradient(90deg,#2979ff,transparent)"></div>
+      </div>
+    </div>
+
+    <div class="g21 fu2">
+      <!-- Main table -->
+      <div class="card">
+        <div class="card-hd">
+          <div><div class="card-title">TOP PERFORMERS</div><div class="card-sub">Ranked by diamonds · Current month</div></div>
+          <button class="tb-btn tb-btn-ghost" style="font-size:10px" onclick="showPage('leaderboard',null)">FULL BOARD →</button>
+        </div>
+        <div style="overflow-x:auto">
+          <table>
+            <thead><tr><th>RANK</th><th>CREATOR</th><th>MGR</th><th>TIER</th><th>DIAMONDS</th><th>REWARDS</th><th>HRS</th><th>SCORE</th></tr></thead>
+            <tbody id="dash-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right: top rewards + agency health -->
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card">
+          <div class="card-hd"><div class="card-title">TOP EARNERS 🏆</div></div>
+          <div class="card-bd" style="padding-top:10px" id="rewards-list"></div>
+        </div>
+        <div class="card">
+          <div class="card-hd"><div><div class="card-title">AGENCY HEALTH</div><div class="card-sub">Portfolio overview</div></div></div>
+          <div class="card-bd" id="agency-health"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Diamond equity curve -->
+    <div class="card fu3">
+      <div class="card-hd"><div><div class="card-title">DIAMOND EQUITY CURVE</div><div class="card-sub">Top 5 creators — comparative performance</div></div><div style="display:flex;gap:8px" id="eq-legend"></div></div>
+      <div class="card-bd" style="padding-top:8px">
+        <svg id="eq-svg" class="svg-chart" width="100%" height="140" viewBox="0 0 900 140" preserveAspectRatio="none"></svg>
+        <div style="display:flex;gap:4px;margin-top:8px;overflow-x:auto" id="eq-axis"></div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Load data and render -->
-<script src="js/taboost-data.js"></script>
+  <!-- ══════ CREATORS ══════ -->
+  <div id="page-creators" class="page">
+    <div class="sec-h fu">
+      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators · Live from Google Sheets</div></div>
+      <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">↓ Export CSV</button></div>
+    </div>
+    <div class="filter-bar fu1" id="cr-filters"></div>
+    <div class="card fu2">
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>TIER</th><th>DIAMONDS</th><th>REWARDS</th><th>HRS</th><th>SCORE</th><th>PACE</th></tr></thead><tbody id="cr-tbody"></tbody></table></div>
+      <div class="pag"><button class="pag-btn" onclick="crPage(-1)">← PREV</button><div class="pag-info" id="cr-pag-info"></div><button class="pag-btn" onclick="crPage(1)">NEXT →</button></div>
+    </div>
+  </div>
+
+  <!-- ══════ DIAMONDS ══════ -->
+  <div id="page-diamonds" class="page">
+    <div class="g4 fu">
+      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val">12.3M</div><div class="kpi-sub up">↑ 8.5% vs last month</div></div>
+      <div class="kpi"><div class="kpi-label">Top Earner</div><div class="kpi-val" style="font-size:24px">1.06M</div><div class="kpi-sub">samanthasingsit</div></div>
+      <div class="kpi"><div class="kpi-label">Avg (Active)</div><div class="kpi-val" style="font-size:24px">40.9K</div><div class="kpi-sub">301 active creators</div></div>
+      <div class="kpi"><div class="kpi-label">Concentration</div><div class="kpi-val" style="font-size:24px">29%</div><div class="kpi-sub">Top 5 creators share</div></div>
+    </div>
+    <div class="g2 fu1">
+      <div class="card"><div class="card-hd"><div class="card-title">TOP 15 BY DIAMONDS</div></div><div class="card-bd" id="d-bars"></div></div>
+      <div class="card"><div class="card-hd"><div class="card-title">TIER DISTRIBUTION</div><div class="card-sub">Active creators by tier</div></div><div class="card-bd" id="tier-dist"></div></div>
+    </div>
+    <div class="card fu2">
+      <div class="card-hd"><div class="card-title">DIAMOND ANALYTICS — ALL CREATORS</div></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>TIER</th><th>DIAMONDS</th><th>LAST 30D</th><th>PREV MONTH</th><th>MoM</th><th>SCORE</th></tr></thead><tbody id="d-tbody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ══════ LIVE STREAMS ══════ -->
+  <div id="page-streams" class="page">
+    <div class="g4 fu">
+      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val">2,251</div><div class="kpi-sub">All active creators</div></div>
+      <div class="kpi"><div class="kpi-label">Streaming Now</div><div class="kpi-val" style="color:var(--green)">47</div><div class="kpi-sub"><span style="color:var(--green)">●</span> Live</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Hrs/Creator</div><div class="kpi-val" style="font-size:26px">7.5h</div><div class="kpi-sub">Active creators only</div></div>
+      <div class="kpi"><div class="kpi-label">Max Hours</div><div class="kpi-val" style="font-size:26px">39h</div><div class="kpi-sub">daisy_dew4</div></div>
+    </div>
+    <div class="g2 fu1">
+      <div class="card"><div class="card-hd"><div class="card-title">TOP STREAMERS BY HOURS</div></div><div class="card-bd" id="s-bars"></div></div>
+      <div class="card"><div class="card-hd"><div class="card-title">HOURS DISTRIBUTION</div></div><div class="card-bd" id="h-dist"></div></div>
+    </div>
+    <div class="card fu2">
+      <div class="card-hd"><div class="card-title">EFFICIENCY: DIAMONDS PER HOUR</div><div class="card-sub">Best return on streaming time</div></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>DIAMONDS</th><th>HOURS</th><th>💎/HR</th><th>TIER</th></tr></thead><tbody id="eff-tbody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ══════ MANAGERS ══════ -->
+  <div id="page-managers" class="page">
+    <div class="g4 fu">
+      <div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">21</div><div class="kpi-sub">Active assignments</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">38</div><div class="kpi-sub">Per manager</div></div>
+      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">CARRINGTON</div><div class="kpi-sub">9.4M diamonds</div></div>
+      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+347%</div><div class="kpi-sub">Best — MARCO</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="fu1" id="mgr-grid"></div>
+    <div class="card fu2">
+      <div class="card-hd"><div class="card-title">MANAGER RANKINGS</div><div class="card-sub">Performance by total team diamonds</div></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>MANAGER</th><th>TEAM</th><th>DIAMONDS</th><th>REWARDS</th><th>AVG HRS</th><th>TOP CREATOR</th><th>SHARE</th></tr></thead><tbody id="mgr-tbody"></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- ══════ LEADERBOARD ══════ -->
+  <div id="page-leaderboard" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live from Google Sheets</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
+    <div class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
+      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">12.3M</div></div>
+      <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">37.6M</div></div>
+      <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">2,251</div></div>
+      <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">802</div></div>
+    </div>
+    <div class="filter-bar fu2" id="lb-filters"></div>
+    <div class="card fu3">
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>GROUP</th><th>TIER</th><th>DIAMONDS</th><th>💎/HR</th><th>REWARDS</th><th>HRS</th><th>SCORE</th></tr></thead><tbody id="lb-tbody"></tbody></table></div>
+      <div class="pag"><button class="pag-btn" onclick="lbPg(-1)">← PREV</button><div class="pag-info" id="lb-pag-info"></div><button class="pag-btn" onclick="lbPg(1)">NEXT →</button></div>
+    </div>
+  </div>
+
+  <!-- ══════ CREATOR HEALTH (prop-firm style) ══════ -->
+  <div id="page-health" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r">14 AT RISK</span></div>
+
+    <div class="g4 fu1">
+      <div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">248</div><div class="kpi-sub">Score 70+</div></div>
+      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">39</div><div class="kpi-sub">Score 40–69</div></div>
+      <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">14</div><div class="kpi-sub">Score below 40</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">56<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>
+    </div>
+
+    <div class="g2 fu2">
+      <!-- Health cards: top creators -->
+      <div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">TOP PERFORMERS — ACCOUNT HEALTH</div>
+        <div id="health-cards-top"></div>
+      </div>
+      <!-- At-risk cards -->
+      <div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--red);margin-bottom:10px">⚑ AT-RISK CREATORS</div>
+        <div id="health-cards-risk"></div>
+        <div class="insight"><strong>AI Signal:</strong> 14 creators dropped &gt;30% diamonds vs previous month. freekbass declined 77%, coloreomusic 59%. Immediate outreach recommended to prevent churn. These creators represent an estimated <strong>$184K</strong> monthly revenue at risk.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ MILESTONES (prop-firm style) ══════ -->
+  <div id="page-milestones" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">MILESTONE TRACKER</div><div class="sec-sub">Creator progress to next tier — prop-firm style</div></div></div>
+
+    <div class="g4 fu1">
+      <div class="kpi"><div class="kpi-label">Near Promotion</div><div class="kpi-val up">8</div><div class="kpi-sub">Within 200K of tier up</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Completion</div><div class="kpi-val" style="font-size:26px">67%</div><div class="kpi-sub">To next tier</div></div>
+      <div class="kpi"><div class="kpi-label">Fastest Riser</div><div class="kpi-val" style="font-size:20px">daisy_dew4</div><div class="kpi-sub">428K / 500K goal</div></div>
+      <div class="kpi"><div class="kpi-label">This Month</div><div class="kpi-val up" style="font-size:26px">+23</div><div class="kpi-sub">New tier promotions</div></div>
+    </div>
+
+    <div class="g2 fu2">
+      <div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">CLOSE TO TIER UP — PUSH THEM OVER</div>
+        <div id="ms-close"></div>
+      </div>
+      <div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">ALL ACTIVE CREATORS — TIER PROGRESS</div>
+        <div style="overflow-x:auto"><table><thead><tr><th>CREATOR</th><th>TIER</th><th>GOAL</th><th>PROGRESS</th><th>ETA</th></tr></thead><tbody id="ms-tbody"></tbody></table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ REPORTS ══════ -->
+  <div id="page-reports" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">REPORTS & EXPORTS</div><div class="sec-sub">Generate and download agency performance reports</div></div></div>
+    <div class="g3 fu1" id="rep-grid"></div>
+    <div class="card fu2">
+      <div class="card-hd"><div class="card-title">RECENT EXPORTS</div></div>
+      <table><thead><tr><th>REPORT</th><th>TYPE</th><th>DATE</th><th>SIZE</th><th>ACTION</th></tr></thead>
+      <tbody>
+        <tr><td>Creator_Full_Report_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 09:30</td><td class="mono" style="font-size:11px">245 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
+        <tr><td>Diamonds_Summary_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 08:15</td><td class="mono" style="font-size:11px">128 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
+        <tr><td>Monthly_Performance_Jan2026.pdf</td><td><span class="chip chip-r">PDF</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-01 10:00</td><td class="mono" style="font-size:11px">1.2 MB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <!-- ══════ ALERTS ══════ -->
+  <div id="page-alerts" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">ALERTS & NOTIFICATIONS</div></div><button class="tb-btn tb-btn-ghost" style="font-size:10px">MARK ALL READ</button></div>
+    <div class="g2 fu1">
+      <div>
+        <div class="al al-c"><div class="al-icon">🔴</div><div><div class="al-t">Rookie Performance Alert</div><div class="al-d">5 rookies below minimum hour requirements this week</div></div><span class="chip chip-r" style="margin-left:auto;height:fit-content;white-space:nowrap">CRITICAL</span></div>
+        <div class="al al-g"><div class="al-icon">🏆</div><div><div class="al-t">Diamond Milestone</div><div class="al-d">singleonthemove reached 4.8M total diamonds!</div></div><span class="chip chip-g" style="margin-left:auto;height:fit-content">WIN</span></div>
+        <div class="al al-i"><div class="al-icon">👤</div><div><div class="al-t">New Creator Joined</div><div class="al-d">lancektyree joined under CARRINGTON</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">NEW</span></div>
+        <div class="al al-i"><div class="al-icon">📋</div><div><div class="al-t">Weekly Report Ready</div><div class="al-d">Performance summary available for download</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">INFO</span></div>
+        <div class="al al-w"><div class="al-icon">📅</div><div><div class="al-t">Meeting Reminder</div><div class="al-d">Manager sync tomorrow at 2 PM EST</div></div><span class="chip chip-a" style="margin-left:auto;height:fit-content">REMINDER</span></div>
+      </div>
+      <div class="card"><div class="card-hd"><div class="card-title">ALERT SUMMARY</div></div><div class="card-bd">
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px">Critical</span><span class="mono dn">1</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px">Warnings</span><span class="mono" style="color:var(--amber)">1</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px">Achievements</span><span class="mono up">1</span></div>
+        <div style="display:flex;justify-content:space-between;padding:10px 0"><span style="font-size:12px">Info</span><span class="mono" style="color:var(--t3)">2</span></div>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- ══════ SETTINGS ══════ -->
+  <div id="page-settings" class="page">
+    <div class="sec-h fu"><div><div class="sec-title">SETTINGS</div><div class="sec-sub">Configure dashboard preferences</div></div></div>
+    <div class="g2 fu1">
+      <div class="card"><div class="card-hd"><div class="card-title">PROFILE</div></div><div class="card-bd" style="display:flex;flex-direction:column;gap:12px">
+        <div><div style="font-family:var(--fm);font-size:9px;letter-spacing:0.12em;color:var(--t4);margin-bottom:5px">DISPLAY NAME</div><input type="text" value="Marco" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 10px;font-size:12px;color:var(--t1);outline:none;font-family:var(--fb)"></div>
+        <div><div style="font-family:var(--fm);font-size:9px;letter-spacing:0.12em;color:var(--t4);margin-bottom:5px">EMAIL</div><input type="text" value="marco@taboost.com" style="width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:5px;padding:8px 10px;font-size:12px;color:var(--t1);outline:none;font-family:var(--fb)"></div>
+        <div><div style="font-family:var(--fm);font-size:9px;letter-spacing:0.12em;color:var(--t4);margin-bottom:5px">ROLE</div><input type="text" value="Admin" disabled style="width:100%;background:var(--bg4);border:1px solid var(--border2);border-radius:5px;padding:8px 10px;font-size:12px;color:var(--t4);font-family:var(--fb)"></div>
+        <button class="tb-btn tb-btn-red">SAVE CHANGES</button>
+      </div></div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="card"><div class="card-hd"><div class="card-title">APPEARANCE</div></div><div class="card-bd"><div style="display:flex;gap:8px"><button class="fb-btn active">Black</button><button class="fb-btn">Dark</button><button class="fb-btn">Red</button></div></div></div>
+        <div class="card"><div class="card-hd"><div class="card-title">DATA MANAGEMENT</div></div><div class="card-bd" style="display:flex;gap:8px;flex-wrap:wrap"><button class="tb-btn tb-btn-red">REFRESH</button><button class="tb-btn tb-btn-ghost">CLEAR CACHE</button><button class="tb-btn tb-btn-ghost" style="color:var(--red);border-color:rgba(255,0,68,0.3)">LOGOUT</button></div></div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-family:var(--fm);font-size:10px;color:var(--t4)">LAST SYNC: March 8, 2026 · 01:36 AM EST</div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- content -->
+</div><!-- main -->
+
+<script>
+// ── DATA (Loaded dynamically from JSON) ──
+let D=[];
+let MGRS=[];
+let MTOTAL=0;
+
+// Load data from JSON and transform to expected format
+async function loadData(){
+  try{
+    const res=await fetch('data/creators_full.json?v='+Date.now());
+    const data=await res.json();
+    // Transform to expected format: n=name, m=manager, b=badge, d=diamonds, r=rewards, h=hours, t=tier, l30=last30, p1=prev month, p2=2 months ago, s=score, tg=tier goal
+    D=data.map(c=>({
+      n:c.username,
+      m:c.agent||'Unassigned',
+      b:'', // badge not in current data
+      d:c.diamonds||0,
+      r:c.earned||0,
+      h:c.hours||0,
+      t:c.tier||1,
+      l30:c.diamondsLastMonth||0,
+      p1:c.diamondsLastMonth||0,
+      p2:c.diamondsTwoMonthsAgo||0,
+      s:c.score||0,
+      tg:c.tierGoal||1000000*(c.tier||1)
+    })).sort((a,b)=>b.d-a.d);
+    
+    // Calculate manager stats
+    const mgrMap={};
+    D.forEach(c=>{
+      if(!mgrMap[c.m])mgrMap[c.m]={n:c.m,c:0,d:0,r:0,h:0,top:[]};
+      mgrMap[c.m].c++;
+      mgrMap[c.m].d+=c.d;
+      mgrMap[c.m].r+=c.r;
+      mgrMap[c.m].h+=c.h;
+      mgrMap[c.m].top.push(c.n);
+    });
+    MGRS=Object.values(mgrMap).sort((a,b)=>b.d-a.d).map(m=>({...m,top:m.top.slice(0,3)}));
+    MTOTAL=D.reduce((a,c)=>a+c.d,0);
+    
+    // Update creator count
+    document.getElementById('navCreatorCount').textContent=D.length;
+    
+    // Initialize everything
+    initDashboard();
+  }catch(e){
+    console.error('Failed to load data:',e);
+    D=[];
+  }
+}
+
+// ── UTILS ──
+const f=(n)=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n.toLocaleString();
+const ff=(n)=>n.toLocaleString();
+const sc=(s)=>s>=70?'var(--green)':s>=40?'var(--amber)':'var(--red)';
+const tc=(t)=>['','t1','t2','t3','t4','t5','t6'][t]||'t1';
+const mc=(m)=>{const map={CARRINGTON:'#ff0044',LEVI:'#2979ff',MARCO:'#00e676',BRYTON:'#ffab00',SVEN:'#e040fb',ASHLEY:'#ff6d00',SIERRA:'#00bcd4',DYLAN:'#8bc34a'};for(const k of Object.keys(map))if(m.startsWith(k))return map[k];return '#555'};
+const ini=(n)=>n[0].toUpperCase();
+const mom=(d,p)=>p?Math.round((d/p-1)*100):null;
+
+// ── CLOCK ──
+setInterval(()=>{document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})},1000);
+document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false});
+
+// ── PAGE SWITCH ──
+const titles={dashboard:'DASHBOARD',creators:'ALL CREATORS',diamonds:'DIAMONDS',streams:'LIVE STREAMS',managers:'MANAGERS',leaderboard:'LEADERBOARD',health:'CREATOR HEALTH',milestones:'MILESTONES',reports:'REPORTS',alerts:'ALERTS',settings:'SETTINGS'};
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
+  if(el)el.classList.add('active');
+  document.getElementById('tb-title').textContent=titles[id]||id.toUpperCase();
+  // re-trigger animations
+  document.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,50)});
+}
+
+// ── TICKER ──
+function buildTicker(){
+  const items=D.slice(0,15).map(c=>`<div class="ticker-item"><span class="ticker-name">${c.n.toUpperCase()}</span><span class="ticker-val">${f(c.d)} 💎</span><span style="font-size:9px;margin-left:4px;color:${c.p1&&c.d<c.p1*0.7?'var(--red)':c.p1&&c.d>c.p1?'var(--green)':'var(--t4)'}">${c.p1?((c.d/c.p1-1)*100>0?'▲':'▼')+Math.abs(Math.round((c.d/c.p1-1)*100))+'%':''}</span></div>`).join('');
+  document.getElementById('ticker').innerHTML=`<div class="ticker-inner">${items}${items}</div>`;
+}
+
+// ── DASHBOARD TABLE ──
+function renderDash(){
+  document.getElementById('dash-tbody').innerHTML=D.slice(0,10).map((c,i)=>{
+    const cl=mc(c.m);const scl=sc(c.s);
+    const r=i===0?'🥇':i===1?'🥈':i===2?'🥉':`<span class="mono" style="color:var(--t4)">${i+1}</span>`;
+    return`<tr><td>${r}</td><td><div class="cc"><div class="av" style="background:${cl}22;border-color:${cl}33">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;font-weight:700;color:${cl}">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+  }).join('');
+}
+
+// ── REWARDS ──
+function renderRewards(){
+  const sorted=[...D].sort((a,b)=>b.r-a.r).slice(0,8);
+  document.getElementById('rewards-list').innerHTML=sorted.map((c,i)=>`<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border2)"><span class="mono" style="color:var(--t4);font-size:10px;width:16px">#${i+1}</span><div class="av" style="width:26px;height:26px;font-size:11px;background:${mc(c.m)}22">${ini(c.n)}</div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="mono up" style="font-size:11px;white-space:nowrap">${f(c.r)}</span></div>`).join('');
+}
+
+// ── AGENCY HEALTH ──
+function renderAgencyHealth(){
+  const tiers={1:0,2:0,3:0,4:0,5:0,6:0};
+  D.forEach(c=>tiers[c.t]=(tiers[c.t]||0)+1);
+  const tc2=(t,col)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border2)"><div style="display:flex;align-items:center;gap:8px"><span class="tc ${['','t1','t2','t3','t4','t5','t6'][t]}">T${t}</span></div><div class="sb" style="flex:1;margin:0 12px"><div class="sb-track"><div class="sb-fill" style="width:${(tiers[t]/(D.length||1)*100).toFixed(0)}%;background:${col}"></div></div></div><span class="mono" style="color:${col};font-size:11px">${tiers[t]}</span></div>`;
+  document.getElementById('agency-health').innerHTML=['#ff0044','#ffab00','#00e676','#64b5f6','#ffab00','#e040fb'].reverse().map((col,i)=>tc2(6-i,col)).join('');
+}
+
+// ── EQUITY CURVE ──
+function renderEquity(){
+  const top5=D.slice(0,5);
+  const colors=['#ff0044','#ffab00','#00e676','#64b5f6','#e040fb'];
+  const months=['Oct','Nov','Dec','Jan','Feb','Mar'];
+  // Simulated 6-month trend using available data points
+  const curves=top5.map(c=>[c.p2*0.7,c.p2*0.85,c.p2,c.p1*0.7,c.p1,c.d]);
+  const allVals=curves.flat();
+  const maxV=Math.max(...allVals);
+  const minV=0;
+  const W=900,H=120,pad=10;
+  const xPts=(i)=>pad+(i/5)*(W-2*pad);
+  const yPts=(v)=>H-pad-((v-minV)/(maxV-minV||1))*(H-2*pad);
+
+  let svgPaths='';
+  curves.forEach((pts,ci)=>{
+    const coords=pts.map((v,i)=>`${xPts(i).toFixed(1)},${yPts(v).toFixed(1)}`);
+    const areaPath=`M${coords[0]} L${coords.join(' L')} L${xPts(5)},${H} L${xPts(0)},${H} Z`;
+    const linePath=`M${coords[0]} L${coords.join(' L')}`;
+    svgPaths+=`<path d="${areaPath}" fill="${colors[ci]}" opacity="0.05"/>`;
+    svgPaths+=`<path d="${linePath}" fill="none" stroke="${colors[ci]}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+    const last=pts[5];const prev=pts[4];
+    const dir=last>=prev?'▲':'▼';
+    const col=last>=prev?colors[ci]:colors[ci];
+    svgPaths+=`<circle cx="${xPts(5)}" cy="${yPts(last)}" r="3" fill="${colors[ci]}"/>`;
+  });
+  // grid
+  for(let i=0;i<=4;i++){const y=pad+i*(H-2*pad)/4;svgPaths+=`<line x1="${pad}" y1="${y}" x2="${W-pad}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>`;}
+  document.getElementById('eq-svg').innerHTML=svgPaths;
+  document.getElementById('eq-legend').innerHTML=top5.map((c,i)=>`<div style="display:flex;align-items:center;gap:5px;font-size:10px;color:var(--t3)"><div style="width:12px;height:2px;background:${colors[i]};border-radius:1px"></div>${c.n.substring(0,10)}</div>`).join('');
+  document.getElementById('eq-axis').innerHTML=months.map(m=>`<div style="flex:1;font-family:var(--fm);font-size:9px;color:var(--t4);text-align:center">${m}</div>`).join('');
+}
+
+// ── CREATORS TABLE ──
+let crIdx=0,crFilter='',crMgr='';
+const CPP=25;
+function getFiltered(){return D.filter(c=>(!crFilter||(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase()))&&(!crMgr||c.m.includes(crMgr)))}
+function renderCR(){
+  const fl=getFiltered();const start=crIdx*CPP;const end=Math.min(start+CPP,fl.length);
+  const page=fl.slice(start,end);
+  document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td style="font-size:11px;color:var(--t4)">–</td></tr>`}).join('');
+  document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.ceil(fl.length/CPP)} · ${start+1}–${end} of ${fl.length}`;
+}
+function crPage(d){const max=Math.ceil(getFiltered().length/CPP)-1;crIdx=Math.max(0,Math.min(max,crIdx+d));renderCR()}
+function globalSearch(v){crFilter=v;crIdx=0;renderCR();lbIdx=0;renderLB()}
+
+function renderCRFilters(){
+  const mgrs=['All',...new Set(D.map(c=>c.m))].slice(0,10);
+  document.getElementById('cr-filters').innerHTML=mgrs.map(m=>`<button class="fb-btn${m==='All'?' active':''}" onclick="setCRMgr('${m}',this)">${m}</button>`).join('');
+}
+function setCRMgr(m,el){crMgr=m==='All'?'':m;crIdx=0;document.querySelectorAll('#cr-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderCR()}
+
+// ── LEADERBOARD ──
+let lbIdx=0;const LPP=25;
+function renderLB(){
+  const fl=crFilter?D.filter(c=>(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase())):D;
+  const start=lbIdx*LPP;const end=Math.min(start+LPP,fl.length);
+  const page=fl.slice(start,end);
+  document.getElementById('lb-tbody').innerHTML=page.map((c,i)=>{
+    const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);
+    const rk=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':`<span class="mono" style="color:var(--t4)">${rank}</span>`;
+    const dph=c.h>0?Math.round(c.d/c.h):0;
+    return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td style="font-size:11px;color:var(--t4)">Staff</td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+  }).join('');
+  document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.ceil(fl.length/LPP)} · ${start+1}–${end} of ${fl.length}`;
+}
+function lbPg(d){const max=Math.ceil(D.length/LPP)-1;lbIdx=Math.max(0,Math.min(max,lbIdx+d));renderLB()}
+function renderLBFilters(){
+  const mgrs=['All',...new Set(D.map(c=>c.m))].slice(0,10);
+  document.getElementById('lb-filters').innerHTML=mgrs.map(m=>`<button class="fb-btn${m==='All'?' active':''}" onclick="lbSetMgr('${m}',this)">${m}</button>`).join('');
+}
+function lbSetMgr(m,el){document.querySelectorAll('#lb-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');lbIdx=0;renderLB()}
+
+// ── DIAMONDS PAGE ──
+function renderDBars(){
+  const top15=D.slice(0,15);const mx=top15[0].d;
+  document.getElementById('d-bars').innerHTML=top15.map((c,i)=>`<div class="bar-row"><div class="bar-lbl">${c.n}</div><div class="bar-track"><div class="bar-fill" style="width:${(c.d/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),${mc(c.m)})"></div></div><div class="bar-val">${f(c.d)}</div></div>`).join('');
+}
+function renderTierDist(){
+  const tiers={T6:1,T5:4,T4:6,T3:4,T2:18,T1:268};
+  const cols={T6:'var(--red)',T5:'var(--amber)',T4:'#64b5f6',T3:'var(--green)',T2:'var(--t3)',T1:'var(--t4)'};
+  const total=301;
+  document.getElementById('tier-dist').innerHTML=Object.entries(tiers).map(([t,c])=>`<div class="bar-row" style="margin-bottom:12px"><div class="bar-lbl"><span class="tc ${t.toLowerCase()}">${t}</span></div><div class="bar-track" style="height:10px"><div class="bar-fill" style="height:100%;width:${(c/268*100).toFixed(0)}%;background:${cols[t]}"></div></div><div class="bar-val" style="color:${cols[t]}">${c} <span style="font-size:9px;color:var(--t4)">(${(c/total*100).toFixed(1)}%)</span></div></div>`).join('');
+}
+function renderDTable(){
+  document.getElementById('d-tbody').innerHTML=D.map((c,i)=>{
+    const m=mom(c.d,c.p1);const cl=mc(c.m);const scl=sc(c.s);
+    return`<tr><td class="mono" style="color:var(--t4)">${i+1}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${c.l30>0?ff(c.l30):'–'}</td><td class="mono" style="color:var(--t3)">${c.p1>0?ff(c.p1):'–'}</td><td class="mono ${m===null?'':m>=0?'up':'dn'}">${m===null?'–':(m>=0?'▲':'▼')+Math.abs(m)+'%'}</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+  }).join('');
+}
+
+// ── STREAMS ──
+function renderSBars(){
+  const sorted=[...D].filter(c=>c.h>0).sort((a,b)=>b.h-a.h).slice(0,15);const mx=sorted[0].h;
+  document.getElementById('s-bars').innerHTML=sorted.map(c=>`<div class="bar-row"><div class="bar-lbl">${c.n}</div><div class="bar-track"><div class="bar-fill" style="width:${(c.h/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div><div class="bar-val">${c.h}h</div></div>`).join('');
+}
+function renderHDist(){
+  const b=[{l:'30h+',c:0},{l:'20–29h',c:0},{l:'10–19h',c:0},{l:'5–9h',c:0},{l:'1–4h',c:0}];
+  D.forEach(c=>{if(c.h>=30)b[0].c++;else if(c.h>=20)b[1].c++;else if(c.h>=10)b[2].c++;else if(c.h>=5)b[3].c++;else if(c.h>=1)b[4].c++});
+  const mx=Math.max(...b.map(x=>x.c));
+  const cols=['var(--green)','var(--red)','var(--amber)','#64b5f6','var(--t3)'];
+  document.getElementById('h-dist').innerHTML=b.map((x,i)=>`<div class="bar-row" style="margin-bottom:14px"><div class="bar-lbl" style="font-size:12px">${x.l}</div><div class="bar-track" style="height:10px"><div class="bar-fill" style="height:100%;width:${(x.c/mx*100).toFixed(0)}%;background:${cols[i]}"></div></div><div class="bar-val" style="color:${cols[i]}">${x.c} <span style="font-size:9px;color:var(--t4)">creators</span></div></div>`).join('');
+}
+function renderEffTable(){
+  const sorted=[...D].filter(c=>c.h>0).sort((a,b)=>(b.d/b.h)-(a.d/a.h)).slice(0,20);
+  document.getElementById('eff-tbody').innerHTML=sorted.map((c,i)=>{
+    const dph=Math.round(c.d/c.h);const cl=mc(c.m);
+    return`<tr><td class="mono" style="color:var(--t4)">${i+1}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div class="cn">${c.n}</div></div></td><td><span style="color:${cl};font-size:11px;font-weight:700">${c.m}</span></td><td class="mono">${ff(c.d)}</td><td class="mono">${c.h}h</td><td class="mono" style="color:var(--amber);font-weight:700">${dph.toLocaleString()}</td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td></tr>`;
+  }).join('');
+}
+
+// ── MANAGERS ──
+const mgrColors=['#ff0044','#2979ff','#00e676','#ffab00','#e040fb','#ff6d00','#00bcd4','#8bc34a','#f06292','#4fc3f7'];
+function renderMgrGrid(){
+  document.getElementById('mgr-grid').innerHTML=MGRS.slice(0,9).map((m,i)=>`
+    <div class="mgr-card">
+      <div class="mgr-av" style="background:${mgrColors[i]}20;color:${mgrColors[i]};border-color:${mgrColors[i]}30">${m.n[0]}</div>
+      <div class="mgr-name">${m.n}</div>
+      <div style="font-size:10px;color:var(--t4);margin-top:2px">#${i+1} by diamonds</div>
+      <div style="margin-top:10px"><div style="height:4px" class="pb"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${mgrColors[i]}"></div></div></div>
+      <div class="mgr-stats">
+        <div><div class="ms-lbl">Creators</div><div class="ms-val">${m.c}</div></div>
+        <div><div class="ms-lbl">Diamonds</div><div class="ms-val" style="color:${mgrColors[i]}">${f(m.d)}</div></div>
+        <div><div class="ms-lbl">Rewards</div><div class="ms-val">${f(m.r)}</div></div>
+        <div><div class="ms-lbl">Avg Hrs</div><div class="ms-val">${m.c>0?(m.h/m.c).toFixed(1):0}h</div></div>
+      </div>
+      <div class="mgr-top"><div class="mgr-top-lbl">Top Creators</div>${m.top.map(t=>`<div class="mgr-top-item">→ ${t}</div>`).join('')}</div>
+    </div>`).join('');
+}
+function renderMgrTable(){
+  document.getElementById('mgr-tbody').innerHTML=MGRS.map((m,i)=>{
+    const share=(m.d/MTOTAL*100).toFixed(1);const cl=mgrColors[i]||'var(--t3)';
+    return`<tr><td>${i<3?['🥇','🥈','🥉'][i]:`<span class="mono" style="color:var(--t4)">#${i+1}</span>`}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="av" style="width:26px;height:26px;font-size:11px;background:${cl}20;border-color:${cl}30">${m.n[0]}</div><strong style="color:var(--t1)">${m.n}</strong></div></td><td class="mono">${m.c}</td><td class="mono"><strong style="color:${cl}">${ff(m.d)}</strong></td><td class="mono up">${f(m.r)}</td><td class="mono">${m.c>0?(m.h/m.c).toFixed(1):0}h</td><td style="color:var(--t3);font-size:11px">${m.top[0]||'–'}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="pb" style="width:80px;height:4px"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${cl}"></div></div><span class="mono" style="font-size:10px;color:${cl}">${share}%</span></div></td></tr>`;
+  }).join('');
+}
+
+// ── HEALTH PAGE ──
+function renderHealth(){
+  const top5=D.slice(0,5);
+  const atRisk=D.filter(c=>c.p1>0&&c.d<c.p1*0.7).slice(0,6);
+
+  document.getElementById('health-cards-top').innerHTML=top5.map(c=>{
+    const pct=Math.min(100,Math.round(c.d/c.tg*100));
+    const left=Math.max(0,c.tg-c.d);
+    return`<div class="health-card healthy" style="margin-bottom:10px">
+      <div class="pulse-ring"><div class="pulse-dot"></div></div>
+      <div class="health-top"><div><div class="health-name">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="tc ${tc(c.t)}">T${c.t}</span></div>
+      <div class="health-diamonds">${f(c.d)}</div>
+      <div class="health-label">💎 THIS MONTH</div>
+      <div class="pb" style="height:5px"><div class="pf" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div>
+      <div class="health-to-tier">${pct}% to Tier ${c.t+1} · <strong>${f(left)}</strong> diamonds to go</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('health-cards-risk').innerHTML=atRisk.map(c=>{
+    const chg=mom(c.d,c.p1);
+    return`<div class="health-card critical" style="margin-bottom:10px">
+      <div style="position:absolute;top:14px;right:14px;width:10px;height:10px;border-radius:50%;background:var(--red);animation:blink 1s infinite"></div>
+      <div class="health-top"><div><div class="health-name">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="tc ${tc(c.t)}">T${c.t}</span></div>
+      <div class="health-diamonds" style="color:var(--red)">${f(c.d)}</div>
+      <div class="health-label">RISK SCORE: <span style="color:var(--red)">${c.s}/100</span></div>
+      <div class="health-to-tier"><span class="dn">▼ ${Math.abs(chg||0)}%</span> vs last month · prev: <strong>${f(c.p1)}</strong></div>
+    </div>`;
+  }).join('');
+}
+
+// ── MILESTONES ──
+function renderMilestones(){
+  // Close to tier up (80%+ of goal)
+  const close=D.filter(c=>c.tg>0&&(c.d/c.tg)>=0.7&&(c.d/c.tg)<1).sort((a,b)=>(b.d/b.tg)-(a.d/a.tg)).slice(0,6);
+  document.getElementById('ms-close').innerHTML=close.map(c=>{
+    const pct=(c.d/c.tg*100).toFixed(1);const left=c.tg-c.d;
+    const dph=c.h>0?c.d/c.h:0;
+    const eta=dph>0?Math.ceil(left/dph):null;
+    return`<div class="milestone">
+      <div class="ms-top">
+        <div><div class="ms-name">${c.n}</div><div class="ms-details">${c.m} · T${c.t} → T${c.t+1}</div></div>
+        <div class="ms-pct" style="color:${pct>=90?'var(--green)':'var(--amber)'}">${pct}%</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--t4);margin-bottom:6px"><span>${ff(c.d)} diamonds</span><span>Goal: ${f(c.tg)}</span></div>
+      <div class="ms-bar"><div class="ms-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div>
+      <div class="ms-eta">${f(left)} remaining${eta?' · Est. '+eta+'h of streaming':''}${pct>=95?'  🔥 PUSH THEM OVER!':''}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('ms-tbody').innerHTML=D.slice(0,20).map(c=>{
+    const pct=c.tg>0?Math.min(100,(c.d/c.tg*100)).toFixed(0):0;
+    const left=Math.max(0,c.tg-c.d);
+    const dph=c.h>0?c.d/c.h:0;
+    const eta=dph>0&&left>0?Math.ceil(left/dph)+'h est.':'–';
+    return`<tr><td><div class="cn">${c.n}</div></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono" style="font-size:11px">${f(c.tg)}</td><td style="min-width:120px"><div class="pb" style="height:5px"><div class="pf" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div><div style="font-size:9px;color:var(--t4);margin-top:3px">${pct}% · ${f(left)} left</div></td><td class="mono" style="font-size:10px;color:var(--t4)">${eta}</td></tr>`;
+  }).join('');
+}
+
+// ── REPORTS ──
+function renderReports(){
+  const reps=[
+    {icon:'📋',title:'Creator Report',sub:'Full creator list with all metrics',btn:'Download CSV'},
+    {icon:'💎',title:'Diamonds Report',sub:'Diamond earnings by creator & group',btn:'Download CSV'},
+    {icon:'📊',title:'Performance Summary',sub:'Monthly performance overview',btn:'Download PDF'},
+    {icon:'👔',title:'Manager Report',sub:'Team performance by manager',btn:'Download CSV'},
+    {icon:'🌱',title:'Rookie Report',sub:'New creator progress tracking',btn:'Download CSV'},
+    {icon:'📡',title:'Streaming Report',sub:'Live stream metrics & hours',btn:'Download CSV'},
+  ];
+  document.getElementById('rep-grid').innerHTML=reps.map(r=>`<div class="rep-card"><div class="rep-icon">${r.icon}</div><div class="rep-title">${r.title}</div><div class="rep-sub">${r.sub}</div><button class="rep-btn" onclick="alert('Generating report...')">${r.btn}</button></div>`).join('');
+}
+
+// ── INIT ──
+function initDashboard(){
+  buildTicker();
+  renderDash();renderRewards();renderAgencyHealth();renderEquity();
+  renderCR();renderCRFilters();
+  renderLB();renderLBFilters();
+  renderDBars();renderTierDist();renderDTable();
+  renderSBars();renderHDist();renderEffTable();
+  renderMgrGrid();renderMgrTable();
+  renderHealth();
+  renderMilestones();
+  renderReports();
+
+  // Animate bars on scroll/load
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
+  document.querySelectorAll('.card,.kpi,.mgr-card,.health-card,.milestone').forEach(c=>io.observe(c));
+}
+
+// Start loading
+document.addEventListener('DOMContentLoaded',loadData);
+</script>
 </body>
 </html>
