@@ -242,15 +242,27 @@ function updateStats() {
     let importGiftedTotal = 0;
     
     const username = myData.username?.toLowerCase();
+    console.log('DEBUG - Calculating rewards for:', username);
+    console.log('DEBUG - detailedRewardsData loaded:', detailedRewardsData ? 'YES' : 'NO');
     
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
-        myRewards.forEach(r => {
+        console.log('DEBUG - Found', myRewards.length, 'records for', username);
+        
+        myRewards.forEach((r, idx) => {
             const rewardAmount = parseInt(r.rewards?.replace(/,/g, '') || 0) || 0;
             const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0) || 0;
             importRewardsTotal += rewardAmount;
             importGiftedTotal += giftedAmount;
+            
+            if (idx < 3) {
+                console.log(`DEBUG - Row ${idx}: type=${r.type}, rewards=${r.rewards}(${rewardAmount}), gifted=${r.gifted}(${giftedAmount})`);
+            }
         });
+        
+        console.log('DEBUG - FINAL: G total=', importRewardsTotal, 'H total=', importGiftedTotal, 'Available=', importRewardsTotal - importGiftedTotal);
+    } else {
+        console.log('DEBUG - No rewards data found. Available creators:', Object.keys(detailedRewardsData || {}).slice(0, 10));
     }
     
     // Current Available = Column G total - Column H total (can be negative)
