@@ -1507,15 +1507,13 @@
     }
     
     .scale-tier {
-        font-size: 11px;
+        font-size: 9px;
         letter-spacing: 0;
-        max-width: 70px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 55px;
+        white-space: nowrap;
     }
     
-    /* Hide AGENT and MAX tier labels on mobile */
-    .tier-agent,
+    /* Hide MAX tier label on mobile */
     .tier-max {
         display: none;
     }
@@ -1766,12 +1764,13 @@
     }
     
     .scale-num {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .scale-tier {
-        font-size: 10px;
-        max-width: 50px;
+        font-size: 8px;
+        max-width: 45px;
+        white-space: nowrap;
     }
     
     .score-segments {
@@ -1779,8 +1778,7 @@
         height: 15px;
     }
     
-    /* Hide AGENT and MAX tier labels on small phones */
-    .tier-agent,
+    /* Hide MAX tier label on small phones */
     .tier-max {
         display: none;
     }
