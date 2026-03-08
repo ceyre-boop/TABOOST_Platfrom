@@ -179,9 +179,9 @@ function updateProfile(user) {
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    // Level can be 0-5, check properly (avoid NaN)
+    // Level: only show if it's a valid number greater than 0
     let levelDisplay = '--';
-    if (myData.level !== undefined && myData.level !== null && myData.level !== '' && !isNaN(myData.level)) {
+    if (myData.level && !isNaN(myData.level) && myData.level > 0) {
         levelDisplay = myData.level;
     }
     document.getElementById('creatorBadges').innerHTML = `

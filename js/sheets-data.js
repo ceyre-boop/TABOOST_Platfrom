@@ -107,7 +107,7 @@ class TaboostDataService {
             rank: parseInt(getValue('Rank')) || 0,
             creatorId: getValue('Host'),
             username: username,
-            level: parseInt(getValue('Level') || values[4]) || 0, // Column E - Level (0-5)
+            level: parseInt(getValue('Level') || values[4]) || null, // Column E - Level (0-5), null if blank
             _levelHeader: headers.indexOf('Level'),
             _levelValue: getValue('Level'),
             _levelRaw: values[4],
