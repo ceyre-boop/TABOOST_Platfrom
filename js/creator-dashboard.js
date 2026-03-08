@@ -334,7 +334,7 @@ function updateGoals() {
         {
             name: 'Streaming Days',
             icon: 'fa-calendar',
-            current: myData.liveStreams || 0,
+            current: myData.validLiveDays || 0,
             target: myData.daysGoal || 25,
             unit: ' days'
         },
