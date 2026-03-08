@@ -243,24 +243,24 @@ function updateStats() {
     
     // Calculate from detailed rewards data (import file)
     const username = myData.username?.toLowerCase();
-    console.log('DEBUG - Calculating for:', username);
+    console.log('DEBUG - User:', username);
     
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
-        console.log('DEBUG - Found', myRewards.length, 'records');
-        myRewards.forEach((r, idx) => {
-            // Column G (index 6) = Rewards, Column H (index 7) = Gifted
-            const rewardVal = r.rewards?.replace(/,/g, '') || '0';
-            const giftedVal = r.gifted?.replace(/,/g, '') || '0';
-            const rewardAmount = parseInt(rewardVal) || 0;
-            const giftedAmount = parseInt(giftedVal) || 0;
+        console.log('DEBUG - Records found:', myRewards.length);
+        myRewards.forEach((r, i) => {
+            // Parse Rewards (Column G) and Gifted (Column H) - remove commas
+            const rewardClean = r.rewards?.replace(/,/g, '') || '0';
+            const giftedClean = r.gifted?.replace(/,/g, '') || '0';
+            const rewardAmount = parseInt(rewardClean) || 0;
+            const giftedAmount = parseInt(giftedClean) || 0;
             importRewardsTotal += rewardAmount;
             importGiftedTotal += giftedAmount;
-            if (idx < 3) console.log(`DEBUG - Row ${idx}: Rewards=${r.rewards}, Gifted=${r.gifted}`);
+            if (i < 5) console.log(`Row ${i}: rewards=${r.rewards}(${rewardAmount}), gifted=${r.gifted}(${giftedAmount})`);
         });
-        console.log('DEBUG - Totals: Rewards=', importRewardsTotal, 'Gifted=', importGiftedTotal);
+        console.log('DEBUG - Totals: G=', importRewardsTotal, 'H=', importGiftedTotal, 'Available=', importRewardsTotal - importGiftedTotal);
     } else {
-        console.log('DEBUG - No rewards data found');
+        console.log('DEBUG - No data found for', username, 'in', Object.keys(detailedRewardsData || {}));
     }
     
     // Get CSV data for fallback/comparison
@@ -408,7 +408,7 @@ let creatorTrends = {};
 // Load detailed rewards from rewards-history.csv
 async function loadDetailedRewards() {
     try {
-        const response = await fetch('data/rewards-history.csv');
+        const response = await fetch('data/rewards-history.csv?v=202503081800');
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
@@ -423,11 +423,11 @@ async function loadDetailedRewards() {
             if (values.length < 6) continue;
             
             const username = values[0]?.trim().toLowerCase();
-            const cid = values[9]?.trim(); // CID is column J (index 9)
             const type = values[1]?.trim();
             const date = values[2]?.trim();
-            const rewards = values[6]?.trim(); // Column G = Rewards
-            const gifted = values[7]?.trim();  // Column H = Gifted
+            // Remove quotes and trim - Column G (index 6) = Rewards, Column H (index 7) = Gifted
+            const rewards = values[6]?.replace(/"/g, '').trim() || '0';
+            const gifted = values[7]?.replace(/"/g, '').trim() || '0';
             
             if (!username) continue;
             
@@ -438,8 +438,8 @@ async function loadDetailedRewards() {
             rewardsByCreator[username].push({
                 type: type,
                 date: date,
-                rewards: rewards,      // Column G
-                gifted: gifted,        // Column H
+                rewards: rewards,
+                gifted: gifted,
                 icon: type.includes('Rumble') ? '🥊' : type.includes('Match') ? '🎵' : '🏆'
             });
         }
