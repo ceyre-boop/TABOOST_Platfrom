@@ -417,9 +417,11 @@ async function loadDetailedRewards() {
             const username = values[0]?.trim().toLowerCase();
             const type = values[1]?.trim();
             const date = values[2]?.trim();
-            // Remove quotes and trim - Column G (index 6) = Rewards, Column H (index 7) = Gifted
-            const rewards = values[6]?.replace(/"/g, '').trim() || '0';
-            const gifted = values[7]?.replace(/"/g, '').trim() || '0';
+            
+            // Column G (index 6) = Rewards, Column H (index 7) = Gifted
+            // Handle quoted CSV values like "70,000"
+            const rewards = values[6]?.replace(/^"|"$/g, '').trim() || '0';
+            const gifted = values[7]?.replace(/^"|"$/g, '').trim() || '0';
             
             if (!username) continue;
             
