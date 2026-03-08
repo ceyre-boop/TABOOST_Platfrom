@@ -107,7 +107,7 @@ class TaboostDataService {
             rank: parseInt(getValue('Rank')) || 0,
             creatorId: getValue('Host'),
             username: username,
-            level: parseInt(getValue('Level') !== '' ? getValue('Level') : values[4]) ?? 0, // Column E - Level (0-5)
+            level: parseInt(getValue('Level') || values[4]) || 0, // Column E - Level (0-5)
             _levelHeader: headers.indexOf('Level'),
             _levelValue: getValue('Level'),
             _levelRaw: values[4],
@@ -166,6 +166,10 @@ class TaboostDataService {
             // Historical data
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
+            
+            // Goals data - columns AM, AN
+            daysGoal: parseInt(getValue('Days Goal')) || 25,
+            hoursGoal: parseInt(getValue('Hrs Goal')) || 80,
             
             // Labels & links
             rankLabel: getValue('Rank Label'),

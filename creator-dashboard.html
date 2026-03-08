@@ -32,7 +32,7 @@
         <!-- Sidebar Logo for Mobile -->
         <div class="mobile-logo">
             <img src="images/taboost-logo.jpg?v=20250305" alt="TABOOST">
-            <div style="color: #00ff88; font-size: 10px; text-align: center;">Live Dashboard</div>
+            <div style="color: #888; font-size: 10px; text-align: center;">Live Dashboard</div>
         </div>
         
         <!-- Header -->
@@ -423,17 +423,6 @@
             </div>
             
             <div class="settings-content">
-                <!-- Admin Data Source (Admin Only) -->
-                <div class="settings-section" id="adminSection" style="display:none;">
-                    <h3><i class="fas fa-database"></i> Data Source</h3>
-                    <div class="settings-field">
-                        <label>Google Sheets CSV URL</label>
-                        <input type="text" id="settingSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?gid=0&single=true&output=csv">
-                        <p style="color:#666;font-size:0.75rem;margin-top:5px;">Paste the "Publish to web" CSV URL from Google Sheets</p>
-                    </div>
-                    <button class="settings-save-btn" onclick="saveSheetUrl()">Update Data Source</button>
-                </div>
-                
                 <!-- Profile Settings -->
                 <div class="settings-section">
                     <h3><i class="fas fa-user"></i> Profile Settings</h3>
@@ -452,67 +441,6 @@
                     <button class="settings-save-btn" onclick="saveProfileSettings()">Save Changes</button>
                 </div>
                 
-                <!-- Notifications -->
-                <div class="settings-section">
-                    <h3><i class="fas fa-bell"></i> Notifications</h3>
-                    <div class="settings-toggle">
-                        <span>Email Notifications</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="toggleEmail" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="settings-toggle">
-                        <span>Push Notifications</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="togglePush">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="settings-toggle">
-                        <span>Weekly Reports</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="toggleWeekly" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="settings-toggle">
-                        <span>Alert Sounds</span>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="toggleSounds" checked>
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                
-                <!-- Appearance -->
-                <div class="settings-section">
-                    <h3><i class="fas fa-paint-brush"></i> Appearance</h3>
-                    <div class="settings-field">
-                        <label>Theme</label>
-                        <select id="settingTheme">
-                            <option value="dark">Dark (Default)</option>
-                            <option value="light">Light</option>
-                            <option value="auto">Auto</option>
-                        </select>
-                    </div>
-                    <div class="settings-field">
-                        <label>Dashboard Layout</label>
-                        <select id="settingLayout">
-                            <option value="grid">Grid</option>
-                            <option value="list">List</option>
-                        </select>
-                    </div>
-                    <div class="settings-field">
-                        <label>Items Per Page</label>
-                        <select id="settingItemsPerPage">
-                            <option value="25">25</option>
-                            <option value="50" selected>50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-                </div>
-                
                 <!-- Security -->
                 <div class="settings-section">
                     <h3><i class="fas fa-shield-alt"></i> Security</h3>
@@ -529,30 +457,6 @@
                         <input type="password" id="settingConfirmPassword" placeholder="Confirm new password">
                     </div>
                     <button class="settings-save-btn" onclick="updatePassword()">Update Password</button>
-                    
-                    <div class="settings-divider"></div>
-                    
-                    <div class="settings-2fa">
-                        <div class="settings-2fa-info">
-                            <h4><i class="fas fa-lock"></i> Two-Factor Authentication</h4>
-                            <p>Add an extra layer of security to your account</p>
-                        </div>
-                        <label class="toggle-switch">
-                            <input type="checkbox" id="toggle2FA" onchange="toggle2FA()">
-                            <span class="toggle-slider"></span>
-                        </label>
-                    </div>
-                    <div class="settings-2fa-setup" id="setup2FA" style="display:none;">
-                        <div class="qr-placeholder">
-                            <i class="fas fa-qrcode"></i>
-                            <p>Scan QR code with authenticator app</p>
-                        </div>
-                        <div class="settings-field">
-                            <label>Verification Code</label>
-                            <input type="text" id="setting2FACode" placeholder="000000" maxlength="6">
-                        </div>
-                        <button class="settings-save-btn" onclick="verify2FA()">Verify & Enable</button>
-                    </div>
                 </div>
             </div>
         </div>

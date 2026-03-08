@@ -132,6 +132,12 @@ function formatNumber(num) {
     return num.toLocaleString();
 }
 
+function formatNumberPlain(num) {
+    // Format without K/M suffix - for rewards
+    if (!num) return '0';
+    return parseInt(num).toLocaleString();
+}
+
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
     return '$' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -173,9 +179,9 @@ function updateProfile(user) {
     document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    // Level can be 0-5, check properly
+    // Level can be 0-5, check properly (avoid NaN)
     let levelDisplay = '--';
-    if (myData.level !== undefined && myData.level !== null && myData.level !== '') {
+    if (myData.level !== undefined && myData.level !== null && myData.level !== '' && !isNaN(myData.level)) {
         levelDisplay = myData.level;
     }
     document.getElementById('creatorBadges').innerHTML = `
@@ -215,8 +221,14 @@ function updateStats() {
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
     document.getElementById('currentUSD').textContent = '≈ ' + formatUSD(myData.diamonds);
     
-    // Growth trend
-    const growth = parseFloat(myData.growthPercent) || 0;
+    // Growth trend - calculate if not provided
+    let growth = parseFloat(myData.growthPercent);
+    if (!growth && myData.diamonds && myData.diamondsLastMonth) {
+        // Calculate growth: (current - last) / last * 100
+        growth = ((myData.diamonds - myData.diamondsLastMonth) / myData.diamondsLastMonth) * 100;
+    }
+    growth = growth || 0;
+    
     const trendEl = document.getElementById('diamondTrend');
     trendEl.innerHTML = `
         <span class="trend-indicator ${growth >= 0 ? 'up' : 'down'}">
@@ -240,7 +252,7 @@ function updateStats() {
     
     // If no Last Label value, fall back to earned value formatted
     if (currentRewardsAvailable === '0' && earnedValue > 0) {
-        currentRewardsAvailable = formatNumber(earnedValue);
+        currentRewardsAvailable = formatNumberPlain(earnedValue);
     }
     
     // Column AG (Earned) = Total rewards earned
@@ -250,7 +262,7 @@ function updateStats() {
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     // Bottom: Total Rewards Earned (from Column AG)
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Rewards Earned: ${formatNumber(totalEarned)}</span>
+        <span>Total Rewards Earned: ${formatNumberPlain(totalEarned)}</span>
     `;
 }
 
@@ -319,14 +331,14 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.liveStreams || 0,
-            target: 25,
+            target: myData.daysGoal || 25,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hrsGoal || 80,
+            target: myData.hoursGoal || 80,
             unit: 'h'
         },
         {
@@ -892,24 +904,26 @@ function updateScoreAndLevels() {
         }
     });
     
-    // Current progress toward next level
+    // Current progress toward CURRENT level goal (not next level)
     const levelReqs = [
-        { level: 1, days: 8, hours: 8 },
-        { level: 2, days: 12, hours: 20 },
-        { level: 3, days: 16, hours: 35 },
-        { level: 4, days: 20, hours: 50 },
-        { level: 5, days: 25, hours: 70 }
+        { level: 0, days: 7, hours: 15 },
+        { level: 1, days: 8, hours: 20 },
+        { level: 2, days: 12, hours: 30 },
+        { level: 3, days: 16, hours: 40 },
+        { level: 4, days: 20, hours: 60 },
+        { level: 5, days: 25, hours: 80 }
     ];
     
-    const nextLevelReq = levelReqs.find(r => r.level === currentLevel + 1) || levelReqs[4];
+    // Get requirements for current level (or level 0 if not set)
+    const currentLevelReq = levelReqs.find(r => r.level === currentLevel) || levelReqs[0];
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${nextLevelReq.days} days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${nextLevelReq.hours} hrs`;
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${currentLevelReq.days} days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${currentLevelReq.hours} hrs`;
     
-    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
-    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
+    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / currentLevelReq.days) * 100)}%`;
+    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / currentLevelReq.hours) * 100)}%`;
     
     // Revenue Streams - only update elements that exist
     const diamondUSD = (myData.diamonds || 0) * 0.005;
@@ -935,92 +949,81 @@ let detailedRewardsData = {};
 function updateAwards() {
     console.log('DEBUG - updateAwards called for:', myData.username);
     
-    // NEW: Show only ACTIVE (unclaimed) rewards
-    // Column G = Available, Column H = Cashed
-    const available = myData.rewards?.available || 0;
-    const cashed = myData.rewards?.cashed || 0;
-    const unclaimed = available - cashed;
+    // Show LAST 5 rewards (regardless of status)
+    let awards = [];
     
-    console.log('DEBUG - Available:', available, 'Cashed:', cashed, 'Unclaimed:', unclaimed);
-    
-    let awardsHtml = '';
-    
-    if (unclaimed > 0) {
-        // Show active rewards
-        awardsHtml = `
-            <div class="award-item active-reward">
-                <div class="award-icon">🎁</div>
-                <div class="award-content">
-                    <div class="award-title">Unclaimed Rewards Available</div>
-                    <div class="award-date">Contact your manager to claim</div>
-                </div>
-                <div class="award-amount">${formatNumber(unclaimed)} pts</div>
-            </div>
-        `;
+    // Use detailed rewards from rewards-history.csv if available
+    const username = myData.username?.toLowerCase();
+    if (detailedRewardsData && username && detailedRewardsData[username]) {
+        console.log('DEBUG - Found detailed rewards for creator:', username);
+        const myDetailedRewards = detailedRewardsData[username];
+        
+        // Take the LAST 5 rewards (most recent)
+        const last5Rewards = myDetailedRewards.slice(-5);
+        
+        awards = last5Rewards.map(r => ({
+            icon: r.icon || '🏆',
+            title: `${r.type}`,
+            date: r.date,
+            amount: r.amount
+        }));
+        
+        console.log('DEBUG - Using last 5 detailed rewards:', awards.length);
     } else {
-        // FUN EMPTY STATE - No rewards available
-        const emptyStates = [
-            {
-                icon: '🎯',
-                title: 'On the Grind!',
-                subtitle: 'Stream consistently to unlock rewards',
-                color: '#ff0044'
-            },
-            {
-                icon: '🔥',
-                title: 'Keep the Fire Burning!',
-                subtitle: 'Your next reward is just around the corner',
-                color: '#ff6b00'
-            },
-            {
-                icon: '🚀',
-                title: 'Blast Off Soon!',
-                subtitle: 'Build momentum to earn big',
-                color: '#00d4ff'
-            },
-            {
-                icon: '💎',
-                title: 'Diamonds in the Rough',
-                subtitle: 'Every stream brings you closer to rewards',
-                color: '#00ff88'
-            },
-            {
-                icon: '🎪',
-                title: 'The Show Goes On!',
-                subtitle: 'Entertain your audience and earn',
-                color: '#ffaa00'
+        console.log('DEBUG - No detailed rewards found, using fallback');
+        
+        // Fallback to creatorRewards (old method)
+        const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
+        
+        if (existingRewards && existingRewards.length > 0) {
+            // Take last 5
+            const last5 = existingRewards.slice(-5);
+            awards = last5.map(rewardText => ({
+                icon: '🏆',
+                title: rewardText,
+                date: 'Earned',
+                amount: 'Reward'
+            }));
+        }
+        
+        // Check for last reward from column AQ
+        if (myData.lastReward && myData.lastReward.trim()) {
+            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward));
+            if (!alreadyExists) {
+                awards.unshift({
+                    icon: '🏆',
+                    title: myData.lastReward,
+                    date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
+                    amount: 'Reward'
+                });
+                // Keep only 5
+                if (awards.length > 5) awards = awards.slice(0, 5);
             }
-        ];
-        
-        // Pick a random empty state (changes on each refresh for fun)
-        const randomState = emptyStates[Math.floor(Math.random() * emptyStates.length)];
-        
-        awardsHtml = `
-            <div class="awards-empty-state" style="text-align: center; padding: 30px 20px;">
-                <div class="empty-icon" style="font-size: 48px; margin-bottom: 15px; animation: bounce 2s infinite;">${randomState.icon}</div>
-                <div class="empty-title" style="font-size: 18px; font-weight: 700; color: ${randomState.color}; margin-bottom: 8px;">${randomState.title}</div>
-                <div class="empty-subtitle" style="font-size: 13px; color: #888;">${randomState.subtitle}</div>
-                <div class="empty-progress" style="margin-top: 20px;">
-                    <div style="background: rgba(255,255,255,0.1); height: 6px; border-radius: 3px; overflow: hidden;">
-                        <div style="background: linear-gradient(90deg, ${randomState.color}, transparent); height: 100%; width: ${Math.random() * 40 + 20}%; border-radius: 3px; animation: pulse 2s infinite;"></div>
-                    </div>
-                    <div style="font-size: 11px; color: #666; margin-top: 8px;">Progress to next reward</div>
-                </div>
-            </div>
-            <style>
-                @keyframes bounce {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); }
-                }
-                @keyframes pulse {
-                    0%, 100% { opacity: 1; }
-                    50% { opacity: 0.6; }
-                }
-            </style>
-        `;
+        }
     }
     
-    document.getElementById('awardsList').innerHTML = awardsHtml;
+    console.log('DEBUG - Final awards to display:', awards.length);
+    
+    // Default message if no rewards
+    if (awards.length === 0) {
+        awards = [{
+            icon: '⭐',
+            title: 'Keep streaming to earn rewards!',
+            date: '',
+            amount: ''
+        }];
+    }
+    
+    document.getElementById('awardsList').innerHTML = awards.map(a => `
+        <div class="award-item">
+            <div class="award-icon">${a.icon}</div>
+            <div class="award-content">
+                <div class="award-title">${a.title}</div>
+                <div class="award-date">${a.date}</div>
+            </div>
+            <div class="award-amount">${a.amount}</div>
+        </div>
+    `).join('');
 }
 
 // ===== SETTINGS FUNCTIONS =====

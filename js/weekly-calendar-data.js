@@ -103,15 +103,14 @@ function generateRollingCalendar() {
         taboostCampaigns: [
             {
                 name: "",
-                tag: "TABOOST",
+                tag: "SIGN UP on DISCORD",
                 tagLink: "https://discord.gg/Akfwz536BW",
                 status: "",
                 color: "#ff0044"
             }
         ],
         tiktokCampaigns: [
-            { name: "CN Showdown", dates: "Ongoing" },
-            { name: "A Sound Match: LIVE Music", dates: "Ongoing" }
+            { name: "Wish Upon a Beat", dates: "Mar 5-15" }
         ]
     };
 }

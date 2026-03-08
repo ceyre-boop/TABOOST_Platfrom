@@ -812,10 +812,10 @@
 }
 
 .scale-tier {
-    font-size: 9px;
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
     white-space: nowrap;
 }
 
@@ -1507,9 +1507,9 @@
     }
     
     .scale-tier {
-        font-size: 6px;
+        font-size: 10px;
         letter-spacing: 0;
-        max-width: 40px;
+        max-width: 60px;
         overflow: hidden;
         text-overflow: ellipsis;
     }
