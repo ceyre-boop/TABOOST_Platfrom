@@ -237,24 +237,46 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Column AL (Unlocked) for current available, Column AG (Earned) for total
-    const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
+    // Rewards - Calculate from import file (Rewards - Gifted = Available)
+    let totalRewardsEarned = 0;
+    let totalGifted = 0;
     
-    // Column AL (Unlocked) = Current rewards available
-    let currentRewardsAvailable = '0';
-    if (myData.unlocked && myData.unlocked !== '0') {
-        currentRewardsAvailable = myData.unlocked;
-    } else if (earnedValue > 0) {
-        // Fallback to earned if no unlocked value
+    // Calculate from detailed rewards data (import file)
+    const username = myData.username?.toLowerCase();
+    if (detailedRewardsData && username && detailedRewardsData[username]) {
+        const myRewards = detailedRewardsData[username];
+        myRewards.forEach(r => {
+            // Parse Rewards column (remove commas)
+            const rewardAmount = parseInt(r.rewards?.replace(/,/g, '') || 0);
+            const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0);
+            totalRewardsEarned += rewardAmount;
+            totalGifted += giftedAmount;
+        });
+    }
+    
+    // Current Available = Total Rewards - Total Gifted
+    const currentAvailable = totalRewardsEarned - totalGifted;
+    
+    // Fallback to CSV data if no import data
+    const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
+    const csvAvailable = parseInt(myData.unlocked?.replace(/,/g, '') || 0);
+    
+    // Use import calculation if available, otherwise fallback to CSV
+    let currentRewardsAvailable;
+    if (currentAvailable > 0) {
+        currentRewardsAvailable = formatNumberPlain(currentAvailable);
+    } else if (csvAvailable > 0) {
+        currentRewardsAvailable = formatNumberPlain(csvAvailable);
+    } else {
         currentRewardsAvailable = formatNumberPlain(earnedValue);
     }
     
-    // Column AG (Earned) = Total rewards earned
-    const totalEarned = earnedValue || 0;
+    // Total Earned from import file (Rewards column)
+    const totalEarned = totalRewardsEarned > 0 ? totalRewardsEarned : (earnedValue || 0);
     
-    // Top: Current Rewards Available (from Column AQ)
+    // Top: Current Rewards Available
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned (from Column AG)
+    // Bottom: Total Rewards Earned
     document.getElementById('rewardsBreakdown').innerHTML = `
         <span>Total Rewards Earned: ${formatNumberPlain(totalEarned)}</span>
     `;
