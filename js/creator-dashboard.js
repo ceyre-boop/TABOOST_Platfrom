@@ -243,15 +243,22 @@ function updateStats() {
     
     // Calculate from detailed rewards data (import file)
     const username = myData.username?.toLowerCase();
+    console.log('DEBUG - Rewards calc for:', username);
+    console.log('DEBUG - detailedRewardsData:', detailedRewardsData ? 'loaded' : 'not loaded');
+    
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
+        console.log('DEBUG - Found', myRewards.length, 'rewards for', username);
         myRewards.forEach(r => {
-            // Parse Rewards column (remove commas)
-            const rewardAmount = parseInt(r.rewards?.replace(/,/g, '') || 0);
+            // Parse Amount (Rewards) column and Gifted column (remove commas)
+            const rewardAmount = parseInt(r.amount?.replace(/,/g, '') || 0);
             const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0);
             totalRewardsEarned += rewardAmount;
             totalGifted += giftedAmount;
+            console.log('DEBUG - Reward:', r.amount, 'Gifted:', r.gifted, 'Running total:', totalRewardsEarned, totalGifted);
         });
+    } else {
+        console.log('DEBUG - No rewards data found for:', username);
     }
     
     // Current Available = Total Rewards - Total Gifted
@@ -432,6 +439,7 @@ async function loadDetailedRewards() {
                 date: date,
                 points: points,
                 amount: rewards,
+                gifted: values[7]?.trim(), // Gifted column
                 icon: type.includes('Rumble') ? '🥊' : type.includes('Match') ? '🎵' : '🏆'
             });
         }
