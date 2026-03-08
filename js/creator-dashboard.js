@@ -265,11 +265,9 @@ function updateStats() {
         console.log('DEBUG - No rewards data found. Available creators:', Object.keys(detailedRewardsData || {}).slice(0, 10));
     }
     
-    // Current Available = Column G total - Column H total (can be negative)
-    const currentAvailable = importRewardsTotal - importGiftedTotal;
-    const currentRewardsAvailable = currentAvailable >= 0 
-        ? formatNumberPlain(currentAvailable)
-        : '-' + formatNumberPlain(Math.abs(currentAvailable));
+    // Current Available = Column G total - Column H total (minimum 0)
+    const currentAvailable = Math.max(0, importRewardsTotal - importGiftedTotal);
+    const currentRewardsAvailable = formatNumberPlain(currentAvailable);
     
     // Total Earned = Column G total from import
     const totalEarned = importRewardsTotal > 0 
