@@ -237,53 +237,46 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Calculate from import file (Rewards - Gifted = Available)
-    let totalRewardsEarned = 0;
-    let totalGifted = 0;
+    // Rewards - Calculate from import file
+    let importRewardsTotal = 0;
+    let importGiftedTotal = 0;
     
     // Calculate from detailed rewards data (import file)
     const username = myData.username?.toLowerCase();
-    console.log('DEBUG - Rewards calc for:', username);
-    console.log('DEBUG - detailedRewardsData:', detailedRewardsData ? 'loaded' : 'not loaded');
     
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myRewards = detailedRewardsData[username];
-        console.log('DEBUG - Found', myRewards.length, 'rewards for', username);
         myRewards.forEach(r => {
-            // Parse Amount (Rewards) column and Gifted column (remove commas)
+            // Parse Rewards column (amount) and Gifted column (remove commas)
             const rewardAmount = parseInt(r.amount?.replace(/,/g, '') || 0);
             const giftedAmount = parseInt(r.gifted?.replace(/,/g, '') || 0);
-            totalRewardsEarned += rewardAmount;
-            totalGifted += giftedAmount;
-            console.log('DEBUG - Reward:', r.amount, 'Gifted:', r.gifted, 'Running total:', totalRewardsEarned, totalGifted);
+            importRewardsTotal += rewardAmount;
+            importGiftedTotal += giftedAmount;
         });
-    } else {
-        console.log('DEBUG - No rewards data found for:', username);
     }
     
-    // Current Available = Total Rewards - Total Gifted
-    const currentAvailable = totalRewardsEarned - totalGifted;
-    
-    // Fallback to CSV data if no import data
+    // Get CSV data for fallback/comparison
     const earnedValue = myData.rewards && myData.rewards.earned ? myData.rewards.earned : 0;
-    const csvAvailable = parseInt(myData.unlocked?.replace(/,/g, '') || 0);
     
-    // Use import calculation if available, otherwise fallback to CSV
+    // Current Rewards Available = Import Rewards - Import Gifted (what's actually available)
+    const currentAvailable = importRewardsTotal - importGiftedTotal;
+    
+    // Use import calculation if we have data, otherwise fallback to CSV
     let currentRewardsAvailable;
-    if (currentAvailable > 0) {
-        currentRewardsAvailable = formatNumberPlain(currentAvailable);
-    } else if (csvAvailable > 0) {
-        currentRewardsAvailable = formatNumberPlain(csvAvailable);
+    if (importRewardsTotal > 0) {
+        currentRewardsAvailable = formatNumberPlain(currentAvailable > 0 ? currentAvailable : 0);
     } else {
-        currentRewardsAvailable = formatNumberPlain(earnedValue);
+        // Fallback to CSV Column AL (unlocked) if no import data
+        const csvUnlocked = parseInt(myData.unlocked?.replace(/,/g, '') || 0);
+        currentRewardsAvailable = formatNumberPlain(csvUnlocked > 0 ? csvUnlocked : earnedValue);
     }
     
-    // Total Earned from import file (Rewards column)
-    const totalEarned = totalRewardsEarned > 0 ? totalRewardsEarned : (earnedValue || 0);
+    // Total Rewards Earned = lifetime total from main CSV (column AG)
+    const totalEarned = earnedValue || 0;
     
-    // Top: Current Rewards Available
+    // Top: Current Rewards Available (from import file)
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    // Bottom: Total Rewards Earned
+    // Bottom: Total Rewards Earned (from main CSV)
     document.getElementById('rewardsBreakdown').innerHTML = `
         <span>Total Rewards Earned: ${formatNumberPlain(totalEarned)}</span>
     `;
