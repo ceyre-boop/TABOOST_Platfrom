@@ -339,7 +339,7 @@ function updateGoals() {
             name: 'Diamonds Target',
             icon: 'fa-gem',
             current: myData.diamonds || 0,
-            target: (myData.diamondsLastMonth || 0) * 1.1,
+            target: myData.tierGoal || (myData.diamondsLastMonth || 0) * 1.1,
             unit: ''
         }
     ];
