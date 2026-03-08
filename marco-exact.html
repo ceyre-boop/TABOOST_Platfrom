@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TABOOST Command Center</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
+iframe { width: 100%; height: 100%; border: none; }
+.loading {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: #080808; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; z-index: 100;
+  color: #fff; font-family: sans-serif;
+}
+.spinner {
+  width: 50px; height: 50px; border: 3px solid #333;
+  border-top-color: #ff0044; border-radius: 50%;
+  animation: spin 1s linear infinite; margin-bottom: 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.hidden { display: none !important; }
+</style>
+</head>
+<body>
+<div class="loading" id="loader">
+  <div class="spinner"></div>
+  <div>Loading Command Center...</div>
+</div>
+<iframe 
+  src="https://cloud.uibakery.io/share/dDit1exVyZ" 
+  allow="fullscreen"
+  onload="document.getElementById('loader').classList.add('hidden')">
+</iframe>
+</body>
+</html>
