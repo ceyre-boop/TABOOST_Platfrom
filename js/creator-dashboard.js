@@ -973,71 +973,40 @@ let detailedRewardsData = {};
 function updateAwards() {
     console.log('DEBUG - updateAwards called for:', myData.username);
     
-    // Show LAST 5 rewards (regardless of status)
     let awards = [];
-    
-    // Use detailed rewards from rewards-history.csv if available
     const username = myData.username?.toLowerCase();
+    
+    // Use detailed rewards from rewards-history.csv - show ALL
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         console.log('DEBUG - Found detailed rewards for creator:', username);
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Take the LAST 5 rewards (most recent)
-        const last5Rewards = myDetailedRewards.slice(-5);
+        // Show ALL rewards (including negatives), sorted by date (newest first)
+        const sortedRewards = [...myDetailedRewards].reverse(); // Newest first
         
-        awards = last5Rewards.map(r => ({
-            icon: r.icon || '🏆',
-            title: `${r.type}`,
-            date: r.date,
-            amount: r.amount
-        }));
+        awards = sortedRewards.map(r => {
+            // Calculate net: Rewards - Gifted (can be negative)
+            const rewardsVal = parseInt(r.rewards?.replace(/,/g, '') || 0) || 0;
+            const giftedVal = parseInt(r.gifted?.replace(/,/g, '') || 0) || 0;
+            const netAmount = rewardsVal - giftedVal;
+            
+            // Format amount (show negative if net is negative)
+            const formattedAmount = netAmount !== 0 ? formatNumberPlain(Math.abs(netAmount)) : '';
+            const prefix = netAmount < 0 ? '-' : '';
+            
+            return {
+                icon: r.icon || '🏆',
+                title: r.type,
+                date: r.date,
+                amount: prefix + formattedAmount,
+                rawAmount: netAmount,
+                rewards: r.rewards,
+                gifted: r.gifted
+            };
+        });
         
-        console.log('DEBUG - Using last 5 detailed rewards:', awards.length);
-    } else {
-        console.log('DEBUG - No detailed rewards found, using fallback');
-        
-        // Fallback to creatorRewards (old method)
-        const existingRewards = typeof creatorRewards !== 'undefined' ? creatorRewards[myData.username] : undefined;
-        
-        if (existingRewards && existingRewards.length > 0) {
-            // Take last 5
-            const last5 = existingRewards.slice(-5);
-            awards = last5.map(rewardText => {
-                // Extract amount from reward text (e.g., "20K" from "3/02 Monthly Award 20K")
-                const amountMatch = rewardText.match(/(\d+[KMB]?)/);
-                const amount = amountMatch ? amountMatch[1] : '';
-                // Remove amount from title to avoid duplication
-                const title = rewardText.replace(/\s+\d+[KMB]?$/, '');
-                return {
-                    icon: '🏆',
-                    title: title,
-                    date: 'Earned',
-                    amount: amount
-                };
-            });
-        }
-        
-        // Check for last reward from column AQ
-        if (myData.lastReward && myData.lastReward.trim()) {
-            const alreadyExists = awards.some(a => a.title.includes(myData.lastReward.replace(/\s+\d+[KMB]?$/, '')));
-            if (!alreadyExists) {
-                // Extract amount from lastReward
-                const amountMatch = myData.lastReward.match(/(\d+[KMB]?)/);
-                const amount = amountMatch ? amountMatch[1] : '';
-                const title = myData.lastReward.replace(/\s+\d+[KMB]?$/, '');
-                awards.unshift({
-                    icon: '🏆',
-                    title: title,
-                    date: new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' }),
-                    amount: amount
-                });
-                // Keep only 5
-                if (awards.length > 5) awards = awards.slice(0, 5);
-            }
-        }
+        console.log('DEBUG - Showing all', awards.length, 'rewards');
     }
-    
-    console.log('DEBUG - Final awards to display:', awards.length);
     
     // Default message if no rewards
     if (awards.length === 0) {
@@ -1045,20 +1014,50 @@ function updateAwards() {
             icon: '⭐',
             title: 'Keep streaming to earn rewards!',
             date: '',
-            amount: ''
+            amount: '',
+            rawAmount: 0
         }];
     }
     
-    document.getElementById('awardsList').innerHTML = awards.map(a => `
-        <div class="award-item">
+    // Add summary at the top
+    const totalAvailable = awards.reduce((sum, a) => sum + (a.rawAmount || 0), 0);
+    const summaryHtml = `
+        <div class="award-summary" style="padding: 15px; background: rgba(0,255,136,0.1); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(0,255,136,0.3);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 600;">Total Available</span>
+                <span style="font-size: 20px; font-weight: 800; color: ${totalAvailable >= 0 ? 'var(--success)' : 'var(--taboost-red)'};">
+                    ${totalAvailable >= 0 ? '' : '-'}${formatNumberPlain(Math.abs(totalAvailable))}
+                </span>
+            </div>
+            <div style="font-size: 11px; color: #888; margin-top: 5px;">
+                ${awards.length} transactions (including negatives)
+            </div>
+        </div>
+    `;
+    
+    // Show all rewards in a scrollable list
+    const awardsListHtml = awards.map(a => {
+        const isNegative = (a.rawAmount || 0) < 0;
+        const isZero = (a.rawAmount || 0) === 0;
+        return `
+        <div class="award-item" style="${isNegative ? 'background: rgba(255,0,68,0.1); border-left: 3px solid var(--taboost-red);' : isZero ? 'opacity: 0.6;' : ''}">
             <div class="award-icon">${a.icon}</div>
             <div class="award-content">
                 <div class="award-title">${a.title}</div>
                 <div class="award-date">${a.date}</div>
+                ${a.rewards || a.gifted ? `<div style="font-size: 10px; color: #666; margin-top: 2px;">R: ${a.rewards || '0'} | G: ${a.gifted || '0'}</div>` : ''}
             </div>
-            <div class="award-amount">${a.amount}</div>
+            <div class="award-amount" style="color: ${isNegative ? 'var(--taboost-red)' : isZero ? '#888' : 'var(--gold)'}; font-weight: 700;">
+                ${a.amount || '-'}
+            </div>
         </div>
-    `).join('');
+    `}).join('');
+    
+    document.getElementById('awardsList').innerHTML = summaryHtml + `
+        <div style="max-height: 400px; overflow-y: auto;">
+            ${awardsListHtml}
+        </div>
+    `;
 }
 
 // ===== SETTINGS FUNCTIONS =====

@@ -708,9 +708,25 @@
 }
 
 .award-amount {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 700;
     color: var(--gold);
+}
+
+.award-summary {
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.3);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.award-item {
+    transition: all 0.2s;
+}
+
+.award-item:hover {
+    background: rgba(255,255,255,0.05);
 }
 
 /* Export */
