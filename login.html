@@ -57,7 +57,7 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            let username = document.getElementById('username').value.trim();
+            let username = document.getElementById('username').value.trim().toLowerCase();
             const password = document.getElementById('password').value;
             
             // Strip @ symbol for creators (but not admin email)
@@ -75,8 +75,15 @@
                 return;
             }
             
-            // Creator login - redirect to creator dashboard
-            if (password === 'creator' && cleanUsername.length > 0) {
+            // Get stored passwords (creator-specific)
+            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            const userPassword = storedPasswords[cleanUsername];
+            
+            // Creator login with per-creator password
+            // If no password set yet, use default 'creator' (first login only)
+            const validPassword = userPassword || 'creator';
+            
+            if (password === validPassword && cleanUsername.length > 0) {
                 localStorage.setItem('taboost_user', JSON.stringify({
                     username: cleanUsername,
                     role: 'creator',
@@ -130,6 +137,11 @@
                 avatar: username.charAt(0).toUpperCase(),
                 isNewUser: true
             }));
+            
+            // Save password for this creator
+            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            storedPasswords[username.toLowerCase()] = password;
+            localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
             
             alert('Account created successfully! Welcome to Taboost!');
             window.location.href = 'creator-dashboard.html';

@@ -1295,8 +1295,30 @@ function updatePassword() {
         return;
     }
     
-    // In production, this would verify current password with backend
-    alert('Password updated successfully!');
+    // Get current user
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    const username = user.username?.toLowerCase();
+    
+    if (!username) {
+        alert('Error: User not found');
+        return;
+    }
+    
+    // Get stored passwords
+    const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+    const currentStoredPass = storedPasswords[username] || 'creator';
+    
+    // Verify current password
+    if (currentPass !== currentStoredPass) {
+        alert('Current password is incorrect');
+        return;
+    }
+    
+    // Save new password for this specific creator
+    storedPasswords[username] = newPass;
+    localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
+    
+    alert('Password updated successfully! You will now use your new password to log in.');
     
     // Clear fields
     document.getElementById('settingCurrentPassword').value = '';
