@@ -297,7 +297,7 @@ function updateStats() {
     
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(importGiftedTotal)} | Available: ${currentRewardsAvailable}</span>
+        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(importGiftedTotal)}</span>
     `;
 }
 
