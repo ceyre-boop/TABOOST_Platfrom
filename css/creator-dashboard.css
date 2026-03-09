@@ -778,6 +778,23 @@
     text-align: right;
 }
 
+/* LEDGER FORMAT: +earned -used */
+.award-ledger {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: right;
+    font-family: 'Courier New', monospace;
+}
+
+.ledger-earned {
+    color: var(--success);
+}
+
+.ledger-used {
+    color: var(--taboost-red);
+}
+
 .reward-total {
     color: var(--success);
     font-weight: 600;

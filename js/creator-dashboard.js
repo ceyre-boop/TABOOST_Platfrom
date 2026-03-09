@@ -1095,20 +1095,22 @@ function updateAwards() {
     }
     
     document.getElementById('awardsList').innerHTML = awards.map(a => {
-        const rewardsVal = a.rewards || '0';
-        const giftedVal = a.gifted || '0';
-        const availableVal = a.availableFormatted || '0';
+        const parseNum = (str) => parseInt((str || '0').toString().replace(/,/g, '')) || 0;
+        const rewardsNum = parseNum(a.rewards);
+        const giftedNum = parseNum(a.gifted);
         
-        // Format: "5,000 total / 2,000 used / 3,000 available"
-        let amountDisplay = '';
-        if (rewardsVal && rewardsVal !== '0') {
-            amountDisplay = `<span class="reward-total">${rewardsVal} total</span>`;
-            if (giftedVal && giftedVal !== '0') {
-                amountDisplay += ` <span class="reward-separator">/</span> <span class="reward-used">${giftedVal} used</span>`;
-            }
-            if (a.hasAvailable) {
-                amountDisplay += ` <span class="reward-separator">/</span> <span class="reward-available">${availableVal} available</span>`;
-            }
+        // LEDGER FORMAT: Show earned (+) and used (-) as separate line items
+        let ledgerDisplay = '';
+        
+        // Show reward earned (positive)
+        if (rewardsNum > 0) {
+            ledgerDisplay += `<span class="ledger-earned">+${formatNumberPlain(rewardsNum)}</span>`;
+        }
+        
+        // Show gifted/used (negative) if any
+        if (giftedNum > 0) {
+            if (ledgerDisplay) ledgerDisplay += ' ';
+            ledgerDisplay += `<span class="ledger-used">-${formatNumberPlain(giftedNum)}</span>`;
         }
         
         // Make event title clickable if Discord link exists
@@ -1124,8 +1126,8 @@ function updateAwards() {
                 ${titleDisplay}
                 <div class="award-date">${a.date}</div>
             </div>
-            <div class="award-amount-compact">
-                ${amountDisplay || '-'}
+            <div class="award-ledger">
+                ${ledgerDisplay || '-'}
             </div>
         </div>
     `}).join('');
