@@ -279,58 +279,22 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Calculate from import file (Column G - Column H)
-    let importRewardsTotal = 0;
-    let importGiftedTotal = 0;
-    let rowCount = 0;
+    // Rewards - Use pre-calculated values from data (Column AJ = unlocked/available)
+    // Marco confirmed: Use the 'unlocked' field directly from CSV column AJ
+    const currentAvailable = parseInt((myData.unlocked || '0').toString().replace(/,/g, '')) || 0;
+    const totalEarned = myData.earned || 0;
+    const totalGifted = myData.gifted || 0;
     
-    const username = myData.username?.toLowerCase();
-    console.log('DEBUG - Calculating rewards for:', username);
-    console.log('DEBUG - detailedRewardsData loaded:', detailedRewardsData ? 'YES' : 'NO');
+    console.log('REWARDS DATA for', myData.username);
+    console.log('  Column AJ (Available/Unlocked):', currentAvailable);
+    console.log('  Earned:', totalEarned);
+    console.log('  Gifted:', totalGifted);
     
-    if (detailedRewardsData && username && detailedRewardsData[username]) {
-        const myRewards = detailedRewardsData[username];
-        rowCount = myRewards.length;
-        console.log('DEBUG - Found', rowCount, 'records for', username);
-        
-        myRewards.forEach((r, idx) => {
-            // Clean and parse values
-            const rewardsRaw = (r.rewards || '0').toString().replace(/,/g, '').trim();
-            const giftedRaw = (r.gifted || '0').toString().replace(/,/g, '').trim();
-            
-            const rewardAmount = parseInt(rewardsRaw) || 0;
-            const giftedAmount = parseInt(giftedRaw) || 0;
-            
-            // Only count positive values
-            if (rewardAmount > 0) importRewardsTotal += rewardAmount;
-            if (giftedAmount > 0) importGiftedTotal += giftedAmount;
-            
-            // Show ALL rows in console for verification
-            console.log(`Row ${idx}: ${r.type} | Date:${r.date} | G:"${r.rewards}"=${rewardAmount} | H:"${r.gifted}"=${giftedAmount}`);
-        });
-        
-        console.log('CALCULATION SUMMARY for ' + username);
-        console.log('  Total Rows: ' + rowCount);
-        console.log('  Column G (Rewards) Sum: ' + importRewardsTotal);
-        console.log('  Column H (Gifted) Sum: ' + importGiftedTotal);
-        console.log('  Available (G-H): ' + (importRewardsTotal - importGiftedTotal));
-    } else {
-        console.log('DEBUG - No rewards data found for:', username);
-    }
-    
-    // Current Available = Column G total - Column H total (minimum 0, no max)
-    const rawAvailable = importRewardsTotal - importGiftedTotal;
-    const currentAvailable = Math.max(0, rawAvailable);
     const currentRewardsAvailable = formatNumberPlain(currentAvailable);
-    
-    // Total Earned = Column G total from import
-    const totalEarned = importRewardsTotal;
-    
-    console.log('DISPLAY: Available=' + currentRewardsAvailable + ' | Total Earned=' + formatNumberPlain(totalEarned));
     
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(importGiftedTotal)}</span>
+        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalGifted)}</span>
     `;
 }
 
