@@ -172,9 +172,9 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
-            // Goals data - Column AM (Days Goal), Column AN (Hrs Goal), Column W (Tier Goal)
-            daysGoal: parseInt(values[38]) || 7, // Column AM - personalized days goal
-            hoursGoal: parseInt(values[39]) || 15, // Column AN - personalized hours goal
+            // Goals data - Column AM (Days Month), Column AN (Hours Month), Column W (Tier Goal)
+            daysGoal: parseInt(values[38]) || parseInt(getValue('Days Goal')) || 7, // Column AM (Days Month)
+            hoursGoal: parseInt(values[39]) || parseInt(getValue('Hrs Goal')) || 15, // Column AN (Hours Month)
             
             // Labels & links
             rankLabel: getValue('Rank Label'),
