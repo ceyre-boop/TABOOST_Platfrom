@@ -361,6 +361,16 @@ function updateGoals() {
         }
     ];
     
+    // DEBUG: Log goal values
+    console.log('DEBUG Goals:', {
+        daysGoal: myData.daysGoal,
+        hoursGoal: myData.hoursGoal,
+        diamondsCurrent: myData.diamondsCurrent,
+        diamondsGoal: myData.diamondsGoal,
+        diamonds: myData.diamonds
+    });
+    ];
+    
     document.getElementById('goalsGrid').innerHTML = goals.map(g => {
         const pct = Math.min(100, (g.current / g.target) * 100);
         let status = 'at-risk';
