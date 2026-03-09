@@ -466,13 +466,14 @@ let creatorTrends = {};
 // CSV format: CID,TikTok,Type,Date,Plus,Minus
 async function loadDetailedRewards() {
     try {
-        const response = await fetch('data/rewards-history.csv?v=202503091500');
+        const response = await fetch('data/rewards-history.csv?v=202503091516');
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
         const lines = csvText.trim().split('\n');
         
         const rewardsByCreator = {};
+        let rowCount = 0;
         
         // Parse CSV properly handling quoted values with commas
         for (let i = 1; i < lines.length; i++) {
@@ -497,18 +498,21 @@ async function loadDetailedRewards() {
             // Need at least: CID, TikTok, Type, Date, Plus, Minus (6 columns)
             if (values.length < 6) continue;
             
+            // Column A (index 0) = CID
             // Column B (index 1) = TikTok username
             // Column C (index 2) = Type
             // Column D (index 3) = Date
             // Column E (index 4) = Plus (rewards earned)
             // Column F (index 5) = Minus (gifted/cashed in)
-            const username = values[1]?.toLowerCase();
-            const type = values[2] || '';
-            const date = values[3] || '';
-            const plus = values[4] || ''; // Rewards earned
-            const minus = values[5] || ''; // Gifted/cashed in
+            const username = values[1]?.toLowerCase().trim();
+            const type = values[2]?.trim() || '';
+            const date = values[3]?.trim() || '';
+            const plus = values[4]?.trim() || ''; // Rewards earned
+            const minus = values[5]?.trim() || ''; // Gifted/cashed in
             
             if (!username) continue;
+            
+            rowCount++;
             
             if (!rewardsByCreator[username]) {
                 rewardsByCreator[username] = [];
@@ -524,7 +528,8 @@ async function loadDetailedRewards() {
         }
         
         const creatorCount = Object.keys(rewardsByCreator).length;
-        console.log('DEBUG - Loaded rewards for', creatorCount, 'creators from CSV');
+        console.log('DEBUG - Loaded rewards for', creatorCount, 'creators,', rowCount, 'rows from CSV');
+        console.log('DEBUG - Sample creators:', Object.keys(rewardsByCreator).slice(0, 5));
         return rewardsByCreator;
     } catch (e) {
         console.error('Failed to load detailed rewards:', e);
