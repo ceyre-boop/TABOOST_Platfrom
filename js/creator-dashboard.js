@@ -51,6 +51,15 @@ async function initCreatorDashboard(user) {
         console.log('DEBUG - Found by fallback:', myData.username, 'Score:', myData.score, 'creatorId:', myData.creatorId);
     }
     
+    // DEBUG: Log goal values
+    console.log('DEBUG - Goals for', myData.username, ':', 
+        'daysGoal=' + myData.daysGoal, 
+        'hoursGoal=' + myData.hoursGoal, 
+        'tierGoal=' + myData.tierGoal, 
+        'diamondsGoal=' + myData.diamondsGoal,
+        'diamonds=' + myData.diamonds
+    );
+    
     // Store creatorId for internal tracking (never displayed)
     myData._creatorId = myData.creatorId;
     
@@ -322,9 +331,9 @@ function updateActivityStats() {
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hrsGoal || 80)) * 100);
+            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hoursGoal || 15)) * 100);
             hoursFill.style.width = hourPct + '%';
-            hoursGoalText.textContent = (myData.hrsGoal || 80) + 'h';
+            hoursGoalText.textContent = (myData.hoursGoal || 15) + 'h';
         }
     } catch (e) {
         console.log('Activity Stats elements not found (may have been removed):', e.message);
@@ -342,33 +351,33 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysGoal || 25,
+            target: myData.daysGoal || 7,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursGoal || 80,
+            target: myData.hoursGoal || 15,
             unit: 'h'
         },
         {
             name: 'Diamonds Target',
             icon: 'fa-gem',
             current: myData.diamondsCurrent || myData.diamonds || 0,
-            target: myData.diamondsGoal || 0,
+            target: myData.tierGoal || myData.diamondsGoal || 0,
             unit: ''
         }
     ];
     
     // DEBUG: Log goal values
-    console.log('DEBUG Goals:', {
-        daysGoal: myData.daysGoal,
-        hoursGoal: myData.hoursGoal,
-        diamondsCurrent: myData.diamondsCurrent,
-        diamondsGoal: myData.diamondsGoal,
-        diamonds: myData.diamonds
-    });
+    console.log('DEBUG Goals for', myData.username, ':', 
+        'daysGoal=' + myData.daysGoal, 
+        'hoursGoal=' + myData.hoursGoal, 
+        'tierGoal=' + myData.tierGoal, 
+        'diamondsGoal=' + myData.diamondsGoal,
+        'liveStreams=' + myData.liveStreams
+    );
     
     document.getElementById('goalsGrid').innerHTML = goals.map(g => {
         const pct = Math.min(100, (g.current / g.target) * 100);

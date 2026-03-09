@@ -142,7 +142,7 @@ class TaboostDataService {
             _levelRaw: values[4],
             growthPercent: getValue('Growth %'),
             hours: parseFloat(getValue('Hours')) || 0,
-            hrsGoal: parseInt(getValue('Hrs Goal')) || 80,
+            hoursGoal: parseInt(getValue('Hrs Goal')) || 15,
             hoursLeft: parseFloat(getValue('Hours Left')) || 0,
             
             // Activity metrics
@@ -158,9 +158,10 @@ class TaboostDataService {
             tier: parseInt(getValue('Tier') !== '' ? getValue('Tier') : values[21]) ?? 0, // Column V - This Month's Tier (1-10)
             lastMonthTier: parseInt(getValue('Last Month Tier') !== '' ? getValue('Last Month Tier') : values[25]) ?? null, // Column Z - Last Month's Tier
             
-            // Column T = Current Diamonds, Column W = Diamond Goal
+            // Column T = Current Diamonds, Column W = Tier Goal (diamond goal)
             diamondsCurrent: values[19] ? this.formatNumber(values[19]) : 0, // Column T
             diamondsGoal: values[22] ? this.formatNumber(values[22]) : 0, // Column W
+            tierGoal: values[22] ? this.formatNumber(values[22]) : 0, // Column W
             score: parseInt(getValue('Score')) || 0,
             _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),
@@ -171,9 +172,9 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
-            // Goals data - columns AM, AN
-            daysGoal: parseInt(getValue('Days Goal')) || 25,
-            hoursGoal: parseInt(getValue('Hrs Goal')) || 80,
+            // Goals data - Column O (Days Goal), Column R (Hrs Goal), Column W (Tier Goal)
+            daysGoal: parseInt(getValue('Days Goal')) || 7,
+            hoursGoal: parseInt(getValue('Hrs Goal')) || 15,
             
             // Labels & links
             rankLabel: getValue('Rank Label'),
@@ -242,6 +243,7 @@ class TaboostDataService {
                 manager: c.agent || 'Unassigned',
                 status: 'Active',
                 validLiveDays: c.days,
+                liveStreams: c.days,
                 hours: c.hours,
                 diamonds: c.diamonds,
                 tier: c.tier,
@@ -250,8 +252,10 @@ class TaboostDataService {
                 tierStatus: c.tierStatus,
                 growthPercent: 0,
                 growthDirection: '',
-                daysGoal: c.daysGoal || 25,
-                hoursGoal: c.hoursGoal || 80,
+                daysGoal: c.daysGoal || 7,
+                hoursGoal: c.hoursGoal || 15,
+                tierGoal: c.tierGoal || c.diamondsGoal || 3000000,
+                diamondsGoal: c.tierGoal || c.diamondsGoal || 3000000,
                 diamondsLastMonth: c.diamondsLastMonth,
                 diamondsTwoMonthsAgo: c.diamondsTwoMonthsAgo,
                 rewards: {
