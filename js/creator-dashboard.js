@@ -184,8 +184,41 @@ function updateProfile(user) {
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
     
-    // Manager pill
-    document.getElementById('managerName').textContent = myData.manager || 'Not assigned';
+    // Manager pill with Discord link
+    const managerName = myData.manager || 'Not assigned';
+    document.getElementById('managerName').textContent = managerName;
+    
+    // Discord links for managers
+    const managerDiscordLinks = {
+        'carrington': 'https://discord.com/users/953826604260417617',
+        'levi': 'https://discord.com/users/463575386010157057',
+        'marco': 'sms:13235787155',  // Marco uses SMS
+        // Add more managers here
+    };
+    
+    const managerKey = managerName.toLowerCase().trim();
+    const managerPill = document.getElementById('managerPill');
+    const managerIcon = managerPill.querySelector('.fa-user-tie');
+    
+    if (managerDiscordLinks[managerKey]) {
+        managerPill.href = managerDiscordLinks[managerKey];
+        managerPill.style.cursor = 'pointer';
+        managerPill.style.opacity = '1';
+        
+        // Update icon based on link type
+        if (managerDiscordLinks[managerKey].startsWith('sms:')) {
+            managerPill.title = 'Text manager via SMS';
+            managerIcon.className = 'fas fa-sms';
+        } else if (managerDiscordLinks[managerKey].includes('discord')) {
+            managerPill.title = 'Message manager on Discord';
+            managerIcon.className = 'fab fa-discord';
+        }
+    } else {
+        managerPill.href = '#';
+        managerPill.style.cursor = 'default';
+        managerPill.style.opacity = '0.7';
+        managerPill.title = 'Manager contact not available';
+    }
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
     // Level: only show if it's a valid number greater than 0
@@ -1011,6 +1044,16 @@ function updateScoreAndLevels() {
 // Global variable to store detailed rewards
 let detailedRewardsData = {};
 
+// Discord channel links for events
+const eventDiscordLinks = {
+    'Royal Rumble': 'https://discord.com/channels/958221101182382130/1376992573020700822',
+    'Music Cypher': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Music Match-Up': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Sunday Knockout': 'https://discord.com/channels/958221101182382130/1396899485992489062',
+    'Stage Takeover': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Monthly Award': 'https://discord.com/channels/958221101182382130/1376985833327951872'
+};
+
 function updateAwards() {
     let awards = [];
     const username = myData.username?.toLowerCase();
@@ -1099,11 +1142,17 @@ function updateAwards() {
             }
         }
         
+        // Make event title clickable if Discord link exists
+        const discordLink = eventDiscordLinks[a.title];
+        const titleDisplay = discordLink 
+            ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${a.title} in Discord">${a.title}</a>`
+            : `<div class="award-title">${a.title}</div>`;
+        
         return `
         <div class="award-item ${a.hasAvailable ? 'has-available' : ''}">
             <div class="award-icon">${a.icon}</div>
             <div class="award-content">
-                <div class="award-title">${a.title}</div>
+                ${titleDisplay}
                 <div class="award-date">${a.date}</div>
             </div>
             <div class="award-amount-compact">

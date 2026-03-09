@@ -120,10 +120,22 @@
     border-radius: 25px;
     font-size: 14px;
     font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.manager-pill:hover {
+    background: rgba(0, 212, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
 }
 
 .manager-pill i {
-    font-size: 12px;
+    font-size: 14px;
+}
+
+.manager-pill[href="#"] {
+    pointer-events: none;
 }
 
 .logout-btn {
@@ -730,6 +742,20 @@
     font-size: 13px;
     font-weight: 600;
     line-height: 1.2;
+}
+
+.award-title-link {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #00d4ff;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.award-title-link:hover {
+    color: #fff;
+    text-decoration: underline;
 }
 
 .award-date {
