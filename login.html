@@ -79,6 +79,8 @@
             const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
             const userPassword = storedPasswords[cleanUsername];
             
+            console.log('DEBUG LOGIN:', cleanUsername, 'Stored pass:', userPassword ? '***' : 'none', 'Using:', userPassword || 'creator (default)');
+            
             // Creator login with per-creator password
             // If no password set yet, use default 'creator' (first login only)
             const validPassword = userPassword || 'creator';

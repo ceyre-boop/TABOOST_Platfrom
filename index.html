@@ -75,8 +75,17 @@
                 return;
             }
             
-            // Creator login - redirect to creator dashboard
-            if (password === 'creator' && cleanUsername.length > 0) {
+            // Get stored passwords (creator-specific)
+            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            const userPassword = storedPasswords[cleanUsername];
+            
+            console.log('DEBUG LOGIN:', cleanUsername, 'Stored pass:', userPassword ? '***' : 'none', 'Using:', userPassword || 'creator (default)');
+            
+            // Creator login with per-creator password
+            // If no password set yet, use default 'creator' (first login only)
+            const validPassword = userPassword || 'creator';
+            
+            if (password === validPassword && cleanUsername.length > 0) {
                 localStorage.setItem('taboost_user', JSON.stringify({
                     username: cleanUsername,
                     role: 'creator',
@@ -131,6 +140,11 @@
                 isNewUser: true
             }));
             
+            // Save password for this creator
+            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            storedPasswords[username.toLowerCase()] = password;
+            localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
+            
             alert('Account created successfully! Welcome to Taboost!');
             window.location.href = 'creator-dashboard.html';
         });
@@ -172,7 +186,7 @@
                     <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Password</label>
                     <div style="position: relative;">
                         <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="password" id="signupPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="GÇóGÇóGÇóGÇóGÇóGÇóGÇóGÇó">
+                        <input type="password" id="signupPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½">
                     </div>
                     <p style="color: #666; font-size: 0.75rem; margin: 5px 0 0 0;">Min 8 characters</p>
                 </div>
@@ -181,7 +195,7 @@
                     <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Confirm Password</label>
                     <div style="position: relative;">
                         <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="password" id="signupConfirmPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="GÇóGÇóGÇóGÇóGÇóGÇóGÇóGÇó">
+                        <input type="password" id="signupConfirmPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½Gï¿½ï¿½">
                     </div>
                 </div>
                 
