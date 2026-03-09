@@ -284,13 +284,15 @@ function updateStats() {
     const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
     const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
     const totalEarned = myData.earned || 0;
-    const totalGifted = myData.gifted || 0;
+    
+    // Calculate Used: Total Earned - Current Available (AJ)
+    const totalUsed = totalEarned - currentAvailable;
     
     console.log('REWARDS DATA for', myData.username);
     console.log('  Column AJ (Unlocked) Raw:', myData.unlocked);
     console.log('  Column AJ Parsed:', currentAvailable);
     console.log('  Earned:', totalEarned);
-    console.log('  Gifted:', totalGifted);
+    console.log('  Used (calculated):', totalUsed);
     
     // Format with sign if negative
     const currentRewardsAvailable = currentAvailable < 0 
@@ -299,7 +301,7 @@ function updateStats() {
     
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalGifted)}</span>
+        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>
     `;
 }
 
