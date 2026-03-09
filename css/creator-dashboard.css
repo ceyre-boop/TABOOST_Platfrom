@@ -795,6 +795,24 @@
     color: var(--taboost-red);
 }
 
+/* Ledger row styling */
+.award-item.ledger-earned {
+    border-left: 2px solid var(--success);
+}
+
+.award-item.ledger-used {
+    border-left: 2px solid var(--taboost-red);
+    opacity: 0.85;
+}
+
+.award-ledger.ledger-earned {
+    color: var(--success);
+}
+
+.award-ledger.ledger-used {
+    color: var(--taboost-red);
+}
+
 .reward-total {
     color: var(--success);
     font-weight: 600;
