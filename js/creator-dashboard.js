@@ -369,7 +369,6 @@ function updateGoals() {
         diamondsGoal: myData.diamondsGoal,
         diamonds: myData.diamonds
     });
-    ];
     
     document.getElementById('goalsGrid').innerHTML = goals.map(g => {
         const pct = Math.min(100, (g.current / g.target) * 100);
