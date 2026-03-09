@@ -1072,10 +1072,10 @@ let detailedRewardsData = {};
 
 // Discord channel links for events
 const eventDiscordLinks = {
-    'Royal Rumble': 'https://discord.com/channels/958221101182382130/1376992573020700822',
+    'Royal Rumble': 'https://discord.com/channels/958221101182382130/1088940490847690762',
     'Music Cypher': 'https://discord.com/channels/958221101182382130/1376985833327951872',
     'Music Match-Up': 'https://discord.com/channels/958221101182382130/1376985833327951872',
-    'Sunday Knockout': 'https://discord.com/channels/958221101182382130/1396899485992489062',
+    'Sunday Knockout': 'https://discord.com/channels/958221101182382130/1088940490847690762',
     'Stage Takeover': 'https://discord.com/channels/958221101182382130/1376985833327951872',
     'Monthly Award': 'https://discord.com/channels/958221101182382130/1376985833327951872'
 };
