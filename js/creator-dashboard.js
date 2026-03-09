@@ -1085,8 +1085,10 @@ function updateAwards() {
     const ledgerRows = [];
     
     // Use detailed rewards from rewards-history.csv
-    // FORMAT: Show last 5 unique reward events
-    // When both +Plus and -Minus exist, show on SAME row: +GREEN / -RED
+    // LEDGER FORMAT: Last 5 reward events
+    // Each +Plus = separate GREEN row
+    // Each -Minus = separate RED row
+    // One event with both = 2 rows (can show more than 5 rows total)
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
@@ -1125,7 +1127,7 @@ function updateAwards() {
         // Take last 5 unique events
         const recentEvents = events.slice(0, 5);
         
-        // Build rows - show +Plus and -Minus on SAME row when both exist
+        // Build LEDGER rows - SEPARATE row for +Plus and -Minus
         recentEvents.forEach(event => {
             // Make event title clickable if Discord link exists
             const discordLink = eventDiscordLinks[event.type];
@@ -1133,26 +1135,29 @@ function updateAwards() {
                 ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${event.type} in Discord">${event.type}</a>`
                 : `<div class="award-title">${event.type}</div>`;
             
-            // Format amount: show both on same row if both exist
-            let amountDisplay = '';
-            if (event.totalPlus > 0 && event.totalMinus > 0) {
-                // Both exist - show +GREEN / -RED on same line
-                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span> / <span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
-            } else if (event.totalPlus > 0) {
-                // Only Plus
-                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`;
-            } else if (event.totalMinus > 0) {
-                // Only Minus
-                amountDisplay = `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
+            // Add SEPARATE row for Plus (earned) if > 0
+            if (event.totalPlus > 0) {
+                ledgerRows.push({
+                    icon: event.icon,
+                    title: titleDisplay,
+                    date: event.date,
+                    amount: `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`,
+                    type: 'plus',
+                    dateObj: event.dateObj
+                });
             }
             
-            ledgerRows.push({
-                icon: event.icon,
-                title: titleDisplay,
-                date: event.date,
-                amount: amountDisplay,
-                dateObj: event.dateObj
-            });
+            // Add SEPARATE row for Minus (gifted) if > 0
+            if (event.totalMinus > 0) {
+                ledgerRows.push({
+                    icon: event.icon,
+                    title: titleDisplay,
+                    date: event.date,
+                    amount: `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`,
+                    type: 'minus',
+                    dateObj: event.dateObj
+                });
+            }
         });
         
         // Sort all rows by date (newest first)
@@ -1172,15 +1177,15 @@ function updateAwards() {
         return;
     }
     
-    // Display all rows
+    // Display all ledger rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
-        <div class="award-item">
+        <div class="award-item ledger-${row.type}">
             <div class="award-icon">${row.icon}</div>
             <div class="award-content">
                 ${row.title}
                 <div class="award-date">${row.date}</div>
             </div>
-            <div class="award-ledger">
+            <div class="award-ledger ledger-${row.type}">
                 ${row.amount}
             </div>
         </div>
