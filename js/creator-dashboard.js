@@ -406,13 +406,30 @@ async function loadDetailedRewards() {
         
         // Parse CSV properly handling quoted values with commas
         for (let i = 1; i < lines.length; i++) {
-            // Use regex to split CSV line properly (handles "70,000" with commas inside quotes)
-            const values = lines[i].match(/("[^"]*"|[^,]*)/g)?.map(v => v.replace(/^"|"$/g, '').trim()) || [];
-            if (values.length < 6) continue;
+            // Better CSV parsing: handle "70,000" and empty values
+            const line = lines[i];
+            const values = [];
+            let inQuotes = false;
+            let current = '';
+            
+            for (let j = 0; j < line.length; j++) {
+                const char = line[j];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(current.trim().replace(/^"|"$/g, ''));
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            values.push(current.trim().replace(/^"|"$/g, ''));
+            
+            if (values.length < 8) continue;
             
             const username = values[0]?.toLowerCase();
-            const type = values[1];
-            const date = values[2];
+            const type = values[1] || '';
+            const date = values[2] || '';
             
             // Column G (index 6) = Rewards, Column H (index 7) = Gifted
             const rewards = values[6] || '0';
