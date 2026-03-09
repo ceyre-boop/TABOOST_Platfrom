@@ -280,17 +280,22 @@ function updateStats() {
     `;
     
     // Rewards - Use pre-calculated values from data (Column AJ = unlocked/available)
-    // Marco confirmed: Use the 'unlocked' field directly from CSV column AJ
-    const currentAvailable = parseInt((myData.unlocked || '0').toString().replace(/,/g, '')) || 0;
+    // Marco confirmed: Use the 'unlocked' field directly from CSV column AJ - EXACT VALUE even if negative
+    const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
+    const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
     const totalEarned = myData.earned || 0;
     const totalGifted = myData.gifted || 0;
     
     console.log('REWARDS DATA for', myData.username);
-    console.log('  Column AJ (Available/Unlocked):', currentAvailable);
+    console.log('  Column AJ (Unlocked) Raw:', myData.unlocked);
+    console.log('  Column AJ Parsed:', currentAvailable);
     console.log('  Earned:', totalEarned);
     console.log('  Gifted:', totalGifted);
     
-    const currentRewardsAvailable = formatNumberPlain(currentAvailable);
+    // Format with sign if negative
+    const currentRewardsAvailable = currentAvailable < 0 
+        ? '-' + formatNumberPlain(Math.abs(currentAvailable))
+        : formatNumberPlain(currentAvailable);
     
     document.getElementById('totalRewards').textContent = currentRewardsAvailable;
     document.getElementById('rewardsBreakdown').innerHTML = `
