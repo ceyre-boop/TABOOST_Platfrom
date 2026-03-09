@@ -499,6 +499,12 @@
     color: var(--taboost-red);
 }
 
+.goal-status.excelling {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--success);
+    font-weight: 700;
+}
+
 .goal-progress-bar {
     height: 8px;
     background: rgba(255,255,255,0.1);
@@ -516,6 +522,7 @@
 .goal-progress-fill.on-track { background: var(--success); }
 .goal-progress-fill.behind { background: var(--warning); }
 .goal-progress-fill.at-risk { background: var(--taboost-red); }
+.goal-progress-fill.excelling { background: var(--success); }
 
 .goal-numbers {
     display: flex;

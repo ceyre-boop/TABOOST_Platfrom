@@ -360,10 +360,15 @@ function updateActivityStats() {
 }
 
 function updateGoals() {
-    const daysInMonth = 30;
-    const today = new Date().getDate();
+    // Calculate time-based pace
+    const now = new Date();
+    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const today = now.getDate();
+    const daysElapsed = today; // Day 1 = 1 day elapsed
     const daysLeft = daysInMonth - today;
-    document.getElementById('daysRemaining').textContent = daysLeft + ' days left in month';
+    const timeElapsedPct = daysElapsed / daysInMonth; // 0.0 to 1.0
+    
+    document.getElementById('daysRemaining').textContent = `${daysLeft} days left in month (${daysElapsed}/${daysInMonth})`;
     
     const goals = [
         {
@@ -395,15 +400,40 @@ function updateGoals() {
         'hoursGoal=' + myData.hoursGoal, 
         'tierGoal=' + myData.tierGoal, 
         'diamondsGoal=' + myData.diamondsGoal,
-        'liveStreams=' + myData.liveStreams
+        'liveStreams=' + myData.liveStreams,
+        'timeElapsed=' + (timeElapsedPct * 100).toFixed(1) + '%'
     );
     
     document.getElementById('goalsGrid').innerHTML = goals.map(g => {
         const pct = Math.min(100, (g.current / g.target) * 100);
-        let status = 'at-risk';
-        if (pct >= 100) status = 'on-track';
-        else if (pct >= 60) status = 'on-track';
-        else if (pct >= 40) status = 'behind';
+        
+        // Calculate pace status based on time elapsed
+        // Expected progress = target * timeElapsedPct
+        const expectedProgress = g.target * timeElapsedPct;
+        const pacePct = expectedProgress > 0 ? (g.current / expectedProgress) * 100 : 100;
+        
+        // Determine status based on pace (not just total)
+        let status = 'behind';
+        let paceLabel = 'Behind pace';
+        if (pacePct >= 100) {
+            status = 'excelling';
+            paceLabel = pacePct >= 150 ? 'Crushing it! 🚀' : 'On pace';
+        } else if (pacePct >= 80) {
+            status = 'on-track';
+            paceLabel = 'Close to pace';
+        } else if (pacePct >= 50) {
+            status = 'behind';
+            paceLabel = 'Behind pace';
+        } else {
+            status = 'at-risk';
+            paceLabel = 'Way behind';
+        }
+        
+        // If already at 100% of goal, always show as on-track/excelling
+        if (pct >= 100) {
+            status = 'excelling';
+            paceLabel = 'Goal complete! 🎉';
+        }
         
         return `
             <div class="goal-card">
@@ -412,14 +442,17 @@ function updateGoals() {
                         <i class="fas ${g.icon}"></i>
                         <span>${g.name}</span>
                     </div>
-                    <span class="goal-status ${status}">${status.replace('-', ' ')}</span>
+                    <span class="goal-status ${status}">${paceLabel}</span>
                 </div>
                 <div class="goal-progress-bar">
                     <div class="goal-progress-fill ${status}" style="width: ${pct}%"></div>
                 </div>
                 <div class="goal-numbers">
                     <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}${g.unit}</span>
-                    <span>${pct.toFixed(0)}%</span>
+                    <span>${pct.toFixed(0)}% complete</span>
+                </div>
+                <div class="goal-pace" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
+                    Expected by now: ${formatNumber(expectedProgress)}${g.unit} (${pacePct.toFixed(0)}% of expected)
                 </div>
             </div>
         `;
