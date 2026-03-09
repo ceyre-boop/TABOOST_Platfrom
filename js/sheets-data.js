@@ -258,12 +258,16 @@ class TaboostDataService {
                 diamondsGoal: c.tierGoal || c.diamondsGoal || 3000000,
                 diamondsLastMonth: c.diamondsLastMonth,
                 diamondsTwoMonthsAgo: c.diamondsTwoMonthsAgo,
+                earned: c.earned || 0,
+                gifted: c.gifted || 0,
+                running: c.running || 0,
+                unlocked: c.unlocked || 0,
                 rewards: {
                     earned: c.earned || 0,
-                    gifted: 0,
+                    gifted: c.gifted || 0,
                     bonus: 0,
-                    running: 0,
-                    unlocked: 0
+                    running: c.running || 0,
+                    unlocked: c.unlocked || 0
                 },
                 link: '',
                 lastUpdated: new Date().toISOString()
