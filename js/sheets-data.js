@@ -142,7 +142,7 @@ class TaboostDataService {
             _levelRaw: values[4],
             growthPercent: getValue('Growth %'),
             hours: parseFloat(getValue('Hours')) || 0,
-            hoursGoal: parseInt(getValue('Hrs Goal')) || 15,
+            hoursGoal: parseInt(values[39]) || 15, // Column AN - personalized hours goal
             hoursLeft: parseFloat(getValue('Hours Left')) || 0,
             
             // Activity metrics
@@ -172,9 +172,9 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
-            // Goals data - Column O (Days Goal), Column R (Hrs Goal), Column W (Tier Goal)
-            daysGoal: parseInt(getValue('Days Goal')) || 7,
-            hoursGoal: parseInt(getValue('Hrs Goal')) || 15,
+            // Goals data - Column AM (Days Goal), Column AN (Hrs Goal), Column W (Tier Goal)
+            daysGoal: parseInt(values[38]) || 7, // Column AM - personalized days goal
+            hoursGoal: parseInt(values[39]) || 15, // Column AN - personalized hours goal
             
             // Labels & links
             rankLabel: getValue('Rank Label'),
