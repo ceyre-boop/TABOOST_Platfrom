@@ -1081,14 +1081,16 @@ const eventDiscordLinks = {
 };
 
 function updateAwards() {
+    console.log('🔥 UPDATE_AWARDS_v202503091555 RUNNING');
     const username = myData.username?.toLowerCase();
     const ledgerRows = [];
     
+    console.log('🔥 Checking rewards for:', username);
+    console.log('🔥 detailedRewardsData keys:', Object.keys(detailedRewardsData || {}).slice(0, 5));
+    
     // Use detailed rewards from rewards-history.csv
     // LEDGER FORMAT: Last 5 reward events
-    // Each +Plus = separate GREEN row
-    // Each -Minus = separate RED row
-    // One event with both = 2 rows (can show more than 5 rows total)
+    // SAME row when both + and - exist: +GREEN / -RED
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
