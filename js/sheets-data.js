@@ -157,6 +157,10 @@ class TaboostDataService {
             status: getValue('Status'),
             tier: parseInt(getValue('Tier') !== '' ? getValue('Tier') : values[21]) ?? 0, // Column V - This Month's Tier (1-10)
             lastMonthTier: parseInt(getValue('Last Month Tier') !== '' ? getValue('Last Month Tier') : values[25]) ?? null, // Column Z - Last Month's Tier
+            
+            // Column T = Current Diamonds, Column W = Diamond Goal
+            diamondsCurrent: values[19] ? this.formatNumber(values[19]) : 0, // Column T
+            diamondsGoal: values[22] ? this.formatNumber(values[22]) : 0, // Column W
             score: parseInt(getValue('Score')) || 0,
             _scoreDebug: getValue('Score'),
             graduationLeft: getValue('Grad Left'),

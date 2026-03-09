@@ -342,21 +342,21 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.tierGoal || 25,
+            target: myData.daysGoal || 25,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.unlocked || 80,
+            target: myData.hoursGoal || 80,
             unit: 'h'
         },
         {
             name: 'Diamonds Target',
             icon: 'fa-gem',
-            current: myData.tier || 0,
-            target: myData.lastMonthTier || 0,
+            current: myData.diamondsCurrent || myData.diamonds || 0,
+            target: myData.diamondsGoal || 0,
             unit: ''
         }
     ];
