@@ -433,7 +433,9 @@ async function loadDetailedRewards() {
             });
         }
         
-        console.log('DEBUG - Loaded rewards for', Object.keys(rewardsByCreator).length, 'creators');
+        const creatorCount = Object.keys(rewardsByCreator).length;
+        console.log('DEBUG - Loaded rewards for', creatorCount, 'creators from CSV');
+        console.log('DEBUG - Sample creators:', Object.keys(rewardsByCreator).slice(0, 5));
         return rewardsByCreator;
     } catch (e) {
         console.error('Failed to load detailed rewards:', e);
