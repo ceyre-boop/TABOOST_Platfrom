@@ -80,7 +80,7 @@ const COLS = {
   daysMonth: getColIndex('Days Month'),    // Column AM
   hoursMonth: getColIndex('Hours Month'),  // Column AN
   link: getColIndex('Link'),               // Column AO
-  badge50k: getColIndex('50k Award')       // Column AP - 50k earned badge
+  badge50k: getColIndex('50k (earned in current month)')       // Column AP - 50k earned in current month
 };
 
 console.log('Column mapping:', COLS);

@@ -27,9 +27,10 @@
    - Admin password reset functionality
    - No more shared "creator" password issues
 
-6. ✅ **50k Award Badge Support**
+6. ✅ **50k (earned in current month) Badge Support**
    - Column AO mapping ready
-   - Will activate when column is added to sheet
+   - Shows creators who earned 50k+ in current month
+   - Replaces 'Reward King 100K+ diamonds'
 
 ### Data Files Updated:
 - `data/creators_full.json` (805 creators)
