@@ -353,10 +353,19 @@
         }
         
         function updateGoals() {
+            // DEBUG: Log goal data
+            console.log('DEBUG Goals for', myData.username, ':', 
+                'daysGoal=' + myData.daysGoal, 
+                'hoursGoal=' + myData.hoursGoal, 
+                'tierGoal=' + myData.tierGoal, 
+                'diamondsGoal=' + myData.diamondsGoal,
+                'liveStreams=' + myData.liveStreams
+            );
+            
             const goals = [
-                { name: 'Hours Goal', current: myData.hours || 0, target: myData.hrsGoal || 80, unit: 'h' },
-                { name: 'Diamonds Target', current: myData.diamonds || 0, target: (myData.diamondsLastMonth || 0) * 1.1, unit: '' },
-                { name: 'Streaming Days', current: myData.liveStreams || 0, target: 25, unit: ' days' }
+                { name: 'Hours Goal', current: myData.hours || 0, target: myData.hoursGoal || 15, unit: 'h' },
+                { name: 'Diamonds Target', current: myData.diamonds || 0, target: myData.tierGoal || myData.diamondsGoal || 0, unit: '' },
+                { name: 'Streaming Days', current: myData.liveStreams || 0, target: myData.daysGoal || 7, unit: ' days' }
             ];
             
             document.getElementById('goalProgressList').innerHTML = goals.map(g => {

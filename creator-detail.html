@@ -636,6 +636,16 @@
             document.getElementById('loadingState').style.display = 'none';
             document.getElementById('creatorProfile').style.display = 'block';
 
+            // DEBUG: Log creator data
+            console.log('DEBUG Creator:', creator.username, 
+                'daysGoal=' + creator.daysGoal, 
+                'hoursGoal=' + creator.hoursGoal, 
+                'tierGoal=' + creator.tierGoal, 
+                'diamondsGoal=' + creator.diamondsGoal,
+                'liveStreams=' + creator.liveStreams,
+                'validLiveDays=' + creator.validLiveDays
+            );
+
             // Populate profile
             document.getElementById('profileAvatar').textContent = creator.username.charAt(0).toUpperCase();
             document.getElementById('rankBadge').textContent = '#' + (creator.rank || creator.displayRank || '--');
@@ -660,10 +670,10 @@
             growthEl.className = 'stat-change ' + (growth.includes('-') ? 'text-danger' : 'text-success');
 
             document.getElementById('hoursValue').textContent = (creator.hours || 0).toFixed(1) + 'h';
-            document.getElementById('hoursGoal').textContent = `Goal: ${creator.hrsGoal || 80}h`;
+            document.getElementById('hoursGoal').textContent = `Goal: ${creator.hoursGoal || 15}h`;
             
             document.getElementById('daysValue').textContent = creator.liveStreams || 0;
-            document.getElementById('dayPace').textContent = creator.dayPace || '--';
+            document.getElementById('dayPace').textContent = `Goal: ${creator.daysGoal || 7} days`;
             
             document.getElementById('scoreValue').textContent = creator.score || '--';
 

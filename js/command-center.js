@@ -296,9 +296,9 @@ function createMiniSparkline(id, creator) {
 // Goal Tracker
 function updateGoalTracker() {
     const goals = commandData
-        .filter(c => c.hrsGoal)
+        .filter(c => c.hoursGoal)
         .map(c => {
-            const percent = Math.min(100, ((c.hours || 0) / c.hrsGoal) * 100);
+            const percent = Math.min(100, ((c.hours || 0) / c.hoursGoal) * 100);
             let status = 'on-track';
             if (percent < 50) status = 'at-risk';
             else if (percent < 80) status = 'behind';
@@ -322,7 +322,7 @@ function updateGoalTracker() {
                 <div class="goal-fill ${g.status}" style="width: ${g.percent}%"></div>
             </div>
             <div class="goal-numbers">
-                <span>${g.hours?.toFixed(1)}h / ${g.hrsGoal}h</span>
+                <span>${g.hours?.toFixed(1)}h / ${g.hoursGoal}h</span>
                 <span>${g.percent.toFixed(0)}%</span>
             </div>
         </div>

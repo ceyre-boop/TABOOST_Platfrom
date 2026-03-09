@@ -38,7 +38,7 @@ const parseFloatNum = (v) => {
   return parseFloat(v.replace(/,/g, '').replace(/"/g, '').replace('%', '')) || 0;
 };
 
-const csv = fs.readFileSync('C:/Users/Admin/.clawdbot/media/inbound/4d1deb82-2a7f-4194-ad7a-375c3c807273.csv', 'utf8');
+const csv = fs.readFileSync('data/live-data-current.csv', 'utf8');
 const lines = csv.trim().split('\n');
 
 // Parse header to get column positions
@@ -48,7 +48,7 @@ const getColIndex = (name) => headers.findIndex(h => h.trim() === name);
 // Column mapping based on user's CSV
 const COLS = {
   host: getColIndex('Host'),
-  username: getColIndex('3/5'),           // Column C - username
+  username: getColIndex('3/8'),           // Column C - username (date column)
   level: getColIndex('Level'),             // Column E
   month: getColIndex('Month'),             // Column F
   discord: getColIndex('Discord'),         // Column G
@@ -56,9 +56,9 @@ const COLS = {
   agent: getColIndex('Agent'),             // Column I
   days: getColIndex('Days'),               // Column M
   dayPace: getColIndex('Day Pace'),        // Column N
-  daysGoal: getColIndex('Days Goal'),      // Column O
+  daysGoal: getColIndex('Days Month'),      // Column AM - personalized days goal
   hours: getColIndex('Hours'),             // Column Q
-  hrsGoal: getColIndex('Hrs Goal'),        // Column R
+  hrsGoal: getColIndex('Hours Month'),     // Column AN - personalized hours goal
   diamonds: getColIndex('💎'),             // Column T
   diamondPace: getColIndex('💎 Pace'),     // Column U
   tier: getColIndex('Tier'),               // Column V
@@ -145,6 +145,9 @@ for (let i = 1; i < lines.length; i++) {
     score: parseNum(score)
   };
   
+  // Diamonds goal comes from Tier Goal column (W)
+  const diamondsGoalValue = parseNum(tierGoal) || (tierNum * 1000000);
+  
   allCreators.push({
     creatorId,
     username,
@@ -162,6 +165,7 @@ for (let i = 1; i < lines.length; i++) {
     diamondPace: parseFloatNum(diamondPace),
     tier: tierNum,
     tierGoal: calculatedTierGoal,
+    diamondsGoal: diamondsGoalValue,  // Column W - Tier Goal = Diamonds Goal
     tierLeft: parseNum(tierLeft),
     tierStatus: tierStatus || '',
     lastMonthTier: parseNum(lastMonthTier),

@@ -317,9 +317,9 @@ function updateActivityStats() {
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hrsGoal || 80)) * 100);
+            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hoursGoal || 15)) * 100);
             hoursFill.style.width = hourPct + '%';
-            hoursGoalText.textContent = (myData.hrsGoal || 80) + 'h';
+            hoursGoalText.textContent = (myData.hoursGoal || 15) + 'h';
         }
     } catch (e) {
         console.log('Activity Stats elements not found (may have been removed):', e.message);
@@ -337,7 +337,7 @@ function updateGoals() {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hrsGoal || 80,
+            target: myData.hoursGoal || 15,
             unit: 'h'
         },
         {
@@ -351,7 +351,7 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.liveStreams || 0,
-            target: 25,
+            target: myData.daysGoal || 7,
             unit: ' days'
         }
     ];
