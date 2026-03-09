@@ -1000,24 +1000,55 @@ function updateAwards() {
     let awards = [];
     const username = myData.username?.toLowerCase();
     
-    // Use detailed rewards from rewards-history.csv - show LAST 5 only
+    // Use detailed rewards from rewards-history.csv - show LAST 5 with available prioritized
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Take LAST 5 rewards (most recent), sorted by date (newest first)
-        const last5 = myDetailedRewards.slice(-5).reverse();
+        // Parse numbers from reward strings (e.g., "5,000" -> 5000)
+        const parseRewardNum = (str) => {
+            if (!str) return 0;
+            return parseInt(str.toString().replace(/,/g, '')) || 0;
+        };
+        
+        // Sort rewards: first by availability (rewards > gifted), then by date (newest first)
+        const sortedRewards = [...myDetailedRewards].sort((a, b) => {
+            const aRewards = parseRewardNum(a.rewards);
+            const aGifted = parseRewardNum(a.gifted);
+            const bRewards = parseRewardNum(b.rewards);
+            const bGifted = parseRewardNum(b.gifted);
+            
+            const aAvailable = aRewards - aGifted;
+            const bAvailable = bRewards - bGifted;
+            
+            // Prioritize rewards with available balance
+            if (aAvailable > 0 && bAvailable <= 0) return -1;
+            if (bAvailable > 0 && aAvailable <= 0) return 1;
+            
+            // Then sort by date (newest first) - assuming data is in chronological order
+            return 0;
+        });
+        
+        // Take LAST 5 rewards (most recent), with available ones prioritized to top
+        const last5 = sortedRewards.slice(-5).reverse();
         
         awards = last5.map(r => {
             // Show Rewards (Column G) and Gifted (Column H) from import file
             const rewardsVal = r.rewards || '0';
             const giftedVal = r.gifted || '0';
+            const rewardsNum = parseRewardNum(rewardsVal);
+            const giftedNum = parseRewardNum(giftedVal);
+            const available = rewardsNum - giftedNum;
+            const hasAvailable = available > 0;
             
             return {
                 icon: r.icon || '🏆',
                 title: r.type,
                 date: r.date,
                 rewards: rewardsVal,
-                gifted: giftedVal
+                gifted: giftedVal,
+                available: available,
+                hasAvailable: hasAvailable,
+                availableFormatted: formatNumberPlain(available)
             };
         });
     }
@@ -1029,16 +1060,17 @@ function updateAwards() {
             title: 'Keep streaming to earn rewards!',
             date: '',
             rewards: '',
-            gifted: ''
+            gifted: '',
+            hasAvailable: false
         }];
     }
     
     document.getElementById('awardsList').innerHTML = awards.map(a => `
-        <div class="award-item">
+        <div class="award-item ${a.hasAvailable ? 'has-available' : ''}">
             <div class="award-icon">${a.icon}</div>
             <div class="award-content">
                 <div class="award-title">${a.title}</div>
-                <div class="award-date">${a.date}</div>
+                <div class="award-date">${a.date}${a.hasAvailable ? ' <span class="available-badge">Available: ' + a.availableFormatted + '</span>' : ''}</div>
             </div>
             <div class="award-amount">
                 ${a.rewards ? `<span style="color: var(--success);">${a.rewards}</span>` : '-'}
