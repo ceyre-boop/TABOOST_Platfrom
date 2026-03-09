@@ -44,7 +44,7 @@ function generateRollingCalendar() {
         },
         {
             id: 3,
-            title: "Royal Rumble",
+            title: "Sunday Knockout",
             type: "live",
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
