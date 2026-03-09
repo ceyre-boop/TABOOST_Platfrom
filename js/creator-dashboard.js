@@ -463,20 +463,19 @@ function updateGoals() {
 let creatorTrends = {};
 
 // Load detailed rewards from rewards-history.csv
+// CSV format: CID,TikTok,Type,Date,Plus,Minus
 async function loadDetailedRewards() {
     try {
-        const response = await fetch('data/rewards-history.csv?v=202503081800');
+        const response = await fetch('data/rewards-history.csv?v=202503091500');
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
         const lines = csvText.trim().split('\n');
-        const headers = lines[0].split(',');
         
         const rewardsByCreator = {};
         
         // Parse CSV properly handling quoted values with commas
         for (let i = 1; i < lines.length; i++) {
-            // Better CSV parsing: handle "70,000" and empty values
             const line = lines[i];
             const values = [];
             let inQuotes = false;
@@ -495,15 +494,19 @@ async function loadDetailedRewards() {
             }
             values.push(current.trim().replace(/^"|"$/g, ''));
             
-            if (values.length < 8) continue;
+            // Need at least: CID, TikTok, Type, Date, Plus, Minus (6 columns)
+            if (values.length < 6) continue;
             
-            const username = values[0]?.toLowerCase();
-            const type = values[1] || '';
-            const date = values[2] || '';
-            
-            // Column G (index 6) = Rewards, Column H (index 7) = Gifted
-            const rewards = values[6] || '0';
-            const gifted = values[7] || '0';
+            // Column B (index 1) = TikTok username
+            // Column C (index 2) = Type
+            // Column D (index 3) = Date
+            // Column E (index 4) = Plus (rewards earned)
+            // Column F (index 5) = Minus (gifted/cashed in)
+            const username = values[1]?.toLowerCase();
+            const type = values[2] || '';
+            const date = values[3] || '';
+            const plus = values[4] || ''; // Rewards earned
+            const minus = values[5] || ''; // Gifted/cashed in
             
             if (!username) continue;
             
@@ -514,20 +517,34 @@ async function loadDetailedRewards() {
             rewardsByCreator[username].push({
                 type: type,
                 date: date,
-                rewards: rewards,
-                gifted: gifted,
-                icon: type.includes('Rumble') ? '🥊' : type.includes('Match') ? '🎵' : '🏆'
+                plus: plus,
+                minus: minus,
+                icon: getRewardIcon(type)
             });
         }
         
         const creatorCount = Object.keys(rewardsByCreator).length;
         console.log('DEBUG - Loaded rewards for', creatorCount, 'creators from CSV');
-        console.log('DEBUG - Sample creators:', Object.keys(rewardsByCreator).slice(0, 5));
         return rewardsByCreator;
     } catch (e) {
         console.error('Failed to load detailed rewards:', e);
         return {};
     }
+}
+
+function getRewardIcon(type) {
+    if (!type) return '🏆';
+    const t = type.toLowerCase();
+    if (t.includes('rumble')) return '🥊';
+    if (t.includes('music') || t.includes('cypher')) return '🎵';
+    if (t.includes('gaming')) return '🎮';
+    if (t.includes('knockout')) return '💥';
+    if (t.includes('award')) return '🏅';
+    if (t.includes('bonus')) return '💰';
+    if (t.includes('gifted')) return '🎁';
+    if (t.includes('rookie')) return '🌟';
+    if (t.includes('takeover')) return '🎤';
+    return '🏆';
 }
 
 async function loadCreatorTrends() {
@@ -1059,120 +1076,103 @@ const eventDiscordLinks = {
 };
 
 function updateAwards() {
-    let awards = [];
     const username = myData.username?.toLowerCase();
+    const ledgerRows = [];
     
-    // Use detailed rewards from rewards-history.csv - prioritize AVAILABLE rewards first
+    // Use detailed rewards from rewards-history.csv
+    // LEDGER FORMAT: Each +Plus and -Minus is a separate row
+    // Show last 5 unique reward events, but can have more rows
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Parse numbers from reward strings (e.g., "5,000" -> 5000)
-        const parseRewardNum = (str) => {
-            if (!str) return 0;
+        // Parse numbers
+        const parseNum = (str) => {
+            if (!str || str === '') return 0;
             return parseInt(str.toString().replace(/,/g, '')) || 0;
         };
         
-        // Process all rewards with availability info
-        const processedRewards = myDetailedRewards.map(r => {
-            const rewardsVal = r.rewards || '0';
-            const giftedVal = r.gifted || '0';
-            const rewardsNum = parseRewardNum(rewardsVal);
-            const giftedNum = parseRewardNum(giftedVal);
-            const available = rewardsNum - giftedNum;
-            const hasAvailable = available > 0;
+        // Group by unique events (type + date combination)
+        const eventMap = new Map();
+        
+        myDetailedRewards.forEach(r => {
+            const eventKey = `${r.type}|${r.date}`;
             
-            return {
-                icon: r.icon || '🏆',
-                title: r.type,
-                date: r.date,
-                rewards: rewardsVal,
-                gifted: giftedVal,
-                available: available,
-                hasAvailable: hasAvailable,
-                availableFormatted: formatNumberPlain(available),
-                // Parse date for sorting (MM/DD/YYYY format)
-                dateObj: new Date(r.date)
-            };
+            if (!eventMap.has(eventKey)) {
+                eventMap.set(eventKey, {
+                    type: r.type,
+                    date: r.date,
+                    dateObj: new Date(r.date),
+                    icon: r.icon || '🏆',
+                    totalPlus: 0,
+                    totalMinus: 0
+                });
+            }
+            
+            const event = eventMap.get(eventKey);
+            event.totalPlus += parseNum(r.plus);
+            event.totalMinus += parseNum(r.minus);
         });
         
-        // Separate into available and used rewards
-        const availableRewards = processedRewards.filter(r => r.hasAvailable);
-        const usedRewards = processedRewards.filter(r => !r.hasAvailable);
+        // Convert to array and sort by date (newest first)
+        const events = Array.from(eventMap.values());
+        events.sort((a, b) => b.dateObj - a.dateObj);
         
-        // Sort each group by date (newest first)
-        availableRewards.sort((a, b) => b.dateObj - a.dateObj);
-        usedRewards.sort((a, b) => b.dateObj - a.dateObj);
+        // Take last 5 unique events
+        const recentEvents = events.slice(0, 5);
         
-        // PRIORITY: Show available rewards first, then fill with most recent used rewards
-        // Take up to 5 available rewards
-        awards = availableRewards.slice(0, 5);
+        // Build ledger rows - separate row for +Plus and -Minus
+        recentEvents.forEach(event => {
+            // Make event title clickable if Discord link exists
+            const discordLink = eventDiscordLinks[event.type];
+            const titleDisplay = discordLink 
+                ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${event.type} in Discord">${event.type}</a>`
+                : `<div class="award-title">${event.type}</div>`;
+            
+            // Add row for Plus (earned) if > 0
+            if (event.totalPlus > 0) {
+                ledgerRows.push({
+                    icon: event.icon,
+                    title: titleDisplay,
+                    date: event.date,
+                    amount: `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`,
+                    type: 'earned',
+                    dateObj: event.dateObj
+                });
+            }
+            
+            // Add row for Minus (gifted/cashed in) if > 0
+            if (event.totalMinus > 0) {
+                ledgerRows.push({
+                    icon: event.icon,
+                    title: titleDisplay,
+                    date: event.date,
+                    amount: `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`,
+                    type: 'used',
+                    dateObj: event.dateObj
+                });
+            }
+        });
         
-        // If we have fewer than 5 available, fill with most recent used rewards
-        if (awards.length < 5) {
-            const remainingSlots = 5 - awards.length;
-            awards = awards.concat(usedRewards.slice(0, remainingSlots));
-        }
-        
-        // Re-sort final list by date (newest first) for display
-        awards.sort((a, b) => b.dateObj - a.dateObj);
+        // Sort all rows by date (newest first)
+        ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
     }
     
     // Default message if no rewards
-    if (awards.length === 0) {
-        awards = [{
-            icon: '⭐',
-            title: 'Keep streaming to earn rewards!',
-            date: '',
-            rewards: '',
-            gifted: '',
-            hasAvailable: false
-        }];
+    if (ledgerRows.length === 0) {
+        document.getElementById('awardsList').innerHTML = `
+            <div class="award-item">
+                <div class="award-icon">⭐</div>
+                <div class="award-content">
+                    <div class="award-title">Keep streaming to earn rewards!</div>
+                </div>
+            </div>
+        `;
+        return;
     }
-    
-    // NEW FORMAT: Show +Rewards (green) and -Gifted (red) on same line when both exist
-    const ledgerRows = [];
-    
-    awards.forEach(a => {
-        const parseNum = (str) => parseInt((str || '0').toString().replace(/,/g, '')) || 0;
-        const rewardsNum = parseNum(a.rewards);
-        const giftedNum = parseNum(a.gifted);
-        
-        // Make event title clickable if Discord link exists
-        const discordLink = eventDiscordLinks[a.title];
-        const titleDisplay = discordLink 
-            ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${a.title} in Discord">${a.title}</a>`
-            : `<div class="award-title">${a.title}</div>`;
-        
-        // Format amount display based on what exists
-        let amountDisplay = '';
-        if (rewardsNum > 0 && giftedNum > 0) {
-            // Both exist - show +GREEN / -RED format
-            amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(rewardsNum)}</span> / <span style="color: var(--danger);">-${formatNumberPlain(giftedNum)}</span>`;
-        } else if (rewardsNum > 0) {
-            // Only rewards
-            amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(rewardsNum)}</span>`;
-        } else if (giftedNum > 0) {
-            // Only gifted
-            amountDisplay = `<span style="color: var(--danger);">-${formatNumberPlain(giftedNum)}</span>`;
-        }
-        
-        ledgerRows.push({
-            icon: a.icon,
-            title: titleDisplay,
-            date: a.date,
-            amount: amountDisplay,
-            type: rewardsNum > 0 && giftedNum > 0 ? 'both' : (rewardsNum > 0 ? 'earned' : 'used'),
-            hasAvailable: a.hasAvailable,
-            dateObj: a.dateObj
-        });
-    });
-    
-    // Sort by date (newest first)
-    ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
     
     // Display all ledger rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
-        <div class="award-item ${row.hasAvailable ? 'has-available' : ''} ledger-${row.type}">
+        <div class="award-item ledger-${row.type}">
             <div class="award-icon">${row.icon}</div>
             <div class="award-content">
                 ${row.title}
