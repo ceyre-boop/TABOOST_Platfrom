@@ -1299,6 +1299,8 @@ function updatePassword() {
     const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
     const username = user.username?.toLowerCase();
     
+    console.log('DEBUG UPDATE PASSWORD - User:', username, 'from myData:', myData?.username);
+    
     if (!username) {
         alert('Error: User not found');
         return;
@@ -1306,10 +1308,13 @@ function updatePassword() {
     
     // Get stored passwords
     const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+    console.log('DEBUG UPDATE PASSWORD - Current stored passwords:', Object.keys(storedPasswords));
+    
     const currentStoredPass = storedPasswords[username] || 'creator';
     
     // Verify current password
     if (currentPass !== currentStoredPass) {
+        console.log('DEBUG UPDATE PASSWORD - Current pass mismatch. Entered:', currentPass, 'Expected:', currentStoredPass === 'creator' ? 'creator' : '***');
         alert('Current password is incorrect');
         return;
     }
@@ -1317,6 +1322,7 @@ function updatePassword() {
     // Save new password for this specific creator
     storedPasswords[username] = newPass;
     localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
+    console.log('DEBUG UPDATE PASSWORD - Saved new password for:', username);
     
     alert('Password updated successfully! You will now use your new password to log in.');
     
