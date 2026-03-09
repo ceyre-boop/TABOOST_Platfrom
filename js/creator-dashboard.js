@@ -255,12 +255,11 @@ function updateStats() {
             importRewardsTotal += rewardAmount;
             importGiftedTotal += giftedAmount;
             
-            if (idx < 3) {
-                console.log(`DEBUG - Row ${idx}: type=${r.type}, rewards=${r.rewards}(${rewardAmount}), gifted=${r.gifted}(${giftedAmount})`);
-            }
+            // Show ALL rows in console
+            console.log(`Row ${idx}: ${r.type} | G:${r.rewards}=${rewardAmount} | H:${r.gifted}=${giftedAmount}`);
         });
         
-        console.log('DEBUG - FINAL: G total=', importRewardsTotal, 'H total=', importGiftedTotal, 'Available=', importRewardsTotal - importGiftedTotal);
+        console.log('FINAL: G total=' + importRewardsTotal + ' | H total=' + importGiftedTotal + ' | Available=' + (importRewardsTotal - importGiftedTotal));
     } else {
         console.log('DEBUG - No rewards data found. Available creators:', Object.keys(detailedRewardsData || {}).slice(0, 10));
     }
