@@ -1065,19 +1065,35 @@ function updateAwards() {
         }];
     }
     
-    document.getElementById('awardsList').innerHTML = awards.map(a => `
+    document.getElementById('awardsList').innerHTML = awards.map(a => {
+        const rewardsVal = a.rewards || '0';
+        const giftedVal = a.gifted || '0';
+        const availableVal = a.availableFormatted || '0';
+        
+        // Format: "5,000 total / 2,000 used / 3,000 available"
+        let amountDisplay = '';
+        if (rewardsVal && rewardsVal !== '0') {
+            amountDisplay = `<span class="reward-total">${rewardsVal} total</span>`;
+            if (giftedVal && giftedVal !== '0') {
+                amountDisplay += ` <span class="reward-separator">/</span> <span class="reward-used">${giftedVal} used</span>`;
+            }
+            if (a.hasAvailable) {
+                amountDisplay += ` <span class="reward-separator">/</span> <span class="reward-available">${availableVal} available</span>`;
+            }
+        }
+        
+        return `
         <div class="award-item ${a.hasAvailable ? 'has-available' : ''}">
             <div class="award-icon">${a.icon}</div>
             <div class="award-content">
                 <div class="award-title">${a.title}</div>
-                <div class="award-date">${a.date}${a.hasAvailable ? ' <span class="available-badge">Available: ' + a.availableFormatted + '</span>' : ''}</div>
+                <div class="award-date">${a.date}</div>
             </div>
-            <div class="award-amount">
-                ${a.rewards ? `<span style="color: var(--success);">${a.rewards}</span>` : '-'}
-                ${a.gifted && a.gifted !== '0' ? `<span style="color: var(--taboost-red); font-size: 11px;"> / ${a.gifted}</span>` : ''}
+            <div class="award-amount-compact">
+                ${amountDisplay || '-'}
             </div>
         </div>
-    `).join('');
+    `}).join('');
 }
 
 // ===== SETTINGS FUNCTIONS =====
