@@ -1092,7 +1092,7 @@ function updateAwards() {
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
-        // Parse numbers
+        // Parse numbers - handle negative values in minus column
         const parseNum = (str) => {
             if (!str || str === '') return 0;
             return parseInt(str.toString().replace(/,/g, '')) || 0;
@@ -1100,6 +1100,10 @@ function updateAwards() {
         
         // Group by unique events (type + date combination)
         const eventMap = new Map();
+        
+        console.log('DEBUG updateAwards - Loading rewards for', username);
+        console.log('DEBUG updateAwards - Raw rewards count:', myDetailedRewards.length);
+        console.log('DEBUG updateAwards - Sample raw data:', myDetailedRewards.slice(0, 3));
         
         myDetailedRewards.forEach(r => {
             const eventKey = `${r.type}|${r.date}`;
@@ -1116,8 +1120,14 @@ function updateAwards() {
             }
             
             const event = eventMap.get(eventKey);
-            event.totalPlus += parseNum(r.plus);
-            event.totalMinus += parseNum(r.minus);
+            const plusVal = parseNum(r.plus);
+            // Minus column has negative numbers like -2000, so we take absolute value
+            const minusVal = Math.abs(parseNum(r.minus));
+            
+            console.log('DEBUG - Event:', event.type, 'Plus:', plusVal, 'Minus:', minusVal, 'Raw minus:', r.minus);
+            
+            event.totalPlus += plusVal;
+            event.totalMinus += minusVal;
         });
         
         // Convert to array and sort by date (newest first)
