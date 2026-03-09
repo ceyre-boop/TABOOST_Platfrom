@@ -452,7 +452,7 @@ function updateGoals() {
                     <span>${pct.toFixed(0)}% complete</span>
                 </div>
                 <div class="goal-pace" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
-                    Expected by now: ${formatNumber(expectedProgress)}${g.unit} (${pacePct.toFixed(0)}% of expected)
+                    Expected by now: ${formatNumber(Math.round(expectedProgress))}${g.unit} (${pacePct.toFixed(0)}% of expected)
                 </div>
             </div>
         `;
