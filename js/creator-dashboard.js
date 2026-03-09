@@ -1137,7 +1137,7 @@ function updateAwards() {
         // Take last 5 unique events
         const recentEvents = events.slice(0, 5);
         
-        // Build LEDGER rows - SEPARATE row for +Plus and -Minus
+        // Build rows - SAME row when both +Plus and -Minus exist
         recentEvents.forEach(event => {
             // Make event title clickable if Discord link exists
             const discordLink = eventDiscordLinks[event.type];
@@ -1145,29 +1145,26 @@ function updateAwards() {
                 ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${event.type} in Discord">${event.type}</a>`
                 : `<div class="award-title">${event.type}</div>`;
             
-            // Add SEPARATE row for Plus (earned) if > 0
-            if (event.totalPlus > 0) {
-                ledgerRows.push({
-                    icon: event.icon,
-                    title: titleDisplay,
-                    date: event.date,
-                    amount: `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`,
-                    type: 'plus',
-                    dateObj: event.dateObj
-                });
+            // Format amount: SAME row when both exist
+            let amountDisplay = '';
+            if (event.totalPlus > 0 && event.totalMinus > 0) {
+                // Both exist - show on same line: +GREEN / -RED
+                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span> / <span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
+            } else if (event.totalPlus > 0) {
+                // Only Plus
+                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`;
+            } else if (event.totalMinus > 0) {
+                // Only Minus
+                amountDisplay = `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
             }
             
-            // Add SEPARATE row for Minus (gifted) if > 0
-            if (event.totalMinus > 0) {
-                ledgerRows.push({
-                    icon: event.icon,
-                    title: titleDisplay,
-                    date: event.date,
-                    amount: `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`,
-                    type: 'minus',
-                    dateObj: event.dateObj
-                });
-            }
+            ledgerRows.push({
+                icon: event.icon,
+                title: titleDisplay,
+                date: event.date,
+                amount: amountDisplay,
+                dateObj: event.dateObj
+            });
         });
         
         // Sort all rows by date (newest first)
@@ -1187,15 +1184,15 @@ function updateAwards() {
         return;
     }
     
-    // Display all ledger rows
+    // Display all rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
-        <div class="award-item ledger-${row.type}">
+        <div class="award-item">
             <div class="award-icon">${row.icon}</div>
             <div class="award-content">
                 ${row.title}
                 <div class="award-date">${row.date}</div>
             </div>
-            <div class="award-ledger ledger-${row.type}">
+            <div class="award-ledger">
                 ${row.amount}
             </div>
         </div>
