@@ -79,7 +79,8 @@ const COLS = {
   unlocked: getColIndex('Unlocked'),       // Column AL
   daysMonth: getColIndex('Days Month'),    // Column AM
   hoursMonth: getColIndex('Hours Month'),  // Column AN
-  link: getColIndex('Link')                // Column AO
+  link: getColIndex('Link'),               // Column AO
+  badge50k: getColIndex('50k Award')       // Column AP - 50k earned badge
 };
 
 console.log('Column mapping:', COLS);
@@ -120,6 +121,7 @@ for (let i = 1; i < lines.length; i++) {
   const unlocked = values[COLS.unlocked];
   const dayPace = values[COLS.dayPace];
   const diamondPace = values[COLS.diamondPace];
+  const badge50k = values[COLS.badge50k];
   
   if (!creatorId || !username) continue;
   
@@ -177,7 +179,8 @@ for (let i = 1; i < lines.length; i++) {
     gifted: parseNum(gifted),
     running: running || '',
     multiply: multiply || '',
-    unlocked: unlocked || ''
+    unlocked: unlocked || '',
+    badge50k: badge50k || ''
   });
 }
 

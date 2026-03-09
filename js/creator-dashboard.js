@@ -549,6 +549,7 @@ function getRewardIcon(type) {
     if (t.includes('gifted')) return '🎁';
     if (t.includes('rookie')) return '🌟';
     if (t.includes('takeover')) return '🎤';
+    if (t.includes('50k')) return '💎';
     return '🏆';
 }
 
