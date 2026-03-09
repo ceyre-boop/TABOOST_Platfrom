@@ -1000,7 +1000,7 @@ function updateAwards() {
     let awards = [];
     const username = myData.username?.toLowerCase();
     
-    // Use detailed rewards from rewards-history.csv - show LAST 5 with available prioritized
+    // Use detailed rewards from rewards-history.csv - prioritize AVAILABLE rewards first
     if (detailedRewardsData && username && detailedRewardsData[username]) {
         const myDetailedRewards = detailedRewardsData[username];
         
@@ -1010,29 +1010,8 @@ function updateAwards() {
             return parseInt(str.toString().replace(/,/g, '')) || 0;
         };
         
-        // Sort rewards: first by availability (rewards > gifted), then by date (newest first)
-        const sortedRewards = [...myDetailedRewards].sort((a, b) => {
-            const aRewards = parseRewardNum(a.rewards);
-            const aGifted = parseRewardNum(a.gifted);
-            const bRewards = parseRewardNum(b.rewards);
-            const bGifted = parseRewardNum(b.gifted);
-            
-            const aAvailable = aRewards - aGifted;
-            const bAvailable = bRewards - bGifted;
-            
-            // Prioritize rewards with available balance
-            if (aAvailable > 0 && bAvailable <= 0) return -1;
-            if (bAvailable > 0 && aAvailable <= 0) return 1;
-            
-            // Then sort by date (newest first) - assuming data is in chronological order
-            return 0;
-        });
-        
-        // Take LAST 5 rewards (most recent), with available ones prioritized to top
-        const last5 = sortedRewards.slice(-5).reverse();
-        
-        awards = last5.map(r => {
-            // Show Rewards (Column G) and Gifted (Column H) from import file
+        // Process all rewards with availability info
+        const processedRewards = myDetailedRewards.map(r => {
             const rewardsVal = r.rewards || '0';
             const giftedVal = r.gifted || '0';
             const rewardsNum = parseRewardNum(rewardsVal);
@@ -1048,9 +1027,32 @@ function updateAwards() {
                 gifted: giftedVal,
                 available: available,
                 hasAvailable: hasAvailable,
-                availableFormatted: formatNumberPlain(available)
+                availableFormatted: formatNumberPlain(available),
+                // Parse date for sorting (MM/DD/YYYY format)
+                dateObj: new Date(r.date)
             };
         });
+        
+        // Separate into available and used rewards
+        const availableRewards = processedRewards.filter(r => r.hasAvailable);
+        const usedRewards = processedRewards.filter(r => !r.hasAvailable);
+        
+        // Sort each group by date (newest first)
+        availableRewards.sort((a, b) => b.dateObj - a.dateObj);
+        usedRewards.sort((a, b) => b.dateObj - a.dateObj);
+        
+        // PRIORITY: Show available rewards first, then fill with most recent used rewards
+        // Take up to 5 available rewards
+        awards = availableRewards.slice(0, 5);
+        
+        // If we have fewer than 5 available, fill with most recent used rewards
+        if (awards.length < 5) {
+            const remainingSlots = 5 - awards.length;
+            awards = awards.concat(usedRewards.slice(0, remainingSlots));
+        }
+        
+        // Re-sort final list by date (newest first) for display
+        awards.sort((a, b) => b.dateObj - a.dateObj);
     }
     
     // Default message if no rewards
