@@ -1096,7 +1096,7 @@ function updateAwards() {
         }];
     }
     
-    // LEDGER FORMAT: Separate rows for each transaction (+earned and -used)
+    // NEW FORMAT: Show +Rewards (green) and -Gifted (red) on same line when both exist
     const ledgerRows = [];
     
     awards.forEach(a => {
@@ -1110,30 +1110,32 @@ function updateAwards() {
             ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${a.title} in Discord">${a.title}</a>`
             : `<div class="award-title">${a.title}</div>`;
         
-        // Add row for earned (+)
-        if (rewardsNum > 0) {
-            ledgerRows.push({
-                icon: a.icon,
-                title: titleDisplay,
-                date: a.date,
-                amount: `+${formatNumberPlain(rewardsNum)}`,
-                type: 'earned',
-                hasAvailable: a.hasAvailable
-            });
+        // Format amount display based on what exists
+        let amountDisplay = '';
+        if (rewardsNum > 0 && giftedNum > 0) {
+            // Both exist - show +GREEN / -RED format
+            amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(rewardsNum)}</span> / <span style="color: var(--danger);">-${formatNumberPlain(giftedNum)}</span>`;
+        } else if (rewardsNum > 0) {
+            // Only rewards
+            amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(rewardsNum)}</span>`;
+        } else if (giftedNum > 0) {
+            // Only gifted
+            amountDisplay = `<span style="color: var(--danger);">-${formatNumberPlain(giftedNum)}</span>`;
         }
         
-        // Add row for used (-)
-        if (giftedNum > 0) {
-            ledgerRows.push({
-                icon: a.icon,
-                title: titleDisplay,
-                date: a.date,
-                amount: `-${formatNumberPlain(giftedNum)}`,
-                type: 'used',
-                hasAvailable: false // Used items don't have available balance
-            });
-        }
+        ledgerRows.push({
+            icon: a.icon,
+            title: titleDisplay,
+            date: a.date,
+            amount: amountDisplay,
+            type: rewardsNum > 0 && giftedNum > 0 ? 'both' : (rewardsNum > 0 ? 'earned' : 'used'),
+            hasAvailable: a.hasAvailable,
+            dateObj: a.dateObj
+        });
     });
+    
+    // Sort by date (newest first)
+    ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
     
     // Display all ledger rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
