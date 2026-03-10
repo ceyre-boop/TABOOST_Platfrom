@@ -310,9 +310,12 @@ function updateStats() {
     console.log('REWARDS DATA for', myData.username);
     console.log('  Column AJ (Unlocked) Raw:', myData.unlocked);
     console.log('  Column AJ Parsed:', currentAvailable);
-    console.log('  Column AO (50k Earned):', myData.badge50k || 'N/A');
-    console.log('  Total Earned (using AO if available):', totalEarned);
+    console.log('  Column AO (Rewards Month):', myData.rewardsMonth || 'N/A');
+    console.log('  FINAL Total Earned:', totalEarned);
     console.log('  Used (calculated):', totalUsed);
+    
+    // ALERT for debugging
+    alert('Rewards Debug:\nUsername: ' + myData.username + '\nAO (Rewards Month): ' + (myData.rewardsMonth || 'EMPTY') + '\nAH (Earned): ' + (myData.earned || 'EMPTY') + '\nFinal Total: ' + totalEarned);
     
     // Format with sign if negative
     const currentRewardsAvailable = currentAvailable < 0 
