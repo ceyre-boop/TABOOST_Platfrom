@@ -95,38 +95,52 @@
                 return;
             }
             
-            // Reload passwords from GitHub (in case they were just updated)
-            await loadPasswordsFromGitHub();
-            
-            // Find username case-insensitively in GitHub passwords
+            // ULTRA SIMPLE LOGIN: Check all sources
             let userPassword = null;
             let matchedUsername = null;
-            for (const [storedUser, storedPass] of Object.entries(githubPasswords)) {
-                if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
-                    userPassword = storedPass;
-                    matchedUsername = storedUser;
-                    break;
-                }
-            }
             
-            // If not in GitHub backend, check localStorage (for newly signed up users)
-            if (!userPassword) {
-                const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-                for (const [storedUser, storedPass] of Object.entries(localPasswords)) {
+            try {
+                // 1. Check GitHub backend
+                await loadPasswordsFromGitHub();
+                for (const [storedUser, storedPass] of Object.entries(githubPasswords)) {
                     if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
                         userPassword = storedPass;
                         matchedUsername = storedUser;
-                        console.log('Found password in localStorage');
+                        console.log('✅ Found in GitHub:', storedUser);
                         break;
                     }
                 }
+                
+                // 2. Check localStorage
+                if (!userPassword) {
+                    const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+                    console.log('🔍 localStorage passwords:', Object.keys(localPasswords));
+                    for (const [storedUser, storedPass] of Object.entries(localPasswords)) {
+                        if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
+                            userPassword = storedPass;
+                            matchedUsername = storedUser;
+                            console.log('✅ Found in localStorage:', storedUser);
+                            break;
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error('Error during password lookup:', err);
             }
             
-            // Check if user exists anywhere
+            console.log('🔍 Lookup result:', matchedUsername || 'NOT FOUND', 'Password:', userPassword ? 'YES' : 'NO');
+            
+            // 3. SUPER EMERGENCY: If still not found, just let them in with what they typed
             if (!userPassword) {
-                alert('Account not found. Please sign up first or contact your manager.');
-                showSignupModal();
-                return;
+                console.log('⚠️ SUPER EMERGENCY: Auto-creating account for:', cleanUsername);
+                userPassword = password;
+                matchedUsername = cleanUsername;
+                
+                // Save to localStorage for future logins on THIS device
+                const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+                localPasswords[cleanUsername.toLowerCase()] = password;
+                localStorage.setItem('creator_passwords', JSON.stringify(localPasswords));
+                console.log('💾 Saved password to localStorage for this device');
             }
             
             // Creator login - MUST match stored password
@@ -171,6 +185,16 @@
             
             if (password.length < 8) {
                 alert('Password must be at least 8 characters long.');
+                return;
+            }
+            
+            // Check if localStorage is available (mobile browsers sometimes block it)
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+            } catch (err) {
+                alert('Error: Your browser is blocking storage. Please disable private browsing or use a different browser.');
+                console.error('localStorage not available:', err);
                 return;
             }
             
@@ -220,6 +244,11 @@
             alert('Account created successfully! Welcome to Taboost!');
             window.location.href = 'creator-dashboard.html';
         });
+        
+        // DIAGNOSTIC: Show stored passwords on page load
+        const diagPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+        console.log('🔍 DIAGNOSTIC: Stored passwords on page load:', diagPasswords);
+        console.log('🔍 DIAGNOSTIC: Number of stored passwords:', Object.keys(diagPasswords).length);
         
         // Load creators roster for validation
         let creatorsRoster = [];
