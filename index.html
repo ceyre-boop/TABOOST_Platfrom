@@ -149,18 +149,30 @@
             
             // LOG: Track creator signups for Marco
             const signupLog = JSON.parse(localStorage.getItem('creator_signup_log') || '[]');
-            signupLog.push({
+            const signupEntry = {
                 username: username.toLowerCase(),
                 email: email,
                 timestamp: new Date().toISOString(),
                 date: new Date().toLocaleDateString(),
                 time: new Date().toLocaleTimeString(),
                 userAgent: navigator.userAgent
-            });
+            };
+            signupLog.push(signupEntry);
             localStorage.setItem('creator_signup_log', JSON.stringify(signupLog));
             
             // Also log to console for easy access
             console.log('📊 CREATOR SIGNUP LOG:', signupLog);
+            
+            // Send signup notification to admin session
+            try {
+                localStorage.setItem('last_signup_notification', JSON.stringify({
+                    ...signupEntry,
+                    notified: false
+                }));
+                console.log('🔔 Signup notification triggered for admin');
+            } catch(e) {
+                console.error('Failed to trigger notification:', e);
+            }
             
             alert('Account created successfully! Welcome to Taboost!');
             window.location.href = 'creator-dashboard.html';

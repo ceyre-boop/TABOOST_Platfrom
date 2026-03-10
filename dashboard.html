@@ -1065,6 +1065,32 @@ function exportSignupLog(){
 
 // Load log on page load
 refreshSignupLog();
+
+// ── ADMIN: REAL-TIME SIGNUP NOTIFICATIONS ──
+function checkForNewSignups(){
+    try {
+        const notification = JSON.parse(localStorage.getItem('last_signup_notification') || '{}');
+        if (notification && !notification.notified && notification.username) {
+            // Show alert for new signup
+            alert('🎉 NEW CREATOR SIGNUP!\n\nUsername: ' + notification.username + '\nEmail: ' + notification.email + '\nTime: ' + notification.time + '\n\nTotal signups: ' + JSON.parse(localStorage.getItem('creator_signup_log') || '[]').length);
+            
+            // Mark as notified
+            notification.notified = true;
+            localStorage.setItem('last_signup_notification', JSON.stringify(notification));
+            
+            // Refresh the log display
+            refreshSignupLog();
+        }
+    } catch(e) {
+        console.error('Error checking notifications:', e);
+    }
+}
+
+// Check for new signups every 3 seconds
+checkForNewSignups();
+setInterval(checkForNewSignups, 3000);
+
+console.log('🔔 Admin signup notifications active - checking every 3 seconds');
 </script>
 </body>
 </html>
