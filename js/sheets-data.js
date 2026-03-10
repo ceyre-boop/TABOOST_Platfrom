@@ -176,6 +176,9 @@ class TaboostDataService {
             daysGoal: parseInt(values[38]) || parseInt(getValue('Days Goal')) || 7, // Column AM (Days Month)
             hoursGoal: parseInt(values[39]) || parseInt(getValue('Hrs Goal')) || 15, // Column AN (Hours Month)
             
+            // Column AO - Rewards Month (March 2026 onwards)
+            rewardsMonth: getValue('Rewards Month') || values[40] || '', // Column AO
+            
             // Labels & links
             rankLabel: getValue('Rank Label'),
             detailsLabel: getValue('Details Label'),
@@ -262,6 +265,7 @@ class TaboostDataService {
                 gifted: c.gifted || 0,
                 running: c.running || 0,
                 unlocked: c.unlocked || 0,
+                rewardsMonth: c.rewardsMonth || '', // Column AO
                 rewards: {
                     earned: c.earned || 0,
                     gifted: c.gifted || 0,
