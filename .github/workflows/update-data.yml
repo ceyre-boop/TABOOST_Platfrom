@@ -1,0 +1,37 @@
+name: Auto Update Creator Data
+
+on:
+  push:
+    paths:
+      - 'data/*.csv'
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Find and process latest CSV
+      run: |
+        # Find the most recent CSV file in data folder
+        LATEST_CSV=$(ls -t data/*.csv | head -1)
+        echo "Processing: $LATEST_CSV"
+        node update-data.js "$LATEST_CSV"
+    
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add js/data.js
+        git diff --staged --quiet || git commit -m "Auto-update creator data from CSV"
+        git push

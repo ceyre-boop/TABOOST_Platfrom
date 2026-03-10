@@ -1,199 +1,118 @@
 const fs = require('fs');
 
-// Parse CSV line handling quoted fields
+// Get CSV file path from command line or use default
+const csvFilePath = process.argv[2] || 'data/day2-creators.csv';
+console.log('Processing:', csvFilePath);
+
 function parseCSVLine(line) {
-  const result = [];
-  let current = '';
-  let inQuotes = false;
-  
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    if (char === '"') {
-      if (inQuotes && line[i + 1] === '"') {
-        current += '"';
-        i++;
-      } else {
-        inQuotes = !inQuotes;
-      }
-    } else if (char === ',' && !inQuotes) {
-      result.push(current.trim());
-      current = '';
-    } else {
-      current += char;
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const nextChar = line[i + 1];
+        
+        if (char === '"') {
+            if (inQuotes && nextChar === '"') {
+                current += '"';
+                i++;
+            } else {
+                inQuotes = !inQuotes;
+            }
+        } else if (char === ',' && !inQuotes) {
+            result.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
     }
-  }
-  result.push(current.trim());
-  return result;
+    result.push(current.trim());
+    return result;
 }
 
-// Parse number with commas
-const parseNum = (v) => {
-  if (!v || v === '""' || v === '') return 0;
-  return parseInt(v.replace(/,/g, '').replace(/"/g, '')) || 0;
-};
+const csv = fs.readFileSync(csvFilePath, 'utf8');
+const lines = csv.split('\n');
 
-// Parse float
-const parseFloatNum = (v) => {
-  if (!v || v === '""' || v === '') return 0;
-  return parseFloat(v.replace(/,/g, '').replace(/"/g, '').replace('%', '')) || 0;
-};
-
-const csv = fs.readFileSync('data/live-data-current.csv', 'utf8');
-const lines = csv.trim().split('\n');
-
-// Parse header to get column positions
-const headers = parseCSVLine(lines[0]);
-const getColIndex = (name) => headers.findIndex(h => h.trim() === name);
-
-// Column mapping based on user's CSV
-const COLS = {
-  host: getColIndex('Host'),
-  username: getColIndex('3/8'),           // Column C - username (date column)
-  level: getColIndex('Level'),             // Column E
-  month: getColIndex('Month'),             // Column F
-  discord: getColIndex('Discord'),         // Column G
-  badge: getColIndex('Badge'),             // Column H
-  agent: getColIndex('Agent'),             // Column I
-  days: getColIndex('Days'),               // Column M
-  dayPace: getColIndex('Day Pace'),        // Column N
-  daysGoal: getColIndex('Days Month'),      // Column AM - personalized days goal
-  hours: getColIndex('Hours'),             // Column Q
-  hrsGoal: getColIndex('Hours Month'),     // Column AN - personalized hours goal
-  diamonds: getColIndex('💎'),             // Column T
-  diamondPace: getColIndex('💎 Pace'),     // Column U
-  tier: getColIndex('Tier'),               // Column V
-  tierGoal: getColIndex('Tier Goal'),      // Column W
-  tierLeft: getColIndex('Tier Left'),      // Column X
-  tierStatus: getColIndex('Tier Status'),  // Column Y
-  tierLM: getColIndex('Tier LM'),          // Column Z
-  diamondsLast30: getColIndex('💎 Last 30'), // Column AB
-  diamondsLastMonth: getColIndex('-1 Month 💎'), // Column AC
-  diamondsTwoMonthsAgo: getColIndex('-2 Month 💎'), // Column AD
-  lastMonthLevel: getColIndex('-1 Level'), // Column AE
-  twoMonthsAgoLevel: getColIndex('-2 Level'), // Column AF
-  score: getColIndex('Score'),             // Column AG
-  earned: getColIndex('Earned'),           // Column AH
-  gifted: getColIndex('Gifted'),           // Column AI
-  running: getColIndex('Running'),         // Column AJ
-  multiply: getColIndex('Multiply'),       // Column AK
-  unlocked: getColIndex('Unlocked'),       // Column AL
-  daysMonth: getColIndex('Days Month'),    // Column AM
-  hoursMonth: getColIndex('Hours Month'),  // Column AN
-  link: getColIndex('Link'),               // Column AO
-  rewardsMonth: getColIndex('Rewards Month')       // Column AO - Rewards Month
-};
-
-console.log('Column mapping:', COLS);
-
-const creatorMonths = {};
-const creatorBadges = {};
-const allCreators = [];
-
+const creators = [];
 for (let i = 1; i < lines.length; i++) {
-  const values = parseCSVLine(lines[i]);
-  if (values.length < 35) continue;
-  
-  const creatorId = values[COLS.host];
-  const username = values[COLS.username];
-  const level = values[COLS.level];
-  const month = values[COLS.month];
-  const discord = values[COLS.discord];
-  const agent = values[COLS.agent];
-  const badge = values[COLS.badge];
-  const days = values[COLS.days];
-  const daysGoal = values[COLS.daysGoal];
-  const hours = values[COLS.hours];
-  const hrsGoal = values[COLS.hrsGoal];
-  const diamonds = values[COLS.diamonds];
-  const tier = values[COLS.tier];
-  const tierGoal = values[COLS.tierGoal];
-  const tierLeft = values[COLS.tierLeft];
-  const tierStatus = values[COLS.tierStatus];
-  const lastMonthTier = values[COLS.tierLM];
-  const diamondsLast30 = values[COLS.diamondsLast30];
-  const diamondsLastMonth = values[COLS.diamondsLastMonth];
-  const diamondsTwoMonthsAgo = values[COLS.diamondsTwoMonthsAgo];
-  const score = values[COLS.score];
-  const earned = values[COLS.earned];
-  const gifted = values[COLS.gifted];
-  const running = values[COLS.running];
-  const multiply = values[COLS.multiply];
-  const unlocked = values[COLS.unlocked];
-  const dayPace = values[COLS.dayPace];
-  const diamondPace = values[COLS.diamondPace];
-  const rewardsMonth = values[COLS.rewardsMonth];
-  
-  if (!creatorId || !username) continue;
-  
-  // Parse level - empty string becomes null, but preserve 0
-  let levelValue = null;
-  if (level && level !== '' && level !== '""') {
-    const parsed = parseInt(level);
-    if (!isNaN(parsed)) {
-      levelValue = parsed; // Show 0, 1, 2, 3, 4, or 5
+    const line = lines[i].trim();
+    if (!line) continue;
+    
+    const cols = parseCSVLine(line);
+    if (cols.length < 3) continue;
+    
+    const cid = cols[1];
+    const username = cols[2];
+    let manager = cols[8] || 'carrington';
+    if (manager.includes('+')) manager = manager.split('+')[0].trim();
+    
+    if (cid && username && !username.includes('@')) {
+        const claimed = username.toLowerCase() === 'skylerclarkk';
+        const d = {
+            id: creators.length + 1,
+            creatorId: cid,
+            username: username.toLowerCase(),
+            name: username,
+            email: username + '@taboost.me',
+            status: cols[3] || 'GO',
+            level: cols[4] || '0',
+            month: cols[5] || '',
+            manager: manager.toUpperCase(),
+            m: manager.toUpperCase(),
+            claimed: claimed,
+            score: parseInt(cols[32]?.replace(/,/g, '')) || 0,
+            diamonds: parseInt(cols[19]?.replace(/,/g, '')) || 0,
+            diamondsGoal: parseInt(cols[21]?.replace(/,/g, '')) || 0,
+            diamondsPace: cols[20] || '',
+            diamondsLast30: parseInt(cols[27]?.replace(/,/g, '')) || 0,
+            diamondsLastMonth: parseInt(cols[28]?.replace(/,/g, '')) || 0,
+            diamonds2MonthsAgo: parseInt(cols[29]?.replace(/,/g, '')) || 0,
+            hours: parseInt(cols[16]) || 0,
+            hoursGoal: parseInt(cols[17]) || 0,
+            hoursLeft: cols[18] || '',
+            validLiveDays: parseInt(cols[12]) || 0,
+            daysGoal: parseInt(cols[14]) || 0,
+            daysLeft: cols[15] || '',
+            tier: parseInt(cols[21]) || 0,
+            tierGoal: parseInt(cols[22]?.replace(/,/g, '')) || 0,
+            tierLeft: cols[23] || '',
+            tierStatus: cols[24] || '',
+            tierLastMonth: cols[25] || '',
+            growthPercent: 0,
+            earned: parseInt(cols[33]?.replace(/,/g, '')) || 0,
+            gifted: parseInt(cols[34]?.replace(/,/g, '')) || 0,
+            running: cols[35] || '',
+            multiply: cols[36] || '',
+            unlocked: cols[37] || '',
+            daysMonth: parseInt(cols[38]) || 0,
+            hoursMonth: parseInt(cols[39]) || 0,
+            rewardsMonth: cols[40] || ''
+        };
+        creators.push(d);
     }
-  }
-  
-  // Calculate tier goal if not provided
-  const tierNum = parseNum(tier) || 1;
-  const calculatedTierGoal = parseNum(tierGoal) || (tierNum * 1000000);
-  
-  // Creator months (column F)
-  creatorMonths[creatorId] = parseInt(month) || 0;
-  
-  // Creator badges
-  creatorBadges[creatorId] = {
-    tier: parseNum(tier),
-    score: parseNum(score)
-  };
-  
-  // Diamonds goal comes from Tier Goal column (W)
-  const diamondsGoalValue = parseNum(tierGoal) || (tierNum * 1000000);
-  
-  allCreators.push({
-    creatorId,
-    username,
-    level: levelValue,
-    month: parseInt(month) || 0,
-    discord: discord || '',
-    badge: badge || '',
-    agent: agent || '',
-    days: parseNum(days),
-    daysGoal: parseNum(daysGoal) || 25,
-    dayPace: parseFloatNum(dayPace),
-    hours: parseNum(hours),
-    hoursGoal: parseNum(hrsGoal) || 80,
-    diamonds: parseNum(diamonds),
-    diamondPace: parseFloatNum(diamondPace),
-    tier: tierNum,
-    tierGoal: calculatedTierGoal,
-    diamondsGoal: diamondsGoalValue,  // Column W - Tier Goal = Diamonds Goal
-    tierLeft: parseNum(tierLeft),
-    tierStatus: tierStatus || '',
-    lastMonthTier: parseNum(lastMonthTier),
-    diamondsLast30: parseNum(diamondsLast30),
-    diamondsLastMonth: parseNum(diamondsLastMonth),
-    diamondsTwoMonthsAgo: parseNum(diamondsTwoMonthsAgo),
-    score: parseNum(score),
-    earned: parseNum(earned),
-    gifted: parseNum(gifted),
-    running: running || '',
-    multiply: multiply || '',
-    unlocked: unlocked || '',
-    rewardsMonth: rewardsMonth || ''
-  });
 }
 
-// Write JSON files
-fs.writeFileSync('data/creator_months.json', JSON.stringify(creatorMonths, null, 2));
-fs.writeFileSync('data/creator_badges.json', JSON.stringify(creatorBadges, null, 2));
-fs.writeFileSync('data/creators_full.json', JSON.stringify(allCreators, null, 2));
+// Generate data.js content
+const timestamp = new Date().toISOString();
+let output = '// Taboost Agency - Complete Creator Data\n';
+output += '// Generated: ' + timestamp + '\n';
+output += '// Total: ' + creators.length + ' creators\n\n';
+output += 'const creatorsData = ' + JSON.stringify(creators, null, 2) + ';\n\n';
+output += 'const taboostData = {\n';
+output += '  creators: creatorsData,\n';
+output += '  lastUpdated: "' + timestamp + '",\n';
+output += '  getAllCreators: function() { return this.creators; },\n';
+output += '  getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },\n';
+output += '  loadFromCSV: async function() { return this.creators; }\n';
+output += '};';
 
-console.log('✅ Updated data files:');
-console.log('  - data/creator_months.json (' + Object.keys(creatorMonths).length + ' creators)');
-console.log('  - data/creator_badges.json (' + Object.keys(creatorBadges).length + ' creators)');
-console.log('  - data/creators_full.json (' + allCreators.length + ' creators)');
-console.log('\n📊 Sample creators:');
-console.log('1.', allCreators[0]?.username, '- Level:', allCreators[0]?.level, '| 💎', allCreators[0]?.diamonds.toLocaleString(), '| Tier:', allCreators[0]?.tier, '| Score:', allCreators[0]?.score);
-console.log('2.', allCreators[1]?.username, '- Level:', allCreators[1]?.level, '| 💎', allCreators[1]?.diamonds.toLocaleString(), '| Tier:', allCreators[1]?.tier, '| Score:', allCreators[1]?.score);
-console.log('3.', allCreators[2]?.username, '- Level:', allCreators[2]?.level, '| 💎', allCreators[2]?.diamonds.toLocaleString(), '| Tier:', allCreators[2]?.tier, '| Score:', allCreators[2]?.score);
+fs.writeFileSync('js/data.js', output);
+console.log('Updated js/data.js with', creators.length, 'creators');
+
+const skyler = creators.find(c => c.username === 'skylerclarkk');
+if (skyler) {
+    console.log('Skyler diamonds:', skyler.diamonds);
+    console.log('Skyler score:', skyler.score);
+    console.log('Skyler earned:', skyler.earned);
+}
