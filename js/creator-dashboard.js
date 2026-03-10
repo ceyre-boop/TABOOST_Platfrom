@@ -283,7 +283,15 @@ function updateStats() {
     // Marco confirmed: Use the 'unlocked' field directly from CSV column AJ - EXACT VALUE even if negative
     const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
     const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
-    const totalEarned = myData.earned || 0;
+    
+    // For March and future months: Use Column AO (50k earned) if available
+    // For past months: Fall back to Column AH (Earned)
+    let totalEarned = myData.earned || 0;
+    if (myData.badge50k && myData.badge50k !== '') {
+        // Column AO has value (e.g., "50,000" or "Yes") - use 50k earned display
+        const earned50k = parseInt(myData.badge50k.toString().replace(/,/g, '')) || 50000;
+        totalEarned = earned50k;
+    }
     
     // Calculate Used: Total Earned - Current Available (AJ)
     const totalUsed = totalEarned - currentAvailable;
@@ -291,7 +299,8 @@ function updateStats() {
     console.log('REWARDS DATA for', myData.username);
     console.log('  Column AJ (Unlocked) Raw:', myData.unlocked);
     console.log('  Column AJ Parsed:', currentAvailable);
-    console.log('  Earned:', totalEarned);
+    console.log('  Column AO (50k Earned):', myData.badge50k || 'N/A');
+    console.log('  Total Earned (using AO if available):', totalEarned);
     console.log('  Used (calculated):', totalUsed);
     
     // Format with sign if negative
