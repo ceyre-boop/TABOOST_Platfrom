@@ -453,6 +453,9 @@
             let unchangedCount = 0;
             const BATCH_SIZE = 400;
             
+            // SIMPLE: Update ALL creators every time
+            logMessage('🚀 Updating ALL creators with latest data...', 'info');
+            
             for (let i = 0; i < creators.length; i += BATCH_SIZE) {
                 const batch = db.batch();
                 const chunk = creators.slice(i, i + BATCH_SIZE);
@@ -461,62 +464,16 @@
                     const ref = db.collection('creatorRoster').doc(creator.username);
                     const exists = existing[creator.username];
                     
-                    // Determine if this is new or needs update
-                    let isNew = false;
-                    let needsUpdate = false;
+                    if (!exists) newCount++;
+                    else updateCount++;
                     
-                    if (!exists) {
-                        isNew = true;
-                        newCount++;
-                    } else {
-                        // Check if ANY data changed (including daily metrics)
-                        const existingManager = (exists.manager || '').toLowerCase().trim();
-                        const csvManager = creator.manager.toLowerCase().trim();
-                        
-                        // Check key metrics for changes
-                        const diamondsChanged = String(exists.diamonds || '') !== String(creator.diamonds);
-                        const hoursChanged = String(exists.hours || '') !== String(creator.hours);
-                        const daysChanged = String(exists.days || '') !== String(creator.days);
-                        const tierChanged = String(exists.tier || '') !== String(creator.tier);
-                        const earnedChanged = String(exists.earned || '') !== String(creator.earned);
-                        const managerChanged = existingManager !== csvManager;
-                        
-                        const hasChanges = diamondsChanged || hoursChanged || daysChanged || 
-                                          tierChanged || earnedChanged || managerChanged;
-                        
-                        // DEBUG: Log first few comparisons
-                        if (i < 3) {
-                            logMessage(`DEBUG ${creator.username}: d=${diamondsChanged}, h=${hoursChanged}, days=${daysChanged}, tier=${tierChanged}, earned=${earnedChanged}`, 'info');
-                        }
-                        
-                        if (hasChanges) {
-                            needsUpdate = true;
-                            updateCount++;
-                            
-                            // Log what changed (but not for every single one to avoid spam)
-                            if (updateCount <= 10) {
-                                let changes = [];
-                                if (diamondsChanged) changes.push(`💎 ${exists.diamonds}→${creator.diamonds}`);
-                                if (hoursChanged) changes.push(`⏱️ ${exists.hours}→${creator.hours}hrs`);
-                                if (daysChanged) changes.push(`📅 ${exists.days}→${creator.days}days`);
-                                if (tierChanged) changes.push(`🏆 tier ${exists.tier}→${creator.tier}`);
-                                if (earnedChanged) changes.push(`💰 $${exists.earned}→$${creator.earned}`);
-                                if (managerChanged) changes.push(`👤 ${exists.manager}→${creator.manager.toUpperCase()}`);
-                                
-                                logMessage(`🔄 ${creator.username}: ${changes.join(', ')}`, 'info');
-                            }
-                        } else {
-                            unchangedCount++;
-                        }
-                    }
-                    
-                    // Always write to Firebase with ALL daily metrics
-                    const data = {
+                    // Write ALL data to Firebase
+                    batch.set(ref, {
                         cid: creator.cid,
                         tiktokUsername: creator.username,
                         claimed: creator.claimed,
                         manager: creator.manager.toUpperCase(),
-                        // Daily metrics
+                        // All daily metrics
                         status: creator.status,
                         level: creator.level,
                         month: creator.month,
@@ -552,25 +509,20 @@
                         rewardsMonth: creator.rewardsMonth,
                         tiktokLink: creator.tiktokLink,
                         // Timestamps
-                        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                    };
-                    
-                    if (isNew) {
-                        data.importedAt = firebase.firestore.FieldValue.serverTimestamp();
-                    }
-                    
-                    batch.set(ref, data, { merge: true });
+                        updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        importedAt: exists ? existing[creator.username].importedAt : firebase.firestore.FieldValue.serverTimestamp()
+                    }, { merge: true });
                 }
                 
                 await batch.commit();
                 
                 const progress = ((i + chunk.length) / creators.length) * 100;
                 progressFill.style.width = progress + '%';
-                progressText.textContent = `Processing... ${Math.round(progress)}%`;
+                progressText.textContent = `Updating... ${Math.round(progress)}%`;
                 newStat.textContent = newCount;
                 updatedStat.textContent = updateCount;
                 
-                logMessage(`✓ ${Math.min(i + BATCH_SIZE, creators.length)}/${creators.length} (${newCount} new, ${updateCount} updated)`, 'success');
+                logMessage(`✓ ${Math.min(i + BATCH_SIZE, creators.length)}/${creators.length}`, 'success');
                 
                 await new Promise(r => setTimeout(r, 100));
             }
@@ -581,15 +533,15 @@
             dropZone.innerHTML = `
                 <div class="drop-icon">✅</div>
                 <div class="drop-text">Update Complete!</div>
-                <div class="drop-hint">${newCount} new, ${updateCount} updated, ${unchangedCount} unchanged</div>
+                <div class="drop-hint">${creators.length} creators updated with latest data</div>
             `;
             
             progressText.textContent = 'Complete!';
             
-            const msg = `✅ ${newCount} new, ${updateCount} updated, ${unchangedCount} unchanged. All creator dashboards now show latest data!`;
+            const msg = `✅ ${newCount} new creators added, ${updateCount} existing updated. All dashboards now show today's data!`;
             showSuccess(msg);
             
-            logMessage(`🎉 ${msg}`, 'success');
+            logMessage(`🎉 DONE! ${msg}`, 'success');
             
             // Reset after 5 seconds
             setTimeout(() => {
