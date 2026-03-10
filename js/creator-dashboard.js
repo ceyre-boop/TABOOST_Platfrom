@@ -909,12 +909,14 @@ function updateHistory() {
         if (index === 5) {
             // Current month - use Rewards Month from Column AO if available, otherwise fall back to earned
             console.log('DEBUG HISTORY - rewardsMonth:', myData.rewardsMonth, 'earned:', myData.earned);
-            if (myData.rewardsMonth && myData.rewardsMonth !== '') {
-                rewards = myData.rewardsMonth; // e.g., "60,000" from AO
-                console.log('  -> Using AO:', rewards);
+            // Check if rewardsMonth exists and is not empty/zero
+            const hasRewardsMonth = myData.rewardsMonth && myData.rewardsMonth !== '' && myData.rewardsMonth !== '0';
+            if (hasRewardsMonth) {
+                rewards = myData.rewardsMonth; // e.g., "5,000" or "60,000" from AO
+                console.log('  -> Using AO (rewardsMonth):', rewards);
             } else {
                 rewards = formatNumber(myData.earned || 0);
-                console.log('  -> Using earned:', rewards);
+                console.log('  -> Using earned (AH):', rewards);
             }
         }
         
