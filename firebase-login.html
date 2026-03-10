@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TABOOST - Login</title>
-    <link rel="stylesheet" href="css/styles.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -114,10 +113,15 @@
             color: #888;
             margin-top: 10px;
         }
+        .helper-text {
+            color: #666;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
         .forgot-password {
             text-align: right;
-            margin-top: -15px;
-            margin-bottom: 20px;
+            margin-top: -10px;
+            margin-bottom: 15px;
         }
         .forgot-password a {
             color: #888;
@@ -127,191 +131,40 @@
         .forgot-password a:hover {
             color: #ff0044;
         }
-    </style>
-    
-    <!-- Firebase SDK (ES Modules) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
-            authDomain: "taboost-platform.firebaseapp.com",
-            projectId: "taboost-platform",
-            storageBucket: "taboost-platform.firebasestorage.app",
-            messagingSenderId: "379293685859",
-            appId: "1:379293685859:web:d89592adbf67360b574056"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-        
-        // Check if already logged in - ALWAYS show login form first for security
-        // Only show "continue as" prompt after page loads (not auto-redirect)
-        let authChecked = false;
-        
-        onAuthStateChanged(auth, async (user) => {
-            if (authChecked) return; // Prevent multiple checks
-            authChecked = true;
-            
-            if (user) {
-                // User is logged in - show them options but DON'T auto-redirect
-                const userName = user.displayName || user.email.split('@')[0];
-                
-                // Add a banner showing logged in status
-                const banner = document.createElement('div');
-                banner.id = 'loggedInBanner';
-                banner.innerHTML = `
-                    <div style="background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: center;">
-                        <p style="color: #00ff88; margin: 0;">✅ You're signed in as ${userName}</p>
-                        <div style="margin-top: 10px;">
-                            <button id="continueBtn" style="background: #00ff88; color: #000; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px; font-weight: 600;">Continue</button>
-                            <button id="signOutBtn" style="background: transparent; color: #ff0044; border: 1px solid #ff0044; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Sign Out</button>
-                        </div>
-                    </div>
-                `;
-                
-                const container = document.querySelector('.container');
-                container.insertBefore(banner, container.children[2]); // Insert after logo/subtitle
-                
-                // Hide forms initially - show when user chooses
-                document.getElementById('loginForm').style.display = 'none';
-                document.querySelector('.toggle').style.display = 'none';
-                document.getElementById('subtitle').textContent = 'Select an option';
-                
-                document.getElementById('continueBtn').addEventListener('click', async () => {
-                    // Get user role and redirect
-                    let userData = null;
-                    try {
-                        const userDoc = await getDoc(doc(db, 'users', user.uid));
-                        userData = userDoc.data();
-                    } catch (e) {}
-                    
-                    let role = userData?.role || 'creator';
-                    if (user.email?.toLowerCase() === 'marco@taboost.me') {
-                        role = 'admin';
-                    }
-                    
-                    if (role === 'admin') {
-                        window.location.href = 'dashboard.html';
-                    } else {
-                        window.location.href = 'creator-dashboard.html';
-                    }
-                });
-                
-                document.getElementById('signOutBtn').addEventListener('click', async () => {
-                    await signOut(auth);
-                    location.reload();
-                });
-            }
-        });
-        
-        // Login handler
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const btn = document.getElementById('loginBtn');
-            const loading = document.getElementById('loginLoading');
-            
-            btn.disabled = true;
-            loading.style.display = 'block';
-            hideMessages();
-            
-            try {
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
-                
-                // Get user role
-                let userData = null;
-                try {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
-                    userData = userDoc.data();
-                } catch (e) {
-                    console.warn('Could not load user data:', e);
-                }
-                
-                let role = userData?.role || 'creator';
-                if (user.email?.toLowerCase() === 'marco@taboost.me') {
-                    role = 'admin';
-                }
-                
-                // Redirect based on role
-                if (role === 'admin') {
-                    window.location.href = 'dashboard.html';
-                } else {
-                    window.location.href = 'creator-dashboard.html';
-                }
-                
-            } catch (error) {
-                showError(getErrorMessage(error));
-                btn.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        // Forgot password handler
-        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('forgotEmail').value;
-            const btn = document.getElementById('forgotBtn');
-            const loading = document.getElementById('forgotLoading');
-            
-            btn.disabled = true;
-            loading.style.display = 'block';
-            hideMessages();
-            
-            try {
-                await sendPasswordResetEmail(auth, email);
-                showSuccess('Password reset email sent! Check your inbox.');
-                setTimeout(() => {
-                    showLogin();
-                }, 3000);
-            } catch (error) {
-                showError(getErrorMessage(error));
-                btn.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        function getErrorMessage(error) {
-            const codes = {
-                'auth/user-not-found': 'No account found with this email',
-                'auth/wrong-password': 'Incorrect password',
-                'auth/invalid-email': 'Invalid email address',
-                'auth/too-many-requests': 'Too many attempts. Please try again later',
-                'auth/network-request-failed': 'Network error. Check your connection'
-            };
-            return codes[error.code] || error.message || 'An error occurred';
+        .email-field {
+            display: none;
         }
-        
-        window.showError = showError;
-        window.showSuccess = showSuccess;
-        window.hideMessages = hideMessages;
-    </script>
+        .email-field.visible {
+            display: block;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">TABOOST</div>
-        <p class="subtitle" id="subtitle">Sign in to your account</p>
+        <p class="subtitle">Sign in to your account</p>
         
         <div class="error" id="error"></div>
         <div class="success" id="success"></div>
         
-        <!-- LOGIN FORM -->
-        <form id="loginForm" autocomplete="off">
+        <form id="loginForm">
+            <!-- CREATOR USERNAME (Primary) -->
             <div class="form-group">
+                <label>TikTok Username *</label>
+                <input type="text" id="username" placeholder="@yourusername or yourusername" required>
+                <p class="helper-text">Enter your TikTok username (with or without @)</p>
+            </div>
+            
+            <!-- EMAIL (Optional - shown if username not found or for new accounts) -->
+            <div class="form-group email-field" id="emailField">
                 <label>Email Address</label>
-                <input type="email" id="email" placeholder="you@example.com" required autocomplete="off" readonly onfocus="this.removeAttribute('readonly')">
+                <input type="email" id="email" placeholder="you@example.com">
+                <p class="helper-text">Your account email (we'll look this up if needed)</p>
             </div>
             
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="••••••••" required autocomplete="new-password" readonly onfocus="this.removeAttribute('readonly')">
+                <label>Password *</label>
+                <input type="password" id="password" placeholder="••••••••" required>
             </div>
             
             <div class="forgot-password">
@@ -322,182 +175,190 @@
             <div class="loading" id="loginLoading">Signing in...</div>
         </form>
         
-        <!-- SIGNUP FORM -->
-        <form id="signupForm" style="display: none;">
-            <div class="form-group">
-                <label>TikTok Username</label>
-                <input type="text" id="signupUsername" placeholder="@yourusername" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="signupEmail" placeholder="you@example.com" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="signupPassword" placeholder="Min 8 characters" required minlength="8">
-            </div>
-            
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" id="signupConfirm" placeholder="Confirm password" required>
-            </div>
-            
-            <button type="submit" class="btn" id="signupBtn">Create Account</button>
-            <div class="loading" id="signupLoading">Creating account...</div>
-        </form>
-        
-        <!-- FORGOT PASSWORD FORM -->
-        <form id="forgotForm" style="display: none;">
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" id="forgotEmail" placeholder="you@example.com" required>
-            </div>
-            
-            <button type="submit" class="btn" id="forgotBtn">Send Reset Link</button>
-            <div class="loading" id="forgotLoading">Sending...</div>
-        </form>
-        
         <div class="toggle">
-            <span id="toggleText">First time here?</span>
-            <a href="#" id="toggleLink" onclick="toggleMode(); return false;">Create account</a>
+            <span>First time here?</span>
+            <a href="signup.html">Create account</a>
         </div>
     </div>
 
-    <!-- Main App Logic (Module) -->
-    <script type="module">
-        import { FirebaseAuth } from './js/firebase-auth.js';
-        
-        // Check if already logged in
-        FirebaseAuth.getCurrentUser().then(user => {
-            if (user) {
-                redirectBasedOnRole(user.role);
-            }
-        });
-        
-        // LOGIN HANDLER
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const btn = document.getElementById('loginBtn');
-            const loading = document.getElementById('loginLoading');
-            
-            btn.disabled = true;
-            loading.style.display = 'block';
-            hideMessages();
-            
-            try {
-                const user = await FirebaseAuth.signIn(email, password);
-                redirectBasedOnRole(user.role);
-            } catch (error) {
-                showError(getErrorMessage(error));
-                btn.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        // SIGNUP HANDLER
-        document.getElementById('signupForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const username = document.getElementById('signupUsername').value.replace(/^@/, '');
-            const email = document.getElementById('signupEmail').value;
-            const password = document.getElementById('signupPassword').value;
-            const confirm = document.getElementById('signupConfirm').value;
-            const btn = document.getElementById('signupBtn');
-            const loading = document.getElementById('signupLoading');
-            
-            if (password !== confirm) {
-                showError('Passwords do not match');
-                return;
-            }
-            
-            btn.disabled = true;
-            loading.style.display = 'block';
-            hideMessages();
-            
-            try {
-                await FirebaseAuth.signUp(email, password, username);
-                showSuccess('Account created! Redirecting...');
-                setTimeout(() => {
-                    window.location.href = 'creator-dashboard.html';
-                }, 1500);
-            } catch (error) {
-                showError(getErrorMessage(error));
-                btn.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        // FORGOT PASSWORD HANDLER
-        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('forgotEmail').value;
-            const btn = document.getElementById('forgotBtn');
-            const loading = document.getElementById('forgotLoading');
-            
-            btn.disabled = true;
-            loading.style.display = 'block';
-            hideMessages();
-            
-            try {
-                await FirebaseAuth.resetPassword(email);
-                showSuccess('Password reset email sent! Check your inbox.');
-                setTimeout(() => {
-                    showLogin();
-                }, 3000);
-            } catch (error) {
-                showError(getErrorMessage(error));
-                btn.disabled = false;
-                loading.style.display = 'none';
-            }
-        });
-        
-        // UI FUNCTIONS
-        function redirectBasedOnRole(role) {
-            if (role === 'admin') {
-                window.location.href = 'dashboard.html';
-            } else if (role === 'manager') {
-                window.location.href = 'manager-dashboard.html';
-            } else {
-                window.location.href = 'creator-dashboard.html';
-            }
-        }
-        
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
         function showError(msg) {
             const el = document.getElementById('error');
             el.textContent = msg;
             el.style.display = 'block';
             document.getElementById('success').style.display = 'none';
         }
-        
+
         function showSuccess(msg) {
             const el = document.getElementById('success');
             el.textContent = msg;
             el.style.display = 'block';
             document.getElementById('error').style.display = 'none';
         }
-        
+
         function hideMessages() {
             document.getElementById('error').style.display = 'none';
             document.getElementById('success').style.display = 'none';
         }
-        
-        function getErrorMessage(error) {
-            const codes = {
-                'auth/user-not-found': 'No account found with this email',
-                'auth/wrong-password': 'Incorrect password',
-                'auth/invalid-email': 'Invalid email address',
-                'auth/weak-password': 'Password should be at least 6 characters',
-                'auth/email-already-in-use': 'An account already exists with this email',
-                'auth/too-many-requests': 'Too many attempts. Please try again later',
-                'auth/network-request-failed': 'Network error. Check your connection'
-            };
-            return codes[error.code] || error.message || 'An error occurred';
+
+        // Check if already logged in
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                // Already logged in, redirect
+                redirectToDashboard();
+            }
+        });
+
+        async function redirectToDashboard() {
+            try {
+                const user = auth.currentUser;
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                const userData = userDoc.data() || {};
+                
+                let role = userData.role || 'creator';
+                if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                    role = 'admin';
+                }
+                
+                if (role === 'admin') {
+                    window.location.href = 'dashboard.html';
+                } else if (role === 'manager') {
+                    window.location.href = 'manager-dashboard.html';
+                } else {
+                    window.location.href = 'creator-dashboard.html';
+                }
+            } catch (error) {
+                // Default to creator dashboard
+                window.location.href = 'creator-dashboard.html';
+            }
+        }
+
+        // LOGIN HANDLER
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            let username = document.getElementById('username').value.trim().toLowerCase();
+            let email = document.getElementById('email').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loginLoading');
+            
+            // Remove @ if present
+            username = username.replace(/^@/, '');
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                // If user entered an email (contains @), use it directly
+                if (username.includes('@')) {
+                    email = username;
+                }
+                
+                // If no email provided, look it up by username
+                if (!email) {
+                    showSuccess('Looking up your account...');
+                    
+                    // Try to find email by username in creatorRoster
+                    const rosterDoc = await db.collection('creatorRoster').doc(username).get();
+                    
+                    if (rosterDoc.exists) {
+                        const rosterData = rosterDoc.data();
+                        // Check if there's a linked email in the roster
+                        if (rosterData.email) {
+                            email = rosterData.email;
+                        } else {
+                            // Need to check users collection
+                            const usersSnapshot = await db.collection('users')
+                                .where('tiktokUsername', '==', username)
+                                .limit(1)
+                                .get();
+                            
+                            if (!usersSnapshot.empty) {
+                                const userData = usersSnapshot.docs[0].data();
+                                email = userData.email;
+                            }
+                        }
+                    }
+                    
+                    // If still no email found, show email field and ask user
+                    if (!email) {
+                        document.getElementById('emailField').classList.add('visible');
+                        showError('Please enter your email address to sign in');
+                        btn.disabled = false;
+                        loading.style.display = 'none';
+                        return;
+                    }
+                }
+                
+                // Now sign in with email + password
+                showSuccess('Signing in...');
+                await auth.signInWithEmailAndPassword(email, password);
+                
+                // Success! Redirect
+                redirectToDashboard();
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                // Show email field if we were trying to look up
+                if (!document.getElementById('email').value) {
+                    document.getElementById('emailField').classList.add('visible');
+                }
+                
+                // Specific error messages
+                let message = 'Login failed. Please try again.';
+                if (error.code === 'auth/user-not-found') {
+                    message = 'Account not found. Please check your username/email or create an account.';
+                } else if (error.code === 'auth/wrong-password') {
+                    message = 'Incorrect password. Please try again.';
+                } else if (error.code === 'auth/invalid-email') {
+                    message = 'Invalid email address. Please check and try again.';
+                } else if (error.code === 'auth/too-many-requests') {
+                    message = 'Too many failed attempts. Please try again later.';
+                } else if (error.message) {
+                    message = error.message;
+                }
+                
+                showError(message);
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+
+        function showForgotPassword() {
+            const username = document.getElementById('username').value;
+            if (username && !username.includes('@')) {
+                showError('Please enter your email address to reset password');
+                document.getElementById('emailField').classList.add('visible');
+            } else if (username) {
+                // Send reset email
+                auth.sendPasswordResetEmail(username)
+                    .then(() => showSuccess('Password reset email sent!'))
+                    .catch(err => showError('Could not send reset email: ' + err.message));
+            } else {
+                showError('Please enter your email address first');
+                document.getElementById('emailField').classList.add('visible');
+            }
         }
     </script>
 </body>
