@@ -63,7 +63,7 @@
                 const response = await fetch('https://ceyre-boop.github.io/TABOOST_Platfrom/data/passwords.json?v=' + Date.now());
                 if (!response.ok) throw new Error('Failed to load passwords');
                 const data = await response.json();
-                githubPasswords = data.creators || {};
+                githubPasswords = data.creators || data || {};
                 console.log('🔑 Loaded passwords from GitHub backend:', Object.keys(githubPasswords).length, 'creators');
             } catch (err) {
                 console.error('Error loading passwords from GitHub:', err);
@@ -158,18 +158,11 @@
             
             console.log('🔍 Lookup result:', matchedUsername || 'NOT FOUND', 'Password:', userPassword ? 'YES' : 'NO');
             
-            // 3. SUPER EMERGENCY: If still not found, just let them in with what they typed
-            // This proves the login flow works, then we fix storage
+            // 3. If no password found, user doesn't exist - reject login
             if (!userPassword) {
-                console.log('⚠️ SUPER EMERGENCY: Auto-creating account for:', cleanUsername);
-                userPassword = password;
-                matchedUsername = cleanUsername;
-                
-                // Save to localStorage for future logins on THIS device
-                const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-                localPasswords[cleanUsername.toLowerCase()] = password;
-                localStorage.setItem('creator_passwords', JSON.stringify(localPasswords));
-                console.log('💾 Saved password to localStorage for this device');
+                console.log('❌ Account not found:', cleanUsername);
+                alert('Account not found. Please sign up first or contact your manager.');
+                return;
             }
             
             // Creator login - MUST match stored password

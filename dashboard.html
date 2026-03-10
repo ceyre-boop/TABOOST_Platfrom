@@ -638,6 +638,23 @@ tbody tr:last-child td{border-bottom:none}
 </div><!-- main -->
 
 <script>
+// ── SECURITY: Admin Authentication Check ──
+(function checkAdminAuth(){
+  try {
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    // Must be logged in AND have admin role
+    if (!user || user.role !== 'admin') {
+      console.error('❌ ADMIN ACCESS DENIED: Not authenticated as admin');
+      window.location.href = 'index.html';
+      return;
+    }
+    console.log('✅ Admin authenticated:', user.username || user.name);
+  } catch (err) {
+    console.error('❌ ADMIN ACCESS DENIED: Error checking auth', err);
+    window.location.href = 'index.html';
+  }
+})();
+
 // ── DATA ──
 const D=[
   {n:"samanthasingsit",m:"CARRINGTON",b:"Music",d:1064591,r:1586275,h:17,t:6,l30:1872927,p1:1653571,p2:1270834,s:81,tg:3000000},
