@@ -60,7 +60,7 @@
         // Load passwords from GitHub backend
         async function loadPasswordsFromGitHub() {
             try {
-                const response = await fetch('https://ceyre-boop.github.io/TABOOST_Platfrom/data/passwords.json?v=' + Date.now());
+                const response = await fetch('https://ceyre-boop.github.io/TABOOST_Platfrom/data/config.secure?v=' + Date.now());
                 if (!response.ok) throw new Error('Failed to load passwords');
                 const data = await response.json();
                 githubPasswords = data.creators || data || {};
