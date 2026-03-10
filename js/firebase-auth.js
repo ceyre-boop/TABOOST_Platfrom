@@ -1,5 +1,25 @@
 // Firebase Configuration for TABOOST Platform
-// Replace these values with your Firebase project settings
+// Using Firebase Modular SDK v9
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { 
+    getAuth, 
+    signInWithEmailAndPassword, 
+    createUserWithEmailAndPassword,
+    signOut as firebaseSignOut,
+    sendPasswordResetEmail,
+    updateProfile,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { 
+    getFirestore, 
+    doc, 
+    getDoc, 
+    setDoc,
+    addDoc,
+    collection,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
@@ -11,11 +31,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-// Auth reference
-const auth = firebase.auth();
-const db = firebase.firestore();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
 // User roles collection
 const ROLES = {
@@ -32,13 +50,13 @@ const ROLES = {
  */
 async function signInWithEmail(email, password) {
     try {
-        const userCredential = await auth.signInWithEmailAndPassword(email, password);
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
         // Get user role from Firestore (with fallback)
         let userData = null;
         try {
-            const userDoc = await db.collection('users').doc(user.uid).get();
+            const userDoc = await getDoc(doc(db, 'users', user.uid));
             userData = userDoc.data();
         } catch (dbError) {
             console.warn('Could not read from Firestore, using Auth data:', dbError);
@@ -75,8 +93,8 @@ async function signUpCreator(email, password, username, managerEmail = null) {
         // Check if username is in approved roster (skip if Firestore not ready)
         let rosterData = null;
         try {
-            const rosterDoc = await db.collection('roster').doc(username.toLowerCase()).get();
-            if (!rosterDoc.exists) {
+            const rosterDoc = await getDoc(doc(db, 'roster', username.toLowerCase()));
+            if (!rosterDoc.exists()) {
                 throw new Error('Username not found in Taboost roster. Contact your manager.');
             }
             rosterData = rosterDoc.data();
@@ -86,22 +104,22 @@ async function signUpCreator(email, password, username, managerEmail = null) {
         }
         
         // Create auth user
-        const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
         // Set display name
-        await user.updateProfile({ displayName: username });
+        await updateProfile(user, { displayName: username });
         
         // Store user data in Firestore
         try {
-            await db.collection('users').doc(user.uid).set({
+            await setDoc(doc(db, 'users', user.uid), {
                 email: email,
                 username: username.toLowerCase(),
                 role: ROLES.CREATOR,
                 name: username,
                 manager: managerEmail,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                createdAt: serverTimestamp(),
+                lastLogin: serverTimestamp()
             });
         } catch (dbError) {
             console.warn('Could not write to Firestore (permissions), continuing with auth:', dbError);
@@ -110,11 +128,11 @@ async function signUpCreator(email, password, username, managerEmail = null) {
         
         // Log signup (best effort)
         try {
-            await db.collection('signups').add({
+            await addDoc(collection(db, 'signups'), {
                 username: username.toLowerCase(),
                 email: email,
                 uid: user.uid,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                timestamp: serverTimestamp(),
                 userAgent: navigator.userAgent.substring(0, 100)
             });
         } catch (logError) {
@@ -137,9 +155,9 @@ async function signUpCreator(email, password, username, managerEmail = null) {
 /**
  * Sign out
  */
-async function signOut() {
+async function signOutUser() {
     try {
-        await auth.signOut();
+        await firebaseSignOut(auth);
         localStorage.removeItem('taboost_user');
         localStorage.removeItem('taboost_current_user');
         return true;
@@ -154,18 +172,29 @@ async function signOut() {
  */
 async function getCurrentUser() {
     return new Promise((resolve) => {
-        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
             unsubscribe();
             
             if (user) {
                 // Get user data from Firestore
-                const userDoc = await db.collection('users').doc(user.uid).get();
-                const userData = userDoc.data();
+                let userData = null;
+                try {
+                    const userDoc = await getDoc(doc(db, 'users', user.uid));
+                    userData = userDoc.data();
+                } catch (e) {
+                    console.warn('Could not fetch user data:', e);
+                }
+                
+                // Check admin email
+                let role = userData?.role || ROLES.CREATOR;
+                if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                    role = ROLES.ADMIN;
+                }
                 
                 resolve({
                     uid: user.uid,
                     email: user.email,
-                    role: userData?.role || ROLES.CREATOR,
+                    role: role,
                     name: userData?.name || user.displayName,
                     username: userData?.username || null,
                     manager: userData?.manager || null
@@ -208,7 +237,7 @@ async function requireAuth(requiredRole = null) {
  */
 async function resetPassword(email) {
     try {
-        await auth.sendPasswordResetEmail(email);
+        await sendPasswordResetEmail(auth, email);
         return true;
     } catch (error) {
         console.error('Password reset error:', error);
@@ -216,46 +245,18 @@ async function resetPassword(email) {
     }
 }
 
-/**
- * Admin: Create new user (admin, manager, or creator)
- */
-async function adminCreateUser(email, password, role, name, username = null) {
-    // Check current user is admin
-    const currentUser = await getCurrentUser();
-    if (!currentUser || currentUser.role !== ROLES.ADMIN) {
-        throw new Error('Admin access required');
-    }
-    
-    try {
-        // Create user with Admin SDK (requires Cloud Function)
-        // For now, use client-side creation with special admin function
-        const response = await fetch('https://us-central1-YOUR_PROJECT_ID.cloudfunctions.net/createUser', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password, role, name, username })
-        });
-        
-        if (!response.ok) {
-            throw new Error('Failed to create user');
-        }
-        
-        return await response.json();
-    } catch (error) {
-        console.error('Create user error:', error);
-        throw error;
-    }
-}
-
 // Export for use in other files
-window.FirebaseAuth = {
+export const FirebaseAuth = {
     signIn: signInWithEmail,
     signUp: signUpCreator,
-    signOut: signOut,
+    signOut: signOutUser,
     getCurrentUser: getCurrentUser,
     requireAuth: requireAuth,
     resetPassword: resetPassword,
-    adminCreateUser: adminCreateUser,
     ROLES: ROLES,
     auth: auth,
     db: db
 };
+
+// Also expose to window for legacy compatibility
+window.FirebaseAuth = FirebaseAuth;

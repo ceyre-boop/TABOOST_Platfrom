@@ -129,11 +129,11 @@
         }
     </style>
     
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-    <script src="js/firebase-auth.js"></script>
+    <!-- Firebase SDK (ES Modules) -->
+    <script type="module">
+        import { FirebaseAuth } from './js/firebase-auth.js';
+        window.FirebaseAuth = FirebaseAuth;
+    </script>
 </head>
 <body>
     <div class="container">
@@ -206,7 +206,10 @@
         </div>
     </div>
 
-    <script>
+    <!-- Main App Logic (Module) -->
+    <script type="module">
+        import { FirebaseAuth } from './js/firebase-auth.js';
+        
         // Check if already logged in
         FirebaseAuth.getCurrentUser().then(user => {
             if (user) {
@@ -296,50 +299,6 @@
         });
         
         // UI FUNCTIONS
-        function toggleMode() {
-            const loginForm = document.getElementById('loginForm');
-            const signupForm = document.getElementById('signupForm');
-            const forgotForm = document.getElementById('forgotForm');
-            const toggleText = document.getElementById('toggleText');
-            const toggleLink = document.getElementById('toggleLink');
-            const subtitle = document.getElementById('subtitle');
-            
-            hideMessages();
-            
-            if (signupForm.style.display === 'none' && forgotForm.style.display === 'none') {
-                // Show signup
-                loginForm.style.display = 'none';
-                signupForm.style.display = 'block';
-                forgotForm.style.display = 'none';
-                toggleText.textContent = 'Already have an account?';
-                toggleLink.textContent = 'Sign in';
-                subtitle.textContent = 'Create your account';
-            } else {
-                // Show login
-                showLogin();
-            }
-        }
-        
-        function showLogin() {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('signupForm').style.display = 'none';
-            document.getElementById('forgotForm').style.display = 'none';
-            document.getElementById('toggleText').textContent = 'First time here?';
-            document.getElementById('toggleLink').textContent = 'Create account';
-            document.getElementById('subtitle').textContent = 'Sign in to your account';
-            hideMessages();
-        }
-        
-        function showForgotPassword() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('signupForm').style.display = 'none';
-            document.getElementById('forgotForm').style.display = 'block';
-            document.getElementById('toggleText').textContent = 'Remember your password?';
-            document.getElementById('toggleLink').textContent = 'Sign in';
-            document.getElementById('subtitle').textContent = 'Reset your password';
-            hideMessages();
-        }
-        
         function redirectBasedOnRole(role) {
             if (role === 'admin') {
                 window.location.href = 'dashboard.html';
