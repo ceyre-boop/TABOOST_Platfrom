@@ -46,8 +46,18 @@ async function initCreatorDashboard(user) {
     } else {
         // Fallback: try to match by username
         myData = allCreators.find(c => 
-            c.username.toLowerCase() === user.name.toLowerCase().replace(' ', '')
-        ) || allCreators.find(c => c.username === 'singleonthemove') || allCreators[0];
+            c.username.toLowerCase() === user.name.toLowerCase().replace(/[@\s]/g, '')
+        );
+        
+        // If still not found, this user is NOT a creator in our system
+        if (!myData) {
+            console.error('❌ CREATOR NOT FOUND:', user.name);
+            console.error('This user is not in the creators list. Redirecting to admin...');
+            alert('Creator account not found. You may be a manager or this account needs to be added to the roster.');
+            window.location.href = 'command-center.html';
+            return;
+        }
+        
         console.log('DEBUG - Found by fallback:', myData.username, 'Score:', myData.score, 'creatorId:', myData.creatorId);
     }
     
