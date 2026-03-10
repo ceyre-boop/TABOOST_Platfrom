@@ -79,13 +79,15 @@
             const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
             const userPassword = storedPasswords[cleanUsername];
             
-            console.log('DEBUG LOGIN:', cleanUsername, 'Stored pass:', userPassword ? '***' : 'none', 'Using:', userPassword || 'creator (default)');
+            // Check if user has set up a password (signed up)
+            if (!userPassword) {
+                alert('Account not found. Please sign up first with your username, email, and password.');
+                showSignupModal();
+                return;
+            }
             
-            // Creator login with per-creator password
-            // If no password set yet, use default 'creator' (first login only)
-            const validPassword = userPassword || 'creator';
-            
-            if (password === validPassword && cleanUsername.length > 0) {
+            // Creator login - MUST match stored password
+            if (password === userPassword && cleanUsername.length > 0) {
                 localStorage.setItem('taboost_user', JSON.stringify({
                     username: cleanUsername,
                     role: 'creator',
@@ -96,7 +98,7 @@
                 return;
             }
             
-            alert('Invalid credentials. Please check your email and password.');
+            alert('Invalid password. Please try again or contact your manager.');
         });
         
         function showSignupModal() {
