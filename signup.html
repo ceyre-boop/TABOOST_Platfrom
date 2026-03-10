@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABOOST - Claim Your Account</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+        .logo {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #333;
+        }
+        .step-dot.active {
+            background: #ff0044;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ff0044;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid #444;
+        }
+        .error {
+            background: rgba(255,0,68,0.1);
+            border: 1px solid #ff0044;
+            color: #ff0044;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .success {
+            background: rgba(0,255,136,0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #888;
+            margin-top: 10px;
+        }
+        .roster-status {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .roster-status.found {
+            background: rgba(0,255,136,0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+        }
+        .roster-status.not-found {
+            background: rgba(255,0,68,0.1);
+            border: 1px solid #ff0044;
+            color: #ff0044;
+        }
+        .cid-display {
+            font-family: monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .toggle a {
+            color: #ff0044;
+            text-decoration: none;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">TABOOST</div>
+        <p class="subtitle">Claim your creator account</p>
+        
+        <div class="step-indicator">
+            <div class="step-dot active" id="step1-dot"></div>
+            <div class="step-dot" id="step2-dot"></div>
+            <div class="step-dot" id="step3-dot"></div>
+        </div>
+        
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+        <div class="roster-status" id="rosterStatus"></div>
+        
+        <!-- STEP 1: VERIFY TIKTOK USERNAME -->
+        <div id="step1">
+            <div class="form-group">
+                <label>Your TikTok Username</label>
+                <input type="text" id="tiktokUsername" placeholder="@yourusername" required>
+                <p style="color: #666; font-size: 0.8rem; margin-top: 5px;">Enter your TikTok handle exactly as it appears in our roster</p>
+            </div>
+            
+            <button class="btn" id="verifyBtn" onclick="verifyUsername()">Find My Account</button>
+            <div class="loading" id="verifyLoading">Checking roster...</div>
+        </div>
+        
+        <!-- STEP 2: SET UP ACCOUNT -->
+        <div id="step2" class="hidden">
+            <div style="background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+                <p style="color: #00ff88; margin: 0;">✅ Account found in roster!</p>
+                <p style="color: #888; margin: 5px 0 0 0; font-size: 0.85rem;">CID: <span id="foundCid" class="cid-display"></span></p>
+            </div>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Create Password</label>
+                <input type="password" id="password" placeholder="Min 8 characters" required minlength="8">
+            </div>
+            
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+            </div>
+            
+            <button class="btn" id="createBtn" onclick="createAccount()">Create My Account</button>
+            <div class="loading" id="createLoading">Creating account...</div>
+            
+            <button class="btn btn-secondary" onclick="goBack()" style="margin-top: 10px;">Back</button>
+        </div>
+        
+        <!-- STEP 3: SUCCESS -->
+        <div id="step3" class="hidden">
+            <div style="text-align: center; padding: 20px 0;">
+                <div style="font-size: 60px; margin-bottom: 20px;">🎉</div>
+                <h2 style="color: #00ff88; margin-bottom: 10px;">Account Created!</h2>
+                <p style="color: #888; margin-bottom: 30px;">Your creator account is now active.</p>
+                
+                <button class="btn" onclick="goToLogin()">Go to Login</button>
+            </div>
+        </div>
+        
+        <div class="toggle">
+            Already have an account? <a href="firebase-login.html">Sign in</a>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, updateProfile } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        let verifiedCid = null;
+        let verifiedUsername = null;
+        
+        window.verifyUsername = async () => {
+            const username = document.getElementById('tiktokUsername').value.trim().replace(/^@/, '');
+            const btn = document.getElementById('verifyBtn');
+            const loading = document.getElementById('verifyLoading');
+            const statusDiv = document.getElementById('rosterStatus');
+            
+            if (!username) {
+                showError('Please enter your TikTok username');
+                return;
+            }
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                // Check if username exists in roster
+                const rosterDoc = await getDoc(doc(db, 'creatorRoster', username.toLowerCase()));
+                
+                if (!rosterDoc.exists()) {
+                    statusDiv.className = 'roster-status not-found';
+                    statusDiv.innerHTML = `
+                        <strong>❌ Username not found</strong>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9rem;">"${username}" is not in our creator roster.</p>
+                        <p style="margin: 5px 0 0 0; font-size: 0.85rem;">Contact your manager to be added.</p>
+                    `;
+                    statusDiv.style.display = 'block';
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                    return;
+                }
+                
+                const rosterData = rosterDoc.data();
+                
+                if (rosterData.claimed) {
+                    statusDiv.className = 'roster-status not-found';
+                    statusDiv.innerHTML = `
+                        <strong>⚠️ Account already claimed</strong>
+                        <p style="margin: 5px 0 0 0; font-size: 0.9rem;">This account has already been set up.</p>
+                        <p style="margin: 5px 0 0 0; font-size: 0.85rem;"><a href="firebase-login.html" style="color: #ff0044;">Sign in here</a> or contact support.</p>
+                    `;
+                    statusDiv.style.display = 'block';
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                    return;
+                }
+                
+                // Success - show step 2
+                verifiedCid = rosterData.cid;
+                verifiedUsername = username;
+                
+                document.getElementById('foundCid').textContent = verifiedCid;
+                
+                document.getElementById('step1').classList.add('hidden');
+                document.getElementById('step2').classList.remove('hidden');
+                
+                document.getElementById('step1-dot').classList.remove('active');
+                document.getElementById('step2-dot').classList.add('active');
+                
+            } catch (error) {
+                showError('Error checking roster: ' + error.message);
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        };
+        
+        window.createAccount = async () => {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            const btn = document.getElementById('createBtn');
+            const loading = document.getElementById('createLoading');
+            
+            if (!email || !password || !confirm) {
+                showError('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirm) {
+                showError('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters');
+                return;
+            }
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                // Create Firebase Auth user
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+                
+                // Set display name
+                await updateProfile(user, { displayName: verifiedUsername });
+                
+                // Create user record in Firestore
+                await setDoc(doc(db, 'users', user.uid), {
+                    email: email,
+                    username: verifiedUsername.toLowerCase(),
+                    cid: verifiedCid,
+                    role: 'creator',
+                    name: verifiedUsername,
+                    createdAt: serverTimestamp(),
+                    lastLogin: serverTimestamp()
+                });
+                
+                // Mark roster as claimed
+                await updateDoc(doc(db, 'creatorRoster', verifiedUsername.toLowerCase()), {
+                    claimed: true,
+                    uid: user.uid,
+                    claimedAt: serverTimestamp()
+                });
+                
+                // Show success
+                document.getElementById('step2').classList.add('hidden');
+                document.getElementById('step3').classList.remove('hidden');
+                
+                document.getElementById('step2-dot').classList.remove('active');
+                document.getElementById('step3-dot').classList.add('active');
+                
+            } catch (error) {
+                showError(getErrorMessage(error));
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        };
+        
+        window.goBack = () => {
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('step2-dot').classList.remove('active');
+            document.getElementById('step1-dot').classList.add('active');
+            verifiedCid = null;
+            verifiedUsername = null;
+        };
+        
+        window.goToLogin = () => {
+            window.location.href = 'firebase-login.html';
+        };
+        
+        function showError(msg) {
+            const el = document.getElementById('error');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+        }
+        
+        function hideMessages() {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+        }
+        
+        function getErrorMessage(error) {
+            const codes = {
+                'auth/email-already-in-use': 'An account already exists with this email',
+                'auth/invalid-email': 'Invalid email address',
+                'auth/weak-password': 'Password should be at least 6 characters',
+                'auth/network-request-failed': 'Network error. Check your connection'
+            };
+            return codes[error.code] || error.message || 'An error occurred';
+        }
+    </script>
+</body>
+</html>
