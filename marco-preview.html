@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TABOOST — Marco Preview</title>
+<script>
+// SECURITY: Admin Authentication Check
+(function checkAdminAuth(){
+  try {
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    if (!user || user.role !== 'admin') {
+      console.error('❌ ADMIN ACCESS DENIED');
+      window.location.href = 'index.html';
+    }
+  } catch (err) {
+    window.location.href = 'index.html';
+  }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
