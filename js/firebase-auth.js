@@ -2,12 +2,12 @@
 // Replace these values with your Firebase project settings
 
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
 };
 
 // Initialize Firebase
