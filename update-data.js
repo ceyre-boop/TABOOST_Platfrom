@@ -125,12 +125,12 @@ for (let i = 1; i < lines.length; i++) {
   
   if (!creatorId || !username) continue;
   
-  // Parse level - empty string becomes null
+  // Parse level - empty string becomes null, but preserve 0
   let levelValue = null;
   if (level && level !== '' && level !== '""') {
     const parsed = parseInt(level);
-    if (!isNaN(parsed) && parsed > 0) {
-      levelValue = parsed;
+    if (!isNaN(parsed)) {
+      levelValue = parsed; // Show 0, 1, 2, 3, 4, or 5
     }
   }
   
