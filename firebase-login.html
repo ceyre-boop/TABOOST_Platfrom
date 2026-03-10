@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABOOST - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .logo {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ff0044;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .toggle a {
+            color: #ff0044;
+            text-decoration: none;
+        }
+        .error {
+            background: rgba(255,0,68,0.1);
+            border: 1px solid #ff0044;
+            color: #ff0044;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .success {
+            background: rgba(0,255,136,0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #888;
+            margin-top: 10px;
+        }
+        .forgot-password {
+            text-align: right;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+        .forgot-password a {
+            color: #888;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        .forgot-password a:hover {
+            color: #ff0044;
+        }
+    </style>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="js/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">TABOOST</div>
+        <p class="subtitle" id="subtitle">Sign in to your account</p>
+        
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+        
+        <!-- LOGIN FORM -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="#" onclick="showForgotPassword(); return false;">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">Sign In</button>
+            <div class="loading" id="loginLoading">Signing in...</div>
+        </form>
+        
+        <!-- SIGNUP FORM -->
+        <form id="signupForm" style="display: none;">
+            <div class="form-group">
+                <label>TikTok Username</label>
+                <input type="text" id="signupUsername" placeholder="@yourusername" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="signupEmail" placeholder="you@example.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="signupPassword" placeholder="Min 8 characters" required minlength="8">
+            </div>
+            
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" id="signupConfirm" placeholder="Confirm password" required>
+            </div>
+            
+            <button type="submit" class="btn" id="signupBtn">Create Account</button>
+            <div class="loading" id="signupLoading">Creating account...</div>
+        </form>
+        
+        <!-- FORGOT PASSWORD FORM -->
+        <form id="forgotForm" style="display: none;">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="forgotEmail" placeholder="you@example.com" required>
+            </div>
+            
+            <button type="submit" class="btn" id="forgotBtn">Send Reset Link</button>
+            <div class="loading" id="forgotLoading">Sending...</div>
+        </form>
+        
+        <div class="toggle">
+            <span id="toggleText">First time here?</span>
+            <a href="#" id="toggleLink" onclick="toggleMode(); return false;">Create account</a>
+        </div>
+    </div>
+
+    <script>
+        // Check if already logged in
+        FirebaseAuth.getCurrentUser().then(user => {
+            if (user) {
+                redirectBasedOnRole(user.role);
+            }
+        });
+        
+        // LOGIN HANDLER
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loginLoading');
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                const user = await FirebaseAuth.signIn(email, password);
+                redirectBasedOnRole(user.role);
+            } catch (error) {
+                showError(getErrorMessage(error));
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+        
+        // SIGNUP HANDLER
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('signupUsername').value.replace(/^@/, '');
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('signupConfirm').value;
+            const btn = document.getElementById('signupBtn');
+            const loading = document.getElementById('signupLoading');
+            
+            if (password !== confirm) {
+                showError('Passwords do not match');
+                return;
+            }
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                await FirebaseAuth.signUp(email, password, username);
+                showSuccess('Account created! Redirecting...');
+                setTimeout(() => {
+                    window.location.href = 'creator-dashboard.html';
+                }, 1500);
+            } catch (error) {
+                showError(getErrorMessage(error));
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+        
+        // FORGOT PASSWORD HANDLER
+        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value;
+            const btn = document.getElementById('forgotBtn');
+            const loading = document.getElementById('forgotLoading');
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                await FirebaseAuth.resetPassword(email);
+                showSuccess('Password reset email sent! Check your inbox.');
+                setTimeout(() => {
+                    showLogin();
+                }, 3000);
+            } catch (error) {
+                showError(getErrorMessage(error));
+                btn.disabled = false;
+                loading.style.display = 'none';
+            }
+        });
+        
+        // UI FUNCTIONS
+        function toggleMode() {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const forgotForm = document.getElementById('forgotForm');
+            const toggleText = document.getElementById('toggleText');
+            const toggleLink = document.getElementById('toggleLink');
+            const subtitle = document.getElementById('subtitle');
+            
+            hideMessages();
+            
+            if (signupForm.style.display === 'none' && forgotForm.style.display === 'none') {
+                // Show signup
+                loginForm.style.display = 'none';
+                signupForm.style.display = 'block';
+                forgotForm.style.display = 'none';
+                toggleText.textContent = 'Already have an account?';
+                toggleLink.textContent = 'Sign in';
+                subtitle.textContent = 'Create your account';
+            } else {
+                // Show login
+                showLogin();
+            }
+        }
+        
+        function showLogin() {
+            document.getElementById('loginForm').style.display = 'block';
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('forgotForm').style.display = 'none';
+            document.getElementById('toggleText').textContent = 'First time here?';
+            document.getElementById('toggleLink').textContent = 'Create account';
+            document.getElementById('subtitle').textContent = 'Sign in to your account';
+            hideMessages();
+        }
+        
+        function showForgotPassword() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('forgotForm').style.display = 'block';
+            document.getElementById('toggleText').textContent = 'Remember your password?';
+            document.getElementById('toggleLink').textContent = 'Sign in';
+            document.getElementById('subtitle').textContent = 'Reset your password';
+            hideMessages();
+        }
+        
+        function redirectBasedOnRole(role) {
+            if (role === 'admin') {
+                window.location.href = 'dashboard.html';
+            } else if (role === 'manager') {
+                window.location.href = 'manager-dashboard.html';
+            } else {
+                window.location.href = 'creator-dashboard.html';
+            }
+        }
+        
+        function showError(msg) {
+            const el = document.getElementById('error');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+        }
+        
+        function showSuccess(msg) {
+            const el = document.getElementById('success');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+        }
+        
+        function hideMessages() {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+        }
+        
+        function getErrorMessage(error) {
+            const codes = {
+                'auth/user-not-found': 'No account found with this email',
+                'auth/wrong-password': 'Incorrect password',
+                'auth/invalid-email': 'Invalid email address',
+                'auth/weak-password': 'Password should be at least 6 characters',
+                'auth/email-already-in-use': 'An account already exists with this email',
+                'auth/too-many-requests': 'Too many attempts. Please try again later',
+                'auth/network-request-failed': 'Network error. Check your connection'
+            };
+            return codes[error.code] || error.message || 'An error occurred';
+        }
+    </script>
+</body>
+</html>
