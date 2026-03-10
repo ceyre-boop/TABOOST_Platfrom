@@ -74,6 +74,30 @@
         // Load passwords on page load
         loadPasswordsFromGitHub();
         
+        // Handle Magic Link Login
+        function handleMagicLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const magicToken = urlParams.get('magic');
+            const magicUser = urlParams.get('user');
+            const magicPass = urlParams.get('pass');
+            
+            if (magicToken && magicUser && magicPass) {
+                console.log('✨ Magic link detected for:', magicUser);
+                
+                // Auto-fill
+                document.getElementById('username').value = magicUser;
+                document.getElementById('password').value = magicPass;
+                
+                // Show banner
+                const banner = document.createElement('div');
+                banner.style.cssText = 'background: linear-gradient(135deg, #ff0044, #cc0033); color: white; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center;';
+                banner.innerHTML = '<div style="font-weight: 600;">✨ Magic Login Link</div><div style="font-size: 0.85rem; margin-top: 5px;">Click "Sign In" to access your account!</div>';
+                document.querySelector('.login-container').insertBefore(banner, document.getElementById('loginForm'));
+            }
+        }
+        
+        handleMagicLink();
+        
         document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
