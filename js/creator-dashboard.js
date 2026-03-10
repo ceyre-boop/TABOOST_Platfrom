@@ -883,8 +883,17 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
         const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards - only show for current month (we don't have historical rewards per month)
-        const rewards = index === 5 ? formatNumber(myData.rewards?.earned || 0) : '--';
+        // Rewards/Earnings - show 50k earned from Column AO for current month (March & future)
+        // For past months, show '--' since we don't have historical data
+        let rewards = '--';
+        if (index === 5) {
+            // Current month - use 50k earned from Column AO if available, otherwise fall back to earned
+            if (myData.badge50k && myData.badge50k !== '') {
+                rewards = myData.badge50k; // e.g., "50,000" or "Yes" or whatever is in AO
+            } else {
+                rewards = formatNumber(myData.earned || 0);
+            }
+        }
         
         return {
             period: period,
