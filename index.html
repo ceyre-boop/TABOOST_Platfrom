@@ -215,7 +215,7 @@
             localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
             
             // LOG: Track creator signups for Marco
-            const signupLog = JSON.parse(localStorage.getItem('creator_signup_log') || '[]');
+            const signupLog = JSON.parse(localStorage.getItem('taboost_signup_log_v1') || '[]');
             const signupEntry = {
                 username: username.toLowerCase(),
                 email: email,
@@ -225,7 +225,8 @@
                 userAgent: navigator.userAgent
             };
             signupLog.push(signupEntry);
-            localStorage.setItem('creator_signup_log', JSON.stringify(signupLog));
+            signupLog.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+            localStorage.setItem('taboost_signup_log_v1', JSON.stringify(signupLog));
             
             // Also log to console for easy access
             console.log('📊 CREATOR SIGNUP LOG:', signupLog);
