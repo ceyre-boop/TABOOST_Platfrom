@@ -148,51 +148,52 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
-        // Check if already logged in - show continue prompt instead of auto-redirect
+        // Check if already logged in - ALWAYS show login form first for security
+        // Only show "continue as" prompt after page loads (not auto-redirect)
+        let authChecked = false;
+        
         onAuthStateChanged(auth, async (user) => {
+            if (authChecked) return; // Prevent multiple checks
+            authChecked = true;
+            
             if (user) {
-                // Get user data
-                let userData = null;
-                try {
-                    const userDoc = await getDoc(doc(db, 'users', user.uid));
-                    userData = userDoc.data();
-                } catch (e) {
-                    console.warn('Could not load user data:', e);
-                }
+                // User is logged in - show them options but DON'T auto-redirect
+                const userName = user.displayName || user.email.split('@')[0];
                 
-                let role = userData?.role || 'creator';
-                if (user.email?.toLowerCase() === 'marco@taboost.me') {
-                    role = 'admin';
-                }
-                
-                const userName = userData?.name || userData?.username || user.displayName || user.email.split('@')[0];
-                
-                // Show "Continue as" prompt
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('signupForm').style.display = 'none';
-                document.getElementById('forgotForm').style.display = 'none';
-                document.querySelector('.toggle').style.display = 'none';
-                document.getElementById('subtitle').textContent = 'You\'re signed in';
-                
-                const continueDiv = document.createElement('div');
-                continueDiv.id = 'continueSection';
-                continueDiv.innerHTML = `
-                    <div style="text-align: center; padding: 30px 0;">
-                        <div style="font-size: 60px; margin-bottom: 20px;">👋</div>
-                        <h2 style="color: #fff; margin-bottom: 10px;">Welcome back, ${userName}!</h2>
-                        <p style="color: #888; margin-bottom: 30px;">You're signed in as ${role}</p>
-                        <button id="continueBtn" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #ff0044, #cc0033); border: none; border-radius: 10px; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; margin-bottom: 15px;">
-                            Continue to Dashboard
-                        </button>
-                        <button id="signOutBtn" style="width: 100%; padding: 15px; background: transparent; border: 1px solid #444; border-radius: 10px; color: #888; font-size: 1rem; cursor: pointer;">
-                            Sign in as different user
-                        </button>
+                // Add a banner showing logged in status
+                const banner = document.createElement('div');
+                banner.id = 'loggedInBanner';
+                banner.innerHTML = `
+                    <div style="background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: center;">
+                        <p style="color: #00ff88; margin: 0;">✅ You're signed in as ${userName}</p>
+                        <div style="margin-top: 10px;">
+                            <button id="continueBtn" style="background: #00ff88; color: #000; border: none; padding: 8px 16px; border-radius: 5px; cursor: pointer; margin-right: 10px; font-weight: 600;">Continue</button>
+                            <button id="signOutBtn" style="background: transparent; color: #ff0044; border: 1px solid #ff0044; padding: 8px 16px; border-radius: 5px; cursor: pointer;">Sign Out</button>
+                        </div>
                     </div>
                 `;
-                document.querySelector('.container').appendChild(continueDiv);
                 
-                // Attach event listeners
-                document.getElementById('continueBtn').addEventListener('click', () => {
+                const container = document.querySelector('.container');
+                container.insertBefore(banner, container.children[2]); // Insert after logo/subtitle
+                
+                // Hide forms initially - show when user chooses
+                document.getElementById('loginForm').style.display = 'none';
+                document.querySelector('.toggle').style.display = 'none';
+                document.getElementById('subtitle').textContent = 'Select an option';
+                
+                document.getElementById('continueBtn').addEventListener('click', async () => {
+                    // Get user role and redirect
+                    let userData = null;
+                    try {
+                        const userDoc = await getDoc(doc(db, 'users', user.uid));
+                        userData = userDoc.data();
+                    } catch (e) {}
+                    
+                    let role = userData?.role || 'creator';
+                    if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                        role = 'admin';
+                    }
+                    
                     if (role === 'admin') {
                         window.location.href = 'dashboard.html';
                     } else {
