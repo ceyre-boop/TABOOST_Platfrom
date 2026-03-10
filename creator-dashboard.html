@@ -7,6 +7,25 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Live Dashboard - Taboost</title>
+    <script>
+    // SECURITY: Authentication Check
+    (function checkCreatorAuth(){
+      try {
+        const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+        if (!user || (!user.role && !user.username)) {
+          window.location.href = 'index.html';
+          return;
+        }
+        // Admins should use admin dashboard
+        if (user.role === 'admin') {
+          window.location.href = 'dashboard.html';
+          return;
+        }
+      } catch (err) {
+        window.location.href = 'index.html';
+      }
+    })();
+    </script>
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
     <link rel="stylesheet" href="css/creator-dashboard.css?v=202503092112">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
