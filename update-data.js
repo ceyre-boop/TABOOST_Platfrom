@@ -80,7 +80,7 @@ const COLS = {
   daysMonth: getColIndex('Days Month'),    // Column AM
   hoursMonth: getColIndex('Hours Month'),  // Column AN
   link: getColIndex('Link'),               // Column AO
-  badge50k: getColIndex('50k (earned in current month)')       // Column AP - 50k earned in current month
+  rewardsMonth: getColIndex('Rewards Month')       // Column AO - Rewards Month
 };
 
 console.log('Column mapping:', COLS);
@@ -121,7 +121,7 @@ for (let i = 1; i < lines.length; i++) {
   const unlocked = values[COLS.unlocked];
   const dayPace = values[COLS.dayPace];
   const diamondPace = values[COLS.diamondPace];
-  const badge50k = values[COLS.badge50k];
+  const rewardsMonth = values[COLS.rewardsMonth];
   
   if (!creatorId || !username) continue;
   
@@ -180,7 +180,7 @@ for (let i = 1; i < lines.length; i++) {
     running: running || '',
     multiply: multiply || '',
     unlocked: unlocked || '',
-    badge50k: badge50k || ''
+    rewardsMonth: rewardsMonth || ''
   });
 }
 

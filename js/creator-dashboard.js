@@ -284,18 +284,22 @@ function updateStats() {
     const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
     const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
     
-    // For March and future months: Use Column AO (50k earned) if available
+    // For March and future months: Use Column AO (Rewards Month) if available
     // For past months: Fall back to Column AH (Earned)
     let totalEarned = myData.earned || 0;
     console.log('DEBUG REWARDS - Before AO check:', myData.username);
     console.log('  myData.earned (Column AH):', myData.earned);
-    console.log('  myData.badge50k (Column AO):', myData.badge50k);
+    console.log('  myData.rewardsMonth (Column AO):', myData.rewardsMonth);
     
-    if (myData.badge50k && myData.badge50k !== '') {
-        // Column AO has value (e.g., "50,000" or "Yes") - use 50k earned display
-        const earned50k = parseInt(myData.badge50k.toString().replace(/,/g, '')) || 50000;
-        totalEarned = earned50k;
-        console.log('  -> Using AO value:', totalEarned);
+    if (myData.rewardsMonth && myData.rewardsMonth !== '') {
+        // Column AO has value (e.g., "60,000") - use Rewards Month
+        const earnedAO = parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) || 0;
+        if (earnedAO > 0) {
+            totalEarned = earnedAO;
+            console.log('  -> Using AO (Rewards Month) value:', totalEarned);
+        } else {
+            console.log('  -> Using AH value (AO is 0/empty):', totalEarned);
+        }
     } else {
         console.log('  -> Using AH value (AO empty):', totalEarned);
     }
@@ -840,7 +844,7 @@ function updateAchievements() {
     const achievements = [
         { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
         { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
-        { name: '50k Earned', icon: '💎', unlocked: myData.badge50k && myData.badge50k !== '', desc: '50k+ earned this month' },
+        { name: '50k Earned', icon: '💎', unlocked: myData.rewardsMonth && parseInt((myData.rewardsMonth || '').toString().replace(/,/g, '')) >= 50000, desc: '50k+ earned this month' },
         { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
         { name: 'Growth Star', icon: '🚀', unlocked: (myData.growthDirection || '').toLowerCase() === 'up', desc: 'Upward growth' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
@@ -899,13 +903,13 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
         const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards/Earnings - show 50k earned from Column AO for current month (March & future)
+        // Rewards/Earnings - show Rewards Month from Column AO for current month (March & future)
         // For past months, show '--' since we don't have historical data
         let rewards = '--';
         if (index === 5) {
-            // Current month - use 50k earned from Column AO if available, otherwise fall back to earned
-            if (myData.badge50k && myData.badge50k !== '') {
-                rewards = myData.badge50k; // e.g., "50,000" or "Yes" or whatever is in AO
+            // Current month - use Rewards Month from Column AO if available, otherwise fall back to earned
+            if (myData.rewardsMonth && myData.rewardsMonth !== '') {
+                rewards = myData.rewardsMonth; // e.g., "60,000" from AO
             } else {
                 rewards = formatNumber(myData.earned || 0);
             }
