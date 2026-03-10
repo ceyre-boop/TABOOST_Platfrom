@@ -1060,16 +1060,17 @@ function updateScoreAndLevels() {
         { level: 5, days: 25, hours: 80 }
     ];
     
-    // Get requirements for current level (or level 0 if not set)
-    const currentLevelReq = levelReqs.find(r => r.level === currentLevel) || levelReqs[0];
+    // Get requirements for NEXT level (what they're working toward)
+    const nextLevel = currentLevel + 1;
+    const nextLevelReq = levelReqs.find(r => r.level === nextLevel) || levelReqs[levelReqs.length - 1];
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${currentLevelReq.days}+ days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${currentLevelReq.hours}+ hrs`;
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${nextLevelReq.days} days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${nextLevelReq.hours} hrs`;
     
-    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / currentLevelReq.days) * 100)}%`;
-    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / currentLevelReq.hours) * 100)}%`;
+    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
+    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
     
     // Revenue Streams - only update elements that exist
     const diamondUSD = (myData.diamonds || 0) * 0.005;
