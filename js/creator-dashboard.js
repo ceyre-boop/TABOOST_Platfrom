@@ -314,9 +314,6 @@ function updateStats() {
     console.log('  FINAL Total Earned:', totalEarned);
     console.log('  Used (calculated):', totalUsed);
     
-    // ALERT for debugging
-    alert('Rewards Debug:\nUsername: ' + myData.username + '\nAO (Rewards Month): ' + (myData.rewardsMonth || 'EMPTY') + '\nAH (Earned): ' + (myData.earned || 'EMPTY') + '\nFinal Total: ' + totalEarned);
-    
     // Format with sign if negative
     const currentRewardsAvailable = currentAvailable < 0 
         ? '-' + formatNumberPlain(Math.abs(currentAvailable))
