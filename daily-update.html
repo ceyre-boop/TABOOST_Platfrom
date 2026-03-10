@@ -28,11 +28,41 @@
             margin-bottom: 10px;
         }
         .subtitle { color: #888; margin-bottom: 30px; }
+        
+        .mode-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            padding: 5px;
+            border-radius: 10px;
+        }
+        .mode-tab {
+            flex: 1;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .mode-tab.active {
+            background: linear-gradient(135deg, #ff0044, #ff6b6b);
+            color: #000;
+        }
+        .mode-tab:not(.active) {
+            color: #888;
+        }
+        .mode-tab:not(.active):hover {
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+        }
+        
         .drop-zone {
             background: rgba(255,255,255,0.03);
             border: 3px dashed #444;
             border-radius: 20px;
-            padding: 60px 40px;
+            padding: 50px 40px;
             cursor: pointer;
             margin: 20px 0;
             transition: all 0.3s;
@@ -41,58 +71,141 @@
         .drop-zone.processing { border-color: #f59e0b; }
         .drop-zone.ready { border-color: #22c55e; }
         .drop-icon { font-size: 48px; margin-bottom: 15px; }
+        
+        .token-section {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            display: none;
+        }
+        .token-section.visible { display: block; }
+        .token-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #feca57;
+        }
+        .token-section input {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-size: 14px;
+            font-family: monospace;
+        }
+        .token-section input:focus {
+            outline: none;
+            border-color: #ff0044;
+        }
+        .token-help {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+        .token-help a {
+            color: #ff6b6b;
+            text-decoration: none;
+        }
+        
         .btn {
             background: linear-gradient(135deg, #ff0044, #ff6b6b);
             color: #000;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 40px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
-            margin: 10px;
+            margin: 10px 5px;
             display: none;
         }
         .btn.visible { display: inline-block; }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
         .btn-secondary {
             background: #333;
             color: white;
         }
+        
         .status {
-            background: rgba(255,255,255,0.05);
+            background: rgba(0,0,0,0.5);
+            border: 1px solid #333;
             border-radius: 10px;
-            padding: 20px;
+            padding: 15px;
             margin: 20px 0;
             text-align: left;
             font-family: monospace;
-            font-size: 13px;
+            font-size: 12px;
+            max-height: 250px;
+            overflow-y: auto;
             display: none;
         }
         .status.visible { display: block; }
-        .status-line { margin: 5px 0; }
+        .status-line { margin: 3px 0; padding: 2px 0; }
         .success { color: #22c55e; }
+        .error { color: #ff4444; }
+        .info { color: #feca57; }
+        
         .instructions {
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 12px;
             padding: 20px;
-            margin-top: 30px;
+            margin-top: 25px;
             text-align: left;
         }
-        .instructions h3 { color: #feca57; margin-bottom: 15px; }
+        .instructions h3 { 
+            color: #feca57; 
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .instructions ol { margin-left: 20px; }
-        .instructions li { margin: 10px 0; color: #aaa; }
+        .instructions li { margin: 8px 0; color: #aaa; line-height: 1.5; }
+        .instructions a { color: #ff6b6b; text-decoration: none; }
+        .instructions a:hover { text-decoration: underline; }
         .instructions code {
             background: #1a1a1a;
             padding: 2px 6px;
             border-radius: 4px;
             color: #ff6b6b;
+            font-size: 12px;
         }
+        
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #333;
+            border-top-color: #ff0044;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">TABOOST</div>
-        <div class="subtitle">Daily Data Update Tool (Safe Mode)</div>
+        <div class="subtitle">Daily Data Update Tool</div>
+        
+        <div class="mode-tabs">
+            <div class="mode-tab active" onclick="setMode('auto')" id="tab-auto">
+                ⚡ Auto Upload
+            </div>
+            <div class="mode-tab" onclick="setMode('manual')" id="tab-manual">
+                📥 Manual Download
+            </div>
+        </div>
         
         <div class="drop-zone" id="dropZone">
             <div class="drop-icon">📁</div>
@@ -100,39 +213,71 @@
             <input type="file" id="fileInput" accept=".csv" style="display:none">
         </div>
         
-        <button class="btn" id="downloadBtn" onclick="downloadDataJs()">⬇️ Download data.js</button>
-        <button class="btn btn-secondary" id="githubBtn" onclick="openGitHub()">🚀 Open GitHub</button>
+        <div class="token-section" id="tokenSection">
+            <label>🔑 GitHub Personal Access Token</label>
+            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" oninput="checkReady()">
+            <div class="token-help">
+                Get your token: <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> 
+                → Name it "TABOOST" → Check <code>repo</code> → Generate
+            </div>
+        </div>
+        
+        <button class="btn" id="autoBtn" onclick="autoUpload()">🚀 Upload & Update Site</button>
+        <button class="btn btn-secondary" id="downloadBtn" onclick="downloadDataJs()">⬇️ Download data.js</button>
+        <button class="btn btn-secondary" id="githubBtn" onclick="openGitHub()">🔗 Open GitHub</button>
         
         <div class="status" id="status"></div>
         
-        <div class="instructions">
-            <h3>📋 Daily Update Steps (2 Minutes):</h3>
+        <div class="instructions" id="autoInstructions">
+            <h3>⚡ How to Use Auto Upload:</h3>
             <ol>
-                <li><strong>Drop CSV</strong> on the box above</li>
+                <li><strong>Get a GitHub token</strong> (one-time setup) - click the link above</li>
+                <li><strong>Save the token somewhere safe</strong> (password manager)</li>
+                <li><strong>Drop your CSV</strong> on the box above</li>
+                <li><strong>Paste your token</strong> in the field that appears</li>
+                <li><strong>Click "Upload & Update Site"</strong></li>
+                <li><strong>Wait 2 minutes</strong> - site updates automatically!</li>
+            </ol>
+            <p style="color:#666; margin-top:15px; font-size:13px;">
+                🔒 Your token is stored only in your browser and used only to commit files.
+            </p>
+        </div>
+        
+        <div class="instructions" id="manualInstructions" style="display:none;">
+            <h3>📥 How to Use Manual Download:</h3>
+            <ol>
+                <li><strong>Drop your CSV</strong> on the box above</li>
                 <li><strong>Click "Download data.js"</strong></li>
-                <li><strong>Click "Open GitHub"</strong> (opens js/data.js)</li>
+                <li><strong>Click "Open GitHub"</strong> to go to the file</li>
                 <li>Click the <strong>✏️ pencil icon</strong> to edit</li>
                 <li><strong>Select all</strong> (Ctrl+A), <strong>paste</strong> (Ctrl+V)</li>
                 <li>Scroll down, click <strong>"Commit changes"</strong></li>
                 <li>Wait 1 minute for site to update</li>
             </ol>
-            <p style="color:#666; margin-top:15px;">
-                ✅ <strong>Zero risk:</strong> Same system, just faster updates<br>
-                ✅ <strong>100% reliable:</strong> GitHub Pages never fails
-            </p>
         </div>
     </div>
 
     <script>
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('fileInput');
-        const dropText = document.getElementById('dropText');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const githubBtn = document.getElementById('githubBtn');
-        const status = document.getElementById('status');
+        const REPO_OWNER = 'ceyre-boop';
+        const REPO_NAME = 'TABOOST_Platfrom';
         
+        let currentMode = 'auto';
+        let csvFile = null;
         let dataJsContent = null;
 
+        function setMode(mode) {
+            currentMode = mode;
+            document.getElementById('tab-auto').classList.toggle('active', mode === 'auto');
+            document.getElementById('tab-manual').classList.toggle('active', mode === 'manual');
+            document.getElementById('autoInstructions').style.display = mode === 'auto' ? 'block' : 'none';
+            document.getElementById('manualInstructions').style.display = mode === 'manual' ? 'block' : 'none';
+            checkReady();
+        }
+
+        // Drag & drop
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+        
         dropZone.onclick = () => fileInput.click();
         dropZone.ondragover = (e) => { e.preventDefault(); dropZone.style.borderColor = '#ff0044'; };
         dropZone.ondragleave = () => { dropZone.style.borderColor = '#444'; };
@@ -143,12 +288,14 @@
         };
         fileInput.onchange = (e) => { if (e.target.files.length) processFile(e.target.files[0]); };
 
-        function log(msg, isSuccess) {
+        function log(msg, type) {
+            const status = document.getElementById('status');
             status.classList.add('visible');
             const div = document.createElement('div');
-            div.className = 'status-line' + (isSuccess ? ' success' : '');
-            div.textContent = msg;
+            div.className = 'status-line ' + (type || '');
+            div.innerHTML = msg;
             status.appendChild(div);
+            status.scrollTop = status.scrollHeight;
         }
 
         function parseCSVLine(line) {
@@ -184,15 +331,12 @@
                 return;
             }
             
-            dropZone.classList.add('processing');
-            dropText.textContent = 'Processing...';
-            status.innerHTML = '';
-            
+            csvFile = file;
             const text = await file.text();
+            
+            // Parse CSV
             const lines = text.split('\n');
             const creators = [];
-            
-            log('📁 Reading ' + file.name + '...');
             
             for (let i = 1; i < lines.length; i++) {
                 const line = lines[i].trim();
@@ -250,8 +394,6 @@
                 }
             }
             
-            log('✅ Parsed ' + creators.length + ' creators');
-            
             // Generate data.js
             const timestamp = new Date().toISOString();
             let output = '// Taboost Agency - Complete Creator Data\n';
@@ -268,25 +410,94 @@
             
             dataJsContent = output;
             
-            // Show sample
-            const skyler = creators.find(c => c.username === 'skylerclarkk');
-            if (skyler) {
-                log('💎 skylerclarkk: ' + skyler.diamonds.toLocaleString() + ' diamonds');
+            // Update UI
+            dropZone.classList.add('ready');
+            document.getElementById('dropText').textContent = `${creators.length} creators ready`;
+            
+            if (currentMode === 'auto') {
+                document.getElementById('tokenSection').classList.add('visible');
+                document.getElementById('autoBtn').classList.add('visible');
+            } else {
+                document.getElementById('downloadBtn').classList.add('visible');
+                document.getElementById('githubBtn').classList.add('visible');
             }
             
-            dropZone.classList.remove('processing');
-            dropZone.classList.add('ready');
-            dropText.textContent = creators.length + ' creators ready';
+            log('✅ Parsed ' + creators.length + ' creators from CSV');
+        }
+
+        function checkReady() {
+            const token = document.getElementById('githubToken').value;
+            const btn = document.getElementById('autoBtn');
+            if (btn.classList.contains('visible')) {
+                btn.disabled = !token;
+            }
+        }
+
+        async function autoUpload() {
+            const token = document.getElementById('githubToken').value;
+            if (!token || !dataJsContent) return;
             
-            downloadBtn.classList.add('visible');
-            githubBtn.classList.add('visible');
+            const btn = document.getElementById('autoBtn');
+            btn.disabled = true;
             
-            log('✅ Ready to download!', true);
+            log('<span class="spinner"></span>Starting upload...', 'info');
+            
+            try {
+                // 1. Get current file SHA
+                log('📡 Checking current data.js...');
+                let sha = null;
+                try {
+                    const checkRes = await fetch(
+                        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/js/data.js`,
+                        { headers: { 'Authorization': `token ${token}` } }
+                    );
+                    if (checkRes.ok) {
+                        const data = await checkRes.json();
+                        sha = data.sha;
+                    }
+                } catch (e) {}
+                
+                // 2. Upload new data.js
+                log('📤 Uploading new data.js...');
+                const content = btoa(unescape(encodeURIComponent(dataJsContent)));
+                const body = {
+                    message: `Update creator data - ${new Date().toLocaleDateString()}`,
+                    content: content,
+                    branch: 'main'
+                };
+                if (sha) body.sha = sha;
+                
+                const uploadRes = await fetch(
+                    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/js/data.js`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    }
+                );
+                
+                if (!uploadRes.ok) {
+                    const error = await uploadRes.json();
+                    throw new Error(error.message || 'Upload failed');
+                }
+                
+                log('✅ Data uploaded successfully!', 'success');
+                log('🎉 Site will update in ~1 minute!', 'success');
+                log('🔗 <a href="https://live.taboost.me/creator-dashboard.html" target="_blank" style="color:#ff6b6b;">Check dashboard</a>');
+                
+                dropZone.innerHTML = '<div class="drop-icon">✅</div><div>Update Complete!</div>';
+                
+            } catch (error) {
+                log('❌ Error: ' + error.message, 'error');
+                btn.disabled = false;
+            }
         }
 
         function downloadDataJs() {
             if (!dataJsContent) return;
-            
             const blob = new Blob([dataJsContent], { type: 'application/javascript' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -296,13 +507,11 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            
-            log('⬇️ Downloaded data.js', true);
-            log('📋 Now upload to GitHub (click "Open GitHub")');
+            log('⬇️ Downloaded data.js', 'success');
         }
 
         function openGitHub() {
-            window.open('https://github.com/ceyre-boop/TABOOST_Platfrom/edit/main/js/data.js', '_blank');
+            window.open(`https://github.com/${REPO_OWNER}/${REPO_NAME}/edit/main/js/data.js`, '_blank');
         }
     </script>
 </body>
