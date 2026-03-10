@@ -587,12 +587,16 @@
             }
             
             // Build user object for dashboard
+            // Use username from Firestore (set during signup) or fallback to email prefix
+            const username = userData?.username || firebaseUser.email.split('@')[0];
             const dashboardUser = {
-                name: userData?.username || userData?.name || firebaseUser.displayName || firebaseUser.email.split('@')[0],
+                name: username,
                 email: firebaseUser.email,
                 creatorId: userData?.creatorId || null,
                 role: role
             };
+            
+            console.log('🔐 Firebase Auth: Loading dashboard for', username);
             
             // Initialize dashboard
             initCreatorDashboard(dashboardUser);

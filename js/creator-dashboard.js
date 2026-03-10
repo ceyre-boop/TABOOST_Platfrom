@@ -49,13 +49,36 @@ async function initCreatorDashboard(user) {
             c.username.toLowerCase() === user.name.toLowerCase().replace(/[@\s]/g, '')
         );
         
-        // If still not found, this user is NOT a creator in our system
+        // If still not found, check if this is a new Firebase user
         if (!myData) {
-            console.error('❌ CREATOR NOT FOUND:', user.name);
-            console.error('This user is not in the creators list. Redirecting to admin...');
-            alert('Creator account not found. You may be a manager or this account needs to be added to the roster.');
-            window.location.href = 'command-center.html';
-            return;
+            console.warn('⚠️ CREATOR NOT FOUND in CSV:', user.name);
+            console.warn('This may be a new Firebase user not yet in the system.');
+            
+            // Create minimal data object for new Firebase users
+            // This allows them to see the dashboard even if full data isn't available
+            myData = {
+                username: user.name,
+                name: user.name,
+                email: user.email,
+                creatorId: user.creatorId || 'FB_' + Date.now(),
+                score: 0,
+                diamonds: 0,
+                diamondsGoal: 0,
+                hours: 0,
+                hoursGoal: 15,
+                validLiveDays: 0,
+                daysGoal: 7,
+                tier: 1,
+                tierGoal: 1000,
+                tierStatus: '',
+                growthPercent: 0,
+                manager: 'Unassigned',
+                m: 'Unassigned',
+                _isNewUser: true  // Flag for UI handling
+            };
+            
+            // Show welcome message for new users
+            console.log('✅ Created minimal dashboard for new user:', user.name);
         }
         
         console.log('DEBUG - Found by fallback:', myData.username, 'Score:', myData.score, 'creatorId:', myData.creatorId);
@@ -72,6 +95,23 @@ async function initCreatorDashboard(user) {
     
     // Store creatorId for internal tracking (never displayed)
     myData._creatorId = myData.creatorId;
+    
+    // Show welcome banner for new Firebase users
+    if (myData._isNewUser) {
+        const welcomeBanner = document.getElementById('welcomeBanner');
+        if (welcomeBanner) {
+            welcomeBanner.innerHTML = `
+                <div class="welcome-content">
+                    <i class="fas fa-user-plus"></i>
+                    <div>
+                        <strong>Welcome to TABOOST!</strong>
+                        <p>Your account is being set up. Full dashboard data will appear once your manager adds you to the roster.</p>
+                    </div>
+                </div>
+            `;
+            welcomeBanner.style.background = 'linear-gradient(135deg, #ff0044, #cc0033)';
+        }
+    }
     
     try {
         console.log('DEBUG - Starting updateProfile');
