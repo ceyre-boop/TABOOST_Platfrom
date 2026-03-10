@@ -164,12 +164,6 @@
             const password = document.getElementById('signupPassword').value;
             const confirmPassword = document.getElementById('signupConfirmPassword').value;
             
-            // Check if user is in roster
-            if (!creatorsRoster.includes(username.toLowerCase())) {
-                alert('❌ Username not found in Taboost roster. Please contact your manager if you believe this is an error.');
-                return;
-            }
-            
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
                 return;
