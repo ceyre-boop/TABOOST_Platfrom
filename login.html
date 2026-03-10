@@ -57,8 +57,22 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            console.log('📱 MOBILE DEBUG: Login form submitted');
+            
             let username = document.getElementById('username').value.trim().toLowerCase();
             const password = document.getElementById('password').value;
+            
+            console.log('📱 MOBILE DEBUG: Login attempt for:', username);
+            
+            // Check if localStorage is available
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+            } catch (err) {
+                alert('Error: Your browser is blocking storage. Please disable private browsing or try Chrome/Safari.');
+                console.error('localStorage not available:', err);
+                return;
+            }
             
             // Strip @ symbol for creators (but not admin email)
             const cleanUsername = username.replace(/^@/, '');
@@ -76,7 +90,13 @@
             }
             
             // Get stored passwords (creator-specific)
-            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            let storedPasswords = {};
+            try {
+                storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+                console.log('📱 MOBILE DEBUG: Stored passwords count:', Object.keys(storedPasswords).length);
+            } catch (err) {
+                console.error('Error reading passwords:', err);
+            }
             
             // Find username case-insensitively
             let userPassword = null;
@@ -88,6 +108,8 @@
                     break;
                 }
             }
+            
+            console.log('📱 MOBILE DEBUG: Found password?', userPassword ? 'YES' : 'NO');
             
             // Check if user has set up a password (signed up)
             if (!userPassword) {
@@ -123,6 +145,8 @@
         document.getElementById('signupForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            console.log('📱 MOBILE DEBUG: Signup form submitted');
+            
             // Strip @ symbol if user included it
             let username = document.getElementById('signupUsername').value.trim();
             username = username.replace(/^@/, ''); // Remove leading @
@@ -131,6 +155,8 @@
             const password = document.getElementById('signupPassword').value;
             const confirmPassword = document.getElementById('signupConfirmPassword').value;
             
+            console.log('📱 MOBILE DEBUG: Username:', username, 'Email:', email);
+            
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
                 return;
@@ -138,6 +164,16 @@
             
             if (password.length < 8) {
                 alert('Password must be at least 8 characters long.');
+                return;
+            }
+            
+            // Check if localStorage is available (mobile browsers sometimes block it)
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+            } catch (err) {
+                alert('Error: Your browser is blocking storage. Please disable private browsing or use a different browser.');
+                console.error('localStorage not available:', err);
                 return;
             }
             
