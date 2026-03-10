@@ -112,7 +112,7 @@
             const cleanUsername = username.replace(/^@/, '');
             
             // Admin login
-            if (username === 'marco@taboost.me' && password === 'admin') {
+            if (username.toLowerCase() === 'marco@taboost.me' && password === 'Taboost2026!Admin') {
                 localStorage.setItem('taboost_user', JSON.stringify({
                     username: 'marco@taboost.me',
                     role: 'admin',

@@ -281,9 +281,14 @@
             
             console.log('🔐 Login attempt:', username);
             
-            // Admin bypass
-            if (username.toLowerCase() === 'marco@taboost.me' && password === 'admin') {
-                setCurrentUser({ username: 'marco@taboost.me', role: 'admin', name: 'Marco' });
+            // Admin login
+            if (username.toLowerCase() === 'marco@taboost.me' && password === 'Taboost2026!Admin') {
+                setCurrentUser({ 
+                    username: 'marco@taboost.me', 
+                    role: 'admin', 
+                    name: 'Marco',
+                    loginTime: Date.now()
+                });
                 window.location.href = 'dashboard.html';
                 return;
             }

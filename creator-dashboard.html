@@ -511,6 +511,7 @@
         
         function logout() {
             localStorage.removeItem('taboost_user');
+            localStorage.removeItem('taboost_current_user');
             window.location.href = 'index.html';
         }
         

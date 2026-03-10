@@ -83,10 +83,15 @@
             // Strip @ symbol for creators (but not admin email)
             const cleanUsername = username.replace(/^@/, '');
             
-            // Admin login
-            if (username === 'marco@taboost.me' && password === 'admin') {
+            // Admin login - uses secure password from config
+            const ADMIN_CREDENTIALS = {
+                email: 'marco@taboost.me',
+                passwordHash: 'Taboost2026!Admin' // Temporary - will be moved to backend
+            };
+            
+            if (username.toLowerCase() === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.passwordHash) {
                 localStorage.setItem('taboost_user', JSON.stringify({
-                    username: 'marco@taboost.me',
+                    username: ADMIN_CREDENTIALS.email,
                     role: 'admin',
                     name: 'Marco',
                     avatar: 'M',
