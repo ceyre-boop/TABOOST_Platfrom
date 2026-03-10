@@ -109,9 +109,23 @@
                 }
             }
             
-            // Check if user exists in backend
+            // If not in GitHub backend, check localStorage (for newly signed up users)
             if (!userPassword) {
-                alert('Account not found. Please contact your manager to set up your account.');
+                const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+                for (const [storedUser, storedPass] of Object.entries(localPasswords)) {
+                    if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
+                        userPassword = storedPass;
+                        matchedUsername = storedUser;
+                        console.log('Found password in localStorage');
+                        break;
+                    }
+                }
+            }
+            
+            // Check if user exists anywhere
+            if (!userPassword) {
+                alert('Account not found. Please sign up first or contact your manager.');
+                showSignupModal();
                 return;
             }
             
