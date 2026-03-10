@@ -638,37 +638,74 @@ tbody tr:last-child td{border-bottom:none}
   </div><!-- content -->
 </div><!-- main -->
 
-<script>
-// ── SECURITY: Admin Authentication Check ──
-(function checkAdminAuth(){
-  try {
-    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
-    const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // 8 hours
-    
-    // Must be logged in AND have admin role
-    if (!user || user.role !== 'admin') {
-      console.error('❌ ADMIN ACCESS DENIED: Not authenticated as admin');
-      window.location.href = 'index.html';
-      return;
-    }
-    
-    // Check session expiration
-    if (user.loginTime) {
-      const sessionAge = Date.now() - user.loginTime;
-      if (sessionAge > SESSION_DURATION_MS) {
-        console.error('❌ ADMIN SESSION EXPIRED');
-        localStorage.removeItem('taboost_user');
-        window.location.href = 'index.html';
+<script type="module">
+// ── SECURITY: Firebase Admin Authentication ──
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) {
+        console.error('❌ ADMIN ACCESS DENIED: Not logged in');
+        window.location.href = 'firebase-login.html';
         return;
-      }
     }
     
-    console.log('✅ Admin authenticated:', user.username || user.name);
-  } catch (err) {
-    console.error('❌ ADMIN ACCESS DENIED: Error checking auth', err);
-    window.location.href = 'index.html';
-  }
-})();
+    // Check if user is admin
+    try {
+        const userDoc = await getDoc(doc(db, 'users', user.uid));
+        const userData = userDoc.data();
+        
+        let role = userData?.role;
+        if (user.email?.toLowerCase() === 'marco@taboost.me') {
+            role = 'admin';
+        }
+        
+        if (role !== 'admin') {
+            console.error('❌ ADMIN ACCESS DENIED: Not an admin');
+            window.location.href = 'creator-dashboard.html';
+            return;
+        }
+        
+        console.log('✅ Admin authenticated:', user.email);
+        
+        // Store for later use
+        window.currentUser = {
+            uid: user.uid,
+            email: user.email,
+            role: 'admin',
+            name: userData?.name || 'Admin'
+        };
+    } catch (error) {
+        console.error('❌ Error checking admin status:', error);
+        // Allow if marco email
+        if (user.email?.toLowerCase() === 'marco@taboost.me') {
+            console.log('✅ Admin authenticated (by email)');
+            window.currentUser = { uid: user.uid, email: user.email, role: 'admin', name: 'Marco' };
+        } else {
+            window.location.href = 'firebase-login.html';
+        }
+    }
+});
+
+// Logout function
+window.logout = async () => {
+    await auth.signOut();
+    window.location.href = 'firebase-login.html';
+};
 
 // ── DATA ──
 const D=[

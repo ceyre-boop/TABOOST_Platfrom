@@ -7,37 +7,79 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Live Dashboard - Taboost</title>
-    <script>
-    // SECURITY: Authentication Check
-    (function checkCreatorAuth(){
-      try {
-        const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
-        const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // 8 hours
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         
-        if (!user || (!user.role && !user.username)) {
-          window.location.href = 'index.html';
-          return;
-        }
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
         
-        // Check session expiration
-        if (user.loginTime) {
-          const sessionAge = Date.now() - user.loginTime;
-          if (sessionAge > SESSION_DURATION_MS) {
-            localStorage.removeItem('taboost_user');
-            window.location.href = 'index.html';
-            return;
-          }
-        }
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
         
-        // Admins should use admin dashboard
-        if (user.role === 'admin') {
-          window.location.href = 'dashboard.html';
-          return;
-        }
-      } catch (err) {
-        window.location.href = 'index.html';
-      }
-    })();
+        // Check Firebase Auth state
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                // Not logged in - redirect to Firebase login
+                window.location.href = 'firebase-login.html';
+                return;
+            }
+            
+            // Get user role from Firestore
+            try {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data();
+                
+                // Check admin email
+                let role = userData?.role || 'creator';
+                if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                    role = 'admin';
+                }
+                
+                // Admins should use admin dashboard
+                if (role === 'admin') {
+                    window.location.href = 'dashboard.html';
+                    return;
+                }
+                
+                // Store user info for page use
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: role,
+                    name: userData?.name || user.displayName,
+                    username: userData?.username || user.displayName
+                };
+                
+                // Update UI with user info
+                document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
+                
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                // Continue anyway - user is authenticated
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: 'creator',
+                    name: user.displayName || user.email.split('@')[0]
+                };
+            }
+        });
+        
+        // Expose for logout
+        window.logout = async () => {
+            await auth.signOut();
+            window.location.href = 'firebase-login.html';
+        };
     </script>
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
     <link rel="stylesheet" href="css/creator-dashboard.css?v=202503092112">
