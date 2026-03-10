@@ -287,10 +287,17 @@ function updateStats() {
     // For March and future months: Use Column AO (50k earned) if available
     // For past months: Fall back to Column AH (Earned)
     let totalEarned = myData.earned || 0;
+    console.log('DEBUG REWARDS - Before AO check:', myData.username);
+    console.log('  myData.earned (Column AH):', myData.earned);
+    console.log('  myData.badge50k (Column AO):', myData.badge50k);
+    
     if (myData.badge50k && myData.badge50k !== '') {
         // Column AO has value (e.g., "50,000" or "Yes") - use 50k earned display
         const earned50k = parseInt(myData.badge50k.toString().replace(/,/g, '')) || 50000;
         totalEarned = earned50k;
+        console.log('  -> Using AO value:', totalEarned);
+    } else {
+        console.log('  -> Using AH value (AO empty):', totalEarned);
     }
     
     // Calculate Used: Total Earned - Current Available (AJ)
