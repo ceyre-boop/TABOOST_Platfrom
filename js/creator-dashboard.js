@@ -221,10 +221,10 @@ function updateProfile(user) {
     }
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    // Level: only show if it's a valid number greater than 0
+    // Level: show actual level 0-5, or -- if not set
     let levelDisplay = '--';
-    if (myData.level && !isNaN(myData.level) && myData.level > 0) {
-        levelDisplay = myData.level;
+    if (myData.level !== undefined && myData.level !== null && myData.level !== '' && !isNaN(myData.level)) {
+        levelDisplay = myData.level; // Show 0, 1, 2, 3, 4, or 5
     }
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${levelDisplay}</span>
@@ -1016,7 +1016,7 @@ function updateScoreAndLevels() {
     
     console.log('DEBUG - Parsed currentLevel:', currentLevel, 'for creator:', myData.username);
     
-    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel > 0 ? currentLevel : '--'}`;
+    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel >= 0 ? currentLevel : '--'}`;
     
     // Update level steps
     document.querySelectorAll('.level-step').forEach(step => {
