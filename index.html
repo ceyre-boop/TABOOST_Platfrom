@@ -54,7 +54,27 @@
             document.getElementById('password').value = password;
         }
         
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        // Global password storage from GitHub backend
+        let githubPasswords = {};
+        
+        // Load passwords from GitHub backend
+        async function loadPasswordsFromGitHub() {
+            try {
+                const response = await fetch('https://ceyre-boop.github.io/TABOOST_Platfrom/data/passwords.json?v=' + Date.now());
+                if (!response.ok) throw new Error('Failed to load passwords');
+                const data = await response.json();
+                githubPasswords = data.creators || {};
+                console.log('🔑 Loaded passwords from GitHub backend:', Object.keys(githubPasswords).length, 'creators');
+            } catch (err) {
+                console.error('Error loading passwords from GitHub:', err);
+                githubPasswords = {};
+            }
+        }
+        
+        // Load passwords on page load
+        loadPasswordsFromGitHub();
+        
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             let username = document.getElementById('username').value.trim();
@@ -75,13 +95,13 @@
                 return;
             }
             
-            // Get stored passwords (creator-specific)
-            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+            // Reload passwords from GitHub (in case they were just updated)
+            await loadPasswordsFromGitHub();
             
-            // Find username case-insensitively
+            // Find username case-insensitively in GitHub passwords
             let userPassword = null;
             let matchedUsername = null;
-            for (const [storedUser, storedPass] of Object.entries(storedPasswords)) {
+            for (const [storedUser, storedPass] of Object.entries(githubPasswords)) {
                 if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
                     userPassword = storedPass;
                     matchedUsername = storedUser;
@@ -89,10 +109,9 @@
                 }
             }
             
-            // Check if user has set up a password (signed up)
+            // Check if user exists in backend
             if (!userPassword) {
-                alert('Account not found. Please sign up first with your username, email, and password.');
-                showSignupModal();
+                alert('Account not found. Please contact your manager to set up your account.');
                 return;
             }
             
