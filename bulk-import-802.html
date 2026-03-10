@@ -118,8 +118,18 @@
         <p class="subtitle">Import All 802 Creators to Firebase</p>
 
         <div class="warning">
-            ⚠️ <strong>IMPORTANT:</strong> You MUST deploy temporary Firestore rules first!<br>
-            Go to Firebase Console → Firestore Database → Rules → Paste temporary rules → Publish
+            ⚠️ <strong>IMPORTANT:</strong> Deploy these TEMPORARY rules first (removes auth requirement):<br>
+            <code style="background:#000;padding:5px 10px;border-radius:4px;display:block;margin:10px 0;font-size:11px;">
+            rules_version = '2';<br>
+            service cloud.firestore {<br>
+            &nbsp;&nbsp;match /databases/{database}/documents {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;match /{document=**} {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow read, write: if true;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            &nbsp;&nbsp;}<br>
+            }
+            </code>
+            <a href="https://console.firebase.google.com/project/taboost-platform/firestore/rules" target="_blank" style="color:#fbbf24;">Open Firebase Rules →</a>
         </div>
 
         <div class="stats">
@@ -583,14 +593,8 @@
         }
 
         async function startImport() {
-            // Authenticate first
-            try {
-                await auth.signInAnonymously();
-                log('✅ Authenticated successfully', 'success');
-            } catch (error) {
-                log(`❌ Auth failed: ${error.message}`, 'error');
-                return;
-            }
+            // No auth needed - using temporary open rules
+            log('🚀 Starting import (using temporary open rules)...', 'info');
 
             document.getElementById('importBtn').style.display = 'none';
             document.getElementById('pauseBtn').style.display = 'block';
