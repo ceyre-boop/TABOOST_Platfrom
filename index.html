@@ -3,346 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taboost Agency - Login</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>TABOOST - Redirecting...</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #333;
+            border-top-color: #feca57;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        h1 {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        p { color: #888; }
+        .error-box {
+            background: #451a03;
+            border: 1px solid #92400e;
+            color: #fbbf24;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .btn {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: #000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 15px;
+            text-decoration: none;
+            display: inline-block;
+        }
+    </style>
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <div class="login-logo">
-            <img src="images/taboost-genie.jpg" alt="TABOOST" class="logo-img">
-            <p>Turn Your Hustle Into a Business</p>
-        </div>
-        
-        <form id="loginForm">
-            <div class="form-group">
-                <label>Email / Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter email or username" required>
-            </div>
-            
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-            </div>
-            
-            <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
-                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                    <input type="checkbox" style="accent-color: #FF0055;">
-                    <span style="text-transform: none; font-size: 13px;">Remember me</span>
-                </label>
-                <a href="#" style="color: #FF0055; font-size: 13px; text-decoration: none;">Forgot password?</a>
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-block">
-                <i class="fas fa-sign-in-alt"></i>
-                Sign In
-            </button>
-        </form>
-        
-        <div style="margin-top: 30px; padding-top: 25px; border-top: 1px solid #333; text-align: center;">
-            <p style="color: #888; font-size: 14px; margin-bottom: 10px;">New to Taboost?</p>
-            <a href="#" onclick="showSignupModal(); return false;" style="color: var(--taboost-red); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 8px;">
-                <i class="fas fa-user-plus"></i> TABOOST Creator Sign Up
-            </a>
-        </div>
+<body>
+    <div id="loading">
+        <div class="loader"></div>
+        <h1>TABOOST</h1>
+        <p>Checking login status...</p>
     </div>
-    
+
+    <div id="error" class="error-box" style="display:none;">
+        <p id="errorMessage">Session expired</p>
+        <a href="firebase-login.html" class="btn">Go to Login</a>
+    </div>
+
     <script>
-        function fillLogin(username, password) {
-            document.getElementById('username').value = username;
-            document.getElementById('password').value = password;
-        }
-        
-        // Global password storage from GitHub backend
-        let githubPasswords = {};
-        
-        // Load passwords from GitHub backend
-        async function loadPasswordsFromGitHub() {
-            try {
-                const response = await fetch('https://ceyre-boop.github.io/TABOOST_Platfrom/data/config.secure?v=' + Date.now());
-                if (!response.ok) throw new Error('Failed to load passwords');
-                const data = await response.json();
-                githubPasswords = data.creators || data || {};
-                console.log('🔑 Loaded passwords from GitHub backend:', Object.keys(githubPasswords).length, 'creators');
-            } catch (err) {
-                console.error('Error loading passwords from GitHub:', err);
-                githubPasswords = {};
-            }
-        }
-        
-        // Load passwords on page load
-        loadPasswordsFromGitHub();
-        
-        document.getElementById('loginForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            let username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value;
-            
-            // Strip @ symbol for creators (but not admin email)
-            const cleanUsername = username.replace(/^@/, '');
-            
-            // Admin login - uses secure password from config
-            const ADMIN_CREDENTIALS = {
-                email: 'marco@taboost.me',
-                passwordHash: 'Taboost2026!Admin' // Temporary - will be moved to backend
-            };
-            
-            if (username.toLowerCase() === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.passwordHash) {
-                localStorage.setItem('taboost_user', JSON.stringify({
-                    username: ADMIN_CREDENTIALS.email,
-                    role: 'admin',
-                    name: 'Marco',
-                    avatar: 'M',
-                    loginTime: Date.now()
-                }));
-                window.location.href = 'command-center.html';
-                return;
-            }
-            
-            // ULTRA SIMPLE LOGIN: Check all sources
-            let userPassword = null;
-            let matchedUsername = null;
-            
-            try {
-                // 1. Check GitHub backend
-                await loadPasswordsFromGitHub();
-                for (const [storedUser, storedPass] of Object.entries(githubPasswords)) {
-                    if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
-                        userPassword = storedPass;
-                        matchedUsername = storedUser;
-                        console.log('✅ Found in GitHub:', storedUser);
-                        break;
-                    }
-                }
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // Check if user is already logged in
+        auth.onAuthStateChanged(async (user) => {
+            if (user) {
+                // User is logged in, redirect to profile
+                console.log('User logged in:', user.email);
                 
-                // 2. Check localStorage
-                if (!userPassword) {
-                    const localPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-                    console.log('🔍 localStorage passwords:', Object.keys(localPasswords));
-                    for (const [storedUser, storedPass] of Object.entries(localPasswords)) {
-                        if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
-                            userPassword = storedPass;
-                            matchedUsername = storedUser;
-                            console.log('✅ Found in localStorage:', storedUser);
-                            break;
+                // Get user role to determine where to redirect
+                try {
+                    const userDoc = await db.collection('users').doc(user.uid).get();
+                    if (userDoc.exists) {
+                        const userData = userDoc.data();
+                        const role = userData.role || 'creator';
+                        
+                        if (role === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        } else if (role === 'manager') {
+                            window.location.href = 'manager-dashboard.html';
+                        } else {
+                            window.location.href = 'creator-dashboard.html';
                         }
+                    } else {
+                        // No user doc yet, redirect to creator dashboard as default
+                        window.location.href = 'creator-dashboard.html';
                     }
+                } catch (error) {
+                    console.error('Error getting user data:', error);
+                    window.location.href = 'creator-dashboard.html';
                 }
-            } catch (err) {
-                console.error('Error during password lookup:', err);
-            }
-            
-            console.log('🔍 Lookup result:', matchedUsername || 'NOT FOUND', 'Password:', userPassword ? 'YES' : 'NO');
-            
-            // 3. If no password found, user doesn't exist - reject login
-            if (!userPassword) {
-                console.log('❌ Account not found:', cleanUsername);
-                alert('Account not found. Please sign up first or contact your manager.');
-                return;
-            }
-            
-            // Creator login - MUST match stored password
-            if (password === userPassword && cleanUsername.length > 0) {
-                localStorage.setItem('taboost_user', JSON.stringify({
-                    username: matchedUsername || cleanUsername,
-                    role: 'creator',
-                    name: (matchedUsername || cleanUsername).split('@')[0] || cleanUsername,
-                    avatar: (matchedUsername || cleanUsername).charAt(0).toUpperCase(),
-                    loginTime: Date.now()
-                }));
-                window.location.href = 'creator-dashboard.html';
-                return;
-            }
-            
-            alert('Invalid password. Please try again or contact your manager.');
-        });
-        
-        function showSignupModal() {
-            document.getElementById('signupModal').style.display = 'flex';
-        }
-        
-        function closeSignupModal() {
-            document.getElementById('signupModal').style.display = 'none';
-        }
-        
-        // Handle signup form
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Strip @ symbol if user included it
-            let username = document.getElementById('signupUsername').value.trim();
-            username = username.replace(/^@/, ''); // Remove leading @
-            
-            const email = document.getElementById('signupEmail').value.trim();
-            const password = document.getElementById('signupPassword').value;
-            const confirmPassword = document.getElementById('signupConfirmPassword').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            if (password.length < 8) {
-                alert('Password must be at least 8 characters long.');
-                return;
-            }
-            
-            // Check if localStorage is available (mobile browsers sometimes block it)
-            try {
-                localStorage.setItem('test', 'test');
-                localStorage.removeItem('test');
-            } catch (err) {
-                alert('Error: Your browser is blocking storage. Please disable private browsing or use a different browser.');
-                console.error('localStorage not available:', err);
-                return;
-            }
-            
-            // In production, this would send data to backend
-            // For now, create local account
-            localStorage.setItem('taboost_user', JSON.stringify({
-                username: username,
-                email: email,
-                role: 'creator',
-                name: username,
-                avatar: username.charAt(0).toUpperCase(),
-                isNewUser: true
-            }));
-            
-            // Save password for this creator
-            const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-            storedPasswords[username.toLowerCase()] = password;
-            localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
-            
-            // LOG: Track creator signups for Marco
-            const signupLog = JSON.parse(localStorage.getItem('taboost_signup_log_v1') || '[]');
-            const signupEntry = {
-                username: username.toLowerCase(),
-                email: email,
-                timestamp: new Date().toISOString(),
-                date: new Date().toLocaleDateString(),
-                time: new Date().toLocaleTimeString(),
-                userAgent: navigator.userAgent
-            };
-            signupLog.push(signupEntry);
-            signupLog.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
-            localStorage.setItem('taboost_signup_log_v1', JSON.stringify(signupLog));
-            
-            // Also log to console for easy access
-            console.log('📊 CREATOR SIGNUP LOG:', signupLog);
-            
-            // Send signup notification to admin session
-            try {
-                localStorage.setItem('last_signup_notification', JSON.stringify({
-                    ...signupEntry,
-                    notified: false
-                }));
-                console.log('🔔 Signup notification triggered for admin');
-            } catch(e) {
-                console.error('Failed to trigger notification:', e);
-            }
-            
-            alert('Account created successfully! Welcome to Taboost!');
-            window.location.href = 'creator-dashboard.html';
-        });
-        
-        // DIAGNOSTIC: Show stored passwords on page load
-        const diagPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-        console.log('🔍 DIAGNOSTIC: Stored passwords on page load:', diagPasswords);
-        console.log('🔍 DIAGNOSTIC: Number of stored passwords:', Object.keys(diagPasswords).length);
-        
-        // Load creators roster for validation
-        let creatorsRoster = [];
-        async function loadCreatorsRoster() {
-            try {
-                const response = await fetch('data/creators_full.json?v=' + Date.now());
-                const data = await response.json();
-                creatorsRoster = data.map(c => c.username.toLowerCase());
-                console.log('✅ Loaded roster:', creatorsRoster.length, 'creators');
-            } catch (err) {
-                console.error('Error loading roster:', err);
-            }
-        }
-        loadCreatorsRoster();
-        
-        // Check if username is in roster (for index.html)
-        function checkRosterIndex() {
-            const username = document.getElementById('signupUsername').value.trim().replace(/^@/, '').toLowerCase();
-            const statusEl = document.getElementById('rosterStatus');
-            
-            if (!username) {
-                statusEl.innerHTML = '';
-                return;
-            }
-            
-            if (creatorsRoster.includes(username)) {
-                statusEl.innerHTML = '<span style="color: #00ff88;">✅ User Found in Roster</span>';
             } else {
-                statusEl.innerHTML = '<span style="color: #ff0044;">❌ Not in Taboost Roster</span>';
+                // Not logged in, redirect to Firebase login
+                window.location.href = 'firebase-login.html';
             }
-        }
+        });
+
+        // Fallback: if auth check takes too long, show error
+        setTimeout(() => {
+            if (document.getElementById('loading').style.display !== 'none') {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+            }
+        }, 10000);
     </script>
-    
-    <!-- Sign Up Modal -->
-    <div id="signupModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; align-items: center; justify-content: center;">
-        <div style="background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%); border: 1px solid #333; border-radius: 20px; padding: 40px; width: 90%; max-width: 400px; position: relative;">
-            <button onclick="closeSignupModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #888; font-size: 1.2rem; cursor: pointer;">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <div style="text-align: center; margin-bottom: 30px;">
-                <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #ff0044, #cc0033); border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
-                    <i class="fas fa-user-plus" style="font-size: 1.5rem; color: white;"></i>
-                </div>
-                <h2 style="color: #fff; margin: 0 0 10px 0;">Creator Sign Up</h2>
-                <p style="color: #888; font-size: 0.9rem; margin: 0;">Join Taboost Agency</p>
-            </div>
-            
-            <form id="signupForm">
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">TikTok Username</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-user" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="text" id="signupUsername" required onblur="checkRosterIndex()" style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="@yourusername">
-                    </div>
-                    <div id="rosterStatus" style="margin-top: 8px; font-size: 0.8rem; min-height: 20px;"></div>
-                </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Email Address</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-envelope" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="email" id="signupEmail" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="you@example.com">
-                    </div>
-                </div>
-                
-                <div style="margin-bottom: 20px;">
-                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Password</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="password" id="signupPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="G��G��G��G��G��G��G��G��">
-                    </div>
-                    <p style="color: #666; font-size: 0.75rem; margin: 5px 0 0 0;">Min 8 characters</p>
-                </div>
-                
-                <div style="margin-bottom: 25px;">
-                    <label style="display: block; color: #aaa; font-size: 0.85rem; margin-bottom: 8px;">Confirm Password</label>
-                    <div style="position: relative;">
-                        <i class="fas fa-lock" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
-                        <input type="password" id="signupConfirmPassword" required style="width: 100%; padding: 14px 15px 14px 45px; background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 10px; color: #fff; font-size: 1rem; box-sizing: border-box;" placeholder="G��G��G��G��G��G��G��G��">
-                    </div>
-                </div>
-                
-                <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #ff0044, #cc0033); border: none; border-radius: 10px; color: #fff; font-size: 1rem; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
-                    <i class="fas fa-rocket"></i> Create Account
-                </button>
-            </form>
-            
-            <p style="color: #666; font-size: 0.8rem; text-align: center; margin-top: 20px;">
-                Already have an account? <a href="#" onclick="closeSignupModal(); return false;" style="color: #ff0044;">Sign In</a>
-            </p>
-        </div>
-    </div>
 </body>
 </html>
