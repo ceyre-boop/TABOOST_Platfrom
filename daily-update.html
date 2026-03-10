@@ -372,11 +372,47 @@
                 if (!manager || manager.toLowerCase() === 'n/a') manager = 'carrington';
                 
                 if (cid && username) {
+                    // Parse all the daily metrics from CSV
                     creators.push({
                         cid: cid,
                         username: username.toLowerCase(),
                         manager: manager.toLowerCase(),
-                        claimed: username.toLowerCase() === 'skylerclarkk'
+                        claimed: username.toLowerCase() === 'skylerclarkk',
+                        // Daily metrics that change
+                        status: cols[3]?.trim() || '',
+                        level: cols[4]?.trim() || '',
+                        month: cols[5]?.trim() || '',
+                        discord: cols[6]?.trim() || '',
+                        badge: cols[7]?.trim() || '',
+                        newCount: cols[9]?.trim() || '',
+                        active: cols[10]?.trim() || '',
+                        prorate: cols[11]?.trim() || '',
+                        days: cols[12]?.trim() || '',
+                        dayPace: cols[13]?.trim() || '',
+                        daysGoal: cols[14]?.trim() || '',
+                        daysLeft: cols[15]?.trim() || '',
+                        hours: cols[16]?.trim() || '',
+                        hrsGoal: cols[17]?.trim() || '',
+                        hoursLeft: cols[18]?.trim() || '',
+                        diamonds: cols[19]?.replace(/,/g, '').trim() || '0',
+                        diamondPace: cols[20]?.replace(/,/g, '').trim() || '0',
+                        tier: cols[21]?.trim() || '',
+                        tierGoal: cols[22]?.replace(/,/g, '').trim() || '0',
+                        tierLeft: cols[23]?.replace(/,/g, '').trim() || '0',
+                        tierStatus: cols[24]?.trim() || '',
+                        tierLM: cols[25]?.trim() || '',
+                        grad: cols[26]?.trim() || '',
+                        diamondsLast30: cols[27]?.replace(/,/g, '').trim() || '0',
+                        score: cols[32]?.trim() || '',
+                        earned: cols[33]?.replace(/,/g, '').trim() || '0',
+                        gifted: cols[34]?.replace(/,/g, '').trim() || '0',
+                        running: cols[35]?.replace(/,/g, '').trim() || '0',
+                        multiply: cols[36]?.trim() || '',
+                        unlocked: cols[37]?.trim() || '',
+                        daysMonth: cols[38]?.trim() || '',
+                        hoursMonth: cols[39]?.trim() || '',
+                        rewardsMonth: cols[40]?.trim() || '',
+                        tiktokLink: cols[41]?.trim() || ''
                     });
                 }
             }
@@ -431,44 +467,84 @@
                         isNew = true;
                         newCount++;
                     } else {
-                        // Check if data actually changed
+                        // Check if ANY data changed (including daily metrics)
                         const existingManager = (exists.manager || '').toLowerCase().trim();
                         const csvManager = creator.manager.toLowerCase().trim();
-                        const existingCid = String(exists.cid || '').trim();
-                        const csvCid = String(creator.cid || '').trim();
                         
+                        // Check key metrics for changes
+                        const diamondsChanged = String(exists.diamonds || '') !== String(creator.diamonds);
+                        const hoursChanged = String(exists.hours || '') !== String(creator.hours);
+                        const daysChanged = String(exists.days || '') !== String(creator.days);
+                        const tierChanged = String(exists.tier || '') !== String(creator.tier);
+                        const earnedChanged = String(exists.earned || '') !== String(creator.earned);
                         const managerChanged = existingManager !== csvManager;
-                        const cidChanged = existingCid !== csvCid;
-                        const hasChanges = managerChanged || cidChanged;
                         
-                        // DEBUG: Log first 5 comparisons
-                        if (updateCount < 5 && (managerChanged || cidChanged)) {
-                            logMessage(`DEBUG: ${creator.username}`, 'info');
-                            logMessage(`  Existing: manager="${exists.manager}", cid="${exists.cid}"`, 'info');
-                            logMessage(`  CSV: manager="${creator.manager.toUpperCase()}", cid="${creator.cid}"`, 'info');
-                            logMessage(`  Manager changed: ${managerChanged}, CID changed: ${cidChanged}`, 'info');
-                        }
+                        const hasChanges = diamondsChanged || hoursChanged || daysChanged || 
+                                          tierChanged || earnedChanged || managerChanged;
                         
                         if (hasChanges) {
                             needsUpdate = true;
                             updateCount++;
-                            if (managerChanged) {
-                                logMessage(`🔄 ${creator.username}: ${exists.manager} → ${creator.manager.toUpperCase()}`, 'info');
-                            }
-                            if (cidChanged) {
-                                logMessage(`🔄 ${creator.username}: CID ${exists.cid} → ${creator.cid}`, 'info');
+                            
+                            // Log what changed (but not for every single one to avoid spam)
+                            if (updateCount <= 10) {
+                                let changes = [];
+                                if (diamondsChanged) changes.push(`💎 ${exists.diamonds}→${creator.diamonds}`);
+                                if (hoursChanged) changes.push(`⏱️ ${exists.hours}→${creator.hours}hrs`);
+                                if (daysChanged) changes.push(`📅 ${exists.days}→${creator.days}days`);
+                                if (tierChanged) changes.push(`🏆 tier ${exists.tier}→${creator.tier}`);
+                                if (earnedChanged) changes.push(`💰 $${exists.earned}→$${creator.earned}`);
+                                if (managerChanged) changes.push(`👤 ${exists.manager}→${creator.manager.toUpperCase()}`);
+                                
+                                logMessage(`🔄 ${creator.username}: ${changes.join(', ')}`, 'info');
                             }
                         } else {
                             unchangedCount++;
                         }
                     }
                     
-                    // Always write to Firebase (ensures updatedAt timestamp)
+                    // Always write to Firebase with ALL daily metrics
                     const data = {
                         cid: creator.cid,
                         tiktokUsername: creator.username,
                         claimed: creator.claimed,
                         manager: creator.manager.toUpperCase(),
+                        // Daily metrics
+                        status: creator.status,
+                        level: creator.level,
+                        month: creator.month,
+                        discord: creator.discord,
+                        badge: creator.badge,
+                        newCount: creator.newCount,
+                        active: creator.active,
+                        prorate: creator.prorate,
+                        days: creator.days,
+                        dayPace: creator.dayPace,
+                        daysGoal: creator.daysGoal,
+                        daysLeft: creator.daysLeft,
+                        hours: creator.hours,
+                        hrsGoal: creator.hrsGoal,
+                        hoursLeft: creator.hoursLeft,
+                        diamonds: creator.diamonds,
+                        diamondPace: creator.diamondPace,
+                        tier: creator.tier,
+                        tierGoal: creator.tierGoal,
+                        tierLeft: creator.tierLeft,
+                        tierStatus: creator.tierStatus,
+                        tierLM: creator.tierLM,
+                        grad: creator.grad,
+                        diamondsLast30: creator.diamondsLast30,
+                        score: creator.score,
+                        earned: creator.earned,
+                        gifted: creator.gifted,
+                        running: creator.running,
+                        multiply: creator.multiply,
+                        unlocked: creator.unlocked,
+                        daysMonth: creator.daysMonth,
+                        hoursMonth: creator.hoursMonth,
+                        rewardsMonth: creator.rewardsMonth,
+                        tiktokLink: creator.tiktokLink,
+                        // Timestamps
                         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                     };
                     
