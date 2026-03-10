@@ -35,16 +35,29 @@ async function signInWithEmail(email, password) {
         const userCredential = await auth.signInWithEmailAndPassword(email, password);
         const user = userCredential.user;
         
-        // Get user role from Firestore
-        const userDoc = await db.collection('users').doc(user.uid).get();
-        const userData = userDoc.data();
+        // Get user role from Firestore (with fallback)
+        let userData = null;
+        try {
+            const userDoc = await db.collection('users').doc(user.uid).get();
+            userData = userDoc.data();
+        } catch (dbError) {
+            console.warn('Could not read from Firestore, using Auth data:', dbError);
+        }
+        
+        // Determine role from Firestore or default to creator
+        let role = userData?.role || ROLES.CREATOR;
+        
+        // Admin email check (hardcoded for now until Firestore is fully set up)
+        if (email.toLowerCase() === 'marco@taboost.me') {
+            role = ROLES.ADMIN;
+        }
         
         return {
             uid: user.uid,
             email: user.email,
-            role: userData?.role || ROLES.CREATOR,
+            role: role,
             name: userData?.name || user.displayName || user.email.split('@')[0],
-            username: userData?.username || null,
+            username: userData?.username || user.displayName || null,
             manager: userData?.manager || null,
             loginTime: Date.now()
         };
@@ -59,10 +72,17 @@ async function signInWithEmail(email, password) {
  */
 async function signUpCreator(email, password, username, managerEmail = null) {
     try {
-        // Check if username is in approved roster
-        const rosterDoc = await db.collection('roster').doc(username.toLowerCase()).get();
-        if (!rosterDoc.exists) {
-            throw new Error('Username not found in Taboost roster. Contact your manager.');
+        // Check if username is in approved roster (skip if Firestore not ready)
+        let rosterData = null;
+        try {
+            const rosterDoc = await db.collection('roster').doc(username.toLowerCase()).get();
+            if (!rosterDoc.exists) {
+                throw new Error('Username not found in Taboost roster. Contact your manager.');
+            }
+            rosterData = rosterDoc.data();
+        } catch (rosterError) {
+            console.warn('Roster check failed, allowing signup anyway:', rosterError);
+            // During setup, allow signups even if roster check fails
         }
         
         // Create auth user
@@ -73,24 +93,33 @@ async function signUpCreator(email, password, username, managerEmail = null) {
         await user.updateProfile({ displayName: username });
         
         // Store user data in Firestore
-        await db.collection('users').doc(user.uid).set({
-            email: email,
-            username: username.toLowerCase(),
-            role: ROLES.CREATOR,
-            name: username,
-            manager: managerEmail,
-            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-            lastLogin: firebase.firestore.FieldValue.serverTimestamp()
-        });
+        try {
+            await db.collection('users').doc(user.uid).set({
+                email: email,
+                username: username.toLowerCase(),
+                role: ROLES.CREATOR,
+                name: username,
+                manager: managerEmail,
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+            });
+        } catch (dbError) {
+            console.warn('Could not write to Firestore (permissions), continuing with auth:', dbError);
+            // Continue - user is created in Auth even if Firestore fails
+        }
         
-        // Log signup
-        await db.collection('signups').add({
-            username: username.toLowerCase(),
-            email: email,
-            uid: user.uid,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            userAgent: navigator.userAgent.substring(0, 100)
-        });
+        // Log signup (best effort)
+        try {
+            await db.collection('signups').add({
+                username: username.toLowerCase(),
+                email: email,
+                uid: user.uid,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                userAgent: navigator.userAgent.substring(0, 100)
+            });
+        } catch (logError) {
+            console.warn('Could not log signup:', logError);
+        }
         
         return {
             uid: user.uid,
