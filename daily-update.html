@@ -395,6 +395,20 @@
             
             logMessage(`📋 Found ${Object.keys(existing).length} creators in Firebase`, 'info');
             
+            // DEBUG: Show sample comparison for first creator in CSV
+            if (creators.length > 0) {
+                const first = creators[0];
+                const firstExisting = existing[first.username];
+                logMessage(`DEBUG SAMPLE: ${first.username}`, 'info');
+                logMessage(`  CSV manager: "${first.manager}"`, 'info');
+                if (firstExisting) {
+                    logMessage(`  FB manager: "${firstExisting.manager}"`, 'info');
+                    logMessage(`  Match: ${(firstExisting.manager || '').toLowerCase().trim() === first.manager.toLowerCase().trim()}`, 'info');
+                } else {
+                    logMessage(`  Not in Firebase (would be NEW)`, 'info');
+                }
+            }
+            
             // Process updates
             let newCount = 0;
             let updateCount = 0;
@@ -418,18 +432,31 @@
                         newCount++;
                     } else {
                         // Check if data actually changed
-                        const managerChanged = (exists.manager || '').toLowerCase() !== creator.manager;
-                        const cidChanged = exists.cid !== creator.cid;
+                        const existingManager = (exists.manager || '').toLowerCase().trim();
+                        const csvManager = creator.manager.toLowerCase().trim();
+                        const existingCid = String(exists.cid || '').trim();
+                        const csvCid = String(creator.cid || '').trim();
+                        
+                        const managerChanged = existingManager !== csvManager;
+                        const cidChanged = existingCid !== csvCid;
                         const hasChanges = managerChanged || cidChanged;
+                        
+                        // DEBUG: Log first 5 comparisons
+                        if (updateCount < 5 && (managerChanged || cidChanged)) {
+                            logMessage(`DEBUG: ${creator.username}`, 'info');
+                            logMessage(`  Existing: manager="${exists.manager}", cid="${exists.cid}"`, 'info');
+                            logMessage(`  CSV: manager="${creator.manager.toUpperCase()}", cid="${creator.cid}"`, 'info');
+                            logMessage(`  Manager changed: ${managerChanged}, CID changed: ${cidChanged}`, 'info');
+                        }
                         
                         if (hasChanges) {
                             needsUpdate = true;
                             updateCount++;
                             if (managerChanged) {
-                                logMessage(`🔄 ${creator.username}: manager ${exists.manager} → ${creator.manager.toUpperCase()}`, 'info');
+                                logMessage(`🔄 ${creator.username}: ${exists.manager} → ${creator.manager.toUpperCase()}`, 'info');
                             }
                             if (cidChanged) {
-                                logMessage(`🔄 ${creator.username}: CID changed`, 'info');
+                                logMessage(`🔄 ${creator.username}: CID ${exists.cid} → ${creator.cid}`, 'info');
                             }
                         } else {
                             unchangedCount++;
