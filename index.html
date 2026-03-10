@@ -77,7 +77,17 @@
             
             // Get stored passwords (creator-specific)
             const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
-            const userPassword = storedPasswords[cleanUsername];
+            
+            // Find username case-insensitively
+            let userPassword = null;
+            let matchedUsername = null;
+            for (const [storedUser, storedPass] of Object.entries(storedPasswords)) {
+                if (storedUser.toLowerCase() === cleanUsername.toLowerCase()) {
+                    userPassword = storedPass;
+                    matchedUsername = storedUser;
+                    break;
+                }
+            }
             
             // Check if user has set up a password (signed up)
             if (!userPassword) {
@@ -89,10 +99,10 @@
             // Creator login - MUST match stored password
             if (password === userPassword && cleanUsername.length > 0) {
                 localStorage.setItem('taboost_user', JSON.stringify({
-                    username: cleanUsername,
+                    username: matchedUsername || cleanUsername,
                     role: 'creator',
-                    name: cleanUsername.split('@')[0] || cleanUsername,
-                    avatar: cleanUsername.charAt(0).toUpperCase()
+                    name: (matchedUsername || cleanUsername).split('@')[0] || cleanUsername,
+                    avatar: (matchedUsername || cleanUsername).charAt(0).toUpperCase()
                 }));
                 window.location.href = 'creator-dashboard.html';
                 return;
