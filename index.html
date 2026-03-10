@@ -89,7 +89,8 @@
                     username: 'marco@taboost.me',
                     role: 'admin',
                     name: 'Marco',
-                    avatar: 'M'
+                    avatar: 'M',
+                    loginTime: Date.now()
                 }));
                 window.location.href = 'command-center.html';
                 return;
@@ -143,7 +144,8 @@
                     username: matchedUsername || cleanUsername,
                     role: 'creator',
                     name: (matchedUsername || cleanUsername).split('@')[0] || cleanUsername,
-                    avatar: (matchedUsername || cleanUsername).charAt(0).toUpperCase()
+                    avatar: (matchedUsername || cleanUsername).charAt(0).toUpperCase(),
+                    loginTime: Date.now()
                 }));
                 window.location.href = 'creator-dashboard.html';
                 return;

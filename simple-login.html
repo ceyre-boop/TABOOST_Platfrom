@@ -364,15 +364,51 @@
             }, 1000);
         });
         
-        // Check if already logged in
+        // Check if already logged in (with session expiration)
         const currentUser = getCurrentUser();
-        if (currentUser) {
+        const SESSION_DURATION_MS = 8 * 60 * 60 * 1000; // 8 hours
+        
+        if (currentUser && currentUser.loginTime) {
+            const sessionAge = Date.now() - currentUser.loginTime;
+            if (sessionAge < SESSION_DURATION_MS) {
+                // Session still valid - show "Continue as [user]" option
+                const continueDiv = document.createElement('div');
+                continueDiv.innerHTML = `
+                    <div style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3);border-radius:10px;padding:15px;margin-bottom:20px;text-align:center;">
+                        <p style="color:#aaa;margin-bottom:10px;">Welcome back!</p>
+                        <p style="color:#fff;font-weight:600;margin-bottom:15px;">Continue as ${currentUser.name || currentUser.username}?</p>
+                        <div style="display:flex;gap:10px;justify-content:center;">
+                            <button onclick="continueSession()" style="background:#00ff88;color:#000;border:none;padding:10px 20px;border-radius:5px;font-weight:600;cursor:pointer;">Continue</button>
+                            <button onclick="logout()" style="background:transparent;color:#ff0044;border:1px solid #ff0044;padding:10px 20px;border-radius:5px;font-weight:600;cursor:pointer;">Log Out</button>
+                        </div>
+                    </div>
+                `;
+                document.querySelector('.container').insertBefore(continueDiv, document.querySelector('form'));
+            } else {
+                // Session expired - clear it
+                logout();
+            }
+        }
+        
+        function continueSession() {
             if (currentUser.role === 'admin') {
                 window.location.href = 'dashboard.html';
             } else {
                 window.location.href = 'creator-dashboard.html';
             }
         }
+        
+        function logout() {
+            localStorage.removeItem('taboost_current_user');
+            location.reload();
+        }
+        
+        // Override setCurrentUser to include login timestamp
+        const originalSetCurrentUser = setCurrentUser;
+        setCurrentUser = function(userData) {
+            userData.loginTime = Date.now();
+            originalSetCurrentUser(userData);
+        };
         
         console.log('🔐 Auth system ready. Stored users:', Object.keys(getPasswords()));
     </script>
