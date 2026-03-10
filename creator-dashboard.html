@@ -540,22 +540,68 @@
     <script src="js/weekly-calendar-data.js?v=202503092133"></script>
     <script src="js/sheets-data.js?v=202503092133"></script>
     <script src="js/creator-dashboard.js?v=202503092133"></script>
-    <script>
-        // Auth check
-        const user = JSON.parse(localStorage.getItem('taboost_user'));
-        if (!user) {
-            window.location.href = 'index.html';
-        } else if (user.role === 'admin') {
-            window.location.href = 'command-center.html';
-        } else {
-            initCreatorDashboard(user);
-        }
+    <script type="module">
+        // Initialize dashboard with Firebase user
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
         
-        function logout() {
-            localStorage.removeItem('taboost_user');
-            localStorage.removeItem('taboost_current_user');
-            window.location.href = 'index.html';
-        }
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        onAuthStateChanged(auth, async (firebaseUser) => {
+            if (!firebaseUser) {
+                window.location.href = 'firebase-login.html';
+                return;
+            }
+            
+            // Get user data from Firestore
+            let userData = null;
+            try {
+                const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+                userData = userDoc.data();
+            } catch (e) {
+                console.warn('Could not load user data:', e);
+            }
+            
+            // Determine role
+            let role = userData?.role || 'creator';
+            if (firebaseUser.email?.toLowerCase() === 'marco@taboost.me') {
+                role = 'admin';
+            }
+            
+            // Redirect admins
+            if (role === 'admin') {
+                window.location.href = 'dashboard.html';
+                return;
+            }
+            
+            // Build user object for dashboard
+            const dashboardUser = {
+                name: userData?.username || userData?.name || firebaseUser.displayName || firebaseUser.email.split('@')[0],
+                email: firebaseUser.email,
+                creatorId: userData?.creatorId || null,
+                role: role
+            };
+            
+            // Initialize dashboard
+            initCreatorDashboard(dashboardUser);
+        });
+        
+        window.logout = async () => {
+            await auth.signOut();
+            window.location.href = 'firebase-login.html';
+        };
         
         function exportData(format) {
             const creatorName = document.getElementById('creatorName').textContent;
