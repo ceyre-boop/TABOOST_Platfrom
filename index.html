@@ -2,134 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="0;url=firebase-login.html">
     <title>TABOOST - Redirecting...</title>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #0a0a0a;
             color: #fff;
-            min-height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 4px solid #333;
-            border-top-color: #feca57;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 20px;
-        }
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-        h1 {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-        p { color: #888; }
-        .error-box {
-            background: #451a03;
-            border: 1px solid #92400e;
-            color: #fbbf24;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            max-width: 400px;
+        .loading {
             text-align: center;
         }
-        .btn {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            color: #000;
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 15px;
-            text-decoration: none;
-            display: inline-block;
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #333;
+            border-top-color: #ff0044;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        a { color: #ff0044; }
     </style>
 </head>
 <body>
-    <div id="loading">
-        <div class="loader"></div>
-        <h1>TABOOST</h1>
-        <p>Checking login status...</p>
+    <div class="loading">
+        <div class="spinner"></div>
+        <p>Redirecting to login...</p>
+        <p><a href="firebase-login.html">Click here if not redirected</a></p>
     </div>
-
-    <div id="error" class="error-box" style="display:none;">
-        <p id="errorMessage">Session expired</p>
-        <a href="firebase-login.html" class="btn">Go to Login</a>
-    </div>
-
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
-            authDomain: "taboost-platform.firebaseapp.com",
-            projectId: "taboost-platform",
-            storageBucket: "taboost-platform.firebasestorage.app",
-            messagingSenderId: "379293685859",
-            appId: "1:379293685859:web:d89592adbf67360b574056"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-
-        // Check if user is already logged in
-        auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                // User is logged in, redirect to profile
-                console.log('User logged in:', user.email);
-                
-                // Get user role to determine where to redirect
-                try {
-                    const userDoc = await db.collection('users').doc(user.uid).get();
-                    if (userDoc.exists) {
-                        const userData = userDoc.data();
-                        const role = userData.role || 'creator';
-                        
-                        if (role === 'admin') {
-                            window.location.href = 'admin-dashboard.html';
-                        } else if (role === 'manager') {
-                            window.location.href = 'manager-dashboard.html';
-                        } else {
-                            window.location.href = 'creator-dashboard.html';
-                        }
-                    } else {
-                        // No user doc yet, redirect to creator dashboard as default
-                        window.location.href = 'creator-dashboard.html';
-                    }
-                } catch (error) {
-                    console.error('Error getting user data:', error);
-                    window.location.href = 'creator-dashboard.html';
-                }
-            } else {
-                // Not logged in, redirect to Firebase login
-                window.location.href = 'firebase-login.html';
-            }
-        });
-
-        // Fallback: if auth check takes too long, show error
-        setTimeout(() => {
-            if (document.getElementById('loading').style.display !== 'none') {
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('error').style.display = 'block';
-            }
-        }, 10000);
-    </script>
 </body>
 </html>
