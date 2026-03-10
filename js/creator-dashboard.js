@@ -284,35 +284,11 @@ function updateStats() {
     const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
     const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
     
-    // For March and future months: Use Column AO (Rewards Month) if available
-    // For past months: Fall back to Column AH (Earned)
-    let totalEarned = myData.earned || 0;
-    console.log('DEBUG REWARDS - Before AO check:', myData.username);
-    console.log('  myData.earned (Column AH):', myData.earned);
-    console.log('  myData.rewardsMonth (Column AO):', myData.rewardsMonth);
-    
-    if (myData.rewardsMonth && myData.rewardsMonth !== '') {
-        // Column AO has value (e.g., "60,000") - use Rewards Month
-        const earnedAO = parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) || 0;
-        if (earnedAO > 0) {
-            totalEarned = earnedAO;
-            console.log('  -> Using AO (Rewards Month) value:', totalEarned);
-        } else {
-            console.log('  -> Using AH value (AO is 0/empty):', totalEarned);
-        }
-    } else {
-        console.log('  -> Using AH value (AO empty):', totalEarned);
-    }
+    // Total Earned from Column AH (earned field)
+    const totalEarned = myData.earned || 0;
     
     // Calculate Used: Total Earned - Current Available (AJ)
     const totalUsed = totalEarned - currentAvailable;
-    
-    console.log('REWARDS DATA for', myData.username);
-    console.log('  Column AJ (Unlocked) Raw:', myData.unlocked);
-    console.log('  Column AJ Parsed:', currentAvailable);
-    console.log('  Column AO (Rewards Month):', myData.rewardsMonth || 'N/A');
-    console.log('  FINAL Total Earned:', totalEarned);
-    console.log('  Used (calculated):', totalUsed);
     
     // Format with sign if negative
     const currentRewardsAvailable = currentAvailable < 0 
