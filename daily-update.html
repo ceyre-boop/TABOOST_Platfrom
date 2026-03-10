@@ -393,9 +393,12 @@
             const existing = {};
             snapshot.forEach(doc => existing[doc.id] = doc.data());
             
+            logMessage(`📋 Found ${Object.keys(existing).length} creators in Firebase`, 'info');
+            
             // Process updates
             let newCount = 0;
             let updateCount = 0;
+            let unchangedCount = 0;
             const BATCH_SIZE = 400;
             
             for (let i = 0; i < creators.length; i += BATCH_SIZE) {
@@ -406,6 +409,34 @@
                     const ref = db.collection('creatorRoster').doc(creator.username);
                     const exists = existing[creator.username];
                     
+                    // Determine if this is new or needs update
+                    let isNew = false;
+                    let needsUpdate = false;
+                    
+                    if (!exists) {
+                        isNew = true;
+                        newCount++;
+                    } else {
+                        // Check if data actually changed
+                        const managerChanged = (exists.manager || '').toLowerCase() !== creator.manager;
+                        const cidChanged = exists.cid !== creator.cid;
+                        const hasChanges = managerChanged || cidChanged;
+                        
+                        if (hasChanges) {
+                            needsUpdate = true;
+                            updateCount++;
+                            if (managerChanged) {
+                                logMessage(`🔄 ${creator.username}: manager ${exists.manager} → ${creator.manager.toUpperCase()}`, 'info');
+                            }
+                            if (cidChanged) {
+                                logMessage(`🔄 ${creator.username}: CID changed`, 'info');
+                            }
+                        } else {
+                            unchangedCount++;
+                        }
+                    }
+                    
+                    // Always write to Firebase (ensures updatedAt timestamp)
                     const data = {
                         cid: creator.cid,
                         tiktokUsername: creator.username,
@@ -414,12 +445,8 @@
                         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
                     };
                     
-                    if (!exists) {
+                    if (isNew) {
                         data.importedAt = firebase.firestore.FieldValue.serverTimestamp();
-                        newCount++;
-                    } else if (exists.manager !== creator.manager.toUpperCase() || 
-                               exists.cid !== creator.cid) {
-                        updateCount++;
                     }
                     
                     batch.set(ref, data, { merge: true });
@@ -433,7 +460,7 @@
                 newStat.textContent = newCount;
                 updatedStat.textContent = updateCount;
                 
-                logMessage(`✓ ${Math.min(i + BATCH_SIZE, creators.length)}/${creators.length}`, 'success');
+                logMessage(`✓ ${Math.min(i + BATCH_SIZE, creators.length)}/${creators.length} (${newCount} new, ${updateCount} updated)`, 'success');
                 
                 await new Promise(r => setTimeout(r, 100));
             }
@@ -444,14 +471,15 @@
             dropZone.innerHTML = `
                 <div class="drop-icon">✅</div>
                 <div class="drop-text">Update Complete!</div>
-                <div class="drop-hint">All creator pages now have latest data</div>
+                <div class="drop-hint">${newCount} new, ${updateCount} updated, ${unchangedCount} unchanged</div>
             `;
             
             progressText.textContent = 'Complete!';
             
-            showSuccess(`✅ ${newCount} new, ${updateCount} updated. All creator dashboards now show latest data!`);
+            const msg = `✅ ${newCount} new, ${updateCount} updated, ${unchangedCount} unchanged. All creator dashboards now show latest data!`;
+            showSuccess(msg);
             
-            logMessage(`🎉 DONE! ${newCount} new, ${updateCount} updated`, 'success');
+            logMessage(`🎉 ${msg}`, 'success');
             
             // Reset after 5 seconds
             setTimeout(() => {
