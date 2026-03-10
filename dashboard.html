@@ -622,6 +622,14 @@ tbody tr:last-child td{border-bottom:none}
           <button class="tb-btn tb-btn-red" onclick="adminResetCreatorPassword()">RESET PASSWORD</button>
           <div id="adminPasswordMsg" style="font-size:11px;color:var(--t3)"></div>
         </div></div>
+        
+        <!-- Admin: Creator Signup Log -->
+        <div class="card" style="margin-top:14px"><div class="card-hd"><div class="card-title">CREATOR SIGNUP LOG</div><div class="card-sub">Track who has created accounts</div></div><div class="card-bd" style="display:flex;flex-direction:column;gap:12px">
+          <div id="signupLogCount" style="font-size:12px;color:var(--t3)">Loading...</div>
+          <div id="signupLogList" style="max-height:200px;overflow-y:auto;font-size:11px;font-family:monospace;background:var(--bg3);padding:10px;border-radius:5px;"></div>
+          <button class="tb-btn tb-btn-ghost" onclick="refreshSignupLog()" style="font-size:10px">↻ REFRESH LOG</button>
+          <button class="tb-btn tb-btn-ghost" onclick="exportSignupLog()" style="font-size:10px">↓ EXPORT CSV</button>
+        </div></div>
       </div>
     </div>
   </div>
@@ -997,12 +1005,66 @@ function adminResetCreatorPassword(){
   storedPasswords[username]=newPass;
   localStorage.setItem('creator_passwords',JSON.stringify(storedPasswords));
   
-  msgEl.innerHTML='<span style="color:var(--green)">✅ Password reset for <strong>'+username+'</strong>. Old password "creator" will no longer work.</span>';
+  msgEl.innerHTML='<span style="color:var(--green)">✅ Password reset for <strong>'+username+'</strong>.</span>';
   
   // Clear fields
   document.getElementById('adminCreatorUsername').value='';
   document.getElementById('adminNewPassword').value='';
 }
+
+// ── ADMIN: CREATOR SIGNUP LOG ──
+function refreshSignupLog(){
+  const log=JSON.parse(localStorage.getItem('creator_signup_log')||'[]');
+  const countEl=document.getElementById('signupLogCount');
+  const listEl=document.getElementById('signupLogList');
+  
+  countEl.textContent=log.length+' creators have signed up';
+  
+  if(log.length===0){
+    listEl.innerHTML='<span style="color:var(--t4)">No signups yet</span>';
+    return;
+  }
+  
+  // Sort by timestamp (newest first)
+  log.sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+  
+  listEl.innerHTML=log.map((entry,i)=>`
+    <div style="padding:6px 0;border-bottom:1px solid var(--border);${i===0?'background:rgba(0,255,136,0.1);':''}">
+      <strong style="color:var(--green)">${i+1}.</strong> 
+      <strong>${entry.username}</strong> 
+      <span style="color:var(--t4)">(${entry.email})</span><br>
+      <span style="color:var(--t4);font-size:10px">${entry.date} at ${entry.time}</span>
+    </div>
+  `).join('');
+}
+
+function exportSignupLog(){
+  const log=JSON.parse(localStorage.getItem('creator_signup_log')||'[]');
+  if(log.length===0){
+    alert('No signups to export');
+    return;
+  }
+  
+  // CSV header
+  let csv='Username,Email,Date,Time,Timestamp\n';
+  log.forEach(entry=>{
+    csv+=`${entry.username},${entry.email},${entry.date},${entry.time},${entry.timestamp}\n`;
+  });
+  
+  // Download
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='creator_signups_'+new Date().toISOString().split('T')[0]+'.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// Load log on page load
+refreshSignupLog();
 </script>
 </body>
 </html>
