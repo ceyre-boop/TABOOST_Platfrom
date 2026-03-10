@@ -436,10 +436,12 @@
                 const first = creators[0];
                 const firstExisting = existing[first.username];
                 logMessage(`DEBUG SAMPLE: ${first.username}`, 'info');
-                logMessage(`  CSV manager: "${first.manager}"`, 'info');
+                logMessage(`  CSV: 💎${first.diamonds}, ⏱️${first.hours}hrs, 📅${first.days}days`, 'info');
                 if (firstExisting) {
-                    logMessage(`  FB manager: "${firstExisting.manager}"`, 'info');
-                    logMessage(`  Match: ${(firstExisting.manager || '').toLowerCase().trim() === first.manager.toLowerCase().trim()}`, 'info');
+                    logMessage(`  FB: 💎${firstExisting.diamonds}, ⏱️${firstExisting.hours}hrs, 📅${firstExisting.days}days`, 'info');
+                    const dChange = String(firstExisting.diamonds || '') !== String(first.diamonds);
+                    const hChange = String(firstExisting.hours || '') !== String(first.hours);
+                    logMessage(`  Changes: diamonds=${dChange}, hours=${hChange}`, 'info');
                 } else {
                     logMessage(`  Not in Firebase (would be NEW)`, 'info');
                 }
@@ -481,6 +483,11 @@
                         
                         const hasChanges = diamondsChanged || hoursChanged || daysChanged || 
                                           tierChanged || earnedChanged || managerChanged;
+                        
+                        // DEBUG: Log first few comparisons
+                        if (i < 3) {
+                            logMessage(`DEBUG ${creator.username}: d=${diamondsChanged}, h=${hoursChanged}, days=${daysChanged}, tier=${tierChanged}, earned=${earnedChanged}`, 'info');
+                        }
                         
                         if (hasChanges) {
                             needsUpdate = true;
