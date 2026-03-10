@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taboost - Professional Authentication Setup</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+        }
+        h1 { color: #ff0044; }
+        h2 { color: #00ff88; margin-top: 30px; }
+        code {
+            background: #1a1a2e;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+        }
+        .step {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .step-number {
+            background: #ff0044;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔥 Firebase Authentication Setup</h1>
+    <p>Professional email/password authentication for Taboost. Free, secure, scalable.</p>
+
+    <div class="step">
+        <h2><span class="step-number">1</span> Create Firebase Project</h2>
+        <ol>
+            <li>Go to <a href="https://console.firebase.google.com" style="color: #00ff88;">console.firebase.google.com</a></li>
+            <li>Click "Create Project"</li>
+            <li>Name: <code>taboost-auth</code></li>
+            <li>Disable Google Analytics (optional)</li>
+            <li>Click "Create Project"</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">2</span> Enable Email/Password Auth</h2>
+        <ol>
+            <li>In Firebase Console, click "Authentication" (left sidebar)</li>
+            <li>Click "Get Started"</li>
+            <li>Click "Email/Password"</li>
+            <li>Toggle "Enable" to ON</li>
+            <li>Click "Save"</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">3</span> Get Your Config</h2>
+        <ol>
+            <li>Click the gear icon ⚙️ → "Project Settings"</li>
+            <li>Scroll to "Your apps" section</li>
+            <li>Click the web icon </> "</li>
+            <li>Nickname: <code>taboost-web</code></li>
+            <li>Click "Register app"</li>
+            <li>Copy the firebaseConfig object</li>
+        </ol>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">4</span> Update firebase-auth.js</h2>
+        <p>Replace the config in <code>js/firebase-auth.js</code>:</p>
+        <pre>const firebaseConfig = {
+    apiKey: "YOUR_ACTUAL_API_KEY",
+    authDomain: "taboost-auth.firebaseapp.com",
+    projectId: "taboost-auth",
+    storageBucket: "taboost-auth.appspot.com",
+    messagingSenderId: "123456789",
+    appId: "1:123456789:web:abcdef123456"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();</pre>
+    </div>
+
+    <div class="step">
+        <h2><span class="step-number">5</span> Add Firebase to HTML</h2>
+        <p>Add these scripts to login.html and index.html, BEFORE your other scripts:</p>
+        <pre>&lt;!-- Firebase SDK --&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"&gt;&lt;/script&gt;
+&lt;script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"&gt;&lt;/script&gt;
+&lt;script src="js/firebase-auth.js"&gt;&lt;/script&gt;</pre>
+    </div>
+
+    <div class="step">
+        <h2>✅ Result</h2>
+        <ul>
+            <li>✅ Professional email/password authentication</li>
+            <li>✅ Password reset emails</li>
+            <li>✅ Email verification</li>
+            <li>✅ Works on all devices</li>
+            <li>✅ Secure (Google handles security)</li>
+            <li>✅ Scales to millions of users</li>
+            <li>✅ Free tier: 50,000 users/month</li>
+        </ul>
+    </div>
+
+    <h2>🚀 Need Help?</h2>
+    <p>This takes 5 minutes to set up. Firebase Auth is used by:</p>
+    <ul>
+        <li>Twitter, Lyft, Venmo, Alibaba (all use Firebase)</li>
+    </ul>
+    <p>It's the industry standard for production auth.</p>
+</body>
+</html>
