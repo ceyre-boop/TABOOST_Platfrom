@@ -448,7 +448,7 @@ function updateGoals() {
                     <div class="goal-progress-fill ${status}" style="width: ${pct}%"></div>
                 </div>
                 <div class="goal-numbers">
-                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}${g.unit}</span>
+                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}+${g.unit}</span>
                     <span>${pct.toFixed(0)}% complete</span>
                 </div>
                 <div class="goal-pace" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
@@ -824,7 +824,7 @@ function updateAchievements() {
     const achievements = [
         { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
         { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
-        { name: 'Reward King', icon: '💰', unlocked: (myData.diamonds || 0) >= 100000, desc: '100K+ diamonds' },
+        { name: '50k Earned', icon: '💎', unlocked: myData.badge50k && myData.badge50k !== '', desc: '50k+ earned this month' },
         { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
         { name: 'Growth Star', icon: '🚀', unlocked: (myData.growthDirection || '').toLowerCase() === 'up', desc: 'Upward growth' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
@@ -1024,7 +1024,8 @@ function updateScoreAndLevels() {
         step.classList.remove('completed', 'current');
         if (currentLevel > 0 && levelNum < currentLevel) {
             step.classList.add('completed');
-        } else if (levelNum === currentLevel && currentLevel > 0) {
+        } else if (levelNum === currentLevel) {
+            // Highlight current level even if it's 0
             step.classList.add('current');
         }
     });
@@ -1044,8 +1045,8 @@ function updateScoreAndLevels() {
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${currentLevelReq.days} days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${currentLevelReq.hours} hrs`;
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${currentLevelReq.days}+ days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${currentLevelReq.hours}+ hrs`;
     
     document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / currentLevelReq.days) * 100)}%`;
     document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / currentLevelReq.hours) * 100)}%`;
