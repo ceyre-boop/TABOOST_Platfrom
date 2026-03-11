@@ -413,8 +413,11 @@
                 // Get email (either from lookup or from input if user had to enter it)
                 let loginEmail = foundEmail;
                 const manualEmail = document.getElementById('emailInput').value.trim();
-                if (!loginEmail && manualEmail) {
+                // Always prefer manually entered email if provided
+                if (manualEmail) {
                     loginEmail = manualEmail;
+                    // Hide the auto-found email display since we're using manual
+                    document.getElementById('emailDisplay').classList.remove('visible');
                 }
                 
                 if (!loginEmail) {
