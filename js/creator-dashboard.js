@@ -1136,7 +1136,7 @@ function updateScoreAndLevels() {
     ];
     
     // Get requirements for NEXT level (what they're working toward)
-    const nextLevel = currentLevel + 1;
+    const nextLevel = (currentLevelNum !== null ? currentLevelNum : 0) + 1;
     const nextLevelReq = levelReqs.find(r => r.level === nextLevel) || levelReqs[levelReqs.length - 1];
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
