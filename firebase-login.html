@@ -306,21 +306,7 @@
         async function lookupEmail(username) {
             console.log('Looking up email for:', username);
             
-            // Method 1: Check creatorRoster collection
-            try {
-                const rosterDoc = await db.collection('creatorRoster').doc(username).get();
-                if (rosterDoc.exists) {
-                    const rosterData = rosterDoc.data();
-                    console.log('Found in roster:', rosterData);
-                    if (rosterData.email) {
-                        return { email: rosterData.email, source: 'roster' };
-                    }
-                }
-            } catch (e) {
-                console.log('Roster lookup error:', e);
-            }
-            
-            // Method 2: Check users collection by tiktokUsername
+            // Method 1: Check users collection by tiktokUsername
             try {
                 const usersSnapshot = await db.collection('users')
                     .where('tiktokUsername', '==', username)
@@ -381,34 +367,34 @@
                     foundEmail = email;
                     console.log('Using entered email:', email);
                 } else {
-                    // Try to look up email
+                    // Try to look up email from users collection only
                     showSuccess('Looking up your account...');
                     const lookup = await lookupEmail(username);
                     
                     if (lookup) {
                         foundEmail = lookup.email;
                         console.log('Found email from', lookup.source, ':', foundEmail);
-                        
-                        // Show the found email
-                        document.getElementById('emailValue').textContent = foundEmail;
-                        document.getElementById('emailDisplay').classList.add('visible');
+                        // Don't auto-show the email - let user confirm or enter different one
                     }
                 }
                 
-                // If we found an email, use it. Otherwise ask user
-                if (!foundEmail) {
-                    // Show email input field
-                    document.getElementById('emailInputGroup').style.display = 'block';
-                    document.getElementById('emailInput').focus();
-                    
-                    showError(`We couldn't find an email for "${username}". Please enter your email address below.`);
-                    btn.disabled = false;
-                    loading.style.display = 'none';
-                    
-                    // Change button to try again
-                    btn.textContent = 'Try Again';
-                    return;
+                // Always show email input when using username
+                // User can enter their actual email (or confirm if we found one)
+                document.getElementById('emailInputGroup').style.display = 'block';
+                if (foundEmail) {
+                    document.getElementById('emailInput').value = foundEmail;
+                    document.getElementById('emailInput').placeholder = 'Confirm or change your email';
+                } else {
+                    document.getElementById('emailInput').placeholder = 'Enter your email address';
+                    showError(`Please enter your email address to sign in.`);
                 }
+                document.getElementById('emailInput').focus();
+                
+                // Don't auto-submit - wait for user to enter/confirm email
+                btn.disabled = false;
+                loading.style.display = 'none';
+                btn.textContent = 'Sign In';
+                return;
                 
                 // Get email (either from lookup or from input if user had to enter it)
                 let loginEmail = foundEmail;
