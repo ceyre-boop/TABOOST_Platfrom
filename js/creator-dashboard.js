@@ -141,7 +141,9 @@ async function initCreatorDashboard(user) {
     }
     
     // Update footer manager
-    document.getElementById('footerManager').textContent = myData.manager || 'Carrington';
+    const footerManagerName = myData.manager;
+    const footerHasManager = footerManagerName && footerManagerName.trim() !== '' && footerManagerName !== 'Unassigned';
+    document.getElementById('footerManager').textContent = footerHasManager ? footerManagerName : 'TABOOST Support';
     
     // Update last updated timestamp
     updateLastUpdated();
@@ -235,9 +237,9 @@ function updateProfile(user) {
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
     
     // Manager pill with Discord link
-    // Default to Carrington if no manager assigned (blank in sheet)
-    const managerName = myData.manager || 'Carrington';
-    document.getElementById('managerName').textContent = managerName;
+    // If blank manager, show Discord support link instead
+    const managerName = myData.manager;
+    const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned';
     
     // Discord links for managers
     const managerDiscordLinks = {
@@ -247,28 +249,44 @@ function updateProfile(user) {
         // Add more managers here
     };
     
-    const managerKey = managerName.toLowerCase().trim();
+    // TABOOST Discord support link for creators without managers
+    const supportDiscordLink = 'https://discord.gg/Akfwz536BW';
+    
     const managerPill = document.getElementById('managerPill');
     const managerIcon = managerPill.querySelector('.fa-user-tie');
     
-    if (managerDiscordLinks[managerKey]) {
-        managerPill.href = managerDiscordLinks[managerKey];
-        managerPill.style.cursor = 'pointer';
-        managerPill.style.opacity = '1';
+    if (hasManager) {
+        // Has assigned manager
+        document.getElementById('managerName').textContent = managerName;
+        const managerKey = managerName.toLowerCase().trim();
         
-        // Update icon based on link type
-        if (managerDiscordLinks[managerKey].startsWith('sms:')) {
-            managerPill.title = 'Text manager via SMS';
-            managerIcon.className = 'fas fa-sms';
-        } else if (managerDiscordLinks[managerKey].includes('discord')) {
-            managerPill.title = 'Message manager on Discord';
-            managerIcon.className = 'fab fa-discord';
+        if (managerDiscordLinks[managerKey]) {
+            managerPill.href = managerDiscordLinks[managerKey];
+            managerPill.style.cursor = 'pointer';
+            managerPill.style.opacity = '1';
+            
+            // Update icon based on link type
+            if (managerDiscordLinks[managerKey].startsWith('sms:')) {
+                managerPill.title = 'Text manager via SMS';
+                managerIcon.className = 'fas fa-sms';
+            } else if (managerDiscordLinks[managerKey].includes('discord')) {
+                managerPill.title = 'Message manager on Discord';
+                managerIcon.className = 'fab fa-discord';
+            }
+        } else {
+            managerPill.href = '#';
+            managerPill.style.cursor = 'default';
+            managerPill.style.opacity = '0.7';
+            managerPill.title = 'Manager contact not available';
         }
     } else {
-        managerPill.href = '#';
-        managerPill.style.cursor = 'default';
-        managerPill.style.opacity = '0.7';
-        managerPill.title = 'Manager contact not available';
+        // No manager assigned - show Discord support badge
+        document.getElementById('managerName').textContent = 'Contact Support';
+        managerPill.href = supportDiscordLink;
+        managerPill.style.cursor = 'pointer';
+        managerPill.style.opacity = '1';
+        managerPill.title = 'Join TABOOST Discord for support';
+        managerIcon.className = 'fab fa-discord';
     }
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
