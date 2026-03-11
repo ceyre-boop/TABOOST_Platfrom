@@ -425,10 +425,29 @@
                 // Now sign in
                 console.log('Signing in with:', loginEmail);
                 showSuccess('Signing in...');
-                await auth.signInWithEmailAndPassword(loginEmail, password);
                 
-                // Success! Redirect
-                redirectToDashboard();
+                try {
+                    await auth.signInWithEmailAndPassword(loginEmail, password);
+                    // Success! Redirect
+                    redirectToDashboard();
+                } catch (signInError) {
+                    // If sign-in fails with user-not-found and we used looked-up email,
+                    // show email input so user can enter their actual email
+                    if ((signInError.code === 'auth/user-not-found' || signInError.code === 'auth/invalid-credential') 
+                        && !username.includes('@') && !document.getElementById('emailInput').value.trim()) {
+                        
+                        showError(`The email we found (${loginEmail}) doesn't match your account. Please enter your actual email address below.`);
+                        document.getElementById('emailInputGroup').style.display = 'block';
+                        document.getElementById('emailInput').focus();
+                        document.getElementById('emailDisplay').classList.remove('visible');
+                        btn.disabled = false;
+                        loading.style.display = 'none';
+                        btn.textContent = 'Try Again';
+                        return;
+                    }
+                    // Otherwise re-throw to be handled by outer catch
+                    throw signInError;
+                }
                 
             } catch (error) {
                 console.error('Login error:', error);
