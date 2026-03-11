@@ -376,20 +376,6 @@ function updateRank() {
 function updateActivityStats() {
     // Activity Stats Row may have been removed - safely check all elements
     try {
-        // Activity Level Goals Chart (goal is the NEXT level's values)
-        const activityLevelGoals = {
-            0: { days: 7, hours: 15 },
-            1: { days: 8, hours: 20 },
-            2: { days: 11, hours: 30 },
-            3: { days: 15, hours: 40 },
-            4: { days: 18, hours: 60 },
-            5: { days: 22, hours: 80 },
-            6: { days: 22, hours: 80 },
-            7: { days: 22, hours: 80 },
-            8: { days: 22, hours: 80 },
-            9: { days: 22, hours: 80 }
-        };
-        
         // Use ACTIVITY LEVEL values (M/Q columns) for current stats
         const hoursValue = document.getElementById('hoursValue');
         if (hoursValue) hoursValue.textContent = (myData.hours || 0).toFixed(1) + 'h';
@@ -407,15 +393,14 @@ function updateActivityStats() {
         const hourlyRateValue = document.getElementById('hourlyRateValue');
         if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
         
-        // Hours goal mini bar - use activity level goal
+        // Hours goal mini bar - use monthly hours goal
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const creatorLevel = parseInt(myData.level) || 0;
-            const levelGoals = activityLevelGoals[creatorLevel] || activityLevelGoals[0];
-            const hourPct = Math.min(100, ((myData.hours || 0) / levelGoals.hours) * 100);
+            const hoursGoal = myData.hoursMonth || 80;
+            const hourPct = Math.min(100, ((myData.hours || 0) / hoursGoal) * 100);
             hoursFill.style.width = hourPct + '%';
-            hoursGoalText.textContent = levelGoals.hours + 'h';
+            hoursGoalText.textContent = hoursGoal + 'h';
         }
     } catch (e) {
         console.log('Activity Stats elements not found (may have been removed):', e.message);
@@ -433,48 +418,16 @@ function updateGoals() {
     
     document.getElementById('daysRemaining').textContent = `${daysLeft} days left in month (${daysElapsed}/${daysInMonth})`;
     
-    // Activity Level Goals Chart (goal is the NEXT level's values)
-    const activityLevelGoals = {
-        0: { days: 7, hours: 15 },   // Level 0 goal = Level 1 values
-        1: { days: 8, hours: 20 },   // Level 1 goal = Level 2 values
-        2: { days: 11, hours: 30 },  // Level 2 goal = Level 3 values
-        3: { days: 15, hours: 40 },  // Level 3 goal = Level 4 values
-        4: { days: 18, hours: 60 },  // Level 4 goal = Level 5 values
-        5: { days: 22, hours: 80 },  // Level 5 goal = Level 6 values
-        6: { days: 22, hours: 80 },  // Level 6+ same as level 5
-        7: { days: 22, hours: 80 },
-        8: { days: 22, hours: 80 },
-        9: { days: 22, hours: 80 }
-    };
-    
-    // Get creator's current level
-    const creatorLevel = parseInt(myData.level) || 0;
-    const levelGoals = activityLevelGoals[creatorLevel] || activityLevelGoals[0];
-    
     const goals = [
         {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: levelGoals.days,
-            unit: ' days'
-        },
-        {
-            name: 'Hours Goal',
-            icon: 'fa-clock',
-            current: myData.hours || 0,
-            target: levelGoals.hours,
-            unit: 'h'
-        },
-        {
-            name: 'Monthly Days',
-            icon: 'fa-calendar-alt',
-            current: myData.validLiveDays || 0,
             target: myData.daysMonth || 22,
             unit: ' days'
         },
         {
-            name: 'Monthly Hours',
+            name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
             target: myData.hoursMonth || 80,
