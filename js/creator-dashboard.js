@@ -703,15 +703,15 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data - only show for months we have data (Feb onwards)
-        // Column V = This Month's Tier, Column Z = Last Month's Tier
-        // Leave as null for months before we have data (chart will skip them)
+        // Tier data - show for months we have data (Jan, Feb, Mar)
+        // Column V = This Month's Tier, Column Z = Last Month's Tier, -2 Level = Two Months Ago
         const thisMonthTier = myData.tier;
         const lastMonthTier = myData.lastMonthTier;
+        const twoMonthsAgoTier = myData.twoMonthsAgoTier;
         
-        // Build tier array - only last 2 months have data, rest are null
-        // Array order: [Month 1, Month 2, Month 3, Month 4, Month 5, This Month]
-        const tierData = [null, null, null, null, lastMonthTier, thisMonthTier];
+        // Build tier array - 3 months of data (Jan, Feb, Mar), rest null
+        // Array order: [Month 1, Month 2, Month 3, Month 4, Feb, Mar (This Month)]
+        const tierData = [null, null, null, twoMonthsAgoTier, lastMonthTier, thisMonthTier];
         
         console.log('DEBUG - Chart labels:', labels);
         console.log('DEBUG - Chart dataPoints:', dataPoints);
@@ -1126,13 +1126,14 @@ function updateScoreAndLevels() {
     });
     
     // Current progress toward CURRENT level goal (not next level)
+    // Matching the HTML display requirements
     const levelReqs = [
         { level: 0, days: 7, hours: 15 },
         { level: 1, days: 8, hours: 20 },
-        { level: 2, days: 12, hours: 30 },
-        { level: 3, days: 16, hours: 40 },
-        { level: 4, days: 20, hours: 60 },
-        { level: 5, days: 25, hours: 80 }
+        { level: 2, days: 11, hours: 30 },  // Fixed: was 12, should be 11
+        { level: 3, days: 15, hours: 40 },  // Fixed: was 16, should be 15
+        { level: 4, days: 18, hours: 60 },  // Fixed: was 20, should be 18
+        { level: 5, days: 22, hours: 80 }   // Fixed: was 25, should be 22
     ];
     
     // Get requirements for NEXT level (what they're working toward)
