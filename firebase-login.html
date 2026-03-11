@@ -367,34 +367,51 @@
                     foundEmail = email;
                     console.log('Using entered email:', email);
                 } else {
-                    // Try to look up email from users collection only
+                    // Try to look up email from users collection with timeout
                     showSuccess('Looking up your account...');
-                    const lookup = await lookupEmail(username);
                     
-                    if (lookup) {
-                        foundEmail = lookup.email;
-                        console.log('Found email from', lookup.source, ':', foundEmail);
-                        // Don't auto-show the email - let user confirm or enter different one
+                    // Add timeout to prevent hanging
+                    const lookupPromise = lookupEmail(username);
+                    const timeoutPromise = new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('timeout')), 3000)
+                    );
+                    
+                    try {
+                        const lookup = await Promise.race([lookupPromise, timeoutPromise]);
+                        if (lookup) {
+                            foundEmail = lookup.email;
+                            console.log('Found email from', lookup.source, ':', foundEmail);
+                        }
+                    } catch (e) {
+                        console.log('Lookup failed or timed out:', e);
+                        // Continue without found email
                     }
                 }
                 
-                // Always show email input when using username
-                // User can enter their actual email (or confirm if we found one)
-                document.getElementById('emailInputGroup').style.display = 'block';
-                if (foundEmail) {
-                    document.getElementById('emailInput').value = foundEmail;
-                    document.getElementById('emailInput').placeholder = 'Confirm or change your email';
-                } else {
-                    document.getElementById('emailInput').placeholder = 'Enter your email address';
-                    showError(`Please enter your email address to sign in.`);
-                }
-                document.getElementById('emailInput').focus();
+                // Check if user already entered email in the input field
+                const existingEmail = document.getElementById('emailInput').value.trim();
                 
-                // Don't auto-submit - wait for user to enter/confirm email
-                btn.disabled = false;
-                loading.style.display = 'none';
-                btn.textContent = 'Sign In';
-                return;
+                if (!existingEmail) {
+                    // First time - show email input
+                    document.getElementById('emailInputGroup').style.display = 'block';
+                    if (foundEmail) {
+                        document.getElementById('emailInput').value = foundEmail;
+                        document.getElementById('emailInput').placeholder = 'Confirm or change your email';
+                    } else {
+                        document.getElementById('emailInput').placeholder = 'Enter your email address';
+                        showError(`Please enter your email address to sign in.`);
+                    }
+                    document.getElementById('emailInput').focus();
+                    
+                    // Don't auto-submit - wait for user to enter/confirm email
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                    btn.textContent = 'Sign In';
+                    return;
+                }
+                
+                // User has entered email - proceed with sign in
+                foundEmail = existingEmail;
                 
                 // Get email (either from lookup or from input if user had to enter it)
                 let loginEmail = foundEmail;
