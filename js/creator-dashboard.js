@@ -141,7 +141,7 @@ async function initCreatorDashboard(user) {
     }
     
     // Update footer manager
-    document.getElementById('footerManager').textContent = myData.manager || 'your manager';
+    document.getElementById('footerManager').textContent = myData.manager || 'Carrington';
     
     // Update last updated timestamp
     updateLastUpdated();
@@ -235,7 +235,8 @@ function updateProfile(user) {
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
     
     // Manager pill with Discord link
-    const managerName = myData.manager || 'Not assigned';
+    // Default to Carrington if no manager assigned (blank in sheet)
+    const managerName = myData.manager || 'Carrington';
     document.getElementById('managerName').textContent = managerName;
     
     // Discord links for managers
@@ -1032,20 +1033,25 @@ function updateScoreAndLevels() {
     const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
     const growth = parseFloat(myData.growthPercent) || 0;
     
-    // Activity Level based on Column U (💎 Pace)
-    const pace = myData.diamondPace || 0;
-    let activityLevel = 'Low';
+    // Activity Level based on Column E (Level 0-5) - NOT 💎 Pace
+    // Level from column E indicates activity: 0=starter, 1-5=active levels
+    const level = myData.level;
+    let activityLevel = '--';
     let activityColor = '#888';
     
-    if (pace > 300000) {
-        activityLevel = 'Great';
-        activityColor = '#4ade80'; // Green
-    } else if (pace >= 1000) {
+    // Handle blank/null/undefined vs actual 0 value
+    if (level === '' || level === undefined || level === null || level === 'null') {
+        activityLevel = '--';  // Truly blank
+        activityColor = '#888';
+    } else if (parseInt(level) === 0) {
+        activityLevel = 'Starter';  // Level 0 is valid starter level
+        activityColor = '#60a5fa';  // Blue for starter
+    } else if (parseInt(level) >= 1 && parseInt(level) <= 2) {
         activityLevel = 'Good';
-        activityColor = '#60a5fa'; // Blue
-    } else {
-        activityLevel = 'Low';
-        activityColor = '#ef4444'; // Red
+        activityColor = '#4ade80';  // Green
+    } else if (parseInt(level) >= 3) {
+        activityLevel = 'Great';
+        activityColor = '#00d4ff';  // Cyan for high levels
     }
     
     const activityEl = document.getElementById('scoreActivity');
@@ -1070,24 +1076,33 @@ function updateScoreAndLevels() {
     // Activity Level Visual - DEBUG
     console.log('DEBUG - Activity Level data:', myData.level, 'Raw:', myData._levelRaw, 'Header:', myData._levelHeader);
     
-    // Use level from CSV column E, but handle 0 as unset/blank
-    let currentLevel = 0;
-    if (myData.level !== undefined && myData.level !== null && myData.level !== '') {
-        currentLevel = parseInt(myData.level) || 0;
+    // Use level from CSV column E
+    // Handle: blank/null/undefined = '--', 0 = '0', 1-5 = actual level
+    let currentLevelDisplay = '--';
+    let currentLevelNum = null;
+    
+    if (myData.level === '' || myData.level === undefined || myData.level === null || myData.level === 'null') {
+        // Truly blank - show '--'
+        currentLevelDisplay = '--';
+        currentLevelNum = null;
+    } else {
+        // Has a value (including 0)
+        currentLevelNum = parseInt(myData.level);
+        currentLevelDisplay = currentLevelNum.toString();
     }
     
-    console.log('DEBUG - Parsed currentLevel:', currentLevel, 'for creator:', myData.username);
+    console.log('DEBUG - Parsed currentLevel:', currentLevelNum, 'Display:', currentLevelDisplay, 'for creator:', myData.username);
     
-    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevel >= 0 ? currentLevel : '--'}`;
+    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevelDisplay}`;
     
     // Update level steps
     document.querySelectorAll('.level-step').forEach(step => {
         const levelNum = parseInt(step.dataset.level);
         step.classList.remove('completed', 'current');
-        if (currentLevel > 0 && levelNum < currentLevel) {
+        if (currentLevelNum !== null && currentLevelNum > 0 && levelNum < currentLevelNum) {
             step.classList.add('completed');
-        } else if (levelNum === currentLevel) {
-            // Highlight current level even if it's 0
+        } else if (levelNum === currentLevelNum) {
+            // Highlight current level (including 0)
             step.classList.add('current');
         }
     });
