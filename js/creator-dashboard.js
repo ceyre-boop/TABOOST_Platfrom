@@ -292,7 +292,7 @@ function updateProfile(user) {
     let message = 'Check out your latest earnings and goals.';
     if (growth > 20) message = '🚀 Amazing growth this month! Keep it up!';
     else if (growth < 0) message = 'Your numbers are down. Let\'s get back on track!';
-    else if ((myData.hours || 0) < 40) message = 'You\'re behind on hours. Time to stream!';
+    else if ((myData.hoursMonth || myData.hours || 0) < 40) message = 'You\'re behind on hours. Time to stream!';
     
     document.getElementById('welcomeTitle').textContent = `${greeting}, ${myData.username}!`;
     document.getElementById('welcomeMessage').textContent = message;
@@ -376,27 +376,29 @@ function updateRank() {
 function updateActivityStats() {
     // Activity Stats Row may have been removed - safely check all elements
     try {
+        // Use MONTHLY values (BM/BN columns) not activity level (AM/AQ)
         const hoursValue = document.getElementById('hoursValue');
-        if (hoursValue) hoursValue.textContent = (myData.hours || 0).toFixed(1) + 'h';
+        if (hoursValue) hoursValue.textContent = (myData.hoursMonth || myData.hours || 0).toFixed(1) + 'h';
         
         const streamsValue = document.getElementById('streamsValue');
         if (streamsValue) streamsValue.textContent = myData.liveStreams || 0;
         
         const daysValue = document.getElementById('daysValue');
-        if (daysValue) daysValue.textContent = myData.validLiveDays || 0;
+        if (daysValue) daysValue.textContent = myData.daysMonth || myData.validLiveDays || 0;
         
-        // Calculate hourly rate (diamonds per hour)
-        const hours = myData.hours || 0;
+        // Calculate hourly rate (diamonds per hour) - use monthly hours if available
+        const hours = (myData.hoursMonth || myData.hours || 0);
         const diamonds = myData.diamonds || 0;
         const hourlyRate = hours > 0 ? Math.round(diamonds / hours) : 0;
         const hourlyRateValue = document.getElementById('hourlyRateValue');
         if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
         
-        // Hours goal mini bar
+        // Hours goal mini bar - use monthly values
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hoursGoal || 15)) * 100);
+            const displayHours = myData.hoursMonth || myData.hours || 0;
+            const hourPct = Math.min(100, (displayHours / (myData.hoursGoal || 15)) * 100);
             hoursFill.style.width = hourPct + '%';
             hoursGoalText.textContent = (myData.hoursGoal || 15) + 'h';
         }
@@ -420,14 +422,14 @@ function updateGoals() {
         {
             name: 'Streaming Days',
             icon: 'fa-calendar',
-            current: myData.validLiveDays || 0,
+            current: myData.daysMonth || myData.validLiveDays || 0,
             target: myData.daysGoal || 7,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
-            current: myData.hours || 0,
+            current: myData.hoursMonth || myData.hours || 0,
             target: myData.hoursGoal || 15,
             unit: 'h'
         },
