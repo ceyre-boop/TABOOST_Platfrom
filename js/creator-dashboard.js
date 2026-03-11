@@ -397,9 +397,10 @@ function updateActivityStats() {
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hourPct = Math.min(100, ((myData.hours || 0) / (myData.hoursGoal || 15)) * 100);
+            const hoursGoal = myData.hoursMonth || myData.hoursGoal || 15;
+            const hourPct = Math.min(100, ((myData.hours || 0) / hoursGoal) * 100);
             hoursFill.style.width = hourPct + '%';
-            hoursGoalText.textContent = (myData.hoursGoal || 15) + 'h';
+            hoursGoalText.textContent = hoursGoal + 'h';
         }
     } catch (e) {
         console.log('Activity Stats elements not found (may have been removed):', e.message);
@@ -422,14 +423,14 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysGoal || 7,
+            target: myData.daysMonth || myData.daysGoal || 7,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursGoal || 15,
+            target: myData.hoursMonth || myData.hoursGoal || 15,
             unit: 'h'
         },
         {
