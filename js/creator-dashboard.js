@@ -1144,7 +1144,7 @@ function updateScoreAndLevels() {
     // Update Diamond Earnings (only remaining revenue item)
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = '$' + diamondUSD.toFixed(2);
+        diamondRevenueEl.textContent = '$' + diamondUSD.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
     
     const diamondCountEl = document.getElementById('diamondCount');
