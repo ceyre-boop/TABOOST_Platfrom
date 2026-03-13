@@ -79,10 +79,40 @@ def convert_history_csv_to_json(input_file, output_file):
                         growth = 0
                     growth_rates.append(growth)
             
+            # Parse tier data (rolling: M-Q may be blank currently)
+            # K=Current, L=Feb, M=Jan, N=Dec, O=Nov, P=Oct, Q=Sep
+            def parse_tier(val):
+                if not val or val.strip() == '' or val.strip() == '-1':
+                    return None
+                try:
+                    return int(val)
+                except:
+                    return None
+            
+            tier_current = parse_tier(row[10] if len(row) > 10 else None)
+            tier_feb = parse_tier(row[11] if len(row) > 11 else None)
+            tier_jan = parse_tier(row[12] if len(row) > 12 else None)
+            tier_dec = parse_tier(row[13] if len(row) > 13 else None)
+            tier_nov = parse_tier(row[14] if len(row) > 14 else None)
+            tier_oct = parse_tier(row[15] if len(row) > 15 else None)
+            tier_sep = parse_tier(row[16] if len(row) > 16 else None)
+            
+            # Build tier history: Sep → Oct → Nov → Dec → Jan → Feb
+            tier_history = [
+                tier_sep,
+                tier_oct,
+                tier_nov,
+                tier_dec,
+                tier_jan,
+                tier_feb
+            ]
+            
             creators.append({
                 "username": username,
                 "diamondsHistory": diamonds_history,
-                "growthRates": growth_rates
+                "growthRates": growth_rates,
+                "tierHistory": tier_history,
+                "tierCurrent": tier_current
             })
     
     # Write JSON

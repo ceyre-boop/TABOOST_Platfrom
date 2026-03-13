@@ -698,15 +698,11 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data - show for months we have data (Jan, Feb, Mar)
-        // Column V = This Month's Tier, Column Z = Last Month's Tier, -2 Level = Two Months Ago
-        const thisMonthTier = myData.tier;
-        const lastMonthTier = myData.lastMonthTier;
-        const twoMonthsAgoTier = myData.twoMonthsAgoTier;
-        
-        // Build tier array - 3 months of data (Jan, Feb, Mar), rest null
-        // Array order: [Month 1, Month 2, Month 3, Month 4, Feb, Mar (This Month)]
-        const tierData = [null, null, null, twoMonthsAgoTier, lastMonthTier, thisMonthTier];
+        // Tier data from HISTORY (trends.tierHistory: Sep, Oct, Nov, Dec, Jan, Feb)
+        let tierData = [null, null, null, null, null, null];
+        if (trends && trends.tierHistory && trends.tierHistory.length === 6) {
+            tierData = trends.tierHistory;
+        }
         
         console.log('DEBUG - Chart labels:', labels);
         console.log('DEBUG - Chart dataPoints:', dataPoints);
