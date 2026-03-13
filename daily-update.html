@@ -347,10 +347,16 @@
                 
                 const cid = cols[1];
                 const username = cols[2];
+                
+                // Skip if username looks like a date (e.g., "3/12", "3/11")
+                if (!cid || !username || username.includes('/') || username.includes('@')) {
+                    continue;
+                }
+                
                 let manager = cols[8] || 'carrington';
                 if (manager.includes('+')) manager = manager.split('+')[0].trim();
                 
-                if (cid && username && !username.includes('@')) {
+                if (cid && username) {
                     creators.push({
                         id: creators.length + 1,
                         creatorId: cid,
