@@ -48,21 +48,22 @@ def convert_history_csv_to_json(input_file, output_file):
                     return 0
             
             # Columns: C=Current, D=Feb, E=Jan, F=Dec, G=Nov, H=Oct, I=Sep
+            # Using: Current + 5 previous months (Oct, Nov, Dec, Jan, Feb)
+            diamonds_current = parse_num(row[2] if len(row) > 2 else 0)
             diamonds_feb = parse_num(row[3] if len(row) > 3 else 0)
             diamonds_jan = parse_num(row[4] if len(row) > 4 else 0)
             diamonds_dec = parse_num(row[5] if len(row) > 5 else 0)
             diamonds_nov = parse_num(row[6] if len(row) > 6 else 0)
             diamonds_oct = parse_num(row[7] if len(row) > 7 else 0)
-            diamonds_sep = parse_num(row[8] if len(row) > 8 else 0)
             
-            # Build history: Sep → Oct → Nov → Dec → Jan → Feb (oldest to newest)
+            # Build history: Oct → Nov → Dec → Jan → Feb → Current (oldest to newest)
             diamonds_history = [
-                diamonds_sep,
                 diamonds_oct,
                 diamonds_nov,
                 diamonds_dec,
                 diamonds_jan,
-                diamonds_feb
+                diamonds_feb,
+                diamonds_current
             ]
             
             # Calculate growth rates
@@ -81,6 +82,7 @@ def convert_history_csv_to_json(input_file, output_file):
             
             # Parse tier data (rolling: M-Q may be blank currently)
             # K=Current, L=Feb, M=Jan, N=Dec, O=Nov, P=Oct, Q=Sep
+            # Using: Current + 5 previous months (Oct, Nov, Dec, Jan, Feb)
             def parse_tier(val):
                 if not val or val.strip() == '' or val.strip() == '-1':
                     return None
@@ -95,16 +97,15 @@ def convert_history_csv_to_json(input_file, output_file):
             tier_dec = parse_tier(row[13] if len(row) > 13 else None)
             tier_nov = parse_tier(row[14] if len(row) > 14 else None)
             tier_oct = parse_tier(row[15] if len(row) > 15 else None)
-            tier_sep = parse_tier(row[16] if len(row) > 16 else None)
             
-            # Build tier history: Sep → Oct → Nov → Dec → Jan → Feb
+            # Build tier history: Oct → Nov → Dec → Jan → Feb → Current
             tier_history = [
-                tier_sep,
                 tier_oct,
                 tier_nov,
                 tier_dec,
                 tier_jan,
-                tier_feb
+                tier_feb,
+                tier_current
             ]
             
             creators.append({

@@ -672,9 +672,9 @@ function initPerformanceChart() {
         const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
         console.log('DEBUG - hasRealData:', hasRealData);
         
-        // Use month labels from HISTORY data (Sep, Oct, Nov, Dec, Jan, Feb)
-        // HISTORY.csv columns: I=Sep, H=Oct, G=Nov, F=Dec, E=Jan, D=Feb
-        const labels = ['September', 'October', 'November', 'December', 'January', 'February'];
+        // Use month labels from HISTORY data (Oct-Feb + Current)
+        // HISTORY.csv: Oct, Nov, Dec, Jan, Feb, Current
+        const labels = ['October', 'November', 'December', 'January', 'February', 'Current'];
         
         // Always use 6-month view with real data or fallback
         let dataPoints;
@@ -906,14 +906,14 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Use month names from HISTORY data (Sep, Oct, Nov, Dec, Jan, Feb)
+    // Use month names from HISTORY data (Oct-Feb + Current)
     const periods = [
-        'September 2025',
         'October 2025',
         'November 2025',
         'December 2025',
         'January 2026',
-        'February 2026'
+        'February 2026',
+        'Current'
     ];
     
     // Use 6-month trend data if available
