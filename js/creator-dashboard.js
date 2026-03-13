@@ -672,14 +672,9 @@ function initPerformanceChart() {
         const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
         console.log('DEBUG - hasRealData:', hasRealData);
         
-        // Generate actual month names (last 6 months)
-        const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        const today = new Date();
-        const labels = [];
-        for (let i = 5; i >= 0; i--) {
-            const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
-            labels.push(monthNames[d.getMonth()]);
-        }
+        // Use month labels from HISTORY data (Sep, Oct, Nov, Dec, Jan, Feb)
+        // HISTORY.csv columns: I=Sep, H=Oct, G=Nov, F=Dec, E=Jan, D=Feb
+        const labels = ['September', 'October', 'November', 'December', 'January', 'February'];
         
         // Always use 6-month view with real data or fallback
         let dataPoints;
@@ -915,14 +910,15 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Generate month names (last 6 months)
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const today = new Date();
-    const periods = [];
-    for (let i = 5; i >= 0; i--) {
-        const d = new Date(today.getFullYear(), today.getMonth() - i, 1);
-        periods.push(monthNames[d.getMonth()] + ' ' + d.getFullYear());
-    }
+    // Use month names from HISTORY data (Sep, Oct, Nov, Dec, Jan, Feb)
+    const periods = [
+        'September 2025',
+        'October 2025',
+        'November 2025',
+        'December 2025',
+        'January 2026',
+        'February 2026'
+    ];
     
     // Use 6-month trend data if available
     let diamondsHistory = [];
