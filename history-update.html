@@ -309,6 +309,21 @@
                     }
                 }
                 
+                // TIER: K=Current, L=Feb, M=Jan, N=Dec, O=Nov, P=Oct, Q=Sep
+                const tier_current = parseInt(cols[10]) || null;  // K
+                const tier_feb = parseInt(cols[11]) || null;      // L
+                const tier_jan = parseInt(cols[12]) || null;      // M
+                const tier_dec = parseInt(cols[13]) || null;      // N
+                const tier_nov = parseInt(cols[14]) || null;      // O
+                const tier_oct = parseInt(cols[15]) || null;      // P
+                const tier_sep = parseInt(cols[16]) || null;      // Q
+                
+                // Build tier history: Oct → Nov → Dec → Jan → Feb → Current
+                const tierHistory = [
+                    tier_oct, tier_nov, tier_dec,
+                    tier_jan, tier_feb, tier_current
+                ];
+                
                 // REWARDS: AA=Current, AB=Feb, AC=Jan, AD=Dec, AE=Nov, AF=Oct, AG=Sep
                 const rewards_current = cols[26] || '';  // AA
                 const rewards_feb = cols[27] || '';      // AB
@@ -328,6 +343,8 @@
                     username: username,
                     diamondsHistory: diamondsHistory,
                     growthRates: growthRates,
+                    tierHistory: tierHistory,
+                    tierCurrent: tier_current,
                     rewardsHistory: rewardsHistory
                 });
             }
