@@ -324,14 +324,14 @@
                     tier_jan, tier_feb, tier_current
                 ];
                 
-                // REWARDS: AA=Current, AB=Feb, AC=Jan, AD=Dec, AE=Nov, AF=Oct, AG=Sep
-                const rewards_current = cols[26] || '';  // AA
-                const rewards_feb = cols[27] || '';      // AB
-                const rewards_jan = cols[28] || '';      // AC
-                const rewards_dec = cols[29] || '';      // AD
-                const rewards_nov = cols[30] || '';      // AE
-                const rewards_oct = cols[31] || '';      // AF
-                const rewards_sep = cols[32] || '';      // AG
+                // REWARDS: Index 24=Current, 25=Feb, 26=Jan, 27=Dec, 28=Nov, 29=Oct, 30=Sep
+                const rewards_current = cols[24] || '';  // Current
+                const rewards_feb = cols[25] || '';      // Feb
+                const rewards_jan = cols[26] || '';      // Jan
+                const rewards_dec = cols[27] || '';      // Dec
+                const rewards_nov = cols[28] || '';      // Nov
+                const rewards_oct = cols[29] || '';      // Oct
+                const rewards_sep = cols[30] || '';      // Sep
                 
                 // Build rewards history: Sep → Oct → Nov → Dec → Jan → Feb → Current
                 const rewardsHistory = [
