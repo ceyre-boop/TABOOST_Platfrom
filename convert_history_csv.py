@@ -89,7 +89,7 @@ def convert_history_csv_to_json(input_file, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(creators, f, indent=2)
     
-    print(f"✅ Converted {len(creators)} creators from {input_file} to {output_file}")
+    print(f"Converted {len(creators)} creators from {input_file} to {output_file}")
     return len(creators)
 
 if __name__ == "__main__":
