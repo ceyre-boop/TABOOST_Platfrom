@@ -918,9 +918,15 @@ function updateHistory() {
     
     // Use 6-month trend data if available
     let diamondsHistory = [];
+    let rewardsHistory = [];
     const trends = creatorTrends[myData.username];
+    
     if (trends && trends.diamondsHistory && trends.diamondsHistory.length === 6) {
         diamondsHistory = trends.diamondsHistory;
+        // Rewards from HISTORY: Sep, Oct, Nov, Dec, Jan, Feb, Current (7 months)
+        if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
+            rewardsHistory = trends.rewardsHistory;
+        }
     } else {
         // Fallback: build from available data
         const current = myData.diamonds || 0;
@@ -942,21 +948,13 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
         const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards/Earnings - show Rewards Month from Column AO for current month (March & future)
-        // For past months, show '--' since we don't have historical data
+        // Rewards from HISTORY data (AA-AG columns)
         let rewards = '--';
-        if (index === 5) {
-            // Current month - use Rewards Month from Column AO if available, otherwise fall back to earned
-            console.log('DEBUG HISTORY - rewardsMonth:', myData.rewardsMonth, 'earned:', myData.earned);
-            // Check if rewardsMonth exists and is not empty/zero
-            const hasRewardsMonth = myData.rewardsMonth && myData.rewardsMonth !== '' && myData.rewardsMonth !== '0';
-            if (hasRewardsMonth) {
-                rewards = myData.rewardsMonth; // e.g., "5,000" or "60,000" from AO
-                console.log('  -> Using AO (rewardsMonth):', rewards);
-            } else {
-                rewards = formatNumber(myData.earned || 0);
-                console.log('  -> Using earned (AH):', rewards);
-            }
+        if (rewardsHistory.length > index) {
+            rewards = rewardsHistory[index] || '--';
+        } else if (index === 5 && myData.rewardsMonth) {
+            // Fallback to current month rewards from Live Data
+            rewards = myData.rewardsMonth;
         }
         
         return {

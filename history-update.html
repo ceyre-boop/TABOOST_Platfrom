@@ -309,10 +309,26 @@
                     }
                 }
                 
+                // REWARDS: AA=Current, AB=Feb, AC=Jan, AD=Dec, AE=Nov, AF=Oct, AG=Sep
+                const rewards_current = cols[26] || '';  // AA
+                const rewards_feb = cols[27] || '';      // AB
+                const rewards_jan = cols[28] || '';      // AC
+                const rewards_dec = cols[29] || '';      // AD
+                const rewards_nov = cols[30] || '';      // AE
+                const rewards_oct = cols[31] || '';      // AF
+                const rewards_sep = cols[32] || '';      // AG
+                
+                // Build rewards history: Sep → Oct → Nov → Dec → Jan → Feb → Current
+                const rewardsHistory = [
+                    rewards_sep, rewards_oct, rewards_nov,
+                    rewards_dec, rewards_jan, rewards_feb, rewards_current
+                ];
+                
                 creators.push({
                     username: username,
                     diamondsHistory: diamondsHistory,
-                    growthRates: growthRates
+                    growthRates: growthRates,
+                    rewardsHistory: rewardsHistory
                 });
             }
             
