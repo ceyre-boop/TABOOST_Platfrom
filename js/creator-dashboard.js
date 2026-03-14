@@ -151,16 +151,14 @@ async function initCreatorDashboard(user) {
 
 function updateLastUpdated() {
     const now = new Date();
-    const timeStr = now.toLocaleTimeString('en-US', { 
-        hour: 'numeric', 
-        minute: '2-digit',
-        hour12: true 
-    });
-    const dateStr = now.toLocaleDateString('en-US', { 
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const dateStr = yesterday.toLocaleDateString('en-US', { 
         month: 'short', 
-        day: 'numeric' 
+        day: 'numeric',
+        timeZone: 'America/Los_Angeles'
     });
-    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at ${timeStr}`;
+    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
 }
 
 // Load real month data from CSV (column F - Month)
