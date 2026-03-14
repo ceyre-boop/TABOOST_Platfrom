@@ -857,7 +857,7 @@ function initPerformanceChart() {
         </div>
         <div class="insight-item">
             <i class="fas fa-calculator"></i>
-            <span>${formatNumber((myData.diamonds || 0) / (myData.liveStreams || 1))} diamonds per stream</span>
+            <span>${formatNumber((myData.diamonds || 0) / (myData.hours || 1))} diamonds per hour</span>
         </div>
     `;
     
