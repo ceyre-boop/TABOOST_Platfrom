@@ -280,11 +280,13 @@ function updateProfile(user) {
             managerPill.title = 'Manager contact not available';
         }
     } else {
-        // No manager assigned - show Discord support badge
-        document.getElementById('managerName').textContent = 'Contact Support';
+        // No manager assigned - show purple Discord badge
+        document.getElementById('managerName').textContent = 'Discord';
         managerPill.href = supportDiscordLink;
         managerPill.style.cursor = 'pointer';
         managerPill.style.opacity = '1';
+        managerPill.style.background = 'linear-gradient(135deg, #5865F2 0%, #4752C4 100%)';
+        managerPill.style.color = '#fff';
         managerPill.title = 'Join TABOOST Discord for support';
         managerIcon.className = 'fab fa-discord';
     }
