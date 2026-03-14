@@ -290,7 +290,9 @@ function updateProfile(user) {
     // Badges - Level (0-5), Tier (col V), Score (col AG)
     // Level: show actual level 0-5, or -- if blank/null/undefined
     let levelDisplay = '--';
-    if (myData.level === 0 || myData.level === '0') {
+    if (myData.level === '' || myData.level === undefined || myData.level === null || myData.level === 'null') {
+        levelDisplay = '--';
+    } else if (myData.level === 0 || myData.level === '0') {
         levelDisplay = '0';
     } else if (myData.level > 0) {
         levelDisplay = myData.level;
