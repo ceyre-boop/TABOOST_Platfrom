@@ -1041,37 +1041,23 @@ function updateScoreAndLevels() {
     const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
     const growth = parseFloat(myData.growthPercent) || 0;
     
-    // Activity Level based on Creator Score activity metric
-    // NEW SYSTEM: 30+ = Perfect, 24+ = Great, 12+ = Good, 6+ = Low, Under 6 = Non-Active
-    const activityMetric = myData.scoreActivity || myData.activityScore || myData.level;
+    // Activity Level based on Column E (Level 0-5)
+    const level = myData.level;
     let activityLevel = '--';
     let activityColor = '#888';
     
-    // Parse the activity metric value
-    let activityValue = 0;
-    if (activityMetric !== '' && activityMetric !== undefined && activityMetric !== null && activityMetric !== 'null') {
-        activityValue = parseInt(activityMetric) || 0;
-    }
-    
-    // NEW Activity Level Badge System
-    if (activityValue >= 30) {
-        activityLevel = 'Perfect';
-        activityColor = '#a855f7';  // Purple for perfect
-    } else if (activityValue >= 24) {
-        activityLevel = 'Great';
-        activityColor = '#00d4ff';  // Cyan for great
-    } else if (activityValue >= 12) {
-        activityLevel = 'Good';
-        activityColor = '#4ade80';  // Green for good
-    } else if (activityValue >= 6) {
-        activityLevel = 'Low';
-        activityColor = '#fbbf24';  // Amber/Yellow for low
-    } else if (activityValue > 0) {
-        activityLevel = 'Non-Active';
-        activityColor = '#9ca3af';  // Gray for non-active
-    } else {
+    if (level === '' || level === undefined || level === null || level === 'null') {
         activityLevel = '--';
         activityColor = '#888';
+    } else if (parseInt(level) === 0) {
+        activityLevel = 'Starter';
+        activityColor = '#60a5fa';
+    } else if (parseInt(level) >= 1 && parseInt(level) <= 2) {
+        activityLevel = 'Good';
+        activityColor = '#4ade80';
+    } else if (parseInt(level) >= 3) {
+        activityLevel = 'Great';
+        activityColor = '#00d4ff';
     }
     
     const activityEl = document.getElementById('scoreActivity');
