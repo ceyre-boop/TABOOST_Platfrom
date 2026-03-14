@@ -30,18 +30,29 @@
         }
         .logo {
             text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ff0044, #cc0033);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+        }
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff0044;
+            box-shadow: 0 0 30px rgba(255,0,68,0.3);
         }
         .subtitle {
             text-align: center;
             color: #888;
             margin-bottom: 30px;
             font-size: 0.9rem;
+        }
+        .tagline {
+            text-align: center;
+            color: #ff0044;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
         }
         .form-group {
             margin-bottom: 20px;
@@ -181,7 +192,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">TABOOST</div>
+        <div class="logo">
+            <img src="images/taboost-genie.jpg" alt="TABOOST" class="logo-img">
+        </div>
+        <p class="tagline">Turn Your Hustle Into a Business</p>
         <p class="subtitle">Sign in to your account</p>
         
         <div class="error" id="error"></div>
