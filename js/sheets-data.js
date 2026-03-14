@@ -241,7 +241,7 @@ class TaboostDataService {
             this.creators = creatorsData.map(c => ({
                 creatorId: c.creatorId,
                 username: c.username,
-                level: c.level,
+                level: (c.level === '' || c.level === undefined || c.level === null) ? -1 : parseInt(c.level),
                 month: c.month,
                 discord: '',
                 manager: c.agent || 'Unassigned',

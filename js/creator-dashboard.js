@@ -288,9 +288,9 @@ function updateProfile(user) {
     }
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    // Level: show actual level 0-5, or -- if blank/null/undefined
+    // Level: -1=blank, 0=starter, 1-5=actual levels
     let levelDisplay = '--';
-    if (myData.level === '' || myData.level === undefined || myData.level === null || myData.level === 'null') {
+    if (myData.level === -1 || myData.level === '-1') {
         levelDisplay = '--';
     } else if (myData.level === 0 || myData.level === '0') {
         levelDisplay = '0';
@@ -1048,7 +1048,7 @@ function updateScoreAndLevels() {
     let activityLevel = '--';
     let activityColor = '#888';
     
-    if (level === '' || level === undefined || level === null || level === 'null') {
+    if (level === -1 || level === '-1') {
         activityLevel = '--';
         activityColor = '#888';
     } else if (parseInt(level) === 0) {
@@ -1085,12 +1085,12 @@ function updateScoreAndLevels() {
     console.log('DEBUG - Activity Level data:', myData.level, 'Raw:', myData._levelRaw, 'Header:', myData._levelHeader);
     
     // Use level from CSV column E
-    // Handle: blank/null/undefined = '--', 0 = '0', 1-5 = actual level
+    // Handle: -1=blank, 0=starter, 1-5=actual levels
     let currentLevelDisplay = '--';
     let currentLevelNum = null;
     
-    if (myData.level === '' || myData.level === undefined || myData.level === null || myData.level === 'null') {
-        // Truly blank - show '--'
+    if (myData.level === -1 || myData.level === '-1') {
+        // Blank level - show '--'
         currentLevelDisplay = '--';
         currentLevelNum = null;
     } else {
