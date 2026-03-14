@@ -228,10 +228,8 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier from creator_badges and Score directly from myData (column AG)
-    const badgeData = creatorBadges[creatorId] || {};
-    // Tier can be 0-5, check if defined not just truthy
-    const tier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? '-');
+    // Get Tier and Score directly from myData (live data)
+    const tier = myData.tier ?? '-';
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
