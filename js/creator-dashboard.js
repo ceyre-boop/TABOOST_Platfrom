@@ -227,7 +227,7 @@ function updateProfile(user) {
     document.getElementById('joinDate').textContent = memberText;
     
     // Get Tier and Score directly from myData (live data)
-    const tier = myData.tier ?? '-';
+    const tier = (myData.tier !== undefined && myData.tier !== null && myData.tier !== '') ? myData.tier : '--';
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
