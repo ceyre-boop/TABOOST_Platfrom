@@ -1050,7 +1050,7 @@ function updateScoreAndLevels() {
         activityLevel = '--';
         activityColor = '#888';
     } else if (parseInt(level) === 0) {
-        activityLevel = 'Starter';
+        activityLevel = 'Low';
         activityColor = '#60a5fa';
     } else if (parseInt(level) >= 1 && parseInt(level) <= 2) {
         activityLevel = 'Good';
