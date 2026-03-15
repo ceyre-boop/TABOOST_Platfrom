@@ -502,22 +502,29 @@
                         { headers: { 'Authorization': `token ${token}` } }
                     );
                     
-                    if (dashRes.ok) {
-                        const dashData = await dashRes.json();
-                        let dashContent = decodeURIComponent(escape(atob(dashData.content)));
-                        
-                        // Replace any existing version number with new timestamp
-                        dashContent = dashContent.replace(/\.js\?v=[0-9]+/g, `.js?v=${timestamp}`);
-                        
+                    if (!dashRes.ok) {
+                        throw new Error(`Failed to fetch dashboard: ${dashRes.status}`);
+                    }
+                    
+                    const dashData = await dashRes.json();
+                    let dashContent = decodeURIComponent(escape(atob(dashData.content)));
+                    
+                    // Replace any existing version number with new timestamp
+                    const newContent = dashContent.replace(/\.js\?v=[0-9]+/g, `.js?v=${timestamp}`);
+                    
+                    // Check if anything changed
+                    if (newContent === dashContent) {
+                        log('⚠️ No version placeholders found to update', 'warning');
+                    } else {
                         // Commit updated dashboard
                         const dashBody = {
                             message: `Update dashboard cache - ${new Date().toLocaleDateString()}`,
-                            content: btoa(unescape(encodeURIComponent(dashContent))),
+                            content: btoa(unescape(encodeURIComponent(newContent))),
                             sha: dashData.sha,
                             branch: 'main'
                         };
                         
-                        await fetch(
+                        const updateRes = await fetch(
                             `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/creator-dashboard.html`,
                             {
                                 method: 'PUT',
@@ -529,10 +536,16 @@
                             }
                         );
                         
+                        if (!updateRes.ok) {
+                            const error = await updateRes.json();
+                            throw new Error(error.message || `Update failed: ${updateRes.status}`);
+                        }
+                        
                         log('✅ Dashboard cache updated!', 'success');
                     }
                 } catch (e) {
-                    log('⚠️ Dashboard cache update skipped', 'warning');
+                    log('❌ Dashboard update error: ' + e.message, 'error');
+                    console.error('Dashboard update error:', e);
                 }
                 
                 log('🎉 All updates complete! Site will refresh in ~1 minute!', 'success');
