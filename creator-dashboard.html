@@ -539,7 +539,7 @@
     <script src="js/events-data.js?v=2025031334"></script>
     <script src="js/weekly-calendar-data.js?v=2025031334"></script>
     <script src="js/sheets-data.js?v=2025031334"></script>
-    <script src="js/creator-dashboard.js?v=2025031333"></script>
+    <script src="js/creator-dashboard.js?v=2025031419"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -597,6 +597,27 @@
             };
             
             console.log('🔐 Firebase Auth: Loading dashboard for', username);
+            
+            // Rotating greetings
+            const greetings = [
+                "What's good! Ready to crush it? 🔥",
+                "Back at it! Let's see those numbers 📊",
+                "Yo! Another day, another bag 💰",
+                "Hey legend! Time to check your glow-up ✨",
+                "In the building! Let's goooo 🚀",
+                "Show me the money! 💎",
+                "Another day closer to that bag 💪",
+                "Rise and grind time! ☕",
+                "Ready to make it happen? 🎯",
+                "Let's check that progress! 📈",
+                "Back to secure the bag! 🛍️",
+                "Time to see those gains! 💵",
+                "Hustle mode: activated ⚡",
+                "Main character energy today! 🌟",
+                "Stacking diamonds daily! 💎"
+            ];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            document.getElementById('welcomeMessage').textContent = randomGreeting;
             
             // Initialize dashboard
             initCreatorDashboard(dashboardUser);
