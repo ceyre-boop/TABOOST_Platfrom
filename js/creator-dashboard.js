@@ -235,7 +235,7 @@ function updateProfile(user) {
     // Manager pill with Discord link
     // If blank manager, show Discord support link instead
     const managerName = myData.manager;
-    const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned';
+    const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned' && managerName.toLowerCase() !== 'n/a';
     
     // Discord links for managers
     const managerDiscordLinks = {
