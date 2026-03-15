@@ -534,12 +534,16 @@
         </div>
     </div>
     
-    <script src="js/data.js?v=1"></script>
-    <script src="js/rewards-data.js?v=1"></script>
-    <script src="js/events-data.js?v=1"></script>
-    <script src="js/weekly-calendar-data.js?v=1"></script>
-    <script src="js/sheets-data.js?v=1"></script>
-    <script src="js/creator-dashboard.js?v=1"></script>
+    <script>
+        // Auto cache-bust - load scripts with timestamp
+        const scripts = ['data.js', 'rewards-data.js', 'events-data.js', 'weekly-calendar-data.js', 'sheets-data.js', 'creator-dashboard.js'];
+        const ts = Date.now();
+        scripts.forEach(src => {
+            const s = document.createElement('script');
+            s.src = `js/${src}?v=${ts}`;
+            document.head.appendChild(s);
+        });
+    </script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
