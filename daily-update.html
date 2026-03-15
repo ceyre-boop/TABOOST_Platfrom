@@ -490,8 +490,53 @@
                     throw new Error(error.message || 'Upload failed');
                 }
                 
-                log('✅ Data uploaded successfully!', 'success');
-                log('🎉 Site will update in ~1 minute!', 'success');
+                log('✅ Data.js uploaded!', 'success');
+                
+                // 3. Update creator-dashboard.html with new cache-busting timestamp
+                log('📝 Updating dashboard cache version...');
+                try {
+                    const timestamp = Date.now();
+                    
+                    // Get current dashboard.html
+                    const dashRes = await fetch(
+                        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/creator-dashboard.html`,
+                        { headers: { 'Authorization': `token ${token}` } }
+                    );
+                    
+                    if (dashRes.ok) {
+                        const dashData = await dashRes.json();
+                        let dashContent = decodeURIComponent(escape(atob(dashData.content)));
+                        
+                        // Replace {{TIMESTAMP}} with actual timestamp
+                        dashContent = dashContent.replace(/\{\{TIMESTAMP\}\}/g, timestamp);
+                        
+                        // Commit updated dashboard
+                        const dashBody = {
+                            message: `Update dashboard cache - ${new Date().toLocaleDateString()}`,
+                            content: btoa(unescape(encodeURIComponent(dashContent))),
+                            sha: dashData.sha,
+                            branch: 'main'
+                        };
+                        
+                        await fetch(
+                            `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/creator-dashboard.html`,
+                            {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': `token ${token}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(dashBody)
+                            }
+                        );
+                        
+                        log('✅ Dashboard cache updated!', 'success');
+                    }
+                } catch (e) {
+                    log('⚠️ Dashboard cache update skipped', 'warning');
+                }
+                
+                log('🎉 All updates complete! Site will refresh in ~1 minute!', 'success');
                 log('🔗 <a href="https://live.taboost.me/creator-dashboard.html" target="_blank" style="color:#ff6b6b;">Check dashboard</a>');
                 
                 dropZone.innerHTML = '<div class="drop-icon">✅</div><div>Update Complete!</div>';
