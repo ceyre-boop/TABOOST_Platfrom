@@ -506,8 +506,8 @@
                         const dashData = await dashRes.json();
                         let dashContent = decodeURIComponent(escape(atob(dashData.content)));
                         
-                        // Replace {{TIMESTAMP}} with actual timestamp
-                        dashContent = dashContent.replace(/\{\{TIMESTAMP\}\}/g, timestamp);
+                        // Replace version numbers in script tags
+                        dashContent = dashContent.replace(/\.js\?v=[0-9]+/g, `.js?v=${timestamp}`);
                         
                         // Commit updated dashboard
                         const dashBody = {
