@@ -914,14 +914,13 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Use month names from HISTORY data (Oct-Feb + Current)
+    // Use month names from HISTORY data (Oct-Feb only)
     const periods = [
         'October 2025',
         'November 2025',
         'December 2025',
         'January 2026',
-        'February 2026',
-        'Current'
+        'February 2026'
     ];
     
     // Use 6-month trend data if available
@@ -929,14 +928,14 @@ function updateHistory() {
     let rewardsHistory = [];
     const trends = creatorTrends[myData.username];
     
-    if (trends && trends.diamondsHistory && trends.diamondsHistory.length === 6) {
-        diamondsHistory = trends.diamondsHistory;
-        // Rewards from HISTORY: Sep, Oct, Nov, Dec, Jan, Feb, Current (7 months)
-        if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
-            rewardsHistory = trends.rewardsHistory;
+    if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5) {
+        diamondsHistory = trends.diamondsHistory.slice(0, 5);
+        // Rewards from HISTORY: Oct, Nov, Dec, Jan, Feb (5 months)
+        if (trends.rewardsHistory && trends.rewardsHistory.length >= 5) {
+            rewardsHistory = trends.rewardsHistory.slice(0, 5);
         }
     } else {
-        // Fallback: build from available data
+        // Fallback: build from available data (5 months only)
         const current = myData.diamonds || 0;
         const lastMonth = myData.diamondsLastMonth || current;
         const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
@@ -945,8 +944,7 @@ function updateHistory() {
             twoMonthsAgo * 0.92 || current * 0.8,
             twoMonthsAgo || current * 0.85,
             lastMonth * 0.95 || current * 0.9,
-            lastMonth || current * 0.95,
-            current
+            lastMonth || current * 0.95
         ];
     }
     
@@ -956,13 +954,10 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
         const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards from HISTORY data (AA-AG columns)
+        // Rewards from HISTORY data (AA-AE columns)
         let rewards = '--';
         if (rewardsHistory.length > index) {
             rewards = rewardsHistory[index] || '--';
-        } else if (index === 5 && myData.rewardsMonth) {
-            // Fallback to current month rewards from Live Data
-            rewards = myData.rewardsMonth;
         }
         
         return {
