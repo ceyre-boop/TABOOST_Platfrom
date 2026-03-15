@@ -506,8 +506,8 @@
                         const dashData = await dashRes.json();
                         let dashContent = decodeURIComponent(escape(atob(dashData.content)));
                         
-                        // Replace {{VERSION}} placeholder with timestamp
-                        dashContent = dashContent.replace(/\{\{VERSION\}\}/g, timestamp);
+                        // Replace any existing version number with new timestamp
+                        dashContent = dashContent.replace(/\.js\?v=[0-9]+/g, `.js?v=${timestamp}`);
                         
                         // Commit updated dashboard
                         const dashBody = {
