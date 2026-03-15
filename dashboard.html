@@ -1203,5 +1203,22 @@ async function logout() {
     window.location.href = 'firebase-login.html';
 }
 </script>
+
+<!-- Firebase Real-time Data Integration -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-realtime.js"></script>
+<script>
+// Hook into existing dashboard data loading
+// Override the JSON loading with Firebase real-time data
+function loadDashboardData() {
+    console.log('Dashboard loading Firebase real-time data...');
+    // The firebase-realtime.js will automatically update the dashboard
+    // when data changes in Firestore
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', loadDashboardData);
+</script>
 </body>
 </html>
