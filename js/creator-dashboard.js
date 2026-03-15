@@ -256,16 +256,22 @@ function updateProfile(user) {
         document.getElementById('managerName').textContent = managerName;
         const managerKey = managerName.toLowerCase().trim();
         
-        if (managerDiscordLinks[managerKey]) {
-            managerPill.href = managerDiscordLinks[managerKey];
+        // Check for exact match first, then check if Carrington is in the name
+        let discordLink = managerDiscordLinks[managerKey];
+        if (!discordLink && managerKey.includes('carrington')) {
+            discordLink = managerDiscordLinks['carrington'];
+        }
+        
+        if (discordLink) {
+            managerPill.href = discordLink;
             managerPill.style.cursor = 'pointer';
             managerPill.style.opacity = '1';
             
             // Update icon based on link type
-            if (managerDiscordLinks[managerKey].startsWith('sms:')) {
+            if (discordLink.startsWith('sms:')) {
                 managerPill.title = 'Text manager via SMS';
                 managerIcon.className = 'fas fa-sms';
-            } else if (managerDiscordLinks[managerKey].includes('discord')) {
+            } else if (discordLink.includes('discord')) {
                 managerPill.title = 'Message manager on Discord';
                 managerIcon.className = 'fab fa-discord';
             }
