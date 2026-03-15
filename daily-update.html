@@ -485,11 +485,14 @@
                 );
                 
                 if (!uploadRes.ok) {
-                    const error = await uploadRes.json();
-                    throw new Error(error.message || 'Upload failed');
+                    const errorText = await uploadRes.text();
+                    log('❌ GitHub API Error: ' + errorText, 'error');
+                    throw new Error(`Upload failed: ${uploadRes.status} - ${errorText}`);
                 }
                 
-                log('✅ Data.js uploaded!', 'success');
+                const uploadData = await uploadRes.json();
+                log('✅ Data.js uploaded! Commit: ' + uploadData.commit.sha.substring(0, 7), 'success');
+                log('🔗 ' + uploadData.content.html_url, 'info');
                 
                 // 3. Update creator-dashboard.html with new cache-busting timestamp
                 log('📝 Updating dashboard cache version...');
