@@ -20,10 +20,10 @@ function syncToFirebase() {
   const data = dataSheet.getDataRange().getValues();
   const headers = data[0];
   
-  // Find column indices
+  // Find column indices - map actual column names to fields
   const colIndex = {};
   headers.forEach((h, i) => {
-    colIndex[h.toString().toLowerCase().replace(/\s+/g, '_')] = i;
+    colIndex[h.toString().trim().toLowerCase().replace(/[💎\s]+/g, '_').replace(/_+/g, '_').replace(/^_/, '')] = i;
   });
   
   console.log('Columns found:', Object.keys(colIndex));
@@ -35,17 +35,26 @@ function syncToFirebase() {
   
   for (let i = 1; i < data.length; i++) {
     const row = data[i];
-    if (!row[0]) continue; // Skip empty rows
+    if (!row[1]) continue; // Skip empty rows (creator ID is in column 1)
+    
+    // Parse numbers with commas
+    const parseNum = (val) => {
+      if (!val) return 0;
+      const cleaned = val.toString().replace(/,/g, '');
+      return parseInt(cleaned) || 0;
+    };
     
     const creator = {
-      creatorId: row[colIndex.creator_id]?.toString() || row[0]?.toString() || `row_${i}`,
-      username: row[colIndex.username || colIndex.creator]?.toString() || '',
-      agent: row[colIndex.agent || colIndex.manager]?.toString() || '',
-      tier: parseInt(row[colIndex.tier || colIndex.level]) || 0,
-      diamonds: parseInt(row[colIndex.diamonds || colIndex.total_diamonds]) || 0,
-      rewards: parseInt(row[colIndex.rewards || colIndex.total_rewards]) || 0,
-      hours: parseInt(row[colIndex.hours || colIndex.hours_streamed]) || 0,
-      score: parseInt(row[colIndex.score || colIndex.creator_score]) || 0,
+      creatorId: row[1]?.toString() || `row_${i}`, // Host column
+      username: row[2]?.toString() || '', // 3/14 column (seems to be username)
+      agent: row[8]?.toString() || '', // Agent column
+      tier: parseInt(row[4]) || 0, // Level column
+      diamonds: parseNum(row[18]), // 💎 column (diamonds)
+      rewards: parseNum(row[40]), // Rewards Month column
+      hours: parseInt(row[16]) || 0, // Hours column
+      score: parseInt(row[32]) || 0, // Score column
+      hoursGoal: parseInt(row[17]) || 40, // Hrs Goal
+      tierGoal: parseNum(row[21]), // Tier Goal
       updatedAt: new Date().toISOString()
     };
     
@@ -87,6 +96,8 @@ function sendBatchToFirestore(creators) {
         rewards: { integerValue: creator.rewards },
         hours: { integerValue: creator.hours },
         score: { integerValue: creator.score },
+        hoursGoal: { integerValue: creator.hoursGoal },
+        tierGoal: { integerValue: creator.tierGoal },
         diamondsPerHour: { integerValue: creator.diamondsPerHour },
         updatedAt: { stringValue: creator.updatedAt }
       }
