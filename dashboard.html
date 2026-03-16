@@ -1257,5 +1257,48 @@ document.addEventListener('DOMContentLoaded', loadDashboardData);
 })();
 </script>
 
+<!-- Firebase Admin Auth Check -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script>
+// Check admin auth on page load
+(function checkAdminAuth(){
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+  auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      console.log('Not logged in, redirecting to login...');
+      window.location.href = 'firebase-login.html';
+      return;
+    }
+    
+    // Check if admin
+    const userDoc = await db.collection('users').doc(user.uid).get();
+    const userData = userDoc.data() || {};
+    
+    const isAdmin = user.email?.toLowerCase() === 'marco@taboost.me' || userData.role === 'admin';
+    
+    if (!isAdmin) {
+      console.log('Not admin, redirecting to creator dashboard...');
+      window.location.href = 'creator-dashboard.html';
+      return;
+    }
+    
+    console.log('✅ Admin authenticated:', user.email);
+  });
+})();
+</script>
 </body>
 </html>
