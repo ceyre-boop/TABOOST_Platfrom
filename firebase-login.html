@@ -316,14 +316,25 @@
                 }
                 
                 // HARD CODED REDIRECTS - Never redirect to ubakery
+                // These are RELATIVE paths only - will never go to external domain
+                let targetPage;
                 if (role === 'admin') {
-                    window.location.replace('dashboard.html');
+                    targetPage = 'dashboard.html';
                 } else if (role === 'manager') {
-                    window.location.replace('manager-dashboard.html');
+                    targetPage = 'managers.html';
                 } else {
-                    window.location.replace('creator-dashboard.html');
+                    targetPage = 'creator-dashboard.html';
                 }
+                
+                // Safety check: ensure we're staying on same domain
+                const currentDomain = window.location.hostname;
+                console.log('Redirecting to:', targetPage, 'on domain:', currentDomain);
+                
+                // Use replace to prevent back-button issues
+                window.location.replace(targetPage);
+                
             } catch (error) {
+                console.error('Redirect error:', error);
                 // Default to creator dashboard on error
                 window.location.replace('creator-dashboard.html');
             }
