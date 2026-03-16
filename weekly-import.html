@@ -274,8 +274,17 @@
         // Check auth
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
-                log('Please log in first', 'error');
-                window.location.href = 'firebase-login.html';
+                log('❌ Please log in first', 'error');
+                creatorListEl.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🔒</div>
+                        <h3>Login Required</h3>
+                        <p>You must be logged in as an admin to use this tool.</p>
+                        <button class="btn" onclick="window.location.href='firebase-login.html'" style="margin-top: 20px;">
+                            🔑 Log In
+                        </button>
+                    </div>
+                `;
                 return;
             }
             
@@ -285,11 +294,21 @@
             
             if (user.email?.toLowerCase() === 'marco@taboost.me' || userData?.role === 'admin') {
                 isAdmin = true;
-                log('✅ Admin authenticated', 'success');
+                log('✅ Admin authenticated: ' + user.email, 'success');
                 scanBtn.disabled = false;
             } else {
-                log('❌ Admin access required', 'error');
-                scanBtn.disabled = true;
+                log('❌ Admin access required. Current user: ' + user.email, 'error');
+                creatorListEl.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">🚫</div>
+                        <h3>Admin Access Required</h3>
+                        <p>Logged in as: ${user.email}</p>
+                        <p style="margin-top: 10px;">Only administrators can import creators.</p>
+                        <button class="btn" onclick="window.logout()" style="margin-top: 20px;">
+                            🚪 Log Out
+                        </button>
+                    </div>
+                `;
             }
         });
         
