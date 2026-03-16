@@ -677,39 +677,54 @@ function initPerformanceChart() {
         console.log('DEBUG - Available usernames count:', Object.keys(creatorTrends).length);
         console.log('DEBUG - Chart trends found:', trends ? 'YES' : 'NO');
         
-        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
-        console.log('DEBUG - hasRealData:', hasRealData);
-        
         // Use month labels from HISTORY data (Oct-Feb + Current)
-        // HISTORY.csv: Oct, Nov, Dec, Jan, Feb, Current
+        // HISTORY.csv: Oct, Nov, Dec, Jan, Feb
+        // Current month comes from LIVE data (daily CSV column T)
         const labels = ['October', 'November', 'December', 'January', 'February', 'Current'];
         
-        // Always use 6-month view with real data or fallback
+        // Get current month live data from myData (daily CSV - column T for diamonds, V for tier)
+        const currentDiamonds = myData.diamonds || 0;
+        const currentTier = myData.tier || 0;
+        
+        // Build dataPoints: Past months from history JSON, Current from live data
         let dataPoints;
-        if (hasRealData) {
-            dataPoints = trends.diamondsHistory;
-            console.log('DEBUG - Using real 6-month data:', dataPoints);
-        } else {
-            // Fallback: use CSV data columns
-            const current = myData.diamonds || 0;
-            const lastMonth = myData.diamondsLastMonth || current;
-            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-            // Use available data or create trend
+        if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5) {
+            // Use first 5 months from history (Oct-Feb), current from live data
             dataPoints = [
-                twoMonthsAgo || current * 0.8,
-                lastMonth || current * 0.9,
-                current * 0.95,
-                current * 0.98,
-                current * 0.99,
-                current
+                trends.diamondsHistory[0], // October
+                trends.diamondsHistory[1], // November
+                trends.diamondsHistory[2], // December
+                trends.diamondsHistory[3], // January
+                trends.diamondsHistory[4], // February
+                currentDiamonds            // Current (live from daily CSV)
+            ];
+            console.log('DEBUG - Using merged data (history Oct-Feb + live Current):', dataPoints);
+        } else {
+            // Fallback: use available data
+            const lastMonth = myData.diamondsLastMonth || currentDiamonds;
+            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
+            dataPoints = [
+                twoMonthsAgo * 0.85 || currentDiamonds * 0.7,
+                twoMonthsAgo * 0.92 || currentDiamonds * 0.8,
+                twoMonthsAgo || currentDiamonds * 0.85,
+                lastMonth * 0.95 || currentDiamonds * 0.9,
+                lastMonth || currentDiamonds * 0.95,
+                currentDiamonds
             ];
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data from HISTORY (trends.tierHistory: Sep, Oct, Nov, Dec, Jan, Feb)
-        let tierData = [null, null, null, null, null, null];
-        if (trends && trends.tierHistory && trends.tierHistory.length === 6) {
-            tierData = trends.tierHistory;
+        // Tier data: Past months from history, Current from live data (column V)
+        let tierData = [null, null, null, null, null, currentTier];
+        if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
+            tierData = [
+                trends.tierHistory[0], // October
+                trends.tierHistory[1], // November
+                trends.tierHistory[2], // December
+                trends.tierHistory[3], // January
+                trends.tierHistory[4], // February
+                currentTier            // Current (live from daily CSV column V)
+            ];
         }
         
         console.log('DEBUG - Chart labels:', labels);
@@ -914,38 +929,51 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Use month names from HISTORY data (Oct-Feb only)
+    // Use month names from HISTORY data (Oct-Feb + Current)
     const periods = [
         'October 2025',
         'November 2025',
         'December 2025',
         'January 2026',
-        'February 2026'
+        'February 2026',
+        'Current'
     ];
     
-    // Use 6-month trend data if available
+    // Use trend data if available
     let diamondsHistory = [];
     let rewardsHistory = [];
     const trends = creatorTrends[myData.username];
     
+    // Get LIVE current data from daily CSV (column T for diamonds, V for tier)
+    const currentDiamonds = myData.diamonds || 0;
+    const currentRewards = myData.rewardsMonth || '--';
+    
     if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5) {
-        diamondsHistory = trends.diamondsHistory.slice(0, 5);
-        // Rewards from HISTORY: Oct, Nov, Dec, Jan, Feb (5 months)
+        // Past months (Oct-Feb) from history CSV
+        const pastMonths = trends.diamondsHistory.slice(0, 5);
+        // Current month from LIVE daily CSV
+        diamondsHistory = [...pastMonths, currentDiamonds];
+        
+        // Rewards: past from history, current from live
         if (trends.rewardsHistory && trends.rewardsHistory.length >= 5) {
-            rewardsHistory = trends.rewardsHistory.slice(0, 5);
+            const pastRewards = trends.rewardsHistory.slice(0, 5);
+            rewardsHistory = [...pastRewards, currentRewards];
+        } else {
+            rewardsHistory = ['--', '--', '--', '--', '--', currentRewards];
         }
     } else {
-        // Fallback: build from available data (5 months only)
-        const current = myData.diamonds || 0;
-        const lastMonth = myData.diamondsLastMonth || current;
+        // Fallback: build from available data
+        const lastMonth = myData.diamondsLastMonth || currentDiamonds;
         const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
         diamondsHistory = [
-            twoMonthsAgo * 0.85 || current * 0.7,
-            twoMonthsAgo * 0.92 || current * 0.8,
-            twoMonthsAgo || current * 0.85,
-            lastMonth * 0.95 || current * 0.9,
-            lastMonth || current * 0.95
+            twoMonthsAgo * 0.85 || currentDiamonds * 0.7,
+            twoMonthsAgo * 0.92 || currentDiamonds * 0.8,
+            twoMonthsAgo || currentDiamonds * 0.85,
+            lastMonth * 0.95 || currentDiamonds * 0.9,
+            lastMonth || currentDiamonds * 0.95,
+            currentDiamonds
         ];
+        rewardsHistory = ['--', '--', '--', '--', '--', currentRewards];
     }
     
     // Build rows with calculated changes
@@ -954,7 +982,7 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
         const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards from HISTORY data (AA-AE columns)
+        // Rewards from HISTORY data (AA-AE columns) or LIVE data for Current
         let rewards = '--';
         if (rewardsHistory.length > index) {
             rewards = rewardsHistory[index] || '--';
