@@ -633,5 +633,38 @@
             alert(`Exporting ${format.toUpperCase()} report for ${creatorName}...`);
         }
     </script>
+
+<!-- ANTI-UBAKERY SAFEGUARD: Clear any malicious redirects -->
+<script>
+// Clear all redirect-related storage on page load
+(function() {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(key => {
+        console.log('Removing stored key:', key);
+        localStorage.removeItem(key);
+    });
+    
+    // Also check sessionStorage
+    const sessionKeysToRemove = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            sessionKeysToRemove.push(key);
+        }
+    }
+    sessionKeysToRemove.forEach(key => {
+        console.log('Removing session key:', key);
+        sessionStorage.removeItem(key);
+    });
+    
+    console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
+})();
+</script>
 </body>
 </html>
