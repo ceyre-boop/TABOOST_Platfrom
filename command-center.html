@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>TABOOST Command Center - Redirecting...</title>
 <meta http-equiv="refresh" content="0;url=dashboard.html">
 <style>
@@ -42,26 +45,6 @@ a { color: #ff0044; }
 // The old ubakery iframe has been removed
 // This page now redirects to dashboard.html which has live data
 window.location.replace('dashboard.html');
-</script>
-</body>
-</html>
-    }
-    
-    console.log('✅ Admin authenticated:', user.username || user.name);
-  } catch (err) {
-    console.error('❌ ADMIN ACCESS DENIED: Error checking auth', err);
-    window.location.href = 'index.html';
-  }
-})();
-
-function logout() {
-  // Clear all user session data
-  localStorage.removeItem('taboost_user');
-  localStorage.removeItem('taboost_current_user');
-  localStorage.removeItem('last_signup_notification');
-  // Redirect to login page
-  window.location.href = 'index.html';
-}
 </script>
 </body>
 </html>
