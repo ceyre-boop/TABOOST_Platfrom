@@ -686,9 +686,12 @@ function initPerformanceChart() {
         const currentDiamonds = myData.diamonds || 0;
         const currentTier = myData.tier || 0;
         
+        // Check if we have real history data
+        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5;
+        
         // Build dataPoints: Past months from history JSON, Current from live data
         let dataPoints;
-        if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5) {
+        if (hasRealData) {
             // Use first 5 months from history (Oct-Feb), current from live data
             dataPoints = [
                 trends.diamondsHistory[0], // October
