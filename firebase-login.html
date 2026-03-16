@@ -265,14 +265,24 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
-        // CLEAR ANY CACHED REDIRECTS - Prevent ubakery or other bad redirects
-        localStorage.removeItem('redirectAfterLogin');
-        localStorage.removeItem('postLoginRedirect');
-        sessionStorage.removeItem('redirectUrl');
+        // NUCLEAR OPTION: Clear ALL storage to prevent any cached redirects
+        console.log('Clearing all storage...');
+        localStorage.clear();
+        sessionStorage.clear();
         
         // Clear any URL parameters that might cause redirects
         if (window.location.search.includes('redirect') || window.location.search.includes('return')) {
             window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Unregister any service workers that might be caching old pages
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                registrations.forEach(registration => {
+                    console.log('Unregistering service worker:', registration);
+                    registration.unregister();
+                });
+            });
         }
 
         let foundEmail = null;
@@ -332,10 +342,14 @@
                 }
                 
                 console.log('Redirecting to:', targetPage);
-                alert('Redirecting to: ' + targetPage); // DEBUG
+                alert('DEBUG: Role=' + role + ', Redirecting to: ' + targetPage);
                 
-                // Use replace to prevent back-button issues
-                window.location.replace(targetPage);
+                // Add cache-busting parameter
+                const finalUrl = targetPage + '?nocache=' + Date.now();
+                console.log('Final URL:', finalUrl);
+                
+                // Use href (not replace) so user can see the URL
+                window.location.href = finalUrl;
                 
             } catch (error) {
                 console.error('Redirect error:', error);
