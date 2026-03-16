@@ -265,6 +265,16 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // CLEAR ANY CACHED REDIRECTS - Prevent ubakery or other bad redirects
+        localStorage.removeItem('redirectAfterLogin');
+        localStorage.removeItem('postLoginRedirect');
+        sessionStorage.removeItem('redirectUrl');
+        
+        // Clear any URL parameters that might cause redirects
+        if (window.location.search.includes('redirect') || window.location.search.includes('return')) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+
         let foundEmail = null;
 
         function showError(msg) {
@@ -305,15 +315,17 @@
                     role = 'admin';
                 }
                 
+                // HARD CODED REDIRECTS - Never redirect to ubakery
                 if (role === 'admin') {
-                    window.location.href = 'dashboard.html';
+                    window.location.replace('dashboard.html');
                 } else if (role === 'manager') {
-                    window.location.href = 'manager-dashboard.html';
+                    window.location.replace('manager-dashboard.html');
                 } else {
-                    window.location.href = 'creator-dashboard.html';
+                    window.location.replace('creator-dashboard.html');
                 }
             } catch (error) {
-                window.location.href = 'creator-dashboard.html';
+                // Default to creator dashboard on error
+                window.location.replace('creator-dashboard.html');
             }
         }
 
