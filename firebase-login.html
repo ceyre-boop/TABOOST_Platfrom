@@ -307,16 +307,21 @@
         async function redirectToDashboard() {
             try {
                 const user = auth.currentUser;
+                console.log('Current user:', user?.email);
+                
                 const userDoc = await db.collection('users').doc(user.uid).get();
                 const userData = userDoc.data() || {};
+                console.log('User data:', userData);
                 
                 let role = userData.role || 'creator';
                 if (user.email?.toLowerCase() === 'marco@taboost.me') {
                     role = 'admin';
+                    console.log('Admin detected via email');
                 }
                 
+                console.log('Role determined:', role);
+                
                 // HARD CODED REDIRECTS - Never redirect to ubakery
-                // These are RELATIVE paths only - will never go to external domain
                 let targetPage;
                 if (role === 'admin') {
                     targetPage = 'dashboard.html';
@@ -326,15 +331,15 @@
                     targetPage = 'creator-dashboard.html';
                 }
                 
-                // Safety check: ensure we're staying on same domain
-                const currentDomain = window.location.hostname;
-                console.log('Redirecting to:', targetPage, 'on domain:', currentDomain);
+                console.log('Redirecting to:', targetPage);
+                alert('Redirecting to: ' + targetPage); // DEBUG
                 
                 // Use replace to prevent back-button issues
                 window.location.replace(targetPage);
                 
             } catch (error) {
                 console.error('Redirect error:', error);
+                alert('Redirect error: ' + error.message); // DEBUG
                 // Default to creator dashboard on error
                 window.location.replace('creator-dashboard.html');
             }
