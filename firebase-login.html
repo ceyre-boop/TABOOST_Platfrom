@@ -324,11 +324,9 @@
                 console.log('User data:', userData);
                 
                 let role = userData.role || 'creator';
-                // Check for admin emails (Marco's accounts)
-                const adminEmails = ['marco@taboost.me', 'crashingskydrummer@gmail.com'];
-                if (adminEmails.includes(user.email?.toLowerCase())) {
+                if (user.email?.toLowerCase() === 'marco@taboost.me') {
                     role = 'admin';
-                    console.log('Admin detected via email:', user.email);
+                    console.log('Admin detected via email');
                 }
                 
                 console.log('Role determined:', role);
