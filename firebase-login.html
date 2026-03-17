@@ -343,12 +343,8 @@
                 
                 console.log('Redirecting to:', targetPage);
                 
-                // Add cache-busting parameter
-                const finalUrl = targetPage + '?nocache=' + Date.now();
-                console.log('Final URL:', finalUrl);
-                
-                // Use href so user can see the URL
-                window.location.href = finalUrl;
+                // Use href for clean URLs
+                window.location.href = targetPage;
                 
             } catch (error) {
                 console.error('Redirect error:', error);
