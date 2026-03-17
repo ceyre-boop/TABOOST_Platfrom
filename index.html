@@ -373,31 +373,13 @@
         </footer>
     </div>
     
-    <!-- Auto-redirect logged in users -->
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <!-- Auto-redirect everyone to login after 1 second -->
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
-            authDomain: "taboost-platform.firebaseapp.com",
-            projectId: "taboost-platform",
-            storageBucket: "taboost-platform.firebasestorage.app",
-            messagingSenderId: "379293685859",
-            appId: "1:379293685859:web:d89592adbf67360b574056"
-        };
-        
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        
-        // If already logged in, redirect to appropriate dashboard
-        auth.onAuthStateChanged((user) => {
-            if (user) {
-                // Small delay so landing page is visible briefly
-                setTimeout(() => {
-                    window.location.href = 'firebase-login.html';
-                }, 500);
-            }
-        });
+        // Redirect all visitors to login page after 1 second
+        // This keeps the landing page visible briefly for link previews
+        setTimeout(() => {
+            window.location.href = 'firebase-login.html';
+        }, 1000);
     </script>
 </body>
 </html>
