@@ -208,6 +208,22 @@
                 box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), inset 0 0 50px rgba(255, 215, 0, 0.1);
             }
         }
+        
+        /* Pro Bonus revenue item highlight */
+        .revenue-item.pro-revenue-active {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+            animation: proRevenuePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes proRevenuePulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -564,15 +580,15 @@
                     </div>
                     <span class="revenue-amount" id="diamondCount">-- 💎</span>
                 </div>
-                <div class="revenue-item highlight">
-                    <div class="revenue-icon" style="background: rgba(0,255,136,0.1); color: var(--taboost-success);">
-                        <i class="fas fa-trophy"></i>
+                <div class="revenue-item highlight" id="proBonusRevenueItem">
+                    <div class="revenue-icon" style="background: rgba(255,215,0,0.1); color: #ffd700;">
+                        <i class="fas fa-crown"></i>
                     </div>
                     <div class="revenue-info">
-                        <span class="revenue-name">Rank Up Bonus</span>
-                        <span class="revenue-value" id="rankRevenue">NEW!</span>
+                        <span class="revenue-name">Pro Bonus</span>
+                        <span class="revenue-value" id="proBonusRevenueValue">Score 70+ to Unlock</span>
                     </div>
-                    <span class="revenue-note">Coming soon</span>
+                    <span class="revenue-note" id="proBonusRevenueNote">--</span>
                 </div>
             </div>
         </div>

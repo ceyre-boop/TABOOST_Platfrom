@@ -1247,6 +1247,38 @@ function updateScoreAndLevels() {
     } else {
         console.error('DEBUG PRO BONUS - proBonusSection element NOT FOUND in DOM');
     }
+    
+    // Update Pro Bonus in Revenue Streams section
+    const proBonusRevenueValue = document.getElementById('proBonusRevenueValue');
+    const proBonusRevenueNote = document.getElementById('proBonusRevenueNote');
+    const proBonusRevenueItem = document.getElementById('proBonusRevenueItem');
+    
+    if (proBonusRevenueValue && proBonusRevenueNote) {
+        const scoreValue = parseInt(myData.score) || 0;
+        const currentDiamonds = parseInt(myData.diamonds) || 0;
+        
+        if (scoreValue >= 70) {
+            // Calculate bonus: (Diamonds × 0.04) ÷ 200
+            const cashBonus = (currentDiamonds * 0.04) / 200;
+            proBonusRevenueValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            proBonusRevenueValue.style.color = '#ffd700'; // Gold color
+            proBonusRevenueNote.textContent = 'Pro Bonus Earned';
+            
+            // Add highlight effect
+            if (proBonusRevenueItem) {
+                proBonusRevenueItem.classList.add('pro-revenue-active');
+            }
+        } else {
+            proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
+            proBonusRevenueValue.style.color = '#888'; // Gray color
+            proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
+            
+            // Remove highlight effect
+            if (proBonusRevenueItem) {
+                proBonusRevenueItem.classList.remove('pro-revenue-active');
+            }
+        }
+    }
 }
 
 // Global variable to store detailed rewards
