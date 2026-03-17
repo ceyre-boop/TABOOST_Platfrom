@@ -224,6 +224,63 @@
                 box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
             }
         }
+        
+        /* Pro Bonus - Revenue Streams Style in Score Section */
+        .pro-bonus-revenue-style {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: proBonusGlow 2s ease-in-out infinite alternate;
+        }
+        
+        .pro-bonus-revenue-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .pro-bonus-revenue-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(255, 215, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffd700;
+            font-size: 20px;
+        }
+        
+        .pro-bonus-revenue-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .pro-bonus-revenue-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+        
+        .pro-bonus-revenue-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+        
+        .pro-bonus-revenue-value.locked {
+            color: #888;
+            font-size: 14px;
+        }
+        
+        .pro-bonus-revenue-note {
+            font-size: 12px;
+            color: #888;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -389,30 +446,17 @@
                 </div>
             </div>
             
-            <!-- Pro Bonus - Only shows when score >= 70 and tier maintained/up -->
-            <div id="proBonusSection" class="pro-bonus-section" style="display: none;">
-                <div class="pro-bonus-header">
-                    <div class="pro-bonus-glow">
+            <!-- Pro Bonus - Revenue Streams Style -->
+            <div id="proBonusSection" class="pro-bonus-revenue-style" style="display: none;">
+                <div class="pro-bonus-revenue-item">
+                    <div class="pro-bonus-revenue-icon">
                         <i class="fas fa-crown"></i>
-                        <span>PRO BONUS UNLOCKED</span>
                     </div>
-                </div>
-                <div class="pro-bonus-details">
-                    <div class="pro-bonus-item">
-                        <span class="pro-label">Qualification</span>
-                        <span class="pro-value" id="proQualification">Score 70+ & Tier Maintained</span>
+                    <div class="pro-bonus-revenue-info">
+                        <span class="pro-bonus-revenue-name">Pro Bonus</span>
+                        <span class="pro-bonus-revenue-value" id="proBonusValue">--</span>
                     </div>
-                    <div class="pro-bonus-item">
-                        <span class="pro-label">Current Diamonds</span>
-                        <span class="pro-value" id="proDiamonds">--</span>
-                    </div>
-                    <div class="pro-bonus-item pro-bonus-total">
-                        <span class="pro-label">Cash Bonus</span>
-                        <span class="pro-value" id="proCashBonus">$--</span>
-                    </div>
-                    <div class="pro-bonus-formula">
-                        Formula: (Diamonds × 0.04) ÷ 200
-                    </div>
+                    <span class="pro-bonus-revenue-note" id="proBonusNote">--</span>
                 </div>
             </div>
         </div>
