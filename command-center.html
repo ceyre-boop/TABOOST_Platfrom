@@ -44,7 +44,8 @@ a { color: #ff0044; }
 // ── REDIRECT TO WORKING DASHBOARD ──
 // The old ubakery iframe has been removed
 // This page now redirects to dashboard.html which has live data
-window.location.replace('dashboard.html');
+// Add cache-busting to prevent browser from showing old version
+window.location.replace('dashboard.html?v=2&nocache=' + Date.now());
 </script>
 </body>
 </html>

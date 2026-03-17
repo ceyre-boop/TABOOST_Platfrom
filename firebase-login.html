@@ -342,13 +342,12 @@
                 }
                 
                 console.log('Redirecting to:', targetPage);
-                alert('DEBUG: Role=' + role + ', Redirecting to: ' + targetPage);
                 
                 // Add cache-busting parameter
                 const finalUrl = targetPage + '?nocache=' + Date.now();
                 console.log('Final URL:', finalUrl);
                 
-                // Use href (not replace) so user can see the URL
+                // Use href so user can see the URL
                 window.location.href = finalUrl;
                 
             } catch (error) {
