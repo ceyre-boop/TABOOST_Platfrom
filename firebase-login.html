@@ -324,19 +324,17 @@
                 console.log('User data:', userData);
                 
                 let role = userData.role || 'creator';
-                if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                // Check for admin emails (Marco's accounts)
+                const adminEmails = ['marco@taboost.me', 'crashingskydrummer@gmail.com'];
+                if (adminEmails.includes(user.email?.toLowerCase())) {
                     role = 'admin';
-                    console.log('Admin detected via email');
+                    console.log('Admin detected via email:', user.email);
                 }
                 
                 console.log('Role determined:', role);
-                console.log('User email:', user?.email);
-                console.log('Email check:', user?.email?.toLowerCase() === 'marco@taboost.me');
                 
                 // HARD CODED REDIRECTS - Never redirect to ubakery
                 let targetPage;
-                alert('DEBUG: Email=' + user?.email + ', Role=' + role + ', isMarco=' + (user?.email?.toLowerCase() === 'marco@taboost.me'));
-                
                 if (role === 'admin') {
                     targetPage = 'dashboard.html';
                 } else if (role === 'manager') {
@@ -346,7 +344,6 @@
                 }
                 
                 console.log('Redirecting to:', targetPage);
-                alert('Redirecting to: ' + targetPage);
                 
                 // Add cache-busting parameter
                 const finalUrl = targetPage + '?nocache=' + Date.now();
