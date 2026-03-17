@@ -1197,8 +1197,13 @@ function updateScoreAndLevels() {
         console.log('DEBUG PRO BONUS - Score:', scoreValue, 'Tier Status Raw:', tierStatusRaw, 'Tier Status Lower:', tierStatusValue, 'Diamonds:', currentDiamonds);
         
         // Check qualification: Score >= 70 AND (tier same or up)
+        // Treat blank, '-', or 'same' as maintained (qualified)
         const scoreQualified = scoreValue >= 70;
-        const tierQualified = tierStatusValue.includes('same') || tierStatusValue.includes('up') || tierStatusValue.includes('maintained');
+        const tierQualified = tierStatusValue === '' || 
+                              tierStatusValue === '-' || 
+                              tierStatusValue.includes('same') || 
+                              tierStatusValue.includes('up') || 
+                              tierStatusValue.includes('maintained');
         const qualifiesForPro = scoreQualified && tierQualified;
         
         console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
@@ -1208,7 +1213,10 @@ function updateScoreAndLevels() {
             const cashBonus = (currentDiamonds * 0.04) / 200;
             
             // Update Pro Bonus display
-            const tierDisplay = tierStatusValue.includes('up') ? '⬆ Up' : '➡ Same';
+            // If tier status is blank, '-', or contains 'same', show as "Same"
+            const isTierUp = tierStatusValue.includes('up');
+            const isTierSame = tierStatusValue === '' || tierStatusValue === '-' || tierStatusValue.includes('same') || tierStatusValue.includes('maintained');
+            const tierDisplay = isTierUp ? '⬆ Up' : (isTierSame ? '➡ Same' : '➡ Same');
             document.getElementById('proQualification').textContent = `Score ${scoreValue} & Tier ${tierDisplay}`;
             document.getElementById('proDiamonds').textContent = formatNumber(currentDiamonds);
             document.getElementById('proCashBonus').textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
