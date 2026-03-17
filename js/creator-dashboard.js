@@ -1208,20 +1208,18 @@ function updateScoreAndLevels() {
         
         console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
         
-        // Update Pro Bonus display - Revenue Streams Style
-        const proBonusValue = document.getElementById('proBonusValue');
-        const proBonusNote = document.getElementById('proBonusNote');
-        
         if (qualifiesForPro) {
             // Calculate bonus: (Diamonds × 0.04) ÷ 200
             const cashBonus = (currentDiamonds * 0.04) / 200;
             
-            // Update display
-            if (proBonusValue && proBonusNote) {
-                proBonusValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-                proBonusValue.classList.remove('locked');
-                proBonusNote.textContent = 'Pro Bonus Earned';
-            }
+            // Update Pro Bonus display
+            // If tier status is blank, '-', or contains 'same', show as "Same"
+            const isTierUp = tierStatusValue.includes('up');
+            const isTierSame = tierStatusValue === '' || tierStatusValue === '-' || tierStatusValue.includes('same') || tierStatusValue.includes('maintained');
+            const tierDisplay = isTierUp ? '⬆ Up' : (isTierSame ? '➡ Same' : '➡ Same');
+            document.getElementById('proQualification').textContent = `Score ${scoreValue} & Tier ${tierDisplay}`;
+            document.getElementById('proDiamonds').textContent = formatNumber(currentDiamonds);
+            document.getElementById('proCashBonus').textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             
             // Show Pro Bonus section
             proBonusSection.style.display = 'block';
@@ -1235,24 +1233,16 @@ function updateScoreAndLevels() {
             
             console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
         } else {
-            // Update display for locked state
-            if (proBonusValue && proBonusNote) {
-                proBonusValue.textContent = 'Score 70+ to Unlock';
-                proBonusValue.classList.add('locked');
-                proBonusNote.textContent = `${scoreValue}/70 Score`;
-            }
-            
-            // Still show the section but grayed out
-            proBonusSection.style.display = 'block';
-            proBonusSection.style.opacity = '0.6';
-            console.log('DEBUG PRO BONUS - Section DISPLAYED (locked)');
+            // Hide Pro Bonus section
+            proBonusSection.style.display = 'none';
+            console.log('DEBUG PRO BONUS - Section HIDDEN (not qualified)');
             
             // Remove halo effect
             if (scoreSection) {
                 scoreSection.classList.remove('pro-active');
             }
             
-            console.log('PRO BONUS LOCKED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
+            console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
         }
     } else {
         console.error('DEBUG PRO BONUS - proBonusSection element NOT FOUND in DOM');
