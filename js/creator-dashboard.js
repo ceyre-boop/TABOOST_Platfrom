@@ -1183,12 +1183,12 @@ function updateScoreAndLevels() {
     
     // PRO BONUS CALCULATION
     // Qualification: Score >= 70 AND Tier maintained (same) or up
-    const proBonusSection = document.getElementById('proBonusSection');
+    const proBonusBadge = document.getElementById('proBonusBadge');
     const scoreSection = document.querySelector('.score-section');
     
-    console.log('DEBUG PRO BONUS - Section found:', !!proBonusSection, 'Score section found:', !!scoreSection);
+    console.log('DEBUG PRO BONUS - Badge found:', !!proBonusBadge, 'Score section found:', !!scoreSection);
     
-    if (proBonusSection) {
+    if (proBonusBadge) {
         const scoreValue = parseInt(myData.score) || 0;
         const tierStatusRaw = myData.tierStatus || '';
         const tierStatusValue = tierStatusRaw.toLowerCase().trim();
@@ -1209,21 +1209,9 @@ function updateScoreAndLevels() {
         console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
         
         if (qualifiesForPro) {
-            // Calculate bonus: (Diamonds × 0.04) ÷ 200
-            const cashBonus = (currentDiamonds * 0.04) / 200;
-            
-            // Update Pro Bonus display
-            // If tier status is blank, '-', or contains 'same', show as "Same"
-            const isTierUp = tierStatusValue.includes('up');
-            const isTierSame = tierStatusValue === '' || tierStatusValue === '-' || tierStatusValue.includes('same') || tierStatusValue.includes('maintained');
-            const tierDisplay = isTierUp ? '⬆ Up' : (isTierSame ? '➡ Same' : '➡ Same');
-            document.getElementById('proQualification').textContent = `Score ${scoreValue} & Tier ${tierDisplay}`;
-            document.getElementById('proDiamonds').textContent = formatNumber(currentDiamonds);
-            document.getElementById('proCashBonus').textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            
-            // Show Pro Bonus section
-            proBonusSection.style.display = 'block';
-            console.log('DEBUG PRO BONUS - Section DISPLAYED');
+            // Show Pro Bonus badge
+            proBonusBadge.style.display = 'flex';
+            console.log('DEBUG PRO BONUS - Badge DISPLAYED');
             
             // Add halo effect to score section
             if (scoreSection) {
@@ -1231,11 +1219,13 @@ function updateScoreAndLevels() {
                 console.log('DEBUG PRO BONUS - Halo effect ADDED');
             }
             
+            // Calculate bonus for logging
+            const cashBonus = (currentDiamonds * 0.04) / 200;
             console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
         } else {
-            // Hide Pro Bonus section
-            proBonusSection.style.display = 'none';
-            console.log('DEBUG PRO BONUS - Section HIDDEN (not qualified)');
+            // Hide Pro Bonus badge
+            proBonusBadge.style.display = 'none';
+            console.log('DEBUG PRO BONUS - Badge HIDDEN (not qualified)');
             
             // Remove halo effect
             if (scoreSection) {
@@ -1245,7 +1235,7 @@ function updateScoreAndLevels() {
             console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
         }
     } else {
-        console.error('DEBUG PRO BONUS - proBonusSection element NOT FOUND in DOM');
+        console.error('DEBUG PRO BONUS - proBonusBadge element NOT FOUND in DOM');
     }
     
     // Update Pro Bonus in Revenue Streams section

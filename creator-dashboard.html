@@ -209,6 +209,29 @@
             }
         }
         
+        /* Small Pro Bonus Badge */
+        .pro-bonus-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin: 8px auto;
+            padding: 4px 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: fit-content;
+        }
+        
+        .pro-bonus-badge i {
+            font-size: 10px;
+        }
+        
         /* Pro Bonus revenue item highlight */
         .revenue-item.pro-revenue-active {
             border: 2px solid rgba(255, 215, 0, 0.5);
@@ -389,31 +412,10 @@
                 </div>
             </div>
             
-            <!-- Pro Bonus - Only shows when score >= 70 and tier maintained/up -->
-            <div id="proBonusSection" class="pro-bonus-section" style="display: none;">
-                <div class="pro-bonus-header">
-                    <div class="pro-bonus-glow">
-                        <i class="fas fa-crown"></i>
-                        <span>PRO BONUS UNLOCKED</span>
-                    </div>
-                </div>
-                <div class="pro-bonus-details">
-                    <div class="pro-bonus-item">
-                        <span class="pro-label">Qualification</span>
-                        <span class="pro-value" id="proQualification">Score 70+ & Tier Maintained</span>
-                    </div>
-                    <div class="pro-bonus-item">
-                        <span class="pro-label">Current Diamonds</span>
-                        <span class="pro-value" id="proDiamonds">--</span>
-                    </div>
-                    <div class="pro-bonus-item pro-bonus-total">
-                        <span class="pro-label">Cash Bonus</span>
-                        <span class="pro-value" id="proCashBonus">$--</span>
-                    </div>
-                    <div class="pro-bonus-formula">
-                        Formula: (Diamonds × 0.04) ÷ 200
-                    </div>
-                </div>
+            <!-- Pro Bonus Badge - Small centered between header and score -->
+            <div id="proBonusBadge" class="pro-bonus-badge" style="display: none;">
+                <i class="fas fa-crown"></i>
+                <span>PRO BONUS UNLOCKED</span>
             </div>
         </div>
         
