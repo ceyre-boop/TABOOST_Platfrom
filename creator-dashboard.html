@@ -209,13 +209,24 @@
             }
         }
         
-        /* Small Pro Bonus Badge */
-        .pro-bonus-badge {
+        /* Small Pro Bonus Badge - inline with header */
+        .score-header-with-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .score-header-with-badge h2 {
+            flex-shrink: 0;
+        }
+        
+        .pro-bonus-badge-inline {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 6px;
-            margin: 8px auto;
             padding: 4px 12px;
             background: rgba(255, 215, 0, 0.15);
             border: 1px solid rgba(255, 215, 0, 0.4);
@@ -225,10 +236,10 @@
             color: #ffd700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            width: fit-content;
+            margin: 0 auto;
         }
         
-        .pro-bonus-badge i {
+        .pro-bonus-badge-inline i {
             font-size: 10px;
         }
         
@@ -341,15 +352,14 @@
         
         <!-- 3. My Creator Score -->
         <div class="section-card score-section">
-            <div class="section-header">
+            <div class="section-header score-header-with-badge">
                 <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
+                <!-- Pro Bonus Badge - inline with header -->
+                <div id="proBonusBadge" class="pro-bonus-badge-inline" style="display: none;">
+                    <i class="fas fa-crown"></i>
+                    <span>PRO BONUS UNLOCKED</span>
+                </div>
                 <span class="score-badge" id="scoreBadge">Score: --</span>
-            </div>
-            
-            <!-- Pro Bonus Badge - Small centered at top -->
-            <div id="proBonusBadge" class="pro-bonus-badge" style="display: none;">
-                <i class="fas fa-crown"></i>
-                <span>PRO BONUS UNLOCKED</span>
             </div>
             
             <!-- Score Progress Bar -->

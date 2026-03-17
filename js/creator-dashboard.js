@@ -1189,6 +1189,11 @@ function updateScoreAndLevels() {
     console.log('DEBUG PRO BONUS - Badge found:', !!proBonusBadge, 'Score section found:', !!scoreSection);
     
     if (proBonusBadge) {
+        // Remove old badge if exists (for backward compatibility)
+        const oldBadge = document.querySelector('.pro-bonus-badge');
+        if (oldBadge && oldBadge !== proBonusBadge) {
+            oldBadge.remove();
+        }
         const scoreValue = parseInt(myData.score) || 0;
         const tierStatusRaw = myData.tierStatus || '';
         const tierStatusValue = tierStatusRaw.toLowerCase().trim();
