@@ -1152,17 +1152,17 @@ function updateScoreAndLevels() {
         { level: 5, days: 22, hours: 80 }   // Fixed: was 25, should be 22
     ];
     
-    // Get requirements for NEXT level (what they're working toward)
-    const nextLevel = (currentLevelNum !== null ? currentLevelNum : 0) + 1;
-    const nextLevelReq = levelReqs.find(r => r.level === nextLevel) || levelReqs[levelReqs.length - 1];
+    // Use daysGoal and hoursGoal from data columns (Marco's update)
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
+    const daysGoal = myData.daysGoal || 0;
+    const hoursGoal = myData.hoursGoal || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${nextLevelReq.days} days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${nextLevelReq.hours} hrs`;
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${hoursGoal} hrs`;
     
-    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
-    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
+    document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
+    document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
     
     // Revenue Streams - only update elements that exist
     const diamondUSD = (myData.diamonds || 0) * 0.005;
