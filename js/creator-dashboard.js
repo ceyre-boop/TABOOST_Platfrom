@@ -1186,43 +1186,58 @@ function updateScoreAndLevels() {
     const proBonusSection = document.getElementById('proBonusSection');
     const scoreSection = document.querySelector('.score-section');
     
+    console.log('DEBUG PRO BONUS - Section found:', !!proBonusSection, 'Score section found:', !!scoreSection);
+    
     if (proBonusSection) {
-        const scoreValue = myData.score || 0;
-        const tierStatusValue = (myData.tierStatus || '').toLowerCase();
-        const currentDiamonds = myData.diamonds || 0;
+        const scoreValue = parseInt(myData.score) || 0;
+        const tierStatusRaw = myData.tierStatus || '';
+        const tierStatusValue = tierStatusRaw.toLowerCase().trim();
+        const currentDiamonds = parseInt(myData.diamonds) || 0;
+        
+        console.log('DEBUG PRO BONUS - Score:', scoreValue, 'Tier Status Raw:', tierStatusRaw, 'Tier Status Lower:', tierStatusValue, 'Diamonds:', currentDiamonds);
         
         // Check qualification: Score >= 70 AND (tier same or up)
-        const qualifiesForPro = scoreValue >= 70 && (tierStatusValue.includes('same') || tierStatusValue.includes('up'));
+        const scoreQualified = scoreValue >= 70;
+        const tierQualified = tierStatusValue.includes('same') || tierStatusValue.includes('up') || tierStatusValue.includes('maintained');
+        const qualifiesForPro = scoreQualified && tierQualified;
+        
+        console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
         
         if (qualifiesForPro) {
             // Calculate bonus: (Diamonds × 0.04) ÷ 200
             const cashBonus = (currentDiamonds * 0.04) / 200;
             
             // Update Pro Bonus display
-            document.getElementById('proQualification').textContent = `Score ${scoreValue} & Tier ${tierStatusValue === 'up' ? '⬆ Up' : '➡ Same'}`;
+            const tierDisplay = tierStatusValue.includes('up') ? '⬆ Up' : '➡ Same';
+            document.getElementById('proQualification').textContent = `Score ${scoreValue} & Tier ${tierDisplay}`;
             document.getElementById('proDiamonds').textContent = formatNumber(currentDiamonds);
             document.getElementById('proCashBonus').textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             
             // Show Pro Bonus section
             proBonusSection.style.display = 'block';
+            console.log('DEBUG PRO BONUS - Section DISPLAYED');
             
             // Add halo effect to score section
             if (scoreSection) {
                 scoreSection.classList.add('pro-active');
+                console.log('DEBUG PRO BONUS - Halo effect ADDED');
             }
             
             console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
         } else {
             // Hide Pro Bonus section
             proBonusSection.style.display = 'none';
+            console.log('DEBUG PRO BONUS - Section HIDDEN (not qualified)');
             
             // Remove halo effect
             if (scoreSection) {
                 scoreSection.classList.remove('pro-active');
             }
             
-            console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue);
+            console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
         }
+    } else {
+        console.error('DEBUG PRO BONUS - proBonusSection element NOT FOUND in DOM');
     }
 }
 
