@@ -390,7 +390,8 @@ class TaboostDataService {
 }
 
 // Create global instance
-const taboostData = new TaboostDataService();
+// sheetsDataService - separate from taboostData to avoid conflicts
+const sheetsDataService = new TaboostDataService();
 
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
