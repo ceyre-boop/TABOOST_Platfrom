@@ -97,6 +97,117 @@
             background: transparent !important;
             border: none !important;
         }
+        
+        /* PRO BONUS SECTION - Glow Effect */
+        .pro-bonus-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            animation: proBonusGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes proBonusGlow {
+            from {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 140, 0, 0.2);
+                border-color: rgba(255, 215, 0, 0.6);
+            }
+        }
+        
+        .pro-bonus-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .pro-bonus-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            border-radius: 50px;
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            animation: proBadgePulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes proBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pro-bonus-glow i {
+            font-size: 18px;
+        }
+        
+        .pro-bonus-details {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .pro-bonus-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .pro-bonus-total {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        
+        .pro-label {
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .pro-value {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .pro-bonus-total .pro-value {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        
+        .pro-bonus-formula {
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Halo effect for score section when Pro Bonus is active */
+        .score-section.pro-active {
+            animation: scoreHalo 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes scoreHalo {
+            from {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            }
+            to {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), inset 0 0 50px rgba(255, 215, 0, 0.1);
+            }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -259,6 +370,33 @@
                     <i class="fas fa-chart-line"></i>
                     <span>Rank Change</span>
                     <strong id="rankChange">--</strong>
+                </div>
+            </div>
+            
+            <!-- Pro Bonus - Only shows when score >= 70 and tier maintained/up -->
+            <div id="proBonusSection" class="pro-bonus-section" style="display: none;">
+                <div class="pro-bonus-header">
+                    <div class="pro-bonus-glow">
+                        <i class="fas fa-crown"></i>
+                        <span>PRO BONUS UNLOCKED</span>
+                    </div>
+                </div>
+                <div class="pro-bonus-details">
+                    <div class="pro-bonus-item">
+                        <span class="pro-label">Qualification</span>
+                        <span class="pro-value" id="proQualification">Score 70+ & Tier Maintained</span>
+                    </div>
+                    <div class="pro-bonus-item">
+                        <span class="pro-label">Current Diamonds</span>
+                        <span class="pro-value" id="proDiamonds">--</span>
+                    </div>
+                    <div class="pro-bonus-item pro-bonus-total">
+                        <span class="pro-label">Cash Bonus</span>
+                        <span class="pro-value" id="proCashBonus">$--</span>
+                    </div>
+                    <div class="pro-bonus-formula">
+                        Formula: (Diamonds × 0.04) ÷ 200
+                    </div>
                 </div>
             </div>
         </div>
