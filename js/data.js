@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-03-18T02:04:29.119Z
+// Generated: 2026-03-18T04:12:57.455Z
 // Total: 818 creators
 
 const creatorsData = [
@@ -139,10 +139,10 @@ const creatorsData = [
     "diamondsLastMonth": 2530421,
     "diamonds2MonthsAgo": 2765414,
     "hours": 64,
-    "hoursGoal": 80,
+    "hoursGoal": 60,
     "hoursLeft": "-4",
     "validLiveDays": 15,
-    "daysGoal": 22,
+    "daysGoal": 18,
     "daysLeft": "3",
     "tier": 7,
     "tierGoal": 3000000,
@@ -228,11 +228,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 310000,
-    "gifted": 272000,
-    "running": "38,000",
+    "earned": 319000,
+    "gifted": 276000,
+    "running": "43,000",
     "multiply": "2x",
-    "unlocked": "38,000",
+    "unlocked": "43,000",
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -345,11 +345,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "6",
     "growthPercent": 0,
-    "earned": 2956750,
-    "gifted": 2920300,
-    "running": "36,450",
+    "earned": 2979750,
+    "gifted": 2928300,
+    "running": "51,450",
     "multiply": "1x",
-    "unlocked": "36,450",
+    "unlocked": "51,450",
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -696,8 +696,8 @@ const creatorsData = [
     "tierStatus": "Up",
     "tierLastMonth": "4",
     "growthPercent": 0,
-    "earned": 164000,
-    "gifted": 59000,
+    "earned": 170000,
+    "gifted": 65000,
     "running": "105,000",
     "multiply": "1x",
     "unlocked": "105,000",
@@ -3777,8 +3777,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "4",
     "growthPercent": 0,
-    "earned": 10000,
-    "gifted": 10000,
+    "earned": 12000,
+    "gifted": 12000,
     "running": "0",
     "multiply": "-",
     "unlocked": "0",
@@ -31909,7 +31909,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-03-18T02:04:29.119Z",
+  lastUpdated: "2026-03-18T04:12:57.455Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
