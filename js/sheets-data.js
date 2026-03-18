@@ -273,6 +273,7 @@ class TaboostDataService {
                 gifted: c.gifted || 0,
                 running: c.running || 0,
                 unlocked: c.unlocked || 0,
+                estRev: c.rewardsMonth || c.estRev || 0, // Dollar value from Rewards Month
                 rewardsMonth: c.rewardsMonth || '', // Column AO
                 rewards: {
                     earned: c.earned || 0,
