@@ -948,8 +948,8 @@ function updateHistory() {
     let earningsData = [];
     
     if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
-        // Use real earnings from CSV (Sep-Feb = indices 0-5)
-        earningsData = myData.earningsHistory.slice(0, 6);
+        // Use real earnings from CSV - reverse to match chronological order (Sep→Feb)
+        earningsData = myData.earningsHistory.slice(0, 6).reverse();
     } else {
         // Fallback to trends data or calculated estimates
         const trends = creatorTrends[myData.username];
