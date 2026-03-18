@@ -1224,8 +1224,8 @@ function updateScoreAndLevels() {
                 console.log('DEBUG PRO BONUS - Halo effect ADDED');
             }
             
-            // Calculate bonus for logging
-            const cashBonus = (currentDiamonds * 0.04) / 200;
+            // Use real Pro Bonus from column AO (Rewards Month)
+            const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
             console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
         } else {
             // Hide Pro Bonus badge
@@ -1250,11 +1250,10 @@ function updateScoreAndLevels() {
     
     if (proBonusRevenueValue && proBonusRevenueNote) {
         const scoreValue = parseInt(myData.score) || 0;
-        const currentDiamonds = parseInt(myData.diamonds) || 0;
         
         if (scoreValue >= 70) {
-            // Calculate bonus: (Diamonds × 0.04) ÷ 200
-            const cashBonus = (currentDiamonds * 0.04) / 200;
+            // Use real Pro Bonus from column AO (Rewards Month)
+            const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             proBonusRevenueValue.style.color = '#ffd700'; // Gold color
             proBonusRevenueNote.textContent = 'Pro Bonus Earned';
