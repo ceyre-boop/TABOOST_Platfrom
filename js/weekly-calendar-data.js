@@ -92,9 +92,7 @@ function generateRollingCalendar() {
                 color: "#ff0044"
             }
         ],
-        tiktokCampaigns: [
-            { name: "Wish Upon a Beat", dates: "Mar 5-15" }
-        ]
+        tiktokCampaigns: []
     };
 }
 
