@@ -135,7 +135,7 @@ function formatNumber(num) {
 
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '$' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    return '≈ $' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
 function updateProfile(user) {
@@ -213,7 +213,7 @@ function updateStats() {
     console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
     console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
-    document.getElementById('currentUSD').textContent = '≈ ' + formatUSD(myData.diamonds);
+    document.getElementById('currentUSD').textContent = formatUSD(myData.diamonds);
     
     // Growth trend
     const growth = parseFloat(myData.growthPercent) || 0;
@@ -837,7 +837,7 @@ function updateScoreAndLevels() {
     // Update Diamond Earnings (only remaining revenue item)
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = '$' + diamondUSD.toFixed(2);
+        diamondRevenueEl.textContent = '≈ $' + diamondUSD.toFixed(2);
     }
     
     const diamondCountEl = document.getElementById('diamondCount');

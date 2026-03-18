@@ -199,7 +199,7 @@ function formatNumberPlain(num) {
 
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '$' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    return '≈ $' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 }
 
 function updateProfile(user) {
