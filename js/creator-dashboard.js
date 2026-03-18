@@ -944,14 +944,12 @@ function updateHistory() {
         'February 2026'
     ];
     
-    // Use real earnings history from columns AO-AI if available
-    let diamondsHistory = [];
-    let rewardsHistory = [];
+    // Use real earnings history from historical CSV (Revenue columns AJ-AO)
+    let earningsData = [];
     
-    if (myData.earningsHistory && myData.earningsHistory.length >= 7) {
-        // Use real earnings from Google Sheets (Sep-Feb = indices 0-5)
-        diamondsHistory = myData.earningsHistory.slice(0, 6);
-        rewardsHistory = myData.earningsHistory.slice(0, 6).map(e => e > 0 ? '$' + formatNumber(e) : '--');
+    if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
+        // Use real earnings from CSV (Sep-Feb = indices 0-5)
+        earningsData = myData.earningsHistory.slice(0, 6);
     } else {
         // Fallback to trends data or calculated estimates
         const trends = creatorTrends[myData.username];
@@ -963,38 +961,38 @@ function updateHistory() {
                 rewardsHistory = ['--', '--', '--', '--', '--', '--'];
             }
         } else {
-            // Fallback: build from available data (6 months)
+            // Fallback: build from available data (6 months) with estimated revenue
             const current = myData.diamonds || 0;
             const lastMonth = myData.diamondsLastMonth || current;
             const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-            diamondsHistory = [
-                twoMonthsAgo * 0.8 || current * 0.65,
-                twoMonthsAgo * 0.85 || current * 0.7,
-                twoMonthsAgo * 0.92 || current * 0.8,
-                twoMonthsAgo || current * 0.85,
-                lastMonth * 0.95 || current * 0.9,
-                lastMonth || current * 0.95
+            earningsData = [
+                { diamonds: twoMonthsAgo * 0.8 || current * 0.65, revenue: '≈ $0.00', rewards: 0 },
+                { diamonds: twoMonthsAgo * 0.85 || current * 0.7, revenue: '≈ $0.00', rewards: 0 },
+                { diamonds: twoMonthsAgo * 0.92 || current * 0.8, revenue: '≈ $0.00', rewards: 0 },
+                { diamonds: twoMonthsAgo || current * 0.85, revenue: '≈ $0.00', rewards: 0 },
+                { diamonds: lastMonth * 0.95 || current * 0.9, revenue: '≈ $0.00', rewards: 0 },
+                { diamonds: lastMonth || current * 0.95, revenue: '≈ $0.00', rewards: 0 }
             ];
-            rewardsHistory = ['--', '--', '--', '--', '--', '--'];
         }
     }
     
-    // Build rows with calculated changes
+    // Build rows with calculated changes using Revenue from CSV
     const rows = periods.map((period, index) => {
-        const diamonds = diamondsHistory[index] || 0;
-        const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
-        const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
+        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rewards: 0 };
+        const diamonds = data.diamonds || 0;
+        const prevDiamonds = index > 0 ? (earningsData[index - 1]?.diamonds || diamonds) : diamonds;
+        const change = index > 0 && prevDiamonds > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Rewards from HISTORY data (AA-AE columns) or LIVE data for Current
-        let rewards = '--';
-        if (rewardsHistory.length > index) {
-            rewards = rewardsHistory[index] || '--';
-        }
+        // Revenue from CSV (use as-is since it's actual revenue)
+        const revenue = data.revenue || '$0.00';
+        
+        // Rewards from CSV
+        const rewards = data.rewards > 0 ? '$' + formatNumber(data.rewards) : '--';
         
         return {
             period: period,
             diamonds: diamonds,
-            usd: formatUSD(diamonds),
+            usd: revenue, // Use actual Revenue from CSV, not calculated
             rewards: rewards,
             change: change
         };
