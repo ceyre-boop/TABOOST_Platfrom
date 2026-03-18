@@ -942,35 +942,39 @@ function updateHistory() {
         'February 2026'
     ];
     
-    // Use trend data if available
+    // Use real earnings history from columns AO-AI if available
     let diamondsHistory = [];
     let rewardsHistory = [];
-    const trends = creatorTrends[myData.username];
     
-    if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
-        // Past months (Sep-Feb) from history CSV - 6 months
-        diamondsHistory = trends.diamondsHistory.slice(0, 6);
-        
-        // Rewards from history
-        if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
-            rewardsHistory = trends.rewardsHistory.slice(0, 6);
+    if (myData.earningsHistory && myData.earningsHistory.length >= 7) {
+        // Use real earnings from Google Sheets (Sep-Feb = indices 0-5)
+        diamondsHistory = myData.earningsHistory.slice(0, 6);
+        rewardsHistory = myData.earningsHistory.slice(0, 6).map(e => e > 0 ? '$' + formatNumber(e) : '--');
+    } else {
+        // Fallback to trends data or calculated estimates
+        const trends = creatorTrends[myData.username];
+        if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
+            diamondsHistory = trends.diamondsHistory.slice(0, 6);
+            if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
+                rewardsHistory = trends.rewardsHistory.slice(0, 6);
+            } else {
+                rewardsHistory = ['--', '--', '--', '--', '--', '--'];
+            }
         } else {
+            // Fallback: build from available data (6 months)
+            const current = myData.diamonds || 0;
+            const lastMonth = myData.diamondsLastMonth || current;
+            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
+            diamondsHistory = [
+                twoMonthsAgo * 0.8 || current * 0.65,
+                twoMonthsAgo * 0.85 || current * 0.7,
+                twoMonthsAgo * 0.92 || current * 0.8,
+                twoMonthsAgo || current * 0.85,
+                lastMonth * 0.95 || current * 0.9,
+                lastMonth || current * 0.95
+            ];
             rewardsHistory = ['--', '--', '--', '--', '--', '--'];
         }
-    } else {
-        // Fallback: build from available data (6 months)
-        const current = myData.diamonds || 0;
-        const lastMonth = myData.diamondsLastMonth || current;
-        const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-        diamondsHistory = [
-            twoMonthsAgo * 0.8 || current * 0.65,
-            twoMonthsAgo * 0.85 || current * 0.7,
-            twoMonthsAgo * 0.92 || current * 0.8,
-            twoMonthsAgo || current * 0.85,
-            lastMonth * 0.95 || current * 0.9,
-            lastMonth || current * 0.95
-        ];
-        rewardsHistory = ['--', '--', '--', '--', '--', '--'];
     }
     
     // Build rows with calculated changes
