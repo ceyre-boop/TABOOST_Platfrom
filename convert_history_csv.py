@@ -108,12 +108,17 @@ def convert_history_csv_to_json(input_file, output_file):
                 tier_current
             ]
             
+            # Build rewards history (placeholder - to be filled from rewards data)
+            # Structure: [Sep, Oct, Nov, Dec, Jan, Feb] 
+            rewards_history = ["--", "--", "--", "--", "--", "--"]
+            
             creators.append({
                 "username": username,
                 "diamondsHistory": diamonds_history,
                 "growthRates": growth_rates,
                 "tierHistory": tier_history,
-                "tierCurrent": tier_current
+                "tierCurrent": tier_current,
+                "rewardsHistory": rewards_history
             })
     
     # Write JSON
