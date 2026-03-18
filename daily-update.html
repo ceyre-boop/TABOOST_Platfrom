@@ -393,10 +393,11 @@
                         running: cols[35] || '',
                         multiply: cols[36] || '',
                         unlocked: cols[37] || '',
-                        daysMonth: parseInt(cols[38]) || 0,
-                        hoursMonth: parseInt(cols[39]) || 0,
-                        rewardsMonth: cols[40] || '',
-                        estRev: parseFloat(cols[40]?.toString().replace(/[$,]/g, '')) || 0
+                        estRev: parseFloat(cols[38]?.toString().replace(/[$,]/g, '')) || 0,
+                        bonus: cols[39] || '',
+                        daysMonth: parseInt(cols[40]) || 0,
+                        hoursMonth: parseInt(cols[41]) || 0,
+                        rewardsMonth: cols[42] || ''
                     });
                 }
             }
