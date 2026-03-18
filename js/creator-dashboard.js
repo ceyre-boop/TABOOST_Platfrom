@@ -1164,10 +1164,8 @@ function updateScoreAndLevels() {
     const daysGoal = myData.daysGoal || 0;
     const hoursGoal = myData.hoursGoal || 0;
     
-    const daysLeft = daysGoal - currentDays;
-    const hoursLeft = hoursGoal - currentHours;
-    document.getElementById('daysStreamed').textContent = `${daysLeft} days left`;
-    document.getElementById('hoursStreamedLevel').textContent = hoursLeft >= 0 ? `${hoursLeft.toFixed(1)} hrs left` : `${Math.abs(hoursLeft).toFixed(1)} hrs over`;
+    document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
+    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
     
     document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
     document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
