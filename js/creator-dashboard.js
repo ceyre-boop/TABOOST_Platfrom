@@ -1168,21 +1168,21 @@ function updateScoreAndLevels() {
     document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
     document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
     
-    // Revenue Streams - show diamonds instead of dollars
+    // Revenue Streams - show diamonds
     const diamonds = myData.diamonds || 0;
+    const diamondText = formatNumber(diamonds) + ' 💎';
     
-    // Update Diamond Earnings - show diamond count
+    // Update both diamond displays
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
+        diamondRevenueEl.textContent = diamondText;
     }
     
     const diamondCountEl = document.getElementById('diamondCount');
     if (diamondCountEl) {
-        diamondCountEl.textContent = formatNumber(diamonds) + ' 💎';
+        diamondCountEl.textContent = diamondText;
     }
     
-    // Level Bonus and Score Reward removed - elements no longer exist
     console.log('DEBUG - Revenue: Diamonds =', diamonds);
     
     // PRO BONUS CALCULATION
