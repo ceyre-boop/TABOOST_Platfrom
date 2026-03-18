@@ -174,8 +174,8 @@ class TaboostDataService {
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
             // Goals data - Column AP (Days Month), Column AQ (Hours Month)
-            daysGoal: parseInt(values[40]) || parseInt(getValue('Days Month')) || 22, // Column AP (Days Month)
-            hoursGoal: parseInt(values[41]) || parseInt(getValue('Hours Month')) || 60, // Column AQ (Hours Month)
+            daysGoal: parseInt(values[41]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 41 (Days Month)
+            hoursGoal: parseInt(values[42]) || parseInt(getValue('Hours Month')) || 60, // Column AQ = index 42 (Hours Month)
             
             // Column AO - Rewards Month (March 2026 onwards)
             rewardsMonth: getValue('Rewards Month') || values[40] || '', // Column AO
