@@ -40,7 +40,8 @@ const creatorsData = [
     "unlocked": "187,011",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 2,
@@ -79,7 +80,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$538.33"
+    "rewardsMonth": "$538.33",
+    "estRev": 538.33
   },
   {
     "id": 3,
@@ -118,7 +120,8 @@ const creatorsData = [
     "unlocked": "29,500",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$533.07"
+    "rewardsMonth": "$533.07",
+    "estRev": 533.07
   },
   {
     "id": 4,
@@ -157,7 +160,8 @@ const creatorsData = [
     "unlocked": "6,150",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$558.66"
+    "rewardsMonth": "$558.66",
+    "estRev": 558.66
   },
   {
     "id": 5,
@@ -196,7 +200,8 @@ const creatorsData = [
     "unlocked": "2,000",
     "daysMonth": 1,
     "hoursMonth": 0,
-    "rewardsMonth": "$411.39"
+    "rewardsMonth": "$411.39",
+    "estRev": 411.39
   },
   {
     "id": 6,
@@ -235,7 +240,8 @@ const creatorsData = [
     "unlocked": "28,000",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$463.49"
+    "rewardsMonth": "$463.49",
+    "estRev": 463.49
   },
   {
     "id": 7,
@@ -274,7 +280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 1,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 8,
@@ -313,7 +320,8 @@ const creatorsData = [
     "unlocked": "43,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 9,
@@ -352,7 +360,8 @@ const creatorsData = [
     "unlocked": "51,450",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$298.56"
+    "rewardsMonth": "$298.56",
+    "estRev": 298.56
   },
   {
     "id": 10,
@@ -391,7 +400,8 @@ const creatorsData = [
     "unlocked": "7,200",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$282.65"
+    "rewardsMonth": "$282.65",
+    "estRev": 282.65
   },
   {
     "id": 11,
@@ -430,7 +440,8 @@ const creatorsData = [
     "unlocked": "100",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 12,
@@ -469,7 +480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 1,
     "hoursMonth": 0,
-    "rewardsMonth": "$257.47"
+    "rewardsMonth": "$257.47",
+    "estRev": 257.47
   },
   {
     "id": 13,
@@ -508,7 +520,8 @@ const creatorsData = [
     "unlocked": "250",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 14,
@@ -547,7 +560,8 @@ const creatorsData = [
     "unlocked": "150",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 15,
@@ -586,7 +600,8 @@ const creatorsData = [
     "unlocked": "10,375",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 16,
@@ -625,7 +640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$261.53"
+    "rewardsMonth": "$261.53",
+    "estRev": 261.53
   },
   {
     "id": 17,
@@ -664,7 +680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 1,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 18,
@@ -703,7 +720,8 @@ const creatorsData = [
     "unlocked": "105,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 19,
@@ -742,7 +760,8 @@ const creatorsData = [
     "unlocked": "250",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 20,
@@ -781,7 +800,8 @@ const creatorsData = [
     "unlocked": "3,500",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 21,
@@ -820,7 +840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 22,
@@ -859,7 +880,8 @@ const creatorsData = [
     "unlocked": "41,800",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 23,
@@ -898,7 +920,8 @@ const creatorsData = [
     "unlocked": "14,250",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 24,
@@ -937,7 +960,8 @@ const creatorsData = [
     "unlocked": "14,425",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 25,
@@ -976,7 +1000,8 @@ const creatorsData = [
     "unlocked": "93,350",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 26,
@@ -1015,7 +1040,8 @@ const creatorsData = [
     "unlocked": "62,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 27,
@@ -1054,7 +1080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 28,
@@ -1093,7 +1120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 29,
@@ -1132,7 +1160,8 @@ const creatorsData = [
     "unlocked": "22,000",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 30,
@@ -1171,7 +1200,8 @@ const creatorsData = [
     "unlocked": "29,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 31,
@@ -1210,7 +1240,8 @@ const creatorsData = [
     "unlocked": "4,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 32,
@@ -1249,7 +1280,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 33,
@@ -1288,7 +1320,8 @@ const creatorsData = [
     "unlocked": "6,250",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 34,
@@ -1327,7 +1360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 2,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 35,
@@ -1366,7 +1400,8 @@ const creatorsData = [
     "unlocked": "6,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 36,
@@ -1405,7 +1440,8 @@ const creatorsData = [
     "unlocked": "32,500",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 37,
@@ -1444,7 +1480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 38,
@@ -1483,7 +1520,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 39,
@@ -1522,7 +1560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 40,
@@ -1561,7 +1600,8 @@ const creatorsData = [
     "unlocked": "15,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 41,
@@ -1600,7 +1640,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 42,
@@ -1639,7 +1680,8 @@ const creatorsData = [
     "unlocked": "4,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 43,
@@ -1678,7 +1720,8 @@ const creatorsData = [
     "unlocked": "625",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 44,
@@ -1717,7 +1760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 45,
@@ -1756,7 +1800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 46,
@@ -1795,7 +1840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 47,
@@ -1834,7 +1880,8 @@ const creatorsData = [
     "unlocked": "155,750",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 48,
@@ -1873,7 +1920,8 @@ const creatorsData = [
     "unlocked": "14,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 49,
@@ -1912,7 +1960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 50,
@@ -1951,7 +2000,8 @@ const creatorsData = [
     "unlocked": "14,375",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 51,
@@ -1990,7 +2040,8 @@ const creatorsData = [
     "unlocked": "500",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 52,
@@ -2029,7 +2080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 53,
@@ -2068,7 +2120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 54,
@@ -2107,7 +2160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 55,
@@ -2146,7 +2200,8 @@ const creatorsData = [
     "unlocked": "7,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 56,
@@ -2185,7 +2240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 57,
@@ -2224,7 +2280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 58,
@@ -2263,7 +2320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 59,
@@ -2302,7 +2360,8 @@ const creatorsData = [
     "unlocked": "20,750",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 60,
@@ -2341,7 +2400,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 61,
@@ -2380,7 +2440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 62,
@@ -2419,7 +2480,8 @@ const creatorsData = [
     "unlocked": "37,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 63,
@@ -2458,7 +2520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 64,
@@ -2497,7 +2560,8 @@ const creatorsData = [
     "unlocked": "1,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 65,
@@ -2536,7 +2600,8 @@ const creatorsData = [
     "unlocked": "4,750",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 66,
@@ -2575,7 +2640,8 @@ const creatorsData = [
     "unlocked": "2,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 67,
@@ -2614,7 +2680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 68,
@@ -2653,7 +2720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 69,
@@ -2692,7 +2760,8 @@ const creatorsData = [
     "unlocked": "32,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 70,
@@ -2731,7 +2800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 71,
@@ -2770,7 +2840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 72,
@@ -2809,7 +2880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 73,
@@ -2848,7 +2920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 74,
@@ -2887,7 +2960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 75,
@@ -2926,7 +3000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 76,
@@ -2965,7 +3040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 77,
@@ -3004,7 +3080,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 78,
@@ -3043,7 +3120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 79,
@@ -3082,7 +3160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 80,
@@ -3121,7 +3200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 81,
@@ -3160,7 +3240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 82,
@@ -3199,7 +3280,8 @@ const creatorsData = [
     "unlocked": "2,750",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 83,
@@ -3238,7 +3320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 84,
@@ -3277,7 +3360,8 @@ const creatorsData = [
     "unlocked": "12,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 85,
@@ -3316,7 +3400,8 @@ const creatorsData = [
     "unlocked": "7,500",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 86,
@@ -3355,7 +3440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 87,
@@ -3394,7 +3480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 88,
@@ -3433,7 +3520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 89,
@@ -3472,7 +3560,8 @@ const creatorsData = [
     "unlocked": "39,250",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 90,
@@ -3511,7 +3600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 91,
@@ -3550,7 +3640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 92,
@@ -3589,7 +3680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 93,
@@ -3628,7 +3720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 94,
@@ -3667,7 +3760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 95,
@@ -3706,7 +3800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 96,
@@ -3745,7 +3840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 97,
@@ -3784,7 +3880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 98,
@@ -3823,7 +3920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 99,
@@ -3862,7 +3960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 100,
@@ -3901,7 +4000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 101,
@@ -3940,7 +4040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 102,
@@ -3979,7 +4080,8 @@ const creatorsData = [
     "unlocked": "12,075",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 103,
@@ -4018,7 +4120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 104,
@@ -4057,7 +4160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 105,
@@ -4096,7 +4200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 106,
@@ -4135,7 +4240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 107,
@@ -4174,7 +4280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 108,
@@ -4213,7 +4320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 109,
@@ -4252,7 +4360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 110,
@@ -4291,7 +4400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 111,
@@ -4330,7 +4440,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 112,
@@ -4369,7 +4480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 113,
@@ -4408,7 +4520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 114,
@@ -4447,7 +4560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 115,
@@ -4486,7 +4600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 116,
@@ -4525,7 +4640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 117,
@@ -4564,7 +4680,8 @@ const creatorsData = [
     "unlocked": "13,250",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 118,
@@ -4603,7 +4720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 119,
@@ -4642,7 +4760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 120,
@@ -4681,7 +4800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 121,
@@ -4720,7 +4840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 122,
@@ -4759,7 +4880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 123,
@@ -4798,7 +4920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 124,
@@ -4837,7 +4960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 125,
@@ -4876,7 +5000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 126,
@@ -4915,7 +5040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 127,
@@ -4954,7 +5080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 128,
@@ -4993,7 +5120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 129,
@@ -5032,7 +5160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 130,
@@ -5071,7 +5200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 131,
@@ -5110,7 +5240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 132,
@@ -5149,7 +5280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 133,
@@ -5188,7 +5320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 134,
@@ -5227,7 +5360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 135,
@@ -5266,7 +5400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 136,
@@ -5305,7 +5440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 137,
@@ -5344,7 +5480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 138,
@@ -5383,7 +5520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 139,
@@ -5422,7 +5560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 140,
@@ -5461,7 +5600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 141,
@@ -5500,7 +5640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 142,
@@ -5539,7 +5680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 143,
@@ -5578,7 +5720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 144,
@@ -5617,7 +5760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 145,
@@ -5656,7 +5800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 146,
@@ -5695,7 +5840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 147,
@@ -5734,7 +5880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 148,
@@ -5773,7 +5920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 149,
@@ -5812,7 +5960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 150,
@@ -5851,7 +6000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 151,
@@ -5890,7 +6040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 152,
@@ -5929,7 +6080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 153,
@@ -5968,7 +6120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 154,
@@ -6007,7 +6160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 155,
@@ -6046,7 +6200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 156,
@@ -6085,7 +6240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 157,
@@ -6124,7 +6280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 158,
@@ -6163,7 +6320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 159,
@@ -6202,7 +6360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 160,
@@ -6241,7 +6400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 161,
@@ -6280,7 +6440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 162,
@@ -6319,7 +6480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 163,
@@ -6358,7 +6520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 164,
@@ -6397,7 +6560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 165,
@@ -6436,7 +6600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 166,
@@ -6475,7 +6640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 167,
@@ -6514,7 +6680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 168,
@@ -6553,7 +6720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 169,
@@ -6592,7 +6760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 170,
@@ -6631,7 +6800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 171,
@@ -6670,7 +6840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 172,
@@ -6709,7 +6880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 173,
@@ -6748,7 +6920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 174,
@@ -6787,7 +6960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 175,
@@ -6826,7 +7000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 176,
@@ -6865,7 +7040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 177,
@@ -6904,7 +7080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 178,
@@ -6943,7 +7120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 179,
@@ -6982,7 +7160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 180,
@@ -7021,7 +7200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 181,
@@ -7060,7 +7240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 182,
@@ -7099,7 +7280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 183,
@@ -7138,7 +7320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 184,
@@ -7177,7 +7360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 185,
@@ -7216,7 +7400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 186,
@@ -7255,7 +7440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 187,
@@ -7294,7 +7480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 188,
@@ -7333,7 +7520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 189,
@@ -7372,7 +7560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 190,
@@ -7411,7 +7600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 191,
@@ -7450,7 +7640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 192,
@@ -7489,7 +7680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 193,
@@ -7528,7 +7720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 194,
@@ -7567,7 +7760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 195,
@@ -7606,7 +7800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 196,
@@ -7645,7 +7840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 197,
@@ -7684,7 +7880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 198,
@@ -7723,7 +7920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 199,
@@ -7762,7 +7960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 200,
@@ -7801,7 +8000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 201,
@@ -7840,7 +8040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 202,
@@ -7879,7 +8080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 203,
@@ -7918,7 +8120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 204,
@@ -7957,7 +8160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 205,
@@ -7996,7 +8200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 206,
@@ -8035,7 +8240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 207,
@@ -8074,7 +8280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 208,
@@ -8113,7 +8320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 209,
@@ -8152,7 +8360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 210,
@@ -8191,7 +8400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 211,
@@ -8230,7 +8440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 212,
@@ -8269,7 +8480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 213,
@@ -8308,7 +8520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 214,
@@ -8347,7 +8560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 215,
@@ -8386,7 +8600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 216,
@@ -8425,7 +8640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 217,
@@ -8464,7 +8680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 218,
@@ -8503,7 +8720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 219,
@@ -8542,7 +8760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 220,
@@ -8581,7 +8800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 221,
@@ -8620,7 +8840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 222,
@@ -8659,7 +8880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 223,
@@ -8698,7 +8920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 224,
@@ -8737,7 +8960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 225,
@@ -8776,7 +9000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 226,
@@ -8815,7 +9040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 227,
@@ -8854,7 +9080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 228,
@@ -8893,7 +9120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 229,
@@ -8932,7 +9160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 230,
@@ -8971,7 +9200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 231,
@@ -9010,7 +9240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 232,
@@ -9049,7 +9280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 233,
@@ -9088,7 +9320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 234,
@@ -9127,7 +9360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 235,
@@ -9166,7 +9400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 236,
@@ -9205,7 +9440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 237,
@@ -9244,7 +9480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 238,
@@ -9283,7 +9520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 239,
@@ -9322,7 +9560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 240,
@@ -9361,7 +9600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 241,
@@ -9400,7 +9640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 242,
@@ -9439,7 +9680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 243,
@@ -9478,7 +9720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 244,
@@ -9517,7 +9760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 245,
@@ -9556,7 +9800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 246,
@@ -9595,7 +9840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 247,
@@ -9634,7 +9880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 248,
@@ -9673,7 +9920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 249,
@@ -9712,7 +9960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 250,
@@ -9751,7 +10000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 251,
@@ -9790,7 +10040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 252,
@@ -9829,7 +10080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 253,
@@ -9868,7 +10120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 254,
@@ -9907,7 +10160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 255,
@@ -9946,7 +10200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 256,
@@ -9985,7 +10240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 257,
@@ -10024,7 +10280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 258,
@@ -10063,7 +10320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 259,
@@ -10102,7 +10360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 260,
@@ -10141,7 +10400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 261,
@@ -10180,7 +10440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 262,
@@ -10219,7 +10480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 263,
@@ -10258,7 +10520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 264,
@@ -10297,7 +10560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 265,
@@ -10336,7 +10600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 266,
@@ -10375,7 +10640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 267,
@@ -10414,7 +10680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 268,
@@ -10453,7 +10720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 269,
@@ -10492,7 +10760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 270,
@@ -10531,7 +10800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 271,
@@ -10570,7 +10840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 272,
@@ -10609,7 +10880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 273,
@@ -10648,7 +10920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 274,
@@ -10687,7 +10960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 275,
@@ -10726,7 +11000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 276,
@@ -10765,7 +11040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 277,
@@ -10804,7 +11080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 278,
@@ -10843,7 +11120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 279,
@@ -10882,7 +11160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 280,
@@ -10921,7 +11200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 281,
@@ -10960,7 +11240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 282,
@@ -10999,7 +11280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 283,
@@ -11038,7 +11320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 284,
@@ -11077,7 +11360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 285,
@@ -11116,7 +11400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 286,
@@ -11155,7 +11440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 287,
@@ -11194,7 +11480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 288,
@@ -11233,7 +11520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 289,
@@ -11272,7 +11560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 290,
@@ -11311,7 +11600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 291,
@@ -11350,7 +11640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 292,
@@ -11389,7 +11680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 293,
@@ -11428,7 +11720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 294,
@@ -11467,7 +11760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 295,
@@ -11506,7 +11800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 296,
@@ -11545,7 +11840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 297,
@@ -11584,7 +11880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 298,
@@ -11623,7 +11920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 299,
@@ -11662,7 +11960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 300,
@@ -11701,7 +12000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 301,
@@ -11740,7 +12040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 302,
@@ -11779,7 +12080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 303,
@@ -11818,7 +12120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 304,
@@ -11857,7 +12160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 305,
@@ -11896,7 +12200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 306,
@@ -11935,7 +12240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 307,
@@ -11974,7 +12280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 308,
@@ -12013,7 +12320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 309,
@@ -12052,7 +12360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 310,
@@ -12091,7 +12400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 311,
@@ -12130,7 +12440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 312,
@@ -12169,7 +12480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 313,
@@ -12208,7 +12520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 314,
@@ -12247,7 +12560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 315,
@@ -12286,7 +12600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 316,
@@ -12325,7 +12640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 317,
@@ -12364,7 +12680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 318,
@@ -12403,7 +12720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 319,
@@ -12442,7 +12760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 320,
@@ -12481,7 +12800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 321,
@@ -12520,7 +12840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 322,
@@ -12559,7 +12880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 323,
@@ -12598,7 +12920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 324,
@@ -12637,7 +12960,8 @@ const creatorsData = [
     "unlocked": "3,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 325,
@@ -12676,7 +13000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 326,
@@ -12715,7 +13040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 327,
@@ -12754,7 +13080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 328,
@@ -12793,7 +13120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 329,
@@ -12832,7 +13160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 330,
@@ -12871,7 +13200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 331,
@@ -12910,7 +13240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 332,
@@ -12949,7 +13280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 333,
@@ -12988,7 +13320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 334,
@@ -13027,7 +13360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 335,
@@ -13066,7 +13400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 336,
@@ -13105,7 +13440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 337,
@@ -13144,7 +13480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 338,
@@ -13183,7 +13520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 339,
@@ -13222,7 +13560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 340,
@@ -13261,7 +13600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 341,
@@ -13300,7 +13640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 342,
@@ -13339,7 +13680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 343,
@@ -13378,7 +13720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 344,
@@ -13417,7 +13760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 345,
@@ -13456,7 +13800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 346,
@@ -13495,7 +13840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 347,
@@ -13534,7 +13880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 348,
@@ -13573,7 +13920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 349,
@@ -13612,7 +13960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 350,
@@ -13651,7 +14000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 351,
@@ -13690,7 +14040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 352,
@@ -13729,7 +14080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 353,
@@ -13768,7 +14120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 354,
@@ -13807,7 +14160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 355,
@@ -13846,7 +14200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 356,
@@ -13885,7 +14240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 357,
@@ -13924,7 +14280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 358,
@@ -13963,7 +14320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 359,
@@ -14002,7 +14360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 360,
@@ -14041,7 +14400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 361,
@@ -14080,7 +14440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 362,
@@ -14119,7 +14480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 363,
@@ -14158,7 +14520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 364,
@@ -14197,7 +14560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 365,
@@ -14236,7 +14600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 366,
@@ -14275,7 +14640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 367,
@@ -14314,7 +14680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 368,
@@ -14353,7 +14720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 369,
@@ -14392,7 +14760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 370,
@@ -14431,7 +14800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 371,
@@ -14470,7 +14840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 372,
@@ -14509,7 +14880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 373,
@@ -14548,7 +14920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 374,
@@ -14587,7 +14960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 375,
@@ -14626,7 +15000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 376,
@@ -14665,7 +15040,8 @@ const creatorsData = [
     "unlocked": "6,450",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 377,
@@ -14704,7 +15080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 378,
@@ -14743,7 +15120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 379,
@@ -14782,7 +15160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 380,
@@ -14821,7 +15200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 381,
@@ -14860,7 +15240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 382,
@@ -14899,7 +15280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 383,
@@ -14938,7 +15320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 384,
@@ -14977,7 +15360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 385,
@@ -15016,7 +15400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 386,
@@ -15055,7 +15440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 387,
@@ -15094,7 +15480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 388,
@@ -15133,7 +15520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 389,
@@ -15172,7 +15560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 390,
@@ -15211,7 +15600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 391,
@@ -15250,7 +15640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 392,
@@ -15289,7 +15680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 393,
@@ -15328,7 +15720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 394,
@@ -15367,7 +15760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 395,
@@ -15406,7 +15800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 396,
@@ -15445,7 +15840,8 @@ const creatorsData = [
     "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 397,
@@ -15484,7 +15880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 398,
@@ -15523,7 +15920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 399,
@@ -15562,7 +15960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 400,
@@ -15601,7 +16000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 401,
@@ -15640,7 +16040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 402,
@@ -15679,7 +16080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 403,
@@ -15718,7 +16120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 404,
@@ -15757,7 +16160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 405,
@@ -15796,7 +16200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 406,
@@ -15835,7 +16240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 407,
@@ -15874,7 +16280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 408,
@@ -15913,7 +16320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 409,
@@ -15952,7 +16360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 410,
@@ -15991,7 +16400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 411,
@@ -16030,7 +16440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 412,
@@ -16069,7 +16480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 413,
@@ -16108,7 +16520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 414,
@@ -16147,7 +16560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 415,
@@ -16186,7 +16600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 416,
@@ -16225,7 +16640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 417,
@@ -16264,7 +16680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 418,
@@ -16303,7 +16720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 419,
@@ -16342,7 +16760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 420,
@@ -16381,7 +16800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 421,
@@ -16420,7 +16840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 422,
@@ -16459,7 +16880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 423,
@@ -16498,7 +16920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 424,
@@ -16537,7 +16960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 425,
@@ -16576,7 +17000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 426,
@@ -16615,7 +17040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 427,
@@ -16654,7 +17080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 428,
@@ -16693,7 +17120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 429,
@@ -16732,7 +17160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 430,
@@ -16771,7 +17200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 431,
@@ -16810,7 +17240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 432,
@@ -16849,7 +17280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 433,
@@ -16888,7 +17320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 434,
@@ -16927,7 +17360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 435,
@@ -16966,7 +17400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 436,
@@ -17005,7 +17440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 437,
@@ -17044,7 +17480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 438,
@@ -17083,7 +17520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 439,
@@ -17122,7 +17560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 440,
@@ -17161,7 +17600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 441,
@@ -17200,7 +17640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 442,
@@ -17239,7 +17680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 443,
@@ -17278,7 +17720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 444,
@@ -17317,7 +17760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 445,
@@ -17356,7 +17800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 446,
@@ -17395,7 +17840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 447,
@@ -17434,7 +17880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 448,
@@ -17473,7 +17920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 449,
@@ -17512,7 +17960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 450,
@@ -17551,7 +18000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 451,
@@ -17590,7 +18040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 452,
@@ -17629,7 +18080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 453,
@@ -17668,7 +18120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 454,
@@ -17707,7 +18160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 455,
@@ -17746,7 +18200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 456,
@@ -17785,7 +18240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 457,
@@ -17824,7 +18280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 458,
@@ -17863,7 +18320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 459,
@@ -17902,7 +18360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 460,
@@ -17941,7 +18400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 461,
@@ -17980,7 +18440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 462,
@@ -18019,7 +18480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 463,
@@ -18058,7 +18520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 464,
@@ -18097,7 +18560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 465,
@@ -18136,7 +18600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 466,
@@ -18175,7 +18640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 467,
@@ -18214,7 +18680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 468,
@@ -18253,7 +18720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 469,
@@ -18292,7 +18760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 470,
@@ -18331,7 +18800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 471,
@@ -18370,7 +18840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 472,
@@ -18409,7 +18880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 473,
@@ -18448,7 +18920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 474,
@@ -18487,7 +18960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 475,
@@ -18526,7 +19000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 476,
@@ -18565,7 +19040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 477,
@@ -18604,7 +19080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 478,
@@ -18643,7 +19120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 479,
@@ -18682,7 +19160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 480,
@@ -18721,7 +19200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 481,
@@ -18760,7 +19240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 482,
@@ -18799,7 +19280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 483,
@@ -18838,7 +19320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 484,
@@ -18877,7 +19360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 485,
@@ -18916,7 +19400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 486,
@@ -18955,7 +19440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 487,
@@ -18994,7 +19480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 488,
@@ -19033,7 +19520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 489,
@@ -19072,7 +19560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 490,
@@ -19111,7 +19600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 491,
@@ -19150,7 +19640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 492,
@@ -19189,7 +19680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 493,
@@ -19228,7 +19720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 494,
@@ -19267,7 +19760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 495,
@@ -19306,7 +19800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 496,
@@ -19345,7 +19840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 497,
@@ -19384,7 +19880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 498,
@@ -19423,7 +19920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 499,
@@ -19462,7 +19960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 500,
@@ -19501,7 +20000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 501,
@@ -19540,7 +20040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 502,
@@ -19579,7 +20080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 503,
@@ -19618,7 +20120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 504,
@@ -19657,7 +20160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 505,
@@ -19696,7 +20200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 506,
@@ -19735,7 +20240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 507,
@@ -19774,7 +20280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 508,
@@ -19813,7 +20320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 509,
@@ -19852,7 +20360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 510,
@@ -19891,7 +20400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 511,
@@ -19930,7 +20440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 512,
@@ -19969,7 +20480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 513,
@@ -20008,7 +20520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 514,
@@ -20047,7 +20560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 515,
@@ -20086,7 +20600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 516,
@@ -20125,7 +20640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 517,
@@ -20164,7 +20680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 518,
@@ -20203,7 +20720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 519,
@@ -20242,7 +20760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 520,
@@ -20281,7 +20800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 521,
@@ -20320,7 +20840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 522,
@@ -20359,7 +20880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 523,
@@ -20398,7 +20920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 524,
@@ -20437,7 +20960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 525,
@@ -20476,7 +21000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 526,
@@ -20515,7 +21040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 527,
@@ -20554,7 +21080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 528,
@@ -20593,7 +21120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 529,
@@ -20632,7 +21160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 530,
@@ -20671,7 +21200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 531,
@@ -20710,7 +21240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 532,
@@ -20749,7 +21280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 533,
@@ -20788,7 +21320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 534,
@@ -20827,7 +21360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 535,
@@ -20866,7 +21400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 536,
@@ -20905,7 +21440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 537,
@@ -20944,7 +21480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 538,
@@ -20983,7 +21520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 539,
@@ -21022,7 +21560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 540,
@@ -21061,7 +21600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 541,
@@ -21100,7 +21640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 542,
@@ -21139,7 +21680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 543,
@@ -21178,7 +21720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 544,
@@ -21217,7 +21760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 545,
@@ -21256,7 +21800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 546,
@@ -21295,7 +21840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 547,
@@ -21334,7 +21880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 548,
@@ -21373,7 +21920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 549,
@@ -21412,7 +21960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 550,
@@ -21451,7 +22000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 551,
@@ -21490,7 +22040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 552,
@@ -21529,7 +22080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 553,
@@ -21568,7 +22120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 554,
@@ -21607,7 +22160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 555,
@@ -21646,7 +22200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 556,
@@ -21685,7 +22240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 557,
@@ -21724,7 +22280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 558,
@@ -21763,7 +22320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 559,
@@ -21802,7 +22360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 560,
@@ -21841,7 +22400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 561,
@@ -21880,7 +22440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 562,
@@ -21919,7 +22480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 563,
@@ -21958,7 +22520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 564,
@@ -21997,7 +22560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 565,
@@ -22036,7 +22600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 566,
@@ -22075,7 +22640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 567,
@@ -22114,7 +22680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 568,
@@ -22153,7 +22720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 569,
@@ -22192,7 +22760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 570,
@@ -22231,7 +22800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 571,
@@ -22270,7 +22840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 572,
@@ -22309,7 +22880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 573,
@@ -22348,7 +22920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 574,
@@ -22387,7 +22960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 575,
@@ -22426,7 +23000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 576,
@@ -22465,7 +23040,8 @@ const creatorsData = [
     "unlocked": "",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": ""
+    "rewardsMonth": "",
+    "estRev": 0
   },
   {
     "id": 577,
@@ -22504,7 +23080,8 @@ const creatorsData = [
     "unlocked": "",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": ""
+    "rewardsMonth": "",
+    "estRev": 0
   },
   {
     "id": 578,
@@ -22543,7 +23120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 579,
@@ -22582,7 +23160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 580,
@@ -22621,7 +23200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 581,
@@ -22660,7 +23240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 582,
@@ -22699,7 +23280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 583,
@@ -22738,7 +23320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 584,
@@ -22777,7 +23360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 585,
@@ -22816,7 +23400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 586,
@@ -22855,7 +23440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 587,
@@ -22894,7 +23480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 588,
@@ -22933,7 +23520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 589,
@@ -22972,7 +23560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 590,
@@ -23011,7 +23600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 591,
@@ -23050,7 +23640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 592,
@@ -23089,7 +23680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 593,
@@ -23128,7 +23720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 594,
@@ -23167,7 +23760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 595,
@@ -23206,7 +23800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 596,
@@ -23245,7 +23840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 597,
@@ -23284,7 +23880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 598,
@@ -23323,7 +23920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 599,
@@ -23362,7 +23960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 600,
@@ -23401,7 +24000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 601,
@@ -23440,7 +24040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 602,
@@ -23479,7 +24080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 603,
@@ -23518,7 +24120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 604,
@@ -23557,7 +24160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 605,
@@ -23596,7 +24200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 606,
@@ -23635,7 +24240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 607,
@@ -23674,7 +24280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 608,
@@ -23713,7 +24320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 609,
@@ -23752,7 +24360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 610,
@@ -23791,7 +24400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 611,
@@ -23830,7 +24440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 612,
@@ -23869,7 +24480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 613,
@@ -23908,7 +24520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 614,
@@ -23947,7 +24560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 615,
@@ -23986,7 +24600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 616,
@@ -24025,7 +24640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 617,
@@ -24064,7 +24680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 618,
@@ -24103,7 +24720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 619,
@@ -24142,7 +24760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 620,
@@ -24181,7 +24800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 621,
@@ -24220,7 +24840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 622,
@@ -24259,7 +24880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 623,
@@ -24298,7 +24920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 624,
@@ -24337,7 +24960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 625,
@@ -24376,7 +25000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 626,
@@ -24415,7 +25040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 627,
@@ -24454,7 +25080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 628,
@@ -24493,7 +25120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 629,
@@ -24532,7 +25160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 630,
@@ -24571,7 +25200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 631,
@@ -24610,7 +25240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 632,
@@ -24649,7 +25280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 633,
@@ -24688,7 +25320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 634,
@@ -24727,7 +25360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 635,
@@ -24766,7 +25400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 636,
@@ -24805,7 +25440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 637,
@@ -24844,7 +25480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 638,
@@ -24883,7 +25520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 639,
@@ -24922,7 +25560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 640,
@@ -24961,7 +25600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 641,
@@ -25000,7 +25640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 642,
@@ -25039,7 +25680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 643,
@@ -25078,7 +25720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 644,
@@ -25117,7 +25760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 645,
@@ -25156,7 +25800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 646,
@@ -25195,7 +25840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 647,
@@ -25234,7 +25880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 648,
@@ -25273,7 +25920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 649,
@@ -25312,7 +25960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 650,
@@ -25351,7 +26000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 651,
@@ -25390,7 +26040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 652,
@@ -25429,7 +26080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 653,
@@ -25468,7 +26120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 654,
@@ -25507,7 +26160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 655,
@@ -25546,7 +26200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 656,
@@ -25585,7 +26240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 657,
@@ -25624,7 +26280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 658,
@@ -25663,7 +26320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 659,
@@ -25702,7 +26360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 660,
@@ -25741,7 +26400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 661,
@@ -25780,7 +26440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 662,
@@ -25819,7 +26480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 663,
@@ -25858,7 +26520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 664,
@@ -25897,7 +26560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 665,
@@ -25936,7 +26600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 666,
@@ -25975,7 +26640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 667,
@@ -26014,7 +26680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 668,
@@ -26053,7 +26720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 669,
@@ -26092,7 +26760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 670,
@@ -26131,7 +26800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 671,
@@ -26170,7 +26840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 672,
@@ -26209,7 +26880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 673,
@@ -26248,7 +26920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 674,
@@ -26287,7 +26960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 675,
@@ -26326,7 +27000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 676,
@@ -26365,7 +27040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 677,
@@ -26404,7 +27080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 678,
@@ -26443,7 +27120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 679,
@@ -26482,7 +27160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 680,
@@ -26521,7 +27200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 681,
@@ -26560,7 +27240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 682,
@@ -26599,7 +27280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 683,
@@ -26638,7 +27320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 684,
@@ -26677,7 +27360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 685,
@@ -26716,7 +27400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 686,
@@ -26755,7 +27440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 687,
@@ -26794,7 +27480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 688,
@@ -26833,7 +27520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 689,
@@ -26872,7 +27560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 690,
@@ -26911,7 +27600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 691,
@@ -26950,7 +27640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 692,
@@ -26989,7 +27680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 693,
@@ -27028,7 +27720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 694,
@@ -27067,7 +27760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 695,
@@ -27106,7 +27800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 696,
@@ -27145,7 +27840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 697,
@@ -27184,7 +27880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 698,
@@ -27223,7 +27920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 699,
@@ -27262,7 +27960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 700,
@@ -27301,7 +28000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 701,
@@ -27340,7 +28040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 702,
@@ -27379,7 +28080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 703,
@@ -27418,7 +28120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 704,
@@ -27457,7 +28160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 705,
@@ -27496,7 +28200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 706,
@@ -27535,7 +28240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 707,
@@ -27574,7 +28280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 708,
@@ -27613,7 +28320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 709,
@@ -27652,7 +28360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 710,
@@ -27691,7 +28400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 711,
@@ -27730,7 +28440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 712,
@@ -27769,7 +28480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 713,
@@ -27808,7 +28520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 714,
@@ -27847,7 +28560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 715,
@@ -27886,7 +28600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 716,
@@ -27925,7 +28640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 717,
@@ -27964,7 +28680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 718,
@@ -28003,7 +28720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 719,
@@ -28042,7 +28760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 720,
@@ -28081,7 +28800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 721,
@@ -28120,7 +28840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 722,
@@ -28159,7 +28880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 723,
@@ -28198,7 +28920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 724,
@@ -28237,7 +28960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 725,
@@ -28276,7 +29000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 726,
@@ -28315,7 +29040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 727,
@@ -28354,7 +29080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 728,
@@ -28393,7 +29120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 729,
@@ -28432,7 +29160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 730,
@@ -28471,7 +29200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 731,
@@ -28510,7 +29240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 732,
@@ -28549,7 +29280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 733,
@@ -28588,7 +29320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 734,
@@ -28627,7 +29360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 735,
@@ -28666,7 +29400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 736,
@@ -28705,7 +29440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 737,
@@ -28744,7 +29480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 738,
@@ -28783,7 +29520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 739,
@@ -28822,7 +29560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 740,
@@ -28861,7 +29600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 741,
@@ -28900,7 +29640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 742,
@@ -28939,7 +29680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 743,
@@ -28978,7 +29720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 744,
@@ -29017,7 +29760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 745,
@@ -29056,7 +29800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 746,
@@ -29095,7 +29840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 747,
@@ -29134,7 +29880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 748,
@@ -29173,7 +29920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 749,
@@ -29212,7 +29960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 750,
@@ -29251,7 +30000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 751,
@@ -29290,7 +30040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 752,
@@ -29329,7 +30080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 753,
@@ -29368,7 +30120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 754,
@@ -29407,7 +30160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 755,
@@ -29446,7 +30200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 756,
@@ -29485,7 +30240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 757,
@@ -29524,7 +30280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 758,
@@ -29563,7 +30320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 759,
@@ -29602,7 +30360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 760,
@@ -29641,7 +30400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 761,
@@ -29680,7 +30440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 762,
@@ -29719,7 +30480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 763,
@@ -29758,7 +30520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 764,
@@ -29797,7 +30560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 765,
@@ -29836,7 +30600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 766,
@@ -29875,7 +30640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 767,
@@ -29914,7 +30680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 768,
@@ -29953,7 +30720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 769,
@@ -29992,7 +30760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 770,
@@ -30031,7 +30800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 771,
@@ -30070,7 +30840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 772,
@@ -30109,7 +30880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 773,
@@ -30148,7 +30920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 774,
@@ -30187,7 +30960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 775,
@@ -30226,7 +31000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 776,
@@ -30265,7 +31040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 777,
@@ -30304,7 +31080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 778,
@@ -30343,7 +31120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 779,
@@ -30382,7 +31160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 780,
@@ -30421,7 +31200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 781,
@@ -30460,7 +31240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 782,
@@ -30499,7 +31280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 783,
@@ -30538,7 +31320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 784,
@@ -30577,7 +31360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 785,
@@ -30616,7 +31400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 786,
@@ -30655,7 +31440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 787,
@@ -30694,7 +31480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 788,
@@ -30733,7 +31520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 789,
@@ -30772,7 +31560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 790,
@@ -30811,7 +31600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 791,
@@ -30850,7 +31640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 792,
@@ -30889,7 +31680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 793,
@@ -30928,7 +31720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 794,
@@ -30967,7 +31760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 795,
@@ -31006,7 +31800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 796,
@@ -31045,7 +31840,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 797,
@@ -31084,7 +31880,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 798,
@@ -31123,7 +31920,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 799,
@@ -31162,7 +31960,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 800,
@@ -31201,7 +32000,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 801,
@@ -31240,7 +32040,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 802,
@@ -31279,7 +32080,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 803,
@@ -31318,7 +32120,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 804,
@@ -31357,7 +32160,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 805,
@@ -31396,7 +32200,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 806,
@@ -31435,7 +32240,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 807,
@@ -31474,7 +32280,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 808,
@@ -31513,7 +32320,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 809,
@@ -31552,7 +32360,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 810,
@@ -31591,7 +32400,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 811,
@@ -31630,7 +32440,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 812,
@@ -31669,7 +32480,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 813,
@@ -31708,7 +32520,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 814,
@@ -31747,7 +32560,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 815,
@@ -31786,7 +32600,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 816,
@@ -31825,7 +32640,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 817,
@@ -31864,7 +32680,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 818,
@@ -31903,7 +32720,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 819,
@@ -31942,7 +32760,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   },
   {
     "id": 820,
@@ -31981,7 +32800,8 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$0.00",
+    "estRev": 0
   }
 ];
 

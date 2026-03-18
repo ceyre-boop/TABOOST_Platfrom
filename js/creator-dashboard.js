@@ -338,8 +338,8 @@ function updateStats() {
     console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
     console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
-    // Use real dollar value from estRev (column AN)
-    const realDollarValue = myData.estRev || 0;
+    // Use real dollar value from estRev (column AN), fallback to rewardsMonth
+    const realDollarValue = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
     document.getElementById('currentUSD').textContent = '≈ $' + realDollarValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
     // Growth trend - calculate if not provided
@@ -1178,6 +1178,13 @@ function updateScoreAndLevels() {
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
         diamondRevenueEl.textContent = diamondText;
+    }
+    
+    // Update diamond USD value (using estRev from column AN, fallback to rewardsMonth)
+    const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
+    if (diamondRevenueUSDEl) {
+        const estRev = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
+        diamondRevenueUSDEl.textContent = '≈ $' + estRev.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     }
     
     // PRO BONUS CALCULATION

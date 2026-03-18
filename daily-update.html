@@ -395,7 +395,8 @@
                         unlocked: cols[37] || '',
                         daysMonth: parseInt(cols[38]) || 0,
                         hoursMonth: parseInt(cols[39]) || 0,
-                        rewardsMonth: cols[40] || ''
+                        rewardsMonth: cols[40] || '',
+                        estRev: parseFloat(cols[40]?.toString().replace(/[$,]/g, '')) || 0
                     });
                 }
             }
