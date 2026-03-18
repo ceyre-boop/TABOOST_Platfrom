@@ -141,13 +141,12 @@ class TaboostDataService {
             _diamondsRaw: values[19],
             _levelRaw: values[4],
             growthPercent: getValue('Growth %'),
-            hours: parseFloat(getValue('Hours')) || 0,
-            hoursGoal: parseInt(values[39]) || 15, // Column AN - personalized hours goal
+            hours: parseFloat(getValue('Hours')) || 0, // Column P = actual hours
             hoursLeft: parseFloat(getValue('Hours Left')) || 0,
             
             // Activity metrics
-            liveStreams: parseInt(getValue('Days')) || 0, // Days = streaming days
-            validLiveDays: parseInt(getValue('Days')) || 0,
+            liveStreams: parseInt(getValue('Days')) || 0, // Column M = actual streaming days
+            validLiveDays: parseInt(getValue('Days')) || 0, // Column M = actual days streamed
             dayPace: getValue('Day Pace'),
             diamondPace: parseInt(getValue('dY\'Z Pace')) || 0, // Column U - 💎 Pace
             followers: this.formatNumber(getValue('LF')),
