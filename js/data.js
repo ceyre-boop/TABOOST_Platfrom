@@ -155,10 +155,10 @@ const creatorsData = [
     "running": "6,150",
     "multiply": "2x",
     "unlocked": "6,150",
-    "estRev": 558.66,
+    "estRev": 10055.85,
     "daysGoal": 22,
     "hoursGoal": 80,
-    "rewardsMonth": "$558.66"
+    "rewardsMonth": "$5,000.00"
   },
   {
     "id": 5,

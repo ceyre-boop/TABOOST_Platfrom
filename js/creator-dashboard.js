@@ -338,9 +338,9 @@ function updateStats() {
     console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
     console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
-    // Use real dollar value from estRev (column AL/AN) instead of calculated estimate
+    // Use real dollar value from estRev (column AN)
     const realDollarValue = myData.estRev || 0;
-    document.getElementById('currentUSD').textContent = '$' + realDollarValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('currentUSD').textContent = '≈ $' + realDollarValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
     // Growth trend - calculate if not provided
     let growth = parseFloat(myData.growthPercent);
@@ -1253,7 +1253,7 @@ function updateScoreAndLevels() {
         if (scoreValue >= 70) {
             // Use real Pro Bonus from column AO (Rewards Month)
             const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
-            proBonusRevenueValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            proBonusRevenueValue.textContent = '≈ $' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             proBonusRevenueValue.style.color = '#ffd700'; // Gold color
             proBonusRevenueNote.textContent = 'Pro Bonus Earned';
             
