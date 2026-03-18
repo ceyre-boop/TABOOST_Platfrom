@@ -177,19 +177,12 @@ class TaboostDataService {
             daysGoal: parseInt(values[39]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 39 (Days Month)
             hoursGoal: parseInt(values[40]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 40 (Hours Month)
             
-            // Column AN - Est Rev (real dollar amount)
-            estRev: values[39] ? parseFloat(values[39].toString().replace(/[$,]/g, '')) || 0 : 0, // Column AN = index 39 (Est Rev)
+            // Column AO - Rewards Month (real dollar amount for current month)
+            estRev: values[40] ? parseFloat(values[40].toString().replace(/[$,]/g, '')) || 0 : 0, // Column AO = index 40 (Rewards Month)
             
-            // Monthly earnings history (Sep-Feb + Current) from columns AI-AO
-            earningsHistory: [
-                parseFloat(values[34]?.toString().replace(/[$,]/g, '')) || 0, // Sep 2025 (AI = index 34)
-                parseFloat(values[35]?.toString().replace(/[$,]/g, '')) || 0, // Oct 2025 (AJ = index 35)
-                parseFloat(values[36]?.toString().replace(/[$,]/g, '')) || 0, // Nov 2025 (AK = index 36)
-                parseFloat(values[37]?.toString().replace(/[$,]/g, '')) || 0, // Dec 2025 (AL = index 37)
-                parseFloat(values[38]?.toString().replace(/[$,]/g, '')) || 0, // Jan 2026 (AM = index 38)
-                parseFloat(values[39]?.toString().replace(/[$,]/g, '')) || 0, // Feb 2026 (AN = index 39)
-                parseFloat(values[40]?.toString().replace(/[$,]/g, '')) || 0  // Current (AO = index 40)
-            ],
+            // Note: This CSV only has Rewards Month (current), not full monthly history
+            // Monthly history comes from HISTORY.csv via creator_trends.json
+            earningsHistory: [],
             
             // Column AO - Rewards Month (March 2026 onwards)
             rewardsMonth: getValue('Rewards Month') || values[40] || '', // Column AO
