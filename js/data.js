@@ -41,7 +41,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 11334,
+    "bonus": "0.00"
   },
   {
     "id": 2,
@@ -81,7 +82,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$538.33",
-    "estRev": 538.33
+    "estRev": 9690,
+    "bonus": "538.33"
   },
   {
     "id": 3,
@@ -121,7 +123,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$533.07",
-    "estRev": 533.07
+    "estRev": 9595,
+    "bonus": "533.07"
   },
   {
     "id": 4,
@@ -161,7 +164,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$558.66",
-    "estRev": 558.66
+    "estRev": 10056,
+    "bonus": "558.66"
   },
   {
     "id": 5,
@@ -201,7 +205,8 @@ const creatorsData = [
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$411.39",
-    "estRev": 411.39
+    "estRev": 7405,
+    "bonus": "411.39"
   },
   {
     "id": 6,
@@ -241,7 +246,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$463.49",
-    "estRev": 463.49
+    "estRev": 8343,
+    "bonus": "463.49"
   },
   {
     "id": 7,
@@ -281,7 +287,8 @@ const creatorsData = [
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5998,
+    "bonus": "0.00"
   },
   {
     "id": 8,
@@ -321,7 +328,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6098,
+    "bonus": "0.00"
   },
   {
     "id": 9,
@@ -361,7 +369,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$298.56",
-    "estRev": 298.56
+    "estRev": 5374,
+    "bonus": "298.56"
   },
   {
     "id": 10,
@@ -401,7 +410,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$282.65",
-    "estRev": 282.65
+    "estRev": 5088,
+    "bonus": "282.65"
   },
   {
     "id": 11,
@@ -441,7 +451,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4540,
+    "bonus": "0.00"
   },
   {
     "id": 12,
@@ -481,7 +492,8 @@ const creatorsData = [
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$257.47",
-    "estRev": 257.47
+    "estRev": 4635,
+    "bonus": "257.47"
   },
   {
     "id": 13,
@@ -521,7 +533,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4387,
+    "bonus": "0.00"
   },
   {
     "id": 14,
@@ -561,7 +574,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4248,
+    "bonus": "0.00"
   },
   {
     "id": 15,
@@ -601,7 +615,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4128,
+    "bonus": "0.00"
   },
   {
     "id": 16,
@@ -641,7 +656,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$261.53",
-    "estRev": 261.53
+    "estRev": 4707,
+    "bonus": "261.53"
   },
   {
     "id": 17,
@@ -681,7 +697,8 @@ const creatorsData = [
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3742,
+    "bonus": "0.00"
   },
   {
     "id": 18,
@@ -721,7 +738,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3153,
+    "bonus": "0.00"
   },
   {
     "id": 19,
@@ -761,7 +779,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3009,
+    "bonus": "0.00"
   },
   {
     "id": 20,
@@ -801,7 +820,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2654,
+    "bonus": "0.00"
   },
   {
     "id": 21,
@@ -841,7 +861,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 22,
@@ -881,7 +901,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2689,
+    "bonus": "0.00"
   },
   {
     "id": 23,
@@ -921,7 +942,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2732,
+    "bonus": "0.00"
   },
   {
     "id": 24,
@@ -961,7 +983,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2321,
+    "bonus": "0.00"
   },
   {
     "id": 25,
@@ -1001,7 +1024,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2127,
+    "bonus": "0.00"
   },
   {
     "id": 26,
@@ -1041,7 +1065,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2091,
+    "bonus": "0.00"
   },
   {
     "id": 27,
@@ -1081,7 +1106,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1967,
+    "bonus": "0.00"
   },
   {
     "id": 28,
@@ -1121,7 +1147,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1988,
+    "bonus": "0.00"
   },
   {
     "id": 29,
@@ -1161,7 +1188,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1974,
+    "bonus": "0.00"
   },
   {
     "id": 30,
@@ -1201,7 +1229,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1910,
+    "bonus": "0.00"
   },
   {
     "id": 31,
@@ -1241,7 +1270,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 32,
@@ -1281,7 +1310,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1693,
+    "bonus": "0.00"
   },
   {
     "id": 33,
@@ -1321,7 +1351,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1646,
+    "bonus": "0.00"
   },
   {
     "id": 34,
@@ -1361,7 +1392,8 @@ const creatorsData = [
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1698,
+    "bonus": "0.00"
   },
   {
     "id": 35,
@@ -1401,7 +1433,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1481,
+    "bonus": "0.00"
   },
   {
     "id": 36,
@@ -1441,7 +1474,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1515,
+    "bonus": "0.00"
   },
   {
     "id": 37,
@@ -1481,7 +1515,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1439,
+    "bonus": "0.00"
   },
   {
     "id": 38,
@@ -1521,7 +1556,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1386,
+    "bonus": "0.00"
   },
   {
     "id": 39,
@@ -1561,7 +1597,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1387,
+    "bonus": "0.00"
   },
   {
     "id": 40,
@@ -1601,7 +1638,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 41,
@@ -1641,7 +1678,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1630,
+    "bonus": "0.00"
   },
   {
     "id": 42,
@@ -1681,7 +1719,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1165,
+    "bonus": "0.00"
   },
   {
     "id": 43,
@@ -1721,7 +1760,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1114,
+    "bonus": "0.00"
   },
   {
     "id": 44,
@@ -1761,7 +1801,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1109,
+    "bonus": "0.00"
   },
   {
     "id": 45,
@@ -1801,7 +1842,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1076,
+    "bonus": "0.00"
   },
   {
     "id": 46,
@@ -1841,7 +1883,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1114,
+    "bonus": "0.00"
   },
   {
     "id": 47,
@@ -1881,7 +1924,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1042,
+    "bonus": "0.00"
   },
   {
     "id": 48,
@@ -1921,7 +1965,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1050,
+    "bonus": "0.00"
   },
   {
     "id": 49,
@@ -1961,7 +2006,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1028,
+    "bonus": "0.00"
   },
   {
     "id": 50,
@@ -2001,7 +2047,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1008,
+    "bonus": "0.00"
   },
   {
     "id": 51,
@@ -2041,7 +2088,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 940,
+    "bonus": "0.00"
   },
   {
     "id": 52,
@@ -2081,7 +2129,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 927,
+    "bonus": "0.00"
   },
   {
     "id": 53,
@@ -2121,7 +2170,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 54,
@@ -2161,7 +2210,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 55,
@@ -2201,7 +2250,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 890,
+    "bonus": "0.00"
   },
   {
     "id": 56,
@@ -2241,7 +2291,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 57,
@@ -2281,7 +2331,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 699,
+    "bonus": "0.00"
   },
   {
     "id": 58,
@@ -2321,7 +2372,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 663,
+    "bonus": "0.00"
   },
   {
     "id": 59,
@@ -2361,7 +2413,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 660,
+    "bonus": "0.00"
   },
   {
     "id": 60,
@@ -2401,7 +2454,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 626,
+    "bonus": "0.00"
   },
   {
     "id": 61,
@@ -2441,7 +2495,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 62,
@@ -2481,7 +2535,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 617,
+    "bonus": "0.00"
   },
   {
     "id": 63,
@@ -2521,7 +2576,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 538,
+    "bonus": "0.00"
   },
   {
     "id": 64,
@@ -2561,7 +2617,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 548,
+    "bonus": "0.00"
   },
   {
     "id": 65,
@@ -2601,7 +2658,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 571,
+    "bonus": "0.00"
   },
   {
     "id": 66,
@@ -2641,7 +2699,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 544,
+    "bonus": "0.00"
   },
   {
     "id": 67,
@@ -2681,7 +2740,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 455,
+    "bonus": "0.00"
   },
   {
     "id": 68,
@@ -2721,7 +2781,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 433,
+    "bonus": "0.00"
   },
   {
     "id": 69,
@@ -2761,7 +2822,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 527,
+    "bonus": "0.00"
   },
   {
     "id": 70,
@@ -2801,7 +2863,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 415,
+    "bonus": "0.00"
   },
   {
     "id": 71,
@@ -2841,7 +2904,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 381,
+    "bonus": "0.00"
   },
   {
     "id": 72,
@@ -2881,7 +2945,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 379,
+    "bonus": "0.00"
   },
   {
     "id": 73,
@@ -2921,7 +2986,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 74,
@@ -2961,7 +3026,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 420,
+    "bonus": "0.00"
   },
   {
     "id": 75,
@@ -3001,7 +3067,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 76,
@@ -3041,7 +3107,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 356,
+    "bonus": "0.00"
   },
   {
     "id": 77,
@@ -3081,7 +3148,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 320,
+    "bonus": "0.00"
   },
   {
     "id": 78,
@@ -3121,7 +3189,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 305,
+    "bonus": "0.00"
   },
   {
     "id": 79,
@@ -3161,7 +3230,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 80,
@@ -3201,7 +3270,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 325,
+    "bonus": "0.00"
   },
   {
     "id": 81,
@@ -3241,7 +3311,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 304,
+    "bonus": "0.00"
   },
   {
     "id": 82,
@@ -3281,7 +3352,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 315,
+    "bonus": "0.00"
   },
   {
     "id": 83,
@@ -3321,7 +3393,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 283,
+    "bonus": "0.00"
   },
   {
     "id": 84,
@@ -3361,7 +3434,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 294,
+    "bonus": "0.00"
   },
   {
     "id": 85,
@@ -3401,7 +3475,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 294,
+    "bonus": "0.00"
   },
   {
     "id": 86,
@@ -3441,7 +3516,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 266,
+    "bonus": "0.00"
   },
   {
     "id": 87,
@@ -3481,7 +3557,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 266,
+    "bonus": "0.00"
   },
   {
     "id": 88,
@@ -3521,7 +3598,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 251,
+    "bonus": "0.00"
   },
   {
     "id": 89,
@@ -3561,7 +3639,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 237,
+    "bonus": "0.00"
   },
   {
     "id": 90,
@@ -3601,7 +3680,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 91,
@@ -3641,7 +3720,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 236,
+    "bonus": "0.00"
   },
   {
     "id": 92,
@@ -3681,7 +3761,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 207,
+    "bonus": "0.00"
   },
   {
     "id": 93,
@@ -3721,7 +3802,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 187,
+    "bonus": "0.00"
   },
   {
     "id": 94,
@@ -3761,7 +3843,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 204,
+    "bonus": "0.00"
   },
   {
     "id": 95,
@@ -3801,7 +3884,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 185,
+    "bonus": "0.00"
   },
   {
     "id": 96,
@@ -3841,7 +3925,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 183,
+    "bonus": "0.00"
   },
   {
     "id": 97,
@@ -3881,7 +3966,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 194,
+    "bonus": "0.00"
   },
   {
     "id": 98,
@@ -3921,7 +4007,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 180,
+    "bonus": "0.00"
   },
   {
     "id": 99,
@@ -3961,7 +4048,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 176,
+    "bonus": "0.00"
   },
   {
     "id": 100,
@@ -4001,7 +4089,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 158,
+    "bonus": "0.00"
   },
   {
     "id": 101,
@@ -4041,7 +4130,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 226,
+    "bonus": "0.00"
   },
   {
     "id": 102,
@@ -4081,7 +4171,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 151,
+    "bonus": "0.00"
   },
   {
     "id": 103,
@@ -4121,7 +4212,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 162,
+    "bonus": "0.00"
   },
   {
     "id": 104,
@@ -4161,7 +4253,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 150,
+    "bonus": "0.00"
   },
   {
     "id": 105,
@@ -4201,7 +4294,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 138,
+    "bonus": "0.00"
   },
   {
     "id": 106,
@@ -4241,7 +4335,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 138,
+    "bonus": "0.00"
   },
   {
     "id": 107,
@@ -4281,7 +4376,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 129,
+    "bonus": "0.00"
   },
   {
     "id": 108,
@@ -4321,7 +4417,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 127,
+    "bonus": "0.00"
   },
   {
     "id": 109,
@@ -4361,7 +4458,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 134,
+    "bonus": "0.00"
   },
   {
     "id": 110,
@@ -4401,7 +4499,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 125,
+    "bonus": "0.00"
   },
   {
     "id": 111,
@@ -4441,7 +4540,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 135,
+    "bonus": "0.00"
   },
   {
     "id": 112,
@@ -4481,7 +4581,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 120,
+    "bonus": "0.00"
   },
   {
     "id": 113,
@@ -4521,7 +4622,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 120,
+    "bonus": "0.00"
   },
   {
     "id": 114,
@@ -4561,7 +4663,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 125,
+    "bonus": "0.00"
   },
   {
     "id": 115,
@@ -4601,7 +4704,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 134,
+    "bonus": "0.00"
   },
   {
     "id": 116,
@@ -4641,7 +4745,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 117,
@@ -4681,7 +4785,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 103,
+    "bonus": "0.00"
   },
   {
     "id": 118,
@@ -4721,7 +4826,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 101,
+    "bonus": "0.00"
   },
   {
     "id": 119,
@@ -4761,7 +4867,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 120,
@@ -4801,7 +4907,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 96,
+    "bonus": "0.00"
   },
   {
     "id": 121,
@@ -4841,7 +4948,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 113,
+    "bonus": "0.00"
   },
   {
     "id": 122,
@@ -4881,7 +4989,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 93,
+    "bonus": "0.00"
   },
   {
     "id": 123,
@@ -4921,7 +5030,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 93,
+    "bonus": "0.00"
   },
   {
     "id": 124,
@@ -4961,7 +5071,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 125,
@@ -5001,7 +5111,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 126,
@@ -5041,7 +5151,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 89,
+    "bonus": "0.00"
   },
   {
     "id": 127,
@@ -5081,7 +5192,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 81,
+    "bonus": "0.00"
   },
   {
     "id": 128,
@@ -5121,7 +5233,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 76,
+    "bonus": "0.00"
   },
   {
     "id": 129,
@@ -5161,7 +5274,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 74,
+    "bonus": "0.00"
   },
   {
     "id": 130,
@@ -5201,7 +5315,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 131,
@@ -5241,7 +5355,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 73,
+    "bonus": "0.00"
   },
   {
     "id": 132,
@@ -5281,7 +5396,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 70,
+    "bonus": "0.00"
   },
   {
     "id": 133,
@@ -5321,7 +5437,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 65,
+    "bonus": "0.00"
   },
   {
     "id": 134,
@@ -5361,7 +5478,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 64,
+    "bonus": "0.00"
   },
   {
     "id": 135,
@@ -5401,7 +5519,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 63,
+    "bonus": "0.00"
   },
   {
     "id": 136,
@@ -5441,7 +5560,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 63,
+    "bonus": "0.00"
   },
   {
     "id": 137,
@@ -5481,7 +5601,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 138,
@@ -5521,7 +5641,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 59,
+    "bonus": "0.00"
   },
   {
     "id": 139,
@@ -5561,7 +5682,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 56,
+    "bonus": "0.00"
   },
   {
     "id": 140,
@@ -5601,7 +5723,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 55,
+    "bonus": "0.00"
   },
   {
     "id": 141,
@@ -5641,7 +5764,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 64,
+    "bonus": "0.00"
   },
   {
     "id": 142,
@@ -5681,7 +5805,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 53,
+    "bonus": "0.00"
   },
   {
     "id": 143,
@@ -5721,7 +5846,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 56,
+    "bonus": "0.00"
   },
   {
     "id": 144,
@@ -5761,7 +5887,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 56,
+    "bonus": "0.00"
   },
   {
     "id": 145,
@@ -5801,7 +5928,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 49,
+    "bonus": "0.00"
   },
   {
     "id": 146,
@@ -5841,7 +5969,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 147,
@@ -5881,7 +6009,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 75,
+    "bonus": "0.00"
   },
   {
     "id": 148,
@@ -5921,7 +6050,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 149,
@@ -5961,7 +6090,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 45,
+    "bonus": "0.00"
   },
   {
     "id": 150,
@@ -6001,7 +6131,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 43,
+    "bonus": "0.00"
   },
   {
     "id": 151,
@@ -6041,7 +6172,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 44,
+    "bonus": "0.00"
   },
   {
     "id": 152,
@@ -6081,7 +6213,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 41,
+    "bonus": "0.00"
   },
   {
     "id": 153,
@@ -6121,7 +6254,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 41,
+    "bonus": "0.00"
   },
   {
     "id": 154,
@@ -6161,7 +6295,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 155,
@@ -6201,7 +6335,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 156,
@@ -6241,7 +6375,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 39,
+    "bonus": "0.00"
   },
   {
     "id": 157,
@@ -6281,7 +6416,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 32,
+    "bonus": "0.00"
   },
   {
     "id": 158,
@@ -6321,7 +6457,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 32,
+    "bonus": "0.00"
   },
   {
     "id": 159,
@@ -6361,7 +6498,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 31,
+    "bonus": "0.00"
   },
   {
     "id": 160,
@@ -6401,7 +6539,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 31,
+    "bonus": "0.00"
   },
   {
     "id": 161,
@@ -6441,7 +6580,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 35,
+    "bonus": "0.00"
   },
   {
     "id": 162,
@@ -6481,7 +6621,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 29,
+    "bonus": "0.00"
   },
   {
     "id": 163,
@@ -6521,7 +6662,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 29,
+    "bonus": "0.00"
   },
   {
     "id": 164,
@@ -6561,7 +6703,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 29,
+    "bonus": "0.00"
   },
   {
     "id": 165,
@@ -6601,7 +6744,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 32,
+    "bonus": "0.00"
   },
   {
     "id": 166,
@@ -6641,7 +6785,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 27,
+    "bonus": "0.00"
   },
   {
     "id": 167,
@@ -6681,7 +6826,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 168,
@@ -6721,7 +6866,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 25,
+    "bonus": "0.00"
   },
   {
     "id": 169,
@@ -6761,7 +6907,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 24,
+    "bonus": "0.00"
   },
   {
     "id": 170,
@@ -6801,7 +6948,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 24,
+    "bonus": "0.00"
   },
   {
     "id": 171,
@@ -6841,7 +6989,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 22,
+    "bonus": "0.00"
   },
   {
     "id": 172,
@@ -6881,7 +7030,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 173,
@@ -6921,7 +7070,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 22,
+    "bonus": "0.00"
   },
   {
     "id": 174,
@@ -6961,7 +7111,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 27,
+    "bonus": "0.00"
   },
   {
     "id": 175,
@@ -7001,7 +7152,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 176,
@@ -7041,7 +7192,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 19,
+    "bonus": "0.00"
   },
   {
     "id": 177,
@@ -7081,7 +7233,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 19,
+    "bonus": "0.00"
   },
   {
     "id": 178,
@@ -7121,7 +7274,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 18,
+    "bonus": "0.00"
   },
   {
     "id": 179,
@@ -7161,7 +7315,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 180,
@@ -7201,7 +7355,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 18,
+    "bonus": "0.00"
   },
   {
     "id": 181,
@@ -7241,7 +7396,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 17,
+    "bonus": "0.00"
   },
   {
     "id": 182,
@@ -7281,7 +7437,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 17,
+    "bonus": "0.00"
   },
   {
     "id": 183,
@@ -7321,7 +7478,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 25,
+    "bonus": "0.00"
   },
   {
     "id": 184,
@@ -7361,7 +7519,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 17,
+    "bonus": "0.00"
   },
   {
     "id": 185,
@@ -7401,7 +7560,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 28,
+    "bonus": "0.00"
   },
   {
     "id": 186,
@@ -7441,7 +7601,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 17,
+    "bonus": "0.00"
   },
   {
     "id": 187,
@@ -7481,7 +7642,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 188,
@@ -7521,7 +7682,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 16,
+    "bonus": "0.00"
   },
   {
     "id": 189,
@@ -7561,7 +7723,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 16,
+    "bonus": "0.00"
   },
   {
     "id": 190,
@@ -7601,7 +7764,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 16,
+    "bonus": "0.00"
   },
   {
     "id": 191,
@@ -7641,7 +7805,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 192,
@@ -7681,7 +7845,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 23,
+    "bonus": "0.00"
   },
   {
     "id": 193,
@@ -7721,7 +7886,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 15,
+    "bonus": "0.00"
   },
   {
     "id": 194,
@@ -7761,7 +7927,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 14,
+    "bonus": "0.00"
   },
   {
     "id": 195,
@@ -7801,7 +7968,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 14,
+    "bonus": "0.00"
   },
   {
     "id": 196,
@@ -7841,7 +8009,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 197,
@@ -7881,7 +8049,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 14,
+    "bonus": "0.00"
   },
   {
     "id": 198,
@@ -7921,7 +8090,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 13,
+    "bonus": "0.00"
   },
   {
     "id": 199,
@@ -7961,7 +8131,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 13,
+    "bonus": "0.00"
   },
   {
     "id": 200,
@@ -8001,7 +8172,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 12,
+    "bonus": "0.00"
   },
   {
     "id": 201,
@@ -8041,7 +8213,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 12,
+    "bonus": "0.00"
   },
   {
     "id": 202,
@@ -8081,7 +8254,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 12,
+    "bonus": "0.00"
   },
   {
     "id": 203,
@@ -8121,7 +8295,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 204,
@@ -8161,7 +8335,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 11,
+    "bonus": "0.00"
   },
   {
     "id": 205,
@@ -8201,7 +8376,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 11,
+    "bonus": "0.00"
   },
   {
     "id": 206,
@@ -8241,7 +8417,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 12,
+    "bonus": "0.00"
   },
   {
     "id": 207,
@@ -8281,7 +8458,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 208,
@@ -8321,7 +8498,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 11,
+    "bonus": "0.00"
   },
   {
     "id": 209,
@@ -8361,7 +8539,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 10,
+    "bonus": "0.00"
   },
   {
     "id": 210,
@@ -8401,7 +8580,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 10,
+    "bonus": "0.00"
   },
   {
     "id": 211,
@@ -8441,7 +8621,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 9,
+    "bonus": "0.00"
   },
   {
     "id": 212,
@@ -8481,7 +8662,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 213,
@@ -8521,7 +8702,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 10,
+    "bonus": "0.00"
   },
   {
     "id": 214,
@@ -8561,7 +8743,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 215,
@@ -8601,7 +8784,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 9,
+    "bonus": "0.00"
   },
   {
     "id": 216,
@@ -8641,7 +8825,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 217,
@@ -8681,7 +8866,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 218,
@@ -8721,7 +8907,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 219,
@@ -8761,7 +8948,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 220,
@@ -8801,7 +8989,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 221,
@@ -8841,7 +9030,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 9,
+    "bonus": "0.00"
   },
   {
     "id": 222,
@@ -8881,7 +9071,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 223,
@@ -8921,7 +9112,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 8,
+    "bonus": "0.00"
   },
   {
     "id": 224,
@@ -8961,7 +9153,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 225,
@@ -9001,7 +9194,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 226,
@@ -9041,7 +9235,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 227,
@@ -9081,7 +9276,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 228,
@@ -9121,7 +9317,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 229,
@@ -9161,7 +9358,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 230,
@@ -9201,7 +9399,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 231,
@@ -9241,7 +9439,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 232,
@@ -9281,7 +9480,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 233,
@@ -9321,7 +9521,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 234,
@@ -9361,7 +9562,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 235,
@@ -9401,7 +9603,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 236,
@@ -9441,7 +9644,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 237,
@@ -9481,7 +9685,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 238,
@@ -9521,7 +9726,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 239,
@@ -9561,7 +9767,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -1
   },
   {
     "id": 240,
@@ -9601,7 +9807,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 241,
@@ -9641,7 +9848,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 11,
+    "bonus": "0.00"
   },
   {
     "id": 242,
@@ -9681,7 +9889,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 243,
@@ -9721,7 +9930,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 244,
@@ -9761,7 +9971,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 6,
+    "bonus": "0.00"
   },
   {
     "id": 245,
@@ -9801,7 +10012,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 246,
@@ -9841,7 +10053,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 247,
@@ -9881,7 +10094,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 248,
@@ -9921,7 +10135,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 249,
@@ -9961,7 +10176,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 250,
@@ -10001,7 +10217,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 251,
@@ -10041,7 +10258,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 252,
@@ -10081,7 +10299,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 253,
@@ -10121,7 +10340,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 254,
@@ -10161,7 +10381,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 255,
@@ -10201,7 +10422,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 4,
+    "bonus": "0.00"
   },
   {
     "id": 256,
@@ -10241,7 +10463,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 9,
+    "bonus": "0.00"
   },
   {
     "id": 257,
@@ -10281,7 +10504,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 258,
@@ -10321,7 +10545,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 259,
@@ -10361,7 +10586,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 260,
@@ -10401,7 +10627,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 261,
@@ -10441,7 +10668,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 262,
@@ -10481,7 +10709,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 263,
@@ -10521,7 +10750,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 264,
@@ -10561,7 +10791,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 265,
@@ -10601,7 +10832,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 266,
@@ -10641,7 +10873,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 267,
@@ -10681,7 +10914,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 268,
@@ -10721,7 +10955,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 269,
@@ -10761,7 +10996,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 270,
@@ -10801,7 +11037,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 271,
@@ -10841,7 +11078,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 272,
@@ -10881,7 +11119,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 5,
+    "bonus": "0.00"
   },
   {
     "id": 273,
@@ -10921,7 +11160,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 274,
@@ -10961,7 +11201,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 275,
@@ -11001,7 +11242,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 276,
@@ -11041,7 +11283,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 277,
@@ -11081,7 +11324,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 278,
@@ -11121,7 +11365,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 279,
@@ -11161,7 +11406,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 280,
@@ -11201,7 +11447,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 281,
@@ -11241,7 +11488,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 282,
@@ -11281,7 +11529,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 283,
@@ -11321,7 +11570,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 284,
@@ -11361,7 +11611,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 285,
@@ -11401,7 +11652,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 286,
@@ -11441,7 +11693,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 287,
@@ -11481,7 +11734,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 288,
@@ -11521,7 +11775,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 289,
@@ -11561,7 +11816,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 290,
@@ -11601,7 +11857,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 291,
@@ -11641,7 +11898,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 292,
@@ -11681,7 +11939,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 293,
@@ -11721,7 +11980,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 21,
+    "bonus": "0.00"
   },
   {
     "id": 294,
@@ -11761,7 +12021,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 295,
@@ -11801,7 +12062,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 296,
@@ -11841,7 +12103,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 297,
@@ -11881,7 +12144,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 298,
@@ -11921,7 +12185,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 299,
@@ -11961,7 +12226,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 300,
@@ -12001,7 +12267,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 301,
@@ -12041,7 +12308,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 302,
@@ -12081,7 +12349,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 303,
@@ -12121,7 +12390,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 304,
@@ -12161,7 +12431,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 305,
@@ -12201,7 +12472,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 306,
@@ -12241,7 +12513,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 307,
@@ -12281,7 +12554,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 308,
@@ -12321,7 +12595,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 309,
@@ -12361,7 +12636,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 310,
@@ -12401,7 +12677,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 311,
@@ -12441,7 +12718,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 312,
@@ -12481,7 +12759,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 313,
@@ -12521,7 +12800,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 314,
@@ -12561,7 +12841,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 315,
@@ -12601,7 +12882,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 316,
@@ -12641,7 +12923,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 317,
@@ -12681,7 +12964,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 318,
@@ -12721,7 +13005,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 319,
@@ -12761,7 +13046,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 320,
@@ -12801,7 +13087,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 321,
@@ -12841,7 +13128,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 322,
@@ -12881,7 +13169,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 323,
@@ -12921,7 +13210,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 324,
@@ -12961,7 +13251,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 325,
@@ -13001,7 +13292,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 326,
@@ -13041,7 +13333,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 327,
@@ -13081,7 +13374,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 328,
@@ -13121,7 +13415,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 329,
@@ -13161,7 +13456,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 330,
@@ -13201,7 +13497,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 331,
@@ -13241,7 +13538,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 332,
@@ -13281,7 +13579,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 333,
@@ -13321,7 +13620,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 334,
@@ -13361,7 +13661,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 335,
@@ -13401,7 +13702,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 336,
@@ -13441,7 +13743,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 337,
@@ -13481,7 +13784,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 338,
@@ -13521,7 +13825,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 339,
@@ -13561,7 +13866,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 340,
@@ -13601,7 +13907,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 341,
@@ -13641,7 +13948,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 342,
@@ -13681,7 +13989,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 343,
@@ -13721,7 +14030,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 344,
@@ -13761,7 +14071,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 345,
@@ -13801,7 +14112,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 346,
@@ -13841,7 +14153,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 347,
@@ -13881,7 +14194,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 348,
@@ -13921,7 +14235,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 349,
@@ -13961,7 +14276,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 350,
@@ -14001,7 +14317,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 351,
@@ -14041,7 +14358,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 352,
@@ -14081,7 +14399,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 353,
@@ -14121,7 +14440,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 354,
@@ -14161,7 +14481,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -17
   },
   {
     "id": 355,
@@ -14201,7 +14521,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 356,
@@ -14241,7 +14562,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 357,
@@ -14281,7 +14603,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 358,
@@ -14321,7 +14644,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 359,
@@ -14361,7 +14685,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 360,
@@ -14401,7 +14726,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 361,
@@ -14441,7 +14767,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 362,
@@ -14481,7 +14808,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 363,
@@ -14521,7 +14849,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 364,
@@ -14561,7 +14890,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 365,
@@ -14601,7 +14931,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 366,
@@ -14641,7 +14972,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 367,
@@ -14681,7 +15013,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 368,
@@ -14721,7 +15054,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 369,
@@ -14761,7 +15095,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 370,
@@ -14801,7 +15136,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 371,
@@ -14841,7 +15177,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 372,
@@ -14881,7 +15218,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 373,
@@ -14921,7 +15259,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 374,
@@ -14961,7 +15300,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 375,
@@ -15001,7 +15341,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 376,
@@ -15041,7 +15382,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 377,
@@ -15081,7 +15423,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 378,
@@ -15121,7 +15464,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 379,
@@ -15161,7 +15505,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 380,
@@ -15201,7 +15546,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 381,
@@ -15241,7 +15587,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 382,
@@ -15281,7 +15628,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 383,
@@ -15321,7 +15669,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 384,
@@ -15361,7 +15710,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 385,
@@ -15401,7 +15751,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 386,
@@ -15441,7 +15792,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 387,
@@ -15481,7 +15833,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 388,
@@ -15521,7 +15874,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 389,
@@ -15561,7 +15915,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 390,
@@ -15601,7 +15956,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 391,
@@ -15641,7 +15997,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 392,
@@ -15681,7 +16038,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 393,
@@ -15721,7 +16079,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 394,
@@ -15761,7 +16120,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 395,
@@ -15801,7 +16161,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 396,
@@ -15841,7 +16202,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 397,
@@ -15881,7 +16243,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 398,
@@ -15921,7 +16284,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 399,
@@ -15961,7 +16325,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 400,
@@ -16001,7 +16366,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 401,
@@ -16041,7 +16407,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 402,
@@ -16081,7 +16448,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 403,
@@ -16121,7 +16489,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 404,
@@ -16161,7 +16530,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 405,
@@ -16201,7 +16571,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 406,
@@ -16241,7 +16612,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 407,
@@ -16281,7 +16653,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 408,
@@ -16321,7 +16694,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 409,
@@ -16361,7 +16735,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 410,
@@ -16401,7 +16776,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 411,
@@ -16441,7 +16817,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 412,
@@ -16481,7 +16858,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 413,
@@ -16521,7 +16899,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 414,
@@ -16561,7 +16940,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 415,
@@ -16601,7 +16981,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 416,
@@ -16641,7 +17022,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 49,
+    "bonus": "0.00"
   },
   {
     "id": 417,
@@ -16681,7 +17063,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 418,
@@ -16721,7 +17104,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 419,
@@ -16761,7 +17145,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 420,
@@ -16801,7 +17186,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 421,
@@ -16841,7 +17227,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 422,
@@ -16881,7 +17268,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 423,
@@ -16921,7 +17309,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 424,
@@ -16961,7 +17350,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 425,
@@ -17001,7 +17391,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 426,
@@ -17041,7 +17432,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 427,
@@ -17081,7 +17473,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 428,
@@ -17121,7 +17514,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 3,
+    "bonus": "0.00"
   },
   {
     "id": 429,
@@ -17161,7 +17555,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 430,
@@ -17201,7 +17596,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 431,
@@ -17241,7 +17637,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 432,
@@ -17281,7 +17678,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 433,
@@ -17321,7 +17719,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 434,
@@ -17361,7 +17760,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 435,
@@ -17401,7 +17801,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 436,
@@ -17441,7 +17842,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 437,
@@ -17481,7 +17883,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 438,
@@ -17521,7 +17924,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 439,
@@ -17561,7 +17965,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 440,
@@ -17601,7 +18006,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 441,
@@ -17641,7 +18047,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 442,
@@ -17681,7 +18088,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 443,
@@ -17721,7 +18129,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 444,
@@ -17761,7 +18170,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 445,
@@ -17801,7 +18211,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 446,
@@ -17841,7 +18252,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 447,
@@ -17881,7 +18293,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 448,
@@ -17921,7 +18334,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 449,
@@ -17961,7 +18375,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 450,
@@ -18001,7 +18416,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 451,
@@ -18041,7 +18457,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 452,
@@ -18081,7 +18498,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 453,
@@ -18121,7 +18539,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 454,
@@ -18161,7 +18580,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 455,
@@ -18201,7 +18621,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 456,
@@ -18241,7 +18662,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 457,
@@ -18281,7 +18703,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 458,
@@ -18321,7 +18744,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 459,
@@ -18361,7 +18785,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 460,
@@ -18401,7 +18826,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 461,
@@ -18441,7 +18867,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 462,
@@ -18481,7 +18908,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 463,
@@ -18521,7 +18949,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 464,
@@ -18561,7 +18990,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 465,
@@ -18601,7 +19031,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 466,
@@ -18641,7 +19072,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 467,
@@ -18681,7 +19113,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 468,
@@ -18721,7 +19154,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 469,
@@ -18761,7 +19195,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 470,
@@ -18801,7 +19236,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 471,
@@ -18841,7 +19277,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 472,
@@ -18881,7 +19318,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 473,
@@ -18921,7 +19359,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 474,
@@ -18961,7 +19400,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 475,
@@ -19001,7 +19441,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 476,
@@ -19041,7 +19482,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 477,
@@ -19081,7 +19523,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 478,
@@ -19121,7 +19564,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 479,
@@ -19161,7 +19605,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 480,
@@ -19201,7 +19646,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 481,
@@ -19241,7 +19687,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 482,
@@ -19281,7 +19728,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 483,
@@ -19321,7 +19769,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 484,
@@ -19361,7 +19810,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 485,
@@ -19401,7 +19851,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 486,
@@ -19441,7 +19892,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 487,
@@ -19481,7 +19933,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 488,
@@ -19521,7 +19974,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 489,
@@ -19561,7 +20015,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 490,
@@ -19601,7 +20056,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 491,
@@ -19641,7 +20097,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 492,
@@ -19681,7 +20138,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 493,
@@ -19721,7 +20179,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 494,
@@ -19761,7 +20220,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 495,
@@ -19801,7 +20261,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 496,
@@ -19841,7 +20302,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 497,
@@ -19881,7 +20343,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 498,
@@ -19921,7 +20384,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 499,
@@ -19961,7 +20425,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 500,
@@ -20001,7 +20466,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 501,
@@ -20041,7 +20507,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 502,
@@ -20081,7 +20548,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 503,
@@ -20121,7 +20589,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -45
   },
   {
     "id": 504,
@@ -20161,7 +20629,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 505,
@@ -20201,7 +20670,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 506,
@@ -20241,7 +20711,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 507,
@@ -20281,7 +20752,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 508,
@@ -20321,7 +20793,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 509,
@@ -20361,7 +20834,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 510,
@@ -20401,7 +20875,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 511,
@@ -20441,7 +20916,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 512,
@@ -20481,7 +20957,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 513,
@@ -20521,7 +20998,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 514,
@@ -20561,7 +21039,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -4
   },
   {
     "id": 515,
@@ -20601,7 +21079,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 516,
@@ -20641,7 +21120,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 517,
@@ -20681,7 +21161,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 518,
@@ -20721,7 +21202,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 519,
@@ -20761,7 +21243,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 520,
@@ -20801,7 +21284,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 521,
@@ -20841,7 +21325,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 522,
@@ -20881,7 +21366,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 523,
@@ -20921,7 +21407,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 524,
@@ -20961,7 +21448,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 525,
@@ -21001,7 +21489,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 526,
@@ -21041,7 +21530,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 527,
@@ -21081,7 +21571,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 528,
@@ -21121,7 +21612,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 529,
@@ -21161,7 +21653,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 530,
@@ -21201,7 +21694,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 531,
@@ -21241,7 +21735,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 532,
@@ -21281,7 +21776,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 533,
@@ -21321,7 +21817,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 534,
@@ -21361,7 +21858,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 535,
@@ -21401,7 +21899,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 536,
@@ -21441,7 +21940,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 537,
@@ -21481,7 +21981,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 538,
@@ -21521,7 +22022,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 539,
@@ -21561,7 +22063,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 540,
@@ -21601,7 +22104,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 541,
@@ -21641,7 +22145,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 542,
@@ -21681,7 +22186,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 543,
@@ -21721,7 +22227,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 544,
@@ -21761,7 +22268,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 545,
@@ -21801,7 +22309,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 546,
@@ -21841,7 +22350,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 547,
@@ -21881,7 +22391,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 548,
@@ -21921,7 +22432,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 549,
@@ -21961,7 +22473,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 550,
@@ -22001,7 +22514,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 551,
@@ -22041,7 +22555,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 552,
@@ -22081,7 +22596,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 553,
@@ -22121,7 +22637,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 554,
@@ -22161,7 +22678,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 555,
@@ -22201,7 +22719,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 556,
@@ -22241,7 +22760,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 557,
@@ -22281,7 +22801,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 558,
@@ -22321,7 +22842,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 559,
@@ -22361,7 +22883,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 560,
@@ -22401,7 +22924,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 561,
@@ -22441,7 +22965,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 562,
@@ -22481,7 +23006,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 563,
@@ -22521,7 +23047,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 564,
@@ -22561,7 +23088,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 565,
@@ -22601,7 +23129,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 7,
+    "bonus": "0.00"
   },
   {
     "id": 566,
@@ -22641,7 +23170,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 567,
@@ -22681,7 +23211,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 568,
@@ -22721,7 +23252,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 1,
+    "bonus": "0.00"
   },
   {
     "id": 569,
@@ -22761,7 +23293,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 570,
@@ -22801,7 +23334,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 571,
@@ -22841,7 +23375,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 9,
+    "bonus": "0.00"
   },
   {
     "id": 572,
@@ -22881,7 +23416,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 25,
+    "bonus": "0.00"
   },
   {
     "id": 573,
@@ -22921,7 +23457,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 2,
+    "bonus": "0.00"
   },
   {
     "id": 574,
@@ -22961,7 +23498,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 575,
@@ -23001,7 +23539,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 576,
@@ -23041,7 +23580,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "$0.00"
   },
   {
     "id": 577,
@@ -23081,7 +23621,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "$0.00"
   },
   {
     "id": 578,
@@ -23121,7 +23662,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 579,
@@ -23161,7 +23703,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 580,
@@ -23201,7 +23744,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 581,
@@ -23241,7 +23785,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 582,
@@ -23281,7 +23826,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 583,
@@ -23321,7 +23867,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 584,
@@ -23361,7 +23908,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 585,
@@ -23401,7 +23949,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 586,
@@ -23441,7 +23990,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 587,
@@ -23481,7 +24031,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 588,
@@ -23521,7 +24072,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 589,
@@ -23561,7 +24113,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 590,
@@ -23601,7 +24154,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 591,
@@ -23641,7 +24195,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 592,
@@ -23681,7 +24236,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 593,
@@ -23721,7 +24277,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 594,
@@ -23761,7 +24318,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 595,
@@ -23801,7 +24359,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 596,
@@ -23841,7 +24400,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 597,
@@ -23881,7 +24441,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 598,
@@ -23921,7 +24482,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 599,
@@ -23961,7 +24523,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 600,
@@ -24001,7 +24564,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 601,
@@ -24041,7 +24605,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 602,
@@ -24081,7 +24646,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 603,
@@ -24121,7 +24687,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 604,
@@ -24161,7 +24728,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 605,
@@ -24201,7 +24769,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 606,
@@ -24241,7 +24810,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 607,
@@ -24281,7 +24851,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 608,
@@ -24321,7 +24892,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 609,
@@ -24361,7 +24933,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 610,
@@ -24401,7 +24974,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 611,
@@ -24441,7 +25015,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 612,
@@ -24481,7 +25056,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 613,
@@ -24521,7 +25097,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 614,
@@ -24561,7 +25138,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 615,
@@ -24601,7 +25179,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 616,
@@ -24641,7 +25220,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 617,
@@ -24681,7 +25261,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 618,
@@ -24721,7 +25302,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 619,
@@ -24761,7 +25343,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 620,
@@ -24801,7 +25384,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 621,
@@ -24841,7 +25425,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 622,
@@ -24881,7 +25466,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 623,
@@ -24921,7 +25507,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 624,
@@ -24961,7 +25548,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 625,
@@ -25001,7 +25589,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 626,
@@ -25041,7 +25630,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 627,
@@ -25081,7 +25671,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 628,
@@ -25121,7 +25712,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 629,
@@ -25161,7 +25753,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 630,
@@ -25201,7 +25794,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 631,
@@ -25241,7 +25835,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 632,
@@ -25281,7 +25876,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 633,
@@ -25321,7 +25917,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 634,
@@ -25361,7 +25958,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 635,
@@ -25401,7 +25999,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 636,
@@ -25441,7 +26040,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 637,
@@ -25481,7 +26081,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 638,
@@ -25521,7 +26122,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 639,
@@ -25561,7 +26163,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 640,
@@ -25601,7 +26204,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 641,
@@ -25641,7 +26245,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 642,
@@ -25681,7 +26286,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 643,
@@ -25721,7 +26327,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 644,
@@ -25761,7 +26368,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 645,
@@ -25801,7 +26409,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 646,
@@ -25841,7 +26450,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 647,
@@ -25881,7 +26491,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 648,
@@ -25921,7 +26532,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 649,
@@ -25961,7 +26573,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 650,
@@ -26001,7 +26614,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 651,
@@ -26041,7 +26655,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 652,
@@ -26081,7 +26696,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 653,
@@ -26121,7 +26737,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 654,
@@ -26161,7 +26778,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 655,
@@ -26201,7 +26819,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 656,
@@ -26241,7 +26860,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 657,
@@ -26281,7 +26901,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 658,
@@ -26321,7 +26942,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 659,
@@ -26361,7 +26983,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 660,
@@ -26401,7 +27024,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 661,
@@ -26441,7 +27065,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 662,
@@ -26481,7 +27106,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 663,
@@ -26521,7 +27147,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 664,
@@ -26561,7 +27188,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 665,
@@ -26601,7 +27229,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 666,
@@ -26641,7 +27270,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 667,
@@ -26681,7 +27311,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 668,
@@ -26721,7 +27352,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 669,
@@ -26761,7 +27393,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 670,
@@ -26801,7 +27434,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 671,
@@ -26841,7 +27475,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 672,
@@ -26881,7 +27516,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 673,
@@ -26921,7 +27557,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 674,
@@ -26961,7 +27598,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 675,
@@ -27001,7 +27639,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 676,
@@ -27041,7 +27680,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 677,
@@ -27081,7 +27721,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 678,
@@ -27121,7 +27762,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 679,
@@ -27161,7 +27803,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 680,
@@ -27201,7 +27844,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 681,
@@ -27241,7 +27885,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 682,
@@ -27281,7 +27926,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 683,
@@ -27321,7 +27967,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 684,
@@ -27361,7 +28008,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 685,
@@ -27401,7 +28049,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 686,
@@ -27441,7 +28090,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 687,
@@ -27481,7 +28131,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 688,
@@ -27521,7 +28172,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 689,
@@ -27561,7 +28213,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -2
   },
   {
     "id": 690,
@@ -27601,7 +28253,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 691,
@@ -27641,7 +28294,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 692,
@@ -27681,7 +28335,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 693,
@@ -27721,7 +28376,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 694,
@@ -27761,7 +28417,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 695,
@@ -27801,7 +28458,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 696,
@@ -27841,7 +28499,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 697,
@@ -27881,7 +28540,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 698,
@@ -27921,7 +28581,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 699,
@@ -27961,7 +28622,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 700,
@@ -28001,7 +28663,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 701,
@@ -28041,7 +28704,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 702,
@@ -28081,7 +28745,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 703,
@@ -28121,7 +28786,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 704,
@@ -28161,7 +28827,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 705,
@@ -28201,7 +28868,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 706,
@@ -28241,7 +28909,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 707,
@@ -28281,7 +28950,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 708,
@@ -28321,7 +28991,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 709,
@@ -28361,7 +29032,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 710,
@@ -28401,7 +29073,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 711,
@@ -28441,7 +29114,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 712,
@@ -28481,7 +29155,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 713,
@@ -28521,7 +29196,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 714,
@@ -28561,7 +29237,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 715,
@@ -28601,7 +29278,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 716,
@@ -28641,7 +29319,7 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": -4
   },
   {
     "id": 717,
@@ -28681,7 +29359,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 718,
@@ -28721,7 +29400,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 719,
@@ -28761,7 +29441,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 720,
@@ -28801,7 +29482,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 721,
@@ -28841,7 +29523,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 722,
@@ -28881,7 +29564,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 723,
@@ -28921,7 +29605,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 724,
@@ -28961,7 +29646,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 725,
@@ -29001,7 +29687,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 726,
@@ -29041,7 +29728,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 727,
@@ -29081,7 +29769,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 728,
@@ -29121,7 +29810,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 729,
@@ -29161,7 +29851,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 730,
@@ -29201,7 +29892,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 731,
@@ -29241,7 +29933,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 732,
@@ -29281,7 +29974,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 733,
@@ -29321,7 +30015,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 734,
@@ -29361,7 +30056,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 735,
@@ -29401,7 +30097,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 736,
@@ -29441,7 +30138,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 737,
@@ -29481,7 +30179,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 738,
@@ -29521,7 +30220,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 739,
@@ -29561,7 +30261,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 740,
@@ -29601,7 +30302,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 741,
@@ -29641,7 +30343,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 742,
@@ -29681,7 +30384,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 743,
@@ -29721,7 +30425,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 744,
@@ -29761,7 +30466,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 745,
@@ -29801,7 +30507,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 746,
@@ -29841,7 +30548,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 747,
@@ -29881,7 +30589,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 748,
@@ -29921,7 +30630,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 749,
@@ -29961,7 +30671,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 750,
@@ -30001,7 +30712,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 751,
@@ -30041,7 +30753,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 752,
@@ -30081,7 +30794,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 753,
@@ -30121,7 +30835,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 754,
@@ -30161,7 +30876,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 755,
@@ -30201,7 +30917,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 756,
@@ -30241,7 +30958,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 757,
@@ -30281,7 +30999,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 758,
@@ -30321,7 +31040,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 759,
@@ -30361,7 +31081,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 760,
@@ -30401,7 +31122,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 761,
@@ -30441,7 +31163,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 762,
@@ -30481,7 +31204,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 763,
@@ -30521,7 +31245,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 764,
@@ -30561,7 +31286,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 765,
@@ -30601,7 +31327,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 766,
@@ -30641,7 +31368,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 767,
@@ -30681,7 +31409,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 768,
@@ -30721,7 +31450,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 769,
@@ -30761,7 +31491,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 770,
@@ -30801,7 +31532,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 771,
@@ -30841,7 +31573,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 772,
@@ -30881,7 +31614,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 773,
@@ -30921,7 +31655,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 774,
@@ -30961,7 +31696,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 775,
@@ -31001,7 +31737,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 776,
@@ -31041,7 +31778,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 777,
@@ -31081,7 +31819,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 778,
@@ -31121,7 +31860,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 779,
@@ -31161,7 +31901,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 780,
@@ -31201,7 +31942,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 781,
@@ -31241,7 +31983,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 782,
@@ -31281,7 +32024,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 783,
@@ -31321,7 +32065,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 784,
@@ -31361,7 +32106,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 785,
@@ -31401,7 +32147,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 786,
@@ -31441,7 +32188,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 787,
@@ -31481,7 +32229,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 788,
@@ -31521,7 +32270,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 789,
@@ -31561,7 +32311,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 790,
@@ -31601,7 +32352,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 791,
@@ -31641,7 +32393,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 792,
@@ -31681,7 +32434,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 793,
@@ -31721,7 +32475,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 794,
@@ -31761,7 +32516,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 795,
@@ -31801,7 +32557,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 796,
@@ -31841,7 +32598,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 797,
@@ -31881,7 +32639,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 798,
@@ -31921,7 +32680,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 799,
@@ -31961,7 +32721,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 800,
@@ -32001,7 +32762,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 801,
@@ -32041,7 +32803,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 802,
@@ -32081,7 +32844,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 803,
@@ -32121,7 +32885,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 804,
@@ -32161,7 +32926,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 805,
@@ -32201,7 +32967,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 806,
@@ -32241,7 +33008,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 807,
@@ -32281,7 +33049,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 808,
@@ -32321,7 +33090,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 809,
@@ -32361,7 +33131,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 810,
@@ -32401,7 +33172,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 811,
@@ -32441,7 +33213,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 812,
@@ -32481,7 +33254,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 813,
@@ -32521,7 +33295,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 814,
@@ -32561,7 +33336,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 815,
@@ -32601,7 +33377,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 816,
@@ -32641,7 +33418,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 817,
@@ -32681,7 +33459,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 818,
@@ -32721,7 +33500,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 819,
@@ -32761,7 +33541,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   },
   {
     "id": 820,
@@ -32801,7 +33582,8 @@ const creatorsData = [
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00",
-    "estRev": 0
+    "estRev": 0,
+    "bonus": "0.00"
   }
 ];
 

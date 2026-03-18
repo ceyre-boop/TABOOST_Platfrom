@@ -1172,19 +1172,17 @@ function updateScoreAndLevels() {
     
     // Revenue Streams - show diamonds
     const diamonds = myData.diamonds || 0;
-    const diamondText = formatNumber(diamonds) + ' 💎';
-    
-    // Update diamond display
-    const diamondRevenueEl = document.getElementById('diamondRevenue');
-    if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = diamondText;
-    }
-    
-    // Update diamond USD value (using estRev from column AN, fallback to rewardsMonth)
+    // Update Dollars display (main value - using estRev from column AM)
     const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
     if (diamondRevenueUSDEl) {
-        const estRev = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
+        const estRev = myData.estRev || 0;
         diamondRevenueUSDEl.textContent = '≈ $' + estRev.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    }
+    
+    // Update diamonds as secondary info
+    const diamondRevenueEl = document.getElementById('diamondRevenue');
+    if (diamondRevenueEl) {
+        diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
     }
     
     // PRO BONUS CALCULATION
@@ -1258,11 +1256,11 @@ function updateScoreAndLevels() {
         const scoreValue = parseInt(myData.score) || 0;
         
         if (scoreValue >= 70) {
-            // Use real Pro Bonus from column AO (Rewards Month)
-            const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
-            proBonusRevenueValue.textContent = '≈ $' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            // Use Cash Bonus from column AN (Bonus)
+            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
+            proBonusRevenueValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
             proBonusRevenueValue.style.color = '#ffd700'; // Gold color
-            proBonusRevenueNote.textContent = 'Pro Bonus Earned';
+            proBonusRevenueNote.textContent = 'Cash Bonus Earned';
             
             // Add highlight effect
             if (proBonusRevenueItem) {
