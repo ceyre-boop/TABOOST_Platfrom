@@ -177,8 +177,9 @@ class TaboostDataService {
             daysGoal: parseInt(values[38]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 38 (Days Month)
             hoursGoal: parseInt(values[40]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 40 (Hours Month)
             
-            // Column AN (index 39) - Bonus / Estimated Revenue (real dollar amount)
-            estRev: parseFloat(values[39]?.toString().replace(/[$,]/g, '')) || 0,
+            // Column AQ (index 40) - Rewards Month (estimated revenue dollar amount)
+            // TODO: Update to column AM (index 39) when Est Rev is added to CSV
+            estRev: parseFloat(values[40]?.toString().replace(/[$,]/g, '')) || 0,
             
             // Note: This CSV only has Rewards Month (current), not full monthly history
             // Monthly history comes from HISTORY.csv via creator_trends.json
