@@ -41,15 +41,6 @@ function generateRollingCalendar() {
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
             color: "#ff0044"
-        },
-        {
-            id: 4,
-            title: "Wish Upon a Beat",
-            type: "campaign",
-            // March 5-15, 2026
-            startDate: new Date(2026, 2, 5), // March 5
-            endDate: new Date(2026, 2, 15),  // March 15
-            color: "#ffd700"
         }
     ];
     
