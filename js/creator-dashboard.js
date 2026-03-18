@@ -1174,18 +1174,11 @@ function updateScoreAndLevels() {
     const diamonds = myData.diamonds || 0;
     const diamondText = formatNumber(diamonds) + ' 💎';
     
-    // Update both diamond displays
+    // Update diamond display
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
         diamondRevenueEl.textContent = diamondText;
     }
-    
-    const diamondCountEl = document.getElementById('diamondCount');
-    if (diamondCountEl) {
-        diamondCountEl.textContent = diamondText;
-    }
-    
-    console.log('DEBUG - Revenue: Diamonds =', diamonds);
     
     // PRO BONUS CALCULATION
     // Qualification: Score >= 70 AND Tier maintained (same) or up
