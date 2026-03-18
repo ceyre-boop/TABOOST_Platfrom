@@ -450,14 +450,14 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysMonth || 22,
+            target: myData.daysGoal || 22,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursMonth || 80,
+            target: myData.hoursGoal || 80,
             unit: 'h'
         },
         {
@@ -471,8 +471,8 @@ function updateGoals() {
     
     // DEBUG: Log goal values
     console.log('DEBUG Goals for', myData.username, ':', 
-        'daysGoal=' + myData.daysGoal, 
-        'hoursGoal=' + myData.hoursGoal, 
+        'daysGoal=' + myData.daysGoal,
+        'hoursGoal=' + myData.hoursGoal,
         'tierGoal=' + myData.tierGoal, 
         'diamondsGoal=' + myData.diamondsGoal,
         'liveStreams=' + myData.liveStreams,
