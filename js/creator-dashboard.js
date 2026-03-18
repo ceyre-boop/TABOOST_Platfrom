@@ -966,12 +966,12 @@ function updateHistory() {
             const lastMonth = myData.diamondsLastMonth || current;
             const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
             earningsData = [
-                { diamonds: twoMonthsAgo * 0.8 || current * 0.65, revenue: '≈ $0.00', rewards: 0 },
-                { diamonds: twoMonthsAgo * 0.85 || current * 0.7, revenue: '≈ $0.00', rewards: 0 },
-                { diamonds: twoMonthsAgo * 0.92 || current * 0.8, revenue: '≈ $0.00', rewards: 0 },
-                { diamonds: twoMonthsAgo || current * 0.85, revenue: '≈ $0.00', rewards: 0 },
-                { diamonds: lastMonth * 0.95 || current * 0.9, revenue: '≈ $0.00', rewards: 0 },
-                { diamonds: lastMonth || current * 0.95, revenue: '≈ $0.00', rewards: 0 }
+                { diamonds: Math.round(twoMonthsAgo * 0.8 || current * 0.65), revenue: '$0.00', rewards: 0 },
+                { diamonds: Math.round(twoMonthsAgo * 0.85 || current * 0.7), revenue: '$0.00', rewards: 0 },
+                { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rewards: 0 },
+                { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rewards: 0 },
+                { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rewards: 0 },
+                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rewards: 0 }
             ];
         }
     }
@@ -983,8 +983,9 @@ function updateHistory() {
         const prevDiamonds = index > 0 ? (earningsData[index - 1]?.diamonds || diamonds) : diamonds;
         const change = index > 0 && prevDiamonds > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
         
-        // Revenue from CSV (use as-is since it's actual revenue)
-        const revenue = data.revenue || '$0.00';
+        // Revenue from CSV with ≈ prefix
+        const revenueRaw = data.revenue || '$0.00';
+        const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈ ' + revenueRaw;
         
         // Rewards from CSV
         const rewards = data.rewards > 0 ? '$' + formatNumber(data.rewards) : '--';
