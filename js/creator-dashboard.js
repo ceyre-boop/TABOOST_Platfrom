@@ -420,11 +420,11 @@ function updateActivityStats() {
         const hourlyRateValue = document.getElementById('hourlyRateValue');
         if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
         
-        // Hours goal mini bar - use monthly hours goal
+        // Hours goal mini bar - use hoursGoal from column
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hoursGoal = myData.hoursMonth || 80;
+            const hoursGoal = myData.hoursGoal || 60;
             const hourPct = Math.min(100, ((myData.hours || 0) / hoursGoal) * 100);
             hoursFill.style.width = hourPct + '%';
             hoursGoalText.textContent = hoursGoal + 'h';
@@ -523,7 +523,7 @@ function updateGoals() {
                     <div class="goal-progress-fill ${status}" style="width: ${pct}%"></div>
                 </div>
                 <div class="goal-numbers">
-                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}+${g.unit}</span>
+                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}${g.unit}</span>
                     <span>${pct.toFixed(0)}% complete</span>
                 </div>
                 <div class="goal-pace" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
