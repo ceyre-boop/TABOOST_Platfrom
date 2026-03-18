@@ -949,7 +949,7 @@ function updateHistory() {
     
     if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
         // Use real earnings from CSV - reverse to match chronological order (Sep→Feb)
-        earningsData = myData.earningsHistory.slice(0, 6).reverse();
+        earningsData = [...myData.earningsHistory].reverse();
     } else {
         // Fallback to trends data or calculated estimates
         const trends = creatorTrends[myData.username];
@@ -979,9 +979,14 @@ function updateHistory() {
     // Build rows with calculated changes using Revenue from CSV
     const rows = periods.map((period, index) => {
         const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rewards: 0 };
-        const diamonds = data.diamonds || 0;
-        const prevDiamonds = index > 0 ? (earningsData[index - 1]?.diamonds || diamonds) : diamonds;
-        const change = index > 0 && prevDiamonds > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
+        const diamonds = parseInt(data.diamonds) || 0;
+        const prevData = index > 0 ? earningsData[index - 1] : null;
+        const prevDiamonds = prevData ? (parseInt(prevData.diamonds) || 0) : 0;
+        let change = '--';
+        if (index > 0 && prevDiamonds > 0) {
+            const changeVal = ((diamonds - prevDiamonds) / prevDiamonds * 100);
+            change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
+        }
         
         // Revenue from CSV with ≈ prefix
         const revenueRaw = data.revenue || '$0.00';
@@ -1000,9 +1005,10 @@ function updateHistory() {
     });
     
     document.getElementById('historyTableBody').innerHTML = rows.map(r => {
-        const changeNum = parseFloat(r.change);
-        const changeClass = isNaN(changeNum) ? '' : changeNum >= 0 ? 'up' : 'down';
-        const changeIcon = isNaN(changeNum) ? '' : changeNum >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+        const isChange = r.change !== '--';
+        const changeClass = isChange ? (r.change.includes('↑') ? 'up' : 'down') : '';
+        const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
+        const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
         
         return `
             <tr>
@@ -1011,9 +1017,9 @@ function updateHistory() {
                 <td style="color: var(--success);">${r.usd}</td>
                 <td>${r.rewards}</td>
                 <td>
-                    ${r.change !== '--' ? `
+                    ${isChange ? `
                         <span class="trend-indicator ${changeClass}">
-                            <i class="fas ${changeIcon}"></i> ${r.change}
+                            <i class="fas ${changeIcon}"></i> ${changeText}
                         </span>
                     ` : '--'}
                 </td>
