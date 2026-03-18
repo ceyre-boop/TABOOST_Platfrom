@@ -178,17 +178,17 @@ class TaboostDataService {
             hoursGoal: parseInt(values[40]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 40 (Hours Month)
             
             // Column AL - Est Rev (real dollar amount)
-            estRev: values[37] ? this.formatNumber(values[37]) : 0, // Column AL = index 37 (Est Rev)
+            estRev: values[37] ? parseFloat(values[37].toString().replace(/[$,]/g, '')) || 0 : 0, // Column AL = index 37 (Est Rev)
             
             // Monthly earnings history (Sep-Feb + Current) from columns AO-AI
             earningsHistory: [
-                this.formatNumber(values[34]) || 0, // Sep 2025 (AI = index 34)
-                this.formatNumber(values[35]) || 0, // Oct 2025 (AJ = index 35)
-                this.formatNumber(values[36]) || 0, // Nov 2025 (AK = index 36)
-                this.formatNumber(values[37]) || 0, // Dec 2025 (AL = index 37)
-                this.formatNumber(values[38]) || 0, // Jan 2026 (AM = index 38)
-                this.formatNumber(values[39]) || 0, // Feb 2026 (AN = index 39)
-                this.formatNumber(values[40]) || 0  // Current (AO = index 40)
+                parseFloat(values[34]?.toString().replace(/[$,]/g, '')) || 0, // Sep 2025 (AI = index 34)
+                parseFloat(values[35]?.toString().replace(/[$,]/g, '')) || 0, // Oct 2025 (AJ = index 35)
+                parseFloat(values[36]?.toString().replace(/[$,]/g, '')) || 0, // Nov 2025 (AK = index 36)
+                parseFloat(values[37]?.toString().replace(/[$,]/g, '')) || 0, // Dec 2025 (AL = index 37)
+                parseFloat(values[38]?.toString().replace(/[$,]/g, '')) || 0, // Jan 2026 (AM = index 38)
+                parseFloat(values[39]?.toString().replace(/[$,]/g, '')) || 0, // Feb 2026 (AN = index 39)
+                parseFloat(values[40]?.toString().replace(/[$,]/g, '')) || 0  // Current (AO = index 40)
             ],
             
             // Column AO - Rewards Month (March 2026 onwards)
