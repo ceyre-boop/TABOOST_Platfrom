@@ -450,14 +450,14 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysGoal || 22,
+            target: myData.daysMonth || 22,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursGoal || 80,
+            target: myData.hoursMonth || 80,
             unit: 'h'
         },
         {
