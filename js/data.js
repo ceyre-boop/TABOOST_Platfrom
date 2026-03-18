@@ -42,7 +42,9 @@ const creatorsData = [
     "hoursMonth": 80,
     "estRev": 11334,
     "bonus": "$0.00",
-    "rewardsMonth": "26,011"
+    "rewardsMonth": "26,011",
+    "earningsHistory": [{"period":"February 2026","diamonds":3264869,"revenue":"$14,691.91","rewards":216000},{"period":"January 2026","diamonds":4620580,"revenue":"$20,792.61","rewards":351000},{"period":"December 2025","diamonds":6231628,"revenue":"$28,042.33","rewards":279000},{"period":"November 2025","diamonds":4022386,"revenue":"$18,100.74","rewards":219600},{"period":"October 2025","diamonds":4081670,"revenue":"$18,367.52","rewards":353000},{"period":"September 2025","diamonds":2877804,"revenue":"$12,950.12","rewards":290000}],
+    "earningsHistory": [{"period":"February 2026","diamonds":3264869,"revenue":"219,600","rewards":6},{"period":"January 2026","diamonds":4620580,"revenue":"353,000","rewards":0},{"period":"December 2025","diamonds":6231628,"revenue":"290,000","rewards":26011},{"period":"November 2025","diamonds":4022386,"revenue":"$0.00","rewards":216000},{"period":"October 2025","diamonds":4081670,"revenue":"$11,333.51","rewards":351000},{"period":"September 2025","diamonds":2877804,"revenue":"$14,691.91","rewards":279000}]
   },
   {
     "id": 2,
