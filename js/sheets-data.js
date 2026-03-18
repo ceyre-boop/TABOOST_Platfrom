@@ -173,9 +173,9 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
-            // Goals data - Column AP (Days Month), Column AQ (Hours Month)
-            daysGoal: parseInt(values[40]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 40 (Days Month)
-            hoursGoal: parseInt(values[41]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 41 (Hours Month)
+            // Goals data - Column N (Days Goal), Column Q (Hrs Goal)
+            daysGoal: parseInt(values[14]) || parseInt(getValue('Days Goal')) || 18, // Column N = index 14
+            hoursGoal: parseInt(values[17]) || parseInt(getValue('Hrs Goal')) || 60, // Column Q = index 17
             
             // Column AM (index 38) - Est Rev (estimated revenue dollar amount)
             estRev: parseFloat(values[38]?.toString().replace(/[$,]/g, '')) || 0,
