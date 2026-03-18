@@ -338,7 +338,9 @@ function updateStats() {
     console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
     console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
-    document.getElementById('currentUSD').textContent = '≈ ' + formatUSD(myData.diamonds);
+    // Use real dollar value from estRev (column AL/AN) instead of calculated estimate
+    const realDollarValue = myData.estRev || 0;
+    document.getElementById('currentUSD').textContent = '$' + realDollarValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
     
     // Growth trend - calculate if not provided
     let growth = parseFloat(myData.growthPercent);
