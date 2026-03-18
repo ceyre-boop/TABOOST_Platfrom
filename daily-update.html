@@ -393,13 +393,13 @@
                         running: cols[35] || '',
                         multiply: cols[36] || '',
                         unlocked: cols[37] || '',
-                        estRev: parseFloat(cols[38]?.toString().replace(/[$,]/g, '')) || 0,
-                        bonus: cols[39] || '',
-                        daysMonth: parseInt(cols[40]) || 0,
-                        hoursMonth: parseInt(cols[41]) || 0,
-                        daysGoal: parseInt(cols[40]) || 22,  // Column AP = Days Month
-                        hoursGoal: parseInt(cols[41]) || 80,  // Column AQ = Hours Month
-                        rewardsMonth: cols[42] || ''
+                        estRev: parseFloat(cols[39]?.toString().replace(/[$,]/g, '')) || 0,  // Column AM = index 39
+                        bonus: cols[40] || '',  // Column AN = index 40
+                        daysMonth: parseInt(cols[41]) || 0,  // Column AP = index 41
+                        hoursMonth: parseInt(cols[42]) || 0,  // Column AQ = index 42
+                        daysGoal: parseInt(cols[41]) || 22,  // Column AP = Days Month
+                        hoursGoal: parseInt(cols[42]) || 80,  // Column AQ = Hours Month
+                        rewardsMonth: cols[43] || ''  // Column AR = index 43
                     });
                 }
             }

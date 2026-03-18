@@ -172,15 +172,15 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
+            // Column AM (index 39) - Est Rev (estimated revenue dollar amount)
+            estRev: parseFloat(values[39]?.toString().replace(/[$,]/g, '')) || 0,
+            
+            // Column AN (index 40) - Bonus
+            bonus: values[40] || '',
+            
             // Goals data - Column AP (Days Month), Column AQ (Hours Month)
-            daysGoal: parseInt(values[40]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 40
-            hoursGoal: parseInt(values[41]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 41
-            
-            // Column AM (index 38) - Est Rev (estimated revenue dollar amount)
-            estRev: parseFloat(values[38]?.toString().replace(/[$,]/g, '')) || 0,
-            
-            // Column AN (index 39) - Bonus
-            bonus: values[39] || '',
+            daysGoal: parseInt(values[41]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 41
+            hoursGoal: parseInt(values[42]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 42
             
             // Note: This CSV only has Rewards Month (current), not full monthly history
             // Monthly history comes from HISTORY.csv via creator_trends.json
