@@ -177,6 +177,9 @@ class TaboostDataService {
             daysGoal: parseInt(values[39]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 39 (Days Month)
             hoursGoal: parseInt(values[40]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 40 (Hours Month)
             
+            // Column AL - Est Rev (real dollar amount)
+            estRev: values[37] ? this.formatNumber(values[37]) : 0, // Column AL = index 37 (Est Rev)
+            
             // Column AO - Rewards Month (March 2026 onwards)
             rewardsMonth: getValue('Rewards Month') || values[40] || '', // Column AO
             
