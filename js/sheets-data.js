@@ -177,10 +177,10 @@ class TaboostDataService {
             daysGoal: parseInt(values[39]) || parseInt(getValue('Days Month')) || 22, // Column AP = index 39 (Days Month)
             hoursGoal: parseInt(values[40]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = index 40 (Hours Month)
             
-            // Column AL - Est Rev (real dollar amount)
-            estRev: values[37] ? parseFloat(values[37].toString().replace(/[$,]/g, '')) || 0 : 0, // Column AL = index 37 (Est Rev)
+            // Column AN - Est Rev (real dollar amount)
+            estRev: values[39] ? parseFloat(values[39].toString().replace(/[$,]/g, '')) || 0 : 0, // Column AN = index 39 (Est Rev)
             
-            // Monthly earnings history (Sep-Feb + Current) from columns AO-AI
+            // Monthly earnings history (Sep-Feb + Current) from columns AI-AO
             earningsHistory: [
                 parseFloat(values[34]?.toString().replace(/[$,]/g, '')) || 0, // Sep 2025 (AI = index 34)
                 parseFloat(values[35]?.toString().replace(/[$,]/g, '')) || 0, // Oct 2025 (AJ = index 35)
