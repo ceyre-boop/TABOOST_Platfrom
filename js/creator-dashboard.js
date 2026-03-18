@@ -1168,22 +1168,22 @@ function updateScoreAndLevels() {
     document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
     document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
     
-    // Revenue Streams - use real Est Rev from column AL
-    const realRevenue = myData.estRev || 0;
+    // Revenue Streams - show diamonds instead of dollars
+    const diamonds = myData.diamonds || 0;
     
-    // Update Diamond Earnings (only remaining revenue item)
+    // Update Diamond Earnings - show diamond count
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = '$' + realRevenue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
     }
     
     const diamondCountEl = document.getElementById('diamondCount');
     if (diamondCountEl) {
-        diamondCountEl.textContent = formatNumber(myData.diamonds) + ' 💎';
+        diamondCountEl.textContent = formatNumber(diamonds) + ' 💎';
     }
     
     // Level Bonus and Score Reward removed - elements no longer exist
-    console.log('DEBUG - Revenue: Real USD =', realRevenue.toFixed(2));
+    console.log('DEBUG - Revenue: Diamonds =', diamonds);
     
     // PRO BONUS CALCULATION
     // Qualification: Score >= 70 AND Tier maintained (same) or up
