@@ -988,11 +988,11 @@ function updateHistory() {
             change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
         }
         
-        // Revenue from CSV - strip cents and add ≈ prefix
+        // Revenue from CSV - strip cents and add ≈ prefix (no space to prevent line break)
         let revenueRaw = data.revenue || '$0.00';
         // Remove cents (everything after decimal point)
         revenueRaw = revenueRaw.replace(/\.\d{2}$/, '');
-        const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈ ' + revenueRaw;
+        const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈' + revenueRaw;
         
         // Rewards from CSV
         const rewards = data.rewards > 0 ? formatNumber(data.rewards) + ' 💎' : '--';
