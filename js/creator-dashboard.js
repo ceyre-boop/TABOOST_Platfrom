@@ -966,11 +966,19 @@ function updateHistory() {
         if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
             // FIX: Convert trends data to earningsData format
             const rewardsHist = trends.rewardsHistory || [];
-            earningsData = trends.diamondsHistory.slice(0, 6).map((diamonds, idx) => ({
-                diamonds: diamonds,
-                revenue: '$' + Math.round(diamonds * 0.005).toLocaleString(),
-                rewards: parseInt(rewardsHist[idx]?.toString().replace(/,/g, '')) || 0
-            }));
+            const revenueHist = trends.revenueHistory || [];
+            earningsData = trends.diamondsHistory.slice(0, 6).map((diamonds, idx) => {
+                // Use actual revenue from revenueHistory if available, otherwise calculate
+                let revenue = revenueHist[idx];
+                if (!revenue || revenue === 0) {
+                    revenue = Math.round(diamonds * 0.005);
+                }
+                return {
+                    diamonds: diamonds,
+                    revenue: '$' + revenue.toLocaleString(),
+                    rewards: parseInt(rewardsHist[idx]?.toString().replace(/,/g, '')) || 0
+                };
+            });
         } else {
             // Fallback: build from available data (6 months) with estimated revenue
             const current = myData.diamonds || 0;
