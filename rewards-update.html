@@ -234,11 +234,16 @@
             <ol>
                 <li><strong>Get a GitHub token</strong> (one-time setup) - click the link above</li>
                 <li><strong>Save the token somewhere safe</strong> (password manager)</li>
-                <li><strong>Drop your Rewards CSV</strong> on the box above</li>
+                <li><strong>From Google Sheets, export the "Earnings History" sheet</strong> (NOT the transaction log)</li>
+                <li><strong>Drop your Earnings History CSV</strong> on the box above</li>
                 <li><strong>Paste your token</strong> in the field that appears</li>
                 <li><strong>Click "Upload & Update Site"</strong></li>
                 <li><strong>Wait 2 minutes</strong> - site updates automatically!</li>
             </ol>
+            <p style="color:#ff6b6b; margin-top:10px; font-size:13px;">
+                ⚠️ <strong>Important:</strong> Use the sheet with monthly totals (Feb 2026, Jan 2026, etc.)<br>
+                NOT the transaction log with Type/Date/Plus/Minus columns.
+            </p>
             <p style="color:#666; margin-top:15px; font-size:13px;">
                 🔒 Your token is stored only in your browser and used only to commit files.
             </p>
@@ -344,14 +349,20 @@
             const hasDailyColumns = headers.includes('3/17') && headers.includes('Level');
             
             if (!hasHistoryColumns) {
-                log('❌ ERROR: This is not a rewards/history CSV!', 'error');
-                log('Expected columns: CID, TikTok, Host', 'error');
-                log('Found columns: ' + headers.slice(0, 10).join(', ') + (headers.length > 10 ? '...' : ''), 'info');
-                log('This tool only works with the Earnings History CSV.', 'error');
-                if (hasDailyColumns) {
+                log('❌ ERROR: Wrong CSV format!', 'error');
+                log('Expected: Earnings History sheet with columns: CID, TikTok, Host, Feb 2026, Jan 2026, etc.', 'error');
+                log('Found columns: ' + headers.slice(0, 8).join(', ') + (headers.length > 8 ? '...' : ''), 'info');
+                
+                // Check if this is a transaction log
+                const isTransactionLog = headers.includes('Type') && headers.includes('Date') && headers.includes('Plus');
+                
+                if (isTransactionLog) {
+                    log('This appears to be a transaction/rewards LOG, not the monthly summary.', 'error');
+                    alert('WRONG SHEET!\n\nYou uploaded: Transaction Log (Type, Date, Plus/Minus)\n\nYou need: Earnings History sheet\n\nFrom Google Sheets, export the sheet with:\n• CID, TikTok, Host columns\n• Monthly columns (Feb 2026, Jan 2026, Dec 2025, etc.)\n\nNot the individual transaction log.');
+                } else if (hasDailyColumns) {
                     alert('Wrong CSV format!\n\nThis looks like the daily update CSV.\n\nPlease use daily-update.html instead.\n\nFound: ' + headers.slice(0, 5).join(', '));
                 } else {
-                    alert('Wrong CSV format!\n\nExpected: CID, TikTok, Host\n\nFound: ' + headers.slice(0, 5).join(', ') + '\n\nThis tool expects the Earnings History CSV from Google Sheets.');
+                    alert('Wrong CSV format!\n\nExpected: CID, TikTok, Host + monthly columns\n\nFound: ' + headers.slice(0, 5).join(', ') + '\n\nMake sure you export the Earnings History sheet from Google Sheets.');
                 }
                 return;
             }
