@@ -199,7 +199,7 @@ function formatNumberPlain(num) {
 
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '≈ $' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    return '≈ $' + Math.round(usd).toLocaleString('en-US');
 }
 
 function updateProfile(user) {
@@ -340,7 +340,7 @@ function updateStats() {
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
     // Use real dollar value from estRev (column AN), fallback to rewardsMonth
     const realDollarValue = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
-    document.getElementById('currentUSD').textContent = '≈ $' + realDollarValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    document.getElementById('currentUSD').textContent = '≈ $' + Math.round(realDollarValue).toLocaleString('en-US');
     
     // Growth trend - calculate if not provided
     let growth = parseFloat(myData.growthPercent);
@@ -1181,7 +1181,7 @@ function updateScoreAndLevels() {
     const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
     if (diamondRevenueUSDEl) {
         const estRev = myData.estRev || 0;
-        diamondRevenueUSDEl.textContent = '≈ $' + estRev.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
     }
     
     // Update diamonds as secondary info
@@ -1263,7 +1263,7 @@ function updateScoreAndLevels() {
         if (scoreValue >= 70) {
             // Use Cash Bonus from column AN (Bonus)
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
-            proBonusRevenueValue.textContent = '$' + cashBonus.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700'; // Gold color
             proBonusRevenueNote.textContent = 'Cash Bonus Earned';
             

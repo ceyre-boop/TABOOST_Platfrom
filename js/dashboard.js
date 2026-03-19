@@ -135,7 +135,7 @@ function formatNumber(num) {
 
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '≈ $' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    return '≈ $' + Math.round(usd).toLocaleString('en-US');
 }
 
 function updateProfile(user) {
@@ -837,7 +837,7 @@ function updateScoreAndLevels() {
     // Update Diamond Earnings (only remaining revenue item)
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = '≈ $' + diamondUSD.toFixed(2);
+        diamondRevenueEl.textContent = '≈ $' + Math.round(diamondUSD).toLocaleString('en-US');
     }
     
     const diamondCountEl = document.getElementById('diamondCount');
