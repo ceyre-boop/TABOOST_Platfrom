@@ -41,6 +41,16 @@ function generateRollingCalendar() {
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
             color: "#ff0044"
+        },
+        {
+            id: 4,
+            title: "Live Music Festival",
+            type: "special",
+            time: "All Day",
+            // Multi-day event: March 21-29, 2026
+            startDate: new Date('2026-03-21'),
+            endDate: new Date('2026-03-29'),
+            color: "#00d4ff"
         }
     ];
     
