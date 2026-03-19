@@ -44,7 +44,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":3264869,"revenue":"216,000","rewards":6},{"period":"January 2026","diamonds":4620580,"revenue":"351,000","rewards":6},{"period":"December 2025","diamonds":6231628,"revenue":"279,000","rewards":6},{"period":"November 2025","diamonds":4022386,"revenue":"219,600","rewards":6},{"period":"October 2025","diamonds":4081670,"revenue":"353,000","rewards":6},{"period":"September 2025","diamonds":2877804,"revenue":"290,000","rewards":0}],
     "rewardsMonth": "26,011"
   },
   {
@@ -88,7 +87,6 @@ const creatorsData = [
     "bonus": "$538.33",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1653571,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":1270834,"revenue":"39,000","rewards":6},{"period":"December 2025","diamonds":3904754,"revenue":"102,000","rewards":2},{"period":"November 2025","diamonds":1154011,"revenue":"69,000","rewards":2},{"period":"October 2025","diamonds":1128797,"revenue":"50,000","rewards":3},{"period":"September 2025","diamonds":1904005,"revenue":"154,000","rewards":0}],
     "rewardsMonth": "45,000"
   },
   {
@@ -132,7 +130,6 @@ const creatorsData = [
     "bonus": "$533.07",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2927760,"revenue":"10,000","rewards":6},{"period":"January 2026","diamonds":4925433,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":13450978,"revenue":"156,000","rewards":3},{"period":"November 2025","diamonds":5678359,"revenue":"99,000","rewards":3},{"period":"October 2025","diamonds":1482218,"revenue":"41,000","rewards":3},{"period":"September 2025","diamonds":611900,"revenue":"0","rewards":0}],
     "rewardsMonth": "15,000"
   },
   {
@@ -176,7 +173,6 @@ const creatorsData = [
     "bonus": "$558.66",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2530421,"revenue":"21,000","rewards":3},{"period":"January 2026","diamonds":2765414,"revenue":"53,000","rewards":4},{"period":"December 2025","diamonds":2203511,"revenue":"6,000","rewards":1},{"period":"November 2025","diamonds":631954,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":757776,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":313849,"revenue":"0","rewards":0}],
     "rewardsMonth": "8,000"
   },
   {
@@ -220,7 +216,6 @@ const creatorsData = [
     "bonus": "$411.39",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1900960,"revenue":"1,000","rewards":6},{"period":"January 2026","diamonds":2331637,"revenue":"72,000","rewards":6},{"period":"December 2025","diamonds":1780632,"revenue":"35,000","rewards":5},{"period":"November 2025","diamonds":948798,"revenue":"14,000","rewards":4},{"period":"October 2025","diamonds":524506,"revenue":"10,000","rewards":3},{"period":"September 2025","diamonds":157788,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -264,7 +259,6 @@ const creatorsData = [
     "bonus": "$463.49",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2330821,"revenue":"60,000","rewards":4},{"period":"January 2026","diamonds":2191553,"revenue":"63,000","rewards":6},{"period":"December 2025","diamonds":2690867,"revenue":"60,000","rewards":6},{"period":"November 2025","diamonds":2170096,"revenue":"47,000","rewards":3},{"period":"October 2025","diamonds":762334,"revenue":"12,000","rewards":-1},{"period":"September 2025","diamonds":36018,"revenue":"0","rewards":0}],
     "rewardsMonth": "61,500"
   },
   {
@@ -308,7 +302,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2340757,"revenue":"26,000","rewards":2},{"period":"January 2026","diamonds":1490015,"revenue":"48,000","rewards":4},{"period":"December 2025","diamonds":2927101,"revenue":"38,000","rewards":4},{"period":"November 2025","diamonds":2593537,"revenue":"32,000","rewards":3},{"period":"October 2025","diamonds":1903049,"revenue":"72,000","rewards":2},{"period":"September 2025","diamonds":2184116,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "4,000"
   },
   {
@@ -352,7 +345,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":860680,"revenue":"15,000","rewards":0},{"period":"January 2026","diamonds":269557,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":830553,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":1253872,"revenue":"19,000","rewards":2},{"period":"October 2025","diamonds":986941,"revenue":"42,000","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -396,7 +388,6 @@ const creatorsData = [
     "bonus": "$298.56",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":1171166,"revenue":"74,000","rewards":2},{"period":"January 2026","diamonds":1137993,"revenue":"35,000","rewards":3},{"period":"December 2025","diamonds":4032095,"revenue":"143,000","rewards":3},{"period":"November 2025","diamonds":3417288,"revenue":"181,000","rewards":3},{"period":"October 2025","diamonds":2464453,"revenue":"140,000","rewards":3},{"period":"September 2025","diamonds":3033973,"revenue":"210,000","rewards":0}],
     "rewardsMonth": "74,000"
   },
   {
@@ -440,7 +431,6 @@ const creatorsData = [
     "bonus": "$282.65",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1521625,"revenue":"45,000","rewards":6},{"period":"January 2026","diamonds":1376333,"revenue":"41,000","rewards":5},{"period":"December 2025","diamonds":956875,"revenue":"4,000","rewards":6},{"period":"November 2025","diamonds":1309617,"revenue":"33,000","rewards":6},{"period":"October 2025","diamonds":1383345,"revenue":"95,000","rewards":6},{"period":"September 2025","diamonds":1550828,"revenue":"75,000","rewards":0}],
     "rewardsMonth": "2,000"
   },
   {
@@ -484,7 +474,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":5226194,"revenue":"295,000","rewards":4},{"period":"January 2026","diamonds":5828132,"revenue":"240,000","rewards":2},{"period":"December 2025","diamonds":8632676,"revenue":"213,000","rewards":6},{"period":"November 2025","diamonds":7553741,"revenue":"352,000","rewards":6},{"period":"October 2025","diamonds":9383894,"revenue":"402,000","rewards":4},{"period":"September 2025","diamonds":2992102,"revenue":"70,000","rewards":0}],
     "rewardsMonth": "32,000"
   },
   {
@@ -528,7 +517,6 @@ const creatorsData = [
     "bonus": "$257.47",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1366037,"revenue":"40,000","rewards":6},{"period":"January 2026","diamonds":1039231,"revenue":"2,000","rewards":6},{"period":"December 2025","diamonds":1291786,"revenue":"35,000","rewards":6},{"period":"November 2025","diamonds":1411116,"revenue":"17,000","rewards":5},{"period":"October 2025","diamonds":687070,"revenue":"18,000","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -572,7 +560,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1957973,"revenue":"0","rewards":6},{"period":"January 2026","diamonds":1584028,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":2049528,"revenue":"0","rewards":6},{"period":"November 2025","diamonds":1522453,"revenue":"0","rewards":6},{"period":"October 2025","diamonds":2554892,"revenue":"35,000","rewards":6},{"period":"September 2025","diamonds":2917559,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -616,7 +603,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":682236,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":1311281,"revenue":"35,000","rewards":6},{"period":"December 2025","diamonds":5451049,"revenue":"175,000","rewards":4},{"period":"November 2025","diamonds":2948844,"revenue":"187,900","rewards":4},{"period":"October 2025","diamonds":2984515,"revenue":"176,000","rewards":6},{"period":"September 2025","diamonds":4587922,"revenue":"320,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -660,7 +646,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":501009,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":340183,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":466287,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":460346,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":398883,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":783718,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "7,000"
   },
   {
@@ -704,7 +689,6 @@ const creatorsData = [
     "bonus": "$261.53",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":798841,"revenue":"3,000","rewards":3},{"period":"January 2026","diamonds":856560,"revenue":"35,000","rewards":2},{"period":"December 2025","diamonds":967714,"revenue":"35,000","rewards":3},{"period":"November 2025","diamonds":1880865,"revenue":"46,000","rewards":4},{"period":"October 2025","diamonds":2241076,"revenue":"123,000","rewards":4},{"period":"September 2025","diamonds":1840205,"revenue":"85,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -748,7 +732,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1531102,"revenue":"35,000","rewards":6},{"period":"January 2026","diamonds":1579057,"revenue":"70,000","rewards":6},{"period":"December 2025","diamonds":1641351,"revenue":"35,000","rewards":6},{"period":"November 2025","diamonds":1917925,"revenue":"33,000","rewards":4},{"period":"October 2025","diamonds":1368758,"revenue":"70,000","rewards":6},{"period":"September 2025","diamonds":1880516,"revenue":"70,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -792,7 +775,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":389163,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":301118,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":1366138,"revenue":"3,000","rewards":6},{"period":"November 2025","diamonds":1106718,"revenue":"6,000","rewards":5},{"period":"October 2025","diamonds":410486,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":479081,"revenue":"0","rewards":0}],
     "rewardsMonth": "8,000"
   },
   {
@@ -836,7 +818,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":629282,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":596896,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":1125547,"revenue":"0","rewards":6},{"period":"November 2025","diamonds":1063112,"revenue":"0","rewards":6},{"period":"October 2025","diamonds":2241871,"revenue":"35,000","rewards":6},{"period":"September 2025","diamonds":2124262,"revenue":"50,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -880,7 +861,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1339912,"revenue":"29,464","rewards":4},{"period":"January 2026","diamonds":1342827,"revenue":"15,000","rewards":3},{"period":"December 2025","diamonds":1088531,"revenue":"37,000","rewards":4},{"period":"November 2025","diamonds":1418139,"revenue":"22,000","rewards":6},{"period":"October 2025","diamonds":1978290,"revenue":"28,000","rewards":4},{"period":"September 2025","diamonds":2067687,"revenue":"121,000","rewards":0}],
     "rewardsMonth": "14,000"
   },
   {
@@ -924,7 +904,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":252697,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":833320,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":928928,"revenue":"33,000","rewards":2},{"period":"November 2025","diamonds":1253022,"revenue":"52,000","rewards":2},{"period":"October 2025","diamonds":1123827,"revenue":"45,000","rewards":6},{"period":"September 2025","diamonds":1372259,"revenue":"93,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -968,7 +947,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":1020019,"revenue":"4,000","rewards":2},{"period":"January 2026","diamonds":1239134,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":1004765,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":805443,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":635983,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":1255124,"revenue":"70,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1012,7 +990,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":997055,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":497820,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":212358,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":141080,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":492463,"revenue":"45,000","rewards":1},{"period":"September 2025","diamonds":377504,"revenue":"0","rewards":0}],
     "rewardsMonth": "50,000"
   },
   {
@@ -1056,7 +1033,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":655346,"revenue":"8,000","rewards":0},{"period":"January 2026","diamonds":574136,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":488302,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":624658,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":181570,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":680359,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1100,7 +1076,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":1692837,"revenue":"35,000","rewards":6},{"period":"January 2026","diamonds":2104021,"revenue":"31,000","rewards":6},{"period":"December 2025","diamonds":2526624,"revenue":"23,000","rewards":4},{"period":"November 2025","diamonds":1691212,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":1230164,"revenue":"40,000","rewards":3},{"period":"September 2025","diamonds":5296402,"revenue":"223,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1144,7 +1119,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":504310,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":326036,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":114050,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":212043,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":492509,"revenue":"2,000","rewards":0},{"period":"September 2025","diamonds":874800,"revenue":"0","rewards":0}],
     "rewardsMonth": "4,000"
   },
   {
@@ -1188,7 +1162,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1482249,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":2512304,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3106420,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":4197581,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":3824310,"revenue":"35,000","rewards":2},{"period":"September 2025","diamonds":6468156,"revenue":"30,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1232,7 +1205,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1124167,"revenue":"53,000","rewards":5},{"period":"January 2026","diamonds":864252,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":724497,"revenue":"11,000","rewards":2},{"period":"November 2025","diamonds":23257,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "5,000"
   },
   {
@@ -1276,7 +1248,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1329052,"revenue":"22,000","rewards":5},{"period":"January 2026","diamonds":735549,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":1364448,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":1210681,"revenue":"0","rewards":6},{"period":"October 2025","diamonds":1945609,"revenue":"35,000","rewards":3},{"period":"September 2025","diamonds":1369959,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1320,7 +1291,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":671705,"revenue":"30,000","rewards":2},{"period":"January 2026","diamonds":245249,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":86524,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":76915,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":50256,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "1,000"
   },
   {
@@ -1364,7 +1334,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":105356,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2994,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":504,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":45190,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":6532,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1408,7 +1377,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":517352,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":368966,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":147317,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":113647,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":27916,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":7098,"revenue":"0","rewards":0}],
     "rewardsMonth": "5,000"
   },
   {
@@ -1452,7 +1420,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":619960,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":459866,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":492021,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":444712,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":510902,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":442680,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1496,7 +1463,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":976773,"revenue":"50,000","rewards":6},{"period":"January 2026","diamonds":1175237,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":764005,"revenue":"36,000","rewards":6},{"period":"November 2025","diamonds":1594661,"revenue":"33,000","rewards":5},{"period":"October 2025","diamonds":940162,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":42349,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1540,7 +1506,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":613809,"revenue":"9,000","rewards":4},{"period":"January 2026","diamonds":399965,"revenue":"41,000","rewards":4},{"period":"December 2025","diamonds":412494,"revenue":"36,000","rewards":5},{"period":"November 2025","diamonds":880681,"revenue":"70,000","rewards":5},{"period":"October 2025","diamonds":566015,"revenue":"50,000","rewards":5},{"period":"September 2025","diamonds":430342,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1584,7 +1549,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":641272,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":595296,"revenue":"35,000","rewards":5},{"period":"December 2025","diamonds":859638,"revenue":"35,000","rewards":6},{"period":"November 2025","diamonds":1209082,"revenue":"66,000","rewards":5},{"period":"October 2025","diamonds":834607,"revenue":"35,000","rewards":5},{"period":"September 2025","diamonds":705803,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1628,7 +1592,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":395806,"revenue":"18,000","rewards":1},{"period":"January 2026","diamonds":448700,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":232571,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":139435,"revenue":"5,000","rewards":-1},{"period":"October 2025","diamonds":59541,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":169399,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1672,7 +1635,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":484600,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":628757,"revenue":"14,000","rewards":3},{"period":"December 2025","diamonds":1008200,"revenue":"13,000","rewards":2},{"period":"November 2025","diamonds":1008814,"revenue":"2,000","rewards":2},{"period":"October 2025","diamonds":930745,"revenue":"34,000","rewards":0},{"period":"September 2025","diamonds":533988,"revenue":"0","rewards":0}],
     "rewardsMonth": "2,000"
   },
   {
@@ -1716,7 +1678,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":90368,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1760,7 +1721,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":268133,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3098,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":75622,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":763414,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":149113,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":245354,"revenue":"0","rewards":0}],
     "rewardsMonth": "5,000"
   },
   {
@@ -1804,7 +1764,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":439792,"revenue":"12,000","rewards":5},{"period":"January 2026","diamonds":431151,"revenue":"7,000","rewards":2},{"period":"December 2025","diamonds":40754,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "3,000"
   },
   {
@@ -1848,7 +1807,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":851833,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":752245,"revenue":"24,500","rewards":4},{"period":"December 2025","diamonds":534034,"revenue":"11,000","rewards":1},{"period":"November 2025","diamonds":158737,"revenue":"3,000","rewards":1},{"period":"October 2025","diamonds":67911,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":209,"revenue":"0","rewards":0}],
     "rewardsMonth": "4,000"
   },
   {
@@ -1892,7 +1850,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":209042,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":396884,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":351453,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":483501,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":513417,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":485870,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1936,7 +1893,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":278822,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":353164,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":206595,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":144283,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":100914,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":43057,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -1980,7 +1936,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":101630,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":848108,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":478519,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":898736,"revenue":"30,000","rewards":2},{"period":"October 2025","diamonds":577188,"revenue":"9,000","rewards":1},{"period":"September 2025","diamonds":250241,"revenue":"0","rewards":0}],
     "rewardsMonth": "11,000"
   },
   {
@@ -2024,7 +1979,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":409997,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":888661,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":983160,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":499353,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":276929,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":328306,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2068,7 +2022,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":352402,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":351595,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":422412,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":838023,"revenue":"0","rewards":6},{"period":"October 2025","diamonds":1267964,"revenue":"0","rewards":6},{"period":"September 2025","diamonds":1707467,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2112,7 +2065,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":541306,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":147471,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":313732,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":626273,"revenue":"14,000","rewards":-1},{"period":"October 2025","diamonds":39,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2156,7 +2108,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":276018,"revenue":"5,000","rewards":5},{"period":"January 2026","diamonds":148034,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "3,000"
   },
   {
@@ -2200,7 +2151,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":417517,"revenue":"3,000","rewards":2},{"period":"January 2026","diamonds":422251,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":301736,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":378134,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":201418,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":160721,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2244,7 +2194,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":356731,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":535672,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":556035,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":477656,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":554567,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":628053,"revenue":"35,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2288,7 +2237,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":358474,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":193911,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":412379,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":240144,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":193206,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":248332,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2332,7 +2280,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":318094,"revenue":"2,000","rewards":-1},{"period":"January 2026","diamonds":42735,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":225971,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":501257,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":635849,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":671401,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2376,7 +2323,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":111050,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":405094,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":1270930,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":36337,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2420,7 +2366,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":758627,"revenue":"11,000","rewards":5},{"period":"January 2026","diamonds":162773,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":273252,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":305201,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":304127,"revenue":"7,000","rewards":5},{"period":"September 2025","diamonds":802175,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2464,7 +2409,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":67527,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":153405,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":233985,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":154335,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":280880,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":366054,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2508,7 +2452,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":28017,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":28817,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":37123,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6690,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":67256,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":89332,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2552,7 +2495,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":19385,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":390278,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":706290,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":774594,"revenue":"35,000","rewards":6},{"period":"October 2025","diamonds":2025183,"revenue":"35,000","rewards":6},{"period":"September 2025","diamonds":1451293,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2596,7 +2538,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":245779,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":178550,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":203167,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":227163,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":167529,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":209221,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2640,7 +2581,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":113368,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":179383,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":204132,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":357338,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":119073,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":242107,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2684,7 +2624,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":109786,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3842,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5769,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":48422,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":40851,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":27699,"revenue":"0","rewards":0}],
     "rewardsMonth": "2,000"
   },
   {
@@ -2728,7 +2667,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":512014,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":391605,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":76000,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":15356,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":281592,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":418734,"revenue":"0","rewards":0}],
     "rewardsMonth": "6,000"
   },
   {
@@ -2772,7 +2710,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5675,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":76144,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":35458,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":42391,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":102626,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":52831,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2816,7 +2753,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":380219,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":388375,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":241303,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":229790,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":319871,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":410823,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2860,7 +2796,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":118089,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":121232,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":245249,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":260796,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":294191,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":365668,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2904,7 +2839,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":156165,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":334659,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":845444,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":678574,"revenue":"0","rewards":6},{"period":"October 2025","diamonds":1990667,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":226754,"revenue":"2,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2948,7 +2882,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":317268,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":149348,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":92477,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":163603,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":136461,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":69201,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -2992,7 +2925,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":120245,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":126062,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":132466,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":137893,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":539802,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":363432,"revenue":"5,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3036,7 +2968,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":522431,"revenue":"11,000","rewards":4},{"period":"January 2026","diamonds":423343,"revenue":"2,000","rewards":3},{"period":"December 2025","diamonds":937626,"revenue":"3,000","rewards":4},{"period":"November 2025","diamonds":1284685,"revenue":"49,900","rewards":2},{"period":"October 2025","diamonds":21871,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3080,7 +3011,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":131823,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":46935,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":103678,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":38287,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3124,7 +3054,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":288595,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":232065,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":142506,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":177645,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":654449,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":443867,"revenue":"10,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3168,7 +3097,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":84078,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":20502,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":239842,"revenue":"12,000","rewards":1},{"period":"November 2025","diamonds":58890,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":75763,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":113432,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3212,7 +3140,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":41299,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":14278,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":51799,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":43106,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":52771,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":47201,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3256,7 +3183,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8374,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3300,7 +3226,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":195480,"revenue":"3,000","rewards":-1},{"period":"January 2026","diamonds":51594,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":85489,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":143845,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":129521,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":127947,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3344,7 +3269,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3388,7 +3312,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":322897,"revenue":"21,000","rewards":4},{"period":"January 2026","diamonds":313468,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":16961,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3432,7 +3355,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":72762,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":143705,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":219685,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22943,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3476,7 +3398,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5519,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9638,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4127,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":11400,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3520,7 +3441,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":143803,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":84263,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":130361,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":192235,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":364514,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":408451,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3564,7 +3484,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":115329,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":146887,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":246498,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":218616,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":201760,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":95087,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3608,7 +3527,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":122015,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":234249,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":88461,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":226062,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":53762,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":95921,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3652,7 +3570,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3696,7 +3613,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":329588,"revenue":"10,000","rewards":0},{"period":"January 2026","diamonds":93580,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":71331,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":94934,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":112231,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":101386,"revenue":"0","rewards":0}],
     "rewardsMonth": "2,000"
   },
   {
@@ -3740,7 +3656,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":194624,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":521978,"revenue":"2,000","rewards":1},{"period":"December 2025","diamonds":29122,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3462,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":270,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":372,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3784,7 +3699,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":139046,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":83608,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":177248,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":105570,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":141800,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":146889,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3828,7 +3742,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":73210,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":106616,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":413379,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":433985,"revenue":"16,000","rewards":5},{"period":"October 2025","diamonds":662560,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":71500,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3872,7 +3785,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":115095,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":308304,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":205285,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":81812,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3916,7 +3828,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1218075,"revenue":"0","rewards":6},{"period":"January 2026","diamonds":1361144,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":1101660,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":574089,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":253244,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":288381,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -3960,7 +3871,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":69086,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":78009,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":336331,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":734169,"revenue":"15,000","rewards":2},{"period":"October 2025","diamonds":291987,"revenue":"2,000","rewards":-1},{"period":"September 2025","diamonds":60760,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4004,7 +3914,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10074,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":93480,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4048,7 +3957,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":37911,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":17752,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":47919,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":35548,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":20282,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4092,7 +4000,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":136851,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":142042,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":306519,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":117637,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":382958,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":322893,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4136,7 +4043,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":62673,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":47755,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":122277,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":158724,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":144159,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":69223,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4180,7 +4086,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":72202,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":68620,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4224,7 +4129,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":81345,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":34810,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":31481,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":38066,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":18607,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":30037,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4268,7 +4172,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":325188,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":55205,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":242906,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":62791,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "12,000"
   },
   {
@@ -4312,7 +4215,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":35735,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":13432,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":143725,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2309,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":10138,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":4742,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4356,7 +4258,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":106630,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":121077,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":106552,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":274027,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":92343,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":36487,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4400,7 +4301,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":140248,"revenue":"4,000","rewards":1},{"period":"January 2026","diamonds":44391,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":161287,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":27561,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":55651,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":72666,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4444,7 +4344,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":92603,"revenue":"1,000","rewards":2},{"period":"January 2026","diamonds":48267,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4488,7 +4387,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":690897,"revenue":"3,000","rewards":2},{"period":"January 2026","diamonds":554362,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":723148,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":35336,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":641142,"revenue":"10,000","rewards":3},{"period":"September 2025","diamonds":695281,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4532,7 +4430,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4576,7 +4473,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":39304,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":33363,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":48716,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":14395,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4620,7 +4516,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":77938,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":1278145,"revenue":"78,000","rewards":5},{"period":"December 2025","diamonds":670911,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":586051,"revenue":"13,000","rewards":5},{"period":"October 2025","diamonds":323816,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":576516,"revenue":"11,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4664,7 +4559,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":2867,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":7591,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":36679,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":7647,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":5006,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":2278,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4708,7 +4602,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":93639,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":325879,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":462106,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":35650,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4752,7 +4645,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":61207,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":34581,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":13469,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":30805,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":44226,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":48254,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4796,7 +4688,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":24629,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":943,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4840,7 +4731,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":28935,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":73730,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":30075,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4884,7 +4774,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":60682,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":191382,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":159895,"revenue":"5,000","rewards":3},{"period":"November 2025","diamonds":1377,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4928,7 +4817,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -4972,7 +4860,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":83960,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":92241,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":158808,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":388341,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":55905,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":95017,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5016,7 +4903,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":112480,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":53654,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":42413,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":20747,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5060,7 +4946,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":24531,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":71893,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":40872,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":24480,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5104,7 +4989,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":37897,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":18232,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":24866,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":31954,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":63857,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":84806,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5148,7 +5032,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":174493,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":278408,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":431596,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":117482,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":219950,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":119973,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5192,7 +5075,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":18728,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":6087,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5236,7 +5118,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":31536,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":37650,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":44518,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":92959,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":57304,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":52545,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5280,7 +5161,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1000,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5324,7 +5204,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5368,7 +5247,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":285,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2796,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":31796,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":45960,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2104,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":5253,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5412,7 +5290,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":17634,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5456,7 +5333,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12088,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9007,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":34271,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":332,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5500,7 +5376,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":50553,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":11333,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4654,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6737,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":39302,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":17633,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5544,7 +5419,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":34706,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":74510,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":67156,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":30825,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":26332,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":189392,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5588,7 +5462,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5632,7 +5505,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":34860,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":33011,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":33921,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":40241,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":37522,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":37619,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5676,7 +5548,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":5477,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":17344,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":32884,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":19043,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":43157,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5720,7 +5591,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":26246,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9872,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3611,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2641,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":22,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5764,7 +5634,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":11038,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3649,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":98,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":12219,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5808,7 +5677,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3058,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":23514,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":16832,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":35822,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":26064,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5852,7 +5720,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":39402,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":45352,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":4650,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":48165,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":11360,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":22311,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5896,7 +5763,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":16909,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":9920,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":24706,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":2629,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1673,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":143,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5940,7 +5806,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":58,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":671,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":433,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -5984,7 +5849,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":13456,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":85253,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":83206,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":28044,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":79567,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":53872,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6028,7 +5892,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1186,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2163,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":170,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":30721,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":8690,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":13550,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6072,7 +5935,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":17262,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6116,7 +5978,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":7049,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6160,7 +6021,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":290770,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":2317678,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":626264,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":138159,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":103009,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":575751,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6204,7 +6064,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":69958,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":55811,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":5118,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6248,7 +6107,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":809,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6292,7 +6150,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":18620,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":8654,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6336,7 +6193,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":15253,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":8508,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2356,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6380,7 +6236,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":15029,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":13082,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":46951,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":19936,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6424,7 +6279,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5902,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9410,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":21519,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":17173,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6597,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":17757,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6468,7 +6322,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":25744,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":42171,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":67346,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":62698,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":67470,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":25043,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6512,7 +6365,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":17797,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4172,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":113,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2847,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3808,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6556,7 +6408,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":44228,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":74083,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":59394,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":154050,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":398385,"revenue":"10,000","rewards":-1},{"period":"September 2025","diamonds":41324,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6600,7 +6451,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":7146,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":2447,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":7611,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":13183,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":17589,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":38288,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6644,7 +6494,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2756,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":18096,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":3714,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":21294,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6688,7 +6537,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6732,7 +6580,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":5900,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":4006,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":12551,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":3563,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6776,7 +6623,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":17843,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1927,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":35901,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":56863,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":45155,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":38648,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6820,7 +6666,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":24580,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3361,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4172,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4826,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":10105,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":24684,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6864,7 +6709,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":22831,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":23590,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":29668,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":28045,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":39466,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":60476,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6908,7 +6752,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":22356,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":1715,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6952,7 +6795,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":21635,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":30931,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -6996,7 +6838,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":12794,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":4906,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":975,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":23,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":4568,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":21,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7040,7 +6881,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":9933,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7084,7 +6924,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":21167,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":32236,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7128,7 +6967,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":21522,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":57258,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":204151,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":19867,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7172,7 +7010,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":2851,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":5865,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":2901,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":3125,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":8843,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":7555,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7216,7 +7053,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":26111,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":13,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7260,7 +7096,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":5711,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":878,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":390,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":573,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":3168,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":6490,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7304,7 +7139,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":6093,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":3129,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":5653,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":9434,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":13434,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":5684,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7348,7 +7182,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1060,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3375,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":321,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":289,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":138,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":2910,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7392,7 +7225,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":684,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":88,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":1179,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7436,7 +7268,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":17341,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":18128,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7480,7 +7311,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":9563,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":100,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5445,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7524,7 +7354,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5210,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":15145,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":14273,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":11359,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":7521,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2349,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7568,7 +7397,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":28935,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9359,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1547,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":33971,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7612,7 +7440,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8594,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":908,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3774,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1401,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7656,7 +7483,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":418,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":2065,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":1821,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":9384,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":743,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":4373,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7700,7 +7526,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":25993,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":20,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":577,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":6,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7744,7 +7569,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1685,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7788,7 +7612,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12376,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":11445,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3617,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":357,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1579,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":66,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7832,7 +7655,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1350,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":32725,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7876,7 +7698,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":16292,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5412,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4687,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1436,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":7844,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":23537,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7920,7 +7741,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4725,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":6728,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":10548,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":3869,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":5442,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":2467,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -7964,7 +7784,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":455,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1603,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":13017,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":15937,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":116788,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":169034,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8008,7 +7827,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":154,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":17756,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":49675,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":157810,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":12585,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8052,7 +7870,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":17151,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":43392,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":35460,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":43559,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":10050,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":12303,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8096,7 +7913,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":11028,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":24442,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":3322,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":434,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2080,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":106,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8140,7 +7956,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":11328,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":28848,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":79230,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":4017,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8184,7 +7999,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":20790,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":18019,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":40980,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":62073,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2504,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":7779,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8228,7 +8042,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2922,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1167,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3347,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":624,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4418,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3917,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8272,7 +8085,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":54514,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8316,7 +8128,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":61589,"revenue":"5,000","rewards":4},{"period":"January 2026","diamonds":193910,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":198855,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8360,7 +8171,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":33585,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":91968,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":59033,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":24699,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6452,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":55748,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8404,7 +8214,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5613,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4311,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8448,7 +8257,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8507,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":25478,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":19748,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":63467,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":48165,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":62838,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8492,7 +8300,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":1240,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":987,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":4020,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":7,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":118,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":150,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8536,7 +8343,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1335,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":22642,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2265,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8580,7 +8386,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":3344,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":526,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":7325,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":5847,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":4235,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":5037,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8624,7 +8429,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1467,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3451,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8668,7 +8472,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2728,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":20,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":118622,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":62767,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8712,7 +8515,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3240,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":279,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":651,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2318,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":11589,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":16457,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8756,7 +8558,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12093,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":12920,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":5962,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":17285,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":18067,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":18678,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8800,7 +8601,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":8444,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":1787,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":1206,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":5437,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":4728,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":4286,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8844,7 +8644,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3162,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":444,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3073,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6187,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":6988,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":9156,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8888,7 +8687,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":752,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":430,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8932,7 +8730,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2649,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9426,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2845,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9989,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":14912,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":171742,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -8976,7 +8773,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9020,7 +8816,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":302,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5579,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":1940,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":1296,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":202,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9064,7 +8859,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":20869,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":43963,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":88669,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":49398,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":57978,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":37001,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9108,7 +8902,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12297,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":10976,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":37183,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":149016,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":86531,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":10309,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9152,7 +8945,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":148,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6108,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":7220,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9196,7 +8988,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":568,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":1308,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":177,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9240,7 +9031,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":23,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9284,7 +9074,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":2091,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":592,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":2577,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":286,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":4002,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":1470,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9328,7 +9117,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8764,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":12658,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":16968,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4623,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":9728,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":7642,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9372,7 +9160,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":350,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9416,7 +9203,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":394,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4288,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5056,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":14443,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":17736,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9460,7 +9246,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":6668,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":7533,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":2065,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":1098,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":5036,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":3472,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9504,7 +9289,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":12513,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":37298,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":1219,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":124,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":336,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":519,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9548,7 +9332,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":3947,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":5932,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":316,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9592,7 +9375,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9636,7 +9418,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":193,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":167,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":3995,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2786,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":134,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1508,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9680,7 +9461,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2318,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":225,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":421,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":229,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":518,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9724,7 +9504,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1192,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":3126,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":8755,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":32987,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9768,7 +9547,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1213,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9812,7 +9590,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":404,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1141,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":7852,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":12545,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":27551,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":21507,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9856,7 +9633,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":16893,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":5217,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":3126,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":7578,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":4163,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":1975,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9900,7 +9676,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":55476,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":521,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":78751,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1088,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1158,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9944,7 +9719,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":14360,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":157690,"revenue":"4,000","rewards":0},{"period":"December 2025","diamonds":37057,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":33012,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":979,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3500,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -9988,7 +9762,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8697,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":9437,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":10177,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":53973,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":53023,"revenue":"7,000","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10032,7 +9805,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":828,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1361,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2509,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4866,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1134,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":3648,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10076,7 +9848,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":9,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":39,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10120,7 +9891,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":24266,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":57229,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10164,7 +9934,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10208,7 +9977,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1251,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2613,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5314,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3993,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10252,7 +10020,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":13,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":114,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10296,7 +10063,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":875,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":70,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10340,7 +10106,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10384,7 +10149,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":82509,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":317989,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":92754,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":138526,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":228239,"revenue":"5,000","rewards":-1},{"period":"September 2025","diamonds":29202,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10428,7 +10192,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":7545,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":3674,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10472,7 +10235,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6473,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":17090,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":115,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":290,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":311,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1098,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10516,7 +10278,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1178,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":11061,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":7996,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":200,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":14550,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":35071,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10560,7 +10321,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":178,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":17553,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":12609,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":105,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10604,7 +10364,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1107,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2441,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":58323,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":27326,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":731947,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10648,7 +10407,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":2626,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":7180,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":3524,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":25042,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":6659,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":4126,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10692,7 +10450,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":50,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5421,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":21,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4017,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":127,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10736,7 +10493,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":13302,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":68740,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3080,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":35,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":779,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":607,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10780,7 +10536,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":31016,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":80809,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2813,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":13941,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2137,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3363,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10824,7 +10579,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1023,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":822,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1249,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":294,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10868,7 +10622,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":37,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5769,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10912,7 +10665,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1230,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":24086,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":61657,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -10956,7 +10708,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1622,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":59222,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":57571,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":52586,"revenue":"7,000","rewards":1},{"period":"September 2025","diamonds":56958,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11000,7 +10751,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11044,7 +10794,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":130,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2420,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6409,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1378,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":5421,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":20502,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11088,7 +10837,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1374,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":3996,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":4335,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":13672,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3180,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11132,7 +10880,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":9969,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":9064,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":8190,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11176,7 +10923,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":54809,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":120036,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":124680,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1619,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":27,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2908,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11220,7 +10966,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5297,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1239,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":732,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1200,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":562,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11264,7 +11009,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":9025,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":3019,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2182,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":449,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3467,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":673,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11308,7 +11052,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":764,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5267,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6839,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1776,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":398,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1575,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11352,7 +11095,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":202,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11396,7 +11138,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4417,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":706,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3566,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1250,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":244,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11440,7 +11181,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1039,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":1233,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":1156,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11484,7 +11224,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2260,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":244,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11528,7 +11267,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":13914,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11572,7 +11310,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2722,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":54,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":4427,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":4224,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11616,7 +11353,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1183,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6635,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2995,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":323,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11660,7 +11396,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":54886,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2688,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5619,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2059,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":83801,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":119557,"revenue":"0","rewards":0}],
     "rewardsMonth": "1,000"
   },
   {
@@ -11704,7 +11439,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2056,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11748,7 +11482,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":252,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":33,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":136,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11792,7 +11525,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12140,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":211901,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":35468,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":48048,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":29883,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":140162,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11836,7 +11568,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11880,7 +11611,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4043,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":11877,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11924,7 +11654,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2487,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":1355,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":935,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":1696,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":293,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":148,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -11968,7 +11697,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":6942,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12012,7 +11740,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12056,7 +11783,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3527,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12100,7 +11826,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":544,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":362,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1858,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":4449,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":45767,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":20018,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12144,7 +11869,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":145,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12188,7 +11912,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":1979,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12232,7 +11955,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":144,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1189,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":8632,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":7418,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4984,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":9537,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12276,7 +11998,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5310,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":9788,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":39583,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":29075,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4549,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1925,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12320,7 +12041,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1375,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1914,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1147,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":1844,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":226,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":538,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12364,7 +12084,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":759,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":2742,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":5961,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":1128,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":1533,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":2053,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12408,7 +12127,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":529,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12452,7 +12170,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1520,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":2534,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":2529,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":9348,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6246,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":11049,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12496,7 +12213,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2458,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":243,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":121,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":764,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1275,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":179,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12540,7 +12256,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2031,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":878,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":919,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":7421,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":10210,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":1434,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12584,7 +12299,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10916,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":41975,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":21916,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":107621,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":503404,"revenue":"20,000","rewards":4},{"period":"September 2025","diamonds":459454,"revenue":"11,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12628,7 +12342,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":940,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":788,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12672,7 +12385,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":485,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3128,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":93,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1412,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":1598,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":1078,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12716,7 +12428,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3019,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":1936,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3252,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":502,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1006,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":6,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12760,7 +12471,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5251,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":22930,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":906,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":58664,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":339898,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":347395,"revenue":"26,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12804,7 +12514,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":244,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":654,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1677,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":797,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":569,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":22,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12848,7 +12557,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":21,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":405,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":35997,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12892,7 +12600,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12936,7 +12643,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":640,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2012,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -12980,7 +12686,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":2031,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":89,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13024,7 +12729,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1347,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":16,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":105,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":823,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2683,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13068,7 +12772,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":144,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":148,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":127,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":68,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":161,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13112,7 +12815,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":95,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1541,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1358,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":2454,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":207,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13156,7 +12858,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":23,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":213,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2570,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":515,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13200,7 +12901,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":308,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":160,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":80,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":169,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1476,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1807,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13244,7 +12944,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":240,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":133,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13288,7 +12987,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1570,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":35,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1162,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2006,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1948,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13332,7 +13030,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":8435,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13376,7 +13073,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2511,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13420,7 +13116,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":438,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":119,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2842,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":6149,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":159114,"revenue":"7,000","rewards":5},{"period":"September 2025","diamonds":79192,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13464,7 +13159,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":248,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":37,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":606,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13508,7 +13202,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":44,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2289,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1457,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5834,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5027,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":9330,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13552,7 +13245,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":34627,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":27677,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":64739,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":60919,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":196192,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":188524,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13596,7 +13288,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":118,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":353,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":10549,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":1548,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":441,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":150,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13640,7 +13331,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3062,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":6391,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":2388,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":7905,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":8674,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":597,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13684,7 +13374,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":49,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13728,7 +13417,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":177,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":395,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":1125,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":2522,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":3107,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":2637,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13772,7 +13460,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":67,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13816,7 +13503,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13860,7 +13546,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4322,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1215,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13904,7 +13589,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 22,
     "hoursMonth": 80,
-    "earningsHistory": [{"period":"February 2026","diamonds":1341,"revenue":"0","rewards":5},{"period":"January 2026","diamonds":520,"revenue":"0","rewards":5},{"period":"December 2025","diamonds":2027,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":4614,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":3329,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":3354,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13948,7 +13632,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":334,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":252,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":171,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":240,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":1061,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":132,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -13992,7 +13675,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":2040,"revenue":"0","rewards":4},{"period":"January 2026","diamonds":15874,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":1483,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14036,7 +13718,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14080,7 +13761,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":249,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":90,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":924,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14124,7 +13804,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":911,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":445,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14168,7 +13847,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14212,7 +13890,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14256,7 +13933,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":62267,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "3,000"
   },
   {
@@ -14300,7 +13976,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":18882,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2910,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14344,7 +14019,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":146,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":1393,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":206,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":936,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":1154,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":490,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14388,7 +14062,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":23873,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9062,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1601,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":424606,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":373,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14432,7 +14105,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":425,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":165,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":51,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14476,7 +14148,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":60,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":291,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":803,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14520,7 +14191,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":171,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5197,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":79365,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":20123,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":9,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14564,7 +14234,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":41,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":253,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":13084,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":103158,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14608,7 +14277,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14652,7 +14320,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4197,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6355,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2685,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2590,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":16643,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":8320,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14696,7 +14363,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":115,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14740,7 +14406,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10973,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1940,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":16638,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":93967,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":27158,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14784,7 +14449,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":389,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":368,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":66,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":239,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14828,7 +14492,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14872,7 +14535,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":499,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1900,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5070,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":357,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14916,7 +14578,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":15,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":104,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":115,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -14960,7 +14621,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":28,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":49,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":386,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":112,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15004,7 +14664,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":7671,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15048,7 +14707,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1237,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":315,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":697,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15092,7 +14750,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":128,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":482,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":2035,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":506,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":496,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":296,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15136,7 +14793,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":321,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":24,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15180,7 +14836,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":208,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":722,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":282,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":994,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":425,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15224,7 +14879,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":70,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15268,7 +14922,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1023,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":118,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1346,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15312,7 +14965,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":16,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":107,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":15,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":86,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15356,7 +15008,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":11,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":874,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15400,7 +15051,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2133,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1343,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":575,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":399,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":527,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":105,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15444,7 +15094,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1639,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15488,7 +15137,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":954,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":175,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15532,7 +15180,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":247,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":147,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":342,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":100,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":24,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":243,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15576,7 +15223,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":979,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":12051,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15620,7 +15266,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":259,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":804,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":79,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":417,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":655,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":2097,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15664,7 +15309,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":443,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":718,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15708,7 +15352,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":500,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15752,7 +15395,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15796,7 +15438,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":31,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":39,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":218,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15840,7 +15481,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":34,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":45,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":190,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1111,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":8,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":901,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15884,7 +15524,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":506,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":119,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":39,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15928,7 +15567,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":182,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1266,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":984,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1635,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -15972,7 +15610,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2103,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1756,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2340,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2241,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16016,7 +15653,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":136,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":511,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":754,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2167,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":60,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16060,7 +15696,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":759,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":654,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":213,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":570,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":1103,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":1675,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16104,7 +15739,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":399,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1074,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16148,7 +15782,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":11,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16192,7 +15825,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":600,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":1299,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":17,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":144,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16236,7 +15868,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":122,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":3403,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":8574,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":149,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":322,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":4053,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16280,7 +15911,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":350,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":24283,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":56472,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":729,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6213,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":13033,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16324,7 +15954,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":395,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16368,7 +15997,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":858,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":262,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":31,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":496,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":98,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16412,7 +16040,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":11,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":810,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16456,7 +16083,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5148,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16500,7 +16126,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":15,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":242,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":165,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":120,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16544,7 +16169,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":119,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":505,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":255,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16588,7 +16212,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2819,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1181,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":12250,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16632,7 +16255,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":439,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":14350,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":71444,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16676,7 +16298,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16720,7 +16341,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":20,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":38,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16764,7 +16384,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":133,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":46,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":25,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":175,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16808,7 +16427,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":208,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":218,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":50,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":12465,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":454,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16852,7 +16470,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16896,7 +16513,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":10,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16940,7 +16556,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -16984,7 +16599,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2962,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":13,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":360,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1586,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":900,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":860,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17028,7 +16642,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":100,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":32,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17072,7 +16685,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":144,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17116,7 +16728,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":23,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":96,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":20,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17160,7 +16771,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2334,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17204,7 +16814,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":24,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1371,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":20,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17248,7 +16857,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":82,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":23,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17292,7 +16900,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":122,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17336,7 +16943,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":106,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":17,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17380,7 +16986,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":26,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17424,7 +17029,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":212093,"revenue":"5,000","rewards":1},{"period":"January 2026","diamonds":51680,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17468,7 +17072,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":6,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":4,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":4,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":17,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17512,7 +17115,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":46789,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":50440,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":7774,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17556,7 +17158,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 18,
     "hoursMonth": 60,
-    "earningsHistory": [{"period":"February 2026","diamonds":5702,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17600,7 +17201,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 15,
     "hoursMonth": 40,
-    "earningsHistory": [{"period":"February 2026","diamonds":38083,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":14053,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":7843,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":19651,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17644,7 +17244,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1634,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":262099,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":697232,"revenue":"0","rewards":4},{"period":"November 2025","diamonds":2375730,"revenue":"33,000","rewards":4},{"period":"October 2025","diamonds":2882532,"revenue":"22,000","rewards":6},{"period":"September 2025","diamonds":2918677,"revenue":"11,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17688,7 +17287,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":141,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":6,"revenue":"0","rewards":5},{"period":"November 2025","diamonds":709,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":3172,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":12,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17732,7 +17330,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":7,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":18,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":925,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":145,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":28,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17776,7 +17373,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":3224,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17820,7 +17416,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 11,
     "hoursMonth": 30,
-    "earningsHistory": [{"period":"February 2026","diamonds":13,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17864,7 +17459,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":2},{"period":"January 2026","diamonds":142,"revenue":"0","rewards":4},{"period":"December 2025","diamonds":4458,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17908,7 +17502,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":95752,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":18765,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":83239,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":138029,"revenue":"7,000","rewards":-1},{"period":"September 2025","diamonds":20160,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17952,7 +17545,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":58861,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3492,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5652,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -17996,7 +17588,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":56,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":12,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18040,7 +17631,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":227,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":354,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":10,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18084,7 +17674,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1260,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":14490,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18128,7 +17717,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":1},{"period":"January 2026","diamonds":6344,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":10806,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":10551,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":3267,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":6071,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18172,7 +17760,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":38490,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":11731,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18216,7 +17803,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":25966,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":7722,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":23180,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":32053,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":76384,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":82904,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18260,7 +17846,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":192,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":34,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":46,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":414,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":40,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18304,7 +17889,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":10759,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":6930,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":8003,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":4227,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":8924,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":11118,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18348,7 +17932,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":110,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1100,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18392,7 +17975,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":23,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":29,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18436,7 +18018,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18480,7 +18061,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":87,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":32,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1203,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18524,7 +18104,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":17,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":30,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18568,7 +18147,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":11,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18612,7 +18190,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18656,7 +18233,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":10,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":26,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18700,7 +18276,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":31223,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18744,7 +18319,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4344,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":23044,"revenue":"0","rewards":6},{"period":"December 2025","diamonds":1718168,"revenue":"37,000","rewards":3},{"period":"November 2025","diamonds":355543,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18788,7 +18362,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":19150,"revenue":"0","rewards":2},{"period":"December 2025","diamonds":99118,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18832,7 +18405,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1983,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":19003,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":13337,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":31212,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18876,7 +18448,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1033,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":897,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18920,7 +18491,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12389,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1746,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1946,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6691,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5351,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -18964,7 +18534,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":15375,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19008,7 +18577,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":16269,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":9415,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3345,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":26691,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":63366,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19052,7 +18620,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":7201,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6598,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":80,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":9104,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19096,7 +18663,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5065,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6867,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6026,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":777,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":9672,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1526,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19140,7 +18706,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4926,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":196,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":651,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":78,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":384,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":529,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19184,7 +18749,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3837,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":274,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1275,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2534,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":16328,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":39299,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19228,7 +18792,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2577,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2613,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3116,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":111,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1890,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5794,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19272,7 +18835,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2548,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":265,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4479,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":106622,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":11127,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19316,7 +18878,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2480,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19360,7 +18921,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3143,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2806,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":12422,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4092,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19404,7 +18964,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1356,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":23,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":102,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19448,7 +19007,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1071,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":198,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":924,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1432,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19492,7 +19050,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1050,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":24,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19536,7 +19093,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":8620,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":11229,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6529,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19580,7 +19136,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":52,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":162,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":6782,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19624,7 +19179,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":37,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":5192,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1889,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":4293,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":3814,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19668,7 +19222,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4480,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":71241,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":24044,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":43672,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":1600,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19712,7 +19265,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":330,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":63527,"revenue":"0","rewards":3},{"period":"November 2025","diamonds":229337,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19756,7 +19308,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":1021,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3003,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19800,7 +19351,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":900,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":428,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1121,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":65,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":35,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19844,7 +19394,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":520,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":12401,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3226,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19888,7 +19437,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":427,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":452,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":196,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":321,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":252,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":437,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19932,7 +19480,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":331,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2540,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1217,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":546,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -19976,7 +19523,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":224,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2178,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20020,7 +19566,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":218,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":29,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":444,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20064,7 +19609,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":177,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2531,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":697,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1422,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":20216,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":24913,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20108,7 +19652,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":187,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":614,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2893,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":105,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20152,7 +19695,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":122,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":871,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":264,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2518,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1169,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1157,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20196,7 +19738,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":410,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":34,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":62,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":71,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":142,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20240,7 +19781,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":119,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":454,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":775,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":119,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":23,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20284,7 +19824,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":93,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":35,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":236,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":448,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":431,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20328,7 +19867,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":60,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":8822,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20372,7 +19910,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":41,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1749,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":4569,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22854,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2073,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":94,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20416,7 +19953,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":32,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":143,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":17,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":122,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":6555,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20460,7 +19996,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":20,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":532,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5889,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":780,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20504,7 +20039,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":29,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":299,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":418,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20548,7 +20082,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":15,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":59,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20592,7 +20125,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":14,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20636,7 +20168,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":595,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":386,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4102,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":499,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":7486,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20680,7 +20211,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":39,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":10312,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14564,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2292,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":9252,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20724,7 +20254,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":11,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":42,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":471,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3131,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":212,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20768,7 +20297,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":9,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":12,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20812,7 +20340,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":108,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":135,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":18,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20856,7 +20383,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":32,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20900,7 +20426,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":437,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1971,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":197,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":957,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20944,7 +20469,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":30,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":134,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":526,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -20988,7 +20512,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":35,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":81,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":298,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21032,7 +20555,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1724,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":8,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":50,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21076,7 +20598,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3353,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":98,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":906,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":8023,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21120,7 +20641,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":7,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":10,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":114,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":660,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":181,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21164,7 +20684,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6757,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":7010,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":30932,"revenue":"0","rewards":4},{"period":"October 2025","diamonds":43522,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":2439,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21208,7 +20727,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":31,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":594,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":619,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21252,7 +20770,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":4,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":46,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":160,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1052,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":12,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21296,7 +20813,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21340,7 +20856,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":279,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":34581,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":25850,"revenue":"2,000","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21384,7 +20899,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21428,7 +20942,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3674,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":37149,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":684938,"revenue":"25,800","rewards":4},{"period":"October 2025","diamonds":578371,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":129193,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21472,7 +20985,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":14,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":43,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":127,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":178,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":28,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21516,7 +21028,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":12505,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1300,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21560,7 +21071,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":332,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":17,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":20,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3430,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1578,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21604,7 +21114,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":6,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21648,7 +21157,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21692,7 +21200,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":22,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4889,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5163,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":33120,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21736,7 +21243,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4198,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":32941,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":47140,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":30325,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21780,7 +21286,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":4081,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1592,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":313,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1563,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21824,7 +21329,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3604,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6872,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21868,7 +21372,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":199,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":500,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":69,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21912,7 +21415,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1256,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":697,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -21956,7 +21458,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":7,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1101,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22000,7 +21501,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22044,7 +21544,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":12,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":107,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":431,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22088,7 +21587,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":14181,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":9193,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22132,7 +21630,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":8214,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1373,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":50,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1960,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22176,7 +21673,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":8213,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":11129,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22655,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":30110,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":60371,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22220,7 +21716,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":328,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":23,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":127,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":397,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22264,7 +21759,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":7012,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":818,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":52140,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":41641,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22308,7 +21802,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":88,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":79,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":649,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3031,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22352,7 +21845,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2067,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22396,7 +21888,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":7455,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":15864,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":5486,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":934,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":441,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22440,7 +21931,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2650,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":807,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":8493,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":65206,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22484,7 +21974,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1504,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9682,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22528,7 +22017,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1224,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1625,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22572,7 +22060,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":7,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":306,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1594,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22036,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":41,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2447,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22616,7 +22103,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":141,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":173,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":305,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":21,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":499,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22660,7 +22146,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":188,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":3770,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22704,7 +22189,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":199,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":46,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":265,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22748,7 +22232,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":461,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3670,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1922,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3270,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":29772,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22792,7 +22275,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":384,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22836,7 +22318,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":274,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":27,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":7,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":147,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22880,7 +22361,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":241,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22924,7 +22404,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":212,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2621,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":129,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -22968,7 +22447,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1017,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":126,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":28894,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":129796,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23012,7 +22490,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":116,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":31,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23056,7 +22533,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23100,7 +22576,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":89,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":235,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23144,7 +22619,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":68,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23188,7 +22662,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":60,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23232,7 +22705,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":43,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23276,7 +22748,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":601,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":761,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":135,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23320,7 +22791,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":22,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":11,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23364,7 +22834,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":23,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23408,7 +22877,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":1224,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":14,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":105,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1093,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23452,7 +22920,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":14,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23496,7 +22963,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":10,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":272,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2403,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":337,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23540,7 +23006,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":8,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23584,7 +23049,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":7,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1357,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23628,7 +23092,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":3,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":26,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":44,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23672,7 +23135,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":98,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":41,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":233,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23716,7 +23178,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":96,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":53,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23760,7 +23221,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23804,7 +23264,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23848,7 +23307,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":976,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23892,7 +23350,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":70,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":7,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":11,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":366,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":749,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23936,7 +23393,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":55,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":15383,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":17733,"revenue":"0","rewards":5},{"period":"October 2025","diamonds":440553,"revenue":"0","rewards":5},{"period":"September 2025","diamonds":320028,"revenue":"1,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -23980,7 +23436,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":20,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":37,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2665,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3308,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":38244,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24024,7 +23479,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":10476,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5328,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5083,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24068,7 +23522,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24112,7 +23565,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":1848,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":220,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24156,7 +23608,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":40,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":428,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24200,7 +23651,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":111,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1445,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1440,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":793,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2215,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24244,7 +23694,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24288,7 +23737,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24332,7 +23780,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24376,7 +23823,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24420,7 +23866,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":2,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24464,7 +23909,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":52,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24508,7 +23952,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":6620,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":237,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24552,7 +23995,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":14,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24596,7 +24038,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":3,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24640,7 +24081,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24684,7 +24124,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":5,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24728,7 +24167,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":36,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24772,7 +24210,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":19118,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":15831,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6937,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5957,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":46948,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24816,7 +24253,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24860,7 +24296,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24904,7 +24339,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24948,7 +24382,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -24992,7 +24425,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4937,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25036,7 +24468,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":3},{"period":"January 2026","diamonds":7792,"revenue":"0","rewards":3},{"period":"December 2025","diamonds":110,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":12,"revenue":"0","rewards":4},{"period":"September 2025","diamonds":40406,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25080,7 +24511,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25124,7 +24554,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25168,7 +24597,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25212,7 +24640,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25256,7 +24683,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25300,7 +24726,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25344,7 +24769,6 @@ const creatorsData = [
     "bonus": "",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25388,7 +24812,6 @@ const creatorsData = [
     "bonus": "",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25432,7 +24855,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25476,7 +24898,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25520,7 +24941,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25564,7 +24984,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":24144,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25608,7 +25027,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":354,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25652,7 +25070,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":330,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25696,7 +25113,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":120,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25740,7 +25156,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25784,7 +25199,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":20795,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":555,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25828,7 +25242,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5522,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":10300,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25872,7 +25285,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":976,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":1629,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25916,7 +25328,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":298,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":8558,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -25960,7 +25371,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26004,7 +25414,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":7,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26048,7 +25457,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1558,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26092,7 +25500,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":332,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26136,7 +25543,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":3464,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26180,7 +25586,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":8386,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26224,7 +25629,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":691,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26268,7 +25672,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":87,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26312,7 +25715,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26356,7 +25758,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6118,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26400,7 +25801,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26444,7 +25844,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26488,7 +25887,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26532,7 +25930,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26576,7 +25973,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26620,7 +26016,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26664,7 +26059,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26708,7 +26102,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":477,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":6410,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":5964,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26752,7 +26145,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":528,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":7014,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":3626,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26796,7 +26188,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":15974,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":46244,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":70531,"revenue":"1,000","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26840,7 +26231,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1003,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":1532,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":585,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26884,7 +26274,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":22,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26928,7 +26317,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":233,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -26972,7 +26360,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":24,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":339,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6180,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27016,7 +26403,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":44,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":347,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":216,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27060,7 +26446,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3557,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22132,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":41059,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27104,7 +26489,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":316,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27148,7 +26532,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":100,"revenue":"0","rewards":3},{"period":"October 2025","diamonds":124,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27192,7 +26575,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27236,7 +26618,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27280,7 +26661,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":2936,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27324,7 +26704,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":149,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27368,7 +26747,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27412,7 +26790,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27456,7 +26833,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27500,7 +26876,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27544,7 +26919,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":254,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":63,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3185,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27588,7 +26962,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":176,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":507,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":6,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27632,7 +27005,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":130,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27676,7 +27048,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":72,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27720,7 +27091,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27764,7 +27134,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":491,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27808,7 +27177,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":192,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27852,7 +27220,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":187,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27896,7 +27263,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":73,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27940,7 +27306,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -27984,7 +27349,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":283,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28028,7 +27392,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":99,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":33,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":22,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":39,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28072,7 +27435,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":71,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6072,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":5402,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28116,7 +27478,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1084,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":19,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28160,7 +27521,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":3274,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1110,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":458,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28204,7 +27564,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":29740,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":10991,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28248,7 +27607,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2170,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28292,7 +27650,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":271,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28336,7 +27693,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"November 2025","diamonds":201,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":40,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":14,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28380,7 +27736,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":418,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28424,7 +27779,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":4908,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28468,7 +27822,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":4496,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28512,7 +27865,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":4,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28556,7 +27908,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2140,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28600,7 +27951,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":253,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28644,7 +27994,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":11,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28688,7 +28037,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28732,7 +28080,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28776,7 +28123,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28820,7 +28166,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28864,7 +28209,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":20,"revenue":"0","rewards":2},{"period":"September 2025","diamonds":3674,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28908,7 +28252,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":477,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":76,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28952,7 +28295,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1797,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":899,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -28996,7 +28338,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29040,7 +28381,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29084,7 +28424,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1004,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":10218,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29128,7 +28467,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29172,7 +28510,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":25,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29216,7 +28553,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":85,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1680,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":651,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29260,7 +28596,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":8,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":32,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29304,7 +28639,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29348,7 +28682,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29392,7 +28725,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":743141,"revenue":"0","rewards":6},{"period":"September 2025","diamonds":1348733,"revenue":"14,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29436,7 +28768,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":36,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29480,7 +28811,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":4,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29524,7 +28854,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29568,7 +28897,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29612,7 +28940,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":702,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":119,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":122,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29656,7 +28983,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":107,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29700,7 +29026,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":99,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29744,7 +29069,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":21,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29788,7 +29112,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29832,7 +29155,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29876,7 +29198,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29920,7 +29241,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":0},{"period":"December 2025","diamonds":8569,"revenue":"0","rewards":2},{"period":"November 2025","diamonds":27484,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":36700,"revenue":"0","rewards":3},{"period":"September 2025","diamonds":46741,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -29964,7 +29284,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":52,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30008,7 +29327,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":118,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":262,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30052,7 +29370,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30096,7 +29413,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30140,7 +29456,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30184,7 +29499,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30228,7 +29542,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30272,7 +29585,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":749,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":295,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3739,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":9190,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30316,7 +29628,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":813,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":891,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":364,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30360,7 +29671,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30404,7 +29714,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":574,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":43,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30448,7 +29757,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30492,7 +29800,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":72,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30536,7 +29843,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30580,7 +29886,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30624,7 +29929,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30668,7 +29972,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":49,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30712,7 +30015,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30756,7 +30058,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":2},{"period":"October 2025","diamonds":649,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":1367,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30800,7 +30101,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":1},{"period":"October 2025","diamonds":5227,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":7484,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30844,7 +30144,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":17174,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":42030,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30888,7 +30187,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":8570,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":139,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30932,7 +30230,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":531,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -30976,7 +30273,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":111,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":455,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31020,7 +30316,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31064,7 +30359,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31108,7 +30402,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31152,7 +30445,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31196,7 +30488,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31240,7 +30531,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31284,7 +30574,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31328,7 +30617,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31372,7 +30660,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31416,7 +30703,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31460,7 +30746,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":11,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31504,7 +30789,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":3329,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":1193,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":339,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31548,7 +30832,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":8426,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31592,7 +30875,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1712,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1761,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":53244,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31636,7 +30918,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31680,7 +30961,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":113,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31724,7 +31004,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31768,7 +31047,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31812,7 +31090,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31856,7 +31133,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31900,7 +31176,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5358,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31944,7 +31219,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":82,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -31988,7 +31262,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32032,7 +31305,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":13,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32076,7 +31348,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32120,7 +31391,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32164,7 +31434,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32208,7 +31477,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":37,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32252,7 +31520,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":53069,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":10364,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32296,7 +31563,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":50,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32340,7 +31606,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":101,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3156,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32384,7 +31649,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":524,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32428,7 +31692,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32472,7 +31735,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32516,7 +31778,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32560,7 +31821,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32604,7 +31864,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":235,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":147,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":28,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32648,7 +31907,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":29,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32692,7 +31950,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":289,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":27,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":114,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32736,7 +31993,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":17,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32780,7 +32036,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2043,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32824,7 +32079,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":189,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32868,7 +32122,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32912,7 +32165,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":20,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -32956,7 +32208,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":0},{"period":"November 2025","diamonds":18,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":301,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":5,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33000,7 +32251,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":156,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":5,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":7,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33044,7 +32294,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1702,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33088,7 +32337,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":239,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":146,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33132,7 +32380,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33176,7 +32423,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33220,7 +32466,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33264,7 +32509,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33308,7 +32552,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":21,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":9,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33352,7 +32595,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33396,7 +32638,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":56,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33440,7 +32681,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":128,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1342,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":386,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":2028,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33484,7 +32724,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":106,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33528,7 +32767,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":151,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33572,7 +32810,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1652,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33616,7 +32853,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":13,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33660,7 +32896,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33704,7 +32939,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33748,7 +32982,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33792,7 +33025,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33836,7 +33068,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33880,7 +33111,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":194,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33924,7 +33154,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":3765,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":11213,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":18302,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -33968,7 +33197,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34012,7 +33240,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34056,7 +33283,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":2,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":8,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34100,7 +33326,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":17,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34144,7 +33369,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34188,7 +33412,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34232,7 +33455,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":2507,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":713,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1552,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34276,7 +33498,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":4827,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":6,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34320,7 +33541,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":2,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34364,7 +33584,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34408,7 +33627,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34452,7 +33670,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":9660,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":67851,"revenue":"0","rewards":1},{"period":"September 2025","diamonds":437718,"revenue":"9,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34496,7 +33713,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":12056,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34540,7 +33756,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34584,7 +33799,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34628,7 +33842,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":320,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":1,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1224,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34672,7 +33885,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":141,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":3302,"revenue":"0","rewards":0},{"period":"September 2025","diamonds":2238,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34716,7 +33928,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34760,7 +33971,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34804,7 +34014,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34848,7 +34057,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34892,7 +34100,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":191,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34936,7 +34143,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":382,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":6364,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":520,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -34980,7 +34186,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35024,7 +34229,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1807,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35068,7 +34272,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35112,7 +34315,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35156,7 +34358,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":4532,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35200,7 +34401,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":7194,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":1088088,"revenue":"20,000","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35244,7 +34444,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35288,7 +34487,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35332,7 +34530,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35376,7 +34573,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":66,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35420,7 +34616,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":18500,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":5610,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35464,7 +34659,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35508,7 +34702,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35552,7 +34745,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35596,7 +34788,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":315,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":22,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":4174,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35640,7 +34831,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":422,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35684,7 +34874,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":14,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":2004,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":706,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35728,7 +34917,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35772,7 +34960,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":893,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35816,7 +35003,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":3,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35860,7 +35046,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35904,7 +35089,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35948,7 +35132,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -35992,7 +35175,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -36036,7 +35218,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   },
   {
@@ -36080,7 +35261,6 @@ const creatorsData = [
     "bonus": "$0.00",
     "daysMonth": 8,
     "hoursMonth": 20,
-    "earningsHistory": [{"period":"February 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"January 2026","diamonds":0,"revenue":"0","rewards":-1},{"period":"December 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"November 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"October 2025","diamonds":0,"revenue":"0","rewards":-1},{"period":"September 2025","diamonds":0,"revenue":"0","rewards":0}],
     "rewardsMonth": "0"
   }
 ];
