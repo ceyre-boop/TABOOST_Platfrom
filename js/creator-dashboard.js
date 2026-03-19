@@ -995,7 +995,7 @@ function updateHistory() {
         const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈ ' + revenueRaw;
         
         // Rewards from CSV
-        const rewards = data.rewards > 0 ? '$' + formatNumber(data.rewards) : '--';
+        const rewards = data.rewards > 0 ? formatNumber(data.rewards) + ' 💎' : '--';
         
         return {
             period: period,
