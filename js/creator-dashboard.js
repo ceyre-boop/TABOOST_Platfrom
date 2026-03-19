@@ -952,14 +952,25 @@ function updateHistory() {
         earningsData = [...myData.earningsHistory].reverse();
     } else {
         // Fallback to trends data or calculated estimates
-        const trends = creatorTrends[myData.username];
+        let trends = creatorTrends[myData.username];
+        
+        // Case-insensitive lookup
+        if (!trends) {
+            const usernameLower = myData.username.toLowerCase();
+            const matchingKey = Object.keys(creatorTrends).find(key => 
+                key.toLowerCase() === usernameLower
+            );
+            if (matchingKey) trends = creatorTrends[matchingKey];
+        }
+        
         if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
-            diamondsHistory = trends.diamondsHistory.slice(0, 6);
-            if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
-                rewardsHistory = trends.rewardsHistory.slice(0, 6);
-            } else {
-                rewardsHistory = ['--', '--', '--', '--', '--', '--'];
-            }
+            // FIX: Convert trends data to earningsData format
+            const rewardsHist = trends.rewardsHistory || [];
+            earningsData = trends.diamondsHistory.slice(0, 6).map((diamonds, idx) => ({
+                diamonds: diamonds,
+                revenue: '$' + Math.round(diamonds * 0.005).toLocaleString(),
+                rewards: parseInt(rewardsHist[idx]?.toString().replace(/,/g, '')) || 0
+            }));
         } else {
             // Fallback: build from available data (6 months) with estimated revenue
             const current = myData.diamonds || 0;
