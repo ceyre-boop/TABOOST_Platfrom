@@ -76,6 +76,38 @@
         .log-error { color: #ff4444; }
         .log-info { color: #888; }
         
+        .token-section {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+            display: none;
+        }
+        .token-section.visible { display: block; }
+        .token-section label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #ffd700;
+        }
+        .token-section input {
+            width: 100%;
+            background: #0a0a0a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-size: 14px;
+            font-family: monospace;
+            margin-bottom: 8px;
+        }
+        .token-section small {
+            color: #666;
+            font-size: 12px;
+        }
+        
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
@@ -93,8 +125,14 @@
             <input type="file" id="fileInput" accept=".csv" style="display:none">
         </div>
         
+        <div class="token-section" id="tokenSection">
+            <label>GitHub Personal Access Token</label>
+            <input type="password" id="githubToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" oninput="checkReady()">
+            <small>Create one at: GitHub → Settings → Developer settings → Personal access tokens</small>
+        </div>
+        
         <button class="btn" id="downloadBtn">Download data.js</button>
-        <button class="btn" id="autoBtn">Auto-Upload to GitHub</button>
+        <button class="btn" id="autoBtn" disabled>Auto-Upload to GitHub</button>
         
         <div class="log" id="log"></div>
     </div>
@@ -109,6 +147,8 @@
         const dropText = document.getElementById('dropText');
         const downloadBtn = document.getElementById('downloadBtn');
         const autoBtn = document.getElementById('autoBtn');
+        const tokenSection = document.getElementById('tokenSection');
+        const githubToken = document.getElementById('githubToken');
         const logEl = document.getElementById('log');
         
         let csvContent = null;
@@ -299,8 +339,79 @@
             dropZone.classList.add('ready');
             dropText.textContent = 'Rewards data ready!';
             downloadBtn.classList.add('visible');
+            tokenSection.classList.add('visible');
             autoBtn.classList.add('visible');
+            checkReady();
         }
+        
+        function checkReady() {
+            const token = githubToken.value;
+            autoBtn.disabled = !token;
+        }
+        
+        async function autoUpload() {
+            const token = githubToken.value;
+            if (!token || !dataJsContent) return;
+            
+            autoBtn.disabled = true;
+            log('<span class="spinner"></span>Starting upload...', 'info');
+            
+            try {
+                // 1. Get current file SHA
+                log('📡 Checking current data.js...');
+                let sha = null;
+                try {
+                    const checkRes = await fetch(
+                        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+                        { headers: { 'Authorization': `token ${token}` } }
+                    );
+                    if (checkRes.ok) {
+                        const data = await checkRes.json();
+                        sha = data.sha;
+                    }
+                } catch (e) {}
+                
+                // 2. Upload new data.js
+                log('📤 Uploading new data.js...');
+                const content = btoa(unescape(encodeURIComponent(dataJsContent)));
+                const body = {
+                    message: `Update rewards data - ${new Date().toLocaleDateString()}`,
+                    content: content,
+                    branch: 'main'
+                };
+                if (sha) body.sha = sha;
+                
+                const uploadRes = await fetch(
+                    `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body)
+                    }
+                );
+                
+                if (!uploadRes.ok) {
+                    const errorText = await uploadRes.text();
+                    log('❌ GitHub API Error: ' + errorText, 'error');
+                    throw new Error(`Upload failed: ${uploadRes.status}`);
+                }
+                
+                const uploadData = await uploadRes.json();
+                log('✅ Data.js uploaded! Commit: ' + uploadData.commit.sha.substring(0, 7), 'success');
+                log('🔗 ' + uploadData.content.html_url, 'info');
+                
+            } catch (err) {
+                log('❌ Upload failed: ' + err.message, 'error');
+            } finally {
+                autoBtn.disabled = false;
+                checkReady();
+            }
+        
+        // Auto-upload button
+        autoBtn.addEventListener('click', autoUpload);
         
         // Download button
         downloadBtn.addEventListener('click', () => {
