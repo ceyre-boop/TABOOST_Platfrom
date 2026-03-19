@@ -340,16 +340,22 @@
             const firstLine = text.split('\n')[0];
             const headers = parseCSVLine(firstLine);
             
-            // Check for required creator columns
-            const hasHost = headers.includes('Host');
-            const hasUsername = headers.includes('3/17');
-            const hasLevel = headers.includes('Level');
+            // Check for required creator columns (case-insensitive)
+            const headerLower = headers.map(h => h.toLowerCase());
+            const hasHost = headerLower.includes('host');
+            const hasUsername = headers.includes('3/17') || headers.some(h => h.match(/^\d+\/\d+$/));
+            const hasLevel = headerLower.includes('level');
+            
+            // Find actual column names
+            const hostCol = headers.find(h => h.toLowerCase() === 'host');
+            const usernameCol = headers.find(h => h.match(/^\d+\/\d+$/)) || headers[2];
             
             if (!hasHost || !hasUsername) {
                 log('❌ ERROR: Invalid CSV format!', 'error');
                 log('Missing required columns: Host, 3/17', 'error');
+                log('Found columns: ' + headers.slice(0, 10).join(', ') + (headers.length > 10 ? '...' : ''), 'info');
                 log('Make sure you exported the correct sheet from Google Sheets.', 'error');
-                alert('Wrong CSV format!\n\nThis CSV is missing required columns (Host, 3/17).\n\nPlease export the correct sheet from Google Sheets.');
+                alert('Wrong CSV format!\n\nExpected columns: Host, 3/17, Level\n\nFound: ' + headers.slice(0, 5).join(', ') + '\n\nPlease export the correct sheet from Google Sheets.');
                 return;
             }
             
