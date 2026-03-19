@@ -335,6 +335,28 @@
             csvFile = file;
             const text = await file.text();
             
+            // SAFETY CHECK: Validate CSV format before processing
+            const firstLine = text.split('\n')[0];
+            const headers = parseCSVLine(firstLine);
+            
+            // Check if this is a creator CSV (has 3/17 column) vs rewards CSV (has CID,TikTok)
+            const hasCreatorColumns = headers.includes('3/17') && headers.includes('Host');
+            const hasRewardsColumns = headers.includes('CID') || headers.includes('TikTok');
+            
+            if (!hasCreatorColumns) {
+                log('❌ ERROR: This is not a creator data CSV!', 'error');
+                log('Expected columns: Host, 3/17, Level, Month, etc.', 'error');
+                log('This tool only works with the main creator CSV from Google Sheets.', 'error');
+                alert('Wrong CSV format!\n\nThis tool expects the main creator data CSV, not rewards/history data.\n\nPlease use daily-update.html instead.');
+                return;
+            }
+            
+            if (hasRewardsColumns) {
+                log('⚠️ WARNING: This looks like a rewards CSV, not creator data.', 'error');
+                alert('Wrong CSV format!\n\nThis CSV appears to be rewards data.\nPlease use the correct update tool or check the CSV format.');
+                return;
+            }
+            
             log('📄 Reading CSV...', 'info');
             
             // Parse Rewards CSV
@@ -469,6 +491,19 @@
         async function autoUpload() {
             const token = document.getElementById('githubToken').value;
             if (!token || !dataJsContent) return;
+            
+            // SAFETY CHECK: Confirm before overwriting
+            const confirmUpload = confirm(
+                '⚠️ IMPORTANT:\n\n' +
+                'You are about to update the main creator data file (data.js).\n\n' +
+                'This affects ALL creator dashboards.\n\n' +
+                'Are you sure you want to proceed?'
+            );
+            
+            if (!confirmUpload) {
+                log('❌ Upload cancelled by user', 'info');
+                return;
+            }
             
             const btn = document.getElementById('autoBtn');
             btn.disabled = true;

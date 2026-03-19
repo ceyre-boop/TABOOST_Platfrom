@@ -336,6 +336,23 @@
             csvFile = file;
             const text = await file.text();
             
+            // SAFETY CHECK: Validate CSV format
+            const firstLine = text.split('\n')[0];
+            const headers = parseCSVLine(firstLine);
+            
+            // Check for required creator columns
+            const hasHost = headers.includes('Host');
+            const hasUsername = headers.includes('3/17');
+            const hasLevel = headers.includes('Level');
+            
+            if (!hasHost || !hasUsername) {
+                log('❌ ERROR: Invalid CSV format!', 'error');
+                log('Missing required columns: Host, 3/17', 'error');
+                log('Make sure you exported the correct sheet from Google Sheets.', 'error');
+                alert('Wrong CSV format!\n\nThis CSV is missing required columns (Host, 3/17).\n\nPlease export the correct sheet from Google Sheets.');
+                return;
+            }
+            
             // Parse CSV
             const lines = text.split('\n');
             const creators = [];
@@ -447,6 +464,19 @@
         async function autoUpload() {
             const token = document.getElementById('githubToken').value;
             if (!token || !dataJsContent) return;
+            
+            // SAFETY CHECK: Confirm before overwriting
+            const confirmUpload = confirm(
+                '⚠️ IMPORTANT:\n\n' +
+                'You are about to update the main creator data file (data.js).\n\n' +
+                'This affects ALL creator dashboards.\n\n' +
+                'Are you sure you want to proceed?'
+            );
+            
+            if (!confirmUpload) {
+                log('❌ Upload cancelled by user', 'info');
+                return;
+            }
             
             const btn = document.getElementById('autoBtn');
             btn.disabled = true;
