@@ -988,8 +988,10 @@ function updateHistory() {
             change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
         }
         
-        // Revenue from CSV with ≈ prefix
-        const revenueRaw = data.revenue || '$0.00';
+        // Revenue from CSV - strip cents and add ≈ prefix
+        let revenueRaw = data.revenue || '$0.00';
+        // Remove cents (everything after decimal point)
+        revenueRaw = revenueRaw.replace(/\.\d{2}$/, '');
         const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈ ' + revenueRaw;
         
         // Rewards from CSV
