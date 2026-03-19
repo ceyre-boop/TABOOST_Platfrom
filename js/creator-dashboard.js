@@ -1184,10 +1184,12 @@ function updateScoreAndLevels() {
         diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
     }
     
-    // Update diamonds as secondary info
+    // Update diamonds as note on right side (matching Cash Bonus layout)
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
         diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
+        diamondRevenueEl.style.color = '#00d4ff';
+        diamondRevenueEl.style.fontSize = '12px';
     }
     
     // PRO BONUS CALCULATION
