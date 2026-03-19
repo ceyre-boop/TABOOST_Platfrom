@@ -178,9 +178,13 @@ class TaboostDataService {
             // Column AN (index 40) - Bonus
             bonus: values[40] || '',
             
-            // Goals data - Column O (Days Goal) for Activity Level, Column R (Hrs Goal) for Activity Level
-            daysGoal: parseInt(values[14]) || parseInt(getValue('Days Goal')) || 18, // Column O = index 14
-            hoursGoal: parseInt(values[17]) || parseInt(getValue('Hrs Goal')) || 60, // Column R = index 17
+            // Activity Level goals from columns O and R
+            activityDaysGoal: parseInt(values[14]) || parseInt(getValue('Days Goal')) || 18, // Column O = Days Goal
+            activityHoursGoal: parseInt(values[17]) || parseInt(getValue('Hrs Goal')) || 60, // Column R = Hrs Goal
+            
+            // Monthly Goals from columns AP and AQ
+            daysGoal: parseInt(values[41]) || parseInt(getValue('Days Month')) || 22, // Column AP = Days Month
+            hoursGoal: parseInt(values[42]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = Hours Month
             
             // Note: This CSV only has Rewards Month (current), not full monthly history
             // Monthly history comes from HISTORY.csv via creator_trends.json

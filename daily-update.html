@@ -395,10 +395,12 @@
                         diamondsLastMonth: parseInt(cols[28]?.replace(/,/g, '')) || 0,
                         diamonds2MonthsAgo: parseInt(cols[29]?.replace(/,/g, '')) || 0,
                         hours: parseInt(cols[16]) || 0,
-                        hoursGoal: parseInt(cols[17]) || 0,
+                        hoursGoal: parseInt(cols[42]) || 80,  // Column AQ = Hours Month (Monthly Goals)
+                        activityHoursGoal: parseInt(cols[17]) || 60,  // Column R = Hrs Goal (Activity Level)
                         hoursLeft: cols[18] || '',
                         validLiveDays: parseInt(cols[12]) || 0,
-                        daysGoal: parseInt(cols[14]) || 0,
+                        daysGoal: parseInt(cols[41]) || 22,  // Column AP = Days Month (Monthly Goals)
+                        activityDaysGoal: parseInt(cols[14]) || 18,  // Column O = Days Goal (Activity Level)
                         daysLeft: cols[15] || '',
                         tier: parseInt(cols[21]) || 0,
                         tierGoal: parseInt(cols[22]?.replace(/,/g, '')) || 0,
