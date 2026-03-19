@@ -346,11 +346,12 @@
             if (!hasHistoryColumns) {
                 log('❌ ERROR: This is not a rewards/history CSV!', 'error');
                 log('Expected columns: CID, TikTok, Host', 'error');
+                log('Found columns: ' + headers.slice(0, 10).join(', ') + (headers.length > 10 ? '...' : ''), 'info');
                 log('This tool only works with the Earnings History CSV.', 'error');
                 if (hasDailyColumns) {
-                    alert('Wrong CSV format!\n\nThis looks like the daily update CSV.\n\nPlease use daily-update.html instead.');
+                    alert('Wrong CSV format!\n\nThis looks like the daily update CSV.\n\nPlease use daily-update.html instead.\n\nFound: ' + headers.slice(0, 5).join(', '));
                 } else {
-                    alert('Wrong CSV format!\n\nThis tool expects the Earnings History CSV from Google Sheets.');
+                    alert('Wrong CSV format!\n\nExpected: CID, TikTok, Host\n\nFound: ' + headers.slice(0, 5).join(', ') + '\n\nThis tool expects the Earnings History CSV from Google Sheets.');
                 }
                 return;
             }
