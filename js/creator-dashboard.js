@@ -858,7 +858,25 @@ function initPerformanceChart() {
             // Always show real 6-month historical data with month names
             performanceChart.data.labels = labels;
             if (hasRealData) {
-                performanceChart.data.datasets[0].data = trends.diamondsHistory;
+                performanceChart.data.datasets[0].data = [
+                    trends.diamondsHistory[1], // October
+                    trends.diamondsHistory[2], // November
+                    trends.diamondsHistory[3], // December
+                    trends.diamondsHistory[4], // January
+                    trends.diamondsHistory[5], // February
+                    myData.diamonds || 0       // Current
+                ];
+                // Also update tier data
+                if (trends.tierHistory && trends.tierHistory.length >= 6) {
+                    performanceChart.data.datasets[1].data = [
+                        trends.tierHistory[1] > 0 ? trends.tierHistory[1] : null,
+                        trends.tierHistory[2] > 0 ? trends.tierHistory[2] : null,
+                        trends.tierHistory[3] > 0 ? trends.tierHistory[3] : null,
+                        trends.tierHistory[4] > 0 ? trends.tierHistory[4] : null,
+                        trends.tierHistory[5] > 0 ? trends.tierHistory[5] : null,
+                        myData.tier || 0
+                    ];
+                }
             } else {
                 // Fallback: use CSV data columns
                 const current = myData.diamonds || 0;
