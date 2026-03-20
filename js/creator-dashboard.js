@@ -722,14 +722,15 @@ function initPerformanceChart() {
         
         // Tier data: Past months from history, Current from live data (column V)
         // tierHistory is [Sep, Oct, Nov, Dec, Jan, Feb]
+        // Convert -1 to null so chart doesn't display invalid tiers
         let tierData = [null, null, null, null, null, currentTier];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
             tierData = [
-                trends.tierHistory[1], // October (index 1)
-                trends.tierHistory[2], // November (index 2)
-                trends.tierHistory[3], // December (index 3)
-                trends.tierHistory[4], // January (index 4)
-                trends.tierHistory[5], // February (index 5)
+                trends.tierHistory[1] > 0 ? trends.tierHistory[1] : null, // October (index 1)
+                trends.tierHistory[2] > 0 ? trends.tierHistory[2] : null, // November (index 2)
+                trends.tierHistory[3] > 0 ? trends.tierHistory[3] : null, // December (index 3)
+                trends.tierHistory[4] > 0 ? trends.tierHistory[4] : null, // January (index 4)
+                trends.tierHistory[5] > 0 ? trends.tierHistory[5] : null, // February (index 5)
                 currentTier            // Current (live from daily CSV column V)
             ];
         }
