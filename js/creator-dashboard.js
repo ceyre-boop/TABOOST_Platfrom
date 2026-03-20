@@ -1205,11 +1205,11 @@ function updateScoreAndLevels() {
         { level: 5, days: 22, hours: 80 }   // Fixed: was 25, should be 22
     ];
     
-    // Activity Level uses activityDaysGoal (column O) and activityHoursGoal (column R)
+    // Activity Level uses daysMonth (column 38) and hoursMonth (column 39)
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
-    const daysGoal = myData.activityDaysGoal || myData.daysGoal || 0;
-    const hoursGoal = myData.activityHoursGoal || myData.hoursGoal || 0;
+    const daysGoal = myData.daysMonth || myData.activityDaysGoal || myData.daysGoal || 0;
+    const hoursGoal = myData.hoursMonth || myData.activityHoursGoal || myData.hoursGoal || 0;
     
     document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
     document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
