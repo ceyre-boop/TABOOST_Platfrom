@@ -459,7 +459,7 @@ function updateGoals() {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursGoal || 80,
+            target: myData.hoursMonth || myData.hoursGoal || 80,
             unit: 'h'
         },
         {
