@@ -694,13 +694,14 @@ function initPerformanceChart() {
         // Build dataPoints: Past months from history JSON, Current from live data
         let dataPoints;
         if (hasRealData) {
-            // Use first 5 months from history (Oct-Feb), current from live data
+            // diamondsHistory is [Sep, Oct, Nov, Dec, Jan, Feb]
+            // Use indices 1-5 for Oct-Feb, current from live data
             dataPoints = [
-                trends.diamondsHistory[0], // October
-                trends.diamondsHistory[1], // November
-                trends.diamondsHistory[2], // December
-                trends.diamondsHistory[3], // January
-                trends.diamondsHistory[4], // February
+                trends.diamondsHistory[1], // October (index 1)
+                trends.diamondsHistory[2], // November (index 2)
+                trends.diamondsHistory[3], // December (index 3)
+                trends.diamondsHistory[4], // January (index 4)
+                trends.diamondsHistory[5], // February (index 5)
                 currentDiamonds            // Current (live from daily CSV)
             ];
             console.log('DEBUG - Using merged data (history Oct-Feb + live Current):', dataPoints);
@@ -720,14 +721,15 @@ function initPerformanceChart() {
         }
         
         // Tier data: Past months from history, Current from live data (column V)
+        // tierHistory is [Sep, Oct, Nov, Dec, Jan, Feb]
         let tierData = [null, null, null, null, null, currentTier];
-        if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
+        if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
             tierData = [
-                trends.tierHistory[0], // October
-                trends.tierHistory[1], // November
-                trends.tierHistory[2], // December
-                trends.tierHistory[3], // January
-                trends.tierHistory[4], // February
+                trends.tierHistory[1], // October (index 1)
+                trends.tierHistory[2], // November (index 2)
+                trends.tierHistory[3], // December (index 3)
+                trends.tierHistory[4], // January (index 4)
+                trends.tierHistory[5], // February (index 5)
                 currentTier            // Current (live from daily CSV column V)
             ];
         }
