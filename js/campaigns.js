@@ -92,17 +92,23 @@ async function initCampaigns(user) {
     currentUser = user;
     campaigns = [...sampleCampaigns];
     
-    // Load from localStorage if any saved campaigns
+    console.log('Campaigns loaded:', campaigns.length, 'events');
+    console.log('Events:', campaigns.map(c => c.title).join(', '));
+    
+    // Load from localStorage if any saved campaigns (only opted-in status)
     const saved = localStorage.getItem('taboost_campaigns');
     if (saved) {
         const savedData = JSON.parse(saved);
         campaigns = campaigns.map(c => {
             const saved = savedData.find(s => s.id === c.id);
-            return saved ? { ...c, opted: saved.opted } : c;
+            return saved ? { ...c, opted: saved.opted || [] } : c;
         });
     }
     
     renderCampaigns();
+    
+    // Debug: Show all campaign names
+    console.log('Rendering campaigns:', campaigns.map(c => `${c.title} (${c.date})`).join(', '));
     checkNotifications();
     
     // Filter buttons
