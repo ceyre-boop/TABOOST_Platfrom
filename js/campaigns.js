@@ -3,6 +3,20 @@
 // Sample campaigns data (in production, this would come from backend/Google Sheets)
 const sampleCampaigns = [
     {
+        id: 6,
+        title: "Coachella Showdown",
+        description: "Special Coachella-themed creator competition. Show your festival vibes and win big!",
+        date: "2026-03-23",
+        endDate: "2026-03-30",
+        time: "All Day",
+        type: "Competition",
+        prize: "$10,000",
+        status: "upcoming",
+        participants: 0,
+        requirements: "All levels",
+        opted: []
+    },
+    {
         id: 1,
         title: "Sunday Knockout Tournament",
         description: "Competitive streaming tournament. Top 3 creators win bonus rewards.",
