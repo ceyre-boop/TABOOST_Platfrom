@@ -51,16 +51,6 @@ function generateRollingCalendar() {
             startDate: new Date('2026-03-21'),
             endDate: new Date('2026-03-29'),
             color: "#00d4ff"
-        },
-        {
-            id: 5,
-            title: "Coachella Showdown",
-            type: "special",
-            time: "All Day",
-            // Multi-day event: March 23-30, 2026
-            startDate: new Date('2026-03-23'),
-            endDate: new Date('2026-03-30'),
-            color: "#f0f"
         }
     ];
     
