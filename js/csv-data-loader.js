@@ -5,7 +5,8 @@
 // Handles: #N/A cleaning, type conversion, caching
 // ============================================================================
 
-const CSV_BASE_URL = 'https://ceyre-boop.github.io/TABOOST_Platfrom/data';
+// Use relative path so it works on same domain (avoids CORS)
+const CSV_BASE_URL = '/data';
 
 const CSV_LOADER = {
   cache: null,
