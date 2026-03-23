@@ -34,6 +34,20 @@ function syncCreatorSheetsToGitHub() {
       const csvContent = exportSheetToCSV(config.SHEET_ID, gid);
       console.log(`✅ Exported ${csvContent.length} chars`);
       
+      // DEBUG: Log first few lines to verify content
+      if (sheet.tabName === 'Rewards') {
+        const lines = csvContent.split('\n');
+        console.log('📋 Rewards first 3 lines:');
+        lines.slice(0, 3).forEach((line, i) => console.log(`  ${i + 1}: ${line.substring(0, 100)}`));
+        
+        // Find latest date in exported content
+        const dateRegex = /(\d{1,2}\/\d{1,2}\/\d{4})/g;
+        const dates = csvContent.match(dateRegex);
+        if (dates) {
+          console.log('📅 Latest dates in export:', dates.slice(0, 5).join(', '));
+        }
+      }
+      
       // Push to GitHub
       const result = pushToGitHub(
         csvContent,
