@@ -100,7 +100,7 @@ const CSV_LOADER = {
   },
   
   // Convert CSV row to creator object
-  rowToCreator(row, index) {
+  rowToCreator(row, index, headers) {
     // Helper to get value with fallbacks
     const get = (...keys) => {
       for (const key of keys) {
@@ -109,11 +109,17 @@ const CSV_LOADER = {
       return '';
     };
     
-    // Get username
-    let username = get('TikTok', '3/1', 'Username', 'username', 'TikTok Username');
+    // Find date column dynamically (format: M/D or MM/DD)
+    const dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h));
+    
+    // Get username from date column or fallbacks
+    let username = get(dateCol, 'TikTok', '3/1', 'Username', 'username', 'TikTok Username');
     if (!username) return null;
     
     username = String(username).toLowerCase().trim();
+    
+    // Find diamonds column (💎 or ?)
+    const diamondsCol = headers.find(h => h.includes('💎') || h === '?');
     
     // Clean manager
     let manager = get('Agent', 'Manager', 'agent', 'manager');
@@ -133,12 +139,12 @@ const CSV_LOADER = {
       m: manager.toUpperCase(),
       claimed: false,
       score: this.cleanValue(get('Score', 'score'), 'int', 0),
-      diamonds: this.cleanValue(get('💎', 'Diamonds', 'diamonds', 'Total Diamonds'), 'int', 0),
-      diamondsPace: this.cleanValue(get('Pace', 'pace', 'Diamonds Pace'), 'string', '0'),
+      diamonds: this.cleanValue(get(diamondsCol, '💎', 'Diamonds', 'diamonds', 'Total Diamonds'), 'int', 0),
+      diamondsPace: this.cleanValue(get('? Pace', 'Pace', 'pace', 'Diamonds Pace'), 'string', '0'),
       diamondsGoal: this.cleanValue(get('Diamond Goal', 'diamondsGoal', 'Goal'), 'int', 0),
-      diamondsLast30: this.cleanValue(get('Last 30', 'last30', 'Last 30 Days'), 'int', 0),
-      diamondsLastMonth: this.cleanValue(get('-1 Month 💎', 'lastMonth', 'Last Month'), 'int', 0),
-      diamonds2MonthsAgo: this.cleanValue(get('-2 Month 💎', '2monthsAgo'), 'int', 0),
+      diamondsLast30: this.cleanValue(get('? Last 30', 'Last 30', 'last30', 'Last 30 Days'), 'int', 0),
+      diamondsLastMonth: this.cleanValue(get('-1 Month ?', '-1 Month 💎', 'lastMonth', 'Last Month'), 'int', 0),
+      diamonds2MonthsAgo: this.cleanValue(get('-2 Month ?', '-2 Month 💎', '2monthsAgo'), 'int', 0),
       hours: this.cleanValue(get('Hours', 'hours', 'Live Hours'), 'int', 0),
       hoursGoal: this.cleanValue(get('Hrs Goal', 'hoursGoal', 'Hours Goal'), 'int', 0),
       hoursLeft: this.cleanValue(get('Hrs Left', 'hoursLeft'), 'string', '0'),
@@ -156,7 +162,7 @@ const CSV_LOADER = {
       running: this.cleanValue(get('Running', 'running'), 'string', '0'),
       multiply: this.cleanValue(get('Multiply', 'multiply', 'Multiplier'), 'string', '-'),
       unlocked: this.cleanValue(get('Unlocked', 'unlocked'), 'string', '0'),
-      estRev: this.cleanValue(get('Est Rev', 'estRev', 'Est. Revenue'), 'int', 0),
+      estRev: this.cleanValue(get('Est Rev', 'estRev', 'Est. Revenue', 'Est Revenue'), 'int', 0),
       bonus: this.cleanValue(get('Bonus', 'bonus'), 'string', '$0.00'),
       daysMonth: this.cleanValue(get('Days Month', 'daysMonth'), 'int', 0),
       hoursMonth: this.cleanValue(get('Hours Month', 'hoursMonth'), 'int', 0),
@@ -187,7 +193,7 @@ const CSV_LOADER = {
       
       // Convert to creators
       const creators = rows
-        .map((row, idx) => this.rowToCreator(row, idx))
+        .map((row, idx) => this.rowToCreator(row, idx, headers))
         .filter(c => c !== null && c.username); // Remove empty rows
       
       console.log(`✅ Loaded ${creators.length} creators from CSV`);
