@@ -41,7 +41,7 @@ const CSV_LOADER = {
   // Parse CSV text to array of objects
   parseCSV(csvText) {
     const lines = csvText.split('\n').filter(l => l.trim());
-    if (lines.length < 2) return [];
+    if (lines.length < 2) return { headers: [], rows: [] };
     
     const headers = this.parseCSVLine(lines[0]);
     const rows = [];
@@ -55,7 +55,7 @@ const CSV_LOADER = {
       rows.push(row);
     }
     
-    return rows;
+    return { headers, rows };
   },
   
   // Parse a single CSV line (handles quotes)
@@ -188,8 +188,9 @@ const CSV_LOADER = {
         csvText = await this.fetchCSV('live-data-current.csv');
       }
       
-      const rows = this.parseCSV(csvText);
+      const { headers, rows } = this.parseCSV(csvText);
       console.log(`✅ Parsed ${rows.length} rows from CSV`);
+      console.log('📋 Headers:', headers.slice(0, 10).join(', ') + '...');
       
       // Convert to creators
       const creators = rows
