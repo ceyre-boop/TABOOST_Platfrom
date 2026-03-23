@@ -1435,6 +1435,9 @@ function updateAwards() {
         ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
     }
     
+    console.log('DEBUG - ledgerRows count:', ledgerRows.length);
+    console.log('DEBUG - ledgerRows sample:', ledgerRows.slice(0, 3));
+    
     // Default message if no rewards
     if (ledgerRows.length === 0) {
         document.getElementById('awardsList').innerHTML = `
