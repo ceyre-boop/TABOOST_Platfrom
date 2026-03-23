@@ -7,7 +7,7 @@
 const SHEET_CONFIG = [
   { tabName: 'Current', outputPath: 'data/current.csv' },
   { tabName: 'Rewards', outputPath: 'data/rewards.csv' },
-  { tabName: 'Current-UK', outputPath: 'data/current-uk.csv' }
+  { tabName: 'History', outputPath: 'data/history.csv' }
 ];
 
 // ============================================
@@ -202,7 +202,7 @@ function setupCreatorSync() {
     return;
   }
   
-  ui.alert('✅ Setup complete!\n\nWill sync:\n• Current → data/current.csv\n• Rewards → data/rewards.csv\n• Current-UK → data/current-uk.csv\n\nRun testCreatorSync() to test.');
+  ui.alert('✅ Setup complete!\n\nWill sync:\n• Current → data/current.csv\n• Rewards → data/rewards.csv\n• History → data/history.csv\n\nRun testCreatorSync() to test.');
 }
 
 // ============================================
