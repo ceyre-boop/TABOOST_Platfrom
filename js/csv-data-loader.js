@@ -247,6 +247,68 @@ const CSV_LOADER = {
     this.cache = null;
     this.lastFetch = null;
     console.log('🔄 Cache cleared');
+  },
+  
+  // ============================================
+  // REWARDS DATA - Separate loader for rewards.csv
+  // ============================================
+  rewardsCache: null,
+  rewardsLastFetch: null,
+  
+  async loadRewards() {
+    // Check cache (5 minute cache)
+    if (this.rewardsCache && this.rewardsLastFetch && (Date.now() - this.rewardsLastFetch < 5 * 60 * 1000)) {
+      console.log('📦 Using cached rewards');
+      return this.rewardsCache;
+    }
+    
+    try {
+      const csvText = await this.fetchCSV('rewards.csv');
+      const { headers, rows } = this.parseCSV(csvText);
+      
+      console.log(`✅ Parsed ${rows.length} reward rows`);
+      console.log('📋 Rewards headers:', headers.join(', '));
+      
+      // Group rewards by username
+      const rewardsByUser = {};
+      
+      rows.forEach(row => {
+        const username = String(row['TikTok'] || row['tiktok'] || '').toLowerCase().trim();
+        if (!username) return;
+        
+        if (!rewardsByUser[username]) {
+          rewardsByUser[username] = [];
+        }
+        
+        const plus = parseInt(String(row['Plus'] || '0').replace(/,/g, '')) || 0;
+        const minus = parseInt(String(row['Minus'] || '0').replace(/,/g, '')) || 0;
+        const amount = plus || minus;
+        
+        rewardsByUser[username].push({
+          type: row['Type'] || 'Bonus',
+          date: row['Date'] || '',
+          amount: amount,
+          description: `${row['Type'] || 'Bonus'}: ${amount.toLocaleString()}`
+        });
+      });
+      
+      console.log(`✅ Loaded rewards for ${Object.keys(rewardsByUser).length} creators`);
+      
+      this.rewardsCache = rewardsByUser;
+      this.rewardsLastFetch = Date.now();
+      
+      return rewardsByUser;
+      
+    } catch (error) {
+      console.error('❌ Failed to load rewards:', error);
+      return {};
+    }
+  },
+  
+  // Get rewards for a specific creator
+  async getRewardsForCreator(username) {
+    const allRewards = await this.loadRewards();
+    return allRewards[username.toLowerCase()] || [];
   }
 };
 
