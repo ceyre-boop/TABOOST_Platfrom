@@ -6,7 +6,7 @@
 // CONFIG - Your 3 sheets
 const SHEET_CONFIG = [
   { tabName: 'Current', outputPath: 'data/current.csv' },
-  { tabName: 'Rewards', outputPath: 'data/rewards.csv' },
+  { tabName: 'Rewards', outputPath: 'data/rewards-history.csv' },  // Dashboard expects this filename
   { tabName: 'History', outputPath: 'data/history.csv' }
 ];
 
@@ -202,7 +202,7 @@ function setupCreatorSync() {
     return;
   }
   
-  ui.alert('✅ Setup complete!\n\nWill sync:\n• Current → data/current.csv\n• Rewards → data/rewards.csv\n• History → data/history.csv\n\nRun testCreatorSync() to test.');
+  ui.alert('✅ Setup complete!\n\nWill sync:\n• Current → data/current.csv\n• Rewards → data/rewards-history.csv\n• History → data/history.csv\n\nRun testCreatorSync() to test.');
 }
 
 // ============================================
