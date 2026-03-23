@@ -543,7 +543,9 @@ let creatorTrends = {};
 // CSV format: CID,TikTok,Type,Date,Plus,Minus
 async function loadDetailedRewards() {
     try {
-        const response = await fetch('data/rewards-history.csv?v=' + Date.now());
+        // Force cache bust with random param
+        const cacheBuster = Date.now() + Math.random();
+        const response = await fetch('data/rewards-history.csv?v=' + cacheBuster);
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
