@@ -1373,7 +1373,19 @@ function updateAwards() {
             const eventKey = `${r.type}|${r.date}`;
             
             if (!eventMap.has(eventKey)) {
-                const parsedDate = new Date(r.date);
+                // Parse M/D/YYYY format properly
+                let parsedDate;
+                if (r.date.includes('/')) {
+                    const parts = r.date.split('/');
+                    if (parts.length === 3) {
+                        // M/D/YYYY -> YYYY-MM-DD for reliable parsing
+                        parsedDate = new Date(`${parts[2]}-${parts[0].padStart(2,'0')}-${parts[1].padStart(2,'0')}`);
+                    } else {
+                        parsedDate = new Date(r.date);
+                    }
+                } else {
+                    parsedDate = new Date(r.date);
+                }
                 console.log('DEBUG - Parsing date:', r.date, '->', parsedDate, 'Valid:', !isNaN(parsedDate));
                 eventMap.set(eventKey, {
                     type: r.type,
@@ -1396,9 +1408,13 @@ function updateAwards() {
             event.totalMinus += minusVal;
         });
         
-        // Convert to array and sort by date (newest first)
-        const events = Array.from(eventMap.values());
+        // Convert to array and filter out invalid dates
+        const events = Array.from(eventMap.values()).filter(e => !isNaN(e.dateObj));
+        console.log('DEBUG - Valid events count:', events.length);
+        
+        // Sort by date (newest first)
         events.sort((a, b) => b.dateObj - a.dateObj);
+        console.log('DEBUG - Sorted events:', events.slice(0, 5).map(e => ({type: e.type, date: e.date, dateObj: e.dateObj})));
         
         // Take last 5 unique events
         const recentEvents = events.slice(0, 5);
