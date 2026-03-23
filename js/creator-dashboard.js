@@ -1373,10 +1373,12 @@ function updateAwards() {
             const eventKey = `${r.type}|${r.date}`;
             
             if (!eventMap.has(eventKey)) {
+                const parsedDate = new Date(r.date);
+                console.log('DEBUG - Parsing date:', r.date, '->', parsedDate, 'Valid:', !isNaN(parsedDate));
                 eventMap.set(eventKey, {
                     type: r.type,
                     date: r.date,
-                    dateObj: new Date(r.date),
+                    dateObj: parsedDate,
                     icon: r.icon || '🏆',
                     totalPlus: 0,
                     totalMinus: 0
@@ -1450,6 +1452,11 @@ function updateAwards() {
         `;
         return;
     }
+    
+    // DEBUG: Check what's about to be displayed
+    console.log('DEBUG - About to display', ledgerRows.length, 'rows');
+    console.log('DEBUG - First row to display:', ledgerRows[0]);
+    console.log('DEBUG - awardsList element:', document.getElementById('awardsList'));
     
     // Display all rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
