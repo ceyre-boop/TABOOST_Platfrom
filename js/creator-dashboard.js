@@ -581,11 +581,11 @@ async function loadDetailedRewards() {
             // Column D (index 3) = Date
             // Column E (index 4) = Plus (rewards earned)
             // Column F (index 5) = Minus (gifted/cashed in)
-            const username = values[1]?.toLowerCase().trim();
-            const type = values[2]?.trim() || '';
-            const date = values[3]?.trim() || '';
-            const plus = values[4]?.trim() || ''; // Rewards earned
-            const minus = values[5]?.trim() || ''; // Gifted/cashed in
+            const username = values[1]?.toLowerCase().trim().replace(/^"|"$/g, '');
+            const type = values[2]?.trim().replace(/^"|"$/g, '') || '';
+            const date = values[3]?.trim().replace(/^"|"$/g, '') || '';
+            const plus = values[4]?.trim().replace(/^"|"$/g, '').replace(/,/g, '') || ''; // Remove quotes and commas
+            const minus = values[5]?.trim().replace(/^"|"$/g, '').replace(/,/g, '') || ''; // Remove quotes and commas
             
             if (!username) continue;
             
@@ -1223,6 +1223,7 @@ function updateScoreAndLevels() {
     const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
     if (diamondRevenueUSDEl) {
         const estRev = myData.estRev || 0;
+        console.log('DEBUG - estRev value:', estRev, 'from myData:', myData.username);
         diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
     }
     

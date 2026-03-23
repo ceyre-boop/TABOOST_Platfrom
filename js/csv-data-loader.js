@@ -193,12 +193,24 @@ const CSV_LOADER = {
       console.log(`✅ Parsed ${rows.length} rows from CSV`);
       console.log('📋 Headers:', headers.slice(0, 10).join(', ') + '...');
       
+      // Debug: log first row to see column mapping
+      if (rows.length > 0) {
+        console.log('DEBUG - First row sample:', {
+          username: rows[0]['3/22'] || rows[0]['TikTok'] || 'NOT FOUND',
+          estRev: rows[0]['Est Rev'] || rows[0]['Est Rev'] || 'NOT FOUND',
+          rawKeys: Object.keys(rows[0]).slice(0, 10)
+        });
+      }
+      
       // Convert to creators
       const creators = rows
         .map((row, idx) => this.rowToCreator(row, idx, headers))
         .filter(c => c !== null && c.username); // Remove empty rows
       
       console.log(`✅ Loaded ${creators.length} creators from CSV`);
+      if (creators.length > 0) {
+        console.log('DEBUG - First creator estRev:', creators[0].estRev);
+      }
       
       // Validate - check for #N/A
       const badValues = creators.filter(c => 
