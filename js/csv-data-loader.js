@@ -263,7 +263,7 @@ const CSV_LOADER = {
     }
     
     try {
-      const csvText = await this.fetchCSV('rewards.csv');
+      const csvText = await this.fetchCSV('rewards-history.csv');
       const { headers, rows } = this.parseCSV(csvText);
       
       console.log(`✅ Parsed ${rows.length} reward rows`);
