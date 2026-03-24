@@ -543,9 +543,18 @@ let creatorTrends = {};
 // CSV format: CID,TikTok,Type,Date,Plus,Minus
 async function loadDetailedRewards() {
     try {
-        // Force cache bust with random param
+        // Try rewards.csv first (newer), then fallback to rewards-history.csv
         const cacheBuster = Date.now() + Math.random();
-        const response = await fetch('data/rewards-history.csv?v=' + cacheBuster);
+        
+        let response = await fetch('data/rewards.csv?v=' + cacheBuster);
+        console.log('DEBUG - Trying rewards.csv, status:', response.status);
+        
+        if (!response.ok) {
+            console.log('DEBUG - rewards.csv not found, trying rewards-history.csv...');
+            response = await fetch('data/rewards-history.csv?v=' + cacheBuster);
+            console.log('DEBUG - rewards-history.csv status:', response.status);
+        }
+        
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
