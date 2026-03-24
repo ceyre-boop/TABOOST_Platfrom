@@ -759,13 +759,29 @@
         async function loadExistingCreatorsFromFirebase() {
             log('📡 Loading existing creators from Firebase...', 'info');
             try {
-                const snapshot = await db.collection('creatorRoster').get();
+                // Try creatorRoster collection first
+                let snapshot = await db.collection('creatorRoster').get();
+                log(`📊 creatorRoster collection: ${snapshot.size} documents`, 'info');
+                
+                // If empty, try creators collection
+                if (snapshot.size === 0) {
+                    log('⚠️ creatorRoster empty, trying creators collection...', 'warning');
+                    snapshot = await db.collection('creators').get();
+                    log(`📊 creators collection: ${snapshot.size} documents`, 'info');
+                }
+                
                 snapshot.forEach(doc => {
                     existingFirebaseCreators.add(doc.id.toLowerCase());
                 });
+                
                 log(`✅ Found ${existingFirebaseCreators.size} existing creators in Firebase`, 'success');
+                
+                if (existingFirebaseCreators.size > 0) {
+                    log('Sample: ' + Array.from(existingFirebaseCreators).slice(0, 5).join(', '), 'info');
+                }
             } catch (error) {
-                log(`⚠️ Could not load existing creators: ${error.message}`, 'warning');
+                log(`❌ Could not load existing creators: ${error.message}`, 'error');
+                log('Check Firebase rules - need read access', 'warning');
             }
         }
 
