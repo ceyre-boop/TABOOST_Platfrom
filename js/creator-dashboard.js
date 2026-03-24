@@ -1222,8 +1222,20 @@ function updateScoreAndLevels() {
     const daysGoal = myData.activityDaysGoal || myData.daysGoal || 0;
     const hoursGoal = myData.activityHoursGoal || myData.hoursGoal || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
+    // Check if at max level (Level 5) - remove "/0" display
+    const isMaxLevel = myData.level === '5' || myData.level === 5;
+    
+    if (isMaxLevel && daysGoal === 0) {
+        document.getElementById('daysStreamed').textContent = `${currentDays} days (MAX)`;
+    } else {
+        document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
+    }
+    
+    if (isMaxLevel && hoursGoal === 0) {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs (MAX)`;
+    } else {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
+    }
     
     document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
     document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
