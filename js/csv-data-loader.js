@@ -102,10 +102,17 @@ const CSV_LOADER = {
   
   // Convert CSV row to creator object
   rowToCreator(row, index, headers) {
-    // Helper to get value with fallbacks
+    // Helper to get value with fallbacks - checks exact and trimmed header names
     const get = (...keys) => {
       for (const key of keys) {
+        // Try exact match first
         if (row[key] !== undefined && row[key] !== '') return row[key];
+        // Try trimmed match
+        const trimmedKey = key.trim();
+        if (row[trimmedKey] !== undefined && row[trimmedKey] !== '') return row[trimmedKey];
+        // Try to find in headers (case insensitive trim)
+        const headerMatch = headers.find(h => h.trim().toLowerCase() === key.toLowerCase());
+        if (headerMatch && row[headerMatch] !== undefined && row[headerMatch] !== '') return row[headerMatch];
       }
       return '';
     };
