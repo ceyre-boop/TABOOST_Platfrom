@@ -140,6 +140,21 @@
         <h1>🚀 TABOOST Bulk Import</h1>
         <p class="subtitle">Import Complete Creator Roster to Firebase</p>
 
+        <div class="card">
+            <h3>📁 Upload CSV File</h3>
+            <p style="color:#888; margin-bottom:15px;">Upload your Google Sheet export (columns B & C: CID, Username)</p>
+            <input type="file" id="csvFile" accept=".csv" style="display:none;" onchange="handleCSVUpload(event)">
+            <button class="btn btn-secondary" onclick="document.getElementById('csvFile').click()">
+                📎 Choose CSV File
+            </button>
+            <div id="fileInfo" style="margin-top:15px; color:#4ade80; display:none;">
+                ✅ File loaded: <span id="fileName"></span> (<span id="rowCount"></span> creators)
+            </div>
+            <div id="newCreatorsInfo" style="margin-top:15px; color:#feca57; display:none;">
+                ✨ Found <span id="newCount">0</span> NEW creators not in Firebase
+            </div>
+        </div>
+
         <div class="warning">
             ⚠️ <strong>IMPORTANT:</strong> Deploy these TEMPORARY rules first:<br>
             <code style="background:#000;padding:5px 10px;border-radius:4px;display:block;margin:10px 0;font-size:11px;">
@@ -634,12 +649,11 @@
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
-            if (mode === 'new') {
+            // When using uploaded CSV, mode doesn't change the count
+            if (creatorsToImport.length > 0) {
+                document.getElementById('totalCreators').textContent = creatorsToImport.length;
+            } else if (mode === 'new') {
                 document.getElementById('totalCreators').textContent = NEW_CREATORS.length;
-            } else if (mode === 'update') {
-                document.getElementById('totalCreators').textContent = '802';
-            } else {
-                document.getElementById('totalCreators').textContent = '807';
             }
         }
 
@@ -653,10 +667,10 @@
                 
                 const creator = creatorsToImport[i];
                 
-                // Skip if already imported (in NEW mode)
-                if (importMode === 'new' && ALREADY_IMPORTED.has(creator.username.toLowerCase())) {
+                // Skip if already in Firebase (double-check)
+                if (existingFirebaseCreators.has(creator.username.toLowerCase())) {
                     skippedCount++;
-                    log(`⏭️ Skipped (already exists): ${creator.username}`, 'info');
+                    log(`⏭️ Skipped (already in Firebase): ${creator.username}`, 'info');
                     continue;
                 }
                 
@@ -681,13 +695,13 @@
         }
 
         async function startImport() {
-            // Set creators list based on mode
-            if (importMode === 'new') {
-                creatorsToImport = NEW_CREATORS;
-            } else {
-                log('⚠️ Full list mode - please provide complete list', 'warning');
+            // Use uploaded creators if available
+            if (creatorsToImport.length === 0) {
+                log('❌ No creators to import. Please upload a CSV file first.', 'error');
                 return;
             }
+            
+            log(`🚀 Starting import of ${creatorsToImport.length} creators...`, 'info');
 
             document.getElementById('importBtn').style.display = 'none';
             document.getElementById('pauseBtn').style.display = 'block';
@@ -736,9 +750,132 @@
             }
         }
 
+        // ============================================
+        // CSV UPLOAD & PARSING
+        // ============================================
+        let uploadedCreators = [];
+        let existingFirebaseCreators = new Set();
+
+        async function loadExistingCreatorsFromFirebase() {
+            log('📡 Loading existing creators from Firebase...', 'info');
+            try {
+                const snapshot = await db.collection('creatorRoster').get();
+                snapshot.forEach(doc => {
+                    existingFirebaseCreators.add(doc.id.toLowerCase());
+                });
+                log(`✅ Found ${existingFirebaseCreators.size} existing creators in Firebase`, 'success');
+            } catch (error) {
+                log(`⚠️ Could not load existing creators: ${error.message}`, 'warning');
+            }
+        }
+
+        function handleCSVUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById('fileName').textContent = file.name;
+            log(`📁 Loading ${file.name}...`, 'info');
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const text = e.target.result;
+                parseCSV(text);
+            };
+            reader.readAsText(file);
+        }
+
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            uploadedCreators = [];
+
+            for (let i = 1; i < lines.length; i++) { // Skip header
+                const line = lines[i].trim();
+                if (!line) continue;
+
+                // Parse CSV line (handle quotes)
+                const values = parseCSVLine(line);
+                
+                // Expecting: CID, Username (columns B & C from sheet)
+                const cid = values[0]?.trim();
+                const username = values[1]?.toLowerCase().trim();
+
+                if (username && username.length > 1 && !username.includes('@')) {
+                    uploadedCreators.push({
+                        cid: cid,
+                        username: username,
+                        manager: 'CARRINGTON'
+                    });
+                }
+            }
+
+            document.getElementById('rowCount').textContent = uploadedCreators.length;
+            document.getElementById('fileInfo').style.display = 'block';
+            
+            log(`📊 CSV parsed: ${uploadedCreators.length} creators`, 'success');
+            
+            // Now compare with Firebase
+            findNewCreators();
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        }
+
+        async function findNewCreators() {
+            // Load existing from Firebase if not already loaded
+            if (existingFirebaseCreators.size === 0) {
+                await loadExistingCreatorsFromFirebase();
+            }
+
+            // Filter to only new creators
+            const newCreators = uploadedCreators.filter(c => 
+                !existingFirebaseCreators.has(c.username.toLowerCase())
+            );
+
+            document.getElementById('newCount').textContent = newCreators.length;
+            document.getElementById('newCreatorsInfo').style.display = 'block';
+
+            log(`✨ NEW CREATORS: ${newCreators.length} (not in Firebase)`, 'success');
+            
+            // Show first 20
+            if (newCreators.length > 0) {
+                log('First 20 new creators:', 'info');
+                newCreators.slice(0, 20).forEach((c, i) => {
+                    log(`  ${i + 1}. ${c.username}`, 'info');
+                });
+                if (newCreators.length > 20) {
+                    log(`  ... and ${newCreators.length - 20} more`, 'info');
+                }
+            }
+
+            // Set as the list to import
+            creatorsToImport = newCreators;
+            document.getElementById('totalCreators').textContent = newCreators.length;
+            
+            // Enable import button
+            document.getElementById('importBtn').textContent = `🚀 IMPORT ${newCreators.length} NEW CREATORS`;
+        }
+
         // Initialize
-        log('📋 Ready to import NEW creators (446 total)', 'info');
-        log('⏭️ Will skip 356 already imported creators', 'info');
+        loadExistingCreatorsFromFirebase();
+        log('📋 Ready to import NEW creators', 'info');
+        log('📁 Upload a CSV file to see only NEW creators', 'info');
         updateStats();
     </script>
 </body>
