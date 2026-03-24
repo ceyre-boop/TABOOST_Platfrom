@@ -196,7 +196,8 @@ const CSV_LOADER = {
       // Debug: log first row to see column mapping
       if (rows.length > 0) {
         const firstRow = rows[0];
-        const username = firstRow[dateCol] || firstRow['TikTok'] || 'NOT FOUND';
+        const dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h));
+        const username = firstRow[dateCol] || firstRow['TikTok'] || firstRow['3/22'] || 'NOT FOUND';
         const estRevVal = firstRow['Est Rev'] || firstRow['EstRev'] || firstRow['Est.Revenue'] || 'NOT FOUND';
         console.log('DEBUG - First row sample:', {
           username: username,
