@@ -25,7 +25,8 @@ const CSV_LOADER = {
     }
     
     if (type === 'int') {
-      const cleaned = strVal.replace(/,/g, '').replace(/"/g, '');
+      // Remove currency symbols, commas, and quotes
+      const cleaned = strVal.replace(/[$,]/g, '').replace(/"/g, '');
       const num = parseInt(cleaned, 10);
       return isNaN(num) ? (defaultVal || 0) : num;
     }
