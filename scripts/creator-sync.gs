@@ -233,12 +233,20 @@ function createHourlyTrigger() {
 
 function createDailyTrigger() {
   deleteTriggers();
+  // 10 AM Pacific Time (PT) = 18:00 UTC
   ScriptApp.newTrigger('syncCreatorSheetsToGitHub')
     .timeBased()
     .everyDays(1)
-    .atHour(2)
+    .atHour(10)
+    .nearMinute(0)
+    .inTimezone('America/Los_Angeles')
     .create();
-  SpreadsheetApp.getUi().alert('✅ Daily sync at 2 AM enabled');
+  SpreadsheetApp.getUi().alert('✅ Daily sync at 10:00 AM PT (California time) enabled');
+}
+
+// Alias for clarity
+function setupDailyAutoSync() {
+  return createDailyTrigger();
 }
 
 function deleteTriggers() {
@@ -285,9 +293,10 @@ function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('🔄 CREATOR SYNC')
     .addItem('⚡ Sync Now', 'syncCreatorSheetsToGitHub')
-    .addItem('🔧 Setup', 'setupCreatorSync')
-    .addItem('⏰ Hourly', 'createHourlyTrigger')
-    .addItem('⏰ Daily', 'createDailyTrigger')
-    .addItem('⏸️ Stop', 'stopSync')
+    .addItem('🔧 First Time Setup', 'setupCreatorSync')
+    .addSeparator()
+    .addItem('⏰ Daily Auto-Sync (10 AM PT)', 'createDailyTrigger')
+    .addItem('⏰ Hourly Auto-Sync', 'createHourlyTrigger')
+    .addItem('⏸️ Stop Auto-Sync', 'stopSync')
     .addToUi();
 }
