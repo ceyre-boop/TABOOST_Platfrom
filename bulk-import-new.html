@@ -804,6 +804,11 @@
             const lines = csvText.split('\n');
             uploadedCreators = [];
 
+            // Check first line to see structure
+            const headerLine = lines[0];
+            const headers = parseCSVLine(headerLine);
+            log(`📋 CSV Headers (${headers.length} columns): ${headers.slice(0, 5).join(', ')}...`, 'info');
+
             for (let i = 1; i < lines.length; i++) { // Skip header
                 const line = lines[i].trim();
                 if (!line) continue;
@@ -811,11 +816,29 @@
                 // Parse CSV line (handle quotes)
                 const values = parseCSVLine(line);
                 
-                // Expecting: CID, Username (columns B & C from sheet)
-                const cid = values[0]?.trim();
-                const username = values[1]?.toLowerCase().trim();
+                // Find the right columns
+                // Column B = CID (index 1), Column C = Username (index 2)
+                // Or Column A = CID (index 0), Column B = Username (index 1)
+                let cid = '';
+                let username = '';
+                
+                if (values.length >= 3) {
+                    // Has 3+ columns - likely: blank, CID, Username
+                    cid = values[1]?.trim(); // Column B
+                    username = values[2]?.toLowerCase().trim(); // Column C
+                } else if (values.length === 2) {
+                    // 2 columns - likely: CID, Username
+                    cid = values[0]?.trim();
+                    username = values[1]?.toLowerCase().trim();
+                }
 
-                if (username && username.length > 1 && !username.includes('@')) {
+                // Skip if username looks like a CID (all numbers)
+                if (username && /^\d+$/.test(username)) {
+                    log(`⚠️ Row ${i}: "${username}" looks like a CID, skipping`, 'warning');
+                    continue;
+                }
+
+                if (username && username.length > 1 && !username.includes('@') && !/^\d+$/.test(username)) {
                     uploadedCreators.push({
                         cid: cid,
                         username: username,
@@ -827,7 +850,8 @@
             document.getElementById('rowCount').textContent = uploadedCreators.length;
             document.getElementById('fileInfo').style.display = 'block';
             
-            log(`📊 CSV parsed: ${uploadedCreators.length} creators`, 'success');
+            log(`📊 CSV parsed: ${uploadedCreators.length} valid creators`, 'success');
+            log(`Sample: ${uploadedCreators.slice(0, 3).map(c => c.username).join(', ')}`, 'info');
             
             // Now compare with Firebase
             findNewCreators();
