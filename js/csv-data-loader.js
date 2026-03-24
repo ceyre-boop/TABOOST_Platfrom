@@ -163,7 +163,7 @@ const CSV_LOADER = {
       running: this.cleanValue(get('Running', 'running'), 'string', '0'),
       multiply: this.cleanValue(get('Multiply', 'multiply', 'Multiplier'), 'string', '-'),
       unlocked: this.cleanValue(get('Unlocked', 'unlocked'), 'string', '0'),
-      estRev: this.cleanValue(get('Est Rev', 'estRev', 'Est. Revenue', 'Est Revenue'), 'int', 0),
+      estRev: this.cleanValue(get('Est Rev', 'EstRev', 'estRev', 'Est. Revenue', 'Est Revenue', 'Est.Revenue', 'EstRevenue'), 'int', 0),
       bonus: this.cleanValue(get('Bonus', 'bonus'), 'string', '$0.00'),
       daysMonth: this.cleanValue(get('Days Month', 'daysMonth'), 'int', 0),
       hoursMonth: this.cleanValue(get('Hours Month', 'hoursMonth'), 'int', 0),
@@ -195,10 +195,13 @@ const CSV_LOADER = {
       
       // Debug: log first row to see column mapping
       if (rows.length > 0) {
+        const firstRow = rows[0];
+        const username = firstRow[dateCol] || firstRow['TikTok'] || 'NOT FOUND';
+        const estRevVal = firstRow['Est Rev'] || firstRow['EstRev'] || firstRow['Est.Revenue'] || 'NOT FOUND';
         console.log('DEBUG - First row sample:', {
-          username: rows[0]['3/22'] || rows[0]['TikTok'] || 'NOT FOUND',
-          estRev: rows[0]['Est Rev'] || rows[0]['Est Rev'] || 'NOT FOUND',
-          rawKeys: Object.keys(rows[0]).slice(0, 10)
+          username: username,
+          estRev: estRevVal,
+          rawKeys: Object.keys(rows[0]).slice(0, 15)
         });
       }
       
