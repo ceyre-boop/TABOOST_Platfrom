@@ -47,25 +47,53 @@ function syncNewCreatorsToFirebase() {
     let added = 0;
     let failed = 0;
     
+    console.log('\n📝 NEW CREATORS TO ADD:');
+    console.log('=====================================');
+    
+    for (let i = 0; i < newCreators.length; i++) {
+      const creator = newCreators[i];
+      console.log(`${i + 1}. ${creator.username} (${creator.email})`);
+    }
+    
+    console.log('\n🚀 ADDING TO FIREBASE:');
+    console.log('=====================================');
+    
     for (const creator of newCreators) {
       try {
+        console.log(`➕ Adding: ${creator.username}...`);
         addCreatorToFirebase(creator);
         added++;
-        console.log(`✅ Added: ${creator.username}`);
+        console.log(`✅ SUCCESS: ${creator.username} added!`);
         
         // Rate limiting - don't overwhelm Firebase
         if (added % 10 === 0) {
+          console.log('⏳ Pausing for rate limit...');
           Utilities.sleep(1000);
         }
       } catch (e) {
         failed++;
-        console.error(`❌ Failed to add ${creator.username}:`, e.message);
+        console.error(`❌ FAILED: ${creator.username} - ${e.message}`);
       }
     }
     
     const duration = (new Date() - startTime) / 1000;
-    console.log(`\n✅ Sync complete in ${duration}s`);
-    console.log(`📊 Added: ${added}, Failed: ${failed}, Total in Firebase: ${existingCreators.length + added}`);
+    
+    console.log('\n📋 SUMMARY - NEW CREATORS ADDED:');
+    console.log('=====================================');
+    if (added > 0) {
+      newCreators.slice(0, added).forEach((creator, i) => {
+        console.log(`${i + 1}. ${creator.username}`);
+      });
+    } else {
+      console.log('No new creators added.');
+    }
+    
+    console.log('\n✅ SYNC COMPLETE');
+    console.log('=====================================');
+    console.log(`⏱️ Duration: ${duration}s`);
+    console.log(`✨ Added: ${added}`);
+    console.log(`❌ Failed: ${failed}`);
+    console.log(`📊 Total in Firebase: ${existingCreators.length + added}`);
     
     return { added, failed, total: existingCreators.length + added };
     
@@ -80,10 +108,26 @@ function syncNewCreatorsToFirebase() {
 // ============================================
 function getCreatorsFromSheet() {
   const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('Current month'); // or 'Current'
   
+  // Try multiple possible sheet names
+  const possibleNames = ['Current month', 'Current', 'current', 'Live Data', 'Creators'];
+  let sheet = null;
+  let usedName = '';
+  
+  for (const name of possibleNames) {
+    sheet = ss.getSheetByName(name);
+    if (sheet) {
+      usedName = name;
+      console.log(`✅ Found sheet: "${name}"`);
+      break;
+    }
+  }
+  
+  // If not found, list available sheets
   if (!sheet) {
-    throw new Error('Sheet "Current month" not found!');
+    const availableSheets = ss.getSheets().map(s => `"${s.getName()}"`).join(', ');
+    console.log('❌ Available sheets:', availableSheets);
+    throw new Error(`Sheet not found! Tried: ${possibleNames.join(', ')}. Available: ${availableSheets}`);
   }
   
   const data = sheet.getDataRange().getValues();
