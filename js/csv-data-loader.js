@@ -176,6 +176,13 @@ const CSV_LOADER = {
       hoursMonth: this.cleanValue(get('Hours Month', 'hoursMonth'), 'int', 0),
       rewardsMonth: this.cleanValue(get('Rewards', 'rewards', 'Rewards Month'), 'string', '0')
     };
+    
+    // Debug estRev for first few rows
+    if (index < 3) {
+      console.log(`DEBUG row ${index} - username: ${result.username}, estRev raw: ${get('Est Rev', 'EstRev', 'estRev')}, estRev cleaned: ${result.estRev}`);
+    }
+    
+    return result;
   },
   
   // Main load function
