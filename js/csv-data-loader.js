@@ -198,12 +198,13 @@ const CSV_LOADER = {
         const firstRow = rows[0];
         const dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h));
         const username = firstRow[dateCol] || firstRow['TikTok'] || firstRow['3/22'] || 'NOT FOUND';
-        const estRevVal = firstRow['Est Rev'] || firstRow['EstRev'] || firstRow['Est.Revenue'] || 'NOT FOUND';
-        console.log('DEBUG - First row sample:', {
-          username: username,
-          estRev: estRevVal,
-          rawKeys: Object.keys(rows[0]).slice(0, 15)
-        });
+        
+        // Find estRev column by checking multiple variations
+        let estRevCol = headers.find(h => h.toLowerCase().includes('est') && (h.toLowerCase().includes('rev') || h.toLowerCase().includes('revenue')));
+        const estRevVal = estRevCol ? firstRow[estRevCol] : 'COLUMN NOT FOUND';
+        
+        console.log('DEBUG - First row:', { username: username, estRevCol: estRevCol, estRev: estRevVal });
+        console.log('DEBUG - All headers:', headers);
       }
       
       // Convert to creators
