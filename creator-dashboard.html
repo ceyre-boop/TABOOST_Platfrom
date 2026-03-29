@@ -791,7 +791,7 @@
             const dashboardUser = {
                 name: username,
                 email: firebaseUser.email,
-                creatorId: userData?.creatorId || null,
+                creatorId: userData?.cid || userData?.creatorId || null,
                 role: role
             };
             
