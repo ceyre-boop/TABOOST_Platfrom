@@ -758,6 +758,25 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
+        // ============================================
+        // TEST MODE: ?testUser=username bypasses auth
+        // Usage: creator-dashboard.html?testUser=kaemi.s
+        // ============================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const testUser = urlParams.get('testUser');
+        
+        if (testUser) {
+            console.log('🧪 TEST MODE: Loading dashboard for', testUser);
+            const dashboardUser = {
+                name: testUser.toLowerCase().replace(/^@/, ''),
+                email: 'test@taboost.me',
+                creatorId: null,
+                role: 'creator'
+            };
+            document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
+            initCreatorDashboard(dashboardUser);
+        } else {
+        // Normal Firebase auth flow
         onAuthStateChanged(auth, async (firebaseUser) => {
             if (!firebaseUser) {
                 window.location.href = 'firebase-login.html';
@@ -821,6 +840,7 @@
             // Initialize dashboard
             initCreatorDashboard(dashboardUser);
         });
+        } // end normal auth flow
         
         window.logout = async () => {
             await auth.signOut();
