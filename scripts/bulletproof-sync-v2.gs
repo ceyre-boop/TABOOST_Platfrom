@@ -86,7 +86,7 @@ function exportCleanSheet(sheet) {
     // Skip rows without identifier
     const hasId = headers.some((h, idx) => {
       const hl = h.toLowerCase();
-      return (hl.includes('username') || hl.includes('name') || 
+      return (hl.includes('username') || hl.includes('name') || hl.includes('tiktok') ||
               hl === 'host' || hl === 'id') && data[i][idx];
     });
     
