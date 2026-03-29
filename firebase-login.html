@@ -228,7 +228,7 @@
             </div>
             
             <div class="forgot-password">
-                <a href="#" onclick="showForgotPassword(); return false;">Forgot password?</a>
+                <a href="reset-password.html">Forgot password?</a>
             </div>
             
             <button type="submit" class="btn" id="loginBtn">Sign In</button>
@@ -519,10 +519,10 @@
                 switch (error.code) {
                     case 'auth/user-not-found':
                     case 'auth/invalid-credential':
-                        message = 'Username or password is incorrect. Please try again, or create an account if you haven\'t signed up yet.';
+                        message = 'Username or password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password</a> or create an account if you haven\'t signed up yet.';
                         break;
                     case 'auth/wrong-password':
-                        message = 'Password is incorrect. Please try again or click "Forgot password?" to reset it.';
+                        message = 'Password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password here</a>.';
                         break;
                     case 'auth/invalid-email':
                         message = 'Please enter a valid email address.';
