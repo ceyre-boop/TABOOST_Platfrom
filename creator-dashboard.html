@@ -27,6 +27,9 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
+        // Skip early auth check in test mode
+        const _params = new URLSearchParams(window.location.search);
+        if (!_params.get('testUser')) {
         // Check Firebase Auth state
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
@@ -75,6 +78,7 @@
                 };
             }
         });
+        } // end skip test mode
         
         // Expose for logout
         window.logout = async () => {
