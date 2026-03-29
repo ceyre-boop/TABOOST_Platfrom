@@ -939,9 +939,9 @@ function updateAchievements() {
     const achievements = [
         { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
         { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
-        { name: 'Reward King', icon: '💰', unlocked: (myData.rewardsMonth && parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) > 0) || (myData.bonus && parseFloat(myData.bonus.toString().replace(/[$,]/g, '')) > 0), desc: 'Earned a Bonus this month' },
+        { name: 'Reward King', icon: '💰', unlocked: (myData.rewardsMonth && parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) > 0) || (myData.bonus && parseFloat(myData.bonus.toString().replace(/[$,]/g, '')) > 0), desc: 'Earned a Bonus' },
         { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
-        { name: 'Growth Star', icon: '🌟', unlocked: (myData.tierStatus || '').toLowerCase().includes('up'), desc: 'Leveled up this month' },
+        { name: 'Growth Star', icon: '🌟', unlocked: (myData.tierStatus || '').toLowerCase().includes('up'), desc: 'Ranked up tier' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
     ];
     

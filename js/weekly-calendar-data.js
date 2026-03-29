@@ -35,6 +35,14 @@ function generateRollingCalendar() {
             color: "#ff0044"
         },
         {
+            id: 2,
+            title: "Music Cypher",
+            type: "live",
+            time: "6:00PM PT",
+            recurring: { dayOfWeek: 4 }, // Thursday
+            color: "#ff0044"
+        },
+        {
             id: 3,
             title: "Sunday Knockout",
             type: "live",
