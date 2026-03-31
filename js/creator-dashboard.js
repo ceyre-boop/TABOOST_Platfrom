@@ -149,7 +149,25 @@ async function initCreatorDashboard(user) {
     updateLastUpdated();
 }
 
-function updateLastUpdated() {
+async function updateLastUpdated() {
+    try {
+        const response = await fetch('data/current.csv?v=' + Date.now());
+        if (response.ok) {
+            const text = await response.text();
+            const firstLine = text.split('\n')[0];
+            const cols = firstLine.split(',');
+            // The date is in column index 2 (third column)
+            if (cols.length > 2 && cols[2]) {
+                const dateStr = cols[2].trim();
+                document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
+                return;
+            }
+        }
+    } catch (e) {
+        console.error('Failed to load date from current.csv', e);
+    }
+    
+    // Fallback if fetch fails
     const now = new Date();
     const yesterday = new Date(now);
     yesterday.setDate(yesterday.getDate() - 1);
@@ -1223,13 +1241,13 @@ function updateScoreAndLevels() {
     const isMaxLevel = myData.level === '5' || myData.level === 5;
     
     if (isMaxLevel && daysGoal === 0) {
-        document.getElementById('daysStreamed').textContent = `${currentDays} days (MAX)`;
+        document.getElementById('daysStreamed').textContent = `${currentDays} days`;
     } else {
         document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
     }
     
     if (isMaxLevel && hoursGoal === 0) {
-        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs (MAX)`;
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs`;
     } else {
         document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
     }
