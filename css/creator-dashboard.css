@@ -973,6 +973,45 @@
 .tier-masters { color: #ef4444; }
 .tier-max { color: #ffd700; }
 
+/* Score tier badges — matte, stacked number/label */
+.tier-badge {
+    border-radius: 8px;
+    padding: 4px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+}
+.tier-badge .badge-num {
+    font-size: 14px;
+    font-weight: 900;
+    line-height: 1.2;
+}
+.tier-badge .badge-label {
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* Gold PROS badge — matte */
+.tier-badge.badge-pros {
+    background: linear-gradient(135deg, #b8860b, #daa520, #b8860b);
+    color: #000;
+    border: 1px solid #c89b2a;
+}
+
+/* Red MASTERS badge — matte */
+.tier-badge.badge-masters {
+    background: linear-gradient(135deg, #cc0040, #ff0050, #cc0040);
+    color: #fff;
+    border: 1px solid #cc0040;
+}
+
 .score-row.numbers {
     font-size: 12px;
     color: #666;

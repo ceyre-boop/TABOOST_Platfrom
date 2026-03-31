@@ -1129,6 +1129,30 @@ function updateScoreAndLevels() {
         });
     }
     
+    // Dynamic tier badge logic — only show ONE fancy badge at a time
+    const prosItem = document.getElementById('prosScaleItem');
+    const mastersItem = document.getElementById('mastersScaleItem');
+    
+    if (prosItem) {
+        if (score > 70 && score <= 90) {
+            // Show gold PROS badge
+            prosItem.innerHTML = `<div class="tier-badge badge-pros"><span class="badge-num">70</span><span class="badge-label">PROS</span></div>`;
+        } else {
+            // Normal text
+            prosItem.innerHTML = `<span class="scale-num">70</span><span class="scale-tier tier-pros">PROS</span>`;
+        }
+    }
+    
+    if (mastersItem) {
+        if (score > 90) {
+            // Show red MASTERS badge
+            mastersItem.innerHTML = `<div class="tier-badge badge-masters"><span class="badge-num">90</span><span class="badge-label">MASTERS</span></div>`;
+        } else {
+            // Normal text
+            mastersItem.innerHTML = `<span class="scale-num">90</span><span class="scale-tier tier-masters">MASTERS</span>`;
+        }
+    }
+    
     console.log(`DEBUG - Score: ${score}, Segments filled: ${Math.round(score)}`);
     
     // Current Score Reward
