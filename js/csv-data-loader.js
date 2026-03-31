@@ -148,6 +148,7 @@ const CSV_LOADER = {
       m: manager.toUpperCase(),
       claimed: false,
       score: this.cleanValue(get('Score', 'score'), 'int', 0),
+      _scoreRaw: get('Score', 'score'),
       diamonds: this.cleanValue(get(diamondsCol, '💎', 'Diamonds', 'diamonds', 'Total Diamonds'), 'int', 0),
       diamondsPace: this.cleanValue(get('? Pace', 'Pace', 'pace', 'Diamonds Pace'), 'string', '0'),
       diamondsGoal: this.cleanValue(get('Diamond Goal', 'diamondsGoal', 'Goal'), 'int', 0),

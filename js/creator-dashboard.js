@@ -1098,8 +1098,12 @@ function updateHistory() {
 
 function updateScoreAndLevels() {
     // Score from Google Sheets column AG (0-100)
-    const score = myData.score || 0;
-    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
+    // Try multiple sources: myData.score, parseInt fallback, creatorBadges
+    let score = parseInt(myData.score) || 0;
+    if (score === 0 && myData._scoreRaw) {
+        score = parseInt(myData._scoreRaw) || 0;
+    }
+    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score:', myData.score);
     
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
