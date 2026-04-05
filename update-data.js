@@ -8,13 +8,11 @@ console.log('Processing:', csvFilePath);
 function cleanValue(val, type = 'string', defaultVal = '') {
     if (val === null || val === undefined) return defaultVal;
     const strVal = String(val).trim();
-    // Check for Excel/Google Sheets error codes
     if (strVal === '#N/A' || strVal === '#VALUE!' || strVal === '#REF!' || 
         strVal === '#DIV/0!' || strVal === '#NUM!' || strVal === '#NAME?' ||
         strVal === '#NULL!' || strVal === '#ERROR!') {
         return defaultVal;
     }
-    // Type conversion
     if (type === 'number') {
         const cleaned = strVal.replace(/,/g, '').replace(/"/g, '').replace(/\$/g, '');
         const num = parseFloat(cleaned);
@@ -55,8 +53,44 @@ function parseCSVLine(line) {
     return result;
 }
 
+// Parse header to find column indices dynamically
+function parseHeader(headers) {
+    const findIdx = (names) => {
+        for (const name of names) {
+            const idx = headers.findIndex(h => h.trim().toLowerCase() === name.toLowerCase());
+            if (idx !== -1) return idx;
+        }
+        return -1;
+    };
+    
+    return {
+        uid: 1,
+        username: 2,
+        status: 3,
+        level: findIdx(['level']) !== -1 ? findIdx(['level']) : 4,
+        month: findIdx(['month']) !== -1 ? findIdx(['month']) : 5,
+        agent: findIdx(['agent']) !== -1 ? findIdx(['agent']) : 8,
+        days: findIdx(['days']) !== -1 ? findIdx(['days']) : 12,
+        daysGoal: findIdx(['days goal']) !== -1 ? findIdx(['days goal']) : 14,
+        hours: findIdx(['hours']) !== -1 ? findIdx(['hours']) : 16,
+        hrsGoal: findIdx(['hrs goal']) !== -1 ? findIdx(['hrs goal']) : 17,
+        diamonds: findIdx(['💎', '?']) !== -1 ? findIdx(['💎', '?']) : 19,
+        tier: findIdx(['tier']) !== -1 ? findIdx(['tier']) : 21,
+        tierGoal: findIdx(['tier goal']) !== -1 ? findIdx(['tier goal']) : 22,
+        score: findIdx(['score']) !== -1 ? findIdx(['score']) : 32,
+        earned: findIdx(['earned']) !== -1 ? findIdx(['earned']) : 33,
+        gifted: findIdx(['gifted']) !== -1 ? findIdx(['gifted']) : 34,
+        running: findIdx(['running']) !== -1 ? findIdx(['running']) : 35,
+        unlocked: findIdx(['unlocked']) !== -1 ? findIdx(['unlocked']) : 37
+    };
+}
+
 const csv = fs.readFileSync(csvFilePath, 'utf8');
 const lines = csv.split('\n');
+
+const headers = parseCSVLine(lines[0]);
+console.log('CSV columns:', headers.length);
+const col = parseHeader(headers);
 
 const creators = [];
 for (let i = 1; i < lines.length; i++) {
@@ -66,63 +100,40 @@ for (let i = 1; i < lines.length; i++) {
     const cols = parseCSVLine(line);
     if (cols.length < 3) continue;
     
-    const cid = cols[1];
-    const username = cols[2];
-    let manager = cols[8] || 'carrington';
-    if (manager.includes('+')) manager = manager.split('+')[0].trim();
+    const cid = cols[col.uid];
+    const username = cols[col.username];
     
-    if (cid && username && !username.includes('@')) {
-        const claimed = username.toLowerCase() === 'skylerclarkk';
-        
-        // Clean manager value
-        let manager = cleanValue(cols[8], 'string', 'carrington');
+    if (cid && username && !username.includes('@') && !username.includes('/')) {
+        let manager = cleanValue(cols[col.agent], 'string', 'carrington');
         if (manager.includes('+')) manager = manager.split('+')[0].trim();
         
-        const d = {
+        creators.push({
             id: creators.length + 1,
             creatorId: cid,
             username: username.toLowerCase(),
             name: username,
             email: username + '@taboost.me',
-            status: cleanValue(cols[3], 'string', 'GO'),
-            level: cleanValue(cols[4], 'string', '0'),
-            month: cleanValue(cols[5], 'string', ''),
+            status: cleanValue(cols[col.status], 'string', 'GO'),
+            level: cleanValue(cols[col.level], 'string', '0'),
+            month: cleanValue(cols[col.month], 'string', ''),
             manager: manager.toUpperCase(),
-            m: manager.toUpperCase(),
-            claimed: claimed,
-            score: cleanValue(cols[32], 'int', 0),
-            diamonds: cleanValue(cols[19], 'int', 0),
-            diamondsGoal: cleanValue(cols[21], 'int', 0),
-            diamondsPace: cleanValue(cols[20], 'string', '0'),
-            diamondsLast30: cleanValue(cols[27], 'int', 0),
-            diamondsLastMonth: cleanValue(cols[28], 'int', 0),
-            diamonds2MonthsAgo: cleanValue(cols[29], 'int', 0),
-            hours: cleanValue(cols[16], 'int', 0),
-            hoursGoal: cleanValue(cols[17], 'int', 0),
-            hoursLeft: cleanValue(cols[18], 'string', '0'),
-            validLiveDays: cleanValue(cols[12], 'int', 0),
-            daysGoal: cleanValue(cols[14], 'int', 0),
-            daysLeft: cleanValue(cols[15], 'string', '0'),
-            tier: cleanValue(cols[21], 'int', 0),
-            tierGoal: cleanValue(cols[22], 'int', 0),
-            tierLeft: cleanValue(cols[23], 'string', '0'),
-            tierStatus: cleanValue(cols[24], 'string', '-'),
-            tierLastMonth: cleanValue(cols[25], 'string', '-'),
-            growthPercent: 0,
-            earned: cleanValue(cols[33], 'int', 0),
-            gifted: cleanValue(cols[34], 'int', 0),
-            running: cleanValue(cols[35], 'string', '0'),
-            multiply: cleanValue(cols[36], 'string', '-'),
-            unlocked: cleanValue(cols[37], 'string', '0'),
-            daysMonth: cleanValue(cols[38], 'int', 0),
-            hoursMonth: cleanValue(cols[39], 'int', 0),
-            rewardsMonth: cleanValue(cols[40], 'string', '0')
-        };
-        creators.push(d);
+            score: cleanValue(cols[col.score], 'int', 0),
+            diamonds: cleanValue(cols[col.diamonds], 'int', 0),
+            diamondsGoal: cleanValue(cols[col.tierGoal], 'int', 0),
+            hours: cleanValue(cols[col.hours], 'int', 0),
+            hoursGoal: cleanValue(cols[col.hrsGoal], 'int', 0),
+            validLiveDays: cleanValue(cols[col.days], 'int', 0),
+            daysGoal: cleanValue(cols[col.daysGoal], 'int', 0),
+            tier: cleanValue(cols[col.tier], 'int', 0),
+            tierGoal: cleanValue(cols[col.tierGoal], 'int', 0),
+            earned: cleanValue(cols[col.earned], 'int', 0),
+            gifted: cleanValue(cols[col.gifted], 'int', 0),
+            running: cleanValue(cols[col.running], 'string', '0'),
+            unlocked: cleanValue(cols[col.unlocked], 'string', '0')
+        });
     }
 }
 
-// Generate data.js content
 const timestamp = new Date().toISOString();
 let output = '// Taboost Agency - Complete Creator Data\n';
 output += '// Generated: ' + timestamp + '\n';
@@ -139,9 +150,5 @@ output += '};';
 fs.writeFileSync('js/data.js', output);
 console.log('Updated js/data.js with', creators.length, 'creators');
 
-const skyler = creators.find(c => c.username === 'skylerclarkk');
-if (skyler) {
-    console.log('Skyler diamonds:', skyler.diamonds);
-    console.log('Skyler score:', skyler.score);
-    console.log('Skyler earned:', skyler.earned);
-}
+const test = creators[0];
+if (test) console.log('Sample:', test.username, '| diamonds:', test.diamonds, '| score:', test.score);
