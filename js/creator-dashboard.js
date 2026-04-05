@@ -149,18 +149,34 @@ async function initCreatorDashboard(user) {
     updateLastUpdated();
 }
 
-function updateLastUpdated() {
+async function updateLastUpdated() {
+    try {
+        const response = await fetch('data/current.csv?v=' + Date.now());
+        if (response.ok) {
+            const text = await response.text();
+            const firstLine = text.split('\n')[0];
+            const cols = firstLine.split(',');
+            // The date is in column index 2 (third column)
+            if (cols.length > 2 && cols[2]) {
+                const dateStr = cols[2].trim();
+                document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
+                return;
+            }
+        }
+    } catch (e) {
+        console.error('Failed to load date from current.csv', e);
+    }
+    
+    // Fallback if fetch fails
     const now = new Date();
-    const timeStr = now.toLocaleTimeString('en-US', { 
-        hour: 'numeric', 
-        minute: '2-digit',
-        hour12: true 
-    });
-    const dateStr = now.toLocaleDateString('en-US', { 
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const dateStr = yesterday.toLocaleDateString('en-US', { 
         month: 'short', 
-        day: 'numeric' 
+        day: 'numeric',
+        timeZone: 'America/Los_Angeles'
     });
-    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at ${timeStr}`;
+    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
 }
 
 // Load real month data from CSV (column F - Month)
@@ -188,7 +204,7 @@ async function loadCreatorBadges() {
 
 function formatNumber(num) {
     if (!num) return '0';
-    if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+    if (num >= 1000000) return (Math.floor(num / 100000) / 10).toFixed(1) + 'M';
     if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
     return num.toLocaleString();
 }
@@ -201,7 +217,7 @@ function formatNumberPlain(num) {
 
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '$' + usd.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    return '≈ $' + Math.round(usd).toLocaleString('en-US');
 }
 
 function updateProfile(user) {
@@ -228,10 +244,20 @@ function updateProfile(user) {
     
     document.getElementById('joinDate').textContent = memberText;
     
-    // Get real Tier from creator_badges and Score directly from myData (column AG)
-    const badgeData = creatorBadges[creatorId] || {};
-    // Tier can be 0-5, check if defined not just truthy
-    const tier = (badgeData.tier !== undefined && badgeData.tier !== null && badgeData.tier !== '') ? badgeData.tier : (myData.tier ?? '-');
+    // Update data refresh signal
+    try {
+        const lastUpdated = myData.lastUpdated || taboostData.lastUpdated;
+        if (lastUpdated && document.getElementById('dataRefreshSignal')) {
+            const date = new Date(lastUpdated);
+            const formatted = date.toLocaleString('en-US', { 
+                month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+            });
+            document.getElementById('dataRefreshSignal').textContent = `Data: ${formatted}`;
+        }
+    } catch(e) {}
+    
+    // Get Tier and Score directly from myData (live data)
+    const tier = (myData.tier !== undefined && myData.tier !== null && myData.tier !== '') ? myData.tier : '--';
     const score = myData.score || 0; // Use score directly from CSV (column AG)
     
     console.log('DEBUG - Profile Score:', score, 'Tier:', tier, 'Creator:', myData.username);
@@ -239,7 +265,7 @@ function updateProfile(user) {
     // Manager pill with Discord link
     // If blank manager, show Discord support link instead
     const managerName = myData.manager;
-    const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned';
+    const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned' && managerName.toLowerCase() !== 'n/a';
     
     // Discord links for managers
     const managerDiscordLinks = {
@@ -260,16 +286,22 @@ function updateProfile(user) {
         document.getElementById('managerName').textContent = managerName;
         const managerKey = managerName.toLowerCase().trim();
         
-        if (managerDiscordLinks[managerKey]) {
-            managerPill.href = managerDiscordLinks[managerKey];
+        // Check for exact match first, then check if Carrington is in the name
+        let discordLink = managerDiscordLinks[managerKey];
+        if (!discordLink && managerKey.includes('carrington')) {
+            discordLink = managerDiscordLinks['carrington'];
+        }
+        
+        if (discordLink) {
+            managerPill.href = discordLink;
             managerPill.style.cursor = 'pointer';
             managerPill.style.opacity = '1';
             
             // Update icon based on link type
-            if (managerDiscordLinks[managerKey].startsWith('sms:')) {
+            if (discordLink.startsWith('sms:')) {
                 managerPill.title = 'Text manager via SMS';
                 managerIcon.className = 'fas fa-sms';
-            } else if (managerDiscordLinks[managerKey].includes('discord')) {
+            } else if (discordLink.includes('discord')) {
                 managerPill.title = 'Message manager on Discord';
                 managerIcon.className = 'fab fa-discord';
             }
@@ -280,20 +312,26 @@ function updateProfile(user) {
             managerPill.title = 'Manager contact not available';
         }
     } else {
-        // No manager assigned - show Discord support badge
-        document.getElementById('managerName').textContent = 'Contact Support';
+        // No manager assigned - show purple Discord badge
+        document.getElementById('managerName').textContent = 'Discord';
         managerPill.href = supportDiscordLink;
         managerPill.style.cursor = 'pointer';
         managerPill.style.opacity = '1';
+        managerPill.style.background = 'linear-gradient(135deg, #5865F2 0%, #4752C4 100%)';
+        managerPill.style.color = '#fff';
         managerPill.title = 'Join TABOOST Discord for support';
         managerIcon.className = 'fab fa-discord';
     }
     
     // Badges - Level (0-5), Tier (col V), Score (col AG)
-    // Level: show actual level 0-5, or -- if not set
+    // Level: -1=blank, 0=starter, 1-5=actual levels
     let levelDisplay = '--';
-    if (myData.level !== undefined && myData.level !== null && myData.level !== '' && !isNaN(myData.level)) {
-        levelDisplay = myData.level; // Show 0, 1, 2, 3, 4, or 5
+    if (myData.level === -1 || myData.level === '-1') {
+        levelDisplay = '--';
+    } else if (myData.level === 0 || myData.level === '0') {
+        levelDisplay = '0';
+    } else if (myData.level > 0) {
+        levelDisplay = myData.level;
     }
     document.getElementById('creatorBadges').innerHTML = `
         <span class="badge badge-level">Level ${levelDisplay}</span>
@@ -330,7 +368,9 @@ function updateStats() {
     console.log('DEBUG - Diamonds:', myData.diamonds, 'Raw:', myData._diamondsRaw);
     console.log('DEBUG - Level:', myData.level, 'Raw:', myData._levelRaw);
     document.getElementById('currentDiamonds').textContent = formatNumber(myData.diamonds) + ' 💎';
-    document.getElementById('currentUSD').textContent = '≈ ' + formatUSD(myData.diamonds);
+    // Use real dollar value from estRev (column AN), fallback to rewardsMonth
+    const realDollarValue = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
+    document.getElementById('currentUSD').textContent = '≈ $' + Math.round(realDollarValue).toLocaleString('en-US');
     
     // Growth trend - calculate if not provided
     let growth = parseFloat(myData.growthPercent);
@@ -412,11 +452,11 @@ function updateActivityStats() {
         const hourlyRateValue = document.getElementById('hourlyRateValue');
         if (hourlyRateValue) hourlyRateValue.textContent = formatNumber(hourlyRate) + ' 💎/h';
         
-        // Hours goal mini bar - use monthly hours goal
+        // Hours goal mini bar - use hoursGoal from column
         const hoursFill = document.getElementById('hoursFill');
         const hoursGoalText = document.getElementById('hoursGoalText');
         if (hoursFill && hoursGoalText) {
-            const hoursGoal = myData.hoursMonth || 80;
+            const hoursGoal = myData.hoursGoal || 60;
             const hourPct = Math.min(100, ((myData.hours || 0) / hoursGoal) * 100);
             hoursFill.style.width = hourPct + '%';
             hoursGoalText.textContent = hoursGoal + 'h';
@@ -442,14 +482,14 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysMonth || 22,
+            target: myData.daysMonth || myData.daysGoal || 22,
             unit: ' days'
         },
         {
             name: 'Hours Goal',
             icon: 'fa-clock',
             current: myData.hours || 0,
-            target: myData.hoursMonth || 80,
+            target: myData.hoursMonth || myData.hoursGoal || 80,
             unit: 'h'
         },
         {
@@ -463,8 +503,8 @@ function updateGoals() {
     
     // DEBUG: Log goal values
     console.log('DEBUG Goals for', myData.username, ':', 
-        'daysGoal=' + myData.daysGoal, 
-        'hoursGoal=' + myData.hoursGoal, 
+        'daysGoal=' + myData.daysGoal,
+        'hoursGoal=' + myData.hoursGoal,
         'tierGoal=' + myData.tierGoal, 
         'diamondsGoal=' + myData.diamondsGoal,
         'liveStreams=' + myData.liveStreams,
@@ -515,7 +555,7 @@ function updateGoals() {
                     <div class="goal-progress-fill ${status}" style="width: ${pct}%"></div>
                 </div>
                 <div class="goal-numbers">
-                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}+${g.unit}</span>
+                    <span>${formatNumber(g.current)}${g.unit} / ${formatNumber(g.target)}${g.unit}</span>
                     <span>${pct.toFixed(0)}% complete</span>
                 </div>
                 <div class="goal-pace" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px;">
@@ -533,7 +573,15 @@ let creatorTrends = {};
 // CSV format: CID,TikTok,Type,Date,Plus,Minus
 async function loadDetailedRewards() {
     try {
-        const response = await fetch('data/rewards-history.csv?v=202503091516');
+        // Try rewards-history.csv FIRST (regularly updated), then fallback
+        const cacheBuster = Date.now() + Math.random();
+        
+        let response = await fetch('data/rewards-history.csv?v=' + cacheBuster);
+        if (!response.ok) {
+            console.log('DEBUG - rewards-history.csv not found, trying rewards.csv...');
+            response = await fetch('data/rewards.csv?v=' + cacheBuster);
+        }
+        
         if (!response.ok) throw new Error('Failed to load rewards file');
         
         const csvText = await response.text();
@@ -571,11 +619,11 @@ async function loadDetailedRewards() {
             // Column D (index 3) = Date
             // Column E (index 4) = Plus (rewards earned)
             // Column F (index 5) = Minus (gifted/cashed in)
-            const username = values[1]?.toLowerCase().trim();
-            const type = values[2]?.trim() || '';
-            const date = values[3]?.trim() || '';
-            const plus = values[4]?.trim() || ''; // Rewards earned
-            const minus = values[5]?.trim() || ''; // Gifted/cashed in
+            const username = values[1]?.toLowerCase().trim().replace(/^"|"$/g, '');
+            const type = values[2]?.trim().replace(/^"|"$/g, '') || '';
+            const date = values[3]?.trim().replace(/^"|"$/g, '') || '';
+            const plus = values[4]?.trim().replace(/^"|"$/g, '').replace(/,/g, '') || ''; // Remove quotes and commas
+            const minus = values[5]?.trim().replace(/^"|"$/g, '').replace(/,/g, '') || ''; // Remove quotes and commas
             
             if (!username) continue;
             
@@ -620,16 +668,31 @@ function getRewardIcon(type) {
     return '🏆';
 }
 
+let creatorTrendsMeta = { labels: [], historyLabels: [], currentLabel: 'Current' };
+
 async function loadCreatorTrends() {
     try {
-        const response = await fetch('data/creator_trends.json?v=2');
+        const response = await fetch('data/creator_trends.json?v=' + Date.now());
         if (!response.ok) throw new Error('Failed to load trends file');
-        const trends = await response.json();
+        const data = await response.json();
+        
         creatorTrends = {};
-        trends.forEach(t => {
-            creatorTrends[t.username] = t;
-        });
-        console.log('DEBUG - Loaded trends for', Object.keys(creatorTrends).length, 'creators');
+        
+        // Handle new dynamic structure { meta, creators } or fallback to old array structure
+        if (data.meta && data.creators) {
+            creatorTrendsMeta = data.meta;
+            data.creators.forEach(t => {
+                creatorTrends[t.username] = t;
+            });
+            console.log('DEBUG - Loaded dynamic trends with labels:', creatorTrendsMeta.labels);
+        } else if (Array.isArray(data)) {
+            // Fallback for legacy format
+            data.forEach(t => {
+                creatorTrends[t.username] = t;
+            });
+        }
+        
+        console.log('DEBUG - Total trends loaded:', Object.keys(creatorTrends).length);
     } catch (e) {
         console.error('Failed to load trends:', e);
         creatorTrends = {};
@@ -669,43 +732,73 @@ function initPerformanceChart() {
         console.log('DEBUG - Available usernames count:', Object.keys(creatorTrends).length);
         console.log('DEBUG - Chart trends found:', trends ? 'YES' : 'NO');
         
-        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length === 6;
-        console.log('DEBUG - hasRealData:', hasRealData);
+        // Build dynamic labels and data points from meta
+        const rawFullLabels = creatorTrendsMeta.historyLabels && creatorTrendsMeta.historyLabels.length > 0
+            ? creatorTrendsMeta.historyLabels 
+            : ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr']; // Updated fallback
         
-        // Use month labels from HISTORY data (Oct-Feb + Current)
-        // HISTORY.csv: Oct, Nov, Dec, Jan, Feb, Current
-        const labels = ['October', 'November', 'December', 'January', 'February', 'Current'];
+        const fullLabels = rawFullLabels.map(l => {
+            const parts = l.split(' '); // Handle "Oct 2025" or "Mar 2026"
+            return parts[0];
+        });
         
-        // Always use 6-month view with real data or fallback
-        let dataPoints;
+        let labels = fullLabels.slice(-6);
+        let dataPoints = [0, 0, 0, 0, 0, 0];
+
+        // Get current month live data 
+        const currentDiamonds = myData.diamonds || 0;
+        const currentTier = myData.tier || 0;
+        
+        // Check if we have real history data
+        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length > 0;
+        
         if (hasRealData) {
-            dataPoints = trends.diamondsHistory;
-            console.log('DEBUG - Using real 6-month data:', dataPoints);
+            const fullData = [...trends.diamondsHistory];
+            // Sync current month if needed
+            if (fullData[fullData.length - 1] === 0 && currentDiamonds > 0) {
+                fullData[fullData.length - 1] = currentDiamonds;
+            }
+            
+            labels = fullLabels.slice(-6);
+            dataPoints = fullData.slice(-6);
+            
+            // DEDUPLICATE: If last two labels are same, replace second to last with previous month name
+            // (Safety against logic errors in data files)
+            if (labels.length >= 2 && labels[labels.length - 1] === labels[labels.length - 2]) {
+                console.warn('⚠️ Chart: Duplicate labels detected, shifting previous label.');
+                // We know if last is 'Mar', prev should be 'Feb'
+                const monthOrder = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const lastIdx = monthOrder.indexOf(labels[labels.length - 1]);
+                if (lastIdx > 0) {
+                    labels[labels.length - 2] = monthOrder[lastIdx - 1];
+                }
+            }
+            
+            console.log('DEBUG - Dynamic chart labels:', labels);
         } else {
-            // Fallback: use CSV data columns
-            const current = myData.diamonds || 0;
-            const lastMonth = myData.diamondsLastMonth || current;
-            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-            // Use available data or create trend
+            // Fallback: use estimates based on current
+            const lastMonth = myData.diamondsLastMonth || currentDiamonds;
+            labels = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
             dataPoints = [
-                twoMonthsAgo || current * 0.8,
-                lastMonth || current * 0.9,
-                current * 0.95,
-                current * 0.98,
-                current * 0.99,
-                current
+                currentDiamonds * 0.7,
+                currentDiamonds * 0.8,
+                currentDiamonds * 0.85,
+                lastMonth * 0.95 || currentDiamonds,
+                currentDiamonds,
+                0 // April (Current)
             ];
-            console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data from HISTORY (trends.tierHistory: Sep, Oct, Nov, Dec, Jan, Feb)
-        let tierData = [null, null, null, null, null, null];
-        if (trends && trends.tierHistory && trends.tierHistory.length === 6) {
-            tierData = trends.tierHistory;
+        // Tier data: Last 6 from tierHistory
+        let tierData = [null, null, null, null, null, currentTier];
+        if (hasRealData && trends.tierHistory && trends.tierHistory.length > 0) {
+            const fullTier = [...trends.tierHistory];
+            // Sync current tier
+            if ((fullTier[fullTier.length - 1] === 0 || fullTier[fullTier.length - 1] === null) && currentTier > 0) {
+                fullTier[fullTier.length - 1] = currentTier;
+            }
+            tierData = fullTier.slice(-6).map(t => (t > 0 ? t : null));
         }
-        
-        console.log('DEBUG - Chart labels:', labels);
-        console.log('DEBUG - Chart dataPoints:', dataPoints);
     
     const data = {
         labels: labels,
@@ -733,7 +826,8 @@ function initPerformanceChart() {
             tension: 0.4,
             pointRadius: 4,
             pointBackgroundColor: '#00ff88',
-            yAxisID: 'y1'
+            yAxisID: 'y1',
+            spanGaps: true // Ensures the dashed line connects even if some months are missing
         }]
     };
     
@@ -827,7 +921,20 @@ function initPerformanceChart() {
             // Always show real 6-month historical data with month names
             performanceChart.data.labels = labels;
             if (hasRealData) {
-                performanceChart.data.datasets[0].data = trends.diamondsHistory;
+                const fullData = [...trends.diamondsHistory];
+                if (fullData[fullData.length - 1] === 0 && currentDiamonds > 0) {
+                    fullData[fullData.length - 1] = currentDiamonds;
+                }
+                performanceChart.data.datasets[0].data = fullData.slice(-6);
+                
+                // Also update tier data
+                if (trends.tierHistory && trends.tierHistory.length > 0) {
+                    const fullTier = trends.tierHistory.slice(-6).map(t => (t > 0 ? t : null));
+                    if (fullTier[5] === null && currentTier > 0) {
+                        fullTier[5] = currentTier;
+                    }
+                    performanceChart.data.datasets[1].data = fullTier;
+                }
             } else {
                 // Fallback: use CSV data columns
                 const current = myData.diamonds || 0;
@@ -857,7 +964,7 @@ function initPerformanceChart() {
         </div>
         <div class="insight-item">
             <i class="fas fa-calculator"></i>
-            <span>${formatNumber((myData.diamonds || 0) / (myData.liveStreams || 1))} diamonds per stream</span>
+            <span>${formatNumber((myData.diamonds || 0) / (myData.hours || 1))} diamonds per hour</span>
         </div>
     `;
     
@@ -879,19 +986,33 @@ function initPerformanceChart() {
 }
 
 function updateAchievements() {
+    // Check if the current month matches the data month
+    // This allows achievements to "reset" every month even if the CSV hasn't been updated yet
+    const currentMonth = new Date().toLocaleString('en-US', { month: 'long' }).toLowerCase();
+    const dataMonth = (myData.month || '').trim().toLowerCase();
+    
+    // DEBUG: log for verification
+    console.log(`DEBUG - Monthly Reset: Current Month [${currentMonth}], Data Month [${dataMonth}]`);
+    
+    // If the data is from a previous month, we treat MTD achievements as locked
+    const isNewMonth = dataMonth && currentMonth !== dataMonth;
+    if (isNewMonth) {
+        console.log('🔄 Data Month mismatch! Achievements will be locked for a fresh start.');
+    }
+
     const achievements = [
-        { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
-        { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
-        { name: 'Reward King', icon: '💰', unlocked: myData.rewardsMonth && parseInt((myData.rewardsMonth || '').toString().replace(/,/g, '')) >= 50000, desc: '50k+ earned this month' },
-        { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
-        { name: 'Growth Star', icon: '🚀', unlocked: (myData.growthDirection || '').toLowerCase() === 'up', desc: 'Upward growth' },
+        { name: 'Million Diamond Club', icon: '💎', unlocked: !isNewMonth && (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
+        { name: 'Stream Master', icon: '📺', unlocked: !isNewMonth && (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
+        { name: 'Reward King', icon: '💰', unlocked: !isNewMonth && ((myData.rewardsMonth && parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) > 0) || (myData.bonus && parseFloat(myData.bonus.toString().replace(/[$,]/g, '')) > 0)), desc: 'Earned a Bonus' },
+        { name: 'Hour Crusher', icon: '⏰', unlocked: !isNewMonth && (myData.hours || 0) >= 80, desc: '80+ hours' },
+        { name: 'Growth Star', icon: '🌟', unlocked: !isNewMonth && (myData.tierStatus || '').toLowerCase().includes('up'), desc: 'Ranked up tier' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
     ];
     
     // Update Top 10 based on actual rank
     const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
     const myRank = sorted.findIndex(c => c.username === myData.username) + 1;
-    achievements[5].unlocked = myRank <= 10;
+    achievements[5].unlocked = !isNewMonth && myRank <= 10;
     
     const unlockedCount = achievements.filter(a => a.unlocked).length;
     document.getElementById('achievementCount').textContent = `${unlockedCount}/${achievements.length} unlocked`;
@@ -906,81 +1027,97 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Use month names from HISTORY data (Oct-Feb + Current)
-    const periods = [
-        'October 2025',
-        'November 2025',
-        'December 2025',
-        'January 2026',
-        'February 2026',
-        'Current'
-    ];
+    // Current dynamic window from CSV meta
+    const periods = creatorTrendsMeta.historyLabels && creatorTrendsMeta.historyLabels.length > 0
+        ? [...creatorTrendsMeta.historyLabels] 
+        : ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'];
     
-    // Use 6-month trend data if available
-    let diamondsHistory = [];
-    let rewardsHistory = [];
-    const trends = creatorTrends[myData.username];
+    let earningsData = [];
     
-    if (trends && trends.diamondsHistory && trends.diamondsHistory.length === 6) {
-        diamondsHistory = trends.diamondsHistory;
-        // Rewards from HISTORY: Sep, Oct, Nov, Dec, Jan, Feb, Current (7 months)
-        if (trends.rewardsHistory && trends.rewardsHistory.length >= 6) {
-            rewardsHistory = trends.rewardsHistory;
-        }
+    // Attempt to get trends data first (most accurate for history)
+    let trends = creatorTrends[myData.username];
+    if (!trends) {
+        const usernameLower = myData.username.toLowerCase();
+        const matchingKey = Object.keys(creatorTrends).find(key => 
+            key.toLowerCase() === usernameLower
+        );
+        if (matchingKey) trends = creatorTrends[matchingKey];
+    }
+
+    if (trends && trends.diamondsHistory) {
+        // trends.diamondsHistory and trends.bonusHistory are aligned with periods
+        earningsData = periods.map((period, idx) => {
+            const diamonds = trends.diamondsHistory[idx] || 0;
+            const bonus = trends.bonusHistory ? (trends.bonusHistory[idx] || 0) : 0;
+            
+            // For March/April, we might want to override with live data if current.csv hasn't rolled
+            let syncDiamonds = diamonds;
+            
+            // Revenue calculation fallback or from trends.revenueHistory if we add it
+            let revenueVal = (trends.revenueHistory && trends.revenueHistory[idx]) ? trends.revenueHistory[idx] : 0;
+            if (revenueVal === 0 && syncDiamonds > 0) {
+                revenueVal = Math.round(syncDiamonds * 0.0045);
+            }
+            
+            const isMissing = (syncDiamonds === 0 && bonus === 0 && revenueVal === 0);
+            
+            return {
+                diamonds: syncDiamonds,
+                revenue: revenueVal,
+                bonus: bonus,
+                totalValue: revenueVal + bonus,
+                isMissing: isMissing
+            };
+        });
     } else {
-        // Fallback: build from available data
-        const current = myData.diamonds || 0;
-        const lastMonth = myData.diamondsLastMonth || current;
-        const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-        diamondsHistory = [
-            twoMonthsAgo * 0.85 || current * 0.7,
-            twoMonthsAgo * 0.92 || current * 0.8,
-            twoMonthsAgo || current * 0.85,
-            lastMonth * 0.95 || current * 0.9,
-            lastMonth || current * 0.95,
-            current
-        ];
+        // Fallback: zeros
+        earningsData = periods.map(() => ({ diamonds: 0, revenue: 0, bonus: 0, totalValue: 0, isMissing: true }));
     }
     
-    // Build rows with calculated changes
+    // Build rows with calculated changes using TOTAL VALUE (Diamonds USD + Bonus)
     const rows = periods.map((period, index) => {
-        const diamonds = diamondsHistory[index] || 0;
-        const prevDiamonds = index > 0 ? (diamondsHistory[index - 1] || diamonds) : diamonds;
-        const change = index > 0 ? ((diamonds - prevDiamonds) / prevDiamonds * 100).toFixed(1) + '%' : '--';
+        const data = earningsData[index];
+        const totalValue = data.totalValue || 0;
         
-        // Rewards from HISTORY data (AA-AG columns)
-        let rewards = '--';
-        if (rewardsHistory.length > index) {
-            rewards = rewardsHistory[index] || '--';
-        } else if (index === 5 && myData.rewardsMonth) {
-            // Fallback to current month rewards from Live Data
-            rewards = myData.rewardsMonth;
+        const prevData = index > 0 ? earningsData[index - 1] : null;
+        const prevTotal = prevData ? (prevData.totalValue || 0) : 0;
+        
+        let change = '--';
+        if (index > 0 && prevTotal > 0 && !data.isMissing && !prevData.isMissing) {
+            const changeVal = ((totalValue - prevTotal) / prevTotal * 100);
+            change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
         }
+        
+        // Format displays
+        const bonusDisplay = data.isMissing ? '--' : (data.bonus > 0 ? '$' + Math.round(data.bonus).toLocaleString() : '--');
+        const diamondDisplay = data.isMissing ? '--' : (formatNumber(data.diamonds) + ' 💎');
+        const revenueDisplay = data.isMissing ? '--' : '≈$' + Math.round(data.revenue).toLocaleString();
         
         return {
             period: period,
-            diamonds: diamonds,
-            usd: formatUSD(diamonds),
-            rewards: rewards,
+            diamondsHtml: diamondDisplay,
+            usd: revenueDisplay,
+            bonus: bonusDisplay,
             change: change
         };
     });
     
     document.getElementById('historyTableBody').innerHTML = rows.map(r => {
-        const changeNum = parseFloat(r.change);
-        const changeClass = isNaN(changeNum) ? '' : changeNum >= 0 ? 'up' : 'down';
-        const changeIcon = isNaN(changeNum) ? '' : changeNum >= 0 ? 'fa-arrow-up' : 'fa-arrow-down';
+        const isChange = r.change !== '--';
+        const changeClass = isChange ? (r.change.includes('↑') ? 'up' : 'down') : '';
+        const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
+        const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
         
         return `
             <tr>
                 <td><strong>${r.period}</strong></td>
-                <td>${formatNumber(r.diamonds)} 💎</td>
+                <td>${r.diamondsHtml}</td>
                 <td style="color: var(--success);">${r.usd}</td>
-                <td>${r.rewards}</td>
+                <td style="color: #ffd700;">${r.bonus}</td>
                 <td>
-                    ${r.change !== '--' ? `
+                    ${isChange ? `
                         <span class="trend-indicator ${changeClass}">
-                            <i class="fas ${changeIcon}"></i> ${r.change}
+                            <i class="fas ${changeIcon}"></i> ${changeText}
                         </span>
                     ` : '--'}
                 </td>
@@ -991,8 +1128,12 @@ function updateHistory() {
 
 function updateScoreAndLevels() {
     // Score from Google Sheets column AG (0-100)
-    const score = myData.score || 0;
-    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
+    // Try multiple sources: myData.score, parseInt fallback, creatorBadges
+    let score = parseInt(myData.score) || 0;
+    if (score === 0 && myData._scoreRaw) {
+        score = parseInt(myData._scoreRaw) || 0;
+    }
+    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score:', myData.score);
     
     // Update Score Badge
     document.getElementById('scoreBadge').textContent = `Score: ${score}`;
@@ -1022,6 +1163,30 @@ function updateScoreAndLevels() {
         });
     }
     
+    // Dynamic tier badge logic — only show ONE fancy badge at a time
+    const prosItem = document.getElementById('prosScaleItem');
+    const mastersItem = document.getElementById('mastersScaleItem');
+    
+    if (prosItem) {
+        if (score > 70 && score <= 90) {
+            // Show gold PROS badge
+            prosItem.innerHTML = `<div class="tier-badge badge-pros"><span class="badge-num">70</span><span class="badge-label">PROS</span></div>`;
+        } else {
+            // Normal text
+            prosItem.innerHTML = `<span class="scale-num">70</span><span class="scale-tier tier-pros">PROS</span>`;
+        }
+    }
+    
+    if (mastersItem) {
+        if (score > 90) {
+            // Show red MASTERS badge
+            mastersItem.innerHTML = `<div class="tier-badge badge-masters"><span class="badge-num">90</span><span class="badge-label">MASTERS</span></div>`;
+        } else {
+            // Normal text
+            mastersItem.innerHTML = `<span class="scale-num">90</span><span class="scale-tier tier-masters">MASTERS</span>`;
+        }
+    }
+    
     console.log(`DEBUG - Score: ${score}, Segments filled: ${Math.round(score)}`);
     
     // Current Score Reward
@@ -1041,37 +1206,23 @@ function updateScoreAndLevels() {
     const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
     const growth = parseFloat(myData.growthPercent) || 0;
     
-    // Activity Level based on Creator Score activity metric
-    // NEW SYSTEM: 30+ = Perfect, 24+ = Great, 12+ = Good, 6+ = Low, Under 6 = Non-Active
-    const activityMetric = myData.scoreActivity || myData.activityScore || myData.level;
+    // Activity Level based on Column E (Level 0-5)
+    const level = myData.level;
     let activityLevel = '--';
     let activityColor = '#888';
     
-    // Parse the activity metric value
-    let activityValue = 0;
-    if (activityMetric !== '' && activityMetric !== undefined && activityMetric !== null && activityMetric !== 'null') {
-        activityValue = parseInt(activityMetric) || 0;
-    }
-    
-    // NEW Activity Level Badge System
-    if (activityValue >= 30) {
-        activityLevel = 'Perfect';
-        activityColor = '#a855f7';  // Purple for perfect
-    } else if (activityValue >= 24) {
-        activityLevel = 'Great';
-        activityColor = '#00d4ff';  // Cyan for great
-    } else if (activityValue >= 12) {
-        activityLevel = 'Good';
-        activityColor = '#4ade80';  // Green for good
-    } else if (activityValue >= 6) {
-        activityLevel = 'Low';
-        activityColor = '#fbbf24';  // Amber/Yellow for low
-    } else if (activityValue > 0) {
-        activityLevel = 'Non-Active';
-        activityColor = '#9ca3af';  // Gray for non-active
-    } else {
+    if (level === -1 || level === '-1') {
         activityLevel = '--';
         activityColor = '#888';
+    } else if (parseInt(level) === 0) {
+        activityLevel = 'Low';
+        activityColor = '#60a5fa';
+    } else if (parseInt(level) >= 1 && parseInt(level) <= 2) {
+        activityLevel = 'Good';
+        activityColor = '#4ade80';
+    } else if (parseInt(level) >= 3) {
+        activityLevel = 'Great';
+        activityColor = '#00d4ff';
     }
     
     const activityEl = document.getElementById('scoreActivity');
@@ -1097,12 +1248,12 @@ function updateScoreAndLevels() {
     console.log('DEBUG - Activity Level data:', myData.level, 'Raw:', myData._levelRaw, 'Header:', myData._levelHeader);
     
     // Use level from CSV column E
-    // Handle: blank/null/undefined = '--', 0 = '0', 1-5 = actual level
+    // Handle: -1=blank, 0=starter, 1-5=actual levels
     let currentLevelDisplay = '--';
     let currentLevelNum = null;
     
-    if (myData.level === '' || myData.level === undefined || myData.level === null || myData.level === 'null') {
-        // Truly blank - show '--'
+    if (myData.level === -1 || myData.level === '-1') {
+        // Blank level - show '--'
         currentLevelDisplay = '--';
         currentLevelNum = null;
     } else {
@@ -1138,34 +1289,140 @@ function updateScoreAndLevels() {
         { level: 5, days: 22, hours: 80 }   // Fixed: was 25, should be 22
     ];
     
-    // Get requirements for NEXT level (what they're working toward)
-    const nextLevel = (currentLevelNum !== null ? currentLevelNum : 0) + 1;
-    const nextLevelReq = levelReqs.find(r => r.level === nextLevel) || levelReqs[levelReqs.length - 1];
+    // Activity Level uses activityDaysGoal (column O) and activityHoursGoal (column R)
     const currentDays = myData.validLiveDays || 0;
     const currentHours = myData.hours || 0;
+    const daysGoal = myData.activityDaysGoal || myData.daysGoal || 0;
+    const hoursGoal = myData.activityHoursGoal || myData.hoursGoal || 0;
     
-    document.getElementById('daysStreamed').textContent = `${currentDays} / ${nextLevelReq.days} days`;
-    document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(1)} / ${nextLevelReq.hours} hrs`;
+    // Check if at max level (Level 5) - remove "/0" display
+    const isMaxLevel = myData.level === '5' || myData.level === 5;
     
-    document.getElementById('daysFill').style.width = `${Math.min(100, (currentDays / nextLevelReq.days) * 100)}%`;
-    document.getElementById('hoursFillLevel').style.width = `${Math.min(100, (currentHours / nextLevelReq.hours) * 100)}%`;
+    if (isMaxLevel && daysGoal === 0) {
+        document.getElementById('daysStreamed').textContent = `${currentDays} days`;
+    } else {
+        document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
+    }
     
-    // Revenue Streams - only update elements that exist
-    const diamondUSD = (myData.diamonds || 0) * 0.005;
+    if (isMaxLevel && hoursGoal === 0) {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs`;
+    } else {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
+    }
     
-    // Update Diamond Earnings (only remaining revenue item)
+    document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
+    document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
+    
+    // Revenue Streams - show diamonds
+    const diamonds = myData.diamonds || 0;
+    // Update Dollars display (main value - using estRev from column AM)
+    const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
+    if (diamondRevenueUSDEl) {
+        const estRev = myData.estRev || 0;
+        console.log('DEBUG - estRev value:', estRev, 'from myData:', myData.username);
+        diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
+    }
+    
+    // Update diamonds as note on right side (matching Cash Bonus layout)
     const diamondRevenueEl = document.getElementById('diamondRevenue');
     if (diamondRevenueEl) {
-        diamondRevenueEl.textContent = '$' + diamondUSD.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
+        diamondRevenueEl.style.color = '#00d4ff';
+        diamondRevenueEl.style.fontSize = '12px';
     }
     
-    const diamondCountEl = document.getElementById('diamondCount');
-    if (diamondCountEl) {
-        diamondCountEl.textContent = formatNumber(myData.diamonds) + ' 💎';
+    // PRO BONUS CALCULATION
+    // Qualification: Score >= 70 AND Tier maintained (same) or up
+    const proBonusBadge = document.getElementById('proBonusBadge');
+    const scoreSection = document.querySelector('.score-section');
+    
+    console.log('DEBUG PRO BONUS - Badge found:', !!proBonusBadge, 'Score section found:', !!scoreSection);
+    
+    if (proBonusBadge) {
+        // Remove old badge if exists (for backward compatibility)
+        const oldBadge = document.querySelector('.pro-bonus-badge');
+        if (oldBadge && oldBadge !== proBonusBadge) {
+            oldBadge.remove();
+        }
+        const scoreValue = parseInt(myData.score) || 0;
+        const tierStatusRaw = myData.tierStatus || '';
+        const tierStatusValue = tierStatusRaw.toLowerCase().trim();
+        const currentDiamonds = parseInt(myData.diamonds) || 0;
+        
+        console.log('DEBUG PRO BONUS - Score:', scoreValue, 'Tier Status Raw:', tierStatusRaw, 'Tier Status Lower:', tierStatusValue, 'Diamonds:', currentDiamonds);
+        
+        // Check qualification: Score >= 70 AND (tier same or up)
+        // Treat blank, '-', or 'same' as maintained (qualified)
+        const scoreQualified = scoreValue >= 70;
+        const tierQualified = tierStatusValue === '' || 
+                              tierStatusValue === '-' || 
+                              tierStatusValue.includes('same') || 
+                              tierStatusValue.includes('up') || 
+                              tierStatusValue.includes('maintained');
+        const qualifiesForPro = scoreQualified && tierQualified;
+        
+        console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
+        
+        if (qualifiesForPro) {
+            // Show Pro Bonus badge
+            proBonusBadge.style.display = 'flex';
+            console.log('DEBUG PRO BONUS - Badge DISPLAYED');
+            
+            // Add halo effect to score section
+            if (scoreSection) {
+                scoreSection.classList.add('pro-active');
+                console.log('DEBUG PRO BONUS - Halo effect ADDED');
+            }
+            
+            // Use real Pro Bonus from column AO (Rewards Month)
+            const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
+            console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
+        } else {
+            // Hide Pro Bonus badge
+            proBonusBadge.style.display = 'none';
+            console.log('DEBUG PRO BONUS - Badge HIDDEN (not qualified)');
+            
+            // Remove halo effect
+            if (scoreSection) {
+                scoreSection.classList.remove('pro-active');
+            }
+            
+            console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
+        }
+    } else {
+        console.error('DEBUG PRO BONUS - proBonusBadge element NOT FOUND in DOM');
     }
     
-    // Level Bonus and Score Reward removed - elements no longer exist
-    console.log('DEBUG - Revenue: Diamond USD =', diamondUSD.toFixed(2));
+    // Update Pro Bonus in Revenue Streams section
+    const proBonusRevenueValue = document.getElementById('proBonusRevenueValue');
+    const proBonusRevenueNote = document.getElementById('proBonusRevenueNote');
+    const proBonusRevenueItem = document.getElementById('proBonusRevenueItem');
+    
+    if (proBonusRevenueValue && proBonusRevenueNote) {
+        const scoreValue = parseInt(myData.score) || 0;
+        
+        if (scoreValue >= 70) {
+            // Use Cash Bonus from column AN (Bonus)
+            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
+            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
+            proBonusRevenueValue.style.color = '#ffd700'; // Gold color
+            proBonusRevenueNote.textContent = 'Cash Bonus Earned';
+            
+            // Add highlight effect
+            if (proBonusRevenueItem) {
+                proBonusRevenueItem.classList.add('pro-revenue-active');
+            }
+        } else {
+            proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
+            proBonusRevenueValue.style.color = '#888'; // Gray color
+            proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
+            
+            // Remove highlight effect
+            if (proBonusRevenueItem) {
+                proBonusRevenueItem.classList.remove('pro-revenue-active');
+            }
+        }
+    }
 }
 
 // Global variable to store detailed rewards
@@ -1212,10 +1469,24 @@ function updateAwards() {
             const eventKey = `${r.type}|${r.date}`;
             
             if (!eventMap.has(eventKey)) {
+                // Parse M/D/YYYY format properly
+                let parsedDate;
+                if (r.date.includes('/')) {
+                    const parts = r.date.split('/');
+                    if (parts.length === 3) {
+                        // M/D/YYYY -> YYYY-MM-DD for reliable parsing
+                        parsedDate = new Date(`${parts[2]}-${parts[0].padStart(2,'0')}-${parts[1].padStart(2,'0')}`);
+                    } else {
+                        parsedDate = new Date(r.date);
+                    }
+                } else {
+                    parsedDate = new Date(r.date);
+                }
+                console.log('DEBUG - Parsing date:', r.date, '->', parsedDate, 'Valid:', !isNaN(parsedDate));
                 eventMap.set(eventKey, {
                     type: r.type,
                     date: r.date,
-                    dateObj: new Date(r.date),
+                    dateObj: parsedDate,
                     icon: r.icon || '🏆',
                     totalPlus: 0,
                     totalMinus: 0
@@ -1233,9 +1504,13 @@ function updateAwards() {
             event.totalMinus += minusVal;
         });
         
-        // Convert to array and sort by date (newest first)
-        const events = Array.from(eventMap.values());
+        // Convert to array and filter out invalid dates
+        const events = Array.from(eventMap.values()).filter(e => !isNaN(e.dateObj));
+        console.log('DEBUG - Valid events count:', events.length);
+        
+        // Sort by date (newest first)
         events.sort((a, b) => b.dateObj - a.dateObj);
+        console.log('DEBUG - Sorted events:', events.slice(0, 5).map(e => ({type: e.type, date: e.date, dateObj: e.dateObj})));
         
         // Take last 5 unique events
         const recentEvents = events.slice(0, 5);
@@ -1274,6 +1549,9 @@ function updateAwards() {
         ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
     }
     
+    console.log('DEBUG - ledgerRows count:', ledgerRows.length);
+    console.log('DEBUG - ledgerRows sample:', ledgerRows.slice(0, 3));
+    
     // Default message if no rewards
     if (ledgerRows.length === 0) {
         document.getElementById('awardsList').innerHTML = `
@@ -1286,6 +1564,11 @@ function updateAwards() {
         `;
         return;
     }
+    
+    // DEBUG: Check what's about to be displayed
+    console.log('DEBUG - About to display', ledgerRows.length, 'rows');
+    console.log('DEBUG - First row to display:', ledgerRows[0]);
+    console.log('DEBUG - awardsList element:', document.getElementById('awardsList'));
     
     // Display all rows
     document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
@@ -1559,17 +1842,4 @@ function updateEventsCalendar() {
         }).join('');
     }
     
-    // Update TikTok Campaigns
-    const tiktokEl = document.getElementById('tiktokCampaignsList');
-    if (tiktokEl && calendarData.tiktokCampaigns) {
-        tiktokEl.innerHTML = calendarData.tiktokCampaigns.map(camp => `
-            <div class="tiktok-campaign-item">
-                <i class="fas fa-music"></i>
-                <div>
-                    <span class="campaign-title">${camp.name}</span>
-                    <span class="campaign-dates">${camp.dates}</span>
-                </div>
-            </div>
-        `).join('');
-    }
 }
