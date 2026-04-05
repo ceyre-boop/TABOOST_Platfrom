@@ -1,34 +1,50 @@
 #!/usr/bin/env python3
 """
-Convert HISTORY CSV to creator_trends.json
+Convert HISTORY CSV to creator_trends.json with DYNAMIC month detection
 Usage: python convert_history_csv.py HISTORY.csv creator_trends.json
 """
 
 import csv
 import json
 import sys
+import re
+
+def find_section_indices(headers, section_name):
+    """Find start index of a section (DIAMONDS, TIER, etc.) and return next 6 month columns"""
+    try:
+        start_idx = headers.index(section_name)
+        # Get next 6 columns (the month data)
+        month_indices = []
+        month_labels = []
+        for i in range(1, 7):  # Skip the section header, get next 6
+            if start_idx + i < len(headers):
+                month_indices.append(start_idx + i)
+                month_labels.append(headers[start_idx + i].strip())
+        return month_indices, month_labels
+    except ValueError:
+        return [], []
 
 def convert_history_csv_to_json(input_file, output_file):
     """
-    Convert HISTORY.csv to creator_trends.json format
-    
-    INPUT CSV Format (HISTORY.csv):
-    UID, Username, Diamonds Current, Feb, Jan, Dec, Nov, Oct, Sep, ...
-    
-    OUTPUT JSON Format (creator_trends.json):
-    [
-      {
-        "username": "skylerclarkk",
-        "diamondsHistory": [ Sep, Oct, Nov, Dec, Jan, Feb ],
-        "growthRates": [ 0, 5.2, -2.1, 10.5, 8.3, 12.1 ]
-      }
-    ]
+    Convert HISTORY.csv to creator_trends.json with DYNAMIC month detection
     """
     creators = []
+    month_labels = []  # Will be extracted from header
     
     with open(input_file, 'r', encoding='utf-8') as f:
         reader = csv.reader(f)
-        header = next(reader)  # Skip header
+        headers = next(reader)  # Read header
+        
+        # Find DIAMONDS section and extract month labels
+        diamonds_indices, month_labels = find_section_indices(headers, 'DIAMONDS')
+        print(f"Found months: {month_labels}")
+        
+        if len(diamonds_indices) != 6:
+            print(f"WARNING: Expected 6 months, found {len(diamonds_indices)}")
+        
+        # Find other sections
+        tier_indices, _ = find_section_indices(headers, 'TIER')
+        rewards_indices, _ = find_section_indices(headers, 'REWARDS')
         
         for row in reader:
             if len(row) < 10:
@@ -38,7 +54,6 @@ def convert_history_csv_to_json(input_file, output_file):
             if not username:
                 continue
             
-            # Parse numbers (remove commas)
             def parse_num(val):
                 if not val or val.strip() == '' or val.strip() == '-1':
                     return 0
@@ -47,28 +62,20 @@ def convert_history_csv_to_json(input_file, output_file):
                 except:
                     return 0
             
-            # Columns: C=Current, D=Feb, E=Jan, F=Dec, G=Nov, H=Oct, I=Sep
-            # Using: Current + 5 previous months (Oct, Nov, Dec, Jan, Feb)
-            diamonds_current = parse_num(row[2] if len(row) > 2 else 0)
-            diamonds_feb = parse_num(row[3] if len(row) > 3 else 0)
-            diamonds_jan = parse_num(row[4] if len(row) > 4 else 0)
-            diamonds_dec = parse_num(row[5] if len(row) > 5 else 0)
-            diamonds_nov = parse_num(row[6] if len(row) > 6 else 0)
-            diamonds_oct = parse_num(row[7] if len(row) > 7 else 0)
+            def parse_tier(val):
+                if not val or val.strip() == '' or val.strip() == '-1':
+                    return None
+                try:
+                    return int(val)
+                except:
+                    return None
             
-            # Build history: Oct → Nov → Dec → Jan → Feb → Current (oldest to newest)
-            diamonds_history = [
-                diamonds_oct,
-                diamonds_nov,
-                diamonds_dec,
-                diamonds_jan,
-                diamonds_feb,
-                diamonds_current
-            ]
+            # Build diamonds history from dynamic indices (reverse to get oldest first)
+            diamonds_history = [parse_num(row[i]) if i < len(row) else 0 for i in reversed(diamonds_indices)]
             
             # Calculate growth rates
             growth_rates = []
-            for i in range(6):
+            for i in range(len(diamonds_history)):
                 if i == 0:
                     growth_rates.append(0)
                 else:
@@ -80,37 +87,12 @@ def convert_history_csv_to_json(input_file, output_file):
                         growth = 0
                     growth_rates.append(growth)
             
-            # Parse tier data (rolling: M-Q may be blank currently)
-            # K=Current, L=Feb, M=Jan, N=Dec, O=Nov, P=Oct, Q=Sep
-            # Using: Current + 5 previous months (Oct, Nov, Dec, Jan, Feb)
-            def parse_tier(val):
-                if not val or val.strip() == '' or val.strip() == '-1':
-                    return None
-                try:
-                    return int(val)
-                except:
-                    return None
+            # Build tier history (reversed to oldest first)
+            tier_history = [parse_tier(row[i]) if i < len(row) else None for i in reversed(tier_indices)]
+            tier_current = tier_history[-1] if tier_history else None
             
-            tier_current = parse_tier(row[10] if len(row) > 10 else None)
-            tier_feb = parse_tier(row[11] if len(row) > 11 else None)
-            tier_jan = parse_tier(row[12] if len(row) > 12 else None)
-            tier_dec = parse_tier(row[13] if len(row) > 13 else None)
-            tier_nov = parse_tier(row[14] if len(row) > 14 else None)
-            tier_oct = parse_tier(row[15] if len(row) > 15 else None)
-            
-            # Build tier history: Oct → Nov → Dec → Jan → Feb → Current
-            tier_history = [
-                tier_oct,
-                tier_nov,
-                tier_dec,
-                tier_jan,
-                tier_feb,
-                tier_current
-            ]
-            
-            # Build rewards history (placeholder - to be filled from rewards data)
-            # Structure: [Sep, Oct, Nov, Dec, Jan, Feb] 
-            rewards_history = ["--", "--", "--", "--", "--", "--"]
+            # Build rewards history (reversed to oldest first)
+            rewards_history = [parse_num(row[i]) if i < len(row) else 0 for i in reversed(rewards_indices)]
             
             creators.append({
                 "username": username,
@@ -121,19 +103,27 @@ def convert_history_csv_to_json(input_file, output_file):
                 "rewardsHistory": rewards_history
             })
     
-    # Write JSON
-    with open(output_file, 'w', encoding='utf-8') as f:
-        json.dump(creators, f, indent=2)
+    # Write JSON with month labels included (reversed to oldest first)
+    output = {
+        "meta": {
+            "monthLabels": list(reversed(month_labels)),  # Oldest first for chart
+            "generated": csv_file
+        },
+        "creators": creators
+    }
     
-    print(f"Converted {len(creators)} creators from {input_file} to {output_file}")
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(output, f, indent=2)
+    
+    print(f"Converted {len(creators)} creators")
+    print(f"Month range: {month_labels[0] if month_labels else 'N/A'} to {month_labels[-1] if month_labels else 'N/A'}")
     return len(creators)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python convert_history_csv.py <input.csv> <output.json>")
-        print("Example: python convert_history_csv.py HISTORY.csv creator_trends.json")
         sys.exit(1)
     
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
-    convert_history_csv_to_json(input_file, output_file)
+    csv_file = sys.argv[1]
+    json_file = sys.argv[2]
+    convert_history_csv_to_json(csv_file, json_file)

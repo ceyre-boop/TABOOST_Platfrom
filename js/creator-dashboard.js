@@ -656,15 +656,27 @@ function getRewardIcon(type) {
     return '🏆';
 }
 
+let creatorTrendsMeta = {};  // Store month labels from JSON
+
 async function loadCreatorTrends() {
     try {
-        const response = await fetch('data/creator_trends.json?v=2');
+        const response = await fetch('data/creator_trends.json?v=3');
         if (!response.ok) throw new Error('Failed to load trends file');
-        const trends = await response.json();
-        creatorTrends = {};
-        trends.forEach(t => {
-            creatorTrends[t.username] = t;
-        });
+        const data = await response.json();
+        
+        // Handle new structure with meta and creators
+        if (data.meta && data.creators) {
+            creatorTrendsMeta = data.meta;
+            data.creators.forEach(t => {
+                creatorTrends[t.username] = t;
+            });
+            console.log('DEBUG - Loaded trends with meta:', creatorTrendsMeta.monthLabels);
+        } else if (Array.isArray(data)) {
+            // Legacy format
+            data.forEach(t => {
+                creatorTrends[t.username] = t;
+            });
+        }
         console.log('DEBUG - Loaded trends for', Object.keys(creatorTrends).length, 'creators');
     } catch (e) {
         console.error('Failed to load trends:', e);
@@ -705,10 +717,10 @@ function initPerformanceChart() {
         console.log('DEBUG - Available usernames count:', Object.keys(creatorTrends).length);
         console.log('DEBUG - Chart trends found:', trends ? 'YES' : 'NO');
         
-        // Use month labels from HISTORY data (Oct-Feb + Current)
-        // HISTORY.csv: Oct, Nov, Dec, Jan, Feb
-        // Current month comes from LIVE data (daily CSV column T)
-        const labels = ['October', 'November', 'December', 'January', 'February', 'Current'];
+        // Use dynamic month labels from creator_trends.json meta
+        // meta.monthLabels contains the 6 months from HISTORY.csv (oldest first)
+        const metaLabels = (creatorTrendsMeta && creatorTrendsMeta.monthLabels) ? creatorTrendsMeta.monthLabels : ['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+        const labels = [...metaLabels, 'Current'];
         
         // Get current month live data from myData (daily CSV - column T for diamonds, V for tier)
         const currentDiamonds = myData.diamonds || 0;
@@ -717,20 +729,21 @@ function initPerformanceChart() {
         // Check if we have real history data
         const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5;
         
-        // Build dataPoints: Past months from history JSON, Current from live data
+        // Build dataPoints: All 6 months from history JSON, Current from live data = 7 total
         let dataPoints;
         if (hasRealData) {
-            // diamondsHistory is [Sep, Oct, Nov, Dec, Jan, Feb]
-            // Use indices 1-5 for Oct-Feb, current from live data
+            // diamondsHistory is now [Sep, Oct, Nov, Dec, Jan, Feb] (oldest first)
+            // Use all 6 history months + current
             dataPoints = [
-                trends.diamondsHistory[1], // October (index 1)
-                trends.diamondsHistory[2], // November (index 2)
-                trends.diamondsHistory[3], // December (index 3)
-                trends.diamondsHistory[4], // January (index 4)
-                trends.diamondsHistory[5], // February (index 5)
+                trends.diamondsHistory[0], // Sep (oldest)
+                trends.diamondsHistory[1], // Oct
+                trends.diamondsHistory[2], // Nov
+                trends.diamondsHistory[3], // Dec
+                trends.diamondsHistory[4], // Jan
+                trends.diamondsHistory[5], // Feb (most recent history)
                 currentDiamonds            // Current (live from daily CSV)
             ];
-            console.log('DEBUG - Using merged data (history Oct-Feb + live Current):', dataPoints);
+            console.log('DEBUG - Using merged data (history 6 months + live Current):', dataPoints);
         } else {
             // Fallback: use available data
             const lastMonth = myData.diamondsLastMonth || currentDiamonds;
@@ -741,23 +754,24 @@ function initPerformanceChart() {
                 twoMonthsAgo || currentDiamonds * 0.85,
                 lastMonth * 0.95 || currentDiamonds * 0.9,
                 lastMonth || currentDiamonds * 0.95,
+                lastMonth || currentDiamonds * 0.98,
                 currentDiamonds
             ];
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data: Past months from history, Current from live data (column V)
-        // tierHistory is [Sep, Oct, Nov, Dec, Jan, Feb]
-        // Convert -1 to null so chart doesn't display invalid tiers
-        let tierData = [null, null, null, null, null, currentTier];
+        // Tier data: All 6 months from history + Current = 7 total
+        // tierHistory is [Sep, Oct, Nov, Dec, Jan, Feb] (oldest first)
+        let tierData = [null, null, null, null, null, null, currentTier];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
             tierData = [
-                trends.tierHistory[1] > 0 ? trends.tierHistory[1] : null, // October (index 1)
-                trends.tierHistory[2] > 0 ? trends.tierHistory[2] : null, // November (index 2)
-                trends.tierHistory[3] > 0 ? trends.tierHistory[3] : null, // December (index 3)
-                trends.tierHistory[4] > 0 ? trends.tierHistory[4] : null, // January (index 4)
-                trends.tierHistory[5] > 0 ? trends.tierHistory[5] : null, // February (index 5)
-                currentTier            // Current (live from daily CSV column V)
+                trends.tierHistory[0] > 0 ? trends.tierHistory[0] : null, // Sep
+                trends.tierHistory[1] > 0 ? trends.tierHistory[1] : null, // Oct
+                trends.tierHistory[2] > 0 ? trends.tierHistory[2] : null, // Nov
+                trends.tierHistory[3] > 0 ? trends.tierHistory[3] : null, // Dec
+                trends.tierHistory[4] > 0 ? trends.tierHistory[4] : null, // Jan
+                trends.tierHistory[5] > 0 ? trends.tierHistory[5] : null, // Feb
+                currentTier            // Current (live from daily CSV)
             ];
         }
         
