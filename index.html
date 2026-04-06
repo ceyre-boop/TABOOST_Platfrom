@@ -1,41 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0;url=firebase-login.html">
+    <meta http-equiv="refresh" content="0; url=firebase-login.html">
     <title>TABOOST - Redirecting...</title>
-    <style>
-        body {
-            background: #0a0a0a;
-            color: #fff;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .loading {
-            text-align: center;
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #333;
-            border-top-color: #ff0044;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        a { color: #ff0044; }
-    </style>
+    <script>
+        // Instant redirect
+        window.location.href = 'firebase-login.html';
+    </script>
 </head>
 <body>
-    <div class="loading">
-        <div class="spinner"></div>
-        <p>Redirecting to login...</p>
-        <p><a href="firebase-login.html">Click here if not redirected</a></p>
-    </div>
+    <p>Redirecting to login...</p>
+    <p>If not redirected, <a href="firebase-login.html">click here</a>.</p>
 </body>
 </html>

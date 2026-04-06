@@ -4,6 +4,30 @@ const fs = require('fs');
 const csvFilePath = process.argv[2] || 'data/day2-creators.csv';
 console.log('Processing:', csvFilePath);
 
+// BULLETPROOF: Clean values - remove #N/A, #VALUE!, etc.
+function cleanValue(val, type = 'string', defaultVal = '') {
+    if (val === null || val === undefined) return defaultVal;
+    const strVal = String(val).trim();
+    // Check for Excel/Google Sheets error codes
+    if (strVal === '#N/A' || strVal === '#VALUE!' || strVal === '#REF!' || 
+        strVal === '#DIV/0!' || strVal === '#NUM!' || strVal === '#NAME?' ||
+        strVal === '#NULL!' || strVal === '#ERROR!') {
+        return defaultVal;
+    }
+    // Type conversion
+    if (type === 'number') {
+        const cleaned = strVal.replace(/,/g, '').replace(/"/g, '').replace(/\$/g, '');
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? (defaultVal || 0) : num;
+    }
+    if (type === 'int') {
+        const cleaned = strVal.replace(/,/g, '').replace(/"/g, '');
+        const num = parseInt(cleaned, 10);
+        return isNaN(num) ? (defaultVal || 0) : num;
+    }
+    return strVal || defaultVal;
+}
+
 function parseCSVLine(line) {
     const result = [];
     let current = '';
@@ -49,45 +73,50 @@ for (let i = 1; i < lines.length; i++) {
     
     if (cid && username && !username.includes('@')) {
         const claimed = username.toLowerCase() === 'skylerclarkk';
+        
+        // Clean manager value
+        let manager = cleanValue(cols[8], 'string', 'carrington');
+        if (manager.includes('+')) manager = manager.split('+')[0].trim();
+        
         const d = {
             id: creators.length + 1,
             creatorId: cid,
             username: username.toLowerCase(),
             name: username,
             email: username + '@taboost.me',
-            status: cols[3] || 'GO',
-            level: cols[4] || '0',
-            month: cols[5] || '',
+            status: cleanValue(cols[3], 'string', 'GO'),
+            level: cleanValue(cols[4], 'string', '0'),
+            month: cleanValue(cols[5], 'string', ''),
             manager: manager.toUpperCase(),
             m: manager.toUpperCase(),
             claimed: claimed,
-            score: parseInt(cols[32]?.replace(/,/g, '')) || 0,
-            diamonds: parseInt(cols[19]?.replace(/,/g, '')) || 0,
-            diamondsGoal: parseInt(cols[21]?.replace(/,/g, '')) || 0,
-            diamondsPace: cols[20] || '',
-            diamondsLast30: parseInt(cols[27]?.replace(/,/g, '')) || 0,
-            diamondsLastMonth: parseInt(cols[28]?.replace(/,/g, '')) || 0,
-            diamonds2MonthsAgo: parseInt(cols[29]?.replace(/,/g, '')) || 0,
-            hours: parseInt(cols[16]) || 0,
-            hoursGoal: parseInt(cols[17]) || 0,
-            hoursLeft: cols[18] || '',
-            validLiveDays: parseInt(cols[12]) || 0,
-            daysGoal: parseInt(cols[14]) || 0,
-            daysLeft: cols[15] || '',
-            tier: parseInt(cols[21]) || 0,
-            tierGoal: parseInt(cols[22]?.replace(/,/g, '')) || 0,
-            tierLeft: cols[23] || '',
-            tierStatus: cols[24] || '',
-            tierLastMonth: cols[25] || '',
+            score: cleanValue(cols[32], 'int', 0),
+            diamonds: cleanValue(cols[19], 'int', 0),
+            diamondsGoal: cleanValue(cols[21], 'int', 0),
+            diamondsPace: cleanValue(cols[20], 'string', '0'),
+            diamondsLast30: cleanValue(cols[27], 'int', 0),
+            diamondsLastMonth: cleanValue(cols[28], 'int', 0),
+            diamonds2MonthsAgo: cleanValue(cols[29], 'int', 0),
+            hours: cleanValue(cols[16], 'int', 0),
+            hoursGoal: cleanValue(cols[17], 'int', 0),
+            hoursLeft: cleanValue(cols[18], 'string', '0'),
+            validLiveDays: cleanValue(cols[12], 'int', 0),
+            daysGoal: cleanValue(cols[14], 'int', 0),
+            daysLeft: cleanValue(cols[15], 'string', '0'),
+            tier: cleanValue(cols[21], 'int', 0),
+            tierGoal: cleanValue(cols[22], 'int', 0),
+            tierLeft: cleanValue(cols[23], 'string', '0'),
+            tierStatus: cleanValue(cols[24], 'string', '-'),
+            tierLastMonth: cleanValue(cols[25], 'string', '-'),
             growthPercent: 0,
-            earned: parseInt(cols[33]?.replace(/,/g, '')) || 0,
-            gifted: parseInt(cols[34]?.replace(/,/g, '')) || 0,
-            running: cols[35] || '',
-            multiply: cols[36] || '',
-            unlocked: cols[37] || '',
-            daysMonth: parseInt(cols[38]) || 0,
-            hoursMonth: parseInt(cols[39]) || 0,
-            rewardsMonth: cols[40] || ''
+            earned: cleanValue(cols[33], 'int', 0),
+            gifted: cleanValue(cols[34], 'int', 0),
+            running: cleanValue(cols[35], 'string', '0'),
+            multiply: cleanValue(cols[36], 'string', '-'),
+            unlocked: cleanValue(cols[37], 'string', '0'),
+            daysMonth: cleanValue(cols[38], 'int', 0),
+            hoursMonth: cleanValue(cols[39], 'int', 0),
+            rewardsMonth: cleanValue(cols[40], 'string', '0')
         };
         creators.push(d);
     }

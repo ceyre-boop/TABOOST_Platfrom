@@ -2,6 +2,8 @@
 <html>
 <head>
     <title>TABOOST - Daily Data Update</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-logo.jpg?v=2">
+    <!-- Build: 2026-03-15 -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -334,6 +336,29 @@
             csvFile = file;
             const text = await file.text();
             
+            // SAFETY CHECK: Validate CSV format
+            const firstLine = text.split('\n')[0];
+            const headers = parseCSVLine(firstLine);
+            
+            // Check for required creator columns (case-insensitive)
+            const headerLower = headers.map(h => h.toLowerCase());
+            const hasHost = headerLower.includes('host');
+            const hasUsername = headers.includes('3/17') || headers.some(h => h.match(/^\d+\/\d+$/));
+            const hasLevel = headerLower.includes('level');
+            
+            // Find actual column names
+            const hostCol = headers.find(h => h.toLowerCase() === 'host');
+            const usernameCol = headers.find(h => h.match(/^\d+\/\d+$/)) || headers[2];
+            
+            if (!hasHost || !hasUsername) {
+                log('❌ ERROR: Invalid CSV format!', 'error');
+                log('Missing required columns: Host, 3/17', 'error');
+                log('Found columns: ' + headers.slice(0, 10).join(', ') + (headers.length > 10 ? '...' : ''), 'info');
+                log('Make sure you exported the correct sheet from Google Sheets.', 'error');
+                alert('Wrong CSV format!\n\nExpected columns: Host, 3/17, Level\n\nFound: ' + headers.slice(0, 5).join(', ') + '\n\nPlease export the correct sheet from Google Sheets.');
+                return;
+            }
+            
             // Parse CSV
             const lines = text.split('\n');
             const creators = [];
@@ -371,16 +396,17 @@
                         claimed: username.toLowerCase() === 'skylerclarkk',
                         score: parseInt(cols[32]?.replace(/,/g, '')) || 0,
                         diamonds: parseInt(cols[19]?.replace(/,/g, '')) || 0,
-                        diamondsGoal: parseInt(cols[21]?.replace(/,/g, '')) || 0,
                         diamondsPace: cols[20] || '',
                         diamondsLast30: parseInt(cols[27]?.replace(/,/g, '')) || 0,
                         diamondsLastMonth: parseInt(cols[28]?.replace(/,/g, '')) || 0,
                         diamonds2MonthsAgo: parseInt(cols[29]?.replace(/,/g, '')) || 0,
                         hours: parseInt(cols[16]) || 0,
-                        hoursGoal: parseInt(cols[17]) || 0,
+                        hoursGoal: parseInt(cols[42]) || 80,  // Column AQ = Hours Month (Monthly Goals)
+                        activityHoursGoal: parseInt(cols[17]) || 60,  // Column R = Hrs Goal (Activity Level)
                         hoursLeft: cols[18] || '',
                         validLiveDays: parseInt(cols[12]) || 0,
-                        daysGoal: parseInt(cols[14]) || 0,
+                        daysGoal: parseInt(cols[41]) || 22,  // Column AP = Days Month (Monthly Goals)
+                        activityDaysGoal: parseInt(cols[14]) || 18,  // Column O = Days Goal (Activity Level)
                         daysLeft: cols[15] || '',
                         tier: parseInt(cols[21]) || 0,
                         tierGoal: parseInt(cols[22]?.replace(/,/g, '')) || 0,
@@ -393,9 +419,13 @@
                         running: cols[35] || '',
                         multiply: cols[36] || '',
                         unlocked: cols[37] || '',
-                        daysMonth: parseInt(cols[38]) || 0,
-                        hoursMonth: parseInt(cols[39]) || 0,
-                        rewardsMonth: cols[40] || ''
+                        estRev: parseFloat(cols[39]?.toString().replace(/[$,]/g, '')) || 0,  // Column AM = index 39
+                        bonus: cols[40] || '',  // Column AN = index 40
+                        daysMonth: parseInt(cols[41]) || 0,  // Column AP = index 41
+                        hoursMonth: parseInt(cols[42]) || 0,  // Column AQ = index 42
+                        daysGoal: parseInt(cols[41]) || 22,  // Column AP = Days Month
+                        hoursGoal: parseInt(cols[17]) || 60,  // Column R = Hrs Goal
+                        rewardsMonth: cols[43] || ''  // Column AR = index 43
                     });
                 }
             }
@@ -443,6 +473,19 @@
             const token = document.getElementById('githubToken').value;
             if (!token || !dataJsContent) return;
             
+            // SAFETY CHECK: Confirm before overwriting
+            const confirmUpload = confirm(
+                '⚠️ IMPORTANT:\n\n' +
+                'You are about to update the main creator data file (data.js).\n\n' +
+                'This affects ALL creator dashboards.\n\n' +
+                'Are you sure you want to proceed?'
+            );
+            
+            if (!confirmUpload) {
+                log('❌ Upload cancelled by user', 'info');
+                return;
+            }
+            
             const btn = document.getElementById('autoBtn');
             btn.disabled = true;
             
@@ -486,12 +529,73 @@
                 );
                 
                 if (!uploadRes.ok) {
-                    const error = await uploadRes.json();
-                    throw new Error(error.message || 'Upload failed');
+                    const errorText = await uploadRes.text();
+                    log('❌ GitHub API Error: ' + errorText, 'error');
+                    throw new Error(`Upload failed: ${uploadRes.status} - ${errorText}`);
                 }
                 
-                log('✅ Data uploaded successfully!', 'success');
-                log('🎉 Site will update in ~1 minute!', 'success');
+                const uploadData = await uploadRes.json();
+                log('✅ Data.js uploaded! Commit: ' + uploadData.commit.sha.substring(0, 7), 'success');
+                log('🔗 ' + uploadData.content.html_url, 'info');
+                
+                // 3. Update creator-dashboard.html with new cache-busting timestamp
+                log('📝 Updating dashboard cache version...');
+                try {
+                    const timestamp = Date.now();
+                    
+                    // Get current dashboard.html
+                    const dashRes = await fetch(
+                        `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/creator-dashboard.html`,
+                        { headers: { 'Authorization': `token ${token}` } }
+                    );
+                    
+                    if (!dashRes.ok) {
+                        throw new Error(`Failed to fetch dashboard: ${dashRes.status}`);
+                    }
+                    
+                    const dashData = await dashRes.json();
+                    let dashContent = decodeURIComponent(escape(atob(dashData.content)));
+                    
+                    // Replace any existing version number with new timestamp
+                    const newContent = dashContent.replace(/\.js\?v=[0-9]+/g, `.js?v=${timestamp}`);
+                    
+                    // Check if anything changed
+                    if (newContent === dashContent) {
+                        log('⚠️ No version placeholders found to update', 'warning');
+                    } else {
+                        // Commit updated dashboard
+                        const dashBody = {
+                            message: `Update dashboard cache - ${new Date().toLocaleDateString()}`,
+                            content: btoa(unescape(encodeURIComponent(newContent))),
+                            sha: dashData.sha,
+                            branch: 'main'
+                        };
+                        
+                        const updateRes = await fetch(
+                            `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/creator-dashboard.html`,
+                            {
+                                method: 'PUT',
+                                headers: {
+                                    'Authorization': `token ${token}`,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(dashBody)
+                            }
+                        );
+                        
+                        if (!updateRes.ok) {
+                            const error = await updateRes.json();
+                            throw new Error(error.message || `Update failed: ${updateRes.status}`);
+                        }
+                        
+                        log('✅ Dashboard cache updated!', 'success');
+                    }
+                } catch (e) {
+                    log('❌ Dashboard update error: ' + e.message, 'error');
+                    console.error('Dashboard update error:', e);
+                }
+                
+                log('🎉 All updates complete! Site will refresh in ~1 minute!', 'success');
                 log('🔗 <a href="https://live.taboost.me/creator-dashboard.html" target="_blank" style="color:#ff6b6b;">Check dashboard</a>');
                 
                 dropZone.innerHTML = '<div class="drop-icon">✅</div><div>Update Complete!</div>';

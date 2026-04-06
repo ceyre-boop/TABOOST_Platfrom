@@ -141,7 +141,7 @@ function pushToGitHub(content, config, path, sheetName) {
   const payload = {
     message: `Auto-sync: ${sheetName} @ ${timestamp}`,
     content: Utilities.base64Encode(content),
-    branch: 'master'
+    branch: 'main'
   };
   if (sha) payload.sha = sha;
   

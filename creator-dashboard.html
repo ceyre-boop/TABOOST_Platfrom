@@ -7,6 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>Live Dashboard - Taboost</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -26,6 +27,9 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
+        // Skip early auth check in test mode
+        const _params = new URLSearchParams(window.location.search);
+        if (!_params.get('testUser')) {
         // Check Firebase Auth state
         onAuthStateChanged(auth, async (user) => {
             if (!user) {
@@ -74,6 +78,7 @@
                 };
             }
         });
+        } // end skip test mode
         
         // Expose for logout
         window.logout = async () => {
@@ -95,6 +100,200 @@
             height: 0 !important;
             background: transparent !important;
             border: none !important;
+        }
+        
+        /* PRO BONUS SECTION - Glow Effect */
+        .pro-bonus-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            animation: proBonusGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes proBonusGlow {
+            from {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 140, 0, 0.2);
+                border-color: rgba(255, 215, 0, 0.6);
+            }
+        }
+        
+        .pro-bonus-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .pro-bonus-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            border-radius: 50px;
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            animation: proBadgePulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes proBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pro-bonus-glow i {
+            font-size: 18px;
+        }
+        
+        .pro-bonus-details {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .pro-bonus-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .pro-bonus-total {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        
+        .pro-label {
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .pro-value {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .pro-bonus-total .pro-value {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        
+        .pro-bonus-formula {
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Halo effect for score section when Pro Bonus is active */
+        .score-section.pro-active {
+            animation: scoreHalo 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes scoreHalo {
+            from {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            }
+            to {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), inset 0 0 50px rgba(255, 215, 0, 0.1);
+            }
+        }
+        
+        /* Small Pro Bonus Badge - inline with header */
+        .score-header-with-badge {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .score-header-with-badge h2 {
+            flex-shrink: 0;
+        }
+        
+        .pro-bonus-badge-inline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 auto;
+        }
+        
+        .pro-bonus-badge-inline i {
+            font-size: 10px;
+        }
+        
+        /* Pro Bonus revenue item highlight */
+        .revenue-item.pro-revenue-active {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+            animation: proRevenuePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes proRevenuePulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            }
+        }
+        
+        /* Mobile layout for Score section */
+        @media (max-width: 768px) {
+            .score-header-with-badge {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .score-header-with-badge h2 {
+                grid-column: 1;
+                grid-row: 1;
+                font-size: 16px;
+                margin: 0;
+            }
+            
+            .score-header-with-badge .score-badge {
+                grid-column: 2;
+                grid-row: 1;
+                font-size: 14px;
+            }
+            
+            .score-header-with-badge .pro-bonus-badge-inline {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                justify-self: center;
+                margin: 4px 0;
+                font-size: 10px;
+                padding: 3px 10px;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -152,7 +351,7 @@
                     <span class="stat-label">This Month's Diamonds</span>
                 </div>
                 <div class="stat-value" id="currentDiamonds">--</div>
-                <div class="stat-usd" id="currentUSD">--</div>
+                <div class="stat-usd" id="currentUSD" style="display: none;">--</div>
                 <div class="stat-trend" id="diamondTrend">
                     <span class="trend-indicator">
                         <i class="fas fa-chart-line"></i> --% vs last month
@@ -190,8 +389,13 @@
         
         <!-- 3. My Creator Score -->
         <div class="section-card score-section">
-            <div class="section-header">
+            <div class="section-header score-header-with-badge">
                 <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
+                <!-- Pro Bonus Badge - inline with header -->
+                <div id="proBonusBadge" class="pro-bonus-badge-inline" style="display: none;">
+                    <i class="fas fa-crown"></i>
+                    <span>PRO BONUS UNLOCKED</span>
+                </div>
                 <span class="score-badge" id="scoreBadge">Score: --</span>
             </div>
             
@@ -262,7 +466,36 @@
             </div>
         </div>
         
-        <!-- 4. My Monthly Goals -->
+        <!-- 4. My Revenue Streams -->
+        <div class="section-card revenue-section">
+            <div class="section-header">
+                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
+            </div>
+            <div class="revenue-grid">
+                <div class="revenue-item">
+                    <div class="revenue-icon" style="background: rgba(0,212,255,0.1); color: #00d4ff;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Estimated TikTok Payout</span>
+                        <span class="revenue-value" id="diamondRevenueUSD">--</span>
+                    </div>
+                    <span class="revenue-note" id="diamondRevenue">--</span>
+                </div>
+                <div class="revenue-item highlight" id="proBonusRevenueItem">
+                    <div class="revenue-icon" style="background: rgba(255,215,0,0.1); color: #ffd700;">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Agency Cash Bonus</span>
+                        <span class="revenue-value" id="proBonusRevenueValue">Score 70+ to Unlock</span>
+                    </div>
+                    <span class="revenue-note" id="proBonusRevenueNote">Pro Level Benefit</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 5. My Monthly Goals -->
         <div class="section-card">
             <div class="section-header">
                 <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals</h2>
@@ -273,7 +506,7 @@
             </div>
         </div>
         
-        <!-- 5. Activity Level -->
+        <!-- 6. Activity Level -->
         <div class="section-card activity-level-section">
             <div class="section-header">
                 <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> Activity Level</h2>
@@ -409,36 +642,7 @@
             </div>
         </div>
         
-        <!-- 10. My Revenue Streams -->
-        <div class="section-card revenue-section">
-            <div class="section-header">
-                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
-            </div>
-            <div class="revenue-grid">
-                <div class="revenue-item">
-                    <div class="revenue-icon" style="background: rgba(0,212,255,0.1); color: #00d4ff;">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <div class="revenue-info">
-                        <span class="revenue-name">Diamond Earnings</span>
-                        <span class="revenue-value" id="diamondRevenue">$--</span>
-                    </div>
-                    <span class="revenue-amount" id="diamondCount">-- 💎</span>
-                </div>
-                <div class="revenue-item highlight">
-                    <div class="revenue-icon" style="background: rgba(0,255,136,0.1); color: var(--taboost-success);">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="revenue-info">
-                        <span class="revenue-name">Rank Up Bonus</span>
-                        <span class="revenue-value" id="rankRevenue">NEW!</span>
-                    </div>
-                    <span class="revenue-note">Coming soon</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 11. Earnings History -->
+        <!-- 10. Earnings History -->
         <div class="section-card">
             <div class="section-header">
                 <h2><i class="fas fa-history" style="color: var(--taboost-red);"></i> Earnings History</h2>
@@ -533,12 +737,12 @@
         </div>
     </div>
     
-    <script src="js/data.js?v=2025031312"></script>
-    <script src="js/rewards-data.js?v=2025031312"></script>
-    <script src="js/events-data.js?v=2025031312"></script>
-    <script src="js/weekly-calendar-data.js?v=2025031312"></script>
-    <script src="js/sheets-data.js?v=2025031312"></script>
-    <script src="js/creator-dashboard.js?v=2025031321"></script>
+    <script src="js/csv-data-loader.js?v=1774322000000"></script>
+    <script src="js/rewards-data.js?v=1774322000000"></script>
+    <script src="js/events-data.js?v=1774322000000"></script>
+    <script src="js/weekly-calendar-data.js?v=1774322000000"></script>
+    <script src="js/sheets-data.js?v=1774322000000"></script>
+    <script src="js/creator-dashboard.js?v=1774322000000"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -558,6 +762,25 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
+        // ============================================
+        // TEST MODE: ?testUser=username bypasses auth
+        // Usage: creator-dashboard.html?testUser=kaemi.s
+        // ============================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const testUser = urlParams.get('testUser');
+        
+        if (testUser) {
+            console.log('🧪 TEST MODE: Loading dashboard for', testUser);
+            const dashboardUser = {
+                name: testUser.toLowerCase().replace(/^@/, ''),
+                email: 'test@taboost.me',
+                creatorId: null,
+                role: 'creator'
+            };
+            document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
+            initCreatorDashboard(dashboardUser);
+        } else {
+        // Normal Firebase auth flow
         onAuthStateChanged(auth, async (firebaseUser) => {
             if (!firebaseUser) {
                 window.location.href = 'firebase-login.html';
@@ -591,15 +814,37 @@
             const dashboardUser = {
                 name: username,
                 email: firebaseUser.email,
-                creatorId: userData?.creatorId || null,
+                creatorId: userData?.cid || userData?.creatorId || null,
                 role: role
             };
             
             console.log('🔐 Firebase Auth: Loading dashboard for', username);
             
+            // Rotating greetings
+            const greetings = [
+                "What's good! Ready to crush it? 🔥",
+                "Back at it! Let's see those numbers 📊",
+                "Yo! Another day, another bag 💰",
+                "Hey legend! Time to check your glow-up ✨",
+                "In the building! Let's goooo 🚀",
+                "Show me the money! 💎",
+                "Another day closer to that bag 💪",
+                "Rise and grind time! ☕",
+                "Ready to make it happen? 🎯",
+                "Let's check that progress! 📈",
+                "Back to secure the bag! 🛍️",
+                "Time to see those gains! 💵",
+                "Hustle mode: activated ⚡",
+                "Main character energy today! 🌟",
+                "Stacking diamonds daily! 💎"
+            ];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            document.getElementById('welcomeMessage').textContent = randomGreeting;
+            
             // Initialize dashboard
             initCreatorDashboard(dashboardUser);
         });
+        } // end normal auth flow
         
         window.logout = async () => {
             await auth.signOut();
@@ -611,5 +856,38 @@
             alert(`Exporting ${format.toUpperCase()} report for ${creatorName}...`);
         }
     </script>
+
+<!-- ANTI-UBAKERY SAFEGUARD: Clear any malicious redirects -->
+<script>
+// Clear all redirect-related storage on page load
+(function() {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(key => {
+        console.log('Removing stored key:', key);
+        localStorage.removeItem(key);
+    });
+    
+    // Also check sessionStorage
+    const sessionKeysToRemove = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            sessionKeysToRemove.push(key);
+        }
+    }
+    sessionKeysToRemove.forEach(key => {
+        console.log('Removing session key:', key);
+        sessionStorage.removeItem(key);
+    });
+    
+    console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
+})();
+</script>
 </body>
 </html>

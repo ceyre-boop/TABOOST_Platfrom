@@ -3,15 +3,7 @@
 
 const taboostEvents = [
     {
-        date: "2026-03-08",
-        title: "Monthly Music Cypher",
-        type: "cypher",
-        time: "8:00 PM EST",
-        description: "Join fellow creators for our monthly music collaboration event. Bring your best tracks!",
-        icon: "🎵"
-    },
-    {
-        date: "2026-03-15",
+        date: "2025-03-20",
         title: "Diamond Rush Challenge",
         type: "challenge",
         time: "All Day",
@@ -19,7 +11,7 @@ const taboostEvents = [
         icon: "💎"
     },
     {
-        date: "2026-03-22",
+        date: "2025-03-22",
         title: "Creator Workshop: Growth Tips",
         type: "workshop",
         time: "7:00 PM EST",
@@ -27,7 +19,7 @@ const taboostEvents = [
         icon: "📈"
     },
     {
-        date: "2026-03-29",
+        date: "2025-03-27",
         title: "Live Q&A with Marco",
         type: "qa",
         time: "6:00 PM EST",
@@ -35,7 +27,7 @@ const taboostEvents = [
         icon: "🎙️"
     },
     {
-        date: "2026-04-05",
+        date: "2025-04-03",
         title: "Spring Creator Showcase",
         type: "showcase",
         time: "8:00 PM EST",

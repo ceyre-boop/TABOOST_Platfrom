@@ -7,6 +7,7 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>TABOOST - Login</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -30,18 +31,29 @@
         }
         .logo {
             text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ff0044, #cc0033);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
+        }
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff0044;
+            box-shadow: 0 0 30px rgba(255,0,68,0.3);
         }
         .subtitle {
             text-align: center;
             color: #888;
             margin-bottom: 30px;
             font-size: 0.9rem;
+        }
+        .tagline {
+            text-align: center;
+            color: #ff0044;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
         }
         .form-group {
             margin-bottom: 20px;
@@ -181,7 +193,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">TABOOST</div>
+        <div class="logo">
+            <img src="images/taboost-genie.jpg" alt="TABOOST" class="logo-img">
+        </div>
+        <p class="tagline">Turn Your Hustle Into a Business</p>
         <p class="subtitle">Sign in to your account</p>
         
         <div class="error" id="error"></div>
@@ -192,7 +207,7 @@
             <div class="form-group">
                 <label>TikTok Username *</label>
                 <input type="text" id="username" placeholder="@yourusername or yourusername" required>
-                <p class="helper-text">Enter your TikTok username (we'll look up your email automatically)</p>
+                <p class="helper-text">Enter your TikTok username to search/login</p>
             </div>
             
             <!-- EMAIL (Auto-filled or manual entry) -->
@@ -213,7 +228,7 @@
             </div>
             
             <div class="forgot-password">
-                <a href="#" onclick="showForgotPassword(); return false;">Forgot password?</a>
+                <a href="reset-password.html">Forgot password?</a>
             </div>
             
             <button type="submit" class="btn" id="loginBtn">Sign In</button>
@@ -250,6 +265,26 @@
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // NUCLEAR OPTION: Clear ALL storage to prevent any cached redirects
+        console.log('Clearing all storage...');
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Clear any URL parameters that might cause redirects
+        if (window.location.search.includes('redirect') || window.location.search.includes('return')) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Unregister any service workers that might be caching old pages
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                registrations.forEach(registration => {
+                    console.log('Unregistering service worker:', registration);
+                    registration.unregister();
+                });
+            });
+        }
+
         let foundEmail = null;
 
         function showError(msg) {
@@ -282,23 +317,40 @@
         async function redirectToDashboard() {
             try {
                 const user = auth.currentUser;
+                console.log('Current user:', user?.email);
+                
                 const userDoc = await db.collection('users').doc(user.uid).get();
                 const userData = userDoc.data() || {};
+                console.log('User data:', userData);
                 
                 let role = userData.role || 'creator';
                 if (user.email?.toLowerCase() === 'marco@taboost.me') {
                     role = 'admin';
+                    console.log('Admin detected via email');
                 }
                 
+                console.log('Role determined:', role);
+                
+                // HARD CODED REDIRECTS - Never redirect to ubakery
+                let targetPage;
                 if (role === 'admin') {
-                    window.location.href = 'dashboard.html';
+                    targetPage = 'dashboard.html';
                 } else if (role === 'manager') {
-                    window.location.href = 'manager-dashboard.html';
+                    targetPage = 'managers.html';
                 } else {
-                    window.location.href = 'creator-dashboard.html';
+                    targetPage = 'creator-dashboard.html';
                 }
+                
+                console.log('Redirecting to:', targetPage);
+                
+                // Use href for clean URLs
+                window.location.href = targetPage;
+                
             } catch (error) {
-                window.location.href = 'creator-dashboard.html';
+                console.error('Redirect error:', error);
+                alert('Redirect error: ' + error.message); // DEBUG
+                // Default to creator dashboard on error
+                window.location.replace('creator-dashboard.html');
             }
         }
 
@@ -323,7 +375,7 @@
                 console.log('Users lookup error:', e);
             }
             
-            // Method 3: Check users collection by username field
+            // Method 2: Check users collection by username field (usually identical to tiktokUsername)
             try {
                 const usernameSnapshot = await db.collection('users')
                     .where('username', '==', username)
@@ -342,6 +394,28 @@
             
             return null;
         }
+
+        // AUTOFILL EMAIL ON USERNAME BLUR
+        document.getElementById('username').addEventListener('blur', async (e) => {
+            let username = e.target.value.trim().toLowerCase().replace(/^@/, '');
+            if (!username || username.includes('@')) return;
+            
+            const lookup = await lookupEmail(username);
+            if (lookup && lookup.email) {
+                foundEmail = lookup.email;
+                document.getElementById('emailInputGroup').style.display = 'block';
+                const emailInput = document.getElementById('emailInput');
+                emailInput.value = lookup.email;
+                // Add a subtle green background to indicate it was autofilled
+                emailInput.style.backgroundColor = 'rgba(0,255,136,0.1)';
+                emailInput.style.borderColor = 'rgba(0,255,136,0.5)';
+                emailInput.placeholder = 'Confirm or change your email';
+                console.log('Autofilled email:', lookup.email);
+                
+                // Keep the email display hidden as we are using the input field now
+                document.getElementById('emailDisplay').classList.remove('visible');
+            }
+        });
 
         // LOGIN HANDLER
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
@@ -467,10 +541,10 @@
                 switch (error.code) {
                     case 'auth/user-not-found':
                     case 'auth/invalid-credential':
-                        message = 'Username or password is incorrect. Please try again, or create an account if you haven\'t signed up yet.';
+                        message = 'Username or password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password</a> or create an account if you haven\'t signed up yet.';
                         break;
                     case 'auth/wrong-password':
-                        message = 'Password is incorrect. Please try again or click "Forgot password?" to reset it.';
+                        message = 'Password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password here</a>.';
                         break;
                     case 'auth/invalid-email':
                         message = 'Please enter a valid email address.';
