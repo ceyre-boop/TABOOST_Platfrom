@@ -52,23 +52,66 @@ function generateRollingCalendar() {
         },
         {
             id: 4,
-            title: "Live Music Festival",
+            title: "Bunny's Wishes",
             type: "special",
             time: "All Day",
-            // Multi-day event: March 21-29, 2026
-            startDate: new Date('2026-03-21'),
-            endDate: new Date('2026-03-29'),
-            color: "#00d4ff"
+            startDate: new Date('2026-04-01'),
+            endDate: new Date('2026-04-13'),
+            color: "#ff66b2"
         },
         {
             id: 5,
-            title: "Coachella Showdown",
+            title: "Creator Spotlight",
             type: "special",
             time: "All Day",
-            // Multi-day event: March 23-30, 2026
-            startDate: new Date('2026-03-23'),
-            endDate: new Date('2026-03-30'),
-            color: "#ff00ff"
+            startDate: new Date('2026-04-02'),
+            endDate: new Date('2026-04-13'),
+            color: "#ffcc00"
+        },
+        {
+            id: 6,
+            title: "Fan Club Loyalty League",
+            type: "special",
+            time: "All Day",
+            startDate: new Date('2026-04-02'),
+            endDate: new Date('2026-04-17'),
+            color: "#ff3300"
+        },
+        {
+            id: 7,
+            title: "Blooming Beats: LIVE Music",
+            type: "special",
+            time: "All Day",
+            startDate: new Date('2026-04-03'),
+            endDate: new Date('2026-04-12'),
+            color: "#cc33ff"
+        },
+        {
+            id: 8,
+            title: "Easter Eggstravaganza",
+            type: "special",
+            time: "All Day",
+            startDate: new Date('2026-04-03'),
+            endDate: new Date('2026-04-12'),
+            color: "#33cc33"
+        },
+        {
+            id: 9,
+            title: "Live Workshop",
+            type: "special",
+            time: "All Day",
+            startDate: new Date('2026-04-02'),
+            endDate: new Date('2026-04-26'),
+            color: "#3399ff"
+        },
+        {
+            id: 10,
+            title: "Tiny Diny's Live World",
+            type: "special",
+            time: "All Day",
+            startDate: new Date('2026-04-01'),
+            endDate: new Date('2026-04-30'),
+            color: "#ff9933"
         }
     ];
     
