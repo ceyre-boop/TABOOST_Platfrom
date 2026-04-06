@@ -37,10 +37,10 @@ function generateRollingCalendar() {
         {
             id: 2,
             title: "Music Cypher",
-            type: "cypher",
+            type: "live",
             time: "6:00PM PT",
             recurring: { dayOfWeek: 4 }, // Thursday
-            color: "#00d4ff"
+            color: "#ff0044"
         },
         {
             id: 3,
@@ -52,12 +52,23 @@ function generateRollingCalendar() {
         },
         {
             id: 4,
-            title: "Wish Upon a Beat",
-            type: "campaign",
-            // March 5-15, 2026
-            startDate: new Date(2026, 2, 5), // March 5
-            endDate: new Date(2026, 2, 15),  // March 15
-            color: "#ffd700"
+            title: "Live Music Festival",
+            type: "special",
+            time: "All Day",
+            // Multi-day event: March 21-29, 2026
+            startDate: new Date('2026-03-21'),
+            endDate: new Date('2026-03-29'),
+            color: "#00d4ff"
+        },
+        {
+            id: 5,
+            title: "Coachella Showdown",
+            type: "special",
+            time: "All Day",
+            // Multi-day event: March 23-30, 2026
+            startDate: new Date('2026-03-23'),
+            endDate: new Date('2026-03-30'),
+            color: "#ff00ff"
         }
     ];
     
@@ -109,9 +120,7 @@ function generateRollingCalendar() {
                 color: "#ff0044"
             }
         ],
-        tiktokCampaigns: [
-            { name: "Wish Upon a Beat", dates: "Mar 5-15" }
-        ]
+        tiktokCampaigns: []
     };
 }
 

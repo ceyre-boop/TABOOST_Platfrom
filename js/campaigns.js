@@ -3,6 +3,20 @@
 // Sample campaigns data (in production, this would come from backend/Google Sheets)
 const sampleCampaigns = [
     {
+        id: 6,
+        title: "Coachella Showdown",
+        description: "Special Coachella-themed creator competition. Show your festival vibes and win big!",
+        date: "2026-03-23",
+        endDate: "2026-03-30",
+        time: "All Day",
+        type: "Competition",
+        prize: "$10,000",
+        status: "upcoming",
+        participants: 0,
+        requirements: "All levels",
+        opted: []
+    },
+    {
         id: 1,
         title: "Sunday Knockout Tournament",
         description: "Competitive streaming tournament. Top 3 creators win bonus rewards.",
@@ -78,17 +92,23 @@ async function initCampaigns(user) {
     currentUser = user;
     campaigns = [...sampleCampaigns];
     
-    // Load from localStorage if any saved campaigns
+    console.log('Campaigns loaded:', campaigns.length, 'events');
+    console.log('Events:', campaigns.map(c => c.title).join(', '));
+    
+    // Load from localStorage if any saved campaigns (only opted-in status)
     const saved = localStorage.getItem('taboost_campaigns');
     if (saved) {
         const savedData = JSON.parse(saved);
         campaigns = campaigns.map(c => {
             const saved = savedData.find(s => s.id === c.id);
-            return saved ? { ...c, opted: saved.opted } : c;
+            return saved ? { ...c, opted: saved.opted || [] } : c;
         });
     }
     
     renderCampaigns();
+    
+    // Debug: Show all campaign names
+    console.log('Rendering campaigns:', campaigns.map(c => `${c.title} (${c.date})`).join(', '));
     checkNotifications();
     
     // Filter buttons

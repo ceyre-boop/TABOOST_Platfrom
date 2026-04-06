@@ -1623,8 +1623,25 @@
     
     .history-table th,
     .history-table td {
-        padding: 12px 8px;
-        font-size: 12px;
+        padding: 10px 6px;
+        font-size: 11px;
+    }
+    
+    /* Compact earnings history on mobile */
+    .history-table td:nth-child(3) {
+        white-space: nowrap;
+        font-size: 10px;
+    }
+    
+    .history-table td:nth-child(5) {
+        /* % change column */
+        font-size: 10px;
+        min-width: 60px;
+    }
+    
+    .history-table .trend-indicator {
+        font-size: 9px;
+        padding: 2px 4px;
     }
     
     .export-buttons {

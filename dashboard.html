@@ -1,9 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TABOOST — Command Center</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>TABOOST ΓÇö Command Center</title>
+<link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -42,7 +46,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opac
 .glow-r{position:fixed;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:var(--red);opacity:0.04;filter:blur(100px);pointer-events:none;z-index:0}
 .glow-b{position:fixed;bottom:-200px;left:200px;width:500px;height:500px;border-radius:50%;background:var(--red);opacity:0.025;filter:blur(120px);pointer-events:none;z-index:0}
 
-/* ── SIDEBAR ── */
+/* ΓöÇΓöÇ SIDEBAR ΓöÇΓöÇ */
 .sidebar{width:200px;min-height:100vh;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;flex-shrink:0;z-index:200}
 .logo-wrap{padding:20px 18px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
 .logo-mark{width:32px;height:32px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center}
@@ -66,7 +70,7 @@ nav{flex:1;overflow-y:auto;padding:8px 0}
 .user-n{font-size:13px;font-weight:600;color:var(--t1)}
 .user-r{font-size:10px;color:var(--t4)}
 
-/* ── MAIN ── */
+/* ΓöÇΓöÇ MAIN ΓöÇΓöÇ */
 .main{flex:1;display:flex;flex-direction:column;min-width:0;position:relative;z-index:1}
 .topbar{height:54px;background:rgba(0,0,0,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:14px;position:sticky;top:0;z-index:100}
 .tb-title{font-family:var(--fd);font-size:18px;letter-spacing:0.06em;color:var(--t1);flex:1}
@@ -83,7 +87,7 @@ nav{flex:1;overflow-y:auto;padding:8px 0}
 .content{padding:20px 24px;display:flex;flex-direction:column;gap:20px}
 .page{display:none}.page.active{display:flex;flex-direction:column;gap:20px}
 
-/* ── GRID ── */
+/* ΓöÇΓöÇ GRID ΓöÇΓöÇ */
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -91,7 +95,7 @@ nav{flex:1;overflow-y:auto;padding:8px 0}
 .g31{display:grid;grid-template-columns:3fr 1fr;gap:14px}
 .g12{display:grid;grid-template-columns:1fr 2fr;gap:14px}
 
-/* ── CARD ── */
+/* ΓöÇΓöÇ CARD ΓöÇΓöÇ */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color 0.2s,box-shadow 0.2s}
 .card:hover{border-color:rgba(255,0,68,0.2);box-shadow:0 0 20px rgba(255,0,68,0.04)}
 .card-hd{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -99,7 +103,7 @@ nav{flex:1;overflow-y:auto;padding:8px 0}
 .card-sub{font-size:10px;color:var(--t4);margin-top:2px}
 .card-bd{padding:18px}
 
-/* ── KPI TILES ── */
+/* ΓöÇΓöÇ KPI TILES ΓöÇΓöÇ */
 .kpi{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;overflow:hidden;transition:all 0.2s;cursor:default}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);opacity:0}
 .kpi:hover::before{opacity:1}
@@ -110,10 +114,10 @@ nav{flex:1;overflow-y:auto;padding:8px 0}
 .kpi-sub{font-size:11px;color:var(--t3);display:flex;align-items:center;gap:5px}
 .kpi-corner{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center}
 
-/* ── LIVE P&L BAR ── */
+/* ΓöÇΓöÇ LIVE P&L BAR ΓöÇΓöÇ */
 .pnl-bar{background:linear-gradient(90deg,var(--red),transparent);height:3px;border-radius:2px;margin-top:10px;animation:shimmer 3s ease-in-out infinite}
 
-/* ── TABLE ── */
+/* ΓöÇΓöÇ TABLE ΓöÇΓöÇ */
 table{width:100%;border-collapse:collapse}
 thead tr{border-bottom:1px solid var(--border)}
 th{font-family:var(--fm);font-size:9px;font-weight:500;color:var(--t4);letter-spacing:0.12em;text-transform:uppercase;padding:9px 12px;text-align:left;white-space:nowrap}
@@ -122,13 +126,13 @@ tbody tr{transition:background 0.1s;cursor:pointer}
 tbody tr:hover{background:rgba(255,0,68,0.04)}
 tbody tr:last-child td{border-bottom:none}
 
-/* ── CREATOR CELL ── */
+/* ΓöÇΓöÇ CREATOR CELL ΓöÇΓöÇ */
 .cc{display:flex;align-items:center;gap:9px}
 .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:13px;color:#fff;flex-shrink:0;border:1px solid rgba(255,255,255,0.1)}
 .cn{font-size:12px;font-weight:600;color:var(--t1)}
 .ch2{font-size:10px;color:var(--t4);margin-top:1px}
 
-/* ── TIER CHIP ── */
+/* ΓöÇΓöÇ TIER CHIP ΓöÇΓöÇ */
 .tc{display:inline-flex;align-items:center;justify-content:center;padding:2px 8px;border-radius:4px;font-family:var(--fm);font-size:10px;font-weight:500;letter-spacing:0.05em}
 .t6{background:rgba(255,0,68,0.15);color:var(--red);border:1px solid rgba(255,0,68,0.3)}
 .t5{background:rgba(255,171,0,0.12);color:var(--amber);border:1px solid rgba(255,171,0,0.3)}
@@ -137,17 +141,17 @@ tbody tr:last-child td{border-bottom:none}
 .t2{background:rgba(255,255,255,0.07);color:var(--t3);border:1px solid var(--border)}
 .t1{background:rgba(255,255,255,0.04);color:var(--t4);border:1px solid var(--border2)}
 
-/* ── SCORE BAR ── */
+/* ΓöÇΓöÇ SCORE BAR ΓöÇΓöÇ */
 .sb{display:flex;align-items:center;gap:7px}
 .sb-num{font-family:var(--fm);font-size:11px;width:24px;text-align:right}
 .sb-track{flex:1;height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;min-width:40px}
 .sb-fill{height:100%;border-radius:2px}
 
-/* ── PROGRESS BAR ── */
+/* ΓöÇΓöÇ PROGRESS BAR ΓöÇΓöÇ */
 .pb{background:var(--bg4);border-radius:3px;overflow:hidden}
 .pf{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(0.4,0,0.2,1)}
 
-/* ── ACCOUNT HEALTH CARD (prop-firm style) ── */
+/* ΓöÇΓöÇ ACCOUNT HEALTH CARD (prop-firm style) ΓöÇΓöÇ */
 .health-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;position:relative;overflow:hidden}
 .health-card::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:var(--r)}
 .health-card.healthy::after{box-shadow:inset 0 0 0 1px rgba(0,230,118,0.2)}
@@ -167,11 +171,11 @@ tbody tr:last-child td{border-bottom:none}
 @keyframes pulseRing{0%{transform:scale(1);opacity:0.8}100%{transform:scale(2.5);opacity:0}}
 .pulse-dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:var(--green)}
 
-/* ── EQUITY CURVE ── */
+/* ΓöÇΓöÇ EQUITY CURVE ΓöÇΓöÇ */
 .eq-wrap{position:relative}
 .eq-label{font-family:var(--fm);font-size:9px;color:var(--t4);margin-bottom:6px;letter-spacing:0.08em}
 
-/* ── MILESTONE BAR (prop-firm style) ── */
+/* ΓöÇΓöÇ MILESTONE BAR (prop-firm style) ΓöÇΓöÇ */
 .milestone{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:14px;margin-bottom:10px}
 .ms-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
 .ms-name{font-size:12px;font-weight:600;color:var(--t1)}
@@ -183,7 +187,7 @@ tbody tr:last-child td{border-bottom:none}
 @keyframes sweep{0%,100%{opacity:0}50%{opacity:1}}
 .ms-eta{font-family:var(--fm);font-size:10px;color:var(--t4);margin-top:6px}
 
-/* ── ALERT ITEM ── */
+/* ΓöÇΓöÇ ALERT ITEM ΓöÇΓöÇ */
 .al{display:flex;gap:12px;padding:12px 14px;border-radius:6px;border-left:2px solid;margin-bottom:8px;cursor:pointer;transition:background 0.15s}
 .al:hover{background:rgba(255,255,255,0.03)}
 .al-c{background:rgba(255,0,68,0.05);border-color:var(--red)}
@@ -194,7 +198,7 @@ tbody tr:last-child td{border-bottom:none}
 .al-t{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:2px}
 .al-d{font-size:11px;color:var(--t4);line-height:1.5}
 
-/* ── CHIP ── */
+/* ΓöÇΓöÇ CHIP ΓöÇΓöÇ */
 .chip{display:inline-block;padding:2px 8px;border-radius:4px;font-family:var(--fm);font-size:9px;font-weight:500;letter-spacing:0.06em}
 .chip-r{background:var(--red3);color:var(--red);border:1px solid var(--rb)}
 .chip-g{background:rgba(0,230,118,0.1);color:var(--green);border:1px solid rgba(0,230,118,0.25)}
@@ -202,39 +206,39 @@ tbody tr:last-child td{border-bottom:none}
 .chip-b{background:rgba(41,121,255,0.1);color:#64b5f6;border:1px solid rgba(41,121,255,0.25)}
 .chip-g2{background:rgba(255,255,255,0.06);color:var(--t3);border:1px solid var(--border)}
 
-/* ── NUMBER COLORS ── */
+/* ΓöÇΓöÇ NUMBER COLORS ΓöÇΓöÇ */
 .up{color:var(--green)}.dn{color:var(--red)}.flat{color:var(--t3)}
 .mono{font-family:var(--fm)}
 
-/* ── FILTER BAR ── */
+/* ΓöÇΓöÇ FILTER BAR ΓöÇΓöÇ */
 .filter-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .fb-btn{padding:5px 12px;border-radius:5px;font-size:11px;font-weight:600;border:1px solid var(--border);color:var(--t4);background:var(--bg3);cursor:pointer;transition:all 0.15s;font-family:var(--fb);letter-spacing:0.04em}
 .fb-btn:hover{color:var(--t2);border-color:rgba(255,255,255,0.15)}
 .fb-btn.active{color:var(--red);border-color:var(--rb);background:var(--red3)}
 
-/* ── BAR CHART ── */
+/* ΓöÇΓöÇ BAR CHART ΓöÇΓöÇ */
 .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .bar-lbl{font-size:11px;color:var(--t2);width:130px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .bar-track{flex:1;height:8px;background:var(--bg4);border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px}
 .bar-val{font-family:var(--fm);font-size:11px;color:var(--t1);width:70px;text-align:right}
 
-/* ── RANK ── */
+/* ΓöÇΓöÇ RANK ΓöÇΓöÇ */
 .rk{font-family:var(--fd);font-size:16px;color:var(--t4);width:30px}
 .rk-1{color:#ffd700}.rk-2{color:#c0c0c0}.rk-3{color:#cd7f32}
 
-/* ── SECTION HEADER ── */
+/* ΓöÇΓöÇ SECTION HEADER ΓöÇΓöÇ */
 .sec-h{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px}
 .sec-title{font-family:var(--fd);font-size:16px;letter-spacing:0.08em;color:var(--t1)}
 .sec-sub{font-size:11px;color:var(--t4);margin-top:3px}
 
-/* ── PAG ── */
+/* ΓöÇΓöÇ PAG ΓöÇΓöÇ */
 .pag{display:flex;align-items:center;gap:8px;padding:12px 18px;border-top:1px solid var(--border)}
 .pag-btn{padding:5px 12px;border-radius:5px;font-size:11px;font-weight:600;border:1px solid var(--border);color:var(--t3);background:var(--bg3);cursor:pointer;transition:all 0.15s}
 .pag-btn:hover{color:var(--t1);border-color:rgba(255,255,255,0.15)}
 .pag-info{font-family:var(--fm);font-size:10px;color:var(--t4);flex:1;text-align:center}
 
-/* ── TICKER TAPE ── */
+/* ΓöÇΓöÇ TICKER TAPE ΓöÇΓöÇ */
 .ticker-wrap{background:var(--bg3);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;height:32px;display:flex;align-items:center}
 .ticker-inner{display:flex;gap:0;animation:ticker 40s linear infinite;white-space:nowrap}
 .ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 24px;font-family:var(--fm);font-size:10px;border-right:1px solid var(--border);height:32px}
@@ -242,14 +246,14 @@ tbody tr:last-child td{border-bottom:none}
 .ticker-val{color:var(--t1);font-weight:500}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── SVG CHART ── */
+/* ΓöÇΓöÇ SVG CHART ΓöÇΓöÇ */
 .svg-chart{display:block;overflow:visible}
 
-/* ── INSIGHT BOX ── */
+/* ΓöÇΓöÇ INSIGHT BOX ΓöÇΓöÇ */
 .insight{background:rgba(255,0,68,0.04);border:1px solid rgba(255,0,68,0.15);border-radius:6px;padding:12px 14px;font-size:11px;color:var(--t3);line-height:1.6;margin-top:12px}
 .insight strong{color:var(--red)}
 
-/* ── MANAGER CARD ── */
+/* ΓöÇΓöÇ MANAGER CARD ΓöÇΓöÇ */
 .mgr-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:18px;transition:all 0.2s;position:relative;overflow:hidden}
 .mgr-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.2s}
 .mgr-card:hover{border-color:rgba(255,0,68,0.25)}
@@ -263,7 +267,7 @@ tbody tr:last-child td{border-bottom:none}
 .mgr-top-lbl{font-size:9px;color:var(--t4);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px}
 .mgr-top-item{font-size:11px;color:var(--t3);margin-bottom:3px}
 
-/* ── REPORT CARD ── */
+/* ΓöÇΓöÇ REPORT CARD ΓöÇΓöÇ */
 .rep-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;cursor:pointer;transition:all 0.2s}
 .rep-card:hover{border-color:rgba(255,0,68,0.3);background:rgba(255,0,68,0.03)}
 .rep-icon{font-size:28px;margin-bottom:10px}
@@ -272,7 +276,7 @@ tbody tr:last-child td{border-bottom:none}
 .rep-btn{width:100%;padding:8px;border-radius:5px;background:var(--red);border:none;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.08em;cursor:pointer;font-family:var(--fb);transition:background 0.15s}
 .rep-btn:hover{background:var(--red2)}
 
-/* ── ANIMATIONS ── */
+/* ΓöÇΓöÇ ANIMATIONS ΓöÇΓöÇ */
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes shimmer{0%,100%{opacity:0.6}50%{opacity:1}}
@@ -285,10 +289,10 @@ tbody tr:last-child td{border-bottom:none}
 .fu4{animation:fadeUp 0.35s 0.2s ease both}
 .fu5{animation:fadeUp 0.35s 0.25s ease both}
 
-/* ── DIVIDER ── */
+/* ΓöÇΓöÇ DIVIDER ΓöÇΓöÇ */
 .div-r{height:1px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0.3;margin:16px 0}
 
-/* ── RESPONSIVE ── */
+/* ΓöÇΓöÇ RESPONSIVE ΓöÇΓöÇ */
 @media(max-width:1200px){.g4{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){.g3,.g21,.g31{grid-template-columns:1fr}.g2{grid-template-columns:1fr}}
 @media(max-width:700px){.sidebar{width:52px}.nav-link span,.nav-section-lbl,.logo-name,.sidebar-user .user-n,.sidebar-user .user-r{display:none}}
@@ -298,7 +302,7 @@ tbody tr:last-child td{border-bottom:none}
 <div class="glow-r"></div>
 <div class="glow-b"></div>
 
-<!-- ══ SIDEBAR ══ -->
+<!-- ΓòÉΓòÉ SIDEBAR ΓòÉΓòÉ -->
 <aside class="sidebar">
   <div class="logo-wrap">
     <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
@@ -309,19 +313,20 @@ tbody tr:last-child td{border-bottom:none}
   </div>
   <nav>
     <div class="nav-section-lbl">Main</div>
-    <div class="nav-link active" onclick="showPage('dashboard',this)"><span class="nav-icon">◈</span><span>Dashboard</span></div>
-    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">◉</span><span>Creators</span><span class="nav-badge g">802</span></div>
-    <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">◆</span><span>Diamonds</span></div>
-    <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">▶</span><span>Live Streams</span></div>
+    <a href="marco.html" class="nav-link" style="background:linear-gradient(90deg,rgba(255,0,68,0.15),transparent);border-left-color:#FF0055;"><span class="nav-icon" style="color:#FF0055;">Γùê</span><span>NEW: AI Command Center</span><span class="nav-badge">NEW</span></a>
+    <div class="nav-link active" onclick="showPage('dashboard',this)"><span class="nav-icon">Γùê</span><span>Dashboard</span></div>
+    <div class="nav-link" onclick="showPage('creators',this)"><span class="nav-icon">Γùë</span><span>Creators</span><span class="nav-badge g">802</span></div>
+    <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">Γùå</span><span>Diamonds</span></div>
+    <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">Γû╢</span><span>Live Streams</span></div>
     <div class="nav-section-lbl">Management</div>
-    <div class="nav-link" onclick="showPage('managers',this)"><span class="nav-icon">⊞</span><span>Managers</span></div>
-    <div class="nav-link" onclick="showPage('leaderboard',this)"><span class="nav-icon">≡</span><span>Leaderboard</span></div>
-    <div class="nav-link" onclick="showPage('health',this)"><span class="nav-icon">♡</span><span>Creator Health</span><span class="nav-badge">!</span></div>
-    <div class="nav-link" onclick="showPage('milestones',this)"><span class="nav-icon">◎</span><span>Milestones</span></div>
+    <div class="nav-link" onclick="showPage('managers',this)"><span class="nav-icon">Γè₧</span><span>Managers</span></div>
+    <div class="nav-link" onclick="showPage('leaderboard',this)"><span class="nav-icon">Γëí</span><span>Leaderboard</span></div>
+    <div class="nav-link" onclick="showPage('health',this)"><span class="nav-icon">ΓÖí</span><span>Creator Health</span><span class="nav-badge">!</span></div>
+    <div class="nav-link" onclick="showPage('milestones',this)"><span class="nav-icon">ΓùÄ</span><span>Milestones</span></div>
     <div class="nav-section-lbl">Reports</div>
-    <div class="nav-link" onclick="showPage('reports',this)"><span class="nav-icon">⊡</span><span>Reports</span></div>
-    <div class="nav-link" onclick="showPage('alerts',this)"><span class="nav-icon">⚑</span><span>Alerts</span><span class="nav-badge">3</span></div>
-    <div class="nav-link" onclick="showPage('settings',this)"><span class="nav-icon">⊙</span><span>Settings</span></div>
+    <div class="nav-link" onclick="showPage('reports',this)"><span class="nav-icon">Γèí</span><span>Reports</span></div>
+    <div class="nav-link" onclick="showPage('alerts',this)"><span class="nav-icon">ΓÜæ</span><span>Alerts</span><span class="nav-badge">3</span></div>
+    <div class="nav-link" onclick="showPage('settings',this)"><span class="nav-icon">ΓèÖ</span><span>Settings</span></div>
   </nav>
   <div class="sidebar-user">
     <div class="user-av">M</div>
@@ -330,7 +335,7 @@ tbody tr:last-child td{border-bottom:none}
   </div>
 </aside>
 
-<!-- ══ MAIN ══ -->
+<!-- ΓòÉΓòÉ MAIN ΓòÉΓòÉ -->
 <div class="main">
 
   <!-- TOPBAR -->
@@ -338,8 +343,8 @@ tbody tr:last-child td{border-bottom:none}
     <div class="tb-title" id="tb-title">DASHBOARD</div>
     <div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div>
     <div class="tb-clock" id="tb-clock">--:--:--</div>
-    <button class="tb-btn tb-btn-ghost" onclick="showPage('reports',null)">↓ EXPORT</button>
-    <button class="tb-btn tb-btn-red" onclick="showPage('alerts',null)">⚑ 3 ALERTS</button>
+    <button class="tb-btn tb-btn-ghost" onclick="showPage('reports',null)">Γåô EXPORT</button>
+    <button class="tb-btn tb-btn-red" onclick="showPage('alerts',null)">ΓÜæ 3 ALERTS</button>
   </div>
 
   <!-- TICKER -->
@@ -347,7 +352,7 @@ tbody tr:last-child td{border-bottom:none}
 
   <div class="content">
 
-  <!-- ══════ DASHBOARD ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ DASHBOARD ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-dashboard" class="page active">
 
     <!-- TODAY P&L row (prop-firm style) -->
@@ -370,28 +375,28 @@ tbody tr:last-child td{border-bottom:none}
     <!-- KPI grid -->
     <div class="g4 fu1">
       <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">👥</span></div>
+        <div class="kpi-corner" style="background:rgba(255,0,68,0.1)"><span style="font-size:18px">≡ƒæÑ</span></div>
         <div class="kpi-label">Total Creators</div>
         <div class="kpi-val">802</div>
-        <div class="kpi-sub"><span style="color:var(--green)">●</span> Live data</div>
+        <div class="kpi-sub"><span style="color:var(--green)">ΓùÅ</span> Live data</div>
         <div class="pnl-bar" style="opacity:0.5"></div>
       </div>
       <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">💎</span></div>
+        <div class="kpi-corner" style="background:rgba(255,171,0,0.08)"><span style="font-size:18px">≡ƒÆÄ</span></div>
         <div class="kpi-label">Total Diamonds</div>
         <div class="kpi-val" style="color:var(--t1)">12.3M</div>
-        <div class="kpi-sub"><span class="up">↑ 8.5%</span> vs last month</div>
+        <div class="kpi-sub"><span class="up">Γåæ 8.5%</span> vs last month</div>
         <div class="pnl-bar" style="background:linear-gradient(90deg,var(--amber),transparent)"></div>
       </div>
       <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">💰</span></div>
+        <div class="kpi-corner" style="background:rgba(0,230,118,0.08)"><span style="font-size:18px">≡ƒÆ░</span></div>
         <div class="kpi-label">Total Rewards</div>
         <div class="kpi-val" style="color:var(--green)">37.6M</div>
         <div class="kpi-sub">Earned this period</div>
         <div class="pnl-bar" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
       </div>
       <div class="kpi">
-        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">⏱️</span></div>
+        <div class="kpi-corner" style="background:rgba(41,121,255,0.08)"><span style="font-size:18px">ΓÅ▒∩╕Å</span></div>
         <div class="kpi-label">Hours Streamed</div>
         <div class="kpi-val">2,251</div>
         <div class="kpi-sub">Active creators: <strong style="color:var(--t1)">301</strong></div>
@@ -403,8 +408,8 @@ tbody tr:last-child td{border-bottom:none}
       <!-- Main table -->
       <div class="card">
         <div class="card-hd">
-          <div><div class="card-title">TOP PERFORMERS</div><div class="card-sub">Ranked by diamonds · Current month</div></div>
-          <button class="tb-btn tb-btn-ghost" style="font-size:10px" onclick="showPage('leaderboard',null)">FULL BOARD →</button>
+          <div><div class="card-title">TOP PERFORMERS</div><div class="card-sub">Ranked by diamonds ┬╖ Current month</div></div>
+          <button class="tb-btn tb-btn-ghost" style="font-size:10px" onclick="showPage('leaderboard',null)">FULL BOARD ΓåÆ</button>
         </div>
         <div style="overflow-x:auto">
           <table>
@@ -417,7 +422,7 @@ tbody tr:last-child td{border-bottom:none}
       <!-- Right: top rewards + agency health -->
       <div style="display:flex;flex-direction:column;gap:14px">
         <div class="card">
-          <div class="card-hd"><div class="card-title">TOP EARNERS 🏆</div></div>
+          <div class="card-hd"><div class="card-title">TOP EARNERS ≡ƒÅå</div></div>
           <div class="card-bd" style="padding-top:10px" id="rewards-list"></div>
         </div>
         <div class="card">
@@ -429,7 +434,7 @@ tbody tr:last-child td{border-bottom:none}
 
     <!-- Diamond equity curve -->
     <div class="card fu3">
-      <div class="card-hd"><div><div class="card-title">DIAMOND EQUITY CURVE</div><div class="card-sub">Top 5 creators — comparative performance</div></div><div style="display:flex;gap:8px" id="eq-legend"></div></div>
+      <div class="card-hd"><div><div class="card-title">DIAMOND EQUITY CURVE</div><div class="card-sub">Top 5 creators ΓÇö comparative performance</div></div><div style="display:flex;gap:8px" id="eq-legend"></div></div>
       <div class="card-bd" style="padding-top:8px">
         <svg id="eq-svg" class="svg-chart" width="100%" height="140" viewBox="0 0 900 140" preserveAspectRatio="none"></svg>
         <div style="display:flex;gap:4px;margin-top:8px;overflow-x:auto" id="eq-axis"></div>
@@ -437,23 +442,23 @@ tbody tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- ══════ CREATORS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ CREATORS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-creators" class="page">
     <div class="sec-h fu">
-      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators · Live from Google Sheets</div></div>
-      <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">↓ Export CSV</button></div>
+      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators ┬╖ Live from Google Sheets</div></div>
+      <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">Γåô Export CSV</button></div>
     </div>
     <div class="filter-bar fu1" id="cr-filters"></div>
     <div class="card fu2">
       <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>TIER</th><th>DIAMONDS</th><th>REWARDS</th><th>HRS</th><th>SCORE</th><th>PACE</th></tr></thead><tbody id="cr-tbody"></tbody></table></div>
-      <div class="pag"><button class="pag-btn" onclick="crPage(-1)">← PREV</button><div class="pag-info" id="cr-pag-info"></div><button class="pag-btn" onclick="crPage(1)">NEXT →</button></div>
+      <div class="pag"><button class="pag-btn" onclick="crPage(-1)">ΓåÉ PREV</button><div class="pag-info" id="cr-pag-info"></div><button class="pag-btn" onclick="crPage(1)">NEXT ΓåÆ</button></div>
     </div>
   </div>
 
-  <!-- ══════ DIAMONDS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ DIAMONDS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-diamonds" class="page">
     <div class="g4 fu">
-      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val">12.3M</div><div class="kpi-sub up">↑ 8.5% vs last month</div></div>
+      <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val">12.3M</div><div class="kpi-sub up">Γåæ 8.5% vs last month</div></div>
       <div class="kpi"><div class="kpi-label">Top Earner</div><div class="kpi-val" style="font-size:24px">1.06M</div><div class="kpi-sub">samanthasingsit</div></div>
       <div class="kpi"><div class="kpi-label">Avg (Active)</div><div class="kpi-val" style="font-size:24px">40.9K</div><div class="kpi-sub">301 active creators</div></div>
       <div class="kpi"><div class="kpi-label">Concentration</div><div class="kpi-val" style="font-size:24px">29%</div><div class="kpi-sub">Top 5 creators share</div></div>
@@ -463,16 +468,16 @@ tbody tr:last-child td{border-bottom:none}
       <div class="card"><div class="card-hd"><div class="card-title">TIER DISTRIBUTION</div><div class="card-sub">Active creators by tier</div></div><div class="card-bd" id="tier-dist"></div></div>
     </div>
     <div class="card fu2">
-      <div class="card-hd"><div class="card-title">DIAMOND ANALYTICS — ALL CREATORS</div></div>
+      <div class="card-hd"><div class="card-title">DIAMOND ANALYTICS ΓÇö ALL CREATORS</div></div>
       <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>TIER</th><th>DIAMONDS</th><th>LAST 30D</th><th>PREV MONTH</th><th>MoM</th><th>SCORE</th></tr></thead><tbody id="d-tbody"></tbody></table></div>
     </div>
   </div>
 
-  <!-- ══════ LIVE STREAMS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ LIVE STREAMS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-streams" class="page">
     <div class="g4 fu">
       <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val">2,251</div><div class="kpi-sub">All active creators</div></div>
-      <div class="kpi"><div class="kpi-label">Streaming Now</div><div class="kpi-val" style="color:var(--green)">47</div><div class="kpi-sub"><span style="color:var(--green)">●</span> Live</div></div>
+      <div class="kpi"><div class="kpi-label">Streaming Now</div><div class="kpi-val" style="color:var(--green)">47</div><div class="kpi-sub"><span style="color:var(--green)">ΓùÅ</span> Live</div></div>
       <div class="kpi"><div class="kpi-label">Avg Hrs/Creator</div><div class="kpi-val" style="font-size:26px">7.5h</div><div class="kpi-sub">Active creators only</div></div>
       <div class="kpi"><div class="kpi-label">Max Hours</div><div class="kpi-val" style="font-size:26px">39h</div><div class="kpi-sub">daisy_dew4</div></div>
     </div>
@@ -482,17 +487,17 @@ tbody tr:last-child td{border-bottom:none}
     </div>
     <div class="card fu2">
       <div class="card-hd"><div class="card-title">EFFICIENCY: DIAMONDS PER HOUR</div><div class="card-sub">Best return on streaming time</div></div>
-      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>DIAMONDS</th><th>HOURS</th><th>💎/HR</th><th>TIER</th></tr></thead><tbody id="eff-tbody"></tbody></table></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>DIAMONDS</th><th>HOURS</th><th>≡ƒÆÄ/HR</th><th>TIER</th></tr></thead><tbody id="eff-tbody"></tbody></table></div>
     </div>
   </div>
 
-  <!-- ══════ MANAGERS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ MANAGERS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-managers" class="page">
     <div class="g4 fu">
       <div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">21</div><div class="kpi-sub">Active assignments</div></div>
       <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">38</div><div class="kpi-sub">Per manager</div></div>
       <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">CARRINGTON</div><div class="kpi-sub">9.4M diamonds</div></div>
-      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+347%</div><div class="kpi-sub">Best — MARCO</div></div>
+      <div class="kpi"><div class="kpi-label">Portfolio ROI</div><div class="kpi-val up" style="font-size:26px">+347%</div><div class="kpi-sub">Best ΓÇö MARCO</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="fu1" id="mgr-grid"></div>
     <div class="card fu2">
@@ -501,9 +506,9 @@ tbody tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- ══════ LEADERBOARD ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ LEADERBOARD ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-leaderboard" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds · Live from Google Sheets</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR LEADERBOARD</div><div class="sec-sub">Top performers ranked by diamonds ┬╖ Live from Google Sheets</div></div><div class="tb-live"><div class="tb-dot"></div><span class="tb-txt">LIVE</span></div></div>
     <div class="g4 fu1" style="grid-template-columns:repeat(4,1fr)">
       <div class="kpi"><div class="kpi-label">Total Diamonds</div><div class="kpi-val" style="font-size:26px">12.3M</div></div>
       <div class="kpi"><div class="kpi-label">Total Rewards</div><div class="kpi-val" style="font-size:26px">37.6M</div></div>
@@ -512,18 +517,18 @@ tbody tr:last-child td{border-bottom:none}
     </div>
     <div class="filter-bar fu2" id="lb-filters"></div>
     <div class="card fu3">
-      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>GROUP</th><th>TIER</th><th>DIAMONDS</th><th>💎/HR</th><th>REWARDS</th><th>HRS</th><th>SCORE</th></tr></thead><tbody id="lb-tbody"></tbody></table></div>
-      <div class="pag"><button class="pag-btn" onclick="lbPg(-1)">← PREV</button><div class="pag-info" id="lb-pag-info"></div><button class="pag-btn" onclick="lbPg(1)">NEXT →</button></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>GROUP</th><th>TIER</th><th>DIAMONDS</th><th>≡ƒÆÄ/HR</th><th>REWARDS</th><th>HRS</th><th>SCORE</th></tr></thead><tbody id="lb-tbody"></tbody></table></div>
+      <div class="pag"><button class="pag-btn" onclick="lbPg(-1)">ΓåÉ PREV</button><div class="pag-info" id="lb-pag-info"></div><button class="pag-btn" onclick="lbPg(1)">NEXT ΓåÆ</button></div>
     </div>
   </div>
 
-  <!-- ══════ CREATOR HEALTH (prop-firm style) ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ CREATOR HEALTH (prop-firm style) ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-health" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores · Risk indicators · Churn signals</div></div><span class="chip chip-r">14 AT RISK</span></div>
+    <div class="sec-h fu"><div><div class="sec-title">CREATOR HEALTH MONITOR</div><div class="sec-sub">Account health scores ┬╖ Risk indicators ┬╖ Churn signals</div></div><span class="chip chip-r">14 AT RISK</span></div>
 
     <div class="g4 fu1">
       <div class="kpi"><div class="kpi-label">Healthy Creators</div><div class="kpi-val up">248</div><div class="kpi-sub">Score 70+</div></div>
-      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">39</div><div class="kpi-sub">Score 40–69</div></div>
+      <div class="kpi"><div class="kpi-label">Watch List</div><div class="kpi-val" style="color:var(--amber)">39</div><div class="kpi-sub">Score 40ΓÇô69</div></div>
       <div class="kpi"><div class="kpi-label">At Risk</div><div class="kpi-val dn">14</div><div class="kpi-sub">Score below 40</div></div>
       <div class="kpi"><div class="kpi-label">Avg Score</div><div class="kpi-val" style="font-size:26px">56<span style="font-size:16px">/100</span></div><div class="kpi-sub">Active creators</div></div>
     </div>
@@ -531,21 +536,21 @@ tbody tr:last-child td{border-bottom:none}
     <div class="g2 fu2">
       <!-- Health cards: top creators -->
       <div>
-        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">TOP PERFORMERS — ACCOUNT HEALTH</div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">TOP PERFORMERS ΓÇö ACCOUNT HEALTH</div>
         <div id="health-cards-top"></div>
       </div>
       <!-- At-risk cards -->
       <div>
-        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--red);margin-bottom:10px">⚑ AT-RISK CREATORS</div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--red);margin-bottom:10px">ΓÜæ AT-RISK CREATORS</div>
         <div id="health-cards-risk"></div>
         <div class="insight"><strong>AI Signal:</strong> 14 creators dropped &gt;30% diamonds vs previous month. freekbass declined 77%, coloreomusic 59%. Immediate outreach recommended to prevent churn. These creators represent an estimated <strong>$184K</strong> monthly revenue at risk.</div>
       </div>
     </div>
   </div>
 
-  <!-- ══════ MILESTONES (prop-firm style) ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ MILESTONES (prop-firm style) ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-milestones" class="page">
-    <div class="sec-h fu"><div><div class="sec-title">MILESTONE TRACKER</div><div class="sec-sub">Creator progress to next tier — prop-firm style</div></div></div>
+    <div class="sec-h fu"><div><div class="sec-title">MILESTONE TRACKER</div><div class="sec-sub">Creator progress to next tier ΓÇö prop-firm style</div></div></div>
 
     <div class="g4 fu1">
       <div class="kpi"><div class="kpi-label">Near Promotion</div><div class="kpi-val up">8</div><div class="kpi-sub">Within 200K of tier up</div></div>
@@ -556,17 +561,17 @@ tbody tr:last-child td{border-bottom:none}
 
     <div class="g2 fu2">
       <div>
-        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">CLOSE TO TIER UP — PUSH THEM OVER</div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">CLOSE TO TIER UP ΓÇö PUSH THEM OVER</div>
         <div id="ms-close"></div>
       </div>
       <div>
-        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">ALL ACTIVE CREATORS — TIER PROGRESS</div>
+        <div style="font-family:var(--fd);font-size:12px;letter-spacing:0.1em;color:var(--t4);margin-bottom:10px">ALL ACTIVE CREATORS ΓÇö TIER PROGRESS</div>
         <div style="overflow-x:auto"><table><thead><tr><th>CREATOR</th><th>TIER</th><th>GOAL</th><th>PROGRESS</th><th>ETA</th></tr></thead><tbody id="ms-tbody"></tbody></table></div>
       </div>
     </div>
   </div>
 
-  <!-- ══════ REPORTS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ REPORTS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-reports" class="page">
     <div class="sec-h fu"><div><div class="sec-title">REPORTS & EXPORTS</div><div class="sec-sub">Generate and download agency performance reports</div></div></div>
     <div class="g3 fu1" id="rep-grid"></div>
@@ -574,23 +579,23 @@ tbody tr:last-child td{border-bottom:none}
       <div class="card-hd"><div class="card-title">RECENT EXPORTS</div></div>
       <table><thead><tr><th>REPORT</th><th>TYPE</th><th>DATE</th><th>SIZE</th><th>ACTION</th></tr></thead>
       <tbody>
-        <tr><td>Creator_Full_Report_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 09:30</td><td class="mono" style="font-size:11px">245 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
-        <tr><td>Diamonds_Summary_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 08:15</td><td class="mono" style="font-size:11px">128 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
-        <tr><td>Monthly_Performance_Jan2026.pdf</td><td><span class="chip chip-r">PDF</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-01 10:00</td><td class="mono" style="font-size:11px">1.2 MB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">↓ DOWNLOAD</button></td></tr>
+        <tr><td>Creator_Full_Report_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 09:30</td><td class="mono" style="font-size:11px">245 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">Γåô DOWNLOAD</button></td></tr>
+        <tr><td>Diamonds_Summary_Feb2026.csv</td><td><span class="chip chip-b">CSV</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-25 08:15</td><td class="mono" style="font-size:11px">128 KB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">Γåô DOWNLOAD</button></td></tr>
+        <tr><td>Monthly_Performance_Jan2026.pdf</td><td><span class="chip chip-r">PDF</span></td><td class="mono" style="font-size:11px;color:var(--t4)">2026-02-01 10:00</td><td class="mono" style="font-size:11px">1.2 MB</td><td><button class="tb-btn tb-btn-ghost" style="font-size:10px;padding:4px 10px">Γåô DOWNLOAD</button></td></tr>
       </tbody></table>
     </div>
   </div>
 
-  <!-- ══════ ALERTS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ ALERTS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-alerts" class="page">
     <div class="sec-h fu"><div><div class="sec-title">ALERTS & NOTIFICATIONS</div></div><button class="tb-btn tb-btn-ghost" style="font-size:10px">MARK ALL READ</button></div>
     <div class="g2 fu1">
       <div>
-        <div class="al al-c"><div class="al-icon">🔴</div><div><div class="al-t">Rookie Performance Alert</div><div class="al-d">5 rookies below minimum hour requirements this week</div></div><span class="chip chip-r" style="margin-left:auto;height:fit-content;white-space:nowrap">CRITICAL</span></div>
-        <div class="al al-g"><div class="al-icon">🏆</div><div><div class="al-t">Diamond Milestone</div><div class="al-d">singleonthemove reached 4.8M total diamonds!</div></div><span class="chip chip-g" style="margin-left:auto;height:fit-content">WIN</span></div>
-        <div class="al al-i"><div class="al-icon">👤</div><div><div class="al-t">New Creator Joined</div><div class="al-d">lancektyree joined under CARRINGTON</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">NEW</span></div>
-        <div class="al al-i"><div class="al-icon">📋</div><div><div class="al-t">Weekly Report Ready</div><div class="al-d">Performance summary available for download</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">INFO</span></div>
-        <div class="al al-w"><div class="al-icon">📅</div><div><div class="al-t">Meeting Reminder</div><div class="al-d">Manager sync tomorrow at 2 PM EST</div></div><span class="chip chip-a" style="margin-left:auto;height:fit-content">REMINDER</span></div>
+        <div class="al al-c"><div class="al-icon">≡ƒö┤</div><div><div class="al-t">Rookie Performance Alert</div><div class="al-d">5 rookies below minimum hour requirements this week</div></div><span class="chip chip-r" style="margin-left:auto;height:fit-content;white-space:nowrap">CRITICAL</span></div>
+        <div class="al al-g"><div class="al-icon">≡ƒÅå</div><div><div class="al-t">Diamond Milestone</div><div class="al-d">singleonthemove reached 4.8M total diamonds!</div></div><span class="chip chip-g" style="margin-left:auto;height:fit-content">WIN</span></div>
+        <div class="al al-i"><div class="al-icon">≡ƒæñ</div><div><div class="al-t">New Creator Joined</div><div class="al-d">lancektyree joined under CARRINGTON</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">NEW</span></div>
+        <div class="al al-i"><div class="al-icon">≡ƒôï</div><div><div class="al-t">Weekly Report Ready</div><div class="al-d">Performance summary available for download</div></div><span class="chip chip-g2" style="margin-left:auto;height:fit-content">INFO</span></div>
+        <div class="al al-w"><div class="al-icon">≡ƒôà</div><div><div class="al-t">Meeting Reminder</div><div class="al-d">Manager sync tomorrow at 2 PM EST</div></div><span class="chip chip-a" style="margin-left:auto;height:fit-content">REMINDER</span></div>
       </div>
       <div class="card"><div class="card-hd"><div class="card-title">ALERT SUMMARY</div></div><div class="card-bd">
         <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border)"><span style="font-size:12px">Critical</span><span class="mono dn">1</span></div>
@@ -601,7 +606,7 @@ tbody tr:last-child td{border-bottom:none}
     </div>
   </div>
 
-  <!-- ══════ SETTINGS ══════ -->
+  <!-- ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ SETTINGS ΓòÉΓòÉΓòÉΓòÉΓòÉΓòÉ -->
   <div id="page-settings" class="page">
     <div class="sec-h fu"><div><div class="sec-title">SETTINGS</div><div class="sec-sub">Configure dashboard preferences</div></div></div>
     <div class="g2 fu1">
@@ -614,7 +619,7 @@ tbody tr:last-child td{border-bottom:none}
       <div style="display:flex;flex-direction:column;gap:14px">
         <div class="card"><div class="card-hd"><div class="card-title">APPEARANCE</div></div><div class="card-bd"><div style="display:flex;gap:8px"><button class="fb-btn active">Black</button><button class="fb-btn">Dark</button><button class="fb-btn">Red</button></div></div></div>
         <div class="card"><div class="card-hd"><div class="card-title">DATA MANAGEMENT</div></div><div class="card-bd" style="display:flex;gap:8px;flex-wrap:wrap"><button class="tb-btn tb-btn-red">REFRESH</button><button class="tb-btn tb-btn-ghost">CLEAR CACHE</button><button class="tb-btn tb-btn-ghost" style="color:var(--red);border-color:rgba(255,0,68,0.3)">LOGOUT</button></div></div>
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-family:var(--fm);font-size:10px;color:var(--t4)">LAST SYNC: March 8, 2026 · 01:36 AM EST</div>
+        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;font-family:var(--fm);font-size:10px;color:var(--t4)">LAST SYNC: March 8, 2026 ┬╖ 01:36 AM EST</div>
         
         <!-- Admin: Creator Password Management -->
         <div class="card" style="margin-top:14px"><div class="card-hd"><div class="card-title">CREATOR PASSWORD MANAGEMENT</div><div class="card-sub">Admin only - Reset creator passwords</div></div><div class="card-bd" style="display:flex;flex-direction:column;gap:12px">
@@ -628,8 +633,8 @@ tbody tr:last-child td{border-bottom:none}
         <div class="card" style="margin-top:14px"><div class="card-hd"><div class="card-title">CREATOR SIGNUP LOG</div><div class="card-sub">Track who has created accounts</div></div><div class="card-bd" style="display:flex;flex-direction:column;gap:12px">
           <div id="signupLogCount" style="font-size:12px;color:var(--t3)">Loading...</div>
           <div id="signupLogList" style="max-height:200px;overflow-y:auto;font-size:11px;font-family:monospace;background:var(--bg3);padding:10px;border-radius:5px;"></div>
-          <button class="tb-btn tb-btn-ghost" onclick="refreshSignupLog()" style="font-size:10px">↻ REFRESH LOG</button>
-          <button class="tb-btn tb-btn-ghost" onclick="exportSignupLog()" style="font-size:10px">↓ EXPORT CSV</button>
+          <button class="tb-btn tb-btn-ghost" onclick="refreshSignupLog()" style="font-size:10px">Γå╗ REFRESH LOG</button>
+          <button class="tb-btn tb-btn-ghost" onclick="exportSignupLog()" style="font-size:10px">Γåô EXPORT CSV</button>
         </div></div>
       </div>
     </div>
@@ -639,7 +644,7 @@ tbody tr:last-child td{border-bottom:none}
 </div><!-- main -->
 
 <script type="module">
-// ── SECURITY: Firebase Admin Authentication ──
+// ΓöÇΓöÇ SECURITY: Firebase Admin Authentication ΓöÇΓöÇ
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
@@ -659,7 +664,7 @@ const db = getFirestore(app);
 
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
-        console.error('❌ ADMIN ACCESS DENIED: Not logged in');
+        console.error('Γ¥î ADMIN ACCESS DENIED: Not logged in');
         window.location.href = 'firebase-login.html';
         return;
     }
@@ -675,12 +680,12 @@ onAuthStateChanged(auth, async (user) => {
         }
         
         if (role !== 'admin') {
-            console.error('❌ ADMIN ACCESS DENIED: Not an admin');
+            console.error('Γ¥î ADMIN ACCESS DENIED: Not an admin');
             window.location.href = 'creator-dashboard.html';
             return;
         }
         
-        console.log('✅ Admin authenticated:', user.email);
+        console.log('Γ£à Admin authenticated:', user.email);
         
         // Store for later use
         window.currentUser = {
@@ -690,10 +695,10 @@ onAuthStateChanged(auth, async (user) => {
             name: userData?.name || 'Admin'
         };
     } catch (error) {
-        console.error('❌ Error checking admin status:', error);
+        console.error('Γ¥î Error checking admin status:', error);
         // Allow if marco email
         if (user.email?.toLowerCase() === 'marco@taboost.me') {
-            console.log('✅ Admin authenticated (by email)');
+            console.log('Γ£à Admin authenticated (by email)');
             window.currentUser = { uid: user.uid, email: user.email, role: 'admin', name: 'Marco' };
         } else {
             window.location.href = 'firebase-login.html';
@@ -707,7 +712,7 @@ window.logout = async () => {
     window.location.href = 'firebase-login.html';
 };
 
-// ── DATA ──
+// ΓöÇΓöÇ DATA ΓöÇΓöÇ
 const D=[
   {n:"samanthasingsit",m:"CARRINGTON",b:"Music",d:1064591,r:1586275,h:17,t:6,l30:1872927,p1:1653571,p2:1270834,s:81,tg:3000000},
   {n:"bryton.39",m:"MARCO",b:"Gaming",d:671274,r:6834850,h:27,t:5,l30:5105288,p1:3264869,p2:4620580,s:90,tg:5000000},
@@ -775,7 +780,7 @@ const MGRS=[
 ];
 const MTOTAL=12314155;
 
-// ── UTILS ──
+// ΓöÇΓöÇ UTILS ΓöÇΓöÇ
 const f=(n)=>n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':n.toLocaleString();
 const ff=(n)=>n.toLocaleString();
 const sc=(s)=>s>=70?'var(--green)':s>=40?'var(--amber)':'var(--red)';
@@ -784,11 +789,11 @@ const mc=(m)=>{const map={CARRINGTON:'#ff0044',LEVI:'#2979ff',MARCO:'#00e676',BR
 const ini=(n)=>n[0].toUpperCase();
 const mom=(d,p)=>p?Math.round((d/p-1)*100):null;
 
-// ── CLOCK ──
+// ΓöÇΓöÇ CLOCK ΓöÇΓöÇ
 setInterval(()=>{document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})},1000);
 document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false});
 
-// ── PAGE SWITCH ──
+// ΓöÇΓöÇ PAGE SWITCH ΓöÇΓöÇ
 const titles={dashboard:'DASHBOARD',creators:'ALL CREATORS',diamonds:'DIAMONDS',streams:'LIVE STREAMS',managers:'MANAGERS',leaderboard:'LEADERBOARD',health:'CREATOR HEALTH',milestones:'MILESTONES',reports:'REPORTS',alerts:'ALERTS',settings:'SETTINGS'};
 function showPage(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -800,28 +805,28 @@ function showPage(id,el){
   document.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,50)});
 }
 
-// ── TICKER ──
+// ΓöÇΓöÇ TICKER ΓöÇΓöÇ
 function buildTicker(){
-  const items=D.slice(0,15).map(c=>`<div class="ticker-item"><span class="ticker-name">${c.n.toUpperCase()}</span><span class="ticker-val">${f(c.d)} 💎</span><span style="font-size:9px;margin-left:4px;color:${c.p1&&c.d<c.p1*0.7?'var(--red)':c.p1&&c.d>c.p1?'var(--green)':'var(--t4)'}">${c.p1?((c.d/c.p1-1)*100>0?'▲':'▼')+Math.abs(Math.round((c.d/c.p1-1)*100))+'%':''}</span></div>`).join('');
+  const items=D.slice(0,15).map(c=>`<div class="ticker-item"><span class="ticker-name">${c.n.toUpperCase()}</span><span class="ticker-val">${f(c.d)} ≡ƒÆÄ</span><span style="font-size:9px;margin-left:4px;color:${c.p1&&c.d<c.p1*0.7?'var(--red)':c.p1&&c.d>c.p1?'var(--green)':'var(--t4)'}">${c.p1?((c.d/c.p1-1)*100>0?'Γû▓':'Γû╝')+Math.abs(Math.round((c.d/c.p1-1)*100))+'%':''}</span></div>`).join('');
   document.getElementById('ticker').innerHTML=`<div class="ticker-inner">${items}${items}</div>`;
 }
 
-// ── DASHBOARD TABLE ──
+// ΓöÇΓöÇ DASHBOARD TABLE ΓöÇΓöÇ
 function renderDash(){
   document.getElementById('dash-tbody').innerHTML=D.slice(0,10).map((c,i)=>{
     const cl=mc(c.m);const scl=sc(c.s);
-    const r=i===0?'🥇':i===1?'🥈':i===2?'🥉':`<span class="mono" style="color:var(--t4)">${i+1}</span>`;
-    return`<tr><td>${r}</td><td><div class="cc"><div class="av" style="background:${cl}22;border-color:${cl}33">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;font-weight:700;color:${cl}">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+    const r=i===0?'≡ƒÑç':i===1?'≡ƒÑê':i===2?'≡ƒÑë':`<span class="mono" style="color:var(--t4)">${i+1}</span>`;
+    return`<tr><td>${r}</td><td><div class="cc"><div class="av" style="background:${cl}22;border-color:${cl}33">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'ΓÇô'}</div></div></div></td><td><span style="font-size:11px;font-weight:700;color:${cl}">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
   }).join('');
 }
 
-// ── REWARDS ──
+// ΓöÇΓöÇ REWARDS ΓöÇΓöÇ
 function renderRewards(){
   const sorted=[...D].sort((a,b)=>b.r-a.r).slice(0,8);
   document.getElementById('rewards-list').innerHTML=sorted.map((c,i)=>`<div style="display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--border2)"><span class="mono" style="color:var(--t4);font-size:10px;width:16px">#${i+1}</span><div class="av" style="width:26px;height:26px;font-size:11px;background:${mc(c.m)}22">${ini(c.n)}</div><div style="flex:1;min-width:0"><div style="font-size:11px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="mono up" style="font-size:11px;white-space:nowrap">${f(c.r)}</span></div>`).join('');
 }
 
-// ── AGENCY HEALTH ──
+// ΓöÇΓöÇ AGENCY HEALTH ΓöÇΓöÇ
 function renderAgencyHealth(){
   const tiers={1:0,2:0,3:0,4:0,5:0,6:0};
   D.forEach(c=>tiers[c.t]=(tiers[c.t]||0)+1);
@@ -829,7 +834,7 @@ function renderAgencyHealth(){
   document.getElementById('agency-health').innerHTML=['#ff0044','#ffab00','#00e676','#64b5f6','#ffab00','#e040fb'].reverse().map((col,i)=>tc2(6-i,col)).join('');
 }
 
-// ── EQUITY CURVE ──
+// ΓöÇΓöÇ EQUITY CURVE ΓöÇΓöÇ
 function renderEquity(){
   const top5=D.slice(0,5);
   const colors=['#ff0044','#ffab00','#00e676','#64b5f6','#e040fb'];
@@ -851,7 +856,7 @@ function renderEquity(){
     svgPaths+=`<path d="${areaPath}" fill="${colors[ci]}" opacity="0.05"/>`;
     svgPaths+=`<path d="${linePath}" fill="none" stroke="${colors[ci]}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`;
     const last=pts[5];const prev=pts[4];
-    const dir=last>=prev?'▲':'▼';
+    const dir=last>=prev?'Γû▓':'Γû╝';
     const col=last>=prev?colors[ci]:colors[ci];
     svgPaths+=`<circle cx="${xPts(5)}" cy="${yPts(last)}" r="3" fill="${colors[ci]}"/>`;
   });
@@ -862,15 +867,15 @@ function renderEquity(){
   document.getElementById('eq-axis').innerHTML=months.map(m=>`<div style="flex:1;font-family:var(--fm);font-size:9px;color:var(--t4);text-align:center">${m}</div>`).join('');
 }
 
-// ── CREATORS TABLE ──
+// ΓöÇΓöÇ CREATORS TABLE ΓöÇΓöÇ
 let crIdx=0,crFilter='',crMgr='';
 const CPP=25;
 function getFiltered(){return D.filter(c=>(!crFilter||(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase()))&&(!crMgr||c.m.includes(crMgr)))}
 function renderCR(){
   const fl=getFiltered();const start=crIdx*CPP;const end=Math.min(start+CPP,fl.length);
   const page=fl.slice(start,end);
-  document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td style="font-size:11px;color:var(--t4)">–</td></tr>`}).join('');
-  document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.ceil(fl.length/CPP)} · ${start+1}–${end} of ${fl.length}`;
+  document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'ΓÇô'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td style="font-size:11px;color:var(--t4)">ΓÇô</td></tr>`}).join('');
+  document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.ceil(fl.length/CPP)} ┬╖ ${start+1}ΓÇô${end} of ${fl.length}`;
 }
 function crPage(d){const max=Math.ceil(getFiltered().length/CPP)-1;crIdx=Math.max(0,Math.min(max,crIdx+d));renderCR()}
 function globalSearch(v){crFilter=v;crIdx=0;renderCR();lbIdx=0;renderLB()}
@@ -881,7 +886,7 @@ function renderCRFilters(){
 }
 function setCRMgr(m,el){crMgr=m==='All'?'':m;crIdx=0;document.querySelectorAll('#cr-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderCR()}
 
-// ── LEADERBOARD ──
+// ΓöÇΓöÇ LEADERBOARD ΓöÇΓöÇ
 let lbIdx=0;const LPP=25;
 function renderLB(){
   const fl=crFilter?D.filter(c=>(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase())):D;
@@ -889,11 +894,11 @@ function renderLB(){
   const page=fl.slice(start,end);
   document.getElementById('lb-tbody').innerHTML=page.map((c,i)=>{
     const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);
-    const rk=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':`<span class="mono" style="color:var(--t4)">${rank}</span>`;
+    const rk=rank===1?'≡ƒÑç':rank===2?'≡ƒÑê':rank===3?'≡ƒÑë':`<span class="mono" style="color:var(--t4)">${rank}</span>`;
     const dph=c.h>0?Math.round(c.d/c.h):0;
-    return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td style="font-size:11px;color:var(--t4)">Staff</td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+    return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'ΓÇô'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td style="font-size:11px;color:var(--t4)">Staff</td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
   }).join('');
-  document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.ceil(fl.length/LPP)} · ${start+1}–${end} of ${fl.length}`;
+  document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.ceil(fl.length/LPP)} ┬╖ ${start+1}ΓÇô${end} of ${fl.length}`;
 }
 function lbPg(d){const max=Math.ceil(D.length/LPP)-1;lbIdx=Math.max(0,Math.min(max,lbIdx+d));renderLB()}
 function renderLBFilters(){
@@ -902,7 +907,7 @@ function renderLBFilters(){
 }
 function lbSetMgr(m,el){document.querySelectorAll('#lb-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');lbIdx=0;renderLB()}
 
-// ── DIAMONDS PAGE ──
+// ΓöÇΓöÇ DIAMONDS PAGE ΓöÇΓöÇ
 function renderDBars(){
   const top15=D.slice(0,15);const mx=top15[0].d;
   document.getElementById('d-bars').innerHTML=top15.map((c,i)=>`<div class="bar-row"><div class="bar-lbl">${c.n}</div><div class="bar-track"><div class="bar-fill" style="width:${(c.d/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),${mc(c.m)})"></div></div><div class="bar-val">${f(c.d)}</div></div>`).join('');
@@ -916,17 +921,17 @@ function renderTierDist(){
 function renderDTable(){
   document.getElementById('d-tbody').innerHTML=D.map((c,i)=>{
     const m=mom(c.d,c.p1);const cl=mc(c.m);const scl=sc(c.s);
-    return`<tr><td class="mono" style="color:var(--t4)">${i+1}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${c.l30>0?ff(c.l30):'–'}</td><td class="mono" style="color:var(--t3)">${c.p1>0?ff(c.p1):'–'}</td><td class="mono ${m===null?'':m>=0?'up':'dn'}">${m===null?'–':(m>=0?'▲':'▼')+Math.abs(m)+'%'}</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+    return`<tr><td class="mono" style="color:var(--t4)">${i+1}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${c.l30>0?ff(c.l30):'ΓÇô'}</td><td class="mono" style="color:var(--t3)">${c.p1>0?ff(c.p1):'ΓÇô'}</td><td class="mono ${m===null?'':m>=0?'up':'dn'}">${m===null?'ΓÇô':(m>=0?'Γû▓':'Γû╝')+Math.abs(m)+'%'}</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
   }).join('');
 }
 
-// ── STREAMS ──
+// ΓöÇΓöÇ STREAMS ΓöÇΓöÇ
 function renderSBars(){
   const sorted=[...D].filter(c=>c.h>0).sort((a,b)=>b.h-a.h).slice(0,15);const mx=sorted[0].h;
   document.getElementById('s-bars').innerHTML=sorted.map(c=>`<div class="bar-row"><div class="bar-lbl">${c.n}</div><div class="bar-track"><div class="bar-fill" style="width:${(c.h/mx*100).toFixed(1)}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div><div class="bar-val">${c.h}h</div></div>`).join('');
 }
 function renderHDist(){
-  const b=[{l:'30h+',c:0},{l:'20–29h',c:0},{l:'10–19h',c:0},{l:'5–9h',c:0},{l:'1–4h',c:0}];
+  const b=[{l:'30h+',c:0},{l:'20ΓÇô29h',c:0},{l:'10ΓÇô19h',c:0},{l:'5ΓÇô9h',c:0},{l:'1ΓÇô4h',c:0}];
   D.forEach(c=>{if(c.h>=30)b[0].c++;else if(c.h>=20)b[1].c++;else if(c.h>=10)b[2].c++;else if(c.h>=5)b[3].c++;else if(c.h>=1)b[4].c++});
   const mx=Math.max(...b.map(x=>x.c));
   const cols=['var(--green)','var(--red)','var(--amber)','#64b5f6','var(--t3)'];
@@ -940,7 +945,7 @@ function renderEffTable(){
   }).join('');
 }
 
-// ── MANAGERS ──
+// ΓöÇΓöÇ MANAGERS ΓöÇΓöÇ
 const mgrColors=['#ff0044','#2979ff','#00e676','#ffab00','#e040fb','#ff6d00','#00bcd4','#8bc34a','#f06292','#4fc3f7'];
 function renderMgrGrid(){
   document.getElementById('mgr-grid').innerHTML=MGRS.slice(0,9).map((m,i)=>`
@@ -955,17 +960,17 @@ function renderMgrGrid(){
         <div><div class="ms-lbl">Rewards</div><div class="ms-val">${f(m.r)}</div></div>
         <div><div class="ms-lbl">Avg Hrs</div><div class="ms-val">${m.c>0?(m.h/m.c).toFixed(1):0}h</div></div>
       </div>
-      <div class="mgr-top"><div class="mgr-top-lbl">Top Creators</div>${m.top.map(t=>`<div class="mgr-top-item">→ ${t}</div>`).join('')}</div>
+      <div class="mgr-top"><div class="mgr-top-lbl">Top Creators</div>${m.top.map(t=>`<div class="mgr-top-item">ΓåÆ ${t}</div>`).join('')}</div>
     </div>`).join('');
 }
 function renderMgrTable(){
   document.getElementById('mgr-tbody').innerHTML=MGRS.map((m,i)=>{
     const share=(m.d/MTOTAL*100).toFixed(1);const cl=mgrColors[i]||'var(--t3)';
-    return`<tr><td>${i<3?['🥇','🥈','🥉'][i]:`<span class="mono" style="color:var(--t4)">#${i+1}</span>`}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="av" style="width:26px;height:26px;font-size:11px;background:${cl}20;border-color:${cl}30">${m.n[0]}</div><strong style="color:var(--t1)">${m.n}</strong></div></td><td class="mono">${m.c}</td><td class="mono"><strong style="color:${cl}">${ff(m.d)}</strong></td><td class="mono up">${f(m.r)}</td><td class="mono">${m.c>0?(m.h/m.c).toFixed(1):0}h</td><td style="color:var(--t3);font-size:11px">${m.top[0]||'–'}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="pb" style="width:80px;height:4px"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${cl}"></div></div><span class="mono" style="font-size:10px;color:${cl}">${share}%</span></div></td></tr>`;
+    return`<tr><td>${i<3?['≡ƒÑç','≡ƒÑê','≡ƒÑë'][i]:`<span class="mono" style="color:var(--t4)">#${i+1}</span>`}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="av" style="width:26px;height:26px;font-size:11px;background:${cl}20;border-color:${cl}30">${m.n[0]}</div><strong style="color:var(--t1)">${m.n}</strong></div></td><td class="mono">${m.c}</td><td class="mono"><strong style="color:${cl}">${ff(m.d)}</strong></td><td class="mono up">${f(m.r)}</td><td class="mono">${m.c>0?(m.h/m.c).toFixed(1):0}h</td><td style="color:var(--t3);font-size:11px">${m.top[0]||'ΓÇô'}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="pb" style="width:80px;height:4px"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${cl}"></div></div><span class="mono" style="font-size:10px;color:${cl}">${share}%</span></div></td></tr>`;
   }).join('');
 }
 
-// ── HEALTH PAGE ──
+// ΓöÇΓöÇ HEALTH PAGE ΓöÇΓöÇ
 function renderHealth(){
   const top5=D.slice(0,5);
   const atRisk=D.filter(c=>c.p1>0&&c.d<c.p1*0.7).slice(0,6);
@@ -977,9 +982,9 @@ function renderHealth(){
       <div class="pulse-ring"><div class="pulse-dot"></div></div>
       <div class="health-top"><div><div class="health-name">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="tc ${tc(c.t)}">T${c.t}</span></div>
       <div class="health-diamonds">${f(c.d)}</div>
-      <div class="health-label">💎 THIS MONTH</div>
+      <div class="health-label">≡ƒÆÄ THIS MONTH</div>
       <div class="pb" style="height:5px"><div class="pf" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div>
-      <div class="health-to-tier">${pct}% to Tier ${c.t+1} · <strong>${f(left)}</strong> diamonds to go</div>
+      <div class="health-to-tier">${pct}% to Tier ${c.t+1} ┬╖ <strong>${f(left)}</strong> diamonds to go</div>
     </div>`;
   }).join('');
 
@@ -990,12 +995,12 @@ function renderHealth(){
       <div class="health-top"><div><div class="health-name">${c.n}</div><div style="font-size:10px;color:var(--t4)">${c.m}</div></div><span class="tc ${tc(c.t)}">T${c.t}</span></div>
       <div class="health-diamonds" style="color:var(--red)">${f(c.d)}</div>
       <div class="health-label">RISK SCORE: <span style="color:var(--red)">${c.s}/100</span></div>
-      <div class="health-to-tier"><span class="dn">▼ ${Math.abs(chg||0)}%</span> vs last month · prev: <strong>${f(c.p1)}</strong></div>
+      <div class="health-to-tier"><span class="dn">Γû╝ ${Math.abs(chg||0)}%</span> vs last month ┬╖ prev: <strong>${f(c.p1)}</strong></div>
     </div>`;
   }).join('');
 }
 
-// ── MILESTONES ──
+// ΓöÇΓöÇ MILESTONES ΓöÇΓöÇ
 function renderMilestones(){
   // Close to tier up (80%+ of goal)
   const close=D.filter(c=>c.tg>0&&(c.d/c.tg)>=0.7&&(c.d/c.tg)<1).sort((a,b)=>(b.d/b.tg)-(a.d/a.tg)).slice(0,6);
@@ -1005,12 +1010,12 @@ function renderMilestones(){
     const eta=dph>0?Math.ceil(left/dph):null;
     return`<div class="milestone">
       <div class="ms-top">
-        <div><div class="ms-name">${c.n}</div><div class="ms-details">${c.m} · T${c.t} → T${c.t+1}</div></div>
+        <div><div class="ms-name">${c.n}</div><div class="ms-details">${c.m} ┬╖ T${c.t} ΓåÆ T${c.t+1}</div></div>
         <div class="ms-pct" style="color:${pct>=90?'var(--green)':'var(--amber)'}">${pct}%</div>
       </div>
       <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--t4);margin-bottom:6px"><span>${ff(c.d)} diamonds</span><span>Goal: ${f(c.tg)}</span></div>
       <div class="ms-bar"><div class="ms-fill" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div>
-      <div class="ms-eta">${f(left)} remaining${eta?' · Est. '+eta+'h of streaming':''}${pct>=95?'  🔥 PUSH THEM OVER!':''}</div>
+      <div class="ms-eta">${f(left)} remaining${eta?' ┬╖ Est. '+eta+'h of streaming':''}${pct>=95?'  ≡ƒöÑ PUSH THEM OVER!':''}</div>
     </div>`;
   }).join('');
 
@@ -1018,25 +1023,25 @@ function renderMilestones(){
     const pct=c.tg>0?Math.min(100,(c.d/c.tg*100)).toFixed(0):0;
     const left=Math.max(0,c.tg-c.d);
     const dph=c.h>0?c.d/c.h:0;
-    const eta=dph>0&&left>0?Math.ceil(left/dph)+'h est.':'–';
-    return`<tr><td><div class="cn">${c.n}</div></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono" style="font-size:11px">${f(c.tg)}</td><td style="min-width:120px"><div class="pb" style="height:5px"><div class="pf" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div><div style="font-size:9px;color:var(--t4);margin-top:3px">${pct}% · ${f(left)} left</div></td><td class="mono" style="font-size:10px;color:var(--t4)">${eta}</td></tr>`;
+    const eta=dph>0&&left>0?Math.ceil(left/dph)+'h est.':'ΓÇô';
+    return`<tr><td><div class="cn">${c.n}</div></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono" style="font-size:11px">${f(c.tg)}</td><td style="min-width:120px"><div class="pb" style="height:5px"><div class="pf" style="width:${pct}%;background:linear-gradient(90deg,var(--red),var(--amber))"></div></div><div style="font-size:9px;color:var(--t4);margin-top:3px">${pct}% ┬╖ ${f(left)} left</div></td><td class="mono" style="font-size:10px;color:var(--t4)">${eta}</td></tr>`;
   }).join('');
 }
 
-// ── REPORTS ──
+// ΓöÇΓöÇ REPORTS ΓöÇΓöÇ
 function renderReports(){
   const reps=[
-    {icon:'📋',title:'Creator Report',sub:'Full creator list with all metrics',btn:'Download CSV'},
-    {icon:'💎',title:'Diamonds Report',sub:'Diamond earnings by creator & group',btn:'Download CSV'},
-    {icon:'📊',title:'Performance Summary',sub:'Monthly performance overview',btn:'Download PDF'},
-    {icon:'👔',title:'Manager Report',sub:'Team performance by manager',btn:'Download CSV'},
-    {icon:'🌱',title:'Rookie Report',sub:'New creator progress tracking',btn:'Download CSV'},
-    {icon:'📡',title:'Streaming Report',sub:'Live stream metrics & hours',btn:'Download CSV'},
+    {icon:'≡ƒôï',title:'Creator Report',sub:'Full creator list with all metrics',btn:'Download CSV'},
+    {icon:'≡ƒÆÄ',title:'Diamonds Report',sub:'Diamond earnings by creator & group',btn:'Download CSV'},
+    {icon:'≡ƒôè',title:'Performance Summary',sub:'Monthly performance overview',btn:'Download PDF'},
+    {icon:'≡ƒæö',title:'Manager Report',sub:'Team performance by manager',btn:'Download CSV'},
+    {icon:'≡ƒî▒',title:'Rookie Report',sub:'New creator progress tracking',btn:'Download CSV'},
+    {icon:'≡ƒôí',title:'Streaming Report',sub:'Live stream metrics & hours',btn:'Download CSV'},
   ];
   document.getElementById('rep-grid').innerHTML=reps.map(r=>`<div class="rep-card"><div class="rep-icon">${r.icon}</div><div class="rep-title">${r.title}</div><div class="rep-sub">${r.sub}</div><button class="rep-btn" onclick="alert('Generating report...')">${r.btn}</button></div>`).join('');
 }
 
-// ── INIT ──
+// ΓöÇΓöÇ INIT ΓöÇΓöÇ
 buildTicker();
 renderDash();renderRewards();renderAgencyHealth();renderEquity();
 renderCR();renderCRFilters();
@@ -1052,18 +1057,18 @@ renderReports();
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
 document.querySelectorAll('.card,.kpi,.mgr-card,.health-card,.milestone').forEach(c=>io.observe(c));
 
-// ── ADMIN: CREATOR PASSWORD RESET ──
+// ΓöÇΓöÇ ADMIN: CREATOR PASSWORD RESET ΓöÇΓöÇ
 function adminResetCreatorPassword(){
   const username=document.getElementById('adminCreatorUsername').value.trim().toLowerCase();
   const newPass=document.getElementById('adminNewPassword').value;
   const msgEl=document.getElementById('adminPasswordMsg');
   
   if(!username||!newPass){
-    msgEl.innerHTML='<span style="color:var(--red)">❌ Please enter both username and password</span>';
+    msgEl.innerHTML='<span style="color:var(--red)">Γ¥î Please enter both username and password</span>';
     return;
   }
   if(newPass.length<8){
-    msgEl.innerHTML='<span style="color:var(--red)">❌ Password must be at least 8 characters</span>';
+    msgEl.innerHTML='<span style="color:var(--red)">Γ¥î Password must be at least 8 characters</span>';
     return;
   }
   
@@ -1074,14 +1079,14 @@ function adminResetCreatorPassword(){
   storedPasswords[username]=newPass;
   localStorage.setItem('creator_passwords',JSON.stringify(storedPasswords));
   
-  msgEl.innerHTML='<span style="color:var(--green)">✅ Password reset for <strong>'+username+'</strong>.</span>';
+  msgEl.innerHTML='<span style="color:var(--green)">Γ£à Password reset for <strong>'+username+'</strong>.</span>';
   
   // Clear fields
   document.getElementById('adminCreatorUsername').value='';
   document.getElementById('adminNewPassword').value='';
 }
 
-// ── ADMIN: CREATOR SIGNUP LOG ──
+// ΓöÇΓöÇ ADMIN: CREATOR SIGNUP LOG ΓöÇΓöÇ
 function refreshSignupLog(){
   // Read from both old and new storage keys
   const oldLog=JSON.parse(localStorage.getItem('creator_signup_log')||'[]');
@@ -1163,13 +1168,13 @@ function exportSignupLog(){
 // Load log on page load
 refreshSignupLog();
 
-// ── ADMIN: REAL-TIME SIGNUP NOTIFICATIONS ──
+// ΓöÇΓöÇ ADMIN: REAL-TIME SIGNUP NOTIFICATIONS ΓöÇΓöÇ
 function checkForNewSignups(){
     try {
         const notification = JSON.parse(localStorage.getItem('last_signup_notification') || '{}');
         if (notification && !notification.notified && notification.username) {
             // Show alert for new signup
-            alert('🎉 NEW CREATOR SIGNUP!\n\nUsername: ' + notification.username + '\nEmail: ' + notification.email + '\nTime: ' + notification.time + '\n\nTotal signups: ' + JSON.parse(localStorage.getItem('creator_signup_log') || '[]').length);
+            alert('≡ƒÄë NEW CREATOR SIGNUP!\n\nUsername: ' + notification.username + '\nEmail: ' + notification.email + '\nTime: ' + notification.time + '\n\nTotal signups: ' + JSON.parse(localStorage.getItem('creator_signup_log') || '[]').length);
             
             // Mark as notified
             notification.notified = true;
@@ -1187,9 +1192,9 @@ function checkForNewSignups(){
 checkForNewSignups();
 setInterval(checkForNewSignups, 3000);
 
-console.log('🔔 Admin signup notifications active - checking every 3 seconds');
+console.log('≡ƒöö Admin signup notifications active - checking every 3 seconds');
 
-// ── LOGOUT FUNCTION ──
+// ΓöÇΓöÇ LOGOUT FUNCTION ΓöÇΓöÇ
 async function logout() {
     // Use Firebase logout if available
     if (typeof auth !== 'undefined' && auth) {
@@ -1200,6 +1205,100 @@ async function logout() {
     localStorage.removeItem('taboost_current_user');
     window.location.href = 'firebase-login.html';
 }
+</script>
+
+<!-- Firebase Real-time Data Integration -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase-realtime.js"></script>
+<script>
+// Hook into existing dashboard data loading
+// Override the JSON loading with Firebase real-time data
+function loadDashboardData() {
+    console.log('Dashboard loading Firebase real-time data...');
+    // The firebase-realtime.js will automatically update the dashboard
+    // when data changes in Firestore
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', loadDashboardData);
+</script>
+
+<!-- ANTI-UBAKERY SAFEGUARD: Clear any malicious redirects -->
+<script>
+// Clear all redirect-related storage on page load
+(function() {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(key => {
+        console.log('Removing stored key:', key);
+        localStorage.removeItem(key);
+    });
+    
+    // Also check sessionStorage
+    const sessionKeysToRemove = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            sessionKeysToRemove.push(key);
+        }
+    }
+    sessionKeysToRemove.forEach(key => {
+        console.log('Removing session key:', key);
+        sessionStorage.removeItem(key);
+    });
+    
+    console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
+})();
+</script>
+
+<!-- Firebase Admin Auth Check -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script>
+// Check admin auth on page load
+(function checkAdminAuth(){
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+  };
+  
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+  
+  auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      console.log('Not logged in, redirecting to login...');
+      window.location.href = 'firebase-login.html';
+      return;
+    }
+    
+    // Check if admin
+    const userDoc = await db.collection('users').doc(user.uid).get();
+    const userData = userDoc.data() || {};
+    
+    const isAdmin = user.email?.toLowerCase() === 'marco@taboost.me' || userData.role === 'admin';
+    
+    if (!isAdmin) {
+      console.log('Not admin, redirecting to creator dashboard...');
+      window.location.href = 'creator-dashboard.html';
+      return;
+    }
+    
+    console.log('✅ Admin authenticated:', user.email);
+  });
+})();
 </script>
 </body>
 </html>

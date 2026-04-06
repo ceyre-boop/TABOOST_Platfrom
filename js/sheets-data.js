@@ -107,7 +107,7 @@ class TaboostDataService {
             rank: parseInt(getValue('Rank')) || 0,
             creatorId: getValue('Host'),
             username: username,
-            level: (() => { const l = getValue('Level') || values[4]; return l === '' || l === undefined || l === null ? null : parseInt(l); })(), // Column E - Level (0-5), preserves 0, null only if blank
+            level: (() => { const l = getValue('Level') || values[4]; return l === '' || l === undefined || l === null ? -1 : parseInt(l); })(), // Column E - Level (0-5), -1 for blank, 0-5 for actual levels
             _levelHeader: headers.indexOf('Level'),
             _levelValue: getValue('Level'),
             _levelRaw: values[4],
@@ -141,13 +141,12 @@ class TaboostDataService {
             _diamondsRaw: values[19],
             _levelRaw: values[4],
             growthPercent: getValue('Growth %'),
-            hours: parseFloat(getValue('Hours')) || 0,
-            hoursGoal: parseInt(values[39]) || 15, // Column AN - personalized hours goal
+            hours: parseFloat(getValue('Hours')) || 0, // Column P = actual hours
             hoursLeft: parseFloat(getValue('Hours Left')) || 0,
             
             // Activity metrics
-            liveStreams: parseInt(getValue('Days')) || 0, // Days = streaming days
-            validLiveDays: parseInt(getValue('Days')) || 0,
+            liveStreams: parseInt(getValue('Days')) || 0, // Column M = actual streaming days
+            validLiveDays: parseInt(getValue('Days')) || 0, // Column M = actual days streamed
             dayPace: getValue('Day Pace'),
             diamondPace: parseInt(getValue('dY\'Z Pace')) || 0, // Column U - 💎 Pace
             followers: this.formatNumber(getValue('LF')),
@@ -173,12 +172,26 @@ class TaboostDataService {
             diamondsLastMonth: this.formatNumber(getValue('-1 Month 💎')),
             diamondsTwoMonthsAgo: this.formatNumber(getValue('-2 Month 💎')),
             
-            // Goals data - Column AM (Days Month), Column AN (Hours Month), Column W (Tier Goal)
-            daysGoal: parseInt(values[38]) || parseInt(getValue('Days Goal')) || 7, // Column AM (Days Month)
-            hoursGoal: parseInt(values[39]) || parseInt(getValue('Hrs Goal')) || 15, // Column AN (Hours Month)
+            // Column AM (index 39) - Est Rev (estimated revenue dollar amount)
+            estRev: parseFloat(values[39]?.toString().replace(/[$,]/g, '')) || 0,
+            
+            // Column AN (index 40) - Bonus
+            bonus: values[40] || '',
+            
+            // Activity Level goals from columns O and R
+            activityDaysGoal: parseInt(values[14]) || parseInt(getValue('Days Goal')) || 18, // Column O = Days Goal
+            activityHoursGoal: parseInt(values[17]) || parseInt(getValue('Hrs Goal')) || 60, // Column R = Hrs Goal
+            
+            // Monthly Goals from columns AP and AQ
+            daysGoal: parseInt(values[41]) || parseInt(getValue('Days Month')) || 22, // Column AP = Days Month
+            hoursGoal: parseInt(values[42]) || parseInt(getValue('Hours Month')) || 80, // Column AQ = Hours Month
+            
+            // Note: This CSV only has Rewards Month (current), not full monthly history
+            // Monthly history comes from HISTORY.csv via creator_trends.json
+            earningsHistory: [],
             
             // Column AO - Rewards Month (March 2026 onwards)
-            rewardsMonth: getValue('Rewards Month') || values[40] || '', // Column AO
+            rewardsMonth: getValue('Rewards Month') || values[42] || '', // Column AO = index 42
             
             // Labels & links
             rankLabel: getValue('Rank Label'),
@@ -241,7 +254,7 @@ class TaboostDataService {
             this.creators = creatorsData.map(c => ({
                 creatorId: c.creatorId,
                 username: c.username,
-                level: c.level,
+                level: (c.level === '' || c.level === undefined || c.level === null) ? -1 : parseInt(c.level),
                 month: c.month,
                 discord: '',
                 manager: c.agent || 'Unassigned',
@@ -266,6 +279,7 @@ class TaboostDataService {
                 gifted: c.gifted || 0,
                 running: c.running || 0,
                 unlocked: c.unlocked || 0,
+                estRev: parseFloat(c.estRev) || parseFloat(c.rewardsMonth?.replace(/[$,]/g, '')) || 0,
                 rewardsMonth: c.rewardsMonth || '', // Column AO
                 rewards: {
                     earned: c.earned || 0,
@@ -390,7 +404,8 @@ class TaboostDataService {
 }
 
 // Create global instance
-const taboostData = new TaboostDataService();
+// sheetsDataService - separate from taboostData to avoid conflicts
+const sheetsDataService = new TaboostDataService();
 
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
