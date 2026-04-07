@@ -118,8 +118,12 @@ const CSV_LOADER = {
       return '';
     };
     
-    // Find date column dynamically (format: M/D or MM/DD)
-    const dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h));
+    // Find date column dynamically (format: M/D, MM/DD, or MMM DD)
+    let dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h) || /^[A-Za-z]+\s\d{1,2}$/.test(h.trim()));
+    if (!dateCol && headers.length > 2) dateCol = headers[2]; // Fallback to Col C
+    
+    // Save for the 'Last updated' text
+    window.currentCsvDateCol = dateCol;
     
     // Get username from date column or fallbacks
     let username = get(dateCol, 'TikTok', '3/1', 'Username', 'username', 'TikTok Username');
@@ -211,7 +215,8 @@ const CSV_LOADER = {
       // Debug: log first row to see column mapping
       if (rows.length > 0) {
         const firstRow = rows[0];
-        const dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h));
+        let dateCol = headers.find(h => /^\d{1,2}\/\d{1,2}$/.test(h) || /^[A-Za-z]+\s\d{1,2}$/.test(h.trim()));
+        if (!dateCol && headers.length > 2) dateCol = headers[2];
         const username = firstRow[dateCol] || firstRow['TikTok'] || firstRow['3/22'] || 'NOT FOUND';
         
         // Find estRev column by checking multiple variations

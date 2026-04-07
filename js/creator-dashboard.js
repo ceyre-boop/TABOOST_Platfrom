@@ -150,14 +150,32 @@ async function initCreatorDashboard(user) {
 }
 
 function updateLastUpdated() {
-    const now = new Date();
-    const yesterday = new Date(now);
-    yesterday.setDate(yesterday.getDate() - 1);
-    const dateStr = yesterday.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric',
-        timeZone: 'America/Los_Angeles'
-    });
+    let dateStr;
+    
+    // Check if we captured 'Apr 2' or '4/2' from the CSV header
+    if (window.currentCsvDateCol) {
+        const dMatch = window.currentCsvDateCol.match(/^(\d{1,2})\/(\d{1,2})$/);
+        if (dMatch) {
+            // It's M/D or MM/DD, let's format it as MMM D
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const mIdx = parseInt(dMatch[1], 10) - 1;
+            const day = dMatch[2];
+            dateStr = `${months[mIdx]} ${day}`;
+        } else {
+            // It's likely already e.g. "Apr 2"
+            dateStr = window.currentCsvDateCol.trim();
+        }
+    } else {
+        const now = new Date();
+        const yesterday = new Date(now);
+        yesterday.setDate(yesterday.getDate() - 1);
+        dateStr = yesterday.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric',
+            timeZone: 'America/Los_Angeles'
+        });
+    }
+
     document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
 }
 

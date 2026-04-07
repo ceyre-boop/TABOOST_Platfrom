@@ -90,16 +90,31 @@ async function initCreatorDashboard(user) {
 }
 
 function updateLastUpdated() {
+    let dateStr;
     const now = new Date();
     const timeStr = now.toLocaleTimeString('en-US', { 
         hour: 'numeric', 
         minute: '2-digit',
         hour12: true 
     });
-    const dateStr = now.toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric' 
-    });
+
+    if (window.currentCsvDateCol) {
+        const dMatch = window.currentCsvDateCol.match(/^(\d{1,2})\/(\d{1,2})$/);
+        if (dMatch) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            const mIdx = parseInt(dMatch[1], 10) - 1;
+            const day = dMatch[2];
+            dateStr = `${months[mIdx]} ${day}`;
+        } else {
+            dateStr = window.currentCsvDateCol.trim();
+        }
+    } else {
+        dateStr = now.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric' 
+        });
+    }
+
     document.getElementById('lastUpdatedTime').textContent = `${dateStr} at ${timeStr}`;
 }
 
