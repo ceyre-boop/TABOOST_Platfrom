@@ -452,7 +452,7 @@ function updateGoals() {
             name: 'Streaming Days',
             icon: 'fa-calendar',
             current: myData.validLiveDays || 0,
-            target: myData.daysGoal || 22,
+            target: myData.monthGoal || myData.daysMonth || myData.daysGoal || 22,
             unit: ' days'
         },
         {
@@ -1341,7 +1341,7 @@ function updateScoreAndLevels() {
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700'; // Gold color
-            proBonusRevenueNote.textContent = 'Cash Bonus Earned';
+            proBonusRevenueNote.textContent = 'Tier Rank Required';
             
             // Add highlight effect
             if (proBonusRevenueItem) {
