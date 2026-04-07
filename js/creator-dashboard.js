@@ -777,7 +777,7 @@ function initPerformanceChart() {
             backgroundColor: 'transparent',
             borderWidth: 2,
             borderDash: [5, 5],
-            tension: 0.4,
+            tension: 0,
             pointRadius: 4,
             pointBackgroundColor: '#00ff88',
             yAxisID: 'y1'
