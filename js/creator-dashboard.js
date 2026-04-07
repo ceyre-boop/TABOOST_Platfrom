@@ -975,16 +975,17 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Dynamic: use all 6 months from the HISTORY header
+    // Dynamic: use all 6 months from the HISTORY header plus current month
+    const currentMonthStr = myData.month || new Date().toLocaleString('default', { month: 'short' });
     const periods = (typeof trendMonths !== 'undefined' && trendMonths.length >= 6)
-        ? trendMonths
-        : ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'];
+        ? [...trendMonths.map(m => m.split(' ')[0]), currentMonthStr.split(' ')[0]]
+        : ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6', currentMonthStr.split(' ')[0]];
     
     // Use real earnings history from historical CSV (Revenue columns AJ-AO)
     let earningsData = [];
     
-    if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
-        // Use real earnings from CSV - reverse to match chronological order (Sep→Feb)
+    if (myData.earningsHistory && myData.earningsHistory.length >= 7) {
+        // Use real earnings from CSV - reverse to match chronological order
         earningsData = [...myData.earningsHistory].reverse();
     } else {
         // Fallback to trends data or calculated estimates
@@ -1001,66 +1002,84 @@ function updateHistory() {
         
         if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
             // FIX: Convert trends data to earningsData format
-            const rewardsHist = trends.rewardsHistory || [];
             const revenueHist = trends.revenueHistory || [];
+            const bonusHist = trends.bonusHistory || [];
+            
             // Dynamically take the last 6 months
             const startIdx = Math.max(0, trends.diamondsHistory.length - 6);
             earningsData = trends.diamondsHistory.slice(startIdx).map((diamonds, idx) => {
-                // Adjust idx to line up with the original array
                 const realIdx = startIdx + idx;
-                // Use actual revenue from revenueHistory if available, otherwise calculate
                 let revenue = revenueHist[realIdx];
                 if (!revenue || revenue === 0) {
                     revenue = Math.round(diamonds * 0.005);
                 }
+                const bonus = parseFloat(bonusHist[realIdx]) || 0;
+                
                 return {
                     diamonds: diamonds,
-                    revenue: '$' + revenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
-                    rewards: parseInt(rewardsHist[realIdx]?.toString().replace(/,/g, '')) || 0
+                    revenue: '$' + revenue.toLocaleString('en-US', { minimumFractionDigits: 0 }),
+                    rawRevenue: revenue,
+                    bonus: bonus,
+                    bonusStr: bonus > 0 ? '$' + bonus.toLocaleString('en-US', { minimumFractionDigits: 0 }) : '--'
                 };
             });
+            
+            // Append CURRENT month
+            const currentDiamonds = myData.diamonds || 0;
+            const currentRevenueRaw = parseFloat((myData.estRev || 0).toString().replace(/[$,]/g, '')) || Math.round(currentDiamonds * 0.005);
+            const currentBonus = parseFloat((myData.bonus || 0).toString().replace(/[$,]/g, '')) || 0;
+            
+            earningsData.push({
+                diamonds: currentDiamonds,
+                revenue: '$' + currentRevenueRaw.toLocaleString('en-US', { minimumFractionDigits: 0 }),
+                rawRevenue: currentRevenueRaw,
+                bonus: currentBonus,
+                bonusStr: currentBonus > 0 ? '$' + currentBonus.toLocaleString('en-US', { minimumFractionDigits: 0 }) : '--'
+            });
+            
         } else {
-            // Fallback: build from available data (6 months) with estimated revenue
+            // Fallback: build from available data with estimated revenue
             const current = myData.diamonds || 0;
             const lastMonth = myData.diamondsLastMonth || current;
             const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
             earningsData = [
-                { diamonds: Math.round(twoMonthsAgo * 0.8 || current * 0.65), revenue: '$0.00', rewards: 0 },
-                { diamonds: Math.round(twoMonthsAgo * 0.85 || current * 0.7), revenue: '$0.00', rewards: 0 },
-                { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rewards: 0 },
-                { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rewards: 0 },
-                { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rewards: 0 },
-                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rewards: 0 }
+                { diamonds: Math.round(twoMonthsAgo * 0.8 || current * 0.65), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: Math.round(twoMonthsAgo * 0.85 || current * 0.7), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
+                { diamonds: current, rawRevenue: Math.round(current * 0.005), revenue: '$' + Math.round(current * 0.005).toLocaleString(), bonus: 0, bonusStr: '--' }
             ];
         }
     }
     
-    // Build rows with calculated changes using Revenue from CSV
+    // Build rows with calculated changes using Revenue + Bonus
     const rows = periods.map((period, index) => {
-        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rewards: 0 };
+        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' };
         const diamonds = parseInt(data.diamonds) || 0;
         const prevData = index > 0 ? earningsData[index - 1] : null;
-        const prevDiamonds = prevData ? (parseInt(prevData.diamonds) || 0) : 0;
+        
         let change = '--';
-        if (index > 0 && prevDiamonds > 0) {
-            const changeVal = ((diamonds - prevDiamonds) / prevDiamonds * 100);
-            change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
+        if (prevData) {
+            const currentTotal = (data.rawRevenue || (diamonds * 0.005)) + (data.bonus || 0);
+            const prevTotal = (prevData.rawRevenue || (parseInt(prevData.diamonds || 0) * 0.005)) + (prevData.bonus || 0);
+            
+            if (prevTotal > 0) {
+                const changeVal = ((currentTotal - prevTotal) / prevTotal * 100);
+                change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
+            }
         }
         
-        // Revenue from CSV - strip cents and add ≈ prefix (no space to prevent line break)
+        // Revenue from CSV
         let revenueRaw = data.revenue || '$0.00';
-        // Remove cents (everything after decimal point)
-        revenueRaw = revenueRaw.replace(/\.\d{2}$/, '');
         const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈' + revenueRaw;
-        
-        // Rewards from CSV
-        const rewards = data.rewards > 0 ? formatNumber(data.rewards) + ' 💎' : '--';
         
         return {
             period: period,
             diamonds: diamonds,
-            usd: revenue, // Use actual Revenue from CSV, not calculated
-            rewards: rewards,
+            usd: revenue,
+            bonus: data.bonusStr,
             change: change
         };
     });
@@ -1076,7 +1095,7 @@ function updateHistory() {
                 <td><strong>${r.period}</strong></td>
                 <td>${formatNumber(r.diamonds)} 💎</td>
                 <td style="color: var(--success);">${r.usd}</td>
-                <td>${r.rewards}</td>
+                <td style="color: #ffd700;">${r.bonus === '--' ? '--' : r.bonus}</td>
                 <td>
                     ${isChange ? `
                         <span class="trend-indicator ${changeClass}">
