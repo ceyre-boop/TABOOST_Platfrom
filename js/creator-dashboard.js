@@ -975,16 +975,15 @@ function updateAchievements() {
 }
 
 function updateHistory() {
-    // Dynamic: use all 6 months from the HISTORY header plus current month
-    const currentMonthStr = myData.month || new Date().toLocaleString('default', { month: 'short' });
+    // Dynamic: use all 6 months from the HISTORY header
     const periods = (typeof trendMonths !== 'undefined' && trendMonths.length >= 6)
-        ? [...trendMonths.map(m => m.split(' ')[0]), currentMonthStr.split(' ')[0]]
-        : ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6', currentMonthStr.split(' ')[0]];
+        ? trendMonths.map(m => m.split(' ')[0])
+        : ['Month 1', 'Month 2', 'Month 3', 'Month 4', 'Month 5', 'Month 6'];
     
     // Use real earnings history from historical CSV (Revenue columns AJ-AO)
     let earningsData = [];
     
-    if (myData.earningsHistory && myData.earningsHistory.length >= 7) {
+    if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
         // Use real earnings from CSV - reverse to match chronological order
         earningsData = [...myData.earningsHistory].reverse();
     } else {
@@ -1024,19 +1023,6 @@ function updateHistory() {
                 };
             });
             
-            // Append CURRENT month
-            const currentDiamonds = myData.diamonds || 0;
-            const currentRevenueRaw = parseFloat((myData.estRev || 0).toString().replace(/[$,]/g, '')) || Math.round(currentDiamonds * 0.005);
-            const currentBonus = parseFloat((myData.bonus || 0).toString().replace(/[$,]/g, '')) || 0;
-            
-            earningsData.push({
-                diamonds: currentDiamonds,
-                revenue: '$' + currentRevenueRaw.toLocaleString('en-US', { minimumFractionDigits: 0 }),
-                rawRevenue: currentRevenueRaw,
-                bonus: currentBonus,
-                bonusStr: currentBonus > 0 ? '$' + currentBonus.toLocaleString('en-US', { minimumFractionDigits: 0 }) : '--'
-            });
-            
         } else {
             // Fallback: build from available data with estimated revenue
             const current = myData.diamonds || 0;
@@ -1048,8 +1034,7 @@ function updateHistory() {
                 { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
                 { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
                 { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: current, rawRevenue: Math.round(current * 0.005), revenue: '$' + Math.round(current * 0.005).toLocaleString(), bonus: 0, bonusStr: '--' }
+                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' }
             ];
         }
     }
