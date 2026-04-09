@@ -88,7 +88,7 @@ function generateRollingCalendar() {
         },
         {
             id: 8,
-            title: "Easter Eggstravaganza",
+            title: "Easter Egg-stravaganza",
             type: "special",
             time: "All Day",
             startDate: new Date('2026-04-03'),
