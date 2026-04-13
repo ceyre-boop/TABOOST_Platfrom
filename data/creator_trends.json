@@ -7,7 +7,7 @@
     "Feb 2026",
     "Mar 2026"
   ],
-  "generatedAt": "2026-04-11T17:02:30.972689Z",
+  "generatedAt": "2026-04-13T16:23:02.576019Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -95,7 +95,7 @@
         2,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         2,
@@ -755,7 +755,7 @@
         9,
         7
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         6,
         6,
@@ -1115,7 +1115,7 @@
         5,
         5
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         6,
         6,
@@ -1175,7 +1175,7 @@
         2,
         3
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         5,
         4,
@@ -1450,7 +1450,7 @@
       ]
     },
     {
-      "username": "mcdonalds_hacks101",
+      "username": "foodhacksrobert",
       "diamondsHistory": [
         105.0,
         9.0,
@@ -2255,7 +2255,7 @@
         6,
         7
       ],
-      "tierCurrent": 5,
+      "tierCurrent": 6,
       "levelHistory": [
         3,
         3,
@@ -2795,7 +2795,7 @@
         7,
         8
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         3,
         3,
@@ -3935,7 +3935,7 @@
         6,
         7
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         6,
         6,
@@ -3995,7 +3995,7 @@
         6,
         7
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         4,
         6,
@@ -5435,7 +5435,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -5975,7 +5975,7 @@
         5,
         7
       ],
-      "tierCurrent": 5,
+      "tierCurrent": 6,
       "levelHistory": [
         4,
         3,
@@ -6095,7 +6095,7 @@
         5,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         0,
         1,
@@ -6155,7 +6155,7 @@
         4,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         0,
         2,
@@ -7415,7 +7415,7 @@
         5,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         2,
         3,
@@ -7535,7 +7535,7 @@
         2,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         1,
         null,
@@ -8435,7 +8435,7 @@
         5,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         5,
         5,
@@ -9635,7 +9635,7 @@
         3,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         0,
         1,
@@ -12155,7 +12155,7 @@
         4,
         6
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         5,
         6,
@@ -13655,7 +13655,7 @@
         2,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         0,
@@ -15815,7 +15815,7 @@
         5,
         7
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         4,
         4,
@@ -15875,7 +15875,7 @@
         3,
         5
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         2,
         2,
@@ -18575,7 +18575,7 @@
         5,
         5
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         5,
         6,
@@ -18815,7 +18815,7 @@
         1,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         1,
@@ -21875,7 +21875,7 @@
         1,
         1
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -24215,7 +24215,7 @@
         6,
         6
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         2,
         3,
@@ -27515,7 +27515,7 @@
         4,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         1,
         1,
@@ -28295,7 +28295,7 @@
         3,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         1,
         1,
@@ -28739,66 +28739,6 @@
         0.64,
         0.0,
         0.0
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0.0
-      ]
-    },
-    {
-      "username": "kes_014",
-      "diamondsHistory": [
-        13434.0,
-        9434.0,
-        5653.0,
-        3129.0,
-        6093.0,
-        15178.0
-      ],
-      "growthRates": [
-        0,
-        -29.8,
-        -40.1,
-        -44.6,
-        94.7,
-        149.1
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        null,
-        1,
-        1
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        1,
-        1,
-        1,
-        0,
-        1,
-        2
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        60.45,
-        42.45,
-        25.44,
-        14.08,
-        27.42,
-        68.3
       ],
       "bonusHistory": [
         0,
@@ -32075,7 +32015,7 @@
         5,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         5,
         6,
@@ -32135,7 +32075,7 @@
         5,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         1,
         1,
@@ -40595,7 +40535,7 @@
         4,
         5
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         null,
         null,
@@ -43175,7 +43115,7 @@
         3,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -45275,7 +45215,7 @@
         2,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -52451,6 +52391,126 @@
     },
     {
       "username": "itspopejoy",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "username": "dalanietaylor",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "username": "therealvioletfoxx",
       "diamondsHistory": [
         0,
         0,
