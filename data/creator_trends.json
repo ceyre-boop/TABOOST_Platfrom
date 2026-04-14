@@ -7,7 +7,7 @@
     "Feb 2026",
     "Mar 2026"
   ],
-  "generatedAt": "2026-04-13T16:23:02.576019Z",
+  "generatedAt": "2026-04-14T16:09:37.921465Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -515,7 +515,7 @@
         7,
         8
       ],
-      "tierCurrent": 5,
+      "tierCurrent": 6,
       "levelHistory": [
         3,
         6,
@@ -2195,7 +2195,7 @@
         7,
         6
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         1,
         4,
@@ -3335,7 +3335,7 @@
         1,
         1
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         0,
@@ -7835,7 +7835,7 @@
         4,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         2,
         2,
@@ -8675,7 +8675,7 @@
         7,
         7
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         6,
         6,
@@ -12155,7 +12155,7 @@
         4,
         6
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         5,
         6,
@@ -18010,7 +18010,7 @@
       ]
     },
     {
-      "username": "kayspage8",
+      "username": "kayleecapo",
       "diamondsHistory": [
         649.0,
         79.0,
@@ -32075,7 +32075,7 @@
         5,
         4
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         1,
         1,
@@ -34595,7 +34595,7 @@
         5,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         4,
@@ -37175,7 +37175,7 @@
         6,
         5
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         null,
         2,
@@ -44435,7 +44435,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": null,
       "levelHistory": [
         null,
         null,
@@ -49990,7 +49990,7 @@
       ]
     },
     {
-      "username": "kayspage8",
+      "username": "kayleecapo",
       "diamondsHistory": [
         649.0,
         79.0,
@@ -52511,6 +52511,66 @@
     },
     {
       "username": "therealvioletfoxx",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "username": "viper_cosplayer",
       "diamondsHistory": [
         0,
         0,
