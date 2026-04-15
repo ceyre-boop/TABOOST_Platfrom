@@ -263,6 +263,38 @@
             }
         }
         
+        /* Extended score badge — two-line pill for bonus tiers */
+        .score-badge.bonus-pros {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        .score-badge.bonus-masters {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #cc0040, #ff0050, #cc0040);
+            color: #fff;
+            border: 1px solid #cc0040;
+        }
+        .score-badge .badge-score-num {
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .score-badge .badge-score-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+
         /* Masters (90+) halo on score section — red version of gold pro-active */
         .score-section.masters-active {
             animation: scoreMastersHalo 2s ease-in-out infinite alternate;
@@ -527,16 +559,6 @@
                         <span class="revenue-value" id="proBonusRevenueValue">Score 70+ to Unlock</span>
                     </div>
                     <span class="revenue-note" id="proBonusRevenueNote">Pro Level Benefit</span>
-                </div>
-                <div class="revenue-item" id="rankBoostRevenueItem" style="display: none;">
-                    <div class="revenue-icon" style="background: rgba(204,0,64,0.15); color: #ff0050;">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="revenue-info">
-                        <span class="revenue-name">Rank Boost</span>
-                        <span class="revenue-value" id="rankBoostRevenueValue">Score 90+ Required</span>
-                    </div>
-                    <span class="revenue-note" id="rankBoostRevenueNote">Masters Benefit</span>
                 </div>
             </div>
         </div>

@@ -1117,7 +1117,20 @@ function updateScoreAndLevels() {
     console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
     
     // Update Score Badge
-    document.getElementById('scoreBadge').textContent = `Score: ${score}`;
+    // Score badge — extend to show bonus tier if qualified
+    const scoreBadgeEl = document.getElementById('scoreBadge');
+    if (scoreBadgeEl) {
+        if (score >= 90) {
+            scoreBadgeEl.className = 'score-badge bonus-masters';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus + Rank Boost</span>`;
+        } else if (score >= 70) {
+            scoreBadgeEl.className = 'score-badge bonus-pros';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus Unlocked</span>`;
+        } else {
+            scoreBadgeEl.className = 'score-badge';
+            scoreBadgeEl.textContent = `Score: ${score}`;
+        }
+    }
     
     // Score Segmented Bar - 100 segments, fill based on score
     // Score 86 = 86 segments filled, Score 100 = 100 segments filled
@@ -1374,99 +1387,44 @@ function updateScoreAndLevels() {
         console.error('DEBUG PRO BONUS - proBonusBadge element NOT FOUND in DOM');
     }
     
-    // Update Pro Bonus + Masters in Revenue Streams section
+    // Hide the separate proBonusBadge — info now lives in the score badge pill
+    const proBonusBadgeEl = document.getElementById('proBonusBadge');
+    if (proBonusBadgeEl) proBonusBadgeEl.style.display = 'none';
+
+    // Update Pro Bonus in Revenue Streams section
     const proBonusRevenueValue = document.getElementById('proBonusRevenueValue');
     const proBonusRevenueNote = document.getElementById('proBonusRevenueNote');
     const proBonusRevenueItem = document.getElementById('proBonusRevenueItem');
-    const rankBoostRevenueItem = document.getElementById('rankBoostRevenueItem');
-    const rankBoostRevenueValue = document.getElementById('rankBoostRevenueValue');
-    const rankBoostRevenueNote = document.getElementById('rankBoostRevenueNote');
-    const revenueSection = document.querySelector('.revenue-section');
 
     if (proBonusRevenueValue && proBonusRevenueNote) {
         const scoreValue = parseInt(myData.score) || 0;
 
-        if (scoreValue >= 90) {
-            // --- MASTERS (90+) ---
-            // Cash Bonus row — stays gold, note updated
+        if (scoreValue >= 70) {
+            // Unlocked — show bonus amount in gold
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
-            if (proBonusRevenueItem) {
-                proBonusRevenueItem.classList.add('pro-revenue-active');
-                proBonusRevenueItem.classList.remove('masters-revenue-active');
-            }
+            proBonusRevenueNote.textContent = scoreValue >= 90 ? 'Masters Benefit' : 'Cash Bonus Unlocked';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
 
-            // Rank Boost row — show with red masters styling
-            if (rankBoostRevenueItem) {
-                rankBoostRevenueItem.style.display = 'flex';
-                rankBoostRevenueItem.classList.add('masters-revenue-active');
-            }
-            if (rankBoostRevenueValue) {
-                rankBoostRevenueValue.textContent = 'Cash Bonus + Rank Boost';
-                rankBoostRevenueValue.style.color = '#ff0050';
-            }
-            if (rankBoostRevenueNote) {
-                rankBoostRevenueNote.textContent = 'Masters Achieved';
-            }
-
-            // Red halo on score section, red bg on revenue section
+            // 90+ gets red halo on score section; 70–89 keeps gold
             if (scoreSection) {
-                scoreSection.classList.add('masters-active');
-                scoreSection.classList.remove('pro-active');
+                if (scoreValue >= 90) {
+                    scoreSection.classList.add('masters-active');
+                    scoreSection.classList.remove('pro-active');
+                } else {
+                    scoreSection.classList.remove('masters-active');
+                }
             }
-            if (revenueSection) {
-                revenueSection.classList.add('masters-bg');
-            }
-
-        } else if (scoreValue >= 70) {
-            // --- PROS (70–89) ---
-            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
-            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
-            proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
-            if (proBonusRevenueItem) {
-                proBonusRevenueItem.classList.add('pro-revenue-active');
-                proBonusRevenueItem.classList.remove('masters-revenue-active');
-            }
-
-            // Hide rank boost row
-            if (rankBoostRevenueItem) {
-                rankBoostRevenueItem.style.display = 'none';
-                rankBoostRevenueItem.classList.remove('masters-revenue-active');
-            }
-
-            // Gold halo, no red bg
-            if (scoreSection) {
-                scoreSection.classList.remove('masters-active');
-            }
-            if (revenueSection) {
-                revenueSection.classList.remove('masters-bg');
-            }
-
         } else {
-            // --- LOCKED (<70) ---
+            // Locked
             proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
             proBonusRevenueValue.style.color = '#888';
             proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
-            if (proBonusRevenueItem) {
-                proBonusRevenueItem.classList.remove('pro-revenue-active');
-                proBonusRevenueItem.classList.remove('masters-revenue-active');
-            }
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
 
-            // Hide rank boost row
-            if (rankBoostRevenueItem) {
-                rankBoostRevenueItem.style.display = 'none';
-                rankBoostRevenueItem.classList.remove('masters-revenue-active');
-            }
-
-            // Remove all special effects
             if (scoreSection) {
                 scoreSection.classList.remove('masters-active');
-            }
-            if (revenueSection) {
-                revenueSection.classList.remove('masters-bg');
             }
         }
     }
