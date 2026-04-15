@@ -1756,17 +1756,20 @@
     
     .activity-level-section .section-header {
         margin-bottom: 15px;
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 15px;
     }
-    
+
     .activity-level-section .section-header h2 {
         font-size: 16px;
     }
-    
+
     .level-badge {
         font-size: 12px;
         padding: 4px 12px;
+        flex-shrink: 0;
     }
     
     /* Mobile: 2-column grid layout */
@@ -1991,10 +1994,12 @@
     }
     
     .activity-level-section .section-header {
-        justify-content: center;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         gap: 12px;
     }
-    
+
     .activity-level-section .section-header h2 {
         font-size: 14px;
     }
