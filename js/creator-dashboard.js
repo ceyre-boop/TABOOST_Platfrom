@@ -1374,33 +1374,99 @@ function updateScoreAndLevels() {
         console.error('DEBUG PRO BONUS - proBonusBadge element NOT FOUND in DOM');
     }
     
-    // Update Pro Bonus in Revenue Streams section
+    // Update Pro Bonus + Masters in Revenue Streams section
     const proBonusRevenueValue = document.getElementById('proBonusRevenueValue');
     const proBonusRevenueNote = document.getElementById('proBonusRevenueNote');
     const proBonusRevenueItem = document.getElementById('proBonusRevenueItem');
-    
+    const rankBoostRevenueItem = document.getElementById('rankBoostRevenueItem');
+    const rankBoostRevenueValue = document.getElementById('rankBoostRevenueValue');
+    const rankBoostRevenueNote = document.getElementById('rankBoostRevenueNote');
+    const revenueSection = document.querySelector('.revenue-section');
+
     if (proBonusRevenueValue && proBonusRevenueNote) {
         const scoreValue = parseInt(myData.score) || 0;
-        
-        if (scoreValue >= 70) {
-            // Use Cash Bonus from column AN (Bonus)
+
+        if (scoreValue >= 90) {
+            // --- MASTERS (90+) ---
+            // Cash Bonus row — stays gold, note updated
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
-            proBonusRevenueValue.style.color = '#ffd700'; // Gold color
-            proBonusRevenueNote.textContent = 'Tier Rank Required';
-            
-            // Add highlight effect
+            proBonusRevenueValue.style.color = '#ffd700';
+            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
             if (proBonusRevenueItem) {
                 proBonusRevenueItem.classList.add('pro-revenue-active');
+                proBonusRevenueItem.classList.remove('masters-revenue-active');
             }
+
+            // Rank Boost row — show with red masters styling
+            if (rankBoostRevenueItem) {
+                rankBoostRevenueItem.style.display = 'flex';
+                rankBoostRevenueItem.classList.add('masters-revenue-active');
+            }
+            if (rankBoostRevenueValue) {
+                rankBoostRevenueValue.textContent = 'Cash Bonus + Rank Boost';
+                rankBoostRevenueValue.style.color = '#ff0050';
+            }
+            if (rankBoostRevenueNote) {
+                rankBoostRevenueNote.textContent = 'Masters Achieved';
+            }
+
+            // Red halo on score section, red bg on revenue section
+            if (scoreSection) {
+                scoreSection.classList.add('masters-active');
+                scoreSection.classList.remove('pro-active');
+            }
+            if (revenueSection) {
+                revenueSection.classList.add('masters-bg');
+            }
+
+        } else if (scoreValue >= 70) {
+            // --- PROS (70–89) ---
+            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
+            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
+            proBonusRevenueValue.style.color = '#ffd700';
+            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
+            if (proBonusRevenueItem) {
+                proBonusRevenueItem.classList.add('pro-revenue-active');
+                proBonusRevenueItem.classList.remove('masters-revenue-active');
+            }
+
+            // Hide rank boost row
+            if (rankBoostRevenueItem) {
+                rankBoostRevenueItem.style.display = 'none';
+                rankBoostRevenueItem.classList.remove('masters-revenue-active');
+            }
+
+            // Gold halo, no red bg
+            if (scoreSection) {
+                scoreSection.classList.remove('masters-active');
+            }
+            if (revenueSection) {
+                revenueSection.classList.remove('masters-bg');
+            }
+
         } else {
+            // --- LOCKED (<70) ---
             proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
-            proBonusRevenueValue.style.color = '#888'; // Gray color
+            proBonusRevenueValue.style.color = '#888';
             proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
-            
-            // Remove highlight effect
             if (proBonusRevenueItem) {
                 proBonusRevenueItem.classList.remove('pro-revenue-active');
+                proBonusRevenueItem.classList.remove('masters-revenue-active');
+            }
+
+            // Hide rank boost row
+            if (rankBoostRevenueItem) {
+                rankBoostRevenueItem.style.display = 'none';
+                rankBoostRevenueItem.classList.remove('masters-revenue-active');
+            }
+
+            // Remove all special effects
+            if (scoreSection) {
+                scoreSection.classList.remove('masters-active');
+            }
+            if (revenueSection) {
+                revenueSection.classList.remove('masters-bg');
             }
         }
     }
