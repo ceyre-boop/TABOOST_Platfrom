@@ -115,30 +115,12 @@
             color: #feca57;
         }
         .stat-label { color: #888; font-size: 11px; }
-        .mode-toggle {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .mode-btn {
-            background: #333;
-            border: 2px solid #444;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .mode-btn.active {
-            border-color: #feca57;
-            background: #2a2a2a;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚀 TABOOST Bulk Import</h1>
-        <p class="subtitle">Import Complete Creator Roster to Firebase</p>
+        <p class="subtitle">Import New Creators to Firebase</p>
 
         <div class="card">
             <h3>📁 Upload CSV File</h3>
@@ -168,12 +150,6 @@
             }
             </code>
             <a href="https://console.firebase.google.com/project/taboost-platform/firestore/rules" target="_blank" style="color:#fbbf24;">Open Firebase Rules →</a>
-        </div>
-
-        <div class="mode-toggle">
-            <button class="mode-btn active" onclick="setMode('new')">📥 Import NEW Only (446)</button>
-            <button class="mode-btn" onclick="setMode('update')">🔄 Update ALL (802)</button>
-            <button class="mode-btn" onclick="setMode('full')">📋 Import FULL List (807)</button>
         </div>
 
         <div class="stats">
@@ -619,7 +595,6 @@
         let importedCount = 0;
         let skippedCount = 0;
         let errorCount = 0;
-        let importMode = 'new';
         let creatorsToImport = [];
 
         function log(message, type = 'info') {
@@ -642,19 +617,6 @@
             
             document.getElementById('progressBar').style.width = `${percent}%`;
             document.getElementById('progressBar').textContent = `${percent}%`;
-        }
-
-        function setMode(mode) {
-            importMode = mode;
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // When using uploaded CSV, mode doesn't change the count
-            if (creatorsToImport.length > 0) {
-                document.getElementById('totalCreators').textContent = creatorsToImport.length;
-            } else if (mode === 'new') {
-                document.getElementById('totalCreators').textContent = NEW_CREATORS.length;
-            }
         }
 
         async function importBatch(startIndex, batchSize) {
