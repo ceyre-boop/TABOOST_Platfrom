@@ -584,11 +584,12 @@
         }
 
         function updateStats() {
+            const total = creatorsToImport.length;
+            document.getElementById('totalCreators').textContent = total;
             document.getElementById('importedCount').textContent = importedCount;
             document.getElementById('skippedCount').textContent = skippedCount;
             document.getElementById('errorCount').textContent = errorCount;
             
-            const total = creatorsToImport.length;
             const processed = importedCount + skippedCount + errorCount;
             const percent = total > 0 ? Math.round((processed / total) * 100) : 0;
             
