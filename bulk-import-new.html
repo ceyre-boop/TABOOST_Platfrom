@@ -89,14 +89,6 @@
         .success { color: #4ade80; }
         .error { color: #f87171; }
         .info { color: #60a5fa; }
-        .warning {
-            background: #451a03;
-            border: 1px solid #92400e;
-            color: #fbbf24;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -137,24 +129,9 @@
             </div>
         </div>
 
-        <div class="warning">
-            ⚠️ <strong>IMPORTANT:</strong> Deploy these TEMPORARY rules first:<br>
-            <code style="background:#000;padding:5px 10px;border-radius:4px;display:block;margin:10px 0;font-size:11px;">
-            rules_version = '2';<br>
-            service cloud.firestore {<br>
-            &nbsp;&nbsp;match /databases/{database}/documents {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;match /{document=**} {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allow read, write: if true;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            &nbsp;&nbsp;}<br>
-            }
-            </code>
-            <a href="https://console.firebase.google.com/project/taboost-platform/firestore/rules" target="_blank" style="color:#fbbf24;">Open Firebase Rules →</a>
-        </div>
-
         <div class="stats">
             <div class="stat-box">
-                <div class="stat-number" id="totalCreators">446</div>
+                <div class="stat-number" id="totalCreators">0</div>
                 <div class="stat-label">To Import</div>
             </div>
             <div class="stat-box">
