@@ -68,8 +68,6 @@ for (let i = 1; i < lines.length; i++) {
     
     const cid = cols[1];
     const username = cols[2];
-    let manager = cols[8] || 'carrington';
-    if (manager.includes('+')) manager = manager.split('+')[0].trim();
     
     if (cid && username && !username.includes('@')) {
         const claimed = username.toLowerCase() === 'skylerclarkk';
@@ -92,16 +90,18 @@ for (let i = 1; i < lines.length; i++) {
             claimed: claimed,
             score: cleanValue(cols[32], 'int', 0),
             diamonds: cleanValue(cols[19], 'int', 0),
-            diamondsGoal: cleanValue(cols[21], 'int', 0),
+            diamondsGoal: cleanValue(cols[22], 'int', 0),  // col 22 = Tier Goal (diamond threshold)
             diamondsPace: cleanValue(cols[20], 'string', '0'),
             diamondsLast30: cleanValue(cols[27], 'int', 0),
             diamondsLastMonth: cleanValue(cols[28], 'int', 0),
             diamonds2MonthsAgo: cleanValue(cols[29], 'int', 0),
             hours: cleanValue(cols[16], 'int', 0),
-            hoursGoal: cleanValue(cols[17], 'int', 0),
+            hoursGoal: cleanValue(cols[39], 'int', 0),  // col 39 = Hours Month (Monthly Goal)
+            activityHoursGoal: cleanValue(cols[17], 'int', 0),  // col 17 = Hrs Goal (Activity Level)
             hoursLeft: cleanValue(cols[18], 'string', '0'),
             validLiveDays: cleanValue(cols[12], 'int', 0),
-            daysGoal: cleanValue(cols[14], 'int', 0),
+            daysGoal: cleanValue(cols[38], 'int', 0),  // col 38 = Days Month (Monthly Goal)
+            activityDaysGoal: cleanValue(cols[14], 'int', 0),  // col 14 = Days Goal (Activity Level)
             daysLeft: cleanValue(cols[15], 'string', '0'),
             tier: cleanValue(cols[21], 'int', 0),
             tierGoal: cleanValue(cols[22], 'int', 0),

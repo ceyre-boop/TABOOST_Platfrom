@@ -71,9 +71,13 @@ for (let i = 1; i < lines.length; i++) {
         hours: parseFloat(getValue(values, 'Hours')) || 0,
         graduationStatus: getValue(values, 'Status'),
         
-        // Goals - columns AM, AN
-        daysGoal: parseInt(getValue(values, 'Days Goal')) || 25,
-        hoursGoal: parseInt(getValue(values, 'Hrs Goal')) || 80,
+        // Goals - Monthly targets from columns AM and AN
+        daysGoal: parseInt(getValue(values, 'Days Month')) || parseInt(getValue(values, 'Days Goal')) || 22,  // col 38 = Days Month
+        hoursGoal: parseInt(getValue(values, 'Hours Month')) || parseInt(getValue(values, 'Hrs Goal')) || 80,  // col 39 = Hours Month
+        
+        // Activity-level goals (thresholds for GO/SLOW/STOP status)
+        activityDaysGoal: parseInt(getValue(values, 'Days Goal')) || 18,   // col 14 = Days Goal
+        activityHoursGoal: parseInt(getValue(values, 'Hrs Goal')) || 60,   // col 17 = Hrs Goal
         
         // Diamonds Target - columns T and W
         diamondsCurrent: formatNumber(values[19]),
