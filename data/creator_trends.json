@@ -7,7 +7,7 @@
     "Feb 2026",
     "Mar 2026"
   ],
-  "generatedAt": "2026-04-19T18:28:36.535032Z",
+  "generatedAt": "2026-04-19T19:05:50.286682Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -18035,7 +18035,7 @@
         1,
         1
       ],
-      "tierCurrent": null,
+      "tierCurrent": 1,
       "levelHistory": [
         null,
         null,
@@ -31015,6 +31015,66 @@
       "revenueHistory": [
         4.88,
         0.0,
+        0.01,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.0
+      ]
+    },
+    {
+      "username": "baby.lange7777",
+      "diamondsHistory": [
+        1110.0,
+        3274.0,
+        3.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "growthRates": [
+        0,
+        195.0,
+        -99.9,
+        -100.0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.0,
+        14.73,
         0.01,
         0.0,
         0.0,
@@ -49955,7 +50015,7 @@
         1,
         1
       ],
-      "tierCurrent": null,
+      "tierCurrent": 1,
       "levelHistory": [
         null,
         null,
