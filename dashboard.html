@@ -788,6 +788,26 @@ const tc=(t)=>['','t1','t2','t3','t4','t5','t6'][t]||'t1';
 const mc=(m)=>{const map={CARRINGTON:'#ff0044',LEVI:'#2979ff',MARCO:'#00e676',BRYTON:'#ffab00',SVEN:'#e040fb',ASHLEY:'#ff6d00',SIERRA:'#00bcd4',DYLAN:'#8bc34a'};for(const k of Object.keys(map))if(m.startsWith(k))return map[k];return '#555'};
 const ini=(n)=>n[0].toUpperCase();
 const mom=(d,p)=>p?Math.round((d/p-1)*100):null;
+let tudumAudioContext=null,lastTudumAt=0;
+function playTudum(){
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  if(Date.now()-lastTudumAt<500)return;
+  const audioContextConstructor=window.AudioContext||window.webkitAudioContext;
+  if(!audioContextConstructor)return;
+  if(!tudumAudioContext)tudumAudioContext=new audioContextConstructor();
+  if(tudumAudioContext.state==='suspended')tudumAudioContext.resume().catch(()=>{});
+  const now=tudumAudioContext.currentTime;
+  [{frequency:170,duration:0.08,gain:0.12,timeOffset:0},{frequency:125,duration:0.26,gain:0.2,timeOffset:0.1}].forEach(note=>{
+    const oscillator=tudumAudioContext.createOscillator(),gainNode=tudumAudioContext.createGain();
+    oscillator.type='triangle';oscillator.frequency.setValueAtTime(note.frequency,now+note.timeOffset);
+    gainNode.gain.setValueAtTime(0.0001,now+note.timeOffset);
+    gainNode.gain.exponentialRampToValueAtTime(note.gain,now+note.timeOffset+0.015);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001,now+note.timeOffset+note.duration);
+    oscillator.connect(gainNode);gainNode.connect(tudumAudioContext.destination);
+    oscillator.start(now+note.timeOffset);oscillator.stop(now+note.timeOffset+note.duration+0.02);
+  });
+  lastTudumAt=Date.now();
+}
 
 // ΓöÇΓöÇ CLOCK ΓöÇΓöÇ
 setInterval(()=>{document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})},1000);
@@ -801,6 +821,7 @@ function showPage(id,el){
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
   if(el)el.classList.add('active');
   document.getElementById('tb-title').textContent=titles[id]||id.toUpperCase();
+  playTudum();
   // re-trigger animations
   document.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,50)});
 }
@@ -1052,6 +1073,7 @@ renderMgrGrid();renderMgrTable();
 renderHealth();
 renderMilestones();
 renderReports();
+playTudum();
 
 // Animate bars on scroll/load
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
