@@ -788,23 +788,23 @@ const tc=(t)=>['','t1','t2','t3','t4','t5','t6'][t]||'t1';
 const mc=(m)=>{const map={CARRINGTON:'#ff0044',LEVI:'#2979ff',MARCO:'#00e676',BRYTON:'#ffab00',SVEN:'#e040fb',ASHLEY:'#ff6d00',SIERRA:'#00bcd4',DYLAN:'#8bc34a'};for(const k of Object.keys(map))if(m.startsWith(k))return map[k];return '#555'};
 const ini=(n)=>n[0].toUpperCase();
 const mom=(d,p)=>p?Math.round((d/p-1)*100):null;
-let tudumCtx=null,lastTudumAt=0;
+let tudumAudioContext=null,lastTudumAt=0;
 function playTudum(){
   if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
   if(Date.now()-lastTudumAt<500)return;
-  const Ctx=window.AudioContext||window.webkitAudioContext;
-  if(!Ctx)return;
-  if(!tudumCtx)tudumCtx=new Ctx();
-  if(tudumCtx.state==='suspended')tudumCtx.resume().catch(()=>{});
-  const now=tudumCtx.currentTime;
-  [{f:170,d:0.08,g:0.12,t:0},{f:125,d:0.26,g:0.2,t:0.1}].forEach(n=>{
-    const o=tudumCtx.createOscillator(),gn=tudumCtx.createGain();
-    o.type='triangle';o.frequency.setValueAtTime(n.f,now+n.t);
-    gn.gain.setValueAtTime(0.0001,now+n.t);
-    gn.gain.exponentialRampToValueAtTime(n.g,now+n.t+0.015);
-    gn.gain.exponentialRampToValueAtTime(0.0001,now+n.t+n.d);
-    o.connect(gn);gn.connect(tudumCtx.destination);
-    o.start(now+n.t);o.stop(now+n.t+n.d+0.02);
+  const audioContextConstructor=window.AudioContext||window.webkitAudioContext;
+  if(!audioContextConstructor)return;
+  if(!tudumAudioContext)tudumAudioContext=new audioContextConstructor();
+  if(tudumAudioContext.state==='suspended')tudumAudioContext.resume().catch(()=>{});
+  const now=tudumAudioContext.currentTime;
+  [{frequency:170,duration:0.08,gain:0.12,timeOffset:0},{frequency:125,duration:0.26,gain:0.2,timeOffset:0.1}].forEach(note=>{
+    const oscillator=tudumAudioContext.createOscillator(),gainNode=tudumAudioContext.createGain();
+    oscillator.type='triangle';oscillator.frequency.setValueAtTime(note.frequency,now+note.timeOffset);
+    gainNode.gain.setValueAtTime(0.0001,now+note.timeOffset);
+    gainNode.gain.exponentialRampToValueAtTime(note.gain,now+note.timeOffset+0.015);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001,now+note.timeOffset+note.duration);
+    oscillator.connect(gainNode);gainNode.connect(tudumAudioContext.destination);
+    oscillator.start(now+note.timeOffset);oscillator.stop(now+note.timeOffset+note.duration+0.02);
   });
   lastTudumAt=Date.now();
 }
