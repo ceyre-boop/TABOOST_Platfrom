@@ -24,7 +24,153 @@
     <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
+        /* ── INTRO SPLASH ── */
+        #intro-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        #intro-splash.hiding {
+            opacity: 0;
+            transform: scale(1.04);
+            pointer-events: none;
+        }
+
+        .splash-logo-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 32px;
+        }
+        .splash-ring {
+            position: absolute;
+            inset: -18px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 0, 68, 0.35);
+            animation: splashRingPulse 2.4s ease-in-out infinite;
+        }
+        .splash-ring-outer {
+            position: absolute;
+            inset: -36px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 0, 68, 0.15);
+            animation: splashRingPulse 2.4s ease-in-out infinite 0.4s;
+        }
+        @keyframes splashRingPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.06); opacity: 1; }
+        }
+        .splash-logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 24px;
+            border: 2px solid #ff0044;
+            object-fit: cover;
+            box-shadow: 0 0 40px rgba(255, 0, 68, 0.4);
+            animation: splashLogoBreathe 2.4s ease-in-out infinite;
+        }
+        @keyframes splashLogoBreathe {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 0, 68, 0.35); }
+            50% { box-shadow: 0 0 60px rgba(255, 0, 68, 0.6); }
+        }
+
+        .splash-wordmark {
+            font-size: 48px;
+            font-weight: 900;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #ff0044 0%, #ff6b6b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
+            animation: splashWordmarkIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes splashWordmarkIn {
+            from { opacity: 0; transform: translateY(14px) scale(0.95); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .splash-tagline {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.45);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 56px;
+        }
+
+        .splash-tap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .splash-tap-btn {
+            padding: 14px 40px;
+            border: 1.5px solid rgba(255, 0, 68, 0.7);
+            border-radius: 100px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: rgba(255, 0, 68, 0.08);
+            animation: splashTapPulse 1.8s ease-in-out infinite;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .splash-tap-btn:hover {
+            background: rgba(255, 0, 68, 0.2);
+            border-color: #ff0044;
+        }
+        @keyframes splashTapPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.03); opacity: 1; }
+        }
+        .splash-tap-hint {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            letter-spacing: 1px;
+        }
+
+        /* ── BURST FLASH on dismiss ── */
+        #splash-burst {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: radial-gradient(circle at center, rgba(255, 0, 68, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+        }
+        #splash-burst.fire {
+            animation: burstFire 0.45s ease-out forwards;
+        }
+        @keyframes burstFire {
+            0%   { opacity: 1; transform: scale(0.5); }
+            60%  { opacity: 0.6; transform: scale(1.6); }
+            100% { opacity: 0; transform: scale(2.2); }
+        }
+
+        /* ── PAGE CONTENT entrance ── */
+        #page-content {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease 0.2s, transform 0.7s ease 0.2s;
+        }
+        #page-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0f0f1a 100%);
@@ -289,6 +435,27 @@
     </style>
 </head>
 <body>
+
+    <!-- ── INTRO SPLASH (shown until user taps) ── -->
+    <div id="intro-splash" role="button" aria-label="Tap to enter TABOOST" onclick="enterSite()">
+        <div class="splash-logo-wrap">
+            <div class="splash-ring"></div>
+            <div class="splash-ring-outer"></div>
+            <img class="splash-logo-img" src="images/taboost-genie.jpg" alt="TABOOST">
+        </div>
+        <div class="splash-wordmark">TABOOST</div>
+        <div class="splash-tagline">Turn Your Hustle Into a Business</div>
+        <div class="splash-tap">
+            <div class="splash-tap-btn">Tap to Enter</div>
+            <div class="splash-tap-hint">with sound 🔊</div>
+        </div>
+    </div>
+
+    <!-- Burst flash overlay (fires on enter) -->
+    <div id="splash-burst"></div>
+
+    <!-- Main page content (fades in after splash) -->
+    <div id="page-content">
     <div class="glow glow-1"></div>
     <div class="glow glow-2"></div>
     
@@ -372,5 +539,66 @@
             <p>© 2025 TABOOST. All rights reserved.</p>
         </footer>
     </div>
-</body>
-</html>
+    </div><!-- end #page-content -->
+
+    <script>
+    // ── Web Audio ta-dum synthesizer ──
+    let tadumAudioContext = null;
+    function playTadum() {
+        const AudioContextConstructor = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextConstructor) return;
+        if (!tadumAudioContext) tadumAudioContext = new AudioContextConstructor();
+        const ctx = tadumAudioContext;
+        if (ctx.state === 'suspended') ctx.resume();
+        const now = ctx.currentTime;
+        [
+            { frequency: 160, duration: 0.09, gain: 0.18, timeOffset: 0 },
+            { frequency: 118, duration: 0.30, gain: 0.26, timeOffset: 0.11 }
+        ].forEach(function(note) {
+            var oscillator = ctx.createOscillator();
+            var gainNode   = ctx.createGain();
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(note.frequency, now + note.timeOffset);
+            gainNode.gain.setValueAtTime(0.0001, now + note.timeOffset);
+            gainNode.gain.exponentialRampToValueAtTime(note.gain, now + note.timeOffset + 0.018);
+            gainNode.gain.exponentialRampToValueAtTime(0.0001, now + note.timeOffset + note.duration);
+            oscillator.connect(gainNode);
+            gainNode.connect(ctx.destination);
+            oscillator.start(now + note.timeOffset);
+            oscillator.stop(now + note.timeOffset + note.duration + 0.03);
+        });
+    }
+
+    // ── Enter site handler ──
+    var splashDone = false;
+    function enterSite() {
+        if (splashDone) return;
+        splashDone = true;
+
+        // 1. Play the ta-dum (browser allows it because we're inside a click handler)
+        playTadum();
+
+        // 2. Fire the burst flash
+        var burst = document.getElementById('splash-burst');
+        burst.classList.add('fire');
+
+        // 3. Animate the splash out
+        var splash = document.getElementById('intro-splash');
+        splash.classList.add('hiding');
+
+        // 4. Show page content
+        var content = document.getElementById('page-content');
+        content.classList.add('visible');
+
+        // 5. Remove splash from DOM after transition
+        setTimeout(function() {
+            splash.style.display = 'none';
+        }, 800);
+    }
+
+    // Allow keyboard Enter/Space to trigger splash dismissal too
+    document.getElementById('intro-splash').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') enterSite();
+    });
+    </script>
+</body></html>
