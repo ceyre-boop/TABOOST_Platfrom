@@ -333,10 +333,18 @@ function updateProfile(user) {
     if (hour >= 12) greeting = 'Good afternoon';
     if (hour >= 18) greeting = 'Good evening';
     
-    const growth = parseFloat(myData.growthPercent) || 0;
+    // Use prorated pace comparison for welcome message
+    let growth = 0;
+    if (myData.diamonds && myData.diamondsLastMonth) {
+        const _today = new Date();
+        const _daysInMonth = new Date(_today.getFullYear(), _today.getMonth() + 1, 0).getDate();
+        const _dayOfMonth = _today.getDate();
+        const _proratedTarget = myData.diamondsLastMonth * (_dayOfMonth / _daysInMonth);
+        growth = _proratedTarget > 0 ? ((myData.diamonds - _proratedTarget) / _proratedTarget) * 100 : 0;
+    }
     let message = 'Check out your latest earnings and goals.';
     if (growth > 20) message = '🚀 Amazing growth this month! Keep it up!';
-    else if (growth < 0) message = 'Your numbers are down. Let\'s get back on track!';
+    else if (growth < 0) message = 'You\'re behind last month\'s pace — let\'s get back on track!';
     else if ((myData.hours || 0) < 40) message = 'You\'re behind on hours. Time to stream!';
     
     document.getElementById('welcomeTitle').textContent = `${greeting}, ${myData.username}!`;
@@ -360,19 +368,22 @@ function updateStats() {
     const realDollarValue = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || 0;
     document.getElementById('currentUSD').textContent = '≈ $' + Math.round(realDollarValue).toLocaleString('en-US');
     
-    // Growth trend - calculate if not provided
-    let growth = parseFloat(myData.growthPercent);
-    if (!growth && myData.diamonds && myData.diamondsLastMonth) {
-        // Calculate growth: (current - last) / last * 100
-        growth = ((myData.diamonds - myData.diamondsLastMonth) / myData.diamondsLastMonth) * 100;
+    // Growth trend - compare current diamonds to prorated last month target
+    // (where they'd be at this point in the month if they matched last month's pace)
+    let growth = 0;
+    if (myData.diamonds && myData.diamondsLastMonth) {
+        const today = new Date();
+        const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        const dayOfMonth = today.getDate();
+        const proratedTarget = myData.diamondsLastMonth * (dayOfMonth / daysInMonth);
+        growth = proratedTarget > 0 ? ((myData.diamonds - proratedTarget) / proratedTarget) * 100 : 0;
     }
-    growth = growth || 0;
-    
+
     const trendEl = document.getElementById('diamondTrend');
     trendEl.innerHTML = `
         <span class="trend-indicator ${growth >= 0 ? 'up' : 'down'}">
             <i class="fas fa-arrow-${growth >= 0 ? 'up' : 'down'}"></i>
-            ${Math.abs(growth).toFixed(1)}% vs last month
+            ${Math.abs(growth).toFixed(1)}% vs last month pace
         </span>
     `;
     
