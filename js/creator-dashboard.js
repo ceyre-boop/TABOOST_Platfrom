@@ -770,18 +770,19 @@ function initPerformanceChart() {
         const currentTierPlot = tierVal(myData.tier);
         // Default for creators with no history: all null except Current
         let tierData = [null, null, null, null, null, currentTierPlot];
-        if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
-            // History has 6 entries: indices 0-4 = past 5 months, index 5 = current in-progress
-            // Use indices 0-4 for the 5 historical chart slots, live tier for Current slot
+        if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
             const hist = trends.tierHistory;
             const len = hist.length;
+            // If 6+ entries, last entry is current in-progress — skip it for historical slots
+            // If exactly 5, all entries are completed months
+            const offset = len >= 6 ? len - 6 : 0;
             tierData = [
-                tierVal(hist[len - 6]),
-                tierVal(hist[len - 5]),
-                tierVal(hist[len - 4]),
-                tierVal(hist[len - 3]),
-                tierVal(hist[len - 2]),
-                currentTierPlot          // Current slot: live tier from daily CSV
+                tierVal(hist[offset]),
+                tierVal(hist[offset + 1]),
+                tierVal(hist[offset + 2]),
+                tierVal(hist[offset + 3]),
+                tierVal(hist[offset + 4]),
+                currentTierPlot
             ];
         }
         
@@ -931,16 +932,17 @@ function initPerformanceChart() {
                     hist[len - 1] || 0,
                     myData.diamonds || 0       // Current
                 ];
-                // Also update tier data — 5 historical slots + tierLM for Current
-                if (trends.tierHistory && trends.tierHistory.length >= 6) {
+                // Also update tier data — 5 historical slots + live tier for Current
+                if (trends.tierHistory && trends.tierHistory.length >= 5) {
                     const tierHist = trends.tierHistory;
                     const tLen = tierHist.length;
+                    const tOffset = tLen >= 6 ? tLen - 6 : 0;
                     performanceChart.data.datasets[1].data = [
-                        tierVal(tierHist[tLen - 6]),
-                        tierVal(tierHist[tLen - 5]),
-                        tierVal(tierHist[tLen - 4]),
-                        tierVal(tierHist[tLen - 3]),
-                        tierVal(tierHist[tLen - 2]),
+                        tierVal(tierHist[tOffset]),
+                        tierVal(tierHist[tOffset + 1]),
+                        tierVal(tierHist[tOffset + 2]),
+                        tierVal(tierHist[tOffset + 3]),
+                        tierVal(tierHist[tOffset + 4]),
                         tierVal(myData.tier)
                     ];
                 }
