@@ -780,14 +780,27 @@ function initPerformanceChart() {
             ];
         }
         
-        console.log('DEBUG - Chart labels:', labels);
-        console.log('DEBUG - Chart dataPoints:', dataPoints);
-    
+        // For newer creators, trim leading zero months so chart starts at first real data point
+        let trimStart = 0;
+        for (let i = 0; i < dataPoints.length - 1; i++) {
+            if ((dataPoints[i] || 0) === 0 && (tierData[i] === null || tierData[i] === 0)) {
+                trimStart = i + 1;
+            } else {
+                break;
+            }
+        }
+        const trimmedLabels = labels.slice(trimStart);
+        const trimmedData = dataPoints.slice(trimStart);
+        const trimmedTier = tierData.slice(trimStart);
+
+        console.log('DEBUG - Chart labels:', trimmedLabels);
+        console.log('DEBUG - Chart dataPoints:', trimmedData);
+
     const data = {
-        labels: labels,
+        labels: trimmedLabels,
         datasets: [{
             label: 'My Diamonds',
-            data: dataPoints,
+            data: trimmedData,
             borderColor: '#ff0044',
             backgroundColor: 'rgba(255, 0, 68, 0.1)',
             fill: true,
@@ -801,7 +814,7 @@ function initPerformanceChart() {
         },
         {
             label: 'Tier',
-            data: tierData,
+            data: trimmedTier,
             borderColor: '#00ff88',
             backgroundColor: 'transparent',
             borderWidth: 2,
@@ -1098,7 +1111,10 @@ function updateHistory() {
         };
     });
     
-    document.getElementById('historyTableBody').innerHTML = rows.map(r => {
+    // Filter out months with no data (newer creators won't have all 6 months)
+    const visibleRows = rows.filter(r => r.diamonds > 0);
+
+    document.getElementById('historyTableBody').innerHTML = visibleRows.map(r => {
         const isChange = r.change !== '--';
         const changeClass = isChange ? (r.change.includes('↑') ? 'up' : 'down') : '';
         const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
