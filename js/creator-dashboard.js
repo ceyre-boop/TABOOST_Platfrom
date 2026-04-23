@@ -767,13 +767,12 @@ function initPerformanceChart() {
         // Tier data: completed months only — current month tier isn't final yet
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
         const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
-        // Tier LM (column Z) = last completed month's awarded tier, shown in Current slot
-        const tierLM = tierVal(myData.tierLastMonth);
-        // Default for creators with no history: all null except Current = tierLM
-        let tierData = [null, null, null, null, null, tierLM];
+        const currentTierPlot = tierVal(myData.tier);
+        // Default for creators with no history: all null except Current
+        let tierData = [null, null, null, null, null, currentTierPlot];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
             // History has 6 entries: indices 0-4 = past 5 months, index 5 = current in-progress
-            // Use indices 0-4 for the 5 historical chart slots, tierLM for Current slot
+            // Use indices 0-4 for the 5 historical chart slots, live tier for Current slot
             const hist = trends.tierHistory;
             const len = hist.length;
             tierData = [
@@ -782,7 +781,7 @@ function initPerformanceChart() {
                 tierVal(hist[len - 4]),
                 tierVal(hist[len - 3]),
                 tierVal(hist[len - 2]),
-                tierLM                   // Current slot: last completed tier from column Z
+                currentTierPlot          // Current slot: live tier from daily CSV
             ];
         }
         
@@ -942,7 +941,7 @@ function initPerformanceChart() {
                         tierVal(tierHist[tLen - 4]),
                         tierVal(tierHist[tLen - 3]),
                         tierVal(tierHist[tLen - 2]),
-                        tierVal(myData.tierLastMonth)
+                        tierVal(myData.tier)
                     ];
                 }
             } else {
