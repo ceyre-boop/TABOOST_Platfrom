@@ -768,8 +768,9 @@ function initPerformanceChart() {
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
         const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
         const currentTierPlot = tierVal(myData.tier);
-        // Default for creators with no history: all null except Current
-        let tierData = [null, null, null, null, null, currentTierPlot];
+        const tierLM = tierVal(myData.tierLastMonth);
+        // Default for first-month creators: Tier LM in the March slot, current tier in Current slot
+        let tierData = [null, null, null, null, tierLM, currentTierPlot];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
             const hist = trends.tierHistory;
             const len = hist.length;
