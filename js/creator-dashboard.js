@@ -766,7 +766,7 @@ function initPerformanceChart() {
         
         // Tier data: plot completed tiers only — current month tier isn't final yet
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
-        const tierVal = (v) => (v === -1 || v === undefined || v === null) ? null : v;
+        const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
         // Tier LM (column Z) = last completed month's tier — goes in the LM slot, not Current
         const tierLM = tierVal(parseInt(myData.tierLastMonth) || 0);
         // Current slot is always null — tier isn't awarded until month end

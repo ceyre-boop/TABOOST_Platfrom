@@ -168,7 +168,7 @@ const CSV_LOADER = {
       tierGoal: this.cleanValue(get('Tier Goal', 'tierGoal'), 'int', 0),
       tierLeft: this.cleanValue(get('Tier Left', 'tierLeft'), 'string', '0'),
       tierStatus: this.cleanValue(get('Tier Status', 'tierStatus'), 'string', '-'),
-      tierLastMonth: this.cleanValue(get('Tier Last Month', 'tierLastMonth'), 'string', '-'),
+      tierLastMonth: this.cleanValue(get('Tier LM', 'Tier Last Month', 'tierLastMonth'), 'int', 0),
       growthPercent: 0,
       earned: this.cleanValue(get('Earned', 'earned', 'Total Earned'), 'int', 0),
       gifted: this.cleanValue(get('Gifted', 'gifted'), 'int', 0),
