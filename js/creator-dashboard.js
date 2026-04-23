@@ -764,11 +764,13 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data: Past months from history, Current slot uses Tier LM (last completed month)
+        // Tier data: plot completed tiers only — current month tier isn't final yet
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
         const tierVal = (v) => (v === -1 || v === undefined || v === null) ? null : v;
-        const tierLM = tierVal(parseInt(myData.tierLastMonth) || myData.tier || 0);
-        let tierData = [null, null, null, null, null, tierLM];
+        // Tier LM (column Z) = last completed month's tier — goes in the LM slot, not Current
+        const tierLM = tierVal(parseInt(myData.tierLastMonth) || 0);
+        // Current slot is always null — tier isn't awarded until month end
+        let tierData = [null, null, null, null, tierLM, null];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
             const hist = trends.tierHistory;
             const len = hist.length;
@@ -777,8 +779,8 @@ function initPerformanceChart() {
                 tierVal(hist[len - 4]),
                 tierVal(hist[len - 3]),
                 tierVal(hist[len - 2]),
-                tierVal(hist[len - 1]),
-                tierLM            // Current slot shows last completed month tier
+                tierVal(hist[len - 1]),  // LM slot: last completed tier from history
+                null                      // Current: not plotted, month in progress
             ];
         }
         
@@ -928,17 +930,17 @@ function initPerformanceChart() {
                     hist[len - 1] || 0,
                     myData.diamonds || 0       // Current
                 ];
-                // Also update tier data
+                // Also update tier data — LM slot only, Current is null (month in progress)
                 if (trends.tierHistory && trends.tierHistory.length >= 5) {
                     const tierHist = trends.tierHistory;
                     const tLen = tierHist.length;
                     performanceChart.data.datasets[1].data = [
-                        tierHist[tLen - 5] > 0 ? tierHist[tLen - 5] : null,
-                        tierHist[tLen - 4] > 0 ? tierHist[tLen - 4] : null,
-                        tierHist[tLen - 3] > 0 ? tierHist[tLen - 3] : null,
-                        tierHist[tLen - 2] > 0 ? tierHist[tLen - 2] : null,
-                        tierHist[tLen - 1] > 0 ? tierHist[tLen - 1] : null,
-                        myData.tier || 0
+                        tierVal(tierHist[tLen - 5]),
+                        tierVal(tierHist[tLen - 4]),
+                        tierVal(tierHist[tLen - 3]),
+                        tierVal(tierHist[tLen - 2]),
+                        tierVal(tierHist[tLen - 1]),
+                        null
                     ];
                 }
             } else {
