@@ -764,19 +764,21 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data: Past months from history, Current from live data (column V)
-        // Convert -1 to null so chart doesn't display invalid tiers
-        let tierData = [null, null, null, null, null, currentTier];
+        // Tier data: Past months from history, Current slot uses Tier LM (last completed month)
+        // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
+        const tierVal = (v) => (v === -1 || v === undefined || v === null) ? null : v;
+        const tierLM = tierVal(parseInt(myData.tierLastMonth) || myData.tier || 0);
+        let tierData = [null, null, null, null, null, tierLM];
         if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
             const hist = trends.tierHistory;
             const len = hist.length;
             tierData = [
-                hist[len - 5] > 0 ? hist[len - 5] : null,
-                hist[len - 4] > 0 ? hist[len - 4] : null,
-                hist[len - 3] > 0 ? hist[len - 3] : null,
-                hist[len - 2] > 0 ? hist[len - 2] : null,
-                hist[len - 1] > 0 ? hist[len - 1] : null,
-                currentTier            // Current (live from daily CSV column V)
+                tierVal(hist[len - 5]),
+                tierVal(hist[len - 4]),
+                tierVal(hist[len - 3]),
+                tierVal(hist[len - 2]),
+                tierVal(hist[len - 1]),
+                tierLM            // Current slot shows last completed month tier
             ];
         }
         
