@@ -764,23 +764,25 @@ function initPerformanceChart() {
             console.log('DEBUG - Using fallback data:', dataPoints);
         }
         
-        // Tier data: plot completed tiers only — current month tier isn't final yet
+        // Tier data: completed months only — current month tier isn't final yet
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
         const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
-        // Tier LM (column Z) = last completed month's tier — goes in the LM slot, not Current
-        const tierLM = tierVal(parseInt(myData.tierLastMonth) || 0);
-        // Current slot is always null — tier isn't awarded until month end
-        let tierData = [null, null, null, null, tierLM, null];
-        if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
+        // Tier LM (column Z) = last completed month's awarded tier, shown in Current slot
+        const tierLM = tierVal(myData.tierLastMonth);
+        // Default for creators with no history: all null except Current = tierLM
+        let tierData = [null, null, null, null, null, tierLM];
+        if (trends && trends.tierHistory && trends.tierHistory.length >= 6) {
+            // History has 6 entries: indices 0-4 = past 5 months, index 5 = current in-progress
+            // Use indices 0-4 for the 5 historical chart slots, tierLM for Current slot
             const hist = trends.tierHistory;
             const len = hist.length;
             tierData = [
+                tierVal(hist[len - 6]),
                 tierVal(hist[len - 5]),
                 tierVal(hist[len - 4]),
                 tierVal(hist[len - 3]),
                 tierVal(hist[len - 2]),
-                tierVal(hist[len - 1]),  // LM slot: last completed tier from history
-                null                      // Current: not plotted, month in progress
+                tierLM                   // Current slot: last completed tier from column Z
             ];
         }
         
@@ -930,17 +932,17 @@ function initPerformanceChart() {
                     hist[len - 1] || 0,
                     myData.diamonds || 0       // Current
                 ];
-                // Also update tier data — LM slot only, Current is null (month in progress)
-                if (trends.tierHistory && trends.tierHistory.length >= 5) {
+                // Also update tier data — 5 historical slots + tierLM for Current
+                if (trends.tierHistory && trends.tierHistory.length >= 6) {
                     const tierHist = trends.tierHistory;
                     const tLen = tierHist.length;
                     performanceChart.data.datasets[1].data = [
+                        tierVal(tierHist[tLen - 6]),
                         tierVal(tierHist[tLen - 5]),
                         tierVal(tierHist[tLen - 4]),
                         tierVal(tierHist[tLen - 3]),
                         tierVal(tierHist[tLen - 2]),
-                        tierVal(tierHist[tLen - 1]),
-                        null
+                        tierVal(myData.tierLastMonth)
                     ];
                 }
             } else {
