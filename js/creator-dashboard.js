@@ -773,15 +773,13 @@ function initPerformanceChart() {
         if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
             const hist = trends.tierHistory;
             const len = hist.length;
-            // If 6+ entries, last entry is current in-progress — skip it for historical slots
-            // If exactly 5, all entries are completed months
-            const offset = len >= 6 ? len - 6 : 0;
+            // Take the 5 most recent completed months, Current slot = live April tier
             tierData = [
-                tierVal(hist[offset]),
-                tierVal(hist[offset + 1]),
-                tierVal(hist[offset + 2]),
-                tierVal(hist[offset + 3]),
-                tierVal(hist[offset + 4]),
+                tierVal(hist[len - 5]),
+                tierVal(hist[len - 4]),
+                tierVal(hist[len - 3]),
+                tierVal(hist[len - 2]),
+                tierVal(hist[len - 1]),
                 currentTierPlot
             ];
         }
@@ -932,17 +930,16 @@ function initPerformanceChart() {
                     hist[len - 1] || 0,
                     myData.diamonds || 0       // Current
                 ];
-                // Also update tier data — 5 historical slots + live tier for Current
+                // Also update tier data — 5 most recent completed months + live tier for Current
                 if (trends.tierHistory && trends.tierHistory.length >= 5) {
                     const tierHist = trends.tierHistory;
                     const tLen = tierHist.length;
-                    const tOffset = tLen >= 6 ? tLen - 6 : 0;
                     performanceChart.data.datasets[1].data = [
-                        tierVal(tierHist[tOffset]),
-                        tierVal(tierHist[tOffset + 1]),
-                        tierVal(tierHist[tOffset + 2]),
-                        tierVal(tierHist[tOffset + 3]),
-                        tierVal(tierHist[tOffset + 4]),
+                        tierVal(tierHist[tLen - 5]),
+                        tierVal(tierHist[tLen - 4]),
+                        tierVal(tierHist[tLen - 3]),
+                        tierVal(tierHist[tLen - 2]),
+                        tierVal(tierHist[tLen - 1]),
                         tierVal(myData.tier)
                     ];
                 }
