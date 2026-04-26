@@ -875,12 +875,17 @@ function initPerformanceChart() {
                     bodyColor: '#ccc',
                     titleFont: { size: isMobile ? 11 : 13 },
                     bodyFont: { size: isMobile ? 10 : 12 },
+                    includeInvisible: true,
                     callbacks: {
                         label: function(context) {
                             if (context.dataset.label === 'Tier') {
-                                return 'Tier ' + context.parsed.y;
+                                const v = context.parsed.y;
+                                if (v === null || v === undefined || isNaN(v)) return 'Tier: Undefined';
+                                return 'Tier ' + v;
                             }
-                            return formatNumber(context.parsed.y) + ' 💎';
+                            const v = context.parsed.y;
+                            if (v === null || v === undefined || isNaN(v)) return null;
+                            return formatNumber(v) + ' 💎';
                         }
                     }
                 }
