@@ -794,9 +794,17 @@ function initPerformanceChart() {
                 break;
             }
         }
-        const trimmedLabels = labels.slice(trimStart);
-        const trimmedData = dataPoints.slice(trimStart);
-        const trimmedTier = tierData.slice(trimStart);
+        let trimmedLabels = labels.slice(trimStart);
+        let trimmedData = dataPoints.slice(trimStart);
+        let trimmedTier = tierData.slice(trimStart);
+
+        // If fewer than 4 points, pad left with empty slots so data is centered not left-aligned
+        const MIN_SLOTS = 4;
+        while (trimmedLabels.length < MIN_SLOTS) {
+            trimmedLabels = ['', ...trimmedLabels];
+            trimmedData = [null, ...trimmedData];
+            trimmedTier = [null, ...trimmedTier];
+        }
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
         console.log('DEBUG - Chart dataPoints:', trimmedData);
