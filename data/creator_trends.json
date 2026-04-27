@@ -7,7 +7,7 @@
     "Feb 2026",
     "Mar 2026"
   ],
-  "generatedAt": "2026-04-26T17:44:50.021660Z",
+  "generatedAt": "2026-04-27T16:35:32.224748Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -3395,7 +3395,7 @@
         1,
         1
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         null,
         0,
@@ -5015,7 +5015,7 @@
         6,
         5
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         6,
         3,
@@ -5375,7 +5375,7 @@
         1,
         1
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         null,
         null,
@@ -7570,6 +7570,66 @@
       ]
     },
     {
+      "username": "kimmyhardtoforget",
+      "diamondsHistory": [
+        0,
+        39.0,
+        1.0,
+        119.0,
+        506.0,
+        8.0
+      ],
+      "growthRates": [
+        0,
+        0,
+        -97.4,
+        11800.0,
+        325.2,
+        -98.4
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        1,
+        1,
+        0,
+        0,
+        4
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.18,
+        0.0,
+        0.54,
+        2.28,
+        0.04
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.0
+      ]
+    },
+    {
       "username": "jackijing",
       "diamondsHistory": [
         448.0,
@@ -9515,7 +9575,7 @@
         3,
         2
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         0,
         1,
@@ -26110,66 +26170,6 @@
       ]
     },
     {
-      "username": "inluvwithpnw",
-      "diamondsHistory": [
-        0.0,
-        0.0,
-        0,
-        0.0,
-        0.0,
-        0
-      ],
-      "growthRates": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
       "username": "gabgoober",
       "diamondsHistory": [
         0.0,
@@ -36654,6 +36654,66 @@
       ],
       "revenueHistory": [
         13.21,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.0
+      ]
+    },
+    {
+      "username": "2xnique",
+      "diamondsHistory": [
+        149.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "growthRates": [
+        0,
+        -100.0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.67,
         0.0,
         0.0,
         0.0,
@@ -51215,7 +51275,7 @@
         1,
         1
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         null,
         null,
@@ -51299,6 +51359,66 @@
         0.0,
         0.0,
         0.09
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.0
+      ]
+    },
+    {
+      "username": "kimmyhardtoforget",
+      "diamondsHistory": [
+        0,
+        39.0,
+        1.0,
+        119.0,
+        506.0,
+        8.0
+      ],
+      "growthRates": [
+        0,
+        0,
+        -97.4,
+        11800.0,
+        325.2,
+        -98.4
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        1,
+        1,
+        0,
+        0,
+        4
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.18,
+        0.0,
+        0.54,
+        2.28,
+        0.04
       ],
       "bonusHistory": [
         0,
@@ -51437,66 +51557,6 @@
         0,
         0,
         0,
-        0
-      ],
-      "growthRates": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ]
-    },
-    {
-      "username": "inluvwithpnw",
-      "diamondsHistory": [
-        0.0,
-        0.0,
-        0,
-        0.0,
-        0.0,
         0
       ],
       "growthRates": [
@@ -52867,6 +52927,66 @@
         0,
         0,
         0
+      ]
+    },
+    {
+      "username": "kimmyhardtoforget",
+      "diamondsHistory": [
+        0,
+        39.0,
+        1.0,
+        119.0,
+        506.0,
+        8.0
+      ],
+      "growthRates": [
+        0,
+        0,
+        -97.4,
+        11800.0,
+        325.2,
+        -98.4
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        1,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        1,
+        1,
+        0,
+        0,
+        4
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.18,
+        0.0,
+        0.54,
+        2.28,
+        0.04
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0.0
       ]
     },
     {
