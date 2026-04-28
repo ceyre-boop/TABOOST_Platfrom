@@ -7,7 +7,7 @@
     "Feb 2026",
     "Mar 2026"
   ],
-  "generatedAt": "2026-04-27T16:35:32.224748Z",
+  "generatedAt": "2026-04-28T16:34:45.617905Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -2195,7 +2195,7 @@
         7,
         6
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         1,
         4,
@@ -2435,7 +2435,7 @@
         3,
         5
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         1,
         2,
@@ -21755,7 +21755,7 @@
         2,
         3
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         2,
         1,
@@ -26167,6 +26167,66 @@
         0,
         0,
         0.0
+      ]
+    },
+    {
+      "username": "inluvwithpnw",
+      "diamondsHistory": [
+        0.0,
+        0.0,
+        0,
+        0.0,
+        0.0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": null,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
       ]
     },
     {
@@ -38830,7 +38890,7 @@
       ]
     },
     {
-      "username": "britni_ncle",
+      "username": "#N/A",
       "diamondsHistory": [
         0,
         25850.0,
@@ -47795,7 +47855,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -51610,6 +51670,66 @@
       ]
     },
     {
+      "username": "inluvwithpnw",
+      "diamondsHistory": [
+        0.0,
+        0.0,
+        0,
+        0.0,
+        0.0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": null,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
       "username": "mariigamez333",
       "diamondsHistory": [
         0,
@@ -52295,7 +52415,7 @@
         null,
         null
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -54191,6 +54311,66 @@
     },
     {
       "username": ".r3ason",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "username": "briarnorthamerican",
       "diamondsHistory": [
         0,
         0,
