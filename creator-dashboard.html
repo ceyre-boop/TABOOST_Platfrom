@@ -368,28 +368,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <!-- BIRTHDAY BANNER -->
-    <div id="bday-banner" style="
-        position:fixed;top:0;left:0;right:0;z-index:9999;
-        background:linear-gradient(90deg,#1a0a00,#2a0d00,#1a0a00);
-        border-bottom:1px solid rgba(255,140,0,0.35);
-        display:flex;align-items:center;justify-content:center;
-        gap:8px;padding:7px 16px;font-family:'DM Sans',sans-serif;
-        font-size:13px;font-weight:600;color:#ffb347;
-        letter-spacing:0.03em;pointer-events:none;user-select:none;">
-        🎂&nbsp;Happy Birthday Marco — wishing you a great one from the whole crew!&nbsp;🎉
-    </div>
-    <script>
-    (function(){
-        var banner=document.getElementById('bday-banner');
-        var now=new Date();
-        var midnight=new Date();
-        midnight.setHours(24,0,0,0);
-        var msUntilMidnight=midnight-now;
-        if(msUntilMidnight<=0){banner.style.display='none';}
-        else{setTimeout(function(){banner.style.display='none';},msUntilMidnight);}
-    })();
-    </script>
     <!-- BUILD: 2025-03-09-09:04 -->
     <div class="creator-layout">
         <!-- Sidebar Logo for Mobile -->
