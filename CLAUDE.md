@@ -103,3 +103,30 @@ Firebase Auth. Config is hardcoded in HTML (client-side app — security enforce
 - Edit `js/data.js` or `js/app.js` by hand
 - Add a backend server — this is intentionally static
 - Change Firestore security rules without testing in `firestore-setup.rules` first
+
+---
+
+## Session End Protocol
+
+At the end of EVERY session — before your final message — write a session note to the Obsidian vault using the `obsidian-vault` MCP tool (`write_file`).
+
+**File path:** `C:\Users\Admin\clawdbot-vault\Projects\TABOOST-Platform\Sessions\YYYY-MM-DD-[topic].md`
+
+**Template:**
+```
+# Session: [topic] — YYYY-MM-DD
+
+## What we did
+[What was discussed or built]
+
+## What changed
+[Files modified, features added, bugs fixed]
+
+## Decisions made
+[Any non-obvious decisions and why]
+
+## Next
+[Open questions, what to pick up next session]
+```
+
+This keeps your vault growing as the source of truth across sessions.
