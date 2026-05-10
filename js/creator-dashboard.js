@@ -1076,10 +1076,10 @@ function updateHistory() {
                 
                 return {
                     diamonds: diamonds,
-                    revenue: '$' + revenue.toLocaleString('en-US', { minimumFractionDigits: 0 }),
+                    revenue: '$' + Math.round(revenue).toLocaleString('en-US'),
                     rawRevenue: revenue,
                     bonus: bonus,
-                    bonusStr: bonus > 0 ? '$' + bonus.toLocaleString('en-US', { minimumFractionDigits: 0 }) : '--'
+                    bonusStr: bonus > 0 ? '$' + Math.round(bonus).toLocaleString('en-US') : '--'
                 };
             });
             
