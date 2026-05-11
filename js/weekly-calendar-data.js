@@ -124,48 +124,48 @@ function generateRollingCalendar() {
         },
         {
             id: 12,
-            title: "My LIVE My Story",
-            type: "campaign",
+            title: "Creator Career Program",
+            type: "live",
             time: "All Day",
-            startDate: new Date('2026-04-04'),
-            endDate: new Date('2026-05-03'),
-            color: "#ff66ff"
+            startDate: new Date('2026-05-01'),
+            endDate: new Date('2026-05-31'),
+            color: "#ff0044"
         },
         {
             id: 13,
-            title: "Launch into LIVE Q2",
-            type: "campaign",
+            title: "Hot Stream Summer",
+            type: "live",
             time: "All Day",
-            startDate: new Date('2026-04-06'),
-            endDate: new Date('2026-04-21'),
-            color: "#ffaa00"
+            startDate: new Date('2026-05-01'),
+            endDate: new Date('2026-06-01'),
+            color: "#ff6600"
         },
         {
             id: 14,
-            title: "April Momentum",
-            type: "campaign",
+            title: "All Summer Sound",
+            type: "live",
             time: "All Day",
-            startDate: new Date('2026-04-06'),
-            endDate: new Date('2026-05-04'),
-            color: "#00dd88"
+            startDate: new Date('2026-05-01'),
+            endDate: new Date('2026-05-31'),
+            color: "#00ccff"
         },
         {
             id: 15,
-            title: "OOTD",
-            type: "campaign",
+            title: "Guest Mission",
+            type: "live",
             time: "All Day",
-            startDate: new Date('2026-04-10'),
-            endDate: new Date('2026-04-20'),
-            color: "#ff44aa"
+            startDate: new Date('2026-04-22'),
+            endDate: new Date('2026-05-20'),
+            color: "#aa88ff"
         },
         {
             id: 16,
-            title: "Always On",
+            title: "Deals For You Days",
             type: "campaign",
             time: "All Day",
-            startDate: new Date('2026-04-06'),
-            endDate: new Date('2026-05-04'),
-            color: "#aa88ff"
+            startDate: new Date('2026-06-17'),
+            endDate: new Date('2026-07-02'),
+            color: "#ffcc00"
         }
     ];
     
