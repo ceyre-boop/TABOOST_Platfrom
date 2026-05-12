@@ -305,7 +305,7 @@
             const base = parseFloat(match[1]) || 0;
             const unit = (match[2] || '').toUpperCase();
             const multiplier = unit === 'M' ? 1000000 : unit === 'K' ? 1000 : 1;
-            return Math.trunc(base * multiplier);
+            return Math.round(base * multiplier);
         }
 
         function fmtK(n) {
