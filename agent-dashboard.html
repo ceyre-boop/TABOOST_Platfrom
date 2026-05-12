@@ -297,14 +297,8 @@
         const GITHUB_BASE = '';
 
         function parseDiamondValue(n) {
-            const normalized = String(n || '')
-                .trim()
-                .replace(/,/g, '')
-                .replace(/\s+/g, '')
-                .replace(/[^0-9.kKmM.-]/g, '');
-            if (!normalized) return 0;
-
-            const match = normalized.match(/^(-?(?:\d+\.?\d*|\.\d+))([kKmM])?$/);
+            const raw = String(n || '').replace(/,/g, '');
+            const match = raw.match(/^\s*[^\d.-]*(-?(?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/);
             if (!match) return 0;
 
             const base = parseFloat(match[1]) || 0;
@@ -414,15 +408,19 @@
 
                 const myRows = rows
                     .filter(r => (r[iAgent] || '').toLowerCase().trim() === emailKey)
+                    .map(r => ({
+                        row: r,
+                        diamondsValue: parseDiamondValue(r[iDiamonds])
+                    }))
                     .sort((a, b) => {
-                        const diamondsDiff = parseDiamondValue(b[iDiamonds]) - parseDiamondValue(a[iDiamonds]);
+                        const diamondsDiff = b.diamondsValue - a.diamondsValue;
                         if (diamondsDiff !== 0) return diamondsDiff;
-                        return (a[iCreator] || '').localeCompare(b[iCreator] || '');
+                        return (a.row[iCreator] || '').localeCompare(b.row[iCreator] || '');
                     });
 
                 // Monthly diamonds + active creators from ledger
-                const monthlyDiamonds = myRows.reduce((sum, r) => sum + parseDiamondValue(r[iDiamonds]), 0);
-                const activeCreators  = myRows.filter(r => parseDiamondValue(r[iDiamonds]) > 0).length;
+                const monthlyDiamonds = myRows.reduce((sum, entry) => sum + entry.diamondsValue, 0);
+                const activeCreators  = myRows.filter(entry => entry.diamondsValue > 0).length;
                 document.getElementById('statTotalDiamonds').textContent = fmtK(monthlyDiamonds) + ' 💎';
                 document.getElementById('statActiveCreators').textContent = `From ${activeCreators} active creator${activeCreators !== 1 ? 's' : ''}`;
 
@@ -434,7 +432,8 @@
                     return;
                 }
 
-                tbody.innerHTML = myRows.map(r => {
+                tbody.innerHTML = myRows.map(entry => {
+                    const r = entry.row;
                     const creator   = r[iCreator]  || '--';
                     const month     = r[iMonth]    || '';
                     const rawLevel  = r[iLevel]    || '';
@@ -443,7 +442,7 @@
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
                     const hours     = r[iHours]    || '--';
-                    const diamonds  = r[iDiamonds] || '0';
+                    const diamonds  = fmtK(entry.diamondsValue);
 
                     // Arrow on Tier column only
                     let arrow = '', cls = 'tier-flat';
@@ -459,7 +458,7 @@
                         <td><span class="tier-badge"><span class="${cls}">${tier}${arrow}</span></span></td>
                         <td>${days}</td>
                         <td>${hours}</td>
-                        <td><span class="diamonds-cell">${fmtK(diamonds)} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
+                        <td><span class="diamonds-cell">${diamonds} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
                     </tr>`;
                 }).join('');
 
