@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABOOST — Agent Bulk Import</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 860px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff0044, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+        .subtitle { text-align: center; color: #888; margin-bottom: 30px; font-size: 14px; }
+        .card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a2a;
+        }
+        .card h2 { font-size: 1rem; color: #aaa; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .field { margin-bottom: 16px; }
+        label { display: block; font-size: 12px; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px 14px;
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+        }
+        input:focus { outline: none; border-color: #ff0044; }
+        .file-zone {
+            border: 2px dashed #333;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .file-zone:hover, .file-zone.drag { border-color: #ff0044; }
+        .file-zone p { color: #888; font-size: 14px; margin-top: 8px; }
+        .file-zone strong { color: #fff; }
+        #fileInput { display: none; }
+
+        /* Preview table */
+        .preview-wrap { overflow-x: auto; margin-top: 16px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 8px 12px; color: #888; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid #2a2a2a; }
+        td { padding: 10px 12px; border-bottom: 1px solid #1f1f1f; color: #ddd; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.03); }
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-agent { background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3); }
+        .badge-ok { background: rgba(0,255,136,0.1); color: #00ff88; }
+        .badge-skip { background: rgba(255,255,255,0.06); color: #888; }
+        .badge-err { background: rgba(255,50,50,0.1); color: #ff6666; }
+
+        /* Progress */
+        .progress-bar { width: 100%; height: 10px; background: #222; border-radius: 5px; overflow: hidden; margin: 16px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #ff0044, #ffaa00); width: 0%; transition: width 0.3s; }
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+        .stat-box { background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px; text-align: center; }
+        .stat-num { font-size: 1.6rem; font-weight: 700; }
+        .stat-lbl { font-size: 11px; color: #888; margin-top: 2px; }
+
+        /* Log */
+        .log {
+            background: #050505;
+            border: 1px solid #222;
+            border-radius: 8px;
+            padding: 14px;
+            max-height: 280px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .log-entry { margin: 2px 0; }
+        .ok  { color: #00ff88; }
+        .err { color: #ff6666; }
+        .inf { color: #60a5fa; }
+        .wrn { color: #ffaa00; }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            color: #fff;
+            border: none;
+            padding: 14px 36px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn:hover:not(:disabled) { opacity: 0.85; }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-sec {
+            background: #2a2a2a;
+            color: #aaa;
+            border: 1px solid #333;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-sec:hover { background: #333; color: #fff; }
+        .row-actions { display: flex; gap: 12px; align-items: center; margin-top: 20px; }
+
+        /* Format hint */
+        .hint {
+            background: rgba(255,170,0,0.07);
+            border: 1px solid rgba(255,170,0,0.2);
+            border-radius: 8px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #ccc;
+            line-height: 1.7;
+        }
+        .hint code {
+            background: #1a1a1a;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #ffaa00;
+            font-size: 12px;
+        }
+        .warn-box {
+            background: rgba(255,0,68,0.08);
+            border: 1px solid rgba(255,0,68,0.25);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #ff8888;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Agent Bulk Import</h1>
+    <p class="subtitle">Creates Firebase Auth accounts + Firestore agent documents in one shot</p>
+
+    <!-- Step 1 — Admin credentials -->
+    <div class="card">
+        <h2>Step 1 — Admin Credentials</h2>
+        <div class="warn-box">
+            ⚠️ This tool creates real Firebase Auth accounts. Run it once per agent. Duplicate emails will be skipped automatically.
+        </div>
+        <div class="field">
+            <label>Admin Email</label>
+            <input type="email" id="adminEmail" value="marco@taboost.me" autocomplete="off">
+        </div>
+        <div class="field">
+            <label>Admin Password</label>
+            <input type="password" id="adminPassword" placeholder="Your admin password" autocomplete="off">
+        </div>
+    </div>
+
+    <!-- Step 2 — Default password -->
+    <div class="card">
+        <h2>Step 2 — Default Agent Password</h2>
+        <div class="field">
+            <label>Temporary Password (agents will use this to first log in)</label>
+            <input type="text" id="defaultPassword" value="Taboost2026!" autocomplete="off">
+        </div>
+        <p style="color:#888; font-size:12px; margin-top:6px;">Each agent can change their password after first login. Min 8 characters.</p>
+    </div>
+
+    <!-- Step 3 — CSV upload -->
+    <div class="card">
+        <h2>Step 3 — Upload Agents CSV</h2>
+        <div class="hint" style="margin-bottom:16px;">
+            <strong style="color:#ffaa00;">Required columns (case-insensitive):</strong><br>
+            <code>Agent</code> — display name / agent identifier (e.g. MARCO)<br>
+            <code>Email</code> — Firebase Auth email (e.g. marco@taboost.me)<br>
+            <strong style="color:#888;">Optional columns:</strong><br>
+            <code>Password</code> — per-agent override password (overrides default)<br>
+            <code>L</code> — Total Diamonds &nbsp;|&nbsp; <code>K</code> — Total Creators &nbsp;|&nbsp;
+            <code>N</code> — Added This Month &nbsp;|&nbsp; <code>Q</code> — Earnings This Month
+        </div>
+
+        <div class="file-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+            <div style="font-size:2.5rem;">📂</div>
+            <strong>Click to upload or drag & drop</strong>
+            <p>agents.csv — exported from Google Sheets</p>
+        </div>
+        <input type="file" id="fileInput" accept=".csv">
+
+        <div id="previewSection" style="display:none;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px; margin-bottom:8px;">
+                <strong id="previewTitle">Preview</strong>
+                <button class="btn-sec" onclick="clearFile()">✕ Clear</button>
+            </div>
+            <div class="preview-wrap">
+                <table id="previewTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Agent Name</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="previewBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Step 4 — Run -->
+    <div class="card">
+        <h2>Step 4 — Import</h2>
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-num" id="cntTotal">0</div><div class="stat-lbl">Total</div></div>
+            <div class="stat-box"><div class="stat-num ok" id="cntOk">0</div><div class="stat-lbl">Created</div></div>
+            <div class="stat-box"><div class="stat-num wrn" id="cntSkip">0</div><div class="stat-lbl">Skipped</div></div>
+            <div class="stat-box"><div class="stat-num err" id="cntErr">0</div><div class="stat-lbl">Errors</div></div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+        <div class="row-actions">
+            <button class="btn" id="importBtn" onclick="runImport()" disabled>🚀 Import Agents</button>
+            <button class="btn-sec" onclick="downloadLog()">⬇ Download Log</button>
+        </div>
+
+        <div class="log" id="logBox" style="margin-top:20px;">
+            <div class="log-entry inf">Ready. Upload a CSV and click Import.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Firebase compat SDK (supports createUserWithEmailAndPassword from client) -->
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+
+<script>
+    // ── Firebase init ────────────────────────────────────────────────
+    const firebaseConfig = {
+        apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+        authDomain: "taboost-platform.firebaseapp.com",
+        projectId: "taboost-platform",
+        storageBucket: "taboost-platform.firebasestorage.app",
+        messagingSenderId: "379293685859",
+        appId: "1:379293685859:web:d89592adbf67360b574056"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+
+    // ── State ────────────────────────────────────────────────────────
+    let parsedAgents = [];
+    let logLines     = [];
+
+    // ── CSV parser ───────────────────────────────────────────────────
+    function parseCsv(text) {
+        const lines = text.trim().split(/\r?\n/);
+        if (lines.length < 2) return [];
+        const headers = splitCsvLine(lines[0]).map(h => h.trim());
+        return lines.slice(1).map(line => {
+            const vals = splitCsvLine(line);
+            const row = {};
+            headers.forEach((h, i) => { row[h] = (vals[i] || '').trim(); });
+            return row;
+        }).filter(r => Object.values(r).some(v => v));
+    }
+
+    function splitCsvLine(line) {
+        const vals = [];
+        let cur = '', inQ = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') { inQ = !inQ; }
+            else if (ch === ',' && !inQ) { vals.push(cur); cur = ''; }
+            else { cur += ch; }
+        }
+        vals.push(cur);
+        return vals;
+    }
+
+    // Case-insensitive column lookup
+    function col(row, ...names) {
+        for (const name of names) {
+            const key = Object.keys(row).find(k => k.toLowerCase().trim() === name.toLowerCase());
+            if (key && row[key]) return row[key];
+        }
+        return '';
+    }
+
+    // ── File handling ────────────────────────────────────────────────
+    const dropZone  = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+
+    dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag'));
+    dropZone.addEventListener('drop', e => {
+        e.preventDefault();
+        dropZone.classList.remove('drag');
+        const f = e.dataTransfer.files[0];
+        if (f) processFile(f);
+    });
+    fileInput.addEventListener('change', e => { if (e.target.files[0]) processFile(e.target.files[0]); });
+
+    function processFile(file) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            const rows = parseCsv(e.target.result);
+            buildAgents(rows);
+        };
+        reader.readAsText(file);
+    }
+
+    function buildAgents(rows) {
+        const defaultPwd = document.getElementById('defaultPassword').value || 'Taboost2026!';
+        parsedAgents = rows.map(r => ({
+            agentName: (col(r, 'Agent', 'Name', 'agent name') || '').toUpperCase().trim(),
+            email:     col(r, 'Email', 'email address').toLowerCase().trim(),
+            password:  col(r, 'Password', 'Pass', 'Pwd') || defaultPwd,
+            totalDiamonds: parseInt(col(r, 'L', 'Total Diamonds', 'diamonds')) || 0,
+            totalCreators: parseInt(col(r, 'K', 'Total Creators', 'creators')) || 0,
+            addedThisMonth: parseInt(col(r, 'N', 'Added This Month', 'added')) || 0,
+            earningsThisMonth: col(r, 'Q', 'Earnings This Month', 'earnings') || '$0'
+        })).filter(a => a.agentName && a.email);
+
+        renderPreview();
+        document.getElementById('cntTotal').textContent = parsedAgents.length;
+        document.getElementById('importBtn').disabled = parsedAgents.length === 0;
+    }
+
+    function renderPreview() {
+        const tbody = document.getElementById('previewBody');
+        tbody.innerHTML = parsedAgents.map((a, i) => `
+            <tr>
+                <td style="color:#555">${i + 1}</td>
+                <td><strong>${a.agentName}</strong></td>
+                <td>${a.email}</td>
+                <td style="color:#888; font-family:monospace;">${a.password.replace(/./g, '•')}</td>
+                <td><span class="badge badge-agent">PENDING</span></td>
+            </tr>
+        `).join('');
+        document.getElementById('previewTitle').textContent = `Preview — ${parsedAgents.length} agent${parsedAgents.length !== 1 ? 's' : ''}`;
+        document.getElementById('previewSection').style.display = 'block';
+    }
+
+    function clearFile() {
+        parsedAgents = [];
+        fileInput.value = '';
+        document.getElementById('previewSection').style.display = 'none';
+        document.getElementById('importBtn').disabled = true;
+        document.getElementById('cntTotal').textContent = '0';
+    }
+
+    // ── Logging ──────────────────────────────────────────────────────
+    function log(msg, cls = 'inf') {
+        const line = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        logLines.push(line);
+        const el = document.getElementById('logBox');
+        const div = document.createElement('div');
+        div.className = `log-entry ${cls}`;
+        div.textContent = line;
+        el.appendChild(div);
+        el.scrollTop = el.scrollHeight;
+    }
+
+    function downloadLog() {
+        const blob = new Blob([logLines.join('\n')], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `agent-import-log-${Date.now()}.txt`;
+        a.click();
+    }
+
+    // ── Main import ──────────────────────────────────────────────────
+    async function runImport() {
+        if (!parsedAgents.length) { alert('No agents to import.'); return; }
+
+        const adminEmail = document.getElementById('adminEmail').value.trim();
+        const adminPwd   = document.getElementById('adminPassword').value;
+        if (!adminPwd) { alert('Enter admin password.'); return; }
+
+        document.getElementById('importBtn').disabled = true;
+        let ok = 0, skip = 0, err = 0;
+
+        log(`Starting import of ${parsedAgents.length} agents...`, 'inf');
+
+        // Sign in as admin first to verify credentials
+        try {
+            await auth.signInWithEmailAndPassword(adminEmail, adminPwd);
+            log(`✅ Admin verified: ${adminEmail}`, 'ok');
+        } catch (e) {
+            log(`❌ Admin login failed: ${e.message}`, 'err');
+            document.getElementById('importBtn').disabled = false;
+            return;
+        }
+
+        // Process each agent
+        for (let i = 0; i < parsedAgents.length; i++) {
+            const agent = parsedAgents[i];
+            const pct = Math.round(((i + 1) / parsedAgents.length) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+
+            log(`[${i+1}/${parsedAgents.length}] Processing ${agent.agentName} (${agent.email})...`, 'inf');
+
+            let uid = null;
+
+            // Step A: Create Firebase Auth account
+            // We sign in as admin after each creation to maintain admin session
+            try {
+                // Create auth account for agent using a secondary app instance
+                // (avoids signing out admin)
+                const secondaryApp = firebase.initializeApp(firebaseConfig, `agent_create_${i}`);
+                const secondaryAuth = secondaryApp.auth();
+
+                const cred = await secondaryAuth.createUserWithEmailAndPassword(agent.email, agent.password);
+                uid = cred.user.uid;
+
+                await secondaryAuth.signOut();
+                await secondaryApp.delete();
+
+                log(`  ✅ Auth account created — UID: ${uid}`, 'ok');
+            } catch (e) {
+                if (e.code === 'auth/email-already-in-use') {
+                    log(`  ⚠️  Auth account already exists — looking up UID`, 'wrn');
+                    // Try to find existing UID via Firestore agents collection
+                    try {
+                        const snap = await db.collection('agents').where('email', '==', agent.email).limit(1).get();
+                        if (!snap.empty) {
+                            uid = snap.docs[0].id;
+                            log(`  ✅ Found existing UID: ${uid}`, 'ok');
+                        } else {
+                            log(`  ⚠️  Account exists in Auth but no Firestore doc — will create Firestore doc without UID`, 'wrn');
+                            uid = null;
+                        }
+                    } catch (fe) {
+                        log(`  ⚠️  Lookup failed: ${fe.message}`, 'wrn');
+                        uid = null;
+                    }
+                    skip++;
+                } else {
+                    log(`  ❌ Auth creation failed: ${e.message}`, 'err');
+                    err++;
+                    updateCounts(ok, skip, err);
+                    continue;
+                }
+            }
+
+            // Step B: Write Firestore agent document
+            try {
+                const docRef = uid
+                    ? db.collection('agents').doc(uid)
+                    : db.collection('agents').doc(); // auto-ID fallback
+
+                await docRef.set({
+                    agentName:        agent.agentName,
+                    email:            agent.email,
+                    role:             'agent',
+                    // Aggregate stats (synced later by Apps Script)
+                    totalDiamonds:    agent.totalDiamonds,
+                    totalCreators:    agent.totalCreators,
+                    addedThisMonth:   agent.addedThisMonth,
+                    earningsThisMonth: agent.earningsThisMonth,
+                    createdAt:        firebase.firestore.FieldValue.serverTimestamp(),
+                    active:           true
+                }, { merge: true });
+
+                // Also write to users/{uid} so role redirect works on login
+                if (uid) {
+                    await db.collection('users').doc(uid).set({
+                        role:      'agent',
+                        agentName: agent.agentName,
+                        email:     agent.email,
+                        name:      agent.agentName
+                    }, { merge: true });
+                }
+
+                log(`  ✅ Firestore docs written (agents + users)`, 'ok');
+                ok++;
+            } catch (e) {
+                log(`  ❌ Firestore write failed: ${e.message}`, 'err');
+                err++;
+            }
+
+            updateCounts(ok, skip, err);
+
+            // Re-sign in as admin to maintain session (creating users signs us out)
+            try {
+                await auth.signInWithEmailAndPassword(adminEmail, adminPwd);
+            } catch (_) {}
+
+            // Small delay to avoid rate limiting
+            await new Promise(r => setTimeout(r, 400));
+        }
+
+        document.getElementById('progressFill').style.width = '100%';
+        log(`────────────────────────────────────`, 'inf');
+        log(`Import complete! ✅ ${ok} created  ⚠️ ${skip} skipped  ❌ ${err} errors`, ok > 0 ? 'ok' : 'wrn');
+        document.getElementById('importBtn').disabled = false;
+
+        // Update preview badges
+        updatePreviewBadges();
+    }
+
+    function updateCounts(ok, skip, err) {
+        document.getElementById('cntOk').textContent   = ok;
+        document.getElementById('cntSkip').textContent = skip;
+        document.getElementById('cntErr').textContent  = err;
+    }
+
+    function updatePreviewBadges() {
+        const rows = document.querySelectorAll('#previewBody tr');
+        rows.forEach((row, i) => {
+            const badge = row.querySelector('.badge');
+            if (!badge) return;
+            badge.className = 'badge badge-ok';
+            badge.textContent = 'DONE';
+        });
+    }
+</script>
+</body>
+</html>
