@@ -290,6 +290,7 @@
                     if (iEarnings < 0) iEarnings = headers.length - 1; // fallback: last column
 
                     const row = rows.find(r => (r[iEmail] || '').toLowerCase().trim() === emailKey);
+                    console.log('DEBUG agents.csv — emailKey:', emailKey, '| iEmail:', iEmail, '| headers:', headers, '| row found:', !!row, '| first rows[0][0]:', rows[0]?.[0]);
                     if (row) {
                         const diamonds = parseInt((row[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0;
                         const creators = parseInt((row[iCreators] || '0').replace(/[^0-9]/g, '')) || 0;
@@ -306,6 +307,7 @@
                 }
             } catch (e) {
                 console.error('agents.csv error:', e);
+                document.getElementById('statTotalDiamonds').textContent = 'ERR: ' + e.message;
             }
 
             // ── Agents-C.csv — creator ledger ───────────────────────
@@ -375,7 +377,7 @@
 
             } catch (e) {
                 console.error('agents-dash-c.csv error:', e);
-                tbody.innerHTML = '<tr><td colspan="5" class="no-data">Error loading creator data.</td></tr>';
+                tbody.innerHTML = `<tr><td colspan="5" class="no-data">Error: ${e.message}</td></tr>`;
             }
         }
     </script>
