@@ -477,7 +477,9 @@
                         agentName:   agent.agentName,
                         displayName: agent.displayName,
                         email:       agent.email,
-                        name:        agent.displayName
+                        name:        agent.displayName,
+                        // Flag dual-role users so login shows a dashboard picker
+                        isCreator:   !isNew
                     }, { merge: true });
                 }
 

@@ -54,7 +54,7 @@
                     window.location.href = 'dashboard.html';
                     return;
                 }
-                if (role === 'agent') {
+                if (role === 'agent' && !new URLSearchParams(window.location.search).get('agentSwitch')) {
                     window.location.href = 'agent-dashboard.html';
                     return;
                 }

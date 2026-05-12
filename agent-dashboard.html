@@ -153,7 +153,10 @@
                     </span>
                 </div>
             </div>
-            <div class="creator-actions">
+            <div class="creator-actions" style="display:flex; gap:10px; align-items:center;">
+                <a href="creator-dashboard.html?agentSwitch=1" style="padding: 10px 16px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; cursor: pointer; font-size: 13px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-user"></i> Creator View
+                </a>
                 <button class="btn btn-secondary" onclick="window.logout()" style="padding: 10px 20px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer; font-size: 14px;">
                     <i class="fas fa-sign-out-alt"></i> Sign Out
                 </button>
@@ -272,22 +275,25 @@
                 if (resp.ok) {
                     const { headers, rows } = parseCsvRaw(await resp.text());
 
-                    // Columns: Backstage Email, Short Name, Creators, Total 💎
-                    // Two "May 2026" cols: [0]=count added, [1]=earnings $
-                    const iEmail    = findCol(headers, 'Backstage Email', 'Email');
+                    // Columns: Agent User, Short Name, 1st Creator, Total ?, Creators TM, Creators, May 2026
+                    // "Total ?" = diamond emoji that didn't encode — match by index 3 as fallback
+                    const iEmail    = findCol(headers, 'Agent User', 'Backstage Email', 'Email');
                     const iCreators = findCol(headers, 'Creators', 'Total Creators');
-                    const iDiamonds = findCol(headers, 'Total 💎', 'Total Diamonds');
+                    const iCreatorsTM = findCol(headers, 'Creators TM', 'Added This Month', 'N');
+                    // Diamond total: try known names, fall back to column index 3
+                    let iDiamonds = findCol(headers, 'Total 💎', 'Total Diamonds', 'Total ?');
+                    if (iDiamonds < 0) iDiamonds = 3;
 
+                    // Earnings = the "May 2026" (current month) column — last column
                     const monthLabel = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
-                    const monthIdxs  = headers.reduce((a, h, i) => { if (h.trim() === monthLabel) a.push(i); return a; }, []);
-                    const iAdded     = monthIdxs[0] ?? -1;
-                    const iEarnings  = monthIdxs[1] ?? -1;
+                    let iEarnings = findCol(headers, monthLabel);
+                    if (iEarnings < 0) iEarnings = headers.length - 1; // fallback: last column
 
                     const row = rows.find(r => (r[iEmail] || '').toLowerCase().trim() === emailKey);
                     if (row) {
                         const diamonds = parseInt((row[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0;
                         const creators = parseInt((row[iCreators] || '0').replace(/[^0-9]/g, '')) || 0;
-                        const added    = iAdded >= 0 ? parseInt((row[iAdded] || '0').replace(/[^0-9]/g, '')) || 0 : 0;
+                        const added    = iCreatorsTM >= 0 ? parseInt((row[iCreatorsTM] || '0').replace(/[^0-9]/g, '')) || 0 : 0;
                         const earnings = iEarnings >= 0 ? (row[iEarnings] || '$0').trim() : '$0';
 
                         document.getElementById('statTotalDiamonds').textContent = fmtK(diamonds) + ' 💎';

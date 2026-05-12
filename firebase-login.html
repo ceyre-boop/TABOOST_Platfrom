@@ -331,22 +331,19 @@
                 
                 console.log('Role determined:', role);
                 
-                // HARD CODED REDIRECTS - Never redirect to ubakery
-                let targetPage;
+                // HARD CODED REDIRECTS
                 if (role === 'admin') {
-                    targetPage = 'dashboard.html';
+                    window.location.href = 'dashboard.html';
                 } else if (role === 'manager') {
-                    targetPage = 'managers.html';
+                    window.location.href = 'managers.html';
+                } else if (role === 'agent' && userData.isCreator) {
+                    // Dual-role: agent who is also a creator — show picker
+                    showRolePicker();
                 } else if (role === 'agent') {
-                    targetPage = 'agent-dashboard.html';
+                    window.location.href = 'agent-dashboard.html';
                 } else {
-                    targetPage = 'creator-dashboard.html';
+                    window.location.href = 'creator-dashboard.html';
                 }
-                
-                console.log('Redirecting to:', targetPage);
-                
-                // Use href for clean URLs
-                window.location.href = targetPage;
                 
             } catch (error) {
                 console.error('Redirect error:', error);
@@ -354,6 +351,10 @@
                 // Default to creator dashboard on error
                 window.location.replace('creator-dashboard.html');
             }
+        }
+
+        function showRolePicker() {
+            document.getElementById('rolePicker').style.display = 'flex';
         }
 
         // Look up email when username is entered
@@ -595,5 +596,21 @@
             }
         }
     </script>
+<!-- Role picker modal for dual-role users (agent + creator) -->
+<div id="rolePicker" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:999; align-items:center; justify-content:center;">
+    <div style="background:#1a1a2e; border:1px solid #333; border-radius:20px; padding:40px; width:90%; max-width:380px; text-align:center;">
+        <div style="font-size:2rem; margin-bottom:16px;">👋</div>
+        <h2 style="color:#fff; margin-bottom:8px;">Which dashboard?</h2>
+        <p style="color:#888; font-size:14px; margin-bottom:30px;">You have both an Agent and Creator account.</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <button onclick="window.location.href='agent-dashboard.html'" style="padding:16px; background:linear-gradient(135deg,#ff0044,#cc0033); color:#fff; border:none; border-radius:12px; font-size:15px; font-weight:700; cursor:pointer;">
+                <i class="fas fa-user-tie"></i> Agent Dashboard
+            </button>
+            <button onclick="window.location.href='creator-dashboard.html?agentSwitch=1'" style="padding:16px; background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.15); border-radius:12px; font-size:15px; font-weight:600; cursor:pointer;">
+                <i class="fas fa-user"></i> Creator Dashboard
+            </button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
