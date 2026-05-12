@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>TABOOST — Agent Login</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: #fff;
+            padding: 20px;
+        }
+        .card {
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 44px 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .logo img {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffaa00;
+            box-shadow: 0 0 24px rgba(255,170,0,0.25);
+        }
+        .logo h1 {
+            margin-top: 14px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+        .logo p {
+            color: #ffaa00;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .field { margin-bottom: 18px; }
+        label { display: block; font-size: 11px; color: #888; margin-bottom: 7px; text-transform: uppercase; letter-spacing: 0.6px; }
+        input {
+            width: 100%;
+            padding: 13px 16px;
+            background: rgba(0,0,0,0.35);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        input:focus { outline: none; border-color: #ffaa00; }
+        input::placeholder { color: #555; }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #ffaa00, #ff6600);
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+            transition: opacity 0.2s;
+        }
+        .btn:hover:not(:disabled) { opacity: 0.88; }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .error {
+            background: rgba(255,50,50,0.1);
+            border: 1px solid rgba(255,50,50,0.25);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #ff8888;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .divider {
+            text-align: center;
+            margin: 28px 0 20px;
+            position: relative;
+        }
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0; right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.08);
+        }
+        .divider span {
+            position: relative;
+            background: #111;
+            padding: 0 12px;
+            font-size: 11px;
+            color: #555;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .creator-link {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+        }
+        .creator-link a { color: #aaa; text-decoration: none; }
+        .creator-link a:hover { color: #fff; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="logo">
+        <img src="images/taboost-genie.jpg" alt="TABOOST">
+        <h1>TABOOST</h1>
+        <p>Agent Portal</p>
+    </div>
+
+    <div class="error" id="errorMsg"></div>
+
+    <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" placeholder="your@email.com" autocomplete="email">
+    </div>
+    <div class="field">
+        <label>Password</label>
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+
+    <button class="btn" id="loginBtn" onclick="doLogin()">Sign In</button>
+
+    <div class="divider"><span>not an agent?</span></div>
+    <div class="creator-link">
+        <a href="firebase-login.html">Creator / Admin login →</a>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+        authDomain: "taboost-platform.firebaseapp.com",
+        projectId: "taboost-platform",
+        storageBucket: "taboost-platform.firebasestorage.app",
+        messagingSenderId: "379293685859",
+        appId: "1:379293685859:web:d89592adbf67360b574056"
+    });
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+
+    // If already signed in as agent, go straight to dashboard
+    auth.onAuthStateChanged(async user => {
+        if (!user) return;
+        try {
+            const doc = await db.collection('users').doc(user.uid).get();
+            const role = doc.data()?.role || 'creator';
+            if (role === 'agent') window.location.href = 'agent-dashboard.html';
+        } catch (_) {}
+    });
+
+    // Allow Enter key
+    document.getElementById('password').addEventListener('keydown', e => {
+        if (e.key === 'Enter') doLogin();
+    });
+    document.getElementById('email').addEventListener('keydown', e => {
+        if (e.key === 'Enter') document.getElementById('password').focus();
+    });
+
+    function showError(msg) {
+        const el = document.getElementById('errorMsg');
+        el.textContent = msg;
+        el.style.display = 'block';
+    }
+
+    async function doLogin() {
+        const email    = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const btn      = document.getElementById('loginBtn');
+
+        document.getElementById('errorMsg').style.display = 'none';
+
+        if (!email || !password) { showError('Please enter your email and password.'); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Signing in…';
+
+        try {
+            const cred = await auth.signInWithEmailAndPassword(email, password);
+
+            // Verify this is actually an agent account
+            const userDoc = await db.collection('users').doc(cred.user.uid).get();
+            const role = userDoc.data()?.role || 'creator';
+
+            if (role === 'agent') {
+                const isCreator = userDoc.data()?.isCreator;
+                if (isCreator) {
+                    // Dual-role: show picker
+                    document.querySelector('.card').innerHTML = `
+                        <div style="text-align:center; padding: 10px 0 30px;">
+                            <div style="font-size:2.5rem; margin-bottom:14px;">👋</div>
+                            <h2 style="margin-bottom:8px;">Which dashboard?</h2>
+                            <p style="color:#888; font-size:14px; margin-bottom:28px;">You have both an Agent and Creator account.</p>
+                            <div style="display:flex; flex-direction:column; gap:12px;">
+                                <button onclick="window.location.href='agent-dashboard.html'" style="padding:15px; background:linear-gradient(135deg,#ffaa00,#ff6600); color:#000; border:none; border-radius:10px; font-size:15px; font-weight:800; cursor:pointer;">
+                                    Agent Dashboard
+                                </button>
+                                <button onclick="window.location.href='creator-dashboard.html?agentSwitch=1'" style="padding:15px; background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.15); border-radius:10px; font-size:15px; font-weight:600; cursor:pointer;">
+                                    Creator Dashboard
+                                </button>
+                            </div>
+                        </div>`;
+                } else {
+                    window.location.href = 'agent-dashboard.html';
+                }
+            } else {
+                // Not an agent — tell them politely
+                await auth.signOut();
+                showError('This portal is for agents only. Use the Creator login instead.');
+                btn.disabled = false;
+                btn.textContent = 'Sign In';
+            }
+        } catch (e) {
+            const msg = e.code === 'auth/invalid-credential' || e.code === 'auth/wrong-password' || e.code === 'auth/user-not-found'
+                ? 'Incorrect email or password.'
+                : e.message;
+            showError(msg);
+            btn.disabled = false;
+            btn.textContent = 'Sign In';
+        }
+    }
+</script>
+</body>
+</html>
