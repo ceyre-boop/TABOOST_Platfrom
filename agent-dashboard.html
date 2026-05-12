@@ -300,16 +300,17 @@
             const normalized = String(n || '')
                 .trim()
                 .replace(/,/g, '')
-                .replace(/[^0-9.kKmM-]/g, '');
+                .replace(/\s+/g, '')
+                .replace(/[^0-9.kKmM.-]/g, '');
             if (!normalized) return 0;
 
-            const match = normalized.match(/(-?\d+(?:\.\d+)?)([kKmM])?/);
+            const match = normalized.match(/^(-?\d+(?:\.\d+)?)([kKmM])?$/);
             if (!match) return 0;
 
             const base = parseFloat(match[1]) || 0;
             const unit = (match[2] || '').toUpperCase();
             const multiplier = unit === 'M' ? 1000000 : unit === 'K' ? 1000 : 1;
-            return Math.round(base * multiplier);
+            return Math.trunc(base * multiplier);
         }
 
         function fmtK(n) {
