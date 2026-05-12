@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Agent Dashboard - TABOOST</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'firebase-login.html';
+                return;
+            }
+
+            try {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data() || {};
+                let role = userData.role || 'creator';
+
+                if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
+
+                if (role === 'admin') { window.location.href = 'dashboard.html'; return; }
+                if (role === 'manager') { window.location.href = 'managers.html'; return; }
+                if (role === 'creator') { window.location.href = 'creator-dashboard.html'; return; }
+
+                // role === 'agent'
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: 'agent',
+                    name: userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
+                    agentName: (userData.agentName || userData.name || user.displayName || '').toUpperCase()
+                };
+
+                document.getElementById('agentName').textContent = window.currentUser.name;
+                document.getElementById('agentAvatar').textContent = window.currentUser.name.charAt(0).toUpperCase();
+
+                loadAgentData(window.currentUser.agentName);
+            } catch (err) {
+                console.error('Auth error:', err);
+                window.location.href = 'firebase-login.html';
+            }
+        });
+
+        window.logout = async () => {
+            await signOut(auth);
+            window.location.href = 'firebase-login.html';
+        };
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/creator-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── Ledger Table ─────────────────────────────────── */
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .ledger-table th {
+            text-align: left;
+            padding: 10px 14px;
+            color: var(--text-secondary, #888);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            white-space: nowrap;
+        }
+        .ledger-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        .ledger-table tr:last-child td { border-bottom: none; }
+        .ledger-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+        .creator-cell { display: flex; flex-direction: column; gap: 2px; }
+        .creator-username { font-weight: 600; }
+        .creator-month { font-size: 11px; color: #888; }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.08);
+        }
+        .tier-up   { color: #00ff88; }
+        .tier-down { color: #ff4466; }
+        .tier-flat { color: #888; }
+
+        .diamonds-cell {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: #00ccff;
+        }
+        .diamonds-cell i { font-size: 12px; }
+
+        /* ── Stat card tweaks for this page ──────────────── */
+        .stat-card::before, .stat-card::after {
+            display: none !important;
+        }
+        .stat-value.green { color: var(--success, #00ff88); }
+
+        /* ── Empty / loading states ───────────────────────── */
+        .loading-row td {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        .no-data { text-align: center; padding: 40px; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="creator-layout">
+
+        <!-- Header -->
+        <div class="creator-header">
+            <div class="creator-profile">
+                <div class="creator-avatar" id="agentAvatar">A</div>
+                <div class="creator-info">
+                    <h1 class="creator-name" id="agentName">Loading...</h1>
+                    <span class="creator-badge" style="background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;">
+                        <i class="fas fa-user-tie"></i> AGENT
+                    </span>
+                </div>
+            </div>
+            <div class="creator-actions">
+                <button class="btn btn-secondary" onclick="window.logout()" style="padding: 10px 20px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer; font-size: 14px;">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
+            </div>
+        </div>
+
+        <!-- 3 Stat Boxes -->
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-header">
+                    <span class="stat-label">Total Diamonds</span>
+                </div>
+                <div class="stat-value" id="statTotalDiamonds">--</div>
+                <div class="stat-footer">
+                    <small style="color:#888;">All-time across all creators</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Creators</span>
+                </div>
+                <div class="stat-value" id="statTotalCreators">--</div>
+                <div class="stat-footer">
+                    <small style="color:#00ff88;" id="statAddedThisMonth">-- added this month</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Earnings This Month</span>
+                </div>
+                <div class="stat-value green" id="statEarnings">--</div>
+                <div class="stat-footer">
+                    <small style="color:#888;">Current month</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Creator Ledger -->
+        <div class="section-card" style="margin-top: 24px;">
+            <div class="section-header">
+                <h2><i class="fas fa-list" style="color: #ffaa00;"></i> My Creators</h2>
+                <span id="ledgerCount" style="color:#888; font-size:13px;"></span>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Creator (Month)</th>
+                            <th>Level / Tier</th>
+                            <th>Days</th>
+                            <th>Hours</th>
+                            <th>Diamonds</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledgerBody">
+                        <tr class="loading-row"><td colspan="5"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="creator-footer">
+            <p>Questions? Contact your manager, <a href="mailto:info@taboost.me">info@taboost.me</a>, or <a href="https://discord.gg/Akfwz536BW" target="_blank"><i class="fab fa-discord"></i> Discord</a></p>
+            <p>© 2026 TABOOST Agency. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const GITHUB_BASE = 'https://ceyre-boop.github.io/TABOOST_Platfrom';
+
+        function parseCsv(text) {
+            const lines = text.trim().split('\n');
+            if (lines.length < 2) return [];
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            return lines.slice(1).map(line => {
+                // Handle quoted fields
+                const values = [];
+                let cur = '', inQuote = false;
+                for (let i = 0; i < line.length; i++) {
+                    const ch = line[i];
+                    if (ch === '"') { inQuote = !inQuote; }
+                    else if (ch === ',' && !inQuote) { values.push(cur.trim()); cur = ''; }
+                    else { cur += ch; }
+                }
+                values.push(cur.trim());
+                const row = {};
+                headers.forEach((h, i) => { row[h] = values[i] || ''; });
+                return row;
+            });
+        }
+
+        function fmtK(n) {
+            const v = parseInt(n) || 0;
+            if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+            if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+            return v.toLocaleString();
+        }
+
+        function tierBadge(level, tier, tierLastMonth) {
+            const lvl = level || tier || '--';
+            const prev = parseInt(tierLastMonth) || 0;
+            const curr = parseInt(tier) || 0;
+            let arrow = '', cls = 'tier-flat';
+            if (curr > prev && prev > 0) { arrow = '↑'; cls = 'tier-up'; }
+            else if (curr < prev && prev > 0) { arrow = '↓'; cls = 'tier-down'; }
+            return `<span class="tier-badge"><span class="${cls}">${lvl}${arrow ? ' ' + arrow : ''}</span></span>`;
+        }
+
+        async function loadAgentData(agentName) {
+            // Normalize for comparison
+            const agentKey = (agentName || '').toUpperCase().trim();
+
+            try {
+                // Fetch aggregate row
+                const agentsResp = await fetch(`${GITHUB_BASE}/data/agents.csv?v=${Date.now()}`);
+                if (agentsResp.ok) {
+                    const rows = parseCsv(await agentsResp.text());
+                    // Find this agent's row — try Agent column, then Name, then first column
+                    const agentRow = rows.find(r => {
+                        const name = (r['Agent'] || r['Name'] || r[Object.keys(r)[0]] || '').toUpperCase().trim();
+                        return name === agentKey;
+                    });
+                    if (agentRow) {
+                        const totalDiamonds = parseInt(agentRow['L'] || agentRow['Total Diamonds'] || 0);
+                        const totalCreators = parseInt(agentRow['K'] || agentRow['Total Creators'] || 0);
+                        const addedMonth   = parseInt(agentRow['N'] || agentRow['Added This Month'] || 0);
+                        const earnings     = agentRow['Q'] || agentRow['Earnings This Month'] || '$0';
+
+                        document.getElementById('statTotalDiamonds').textContent = fmtK(totalDiamonds) + ' 💎';
+                        document.getElementById('statTotalCreators').textContent = totalCreators.toLocaleString();
+                        document.getElementById('statAddedThisMonth').textContent = `+${addedMonth} added this month`;
+                        document.getElementById('statEarnings').textContent = earnings;
+                    } else {
+                        console.warn('Agent row not found for:', agentKey);
+                    }
+                }
+            } catch (e) {
+                console.error('Failed to load agents.csv:', e);
+            }
+
+            // Fetch ledger
+            try {
+                const ledgerResp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
+                const tbody = document.getElementById('ledgerBody');
+
+                if (!ledgerResp.ok) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">Ledger data not yet available.</td></tr>';
+                    return;
+                }
+
+                const rows = parseCsv(await ledgerResp.text());
+
+                // Filter to this agent, sort alphabetically by username/creator
+                const myRows = rows
+                    .filter(r => {
+                        const a = (r['Agent'] || r['Manager'] || r['M'] || r['m'] || '').toUpperCase().trim();
+                        return a === agentKey;
+                    })
+                    .sort((a, b) => {
+                        const ua = (a['Creator'] || a['Username'] || '').toLowerCase();
+                        const ub = (b['Creator'] || b['Username'] || '').toLowerCase();
+                        return ua.localeCompare(ub);
+                    });
+
+                document.getElementById('ledgerCount').textContent = `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
+
+                if (myRows.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No creators found.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = myRows.map(r => {
+                    const creator  = r['Creator'] || r['Username'] || r['TikTok'] || '--';
+                    const month    = r['Month'] || '';
+                    const level    = r['Level'] || r['Lvl'] || '';
+                    const tier     = r['Tier'] || '';
+                    const tierLast = r['Tier Last Month'] || r['Tier LM'] || '';
+                    const days     = r['Days'] || r['Live Days'] || '--';
+                    const hours    = r['Hours'] || '--';
+                    const diamonds = r['Diamonds'] || r['💎'] || '0';
+
+                    return `<tr>
+                        <td>
+                            <div class="creator-cell">
+                                <span class="creator-username">@${creator}</span>
+                                ${month ? `<span class="creator-month">(${month})</span>` : ''}
+                            </div>
+                        </td>
+                        <td>${tierBadge(level, tier, tierLast)}</td>
+                        <td>${days}</td>
+                        <td>${hours}</td>
+                        <td><span class="diamonds-cell"><i class="fas fa-gem"></i>${fmtK(diamonds)}</span></td>
+                    </tr>`;
+                }).join('');
+
+            } catch (e) {
+                console.error('Failed to load agents-dash-c.csv:', e);
+                document.getElementById('ledgerBody').innerHTML =
+                    '<tr><td colspan="5" class="no-data">Error loading creator data.</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>

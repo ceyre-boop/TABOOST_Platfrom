@@ -49,9 +49,13 @@
                     role = 'admin';
                 }
                 
-                // Admins should use admin dashboard
+                // Redirect non-creators to their correct dashboard
                 if (role === 'admin') {
                     window.location.href = 'dashboard.html';
+                    return;
+                }
+                if (role === 'agent') {
+                    window.location.href = 'agent-dashboard.html';
                     return;
                 }
                 

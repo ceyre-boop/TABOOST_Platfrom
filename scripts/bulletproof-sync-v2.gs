@@ -1,7 +1,7 @@
 // ============================================================================
 // TABOOST BULLETPROOF SYNC v2 - Sheets → CSV + data.js → GitHub
 // ============================================================================
-// Exports: Current, Rewards, Current-UK sheets
+// Exports: Current, Rewards, Current-UK, agents, agents-dash-c sheets
 // Generates: data.js (clean, no #N/A)
 // Pushes: All files to GitHub
 // ============================================================================
@@ -10,7 +10,9 @@ const SYNC_CONFIG = {
   sheets: [
     { name: 'Current', csvPath: 'data/current.csv' },
     { name: 'Rewards', csvPath: 'data/rewards.csv' },
-    { name: 'Current-UK', csvPath: 'data/current-uk.csv' }
+    { name: 'Current-UK', csvPath: 'data/current-uk.csv' },
+    { name: 'agents', csvPath: 'data/agents.csv' },
+    { name: 'agents-dash-c', csvPath: 'data/agents-dash-c.csv' }
   ],
   dataJsPath: 'js/data.js',
   github: {
