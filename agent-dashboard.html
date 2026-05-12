@@ -308,7 +308,9 @@
         }
 
         function fmtK(n) {
-            const v = parseDiamondValue(n);
+            const v = (typeof n === 'number' && Number.isFinite(n))
+                ? Math.trunc(n)
+                : parseDiamondValue(n);
             if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
             if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
             return v.toLocaleString();
