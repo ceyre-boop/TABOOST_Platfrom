@@ -49,14 +49,14 @@
                     uid: user.uid,
                     email: user.email,
                     role: 'agent',
-                    name: userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
-                    agentName: (userData.agentName || userData.name || user.displayName || '').toUpperCase()
+                    name: userData.displayName || userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
+                    agentEmail: user.email.toLowerCase()
                 };
 
                 document.getElementById('agentName').textContent = window.currentUser.name;
                 document.getElementById('agentAvatar').textContent = window.currentUser.name.charAt(0).toUpperCase();
 
-                loadAgentData(window.currentUser.agentName);
+                loadAgentData(window.currentUser.agentEmail);
             } catch (err) {
                 console.error('Auth error:', err);
                 window.location.href = 'firebase-login.html';
@@ -228,27 +228,6 @@
     <script>
         const GITHUB_BASE = 'https://ceyre-boop.github.io/TABOOST_Platfrom';
 
-        function parseCsv(text) {
-            const lines = text.trim().split('\n');
-            if (lines.length < 2) return [];
-            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
-            return lines.slice(1).map(line => {
-                // Handle quoted fields
-                const values = [];
-                let cur = '', inQuote = false;
-                for (let i = 0; i < line.length; i++) {
-                    const ch = line[i];
-                    if (ch === '"') { inQuote = !inQuote; }
-                    else if (ch === ',' && !inQuote) { values.push(cur.trim()); cur = ''; }
-                    else { cur += ch; }
-                }
-                values.push(cur.trim());
-                const row = {};
-                headers.forEach((h, i) => { row[h] = values[i] || ''; });
-                return row;
-            });
-        }
-
         function fmtK(n) {
             const v = parseInt(n) || 0;
             if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
@@ -256,97 +235,132 @@
             return v.toLocaleString();
         }
 
-        function tierBadge(level, tier, tierLastMonth) {
-            const lvl = level || tier || '--';
-            const prev = parseInt(tierLastMonth) || 0;
-            const curr = parseInt(tier) || 0;
-            let arrow = '', cls = 'tier-flat';
-            if (curr > prev && prev > 0) { arrow = '↑'; cls = 'tier-up'; }
-            else if (curr < prev && prev > 0) { arrow = '↓'; cls = 'tier-down'; }
-            return `<span class="tier-badge"><span class="${cls}">${lvl}${arrow ? ' ' + arrow : ''}</span></span>`;
+// Parse CSV preserving column order (handles duplicate header names via index)
+        function parseCsvRaw(text) {
+            const lines = text.trim().split(/\r?\n/);
+            if (lines.length < 2) return { headers: [], rows: [] };
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            const rows = lines.slice(1).map(line => {
+                const vals = [];
+                let cur = '', inQ = false;
+                for (let i = 0; i < line.length; i++) {
+                    const ch = line[i];
+                    if (ch === '"') { inQ = !inQ; }
+                    else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+                    else { cur += ch; }
+                }
+                vals.push(cur.trim());
+                return vals;
+            });
+            return { headers, rows };
         }
 
-        async function loadAgentData(agentName) {
-            // Normalize for comparison
-            const agentKey = (agentName || '').toUpperCase().trim();
+        function findCol(headers, ...names) {
+            for (const name of names) {
+                const i = headers.findIndex(h => h.toLowerCase().trim() === name.toLowerCase().trim());
+                if (i >= 0) return i;
+            }
+            return -1;
+        }
 
+        async function loadAgentData(agentEmail) {
+            const emailKey = (agentEmail || '').toLowerCase().trim();
+
+            // ── Agents.csv — aggregate stats ────────────────────────
             try {
-                // Fetch aggregate row
-                const agentsResp = await fetch(`${GITHUB_BASE}/data/agents.csv?v=${Date.now()}`);
-                if (agentsResp.ok) {
-                    const rows = parseCsv(await agentsResp.text());
-                    // Find this agent's row — try Agent column, then Name, then first column
-                    const agentRow = rows.find(r => {
-                        const name = (r['Agent'] || r['Name'] || r[Object.keys(r)[0]] || '').toUpperCase().trim();
-                        return name === agentKey;
-                    });
-                    if (agentRow) {
-                        const totalDiamonds = parseInt(agentRow['L'] || agentRow['Total Diamonds'] || 0);
-                        const totalCreators = parseInt(agentRow['K'] || agentRow['Total Creators'] || 0);
-                        const addedMonth   = parseInt(agentRow['N'] || agentRow['Added This Month'] || 0);
-                        const earnings     = agentRow['Q'] || agentRow['Earnings This Month'] || '$0';
+                const resp = await fetch(`${GITHUB_BASE}/data/agents.csv?v=${Date.now()}`);
+                if (resp.ok) {
+                    const { headers, rows } = parseCsvRaw(await resp.text());
 
-                        document.getElementById('statTotalDiamonds').textContent = fmtK(totalDiamonds) + ' 💎';
-                        document.getElementById('statTotalCreators').textContent = totalCreators.toLocaleString();
-                        document.getElementById('statAddedThisMonth').textContent = `+${addedMonth} added this month`;
+                    // Columns: Backstage Email, Short Name, Creators, Total 💎
+                    // Two "May 2026" cols: [0]=count added, [1]=earnings $
+                    const iEmail    = findCol(headers, 'Backstage Email', 'Email');
+                    const iCreators = findCol(headers, 'Creators', 'Total Creators');
+                    const iDiamonds = findCol(headers, 'Total 💎', 'Total Diamonds');
+
+                    const monthLabel = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+                    const monthIdxs  = headers.reduce((a, h, i) => { if (h.trim() === monthLabel) a.push(i); return a; }, []);
+                    const iAdded     = monthIdxs[0] ?? -1;
+                    const iEarnings  = monthIdxs[1] ?? -1;
+
+                    const row = rows.find(r => (r[iEmail] || '').toLowerCase().trim() === emailKey);
+                    if (row) {
+                        const diamonds = parseInt((row[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0;
+                        const creators = parseInt((row[iCreators] || '0').replace(/[^0-9]/g, '')) || 0;
+                        const added    = iAdded >= 0 ? parseInt((row[iAdded] || '0').replace(/[^0-9]/g, '')) || 0 : 0;
+                        const earnings = iEarnings >= 0 ? (row[iEarnings] || '$0').trim() : '$0';
+
+                        document.getElementById('statTotalDiamonds').textContent = fmtK(diamonds) + ' 💎';
+                        document.getElementById('statTotalCreators').textContent = creators.toLocaleString();
+                        document.getElementById('statAddedThisMonth').textContent = `+${added} added this month`;
                         document.getElementById('statEarnings').textContent = earnings;
                     } else {
-                        console.warn('Agent row not found for:', agentKey);
+                        console.warn('No agents.csv row found for email:', emailKey);
                     }
                 }
             } catch (e) {
-                console.error('Failed to load agents.csv:', e);
+                console.error('agents.csv error:', e);
             }
 
-            // Fetch ledger
+            // ── Agents-C.csv — creator ledger ───────────────────────
+            const tbody = document.getElementById('ledgerBody');
             try {
-                const ledgerResp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
-                const tbody = document.getElementById('ledgerBody');
-
-                if (!ledgerResp.ok) {
+                const resp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
+                if (!resp.ok) {
                     tbody.innerHTML = '<tr><td colspan="5" class="no-data">Ledger data not yet available.</td></tr>';
                     return;
                 }
 
-                const rows = parseCsv(await ledgerResp.text());
+                const { headers, rows } = parseCsvRaw(await resp.text());
 
-                // Filter to this agent, sort alphabetically by username/creator
+                // Column indices from agents-dash-c: Agent, Creator, Month, Level, Tier, Tier Status, Score, Days, Hours, Diamonds
+                const iAgent    = findCol(headers, 'Agent');
+                const iCreator  = findCol(headers, 'Creator', 'Username', 'TikTok');
+                const iMonth    = findCol(headers, 'Month');
+                const iLevel    = findCol(headers, 'Level', 'Lvl');
+                const iTier     = findCol(headers, 'Tier');
+                const iTierSt   = findCol(headers, 'Tier Status', 'Tier LM');
+                const iDays     = findCol(headers, 'Days', 'Live Days');
+                const iHours    = findCol(headers, 'Hours');
+                const iDiamonds = findCol(headers, 'Diamonds', '💎');
+
                 const myRows = rows
-                    .filter(r => {
-                        const a = (r['Agent'] || r['Manager'] || r['M'] || r['m'] || '').toUpperCase().trim();
-                        return a === agentKey;
-                    })
-                    .sort((a, b) => {
-                        const ua = (a['Creator'] || a['Username'] || '').toLowerCase();
-                        const ub = (b['Creator'] || b['Username'] || '').toLowerCase();
-                        return ua.localeCompare(ub);
-                    });
+                    .filter(r => (r[iAgent] || '').toLowerCase().trim() === emailKey)
+                    .sort((a, b) => (a[iCreator] || '').localeCompare(b[iCreator] || ''));
 
-                document.getElementById('ledgerCount').textContent = `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
+                document.getElementById('ledgerCount').textContent =
+                    `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
 
                 if (myRows.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No creators found.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">No creators found for your account.</td></tr>';
                     return;
                 }
 
                 tbody.innerHTML = myRows.map(r => {
-                    const creator  = r['Creator'] || r['Username'] || r['TikTok'] || '--';
-                    const month    = r['Month'] || '';
-                    const level    = r['Level'] || r['Lvl'] || '';
-                    const tier     = r['Tier'] || '';
-                    const tierLast = r['Tier Last Month'] || r['Tier LM'] || '';
-                    const days     = r['Days'] || r['Live Days'] || '--';
-                    const hours    = r['Hours'] || '--';
-                    const diamonds = r['Diamonds'] || r['💎'] || '0';
+                    const creator   = r[iCreator]  || '--';
+                    const month     = r[iMonth]    || '';
+                    const level     = r[iLevel]    || '';
+                    const tier      = r[iTier]     || '';
+                    const tierSt    = r[iTierSt]   || ''; // "Up", "Down", "--"
+                    const days      = r[iDays]     || '--';
+                    const hours     = r[iHours]    || '--';
+                    const diamonds  = r[iDiamonds] || '0';
+
+                    // Tier Status badge using the Tier Status column directly
+                    let arrow = '', cls = 'tier-flat';
+                    if (tierSt.toLowerCase() === 'up')   { arrow = '↑'; cls = 'tier-up'; }
+                    if (tierSt.toLowerCase() === 'down') { arrow = '↓'; cls = 'tier-down'; }
+
+                    const lvlTierText = [level, tier].filter(Boolean).join(' / ') || '--';
 
                     return `<tr>
                         <td>
                             <div class="creator-cell">
                                 <span class="creator-username">@${creator}</span>
-                                ${month ? `<span class="creator-month">(${month})</span>` : ''}
+                                ${month ? `<span class="creator-month">(Month ${month})</span>` : ''}
                             </div>
                         </td>
-                        <td>${tierBadge(level, tier, tierLast)}</td>
+                        <td><span class="tier-badge"><span class="${cls}">${lvlTierText}${arrow ? ' ' + arrow : ''}</span></span></td>
                         <td>${days}</td>
                         <td>${hours}</td>
                         <td><span class="diamonds-cell"><i class="fas fa-gem"></i>${fmtK(diamonds)}</span></td>
@@ -354,9 +368,8 @@
                 }).join('');
 
             } catch (e) {
-                console.error('Failed to load agents-dash-c.csv:', e);
-                document.getElementById('ledgerBody').innerHTML =
-                    '<tr><td colspan="5" class="no-data">Error loading creator data.</td></tr>';
+                console.error('agents-dash-c.csv error:', e);
+                tbody.innerHTML = '<tr><td colspan="5" class="no-data">Error loading creator data.</td></tr>';
             }
         }
     </script>
