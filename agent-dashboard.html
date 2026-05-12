@@ -298,6 +298,7 @@
 
         function parseDiamondValue(n) {
             const raw = String(n || '').replace(/,/g, '');
+            // Matches optional leading symbol(s), numeric values like 1200 / 1.5 / .5, and optional K/M suffix.
             const match = raw.match(/^\s*[^\d.-]*(-?(?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/);
             if (!match) return 0;
 
