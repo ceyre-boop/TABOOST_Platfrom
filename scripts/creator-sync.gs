@@ -3,11 +3,13 @@
 // Google Sheets → GitHub (exports raw CSV via GID)
 // ============================================================================
 
-// CONFIG - Your 3 sheets
+// CONFIG - Your sheets
 const SHEET_CONFIG = [
   { tabName: 'Current', outputPath: 'data/current.csv' },
   { tabName: 'Rewards', outputPath: 'data/rewards-history.csv' },  // Dashboard expects this filename
-  { tabName: 'History', outputPath: 'data/history.csv' }
+  { tabName: 'History', outputPath: 'data/history.csv' },
+  { tabName: 'Agents', outputPath: 'data/agents.csv' },
+  { tabName: 'Agents-C', outputPath: 'data/agents-dash-c.csv' }
 ];
 
 // ============================================
