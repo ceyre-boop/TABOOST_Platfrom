@@ -102,20 +102,10 @@
 
     <!-- Step 1 -->
     <div class="card">
-        <h2>Step 1 — Admin Credentials</h2>
-        <div class="warn-box">⚠️ This creates real Firebase Auth accounts. Duplicate emails are skipped and only their Firestore doc is updated.</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
-            <div class="field">
-                <label>Admin Email</label>
-                <input type="email" id="adminEmail" value="marco@taboost.me">
-            </div>
-            <div class="field">
-                <label>Admin Password</label>
-                <input type="password" id="adminPassword" placeholder="Your admin password">
-            </div>
-        </div>
+        <h2>Step 1 — Default Agent Password</h2>
+        <div class="warn-box">⚠️ This creates real Firebase Auth accounts. Duplicate emails are skipped — only their Firestore doc is updated.</div>
         <div class="field" style="margin-bottom:0">
-            <label>Default Agent Temp Password (agents log in with this first)</label>
+            <label>Temporary password all agents will use to first log in</label>
             <input type="text" id="defaultPassword" value="Taboost2026!">
         </div>
     </div>
@@ -408,23 +398,10 @@
     // ── Main import ──────────────────────────────────────────────────
     async function runImport() {
         if (!parsedAgents.length) return;
-        const adminEmail = document.getElementById('adminEmail').value.trim();
-        const adminPwd   = document.getElementById('adminPassword').value;
-        if (!adminPwd) { alert('Enter admin password.'); return; }
 
         document.getElementById('importBtn').disabled = true;
         let ok = 0, skip = 0, err = 0;
         log(`Starting import of ${parsedAgents.length} agents…`, 'inf');
-
-        // Verify admin
-        try {
-            await auth.signInWithEmailAndPassword(adminEmail, adminPwd);
-            log(`✅ Admin verified: ${adminEmail}`, 'ok');
-        } catch (e) {
-            log(`❌ Admin login failed: ${e.message}`, 'err');
-            document.getElementById('importBtn').disabled = false;
-            return;
-        }
 
         for (let i = 0; i < parsedAgents.length; i++) {
             const agent = parsedAgents[i];
@@ -463,7 +440,6 @@
                     err++;
                     setBadge(i, 'err', 'ERROR');
                     updateCounts(ok, skip, err);
-                    await reauth(adminEmail, adminPwd);
                     continue;
                 }
             }
@@ -509,7 +485,6 @@
             }
 
             updateCounts(ok, skip, err);
-            await reauth(adminEmail, adminPwd);
             await sleep(400);
         }
 
@@ -519,9 +494,6 @@
         document.getElementById('importBtn').disabled = false;
     }
 
-    async function reauth(email, pwd) {
-        try { await auth.signInWithEmailAndPassword(email, pwd); } catch (_) {}
-    }
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
     function setBadge(i, cls, text) {
