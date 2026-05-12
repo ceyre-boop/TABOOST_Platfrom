@@ -167,11 +167,11 @@
         <div class="stats-grid">
             <div class="stat-card primary">
                 <div class="stat-header">
-                    <span class="stat-label">Total Diamonds</span>
+                    <span class="stat-label">Total Monthly Diamonds</span>
                 </div>
                 <div class="stat-value" id="statTotalDiamonds">--</div>
                 <div class="stat-footer">
-                    <small style="color:#888;">All-time across all creators</small>
+                    <small style="color:#888;" id="statActiveCreators">From -- active creators</small>
                 </div>
             </div>
 
@@ -334,6 +334,12 @@
                 const myRows = rows
                     .filter(r => (r[iAgent] || '').toLowerCase().trim() === emailKey)
                     .sort((a, b) => (a[iCreator] || '').localeCompare(b[iCreator] || ''));
+
+                // Monthly diamonds + active creators from ledger
+                const monthlyDiamonds = myRows.reduce((sum, r) => sum + (parseInt((r[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0), 0);
+                const activeCreators  = myRows.filter(r => (parseInt((r[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0) > 0).length;
+                document.getElementById('statTotalDiamonds').textContent = fmtK(monthlyDiamonds) + ' 💎';
+                document.getElementById('statActiveCreators').textContent = `From ${activeCreators} active creator${activeCreators !== 1 ? 's' : ''}`;
 
                 document.getElementById('ledgerCount').textContent =
                     `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
