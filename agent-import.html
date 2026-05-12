@@ -182,7 +182,11 @@
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         <div class="row-actions">
             <button class="btn" id="importBtn" onclick="runImport()" disabled>🚀 Import Agents</button>
+            <button class="btn-sec" id="resetBtn" onclick="sendResetEmails()" style="display:none;">📧 Send Reset Emails to Existing Accounts</button>
             <button class="btn-sec" onclick="downloadLog()">⬇ Download Log</button>
+        </div>
+        <div id="resetNote" style="display:none; background:rgba(255,170,0,0.08); border:1px solid rgba(255,170,0,0.25); border-radius:8px; padding:12px 16px; font-size:13px; color:#ffcc88; margin-top:12px;">
+            ⚠️ <strong id="resetCount">0</strong> agents had existing Firebase accounts — their password was <strong>not</strong> changed by the import. Click above to email them a password reset link so they can set a new password and log in.
         </div>
         <div class="log" id="logBox" style="margin-top:20px;">
             <div class="log-entry inf">Ready. Upload both CSV files to begin.</div>
@@ -206,10 +210,11 @@
     const db   = firebase.firestore();
 
     // ── State ────────────────────────────────────────────────────────
-    let agentsData  = null; // parsed agents CSV (raw rows + headers by index)
-    let agentsCData = null; // parsed agents-C CSV
+    let agentsData  = null;
+    let agentsCData = null;
     let parsedAgents = [];
     let logLines = [];
+    let skippedEmails = []; // existing Auth accounts that need password reset
 
     // ── CSV parser (preserves index order for duplicate header names) ──
     function parseCsvRaw(text) {
@@ -425,6 +430,7 @@
             } catch (e) {
                 if (e.code === 'auth/email-already-in-use') {
                     log(`  ⚠️  Email exists — finding UID in Firestore…`, 'wrn');
+                    skippedEmails.push(agent.email);
                     try {
                         const snap = await db.collection('agents').where('email', '==', agent.email).limit(1).get();
                         if (!snap.empty) uid = snap.docs[0].id;
@@ -490,8 +496,35 @@
 
         document.getElementById('progressFill').style.width = '100%';
         log('──────────────────────────────────', 'inf');
-        log(`Done! ✅ ${ok} created  ⚠️ ${skip} updated  ❌ ${err} errors`, ok > 0 ? 'ok' : 'wrn');
+        log(`Done! ✅ ${ok} created  ⚠️ ${skip} existing (need reset)  ❌ ${err} errors`, ok > 0 ? 'ok' : 'wrn');
         document.getElementById('importBtn').disabled = false;
+
+        if (skippedEmails.length > 0) {
+            document.getElementById('resetBtn').style.display  = 'inline-block';
+            document.getElementById('resetNote').style.display = 'block';
+            document.getElementById('resetCount').textContent  = skippedEmails.length;
+            log(`📧 ${skippedEmails.length} existing accounts need a password reset — click "Send Reset Emails"`, 'wrn');
+        }
+    }
+
+    async function sendResetEmails() {
+        if (!skippedEmails.length) return;
+        document.getElementById('resetBtn').disabled = true;
+        log(`Sending password reset emails to ${skippedEmails.length} existing accounts…`, 'inf');
+        let sent = 0, failed = 0;
+        for (const email of skippedEmails) {
+            try {
+                await auth.sendPasswordResetEmail(email);
+                log(`  ✅ Reset email sent → ${email}`, 'ok');
+                sent++;
+            } catch (e) {
+                log(`  ❌ Failed → ${email}: ${e.message}`, 'err');
+                failed++;
+            }
+            await sleep(300);
+        }
+        log(`Reset emails done: ${sent} sent, ${failed} failed`, sent > 0 ? 'ok' : 'err');
+        document.getElementById('resetBtn').disabled = false;
     }
 
     function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
