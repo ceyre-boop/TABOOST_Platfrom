@@ -297,7 +297,7 @@
         const GITHUB_BASE = '';
 
         function fmtK(n) {
-            const v = parseInt(n) || 0;
+            const v = parseInt(String(n).replace(/,/g, '')) || 0;
             if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
             if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
             return v.toLocaleString();
