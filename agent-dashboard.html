@@ -137,6 +137,74 @@
             color: #888;
         }
         .no-data { text-align: center; padding: 40px; color: #888; }
+
+        /* ── Mobile ───────────────────────────────────────── */
+        @media (max-width: 640px) {
+            .creator-layout { padding: 16px 12px; }
+
+            /* Header: stack profile + actions */
+            .creator-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                padding-bottom: 16px;
+            }
+            .creator-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            /* Shrink buttons to icon + short label */
+            .creator-actions a,
+            .creator-actions button {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+            }
+
+            /* Smaller avatar */
+            .creator-avatar {
+                width: 52px !important;
+                height: 52px !important;
+                font-size: 1.3rem !important;
+                border-radius: 14px !important;
+            }
+            .creator-name { font-size: 1.2rem !important; }
+
+            /* Stats: 1 column on very small, 2 columns otherwise */
+            .stats-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            .stats-grid .stat-card:first-child {
+                grid-column: 1 / -1; /* Monthly diamonds spans full width */
+            }
+            .stat-value { font-size: 1.6rem !important; }
+            .stat-label { font-size: 11px !important; }
+
+            /* Section card padding */
+            .section-card { padding: 16px 12px !important; }
+            .section-header { margin-bottom: 12px !important; }
+            .section-header h2 { font-size: 1rem !important; }
+
+            /* Table: tighten padding, smaller font */
+            .ledger-table { font-size: 12px; }
+            .ledger-table th { padding: 8px 8px; font-size: 10px; letter-spacing: 0.4px; }
+            .ledger-table td { padding: 10px 8px; }
+
+            /* Hide Hours column on mobile — saves width */
+            .ledger-table th:nth-child(5),
+            .ledger-table td:nth-child(5) { display: none; }
+
+            .tier-badge { padding: 2px 5px; font-size: 11px; }
+            .diamonds-cell { font-size: 12px; }
+
+            /* Footer */
+            .creator-footer { font-size: 11px !important; text-align: center; }
+        }
+
+        @media (max-width: 380px) {
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .stats-grid .stat-card:first-child { grid-column: auto; }
+        }
     </style>
 </head>
 <body>
