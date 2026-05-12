@@ -352,7 +352,8 @@
                 tbody.innerHTML = myRows.map(r => {
                     const creator   = r[iCreator]  || '--';
                     const month     = r[iMonth]    || '';
-                    const level     = r[iLevel]    || '--';
+                    const rawLevel  = r[iLevel]    || '';
+                    const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
                     const tier      = r[iTier]     || '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
