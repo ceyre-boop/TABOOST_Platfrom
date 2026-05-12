@@ -304,7 +304,7 @@
                 .replace(/[^0-9.kKmM.-]/g, '');
             if (!normalized) return 0;
 
-            const match = normalized.match(/^(-?\d+(?:\.\d+)?)([kKmM])?$/);
+            const match = normalized.match(/^(-?(?:\d+\.?\d*|\.\d+))([kKmM])?$/);
             if (!match) return 0;
 
             const base = parseFloat(match[1]) || 0;
