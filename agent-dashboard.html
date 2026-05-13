@@ -309,8 +309,8 @@
             return Math.round(base * multiplier);
         }
 
-        // Tier Goal should be a non-negative numeric value (optionally with K/M suffix).
-        const TIER_GOAL_PATTERN = /^\s*[^\d.-]*((?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/;
+        // Non-negative numeric values with optional K/M suffix (e.g. 1200, 1.5K, 2M).
+        const NUMERIC_VALUE_WITH_SUFFIX_PATTERN = /^\s*[^\d.-]*((?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/;
 
         function fmtK(n) {
             const v = (typeof n === 'number' && Number.isFinite(n))
@@ -408,6 +408,7 @@
                 const iMonth    = findCol(headers, 'Month');
                 const iLevel    = findCol(headers, 'Level', 'Lvl');
                 const iTier     = findCol(headers, 'Tier');
+                // Older exports may name this same field "Tier Left" instead of "Tier Goal".
                 const iTierGoal = findCol(headers, 'Tier Goal', 'Tier Left');
                 const iTierSt   = findCol(headers, 'Tier Status', 'Tier LM');
                 const iDays     = findCol(headers, 'Days', 'Live Days');
@@ -448,7 +449,7 @@
                     const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
                     const tier      = r[iTier]     || '--';
                     const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
-                    const isTierGoalNumeric = TIER_GOAL_PATTERN.test(String(rawTierGoal));
+                    const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal));
                     const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
