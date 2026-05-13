@@ -274,13 +274,14 @@
                             <th>Creator</th>
                             <th>Level</th>
                             <th>Tier</th>
+                            <th>Tier Goal</th>
                             <th>Days</th>
                             <th>Hours</th>
                             <th>Diamonds</th>
                         </tr>
                     </thead>
                     <tbody id="ledgerBody">
-                        <tr class="loading-row"><td colspan="6"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
+                        <tr class="loading-row"><td colspan="7"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -392,7 +393,7 @@
             try {
                 const resp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
                 if (!resp.ok) {
-                    tbody.innerHTML = '<tr><td colspan="5" class="no-data">Ledger data not yet available.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">Ledger data not yet available.</td></tr>';
                     return;
                 }
 
@@ -404,6 +405,7 @@
                 const iMonth    = findCol(headers, 'Month');
                 const iLevel    = findCol(headers, 'Level', 'Lvl');
                 const iTier     = findCol(headers, 'Tier');
+                const iTierGoal = findCol(headers, 'Tier Goal', 'Tier Left');
                 const iTierSt   = findCol(headers, 'Tier Status', 'Tier LM');
                 const iDays     = findCol(headers, 'Days', 'Live Days');
                 const iHours    = findCol(headers, 'Hours');
@@ -431,7 +433,7 @@
                     `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
 
                 if (myRows.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="6" class="no-data">No creators found for your account.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">No creators found for your account.</td></tr>';
                     return;
                 }
 
@@ -442,6 +444,9 @@
                     const rawLevel  = r[iLevel]    || '';
                     const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
                     const tier      = r[iTier]     || '--';
+                    const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
+                    const tierGoalHasDigits = /\d/.test(String(rawTierGoal));
+                    const tierGoal  = tierGoalHasDigits ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
                     const hours     = r[iHours]    || '--';
@@ -459,6 +464,7 @@
                         </td>
                         <td><span style="color:#aaa;">${level}</span></td>
                         <td><span class="tier-badge"><span class="${cls}">${tier}${arrow}</span></span></td>
+                        <td><span style="color:#aaa;">${tierGoal}</span></td>
                         <td>${days}</td>
                         <td>${hours}</td>
                         <td><span class="diamonds-cell">${diamonds} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
@@ -467,7 +473,7 @@
 
             } catch (e) {
                 console.error('agents-dash-c.csv error:', e);
-                tbody.innerHTML = '<tr><td colspan="6" class="no-data">Error loading creator data.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="7" class="no-data">Error loading creator data.</td></tr>';
             }
         }
     </script>
