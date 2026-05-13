@@ -445,7 +445,7 @@
                     const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
                     const tier      = r[iTier]     || '--';
                     const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
-                    const isTierGoalNumeric = /\d/.test(String(rawTierGoal));
+                    const isTierGoalNumeric = /^\s*[^\d.-]*(-?(?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/.test(String(rawTierGoal));
                     const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
