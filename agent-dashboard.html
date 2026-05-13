@@ -110,6 +110,7 @@
             font-size: 12px;
             font-weight: 600;
             background: rgba(255,255,255,0.08);
+            white-space: nowrap;
         }
         .tier-up   { color: #00ff88; }
         .tier-down { color: #ff4466; }
@@ -272,11 +273,11 @@
                     <thead>
                         <tr>
                             <th>Creator</th>
-                            <th>Level</th>
-                            <th>Tier</th>
-                            <th>Tier Goal</th>
                             <th>Days</th>
                             <th>Hours</th>
+                            <th>Level</th>
+                            <th>Tier</th>
+                            <th>Goal</th>
                             <th>Diamonds</th>
                         </tr>
                     </thead>
@@ -449,7 +450,7 @@
                     const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
                     const tier      = r[iTier]     || '--';
                     const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
-                    const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal));
+                    const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal).replace(/,/g, ''));
                     const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
@@ -466,11 +467,11 @@
                             <span class="creator-username">@${creator}</span>
                             ${month ? `<span class="creator-month" style="color:#555; font-size:11px; margin-left:6px;">Mo.${month}</span>` : ''}
                         </td>
+                        <td>${days}</td>
+                        <td>${hours}</td>
                         <td><span style="color:#aaa;">${level}</span></td>
                         <td><span class="tier-badge"><span class="${cls}">${tier}${arrow}</span></span></td>
                         <td><span style="color:#aaa;">${tierGoal}</span></td>
-                        <td>${days}</td>
-                        <td>${hours}</td>
                         <td><span class="diamonds-cell">${diamonds} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
                     </tr>`;
                 }).join('');
