@@ -106,11 +106,11 @@ function generateRollingCalendar() {
         },
         {
             id: 10,
-            title: "Tiny Diny's Live World",
+            title: "Tiny Diny World",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-01'),
-            endDate: new Date('2026-04-30'),
+            startDate: new Date('2026-05-03'),
+            endDate: new Date('2026-05-31'),
             color: "#ff9933"
         },
         {
@@ -124,7 +124,7 @@ function generateRollingCalendar() {
         },
         {
             id: 12,
-            title: "Creator Career Program",
+            title: "Creator Career Program (T3/4)",
             type: "live",
             time: "All Day",
             startDate: new Date('2026-05-01'),
@@ -133,7 +133,16 @@ function generateRollingCalendar() {
         },
         {
             id: 13,
-            title: "Hot Stream Summer",
+            title: "Creator Career Program (T5/6)",
+            type: "live",
+            time: "All Day",
+            startDate: new Date('2026-05-01'),
+            endDate: new Date('2026-05-31'),
+            color: "#ff3366"
+        },
+        {
+            id: 14,
+            title: "Hot Stream Summer (T3-5)",
             type: "live",
             time: "All Day",
             startDate: new Date('2026-05-01'),
@@ -141,7 +150,25 @@ function generateRollingCalendar() {
             color: "#ff6600"
         },
         {
-            id: 14,
+            id: 15,
+            title: "Hot Stream Summer (T7/8)",
+            type: "live",
+            time: "All Day",
+            startDate: new Date('2026-05-01'),
+            endDate: new Date('2026-06-01'),
+            color: "#ff884d"
+        },
+        {
+            id: 16,
+            title: "Crece con tu Equipo",
+            type: "live",
+            time: "All Day",
+            startDate: new Date('2026-05-05'),
+            endDate: new Date('2026-05-17'),
+            color: "#00b894"
+        },
+        {
+            id: 17,
             title: "All Summer Sound",
             type: "live",
             time: "All Day",
@@ -150,7 +177,7 @@ function generateRollingCalendar() {
             color: "#00ccff"
         },
         {
-            id: 15,
+            id: 18,
             title: "Guest Mission",
             type: "live",
             time: "All Day",
@@ -159,7 +186,16 @@ function generateRollingCalendar() {
             color: "#aa88ff"
         },
         {
-            id: 16,
+            id: 19,
+            title: "My LIVE My Story",
+            type: "live",
+            time: "All Day",
+            startDate: new Date('2026-05-05'),
+            endDate: new Date('2026-06-05'),
+            color: "#ffd166"
+        },
+        {
+            id: 20,
             title: "Deals For You Days",
             type: "campaign",
             time: "All Day",
@@ -217,7 +253,44 @@ function generateRollingCalendar() {
                 color: "#ff0044"
             }
         ],
-        tiktokCampaigns: []
+        tiktokCampaigns: [
+            {
+                name: "Creator Career Program (T3/4)",
+                dates: "May 1 - May 31"
+            },
+            {
+                name: "Creator Career Program (T5/6)",
+                dates: "May 1 - May 31"
+            },
+            {
+                name: "Hot Stream Summer (T3-5)",
+                dates: "May 1 - Jun 1"
+            },
+            {
+                name: "Hot Stream Summer (T7/8)",
+                dates: "May 1 - Jun 1"
+            },
+            {
+                name: "Crece con tu Equipo",
+                dates: "May 5 - May 17"
+            },
+            {
+                name: "All Summer Sound",
+                dates: "May 1 - May 31"
+            },
+            {
+                name: "Guest Mission",
+                dates: "Apr 22 - May 20"
+            },
+            {
+                name: "Tiny Diny World",
+                dates: "May 3 - May 31"
+            },
+            {
+                name: "My LIVE My Story",
+                dates: "May 5 - Jun 5"
+            }
+        ]
     };
 }
 
