@@ -4,6 +4,10 @@
 function generateRollingCalendar() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    const createLocalDate = (dateString) => {
+        const [year, month, day] = dateString.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    };
     
     const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -55,8 +59,8 @@ function generateRollingCalendar() {
             title: "Bunny's Wishes",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-01'),
-            endDate: new Date('2026-04-13'),
+            startDate: createLocalDate('2026-04-01'),
+            endDate: createLocalDate('2026-04-13'),
             color: "#ff66b2"
         },
         {
@@ -64,8 +68,8 @@ function generateRollingCalendar() {
             title: "Creator Spotlight",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-02'),
-            endDate: new Date('2026-04-13'),
+            startDate: createLocalDate('2026-04-02'),
+            endDate: createLocalDate('2026-04-13'),
             color: "#ffcc00"
         },
         {
@@ -73,8 +77,8 @@ function generateRollingCalendar() {
             title: "Fan Club Loyalty League",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-02'),
-            endDate: new Date('2026-04-17'),
+            startDate: createLocalDate('2026-04-02'),
+            endDate: createLocalDate('2026-04-17'),
             color: "#ff3300"
         },
         {
@@ -82,8 +86,8 @@ function generateRollingCalendar() {
             title: "Blooming Beats: LIVE Music",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-03'),
-            endDate: new Date('2026-04-12'),
+            startDate: createLocalDate('2026-04-03'),
+            endDate: createLocalDate('2026-04-12'),
             color: "#cc33ff"
         },
         {
@@ -91,8 +95,8 @@ function generateRollingCalendar() {
             title: "Easter Egg-stravaganza",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-03'),
-            endDate: new Date('2026-04-12'),
+            startDate: createLocalDate('2026-04-03'),
+            endDate: createLocalDate('2026-04-12'),
             color: "#33cc33"
         },
         {
@@ -100,17 +104,17 @@ function generateRollingCalendar() {
             title: "Live Workshop",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-02'),
-            endDate: new Date('2026-04-26'),
+            startDate: createLocalDate('2026-04-02'),
+            endDate: createLocalDate('2026-04-26'),
             color: "#3399ff"
         },
         {
             id: 10,
-            title: "Tiny Diny World",
+            title: "A Tiny Diny World",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-05-03'),
-            endDate: new Date('2026-05-31'),
+            startDate: createLocalDate('2026-05-03'),
+            endDate: createLocalDate('2026-05-31'),
             color: "#ff9933"
         },
         {
@@ -118,8 +122,8 @@ function generateRollingCalendar() {
             title: "CN Showdown (World Cup)",
             type: "special",
             time: "All Day",
-            startDate: new Date('2026-04-22'),
-            endDate: new Date('2026-04-30'),
+            startDate: createLocalDate('2026-04-22'),
+            endDate: createLocalDate('2026-04-30'),
             color: "#00ccff"
         },
         {
@@ -127,8 +131,8 @@ function generateRollingCalendar() {
             title: "Creator Career Program (T3/4)",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-01'),
-            endDate: new Date('2026-05-31'),
+            startDate: createLocalDate('2026-05-01'),
+            endDate: createLocalDate('2026-05-31'),
             color: "#ff0044"
         },
         {
@@ -136,8 +140,8 @@ function generateRollingCalendar() {
             title: "Creator Career Program (T5/6)",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-01'),
-            endDate: new Date('2026-05-31'),
+            startDate: createLocalDate('2026-05-01'),
+            endDate: createLocalDate('2026-05-31'),
             color: "#ff3366"
         },
         {
@@ -145,8 +149,8 @@ function generateRollingCalendar() {
             title: "Hot Stream Summer (T3-5)",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-01'),
-            endDate: new Date('2026-06-01'),
+            startDate: createLocalDate('2026-05-01'),
+            endDate: createLocalDate('2026-06-01'),
             color: "#ff6600"
         },
         {
@@ -154,8 +158,8 @@ function generateRollingCalendar() {
             title: "Hot Stream Summer (T7/8)",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-01'),
-            endDate: new Date('2026-06-01'),
+            startDate: createLocalDate('2026-05-01'),
+            endDate: createLocalDate('2026-06-01'),
             color: "#ff884d"
         },
         {
@@ -163,8 +167,8 @@ function generateRollingCalendar() {
             title: "Crece con tu Equipo",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-05'),
-            endDate: new Date('2026-05-17'),
+            startDate: createLocalDate('2026-05-05'),
+            endDate: createLocalDate('2026-05-17'),
             color: "#00b894"
         },
         {
@@ -172,8 +176,8 @@ function generateRollingCalendar() {
             title: "All Summer Sound",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-01'),
-            endDate: new Date('2026-05-31'),
+            startDate: createLocalDate('2026-05-01'),
+            endDate: createLocalDate('2026-05-31'),
             color: "#00ccff"
         },
         {
@@ -181,8 +185,8 @@ function generateRollingCalendar() {
             title: "Guest Mission",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-04-22'),
-            endDate: new Date('2026-05-20'),
+            startDate: createLocalDate('2026-04-22'),
+            endDate: createLocalDate('2026-05-20'),
             color: "#aa88ff"
         },
         {
@@ -190,8 +194,8 @@ function generateRollingCalendar() {
             title: "My LIVE My Story",
             type: "live",
             time: "All Day",
-            startDate: new Date('2026-05-05'),
-            endDate: new Date('2026-06-05'),
+            startDate: createLocalDate('2026-05-05'),
+            endDate: createLocalDate('2026-06-05'),
             color: "#ffd166"
         },
         {
@@ -199,8 +203,8 @@ function generateRollingCalendar() {
             title: "Deals For You Days",
             type: "campaign",
             time: "All Day",
-            startDate: new Date('2026-06-17'),
-            endDate: new Date('2026-07-02'),
+            startDate: createLocalDate('2026-06-17'),
+            endDate: createLocalDate('2026-07-02'),
             color: "#ffcc00"
         }
     ];
@@ -283,7 +287,7 @@ function generateRollingCalendar() {
                 dates: "Apr 22 - May 20"
             },
             {
-                name: "Tiny Diny World",
+                name: "A Tiny Diny World",
                 dates: "May 3 - May 31"
             },
             {
