@@ -804,10 +804,10 @@
     <script src="js/creator-dashboard.js?v=1774322000000"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
         import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-        
+
         const firebaseConfig = {
             apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
             authDomain: "taboost-platform.firebaseapp.com",
@@ -816,8 +816,9 @@
             messagingSenderId: "379293685859",
             appId: "1:379293685859:web:d89592adbf67360b574056"
         };
-        
-        const app = initializeApp(firebaseConfig);
+
+        // Reuse existing app if already initialized by the auth module above
+        const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         

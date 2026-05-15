@@ -27,9 +27,12 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
+        let _agentRedirecting = false;
         onAuthStateChanged(auth, async (user) => {
+            if (_agentRedirecting) return;
             if (!user) {
-                window.location.href = 'firebase-login.html';
+                _agentRedirecting = true;
+                window.location.href = 'agent-login.html';
                 return;
             }
 
@@ -40,9 +43,9 @@
 
                 if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
 
-                if (role === 'admin') { window.location.href = 'dashboard.html'; return; }
-                if (role === 'manager') { window.location.href = 'managers.html'; return; }
-                if (role === 'creator') { window.location.href = 'creator-dashboard.html'; return; }
+                if (role === 'admin')   { _agentRedirecting = true; window.location.href = 'dashboard.html'; return; }
+                if (role === 'manager') { _agentRedirecting = true; window.location.href = 'managers.html'; return; }
+                if (role === 'creator') { _agentRedirecting = true; window.location.href = 'creator-dashboard.html'; return; }
 
                 // role === 'agent'
                 window.currentUser = {
@@ -54,12 +57,12 @@
                 };
 
                 document.getElementById('agentName').textContent = window.currentUser.name;
-                document.getElementById('agentAvatar').textContent = window.currentUser.name.charAt(0).toUpperCase();
 
                 loadAgentData(window.currentUser.agentEmail);
             } catch (err) {
                 console.error('Auth error:', err);
-                window.location.href = 'firebase-login.html';
+                // Do NOT redirect on error — avoids login loop. Show message instead.
+                document.getElementById('agentName').textContent = 'Error loading — please refresh';
             }
         });
 

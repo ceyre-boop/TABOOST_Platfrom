@@ -307,9 +307,11 @@
             document.getElementById('signupHint').classList.remove('visible');
         }
 
-        // Check if already logged in
+        // Check if already logged in — guard prevents multiple simultaneous redirects
+        let _redirecting = false;
         auth.onAuthStateChanged((user) => {
-            if (user) {
+            if (user && !_redirecting) {
+                _redirecting = true;
                 redirectToDashboard();
             }
         });

@@ -176,12 +176,13 @@
     const db   = firebase.firestore();
 
     // If already signed in as agent, go straight to dashboard
+    let _loginRedirecting = false;
     auth.onAuthStateChanged(async user => {
-        if (!user) return;
+        if (!user || _loginRedirecting) return;
         try {
-            const doc = await db.collection('users').doc(user.uid).get();
-            const role = doc.data()?.role || 'creator';
-            if (role === 'agent') window.location.href = 'agent-dashboard.html';
+            const snap = await db.collection('users').doc(user.uid).get();
+            const role = snap.data()?.role || 'creator';
+            if (role === 'agent') { _loginRedirecting = true; window.location.href = 'agent-dashboard.html'; }
         } catch (_) {}
     });
 
