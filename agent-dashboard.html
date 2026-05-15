@@ -125,6 +125,15 @@
         }
         .diamonds-cell i { font-size: 12px; }
 
+        /* ── Agent logo image ────────────────────────────── */
+        .agent-logo-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
         /* ── Stat card tweaks for this page ──────────────── */
         .stat-card::before, .stat-card::after {
             display: none !important;
@@ -143,32 +152,41 @@
         @media (max-width: 640px) {
             .creator-layout { padding: 16px 12px; }
 
-            /* Header: stack profile + actions */
+            /* Header: center everything on mobile */
             .creator-header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                text-align: center;
                 gap: 14px;
                 padding-bottom: 16px;
             }
+            .creator-profile {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .creator-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
             .creator-actions {
                 width: 100%;
-                justify-content: flex-end;
+                justify-content: center;
             }
-            /* Shrink buttons to icon + short label */
             .creator-actions a,
             .creator-actions button {
-                padding: 8px 12px !important;
+                padding: 8px 14px !important;
                 font-size: 12px !important;
             }
 
-            /* Smaller avatar */
-            .creator-avatar {
-                width: 52px !important;
-                height: 52px !important;
-                font-size: 1.3rem !important;
-                border-radius: 14px !important;
+            .agent-logo-img {
+                width: 80px !important;
+                height: 80px !important;
+                border-radius: 20px !important;
             }
-            .creator-name { font-size: 1.2rem !important; }
+            .creator-name { font-size: 1.3rem !important; }
 
             /* Stats: 1 column on very small, 2 columns otherwise */
             .stats-grid {
@@ -208,9 +226,9 @@
     <div class="creator-layout">
 
         <!-- Header -->
-        <div class="creator-header">
+        <div class="creator-header" id="agentHeader">
             <div class="creator-profile">
-                <div class="creator-avatar" id="agentAvatar">A</div>
+                <img src="images/agent-avatar.png" alt="Agent" class="agent-logo-img">
                 <div class="creator-info">
                     <h1 class="creator-name" id="agentName">Loading...</h1>
                     <span class="creator-badge" style="background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;">
