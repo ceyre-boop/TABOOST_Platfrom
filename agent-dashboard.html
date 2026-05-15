@@ -125,6 +125,42 @@
         }
         .diamonds-cell i { font-size: 12px; }
 
+        /* ── Bonus tier cards ────────────────────────────── */
+        .bonus-tier-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .bonus-tier-card.active {
+            background: rgba(255,170,0,0.12);
+            border-color: rgba(255,170,0,0.4);
+            box-shadow: 0 0 16px rgba(255,170,0,0.15);
+        }
+        .bonus-tier-card.achieved {
+            background: rgba(0,255,136,0.08);
+            border-color: rgba(0,255,136,0.35);
+        }
+        .bonus-amount {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .bonus-tier-card.active .bonus-amount { color: #ffaa00; }
+        .bonus-tier-card.achieved .bonus-amount { color: #00ff88; }
+        .bonus-label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-top: 4px;
+        }
+        .bonus-tier-card.active .bonus-label { color: #ffaa00; }
+        .bonus-tier-card.achieved .bonus-label { color: #00ff88; }
+
         /* ── Stat card tweaks for this page ──────────────── */
         .stat-card::before, .stat-card::after {
             display: none !important;
@@ -138,6 +174,14 @@
             color: #888;
         }
         .no-data { text-align: center; padding: 40px; color: #888; }
+
+        /* ── Header abbreviations ───────────────────────── */
+        .th-short { display: none; }
+        .th-full  { display: inline; }
+        @media (max-width: 640px) {
+            .th-short { display: inline; }
+            .th-full  { display: none; }
+        }
 
         /* ── Mobile ───────────────────────────────────────── */
         @media (max-width: 640px) {
@@ -261,8 +305,29 @@
             </div>
         </div>
 
+        <!-- Bonus Tiers -->
+        <div class="section-card" style="margin-top: 16px; padding: 18px 20px;">
+            <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+                <h2 style="font-size:14px; color:#aaa; text-transform:uppercase; letter-spacing:1px;"><i class="fas fa-trophy" style="color:#ffaa00;"></i> Bonus Tiers</h2>
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+                <div class="bonus-tier-card" id="bonusTier1">
+                    <div class="bonus-amount">$500</div>
+                    <div class="bonus-label">Bonus</div>
+                </div>
+                <div class="bonus-tier-card" id="bonusTier2">
+                    <div class="bonus-amount">$1.5K</div>
+                    <div class="bonus-label">Total Bonus</div>
+                </div>
+                <div class="bonus-tier-card" id="bonusTier3">
+                    <div class="bonus-amount">$3K</div>
+                    <div class="bonus-label">Total Bonus</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Creator Ledger -->
-        <div class="section-card" style="margin-top: 24px;">
+        <div class="section-card" style="margin-top: 16px;">
             <div class="section-header">
                 <h2><i class="fas fa-list" style="color: #ffaa00;"></i> My Creators</h2>
                 <span id="ledgerCount" style="color:#888; font-size:13px;"></span>
@@ -273,12 +338,12 @@
                     <thead>
                         <tr>
                             <th>Creator</th>
-                            <th>Days</th>
-                            <th>Hours</th>
-                            <th>Level</th>
+                            <th><span class="th-full">Days</span><span class="th-short">D</span></th>
+                            <th><span class="th-full">Hours</span><span class="th-short">Hrs</span></th>
+                            <th><span class="th-full">Level</span><span class="th-short">Lvl</span></th>
                             <th>Tier</th>
-                            <th>Goal</th>
-                            <th>Diamonds</th>
+                            <th><span class="th-full">Goal</span><span class="th-short">Gl</span></th>
+                            <th><span class="th-full">Diamonds</span><span class="th-short">💎</span></th>
                         </tr>
                     </thead>
                     <tbody id="ledgerBody">
@@ -384,6 +449,19 @@
                         document.getElementById('statTotalCreators').textContent = creators.toLocaleString();
                         document.getElementById('statAddedThisMonth').textContent = `+${added} added this month`;
                         document.getElementById('statEarnings').textContent = earnings;
+
+                        // Bonus tier highlighting based on cumulative earnings
+                        const earningsNum = parseFloat(earnings.replace(/[^0-9.]/g, '')) || 0;
+                        const t1 = document.getElementById('bonusTier1');
+                        const t2 = document.getElementById('bonusTier2');
+                        const t3 = document.getElementById('bonusTier3');
+                        if (earningsNum >= 3000) {
+                            t1.classList.add('achieved'); t2.classList.add('achieved'); t3.classList.add('active');
+                        } else if (earningsNum >= 1500) {
+                            t1.classList.add('achieved'); t2.classList.add('active');
+                        } else if (earningsNum >= 500) {
+                            t1.classList.add('active');
+                        }
                     } else {
                         console.warn('No agents.csv row found for email:', emailKey);
                     }
