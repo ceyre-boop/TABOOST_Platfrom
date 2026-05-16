@@ -424,11 +424,8 @@
         <!-- 2. Current Diamonds / Rank / Rewards -->
         <div class="stats-grid">
             <div class="stat-card primary">
-                <div class="stat-header" style="display:flex;align-items:center;gap:8px;">
+                <div class="stat-header">
                     <span class="stat-label">This Month's Diamonds</span>
-                    <button class="tt-btn" onclick="openTooltip('diamonds')" aria-label="What are diamonds?">
-                        <i class="fas fa-gem" style="font-size:9px;"></i>
-                    </button>
                 </div>
                 <div class="stat-value" id="currentDiamonds">--</div>
                 <div class="stat-usd" id="currentUSD" style="display: none;">--</div>
@@ -437,8 +434,11 @@
                         <i class="fas fa-chart-line"></i> --% vs last month
                     </span>
                 </div>
-                <div class="stat-footer">
+                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
                     <small class="last-updated">Last updated: <span id="lastUpdatedTime">--</span></small>
+                    <button class="tt-btn" onclick="openTooltip('diamonds')" aria-label="What are diamonds?">
+                        <i class="fas fa-gem" style="font-size:9px;"></i>
+                    </button>
                 </div>
             </div>
             
