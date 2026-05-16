@@ -49,32 +49,35 @@
                     role = 'admin';
                 }
                 
-                // Redirect non-creators to their correct dashboard
+                // Redirect admins only — agents stay here now
                 if (role === 'admin') {
                     window.location.href = 'dashboard.html';
                     return;
                 }
-                if (role === 'agent' && !new URLSearchParams(window.location.search).get('agentSwitch')) {
-                    window.location.href = 'agent-dashboard.html';
-                    return;
-                }
-                
+
                 // Store user info for page use
                 window.currentUser = {
                     uid: user.uid,
                     email: user.email,
                     role: role,
-                    name: userData?.name || user.displayName,
-                    username: userData?.username || user.displayName
+                    name: userData?.displayName || userData?.name || user.displayName,
+                    username: userData?.username || user.displayName,
+                    agentEmail: user.email.toLowerCase(),
+                    isCreator: userData?.isCreator || false
                 };
-                
+
                 // Update UI with user info
                 document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
 
-                // Show Agent View button only for agents
+                // Agent setup — show toggle button, load agent data, default to agent panel for pure agents
                 if (role === 'agent') {
-                    const btn = document.getElementById('agentSwitchBtn');
+                    const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
+                    loadAgentPanel(user.email.toLowerCase());
+                    // Pure agents (not also creators) default to agent panel
+                    if (!userData?.isCreator) {
+                        showAgentPanel();
+                    }
                 }
                 
             } catch (error) {
@@ -380,6 +383,7 @@
 <body>
     <!-- BUILD: 2025-03-09-09:04 -->
     <div class="creator-layout">
+        <div id="creatorPanel">
         <!-- Sidebar Logo for Mobile -->
         <div class="mobile-logo">
             <img src="images/taboost-logo.jpg?v=20250305" alt="TABOOST">
@@ -402,9 +406,9 @@
                     <i class="fas fa-user-tie"></i>
                     <span id="managerName">--</span>
                 </a>
-                <a id="agentSwitchBtn" href="agent-dashboard.html" style="display:none; padding: 8px 14px; border-radius: 8px; background: rgba(255,170,0,0.12); border: 1px solid rgba(255,170,0,0.3); color: #ffaa00; font-size: 13px; font-weight: 600; text-decoration: none; align-items: center; gap: 6px;">
-                    <i class="fas fa-user-tie"></i> Agent View
-                </a>
+                <button id="agentViewToggle" onclick="toggleAgentPanel()" style="display:none; padding: 8px 14px; border-radius: 8px; background: rgba(255,170,0,0.12); border: 1px solid rgba(255,170,0,0.3); color: #ffaa00; font-size: 13px; font-weight: 600; cursor:pointer; align-items: center; gap: 6px;">
+                    <i class="fas fa-user-tie"></i> <span id="agentToggleLabel">Agent View</span>
+                </button>
                 <button class="settings-btn" onclick="openSettings()">
                     <i class="fas fa-cog"></i> Settings
                 </button>
@@ -740,6 +744,59 @@
         
 
         
+        </div><!-- end creatorPanel -->
+
+        <!-- ═══════════════════════════════════════════════════
+             AGENT PANEL — hidden until toggled or role=agent
+             ═══════════════════════════════════════════════════ -->
+        <div id="agentPanel" style="display:none;">
+
+            <!-- Agent stat cards -->
+            <div class="stats-grid" style="margin-bottom:16px;">
+                <div class="stat-card primary" style="position:relative;">
+                    <div class="stat-header"><span class="stat-label">Total Monthly Diamonds</span></div>
+                    <div class="stat-value" id="ap_diamonds">--</div>
+                    <div class="stat-footer"><small style="color:#888;" id="ap_active">From -- active creators</small></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header"><span class="stat-label">Total Creators</span></div>
+                    <div class="stat-value" id="ap_creators">--</div>
+                    <div class="stat-footer"><small style="color:#00ff88;" id="ap_added">-- added this month</small></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header"><span class="stat-label">Earnings This Month</span></div>
+                    <div class="stat-value" style="color:var(--success,#00ff88);" id="ap_earnings">--</div>
+                    <div class="stat-footer"><small style="color:#888;">Current month</small></div>
+                </div>
+            </div>
+
+            <!-- Creator ledger -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-list" style="color:#ffaa00;"></i> My Creators</h2>
+                    <span id="ap_count" style="color:#888;font-size:13px;"></span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="ap-table">
+                        <thead>
+                            <tr>
+                                <th>Creator</th>
+                                <th>Days</th>
+                                <th>Hours</th>
+                                <th>Level</th>
+                                <th>Tier</th>
+                                <th>Diamonds</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ap_tbody">
+                            <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end agent panel -->
+
         <footer class="creator-footer">
             <p>Questions? Contact <span id="footerManager">your manager</span>, <a href="mailto:info@taboost.me">info@taboost.me</a>, or <a href="https://discord.gg/Akfwz536BW" target="_blank"><i class="fab fa-discord"></i> Discord</a></p>
             <p>© 2026 TABOOST Agency. All rights reserved.</p>
@@ -952,6 +1009,171 @@
     
     console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
 })();
+</script>
+<!-- ── Agent panel styles ─────────────────────────────────── -->
+<style>
+    .ap-table { width:100%; border-collapse:collapse; font-size:14px; min-width:480px; }
+    .ap-table th { text-align:left; padding:10px 12px; color:#888; font-size:11px; text-transform:uppercase; letter-spacing:.7px; border-bottom:1px solid rgba(255,255,255,.08); white-space:nowrap; }
+    .ap-table td { padding:11px 12px; border-bottom:1px solid rgba(255,255,255,.05); color:#fff; }
+    .ap-table tr:last-child td { border-bottom:none; }
+    .ap-table tr:hover td { background:rgba(255,255,255,.03); }
+    .ap-tier-up   { color:#00ff88; font-weight:600; }
+    .ap-tier-down { color:#ff4466; font-weight:600; }
+    .ap-tier-flat { color:#888; }
+    .ap-diamonds  { color:#00ccff; font-weight:600; }
+    /* hide creator content wrapper when agent panel is active */
+    #creatorPanel.hidden { display:none !important; }
+</style>
+
+<!-- ── Agent panel JS ─────────────────────────────────────── -->
+<script>
+    let _agentPanelLoaded = false;
+    let _showingAgent = false;
+
+    function showAgentPanel() {
+        _showingAgent = true;
+        document.getElementById('agentPanel').style.display = 'block';
+        document.getElementById('creatorPanel').classList.add('hidden');
+        const lbl = document.getElementById('agentToggleLabel');
+        if (lbl) lbl.textContent = 'Creator View';
+    }
+
+    function showCreatorPanel() {
+        _showingAgent = false;
+        document.getElementById('agentPanel').style.display = 'none';
+        document.getElementById('creatorPanel').classList.remove('hidden');
+        const lbl = document.getElementById('agentToggleLabel');
+        if (lbl) lbl.textContent = 'Agent View';
+    }
+
+    function toggleAgentPanel() {
+        if (_showingAgent) { showCreatorPanel(); } else { showAgentPanel(); }
+    }
+
+    function apFmtK(n) {
+        const v = parseInt(String(n || '').replace(/,/g, '')) || 0;
+        if (v >= 1000000) return (v/1000000).toFixed(1).replace(/\.0$/,'')+'M';
+        if (v >= 1000)    return (v/1000).toFixed(1).replace(/\.0$/,'')+'K';
+        return v.toLocaleString();
+    }
+
+    function apParseCsv(text) {
+        const lines = text.trim().split(/\r?\n/);
+        if (lines.length < 2) return { headers:[], rows:[] };
+        const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
+        const rows = lines.slice(1).map(line => {
+            const vals=[]; let cur='', inQ=false;
+            for (let i=0;i<line.length;i++) {
+                const ch=line[i];
+                if (ch==='"'){inQ=!inQ;}
+                else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}
+                else{cur+=ch;}
+            }
+            vals.push(cur.trim());
+            return vals;
+        });
+        return { headers, rows };
+    }
+
+    function apFindCol(headers, ...names) {
+        for (const name of names) {
+            const i = headers.findIndex(h => h.toLowerCase().trim() === name.toLowerCase().trim());
+            if (i >= 0) return i;
+        }
+        return -1;
+    }
+
+    async function loadAgentPanel(agentEmail) {
+        if (_agentPanelLoaded) return;
+        _agentPanelLoaded = true;
+        const emailKey = agentEmail.toLowerCase().trim();
+        const bust = '?v=' + Date.now();
+
+        // ── Agents.csv stats ──────────────────────────────────
+        try {
+            const r = await fetch('data/agents.csv' + bust);
+            if (r.ok) {
+                const { headers, rows } = apParseCsv(await r.text());
+                const iEmail    = apFindCol(headers,'Agent User','Backstage Email','Email');
+                const iCreators = apFindCol(headers,'Creators','Total Creators');
+                const iTM       = apFindCol(headers,'Creators TM','Added This Month');
+                let   iDiamonds = apFindCol(headers,'Total 💎','Total Diamonds','Total ?');
+                if (iDiamonds < 0) iDiamonds = 3;
+                const monthLabel = new Date().toLocaleString('en-US',{month:'long',year:'numeric'});
+                let iEarnings = apFindCol(headers, monthLabel);
+                if (iEarnings < 0) iEarnings = headers.length - 1;
+
+                const row = rows.find(r => (r[iEmail]||'').toLowerCase().trim() === emailKey);
+                if (row) {
+                    document.getElementById('ap_creators').textContent = parseInt((row[iCreators]||'0').replace(/[^0-9]/g,''))||0;
+                    document.getElementById('ap_added').textContent    = '+' + (parseInt((row[iTM]||'0').replace(/[^0-9]/g,''))||0) + ' added this month';
+                    document.getElementById('ap_earnings').textContent = (row[iEarnings]||'$0').trim();
+                }
+            }
+        } catch(e) { console.error('agents.csv',e); }
+
+        // ── Agents-C.csv ledger ───────────────────────────────
+        const tbody = document.getElementById('ap_tbody');
+        try {
+            const r = await fetch('data/agents-dash-c.csv' + bust);
+            if (!r.ok) { tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">Ledger not available yet.</td></tr>'; return; }
+
+            const { headers, rows } = apParseCsv(await r.text());
+            const iAgent  = apFindCol(headers,'Agent');
+            const iCreate = apFindCol(headers,'Creator','Username','TikTok');
+            const iMonth  = apFindCol(headers,'Month');
+            const iLevel  = apFindCol(headers,'Level','Lvl');
+            const iTier   = apFindCol(headers,'Tier');
+            const iTierSt = apFindCol(headers,'Tier Status','Tier LM');
+            const iDays   = apFindCol(headers,'Days','Live Days');
+            const iHours  = apFindCol(headers,'Hours');
+            const iDiams  = apFindCol(headers,'Diamonds','💎');
+
+            const myRows = rows
+                .filter(r => (r[iAgent]||'').toLowerCase().trim() === emailKey)
+                .map(r => ({ r, d: parseInt((r[iDiams]||'0').replace(/,/g,''))||0 }))
+                .sort((a,b) => b.d - a.d);
+
+            // Update stat box from ledger data
+            const monthlyDiamonds = myRows.reduce((s,e)=>s+e.d,0);
+            const active = myRows.filter(e=>e.d>0).length;
+            document.getElementById('ap_diamonds').textContent = apFmtK(monthlyDiamonds) + ' 💎';
+            document.getElementById('ap_active').textContent   = 'From ' + active + ' active creator' + (active!==1?'s':'');
+
+            document.getElementById('ap_count').textContent = myRows.length + ' creator' + (myRows.length!==1?'s':'');
+
+            if (!myRows.length) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">No creators found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = myRows.map(({r,d}) => {
+                const name   = r[iCreate] || '--';
+                const month  = r[iMonth]  || '';
+                const rawLvl = r[iLevel]  || '';
+                const level  = (rawLvl==='-1'||rawLvl==='') ? '---' : rawLvl;
+                const tier   = r[iTier]   || '--';
+                const tierSt = (r[iTierSt]||'').toLowerCase();
+                const days   = r[iDays]   || '--';
+                const hours  = r[iHours]  || '--';
+                let arrow='', cls='ap-tier-flat';
+                if (tierSt==='up')   { arrow=' ↑'; cls='ap-tier-up'; }
+                if (tierSt==='down') { arrow=' ↓'; cls='ap-tier-down'; }
+                return `<tr>
+                    <td><strong>@${name}</strong>${month?` <span style="color:#555;font-size:11px;">Mo.${month}</span>`:''}</td>
+                    <td>${days}</td>
+                    <td>${hours}</td>
+                    <td style="color:#aaa;">${level}</td>
+                    <td><span class="${cls}">${tier}${arrow}</span></td>
+                    <td class="ap-diamonds">${apFmtK(d)} <i class="fas fa-gem" style="font-size:11px;"></i></td>
+                </tr>`;
+            }).join('');
+
+        } catch(e) {
+            console.error('agents-dash-c.csv',e);
+            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">Error loading creators.</td></tr>';
+        }
+    }
 </script>
 </body>
 </html>
