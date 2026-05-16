@@ -780,11 +780,13 @@
                                 <th>Hours</th>
                                 <th>Level</th>
                                 <th>Tier</th>
+                                <th>Goal</th>
+                                <th>Needed</th>
                                 <th>Diamonds</th>
                             </tr>
                         </thead>
                         <tbody id="ap_tbody">
-                            <tr><td colspan="6" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+                            <tr><td colspan="8" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -848,12 +850,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=1774322000000"></script>
-    <script src="js/rewards-data.js?v=1774322000000"></script>
-    <script src="js/events-data.js?v=1774322000000"></script>
-    <script src="js/weekly-calendar-data.js?v=1774322000000"></script>
-    <script src="js/sheets-data.js?v=1774322000000"></script>
-    <script src="js/creator-dashboard.js?v=1774322000000"></script>
+    <script src="js/csv-data-loader.js?v=202605162127"></script>
+    <script src="js/rewards-data.js?v=202605162127"></script>
+    <script src="js/events-data.js?v=202605162127"></script>
+    <script src="js/weekly-calendar-data.js?v=202605162127"></script>
+    <script src="js/sheets-data.js?v=202605162127"></script>
+    <script src="js/creator-dashboard.js?v=202605162127"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1219,7 +1221,7 @@
         const tbody = document.getElementById('ap_tbody');
         try {
             const r = await fetch('data/agents-dash-c.csv' + bust);
-            if (!r.ok) { tbody.innerHTML='<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">Ledger not available yet.</td></tr>'; return; }
+            if (!r.ok) { tbody.innerHTML='<tr><td colspan="8" style="text-align:center;padding:30px;color:#888;">Ledger not available yet.</td></tr>'; return; }
 
             const { headers, rows } = apParseCsv(await r.text());
             const iAgent  = apFindCol(headers,'Agent');
@@ -1228,6 +1230,7 @@
             const iLevel  = apFindCol(headers,'Level','Lvl');
             const iTier   = apFindCol(headers,'Tier');
             const iTierSt = apFindCol(headers,'Tier Status','Tier LM');
+            const iTierGoal = apFindCol(headers,'Tier Goal','Tier Left');
             const iDays   = apFindCol(headers,'Days','Live Days');
             const iHours  = apFindCol(headers,'Hours');
             const iDiams  = apFindCol(headers,'Diamonds','💎');
@@ -1246,7 +1249,7 @@
             document.getElementById('ap_count').textContent = myRows.length + ' creator' + (myRows.length!==1?'s':'');
 
             if (!myRows.length) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">No creators found.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#888;">No creators found.</td></tr>';
                 return;
             }
 
@@ -1259,6 +1262,10 @@
                 const tierSt = (r[iTierSt]||'').toLowerCase();
                 const days   = r[iDays]   || '--';
                 const hours  = r[iHours]  || '--';
+                const rawGoal = iTierGoal >= 0 ? (r[iTierGoal]||'') : '';
+                const goalNum = rawGoal ? (parseInt(rawGoal.replace(/,/g,''))||0) : 0;
+                const goal    = goalNum ? goalNum.toLocaleString() : '--';
+                const needed  = goalNum ? Math.max(0, goalNum - d).toLocaleString() : '--';
                 let arrow='', cls='ap-tier-flat';
                 if (tierSt==='up')   { arrow=' ↑'; cls='ap-tier-up'; }
                 if (tierSt==='down') { arrow=' ↓'; cls='ap-tier-down'; }
@@ -1268,13 +1275,15 @@
                     <td>${hours}</td>
                     <td style="color:#aaa;">${level}</td>
                     <td><span class="${cls}">${tier}${arrow}</span></td>
+                    <td style="color:#aaa;">${goal}</td>
+                    <td style="color:#ffaa00;">${needed}</td>
                     <td class="ap-diamonds">${apFmtK(d)} <i class="fas fa-gem" style="font-size:11px;"></i></td>
                 </tr>`;
             }).join('');
 
         } catch(e) {
             console.error('agents-dash-c.csv',e);
-            tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:30px;color:#888;">Error loading creators.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:30px;color:#888;">Error loading creators.</td></tr>';
         }
     }
 </script>
