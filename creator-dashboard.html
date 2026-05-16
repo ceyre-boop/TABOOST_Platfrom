@@ -30,32 +30,29 @@
         // Skip early auth check in test mode
         const _params = new URLSearchParams(window.location.search);
         if (!_params.get('testUser')) {
-        // Check Firebase Auth state
+        // Check Firebase Auth state — run setup ONCE only
+        let _mod1Init = false;
         onAuthStateChanged(auth, async (user) => {
+            if (_mod1Init) return;
             if (!user) {
-                // Not logged in - redirect to Firebase login
                 window.location.href = 'firebase-login.html';
                 return;
             }
-            
+            _mod1Init = true;
+
             // Get user role from Firestore
             try {
                 const userDoc = await getDoc(doc(db, 'users', user.uid));
                 const userData = userDoc.data();
-                
-                // Check admin email
+
                 let role = userData?.role || 'creator';
-                if (user.email?.toLowerCase() === 'marco@taboost.me') {
-                    role = 'admin';
-                }
-                
-                // Redirect admins only — agents stay here now
+                if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
+
                 if (role === 'admin') {
                     window.location.href = 'dashboard.html';
                     return;
                 }
 
-                // Store user info for page use
                 window.currentUser = {
                     uid: user.uid,
                     email: user.email,
@@ -66,15 +63,13 @@
                     isCreator: userData?.isCreator || false
                 };
 
-                // Update UI with user info
                 document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
 
-                // Agent setup — show toggle button, load agent data, default to agent panel for pure agents
                 if (role === 'agent') {
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(user.email.toLowerCase());
-                    window.showAgentPanel();
+                    window.showAgentPanel(); // default to agent view; toggle switches to creator
                 }
                 
             } catch (error) {
