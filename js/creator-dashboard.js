@@ -1460,7 +1460,7 @@ function updateScoreAndLevels() {
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = scoreValue >= 90 ? 'Masters Benefit' : 'Cash Bonus Unlocked';
+            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
 
             if (scoreSection) {
@@ -1472,14 +1472,19 @@ function updateScoreAndLevels() {
                 }
             }
         } else if (scoreValue >= 70 && !rankQualified) {
-            // Score qualified but rank is down — show locked state with message
-            proBonusRevenueValue.textContent = 'Need Rank Same or Up';
-            proBonusRevenueValue.style.color = '#888';
-            proBonusRevenueNote.textContent = 'Rank Down';
-            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
+            // Score qualified but rank is down — keep gold colors, just change note text
+            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
+            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
+            proBonusRevenueValue.style.color = '#ffd700';
+            proBonusRevenueNote.textContent = 'Need Rank Same or Up';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
             if (scoreSection) {
-                scoreSection.classList.remove('masters-active');
-                scoreSection.classList.remove('pro-active');
+                if (scoreValue >= 90) {
+                    scoreSection.classList.add('masters-active');
+                    scoreSection.classList.remove('pro-active');
+                } else {
+                    scoreSection.classList.remove('masters-active');
+                }
             }
         } else {
             // Locked — score too low
