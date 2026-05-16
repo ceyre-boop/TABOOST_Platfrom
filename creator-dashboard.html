@@ -928,8 +928,8 @@
                 return;
             }
 
-            // Agents have their own panel — don't init creator dashboard for them
-            if (role === 'agent') {
+            // Pure agents (not also creators) skip creator dashboard init
+            if (role === 'agent' && !userData?.isCreator) {
                 _dashInit = true;
                 return;
             }
