@@ -840,10 +840,13 @@
             document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
             initCreatorDashboard(dashboardUser);
         } else {
-        // Normal Firebase auth flow
+        // Auth is already handled by the module at the top of this file.
+        // This module reuses the same app instance and listens for the user.
+        let _dashInit = false;
         onAuthStateChanged(auth, async (firebaseUser) => {
+            if (_dashInit) return; // prevent double-firing
             if (!firebaseUser) {
-                window.location.href = 'firebase-login.html';
+                // Module 1 already handles the redirect — don't redirect again here
                 return;
             }
             
@@ -902,6 +905,7 @@
             document.getElementById('welcomeMessage').textContent = randomGreeting;
             
             // Initialize dashboard
+            _dashInit = true;
             initCreatorDashboard(dashboardUser);
         });
         } // end normal auth flow
