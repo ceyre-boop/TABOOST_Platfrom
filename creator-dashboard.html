@@ -74,10 +74,7 @@
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(user.email.toLowerCase());
-                    // Pure agents (not also creators) default to agent panel
-                    if (!userData?.isCreator) {
-                        window.showAgentPanel();
-                    }
+                    window.showAgentPanel();
                 }
                 
             } catch (error) {
@@ -928,11 +925,6 @@
                 return;
             }
 
-            // Pure agents (not also creators) skip creator dashboard init
-            if (role === 'agent' && !userData?.isCreator) {
-                _dashInit = true;
-                return;
-            }
 
             // Build user object for dashboard
             // Use username from Firestore (set during signup) or fallback to email prefix
