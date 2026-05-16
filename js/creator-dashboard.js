@@ -765,8 +765,9 @@ function initPerformanceChart() {
         }
         
         // Tier data: completed months only — current month tier isn't final yet
-        // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
-        const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
+        // Convert tier number → diamond threshold so it plots on the same scale as diamonds
+        const TIER_THRESHOLDS = [0, 0, 100000, 200000, 300000, 500000, 1000000, 1600000, 3000000, 5000000, 8000000];
+        const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 1) ? null : (TIER_THRESHOLDS[n] ?? null); };
         const currentTierPlot = tierVal(myData.tier);
         const tierLM = tierVal(myData.tierLastMonth);
         // Default for first-month creators: Tier LM in the March slot, current tier in Current slot
@@ -881,7 +882,8 @@ function initPerformanceChart() {
                             if (context.dataset.label === 'Tier') {
                                 const v = context.parsed.y;
                                 if (v === null || v === undefined || isNaN(v)) return 'Tier: Undefined';
-                                return 'Tier ' + v;
+                                const tNum = TIER_THRESHOLDS.indexOf(v);
+                                return tNum >= 1 ? 'Tier ' + tNum : 'Tier: ' + formatNumber(v);
                             }
                             const v = context.parsed.y;
                             if (v === null || v === undefined || isNaN(v)) return null;
@@ -892,6 +894,8 @@ function initPerformanceChart() {
             },
             scales: {
                 y: {
+                    min: 0,
+                    max: 10000000,
                     grid: { color: 'rgba(255,255,255,0.05)' },
                     ticks: {
                         color: '#888',
@@ -905,13 +909,15 @@ function initPerformanceChart() {
                     display: true,
                     position: 'right',
                     grid: { display: false },
-                    min: 1,
-                    max: 10,
+                    min: 0,
+                    max: 10000000,
+                    afterBuildTicks: axis => {
+                        axis.ticks = [0,100000,200000,300000,500000,1000000,1600000,3000000,5000000,8000000].map(v => ({ value: v }));
+                    },
                     ticks: {
                         color: '#00ff88',
                         font: { size: 9 },
-                        stepSize: 1,
-                        callback: v => 'T' + v
+                        callback: (v, i) => 'T' + (i + 1)
                     }
                 },
                 x: {
