@@ -73,10 +73,10 @@
                 if (role === 'agent') {
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
-                    loadAgentPanel(user.email.toLowerCase());
+                    window.loadAgentPanel(user.email.toLowerCase());
                     // Pure agents (not also creators) default to agent panel
                     if (!userData?.isCreator) {
-                        showAgentPanel();
+                        window.showAgentPanel();
                     }
                 }
                 
@@ -927,7 +927,13 @@
                 window.location.href = 'dashboard.html';
                 return;
             }
-            
+
+            // Agents have their own panel — don't init creator dashboard for them
+            if (role === 'agent') {
+                _dashInit = true;
+                return;
+            }
+
             // Build user object for dashboard
             // Use username from Firestore (set during signup) or fallback to email prefix
             const username = userData?.username || firebaseUser.email.split('@')[0];
@@ -1030,25 +1036,27 @@
     let _agentPanelLoaded = false;
     let _showingAgent = false;
 
-    function showAgentPanel() {
+    window.showAgentPanel = function() {
         _showingAgent = true;
         document.getElementById('agentPanel').style.display = 'block';
         document.getElementById('creatorPanel').classList.add('hidden');
         const lbl = document.getElementById('agentToggleLabel');
         if (lbl) lbl.textContent = 'Creator View';
-    }
+    };
 
-    function showCreatorPanel() {
+    window.showCreatorPanel = function() {
         _showingAgent = false;
         document.getElementById('agentPanel').style.display = 'none';
         document.getElementById('creatorPanel').classList.remove('hidden');
         const lbl = document.getElementById('agentToggleLabel');
         if (lbl) lbl.textContent = 'Agent View';
-    }
+    };
 
-    function toggleAgentPanel() {
-        if (_showingAgent) { showCreatorPanel(); } else { showAgentPanel(); }
-    }
+    window.toggleAgentPanel = function() {
+        if (_showingAgent) { window.showCreatorPanel(); } else { window.showAgentPanel(); }
+    };
+
+    window.loadAgentPanel = loadAgentPanel;
 
     function apFmtK(n) {
         const v = parseInt(String(n || '').replace(/,/g, '')) || 0;
