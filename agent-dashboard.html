@@ -299,11 +299,12 @@
                             <th>Level</th>
                             <th>Tier</th>
                             <th>Goal</th>
+                            <th>Needed</th>
                             <th>Diamonds</th>
                         </tr>
                     </thead>
                     <tbody id="ledgerBody">
-                        <tr class="loading-row"><td colspan="7"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
+                        <tr class="loading-row"><td colspan="8"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -419,7 +420,7 @@
             try {
                 const resp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
                 if (!resp.ok) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">Ledger data not yet available.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" class="no-data">Ledger data not yet available.</td></tr>';
                     return;
                 }
 
@@ -460,7 +461,7 @@
                     `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
 
                 if (myRows.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">No creators found for your account.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="8" class="no-data">No creators found for your account.</td></tr>';
                     return;
                 }
 
@@ -473,7 +474,10 @@
                     const tier      = r[iTier]     || '--';
                     const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
                     const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal).replace(/,/g, ''));
-                    const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
+                    const tierGoalNum = isTierGoalNumeric ? parseDiamondValue(rawTierGoal) : 0;
+                    const tierGoal  = isTierGoalNumeric ? tierGoalNum.toLocaleString() : '--';
+                    const neededNum = isTierGoalNumeric ? Math.max(0, tierGoalNum - entry.diamondsValue) : null;
+                    const needed    = neededNum !== null ? neededNum.toLocaleString() : '--';
                     const tierSt    = r[iTierSt]   || '';
                     const days      = r[iDays]     || '--';
                     const hours     = r[iHours]    || '--';
@@ -494,13 +498,14 @@
                         <td><span style="color:#aaa;">${level}</span></td>
                         <td><span class="tier-badge"><span class="${cls}">${tier}${arrow}</span></span></td>
                         <td><span style="color:#aaa;">${tierGoal}</span></td>
+                        <td><span style="color:#ffaa00;">${needed}</span></td>
                         <td><span class="diamonds-cell">${diamonds} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
                     </tr>`;
                 }).join('');
 
             } catch (e) {
                 console.error('agents-dash-c.csv error:', e);
-                tbody.innerHTML = '<tr><td colspan="7" class="no-data">Error loading creator data.</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="no-data">Error loading creator data.</td></tr>';
             }
         }
     </script>
