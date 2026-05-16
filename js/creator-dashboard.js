@@ -1160,17 +1160,25 @@ function updateScoreAndLevels() {
     // Score from Google Sheets column AG (0-100)
     const score = myData.score || 0;
     console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
-    
+
+    // Rank check: bonus requires rank Same or Up (not Down)
+    const tierStatusRaw = (myData.tierStatus || '').toLowerCase().trim();
+    const rankOk = tierStatusRaw === '' || tierStatusRaw === '-' ||
+                   tierStatusRaw.includes('same') || tierStatusRaw.includes('up') ||
+                   tierStatusRaw.includes('maintained');
+
     // Update Score Badge
-    // Score badge — extend to show bonus tier if qualified
     const scoreBadgeEl = document.getElementById('scoreBadge');
     if (scoreBadgeEl) {
-        if (score >= 90) {
+        if (score >= 90 && rankOk) {
             scoreBadgeEl.className = 'score-badge bonus-masters';
             scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus + Rank Boost</span>`;
-        } else if (score >= 70) {
+        } else if (score >= 70 && rankOk) {
             scoreBadgeEl.className = 'score-badge bonus-pros';
             scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus Unlocked</span>`;
+        } else if (score >= 70 && !rankOk) {
+            scoreBadgeEl.className = 'score-badge bonus-pros';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Need Rank Same or Up</span>`;
         } else {
             scoreBadgeEl.className = 'score-badge';
             scoreBadgeEl.textContent = `Score: ${score}`;
@@ -1443,8 +1451,11 @@ function updateScoreAndLevels() {
 
     if (proBonusRevenueValue && proBonusRevenueNote) {
         const scoreValue = parseInt(myData.score) || 0;
+        const tsr = (myData.tierStatus || '').toLowerCase().trim();
+        const rankQualified = tsr === '' || tsr === '-' ||
+                              tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
 
-        if (scoreValue >= 70) {
+        if (scoreValue >= 70 && rankQualified) {
             // Unlocked — show bonus amount in gold
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
@@ -1452,7 +1463,6 @@ function updateScoreAndLevels() {
             proBonusRevenueNote.textContent = scoreValue >= 90 ? 'Masters Benefit' : 'Cash Bonus Unlocked';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
 
-            // 90+ gets red halo on score section; 70–89 keeps gold
             if (scoreSection) {
                 if (scoreValue >= 90) {
                     scoreSection.classList.add('masters-active');
@@ -1461,8 +1471,18 @@ function updateScoreAndLevels() {
                     scoreSection.classList.remove('masters-active');
                 }
             }
+        } else if (scoreValue >= 70 && !rankQualified) {
+            // Score qualified but rank is down — show locked state with message
+            proBonusRevenueValue.textContent = 'Need Rank Same or Up';
+            proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueNote.textContent = 'Rank Down';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
+            if (scoreSection) {
+                scoreSection.classList.remove('masters-active');
+                scoreSection.classList.remove('pro-active');
+            }
         } else {
-            // Locked
+            // Locked — score too low
             proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
             proBonusRevenueValue.style.color = '#888';
             proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
