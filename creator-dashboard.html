@@ -69,7 +69,13 @@
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(user.email.toLowerCase());
-                    window.showAgentPanel(); // default to agent view; toggle switches to creator
+                    // If coming from "Creator View" link on agent-dashboard, show creator panel
+                    const viewParam = new URLSearchParams(window.location.search).get('view');
+                    if (viewParam === 'creator') {
+                        window.showCreatorPanel();
+                    } else {
+                        window.showAgentPanel();
+                    }
                 }
                 
             } catch (error) {
@@ -849,12 +855,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605181704"></script>
-    <script src="js/rewards-data.js?v=202605181704"></script>
-    <script src="js/events-data.js?v=202605181704"></script>
-    <script src="js/weekly-calendar-data.js?v=202605181704"></script>
-    <script src="js/sheets-data.js?v=202605181704"></script>
-    <script src="js/creator-dashboard.js?v=202605181704"></script>
+    <script src="js/csv-data-loader.js?v=202605181910"></script>
+    <script src="js/rewards-data.js?v=202605181910"></script>
+    <script src="js/events-data.js?v=202605181910"></script>
+    <script src="js/weekly-calendar-data.js?v=202605181910"></script>
+    <script src="js/sheets-data.js?v=202605181910"></script>
+    <script src="js/creator-dashboard.js?v=202605181910"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
