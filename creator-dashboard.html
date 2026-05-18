@@ -66,12 +66,20 @@
                 document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
 
                 if (role === 'agent') {
+                    const isCreator = !!(userData?.isCreator);
+                    const viewParam = new URLSearchParams(window.location.search).get('view');
+
+                    // Pure agent (no creator account) trying to access creator view — send back
+                    if (viewParam === 'creator' && !isCreator) {
+                        window.location.href = 'agent-dashboard.html';
+                        return;
+                    }
+
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(user.email.toLowerCase());
-                    // If coming from "Creator View" link on agent-dashboard, show creator panel
-                    const viewParam = new URLSearchParams(window.location.search).get('view');
-                    if (viewParam === 'creator') {
+
+                    if (viewParam === 'creator' && isCreator) {
                         window.showCreatorPanel();
                     } else {
                         window.showAgentPanel();
@@ -855,12 +863,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605181910"></script>
-    <script src="js/rewards-data.js?v=202605181910"></script>
-    <script src="js/events-data.js?v=202605181910"></script>
-    <script src="js/weekly-calendar-data.js?v=202605181910"></script>
-    <script src="js/sheets-data.js?v=202605181910"></script>
-    <script src="js/creator-dashboard.js?v=202605181910"></script>
+    <script src="js/csv-data-loader.js?v=202605181917"></script>
+    <script src="js/rewards-data.js?v=202605181917"></script>
+    <script src="js/events-data.js?v=202605181917"></script>
+    <script src="js/weekly-calendar-data.js?v=202605181917"></script>
+    <script src="js/sheets-data.js?v=202605181917"></script>
+    <script src="js/creator-dashboard.js?v=202605181917"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";

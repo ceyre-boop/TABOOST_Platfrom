@@ -53,10 +53,17 @@
                     email: user.email,
                     role: 'agent',
                     name: userData.displayName || userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
-                    agentEmail: user.email.toLowerCase()
+                    agentEmail: user.email.toLowerCase(),
+                    isCreator: !!(userData.isCreator)
                 };
 
                 document.getElementById('agentName').textContent = window.currentUser.name;
+
+                // Only show Creator View if this agent also has a creator account
+                if (!window.currentUser.isCreator) {
+                    const cvBtn = document.querySelector('a[href*="view=creator"]');
+                    if (cvBtn) cvBtn.style.display = 'none';
+                }
 
                 loadAgentData(window.currentUser.agentEmail);
             } catch (err) {
