@@ -124,6 +124,42 @@
         }
         .creator-link a { color: #aaa; text-decoration: none; }
         .creator-link a:hover { color: #fff; }
+        .forgot { text-align: right; margin-top: 6px; }
+        .forgot a { font-size: 12px; color: #666; text-decoration: none; }
+        .forgot a:hover { color: #ffaa00; }
+        .reset-box {
+            background: rgba(255,170,0,0.06);
+            border: 1px solid rgba(255,170,0,0.2);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+            display: none;
+        }
+        .reset-box p { font-size: 13px; color: #aaa; margin-bottom: 12px; }
+        .reset-box input { margin-bottom: 10px; }
+        .btn-reset {
+            width: 100%;
+            padding: 11px;
+            background: rgba(255,170,0,0.15);
+            color: #ffaa00;
+            border: 1px solid rgba(255,170,0,0.3);
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-reset:hover { background: rgba(255,170,0,0.25); }
+        .success {
+            background: rgba(0,255,136,0.08);
+            border: 1px solid rgba(0,255,136,0.2);
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: #00ff88;
+            margin-bottom: 16px;
+            display: none;
+        }
 
         @media (max-width: 480px) {
             body { padding: 16px; align-items: flex-start; padding-top: 40px; }
@@ -142,6 +178,13 @@
     </div>
 
     <div class="error" id="errorMsg"></div>
+    <div class="success" id="successMsg"></div>
+
+    <div class="reset-box" id="resetBox">
+        <p>Enter your email and we'll send a password reset link.</p>
+        <input type="email" id="resetEmail" placeholder="your@email.com">
+        <button class="btn-reset" onclick="doReset()">Send Reset Email</button>
+    </div>
 
     <div class="field">
         <label>Email</label>
@@ -150,6 +193,7 @@
     <div class="field">
         <label>Password</label>
         <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+        <div class="forgot"><a href="#" onclick="toggleReset(event)">Forgot password?</a></div>
     </div>
 
     <button class="btn" id="loginBtn" onclick="doLogin()">Sign In</button>
@@ -198,6 +242,34 @@
         const el = document.getElementById('errorMsg');
         el.textContent = msg;
         el.style.display = 'block';
+    }
+
+    function toggleReset(e) {
+        e.preventDefault();
+        const box = document.getElementById('resetBox');
+        const visible = box.style.display === 'block';
+        box.style.display = visible ? 'none' : 'block';
+        if (!visible) {
+            document.getElementById('resetEmail').value = document.getElementById('email').value;
+            document.getElementById('errorMsg').style.display = 'none';
+        }
+    }
+
+    async function doReset() {
+        const email = document.getElementById('resetEmail').value.trim();
+        if (!email) { showError('Enter your email address first.'); return; }
+        try {
+            await auth.sendPasswordResetEmail(email);
+            document.getElementById('resetBox').style.display = 'none';
+            const s = document.getElementById('successMsg');
+            s.textContent = `Reset email sent to ${email}. Check your inbox.`;
+            s.style.display = 'block';
+        } catch (e) {
+            const msg = e.code === 'auth/user-not-found'
+                ? 'No account found with that email.'
+                : e.message;
+            showError(msg);
+        }
     }
 
     async function doLogin() {
