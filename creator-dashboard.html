@@ -863,12 +863,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605222231"></script>
-    <script src="js/rewards-data.js?v=202605222231"></script>
-    <script src="js/events-data.js?v=202605222231"></script>
-    <script src="js/weekly-calendar-data.js?v=202605222231"></script>
-    <script src="js/sheets-data.js?v=202605222231"></script>
-    <script src="js/creator-dashboard.js?v=202605222231"></script>
+    <script src="js/csv-data-loader.js?v=202605222238"></script>
+    <script src="js/rewards-data.js?v=202605222238"></script>
+    <script src="js/events-data.js?v=202605222238"></script>
+    <script src="js/weekly-calendar-data.js?v=202605222238"></script>
+    <script src="js/sheets-data.js?v=202605222238"></script>
+    <script src="js/creator-dashboard.js?v=202605222238"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1336,24 +1336,15 @@
     #campPanel.open { animation: campSlideUp 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 </style>
 
-<script type="module">
-    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+<script>
+    // Campaign popup — reads from data/campaigns.csv
+    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4+=usernames
+    // "---ALL---" in creators column means every creator sees it
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
-        authDomain: "taboost-platform.firebaseapp.com",
-        projectId: "taboost-platform",
-        storageBucket: "taboost-platform.firebasestorage.app",
-        messagingSenderId: "379293685859",
-        appId: "1:379293685859:web:d89592adbf67360b574056"
-    };
-    const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
-    const db  = getFirestore(app);
+    const CAMP_EMOJIS = ['🎯','🏆','⚡','🎪','🚀','🎖️','💥','🌟'];
 
-    // Wait for dashboard to have the current username, then check campaigns
     async function checkCampaigns() {
-        // Poll until window.currentUser is set (dashboard auth completes)
+        // Wait for currentUser to be set by dashboard auth
         let attempts = 0;
         while (!window.currentUser?.name && attempts < 30) {
             await new Promise(r => setTimeout(r, 500));
@@ -1363,45 +1354,75 @@
         if (!username) return;
 
         try {
-            const snap = await getDocs(query(
-                collection(db, 'campaigns'),
-                where('active', '==', true)
-            ));
+            const resp = await fetch('data/campaigns.csv?v=' + Date.now());
+            if (!resp.ok) return;
+            const text = await resp.text();
+            const lines = text.trim().split(/\r?\n/).map(l => {
+                // Parse CSV line respecting quotes
+                const vals = []; let cur = '', inQ = false;
+                for (let i = 0; i < l.length; i++) {
+                    const ch = l[i];
+                    if (ch === '"') { inQ = !inQ; }
+                    else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+                    else cur += ch;
+                }
+                vals.push(cur.trim());
+                return vals;
+            });
 
-            const sessionKey = 'taboost_camp_seen';
+            if (lines.length < 4) return;
+
+            const names   = lines[0]; // row 1: campaign names
+            const dates   = lines[1]; // row 2: date ranges
+            const urls    = lines[2]; // row 3: discord/CTA URLs
+            const creators = lines.slice(3); // row 4+: creator usernames
+
+            const sessionKey = 'taboost_camp_seen_v2';
             const seen = new Set(JSON.parse(sessionStorage.getItem(sessionKey) || '[]'));
 
-            // Find first unseen campaign this creator is invited to
             let toShow = null;
-            snap.forEach(doc => {
-                if (toShow) return;
-                const d = doc.data();
-                const creators = (d.creators || []).map(c => c.toLowerCase());
-                if (creators.includes(username) && !seen.has(doc.id)) {
-                    toShow = { id: doc.id, ...d };
-                }
-            });
+
+            for (let col = 0; col < names.length; col++) {
+                const campName = (names[col] || '').trim();
+                if (!campName) continue;
+                if (seen.has(campName)) continue;
+
+                // Collect creators for this column
+                const campCreators = creators
+                    .map(row => (row[col] || '').toLowerCase().trim())
+                    .filter(Boolean);
+
+                const isAllCreators = campCreators.includes('---all---');
+                const isInvited = isAllCreators || campCreators.includes(username);
+                if (!isInvited) continue;
+
+                toShow = {
+                    id:    campName,
+                    title: campName,
+                    dates: (dates[col] || '').trim(),
+                    url:   (urls[col] || '').trim(),
+                    emoji: CAMP_EMOJIS[col % CAMP_EMOJIS.length]
+                };
+                break;
+            }
 
             if (!toShow) return;
 
-            // Mark as seen for this session
             seen.add(toShow.id);
             sessionStorage.setItem(sessionKey, JSON.stringify([...seen]));
 
             // Populate panel
-            document.getElementById('campIcon').textContent  = toShow.emoji || '🎯';
-            document.getElementById('campTitle').textContent = toShow.title || 'New Campaign';
-            document.getElementById('campBody').innerHTML    = toShow.description || '';
+            document.getElementById('campIcon').textContent  = toShow.emoji;
+            document.getElementById('campTitle').textContent = toShow.title;
+            document.getElementById('campBody').innerHTML =
+                `<p style="margin-bottom:10px;">${toShow.dates ? '<span style="color:#ffaa00;font-weight:600;">📅 ' + toShow.dates + '</span><br><br>' : ''}You've been selected for this exclusive TABOOST campaign. Tap below to get the full details on Discord.</p>`;
 
-            if (toShow.cta && toShow.ctaUrl) {
-                const wrap = document.getElementById('campCtaWrap');
-                const btn  = document.getElementById('campCta');
-                btn.textContent = toShow.cta;
-                btn.href = toShow.ctaUrl;
-                wrap.style.display = 'block';
+            if (toShow.url) {
+                document.getElementById('campCta').textContent = 'View on Discord';
+                document.getElementById('campCta').href = toShow.url;
+                document.getElementById('campCtaWrap').style.display = 'block';
             }
 
-            // Show after short delay so dashboard has finished loading
             setTimeout(() => {
                 const overlay = document.getElementById('campOverlay');
                 const panel   = document.getElementById('campPanel');
@@ -1411,7 +1432,7 @@
             }, 1500);
 
         } catch(e) {
-            console.warn('Campaign popup error:', e);
+            console.warn('Campaign popup:', e);
         }
     }
 
