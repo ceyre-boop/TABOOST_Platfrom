@@ -869,6 +869,7 @@
     <script src="js/weekly-calendar-data.js?v=202605181917"></script>
     <script src="js/sheets-data.js?v=202605181917"></script>
     <script src="js/creator-dashboard.js?v=202605181917"></script>
+    <script src="js/campaigns.js?v=202605181917"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -905,7 +906,11 @@
                 role: 'creator'
             };
             document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
-            initCreatorDashboard(dashboardUser);
+            initCreatorDashboard(dashboardUser).then(() => {
+                if (typeof showCampaignPopupIfNeeded === 'function' && typeof myData !== 'undefined' && myData) {
+                    showCampaignPopupIfNeeded(myData.username);
+                }
+            });
         } else {
         // Auth is already handled by the module at the top of this file.
         // This module reuses the same app instance and listens for the user.
@@ -974,7 +979,11 @@
             
             // Initialize dashboard
             _dashInit = true;
-            initCreatorDashboard(dashboardUser);
+            initCreatorDashboard(dashboardUser).then(() => {
+                if (typeof showCampaignPopupIfNeeded === 'function' && typeof myData !== 'undefined' && myData) {
+                    showCampaignPopupIfNeeded(myData.username);
+                }
+            });
         });
         } // end normal auth flow
         
@@ -1021,6 +1030,39 @@
     console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
 })();
 </script>
+<!-- ── Campaign popup overlay ───────────────────────────── -->
+<div id="campOverlay" onclick="closeCampaignPopup()" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;padding:20px;"></div>
+
+<div id="campPanel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:3001;max-width:520px;margin:0 auto 0;padding:0 12px 12px;">
+    <div style="background:linear-gradient(145deg,#151520,#1a1a2e);border:1px solid rgba(255,255,255,0.1);border-radius:24px 24px 20px 20px;overflow:hidden;box-shadow:0 -20px 60px rgba(0,0,0,0.6);">
+        <!-- Drag handle -->
+        <div style="display:flex;justify-content:center;padding:12px 0 0;">
+            <div style="width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;"></div>
+        </div>
+        <!-- Icon + title + close -->
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 22px 0;">
+            <div id="campIcon" style="width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:linear-gradient(135deg,#ff660022,#ff440011);border:1px solid rgba(255,102,0,0.35);">📣</div>
+            <div>
+                <div id="campTitle" style="font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.3px;">New Campaign</div>
+                <div id="campSubtitle" style="font-size:12px;color:#888;margin-top:2px;">TABOOST exclusive</div>
+            </div>
+            <button onclick="closeCampaignPopup()" aria-label="Close campaign popup" style="margin-left:auto;background:rgba(255,255,255,0.08);border:none;color:#888;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
+        </div>
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.06);margin:16px 22px;"></div>
+        <!-- Body -->
+        <div id="campBody" style="padding:0 22px 24px;font-size:14px;line-height:1.7;color:#ccc;"></div>
+    </div>
+</div>
+
+<style>
+    @keyframes campSlideUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+    #campPanel.camp-open { animation: campSlideUp 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+</style>
+
 <!-- ── Tooltip overlay ───────────────────────────────────── -->
 <div id="ttOverlay" onclick="closeTooltip()" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;padding:20px;"></div>
 
@@ -1124,6 +1166,95 @@
 
     window.openTooltip  = openTooltip;
     window.closeTooltip = closeTooltip;
+
+    // ── Campaign popup ──────────────────────────────────────
+    function openCampaignPopup(campaigns) {
+        if (!campaigns || campaigns.length === 0) return;
+        const c = campaigns[0];
+
+        document.getElementById('campIcon').textContent = c.icon || '📣';
+        document.getElementById('campTitle').textContent = c.title || 'New Campaign';
+        document.getElementById('campSubtitle').textContent = c.subtitle || 'TABOOST exclusive';
+
+        let body = c.description ? `<p>${c.description}</p>` : '';
+
+        if (c.prize) {
+            body += `<div style="background:rgba(255,102,0,0.08);border:1px solid rgba(255,102,0,0.2);border-radius:12px;padding:12px 16px;margin:12px 0;">
+                <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#ff6600;margin-bottom:4px;">Prize</div>
+                <div style="font-weight:700;color:#fff;font-size:15px;">${c.prize}</div>
+            </div>`;
+        }
+
+        const dates = c.dates || (c.date ? `${c.date}${c.endDate ? ' – ' + c.endDate : ''}` : null);
+        if (dates) {
+            body += `<p style="color:#888;font-size:12px;margin-top:8px;">📅 ${dates}</p>`;
+        }
+
+        if (campaigns.length > 1) {
+            const extra = campaigns.length - 1;
+            body += `<p style="color:#ff6600;font-size:12px;margin-top:8px;">+${extra} more campaign${extra > 1 ? 's' : ''} available — check the Campaigns page.</p>`;
+        }
+
+        document.getElementById('campBody').innerHTML = body;
+
+        const overlay = document.getElementById('campOverlay');
+        const panel   = document.getElementById('campPanel');
+        overlay.style.display = 'flex';
+        panel.style.display   = 'block';
+        panel.classList.add('camp-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeCampaignPopup() {
+        document.getElementById('campOverlay').style.display = 'none';
+        document.getElementById('campPanel').style.display   = 'none';
+        document.getElementById('campPanel').classList.remove('camp-open');
+        document.body.style.overflow = '';
+    }
+
+    async function showCampaignPopupIfNeeded(username) {
+        if (!username) return;
+
+        // Show at most once per browser session
+        const sessionKey = 'camp_popup_shown_' + username.toLowerCase();
+        if (sessionStorage.getItem(sessionKey)) return;
+        sessionStorage.setItem(sessionKey, '1');
+
+        let creatorCampaigns = [];
+
+        // 1. Try Firestore: campaigns where targetCreators array-contains this username
+        try {
+            const { getFirestore, collection, query, where, getDocs } = await import("https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js");
+            const { getApp } = await import("https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js");
+            const fsdb = getFirestore(getApp());
+            const q = query(
+                collection(fsdb, 'campaigns'),
+                where('targetCreators', 'array-contains', username.toLowerCase()),
+                where('active', '==', true)
+            );
+            const snap = await getDocs(q);
+            snap.forEach(d => creatorCampaigns.push({ id: d.id, ...d.data() }));
+        } catch (e) {
+            console.log('Campaign Firestore load skipped:', e.message);
+        }
+
+        // 2. Fall back to local sampleCampaigns (campaigns.js) filtered by targetCreators
+        if (creatorCampaigns.length === 0 && typeof sampleCampaigns !== 'undefined') {
+            const uname = username.toLowerCase();
+            creatorCampaigns = sampleCampaigns.filter(c => {
+                const targets = (c.targetCreators || []).map(t => t.toLowerCase());
+                return targets.includes(uname) && c.status !== 'ended';
+            });
+        }
+
+        if (creatorCampaigns.length > 0) {
+            openCampaignPopup(creatorCampaigns);
+        }
+    }
+
+    window.openCampaignPopup         = openCampaignPopup;
+    window.closeCampaignPopup        = closeCampaignPopup;
+    window.showCampaignPopupIfNeeded = showCampaignPopupIfNeeded;
 </script>
 
 <!-- ── Agent panel styles ─────────────────────────────────── -->
