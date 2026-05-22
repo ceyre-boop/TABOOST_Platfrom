@@ -863,12 +863,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605181917"></script>
-    <script src="js/rewards-data.js?v=202605181917"></script>
-    <script src="js/events-data.js?v=202605181917"></script>
-    <script src="js/weekly-calendar-data.js?v=202605181917"></script>
-    <script src="js/sheets-data.js?v=202605181917"></script>
-    <script src="js/creator-dashboard.js?v=202605181917"></script>
+    <script src="js/csv-data-loader.js?v=202605222231"></script>
+    <script src="js/rewards-data.js?v=202605222231"></script>
+    <script src="js/events-data.js?v=202605222231"></script>
+    <script src="js/weekly-calendar-data.js?v=202605222231"></script>
+    <script src="js/sheets-data.js?v=202605222231"></script>
+    <script src="js/creator-dashboard.js?v=202605222231"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1298,5 +1298,131 @@
         }
     }
 </script>
+
+<!-- ── Campaign Popup ───────────────────────────────────────── -->
+<div id="campOverlay" onclick="closeCampaignPopup()" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);align-items:flex-end;justify-content:center;padding:20px;"></div>
+
+<div id="campPanel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:3001;max-width:520px;margin:0 auto;padding:0 12px 12px;">
+    <div style="background:linear-gradient(145deg,#151520,#1c1a2e);border:1px solid rgba(255,80,80,0.2);border-radius:24px 24px 20px 20px;overflow:hidden;box-shadow:0 -24px 60px rgba(0,0,0,0.7);">
+        <!-- Drag handle -->
+        <div style="display:flex;justify-content:center;padding:12px 0 0;">
+            <div style="width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;"></div>
+        </div>
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;padding:16px 20px 0;">
+            <div id="campIcon" style="width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;background:linear-gradient(135deg,rgba(255,80,80,0.15),rgba(255,140,0,0.1));border:1px solid rgba(255,80,80,0.25);">🎯</div>
+            <div style="flex:1;min-width:0;">
+                <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#ff5050;font-weight:700;margin-bottom:3px;">Campaign Opportunity</div>
+                <div id="campTitle" style="font-size:17px;font-weight:800;color:#fff;letter-spacing:-0.3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+            </div>
+            <button onclick="closeCampaignPopup()" style="background:rgba(255,255,255,0.08);border:none;color:#888;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;">×</button>
+        </div>
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:14px 20px;"></div>
+        <!-- Body -->
+        <div id="campBody" style="padding:0 20px 8px;font-size:14px;line-height:1.7;color:#ccc;"></div>
+        <!-- CTA -->
+        <div id="campCtaWrap" style="padding:12px 20px 22px;display:none;">
+            <a id="campCta" href="#" target="_blank" rel="noopener" style="display:block;text-align:center;padding:13px;background:linear-gradient(135deg,#ff5050,#ff8c00);color:#fff;font-weight:800;font-size:14px;border-radius:12px;text-decoration:none;letter-spacing:0.3px;">Learn More</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes campSlideUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+    #campPanel.open { animation: campSlideUp 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+</style>
+
+<script type="module">
+    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+        authDomain: "taboost-platform.firebaseapp.com",
+        projectId: "taboost-platform",
+        storageBucket: "taboost-platform.firebasestorage.app",
+        messagingSenderId: "379293685859",
+        appId: "1:379293685859:web:d89592adbf67360b574056"
+    };
+    const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    // Wait for dashboard to have the current username, then check campaigns
+    async function checkCampaigns() {
+        // Poll until window.currentUser is set (dashboard auth completes)
+        let attempts = 0;
+        while (!window.currentUser?.name && attempts < 30) {
+            await new Promise(r => setTimeout(r, 500));
+            attempts++;
+        }
+        const username = (window.currentUser?.name || '').toLowerCase().trim();
+        if (!username) return;
+
+        try {
+            const snap = await getDocs(query(
+                collection(db, 'campaigns'),
+                where('active', '==', true)
+            ));
+
+            const sessionKey = 'taboost_camp_seen';
+            const seen = new Set(JSON.parse(sessionStorage.getItem(sessionKey) || '[]'));
+
+            // Find first unseen campaign this creator is invited to
+            let toShow = null;
+            snap.forEach(doc => {
+                if (toShow) return;
+                const d = doc.data();
+                const creators = (d.creators || []).map(c => c.toLowerCase());
+                if (creators.includes(username) && !seen.has(doc.id)) {
+                    toShow = { id: doc.id, ...d };
+                }
+            });
+
+            if (!toShow) return;
+
+            // Mark as seen for this session
+            seen.add(toShow.id);
+            sessionStorage.setItem(sessionKey, JSON.stringify([...seen]));
+
+            // Populate panel
+            document.getElementById('campIcon').textContent  = toShow.emoji || '🎯';
+            document.getElementById('campTitle').textContent = toShow.title || 'New Campaign';
+            document.getElementById('campBody').innerHTML    = toShow.description || '';
+
+            if (toShow.cta && toShow.ctaUrl) {
+                const wrap = document.getElementById('campCtaWrap');
+                const btn  = document.getElementById('campCta');
+                btn.textContent = toShow.cta;
+                btn.href = toShow.ctaUrl;
+                wrap.style.display = 'block';
+            }
+
+            // Show after short delay so dashboard has finished loading
+            setTimeout(() => {
+                const overlay = document.getElementById('campOverlay');
+                const panel   = document.getElementById('campPanel');
+                overlay.style.display = 'flex';
+                panel.style.display   = 'block';
+                panel.classList.add('open');
+            }, 1500);
+
+        } catch(e) {
+            console.warn('Campaign popup error:', e);
+        }
+    }
+
+    window.closeCampaignPopup = function() {
+        document.getElementById('campOverlay').style.display = 'none';
+        document.getElementById('campPanel').style.display   = 'none';
+        document.getElementById('campPanel').classList.remove('open');
+    };
+
+    checkCampaigns();
+</script>
+
 </body>
 </html>
