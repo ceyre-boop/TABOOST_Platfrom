@@ -1371,15 +1371,11 @@
             const urls    = lines[2]; // row 3: discord/CTA URLs
             const creators = lines.slice(3); // row 4+: creator usernames
 
-            const sessionKey = 'taboost_camp_seen_v2';
-            const seen = new Set(JSON.parse(sessionStorage.getItem(sessionKey) || '[]'));
-
             const toShow = [];
 
             for (let col = 0; col < names.length; col++) {
                 const campName = (names[col] || '').trim();
                 if (!campName) continue;
-                if (seen.has(campName)) continue;
 
                 const campCreators = creators
                     .map(row => (row[col] || '').toLowerCase().trim())
@@ -1398,10 +1394,6 @@
             }
 
             if (!toShow.length) return;
-
-            // Mark all as seen for this session
-            toShow.forEach(c => seen.add(c.id));
-            sessionStorage.setItem(sessionKey, JSON.stringify([...seen]));
 
             // Build list of campaign links
             document.getElementById('campList').innerHTML = toShow.map(c => `
