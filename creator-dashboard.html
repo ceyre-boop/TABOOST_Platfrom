@@ -1345,7 +1345,6 @@
         }
         const username = (window.currentUser?.name || '').toLowerCase().trim();
         if (!username) return;
-        if (window.currentUser?.role !== 'creator') return;
 
         try {
             const resp = await fetch('data/campaigns.csv?v=' + Date.now());
