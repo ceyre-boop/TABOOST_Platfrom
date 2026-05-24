@@ -66,20 +66,15 @@
                     const isCreator = !!(userData?.isCreator);
                     const viewParam = new URLSearchParams(window.location.search).get('view');
 
-                    // Pure agent (no creator account) trying to access creator view — send back
-                    if (viewParam === 'creator' && !isCreator) {
-                        window.location.href = 'agent-dashboard.html';
-                        return;
-                    }
-
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(user.email.toLowerCase());
 
-                    if (viewParam === 'creator' && isCreator) {
-                        window.showCreatorPanel();
-                    } else {
+                    // Always show creator panel first — agent panel accessible via toggle
+                    if (viewParam === 'agent') {
                         window.showAgentPanel();
+                    } else {
+                        window.showCreatorPanel();
                     }
                 }
                 
