@@ -48,10 +48,7 @@
                 let role = userData?.role || 'creator';
                 if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
 
-                if (role === 'admin') {
-                    window.location.href = 'dashboard.html';
-                    return;
-                }
+
 
                 window.currentUser = {
                     uid: user.uid,
@@ -932,11 +929,7 @@
                 role = 'admin';
             }
             
-            // Redirect admins
-            if (role === 'admin') {
-                window.location.href = 'dashboard.html';
-                return;
-            }
+            // Admins stay on creator dashboard — agent view toggle available
 
 
             // Build user object for dashboard
@@ -1363,12 +1356,13 @@
                 return vals;
             });
 
-            if (lines.length < 4) return;
+            if (lines.length < 5) return;
 
-            const names   = lines[0]; // row 1: campaign names
-            const dates   = lines[1]; // row 2: date ranges
-            const urls    = lines[2]; // row 3: discord/CTA URLs
-            const creators = lines.slice(3); // row 4+: creator usernames
+            const names    = lines[0]; // row 1: campaign names
+            const dates    = lines[1]; // row 2: date ranges
+            const urls     = lines[2]; // row 3: discord/CTA URLs
+            const emojis   = lines[3]; // row 4: emoji/icon per campaign
+            const creators = lines.slice(4); // row 5+: creator usernames
 
             const toShow = [];
 
@@ -1388,7 +1382,7 @@
                     title: campName,
                     dates: (dates[col] || '').trim(),
                     url:   (urls[col] || '').trim(),
-                    emoji: CAMP_EMOJIS[col % CAMP_EMOJIS.length]
+                    emoji: (emojis[col] || '').trim() || CAMP_EMOJIS[col % CAMP_EMOJIS.length]
                 });
             }
 
