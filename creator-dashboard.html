@@ -1339,11 +1339,11 @@
     async function checkCampaigns() {
         // Wait for currentUser to be set by dashboard auth
         let attempts = 0;
-        while (!window.currentUser?.name && attempts < 30) {
+        while (!window.currentUser?.username && attempts < 30) {
             await new Promise(r => setTimeout(r, 500));
             attempts++;
         }
-        const username = (window.currentUser?.name || '').toLowerCase().trim();
+        const username = (window.currentUser?.username || window.currentUser?.name || '').toLowerCase().trim();
         if (!username) return;
 
         try {
