@@ -7,7 +7,7 @@
     "Mar 2026",
     "Apr 2026"
   ],
-  "generatedAt": "2026-05-22T22:38:50.288888Z",
+  "generatedAt": "2026-05-24T17:17:58.325394Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -815,7 +815,7 @@
         1,
         3
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         null,
         3,
@@ -1175,7 +1175,7 @@
         3,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         4,
         3,
@@ -3995,7 +3995,7 @@
         7,
         6
       ],
-      "tierCurrent": 5,
+      "tierCurrent": 6,
       "levelHistory": [
         6,
         6,
@@ -5075,7 +5075,7 @@
         5,
         7
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         3,
         6,
@@ -5135,7 +5135,7 @@
         4,
         5
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         0,
@@ -7535,7 +7535,7 @@
         4,
         2
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -8435,7 +8435,7 @@
         4,
         3
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         1,
@@ -18515,7 +18515,7 @@
         5,
         5
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         6,
         5,
@@ -26015,7 +26015,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": null,
       "levelHistory": [
         null,
         null,
@@ -32075,7 +32075,7 @@
         2,
         3
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         5,
         5,
@@ -34319,6 +34319,66 @@
         0.0,
         0.0,
         0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "skyline1300",
+      "diamondsHistory": [
+        1296.0,
+        1940.0,
+        5579.0,
+        302.0,
+        0,
+        21.0
+      ],
+      "growthRates": [
+        0,
+        49.7,
+        187.6,
+        -94.6,
+        -100.0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        0,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.83,
+        8.73,
+        25.11,
+        1.36,
+        0.0,
+        0.09
       ],
       "bonusHistory": [
         0,
@@ -37535,7 +37595,7 @@
         4,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         1,
@@ -47435,7 +47495,7 @@
         1,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -48359,6 +48419,66 @@
         0.0,
         0.14,
         2.76
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "ncproudtrucking",
+      "diamondsHistory": [
+        0.0,
+        6.0,
+        0.0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        -100.0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": null,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.03,
+        0.0,
+        0.0,
+        0.0,
+        0.0
       ],
       "bonusHistory": [
         0,
@@ -49499,6 +49619,66 @@
         0.0,
         1.94,
         14.11
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "skyline1300",
+      "diamondsHistory": [
+        1296.0,
+        1940.0,
+        5579.0,
+        302.0,
+        0,
+        21.0
+      ],
+      "growthRates": [
+        0,
+        49.7,
+        187.6,
+        -94.6,
+        -100.0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        0,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.83,
+        8.73,
+        25.11,
+        1.36,
+        0.0,
+        0.09
       ],
       "bonusHistory": [
         0,
