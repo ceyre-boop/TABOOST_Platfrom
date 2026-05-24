@@ -48,10 +48,7 @@
                 let role = userData?.role || 'creator';
                 if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
 
-                if (role === 'admin') {
-                    window.location.href = 'dashboard.html';
-                    return;
-                }
+
 
                 window.currentUser = {
                     uid: user.uid,
@@ -863,12 +860,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605181917"></script>
-    <script src="js/rewards-data.js?v=202605181917"></script>
-    <script src="js/events-data.js?v=202605181917"></script>
-    <script src="js/weekly-calendar-data.js?v=202605181917"></script>
-    <script src="js/sheets-data.js?v=202605181917"></script>
-    <script src="js/creator-dashboard.js?v=202605181917"></script>
+    <script src="js/csv-data-loader.js?v=202605222254"></script>
+    <script src="js/rewards-data.js?v=202605222254"></script>
+    <script src="js/events-data.js?v=202605222254"></script>
+    <script src="js/weekly-calendar-data.js?v=202605222254"></script>
+    <script src="js/sheets-data.js?v=202605222254"></script>
+    <script src="js/creator-dashboard.js?v=202605222254"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -932,11 +929,7 @@
                 role = 'admin';
             }
             
-            // Redirect admins
-            if (role === 'admin') {
-                window.location.href = 'dashboard.html';
-                return;
-            }
+            // Admins stay on creator dashboard — agent view toggle available
 
 
             // Build user object for dashboard
@@ -1025,7 +1018,7 @@
 <div id="ttOverlay" onclick="closeTooltip()" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;padding:20px;"></div>
 
 <div id="ttPanel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:2001;max-width:520px;margin:0 auto 0;padding:0 12px 12px;">
-    <div style="background:linear-gradient(145deg,#151520,#1a1a2e);border:1px solid rgba(255,255,255,0.1);border-radius:24px 24px 20px 20px;overflow:hidden;box-shadow:0 -20px 60px rgba(0,0,0,0.6);">
+    <div style="background:linear-gradient(145deg,#151520,#1a1a2e);border:1px solid rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;box-shadow:0 -20px 60px rgba(0,0,0,0.6);">
         <!-- Drag handle -->
         <div style="display:flex;justify-content:center;padding:12px 0 0;">
             <div style="width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;"></div>
@@ -1298,5 +1291,137 @@
         }
     }
 </script>
+
+<!-- ── Campaign Popup ───────────────────────────────────────── -->
+<div id="campOverlay" onclick="closeCampaignPopup()" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;"></div>
+
+<div id="campPanel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3001;width:calc(100% - 40px);max-width:460px;">
+    <div style="background:linear-gradient(145deg,#151520,#1c1a2e);border:1px solid rgba(0,204,255,0.2);border-radius:20px;overflow:hidden;box-shadow:0 -24px 60px rgba(0,0,0,0.7);">
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 20px 0;">
+            <div id="campIcon" style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#ff004f;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:30px;height:30px;fill:#fff;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+                <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1.1;background:linear-gradient(90deg,#fff 60%,#00ccff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">MY CAMPAIGNS</div>
+            </div>
+            <button onclick="closeCampaignPopup()" style="background:rgba(255,255,255,0.08);border:none;color:#888;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;">×</button>
+        </div>
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:14px 20px;"></div>
+        <!-- Campaign list — min 2 rows height, grows with content -->
+        <div id="campList" style="padding:0 20px 22px;display:flex;flex-direction:column;gap:10px;min-height:116px;"></div>
+    </div>
+</div>
+
+<style>
+    @keyframes campPopIn {
+        from { opacity: 0; transform: translate(-50%,-50%) scale(0.92); }
+        to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+    #campPanel.open { animation: campPopIn 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+</style>
+
+<script>
+    // Campaign popup — reads from data/campaigns.csv
+    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4+=usernames
+    // "---ALL---" in creators column means every creator sees it
+
+    const CAMP_EMOJIS = ['🎯','🏆','⚡','🎪','🚀','🎖️','💥','🌟'];
+
+    async function checkCampaigns() {
+        // Wait for currentUser to be set by dashboard auth
+        let attempts = 0;
+        while (!window.currentUser?.username && attempts < 30) {
+            await new Promise(r => setTimeout(r, 500));
+            attempts++;
+        }
+        const username = (window.currentUser?.username || window.currentUser?.name || '').toLowerCase().trim();
+        if (!username) return;
+
+        try {
+            const resp = await fetch('data/campaigns.csv?v=' + Date.now());
+            if (!resp.ok) return;
+            const text = await resp.text();
+            const lines = text.trim().split(/\r?\n/).map(l => {
+                // Parse CSV line respecting quotes
+                const vals = []; let cur = '', inQ = false;
+                for (let i = 0; i < l.length; i++) {
+                    const ch = l[i];
+                    if (ch === '"') { inQ = !inQ; }
+                    else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+                    else cur += ch;
+                }
+                vals.push(cur.trim());
+                return vals;
+            });
+
+            if (lines.length < 5) return;
+
+            const names    = lines[0]; // row 1: campaign names
+            const dates    = lines[1]; // row 2: date ranges
+            const urls     = lines[2]; // row 3: discord/CTA URLs
+            const emojis   = lines[3]; // row 4: emoji/icon per campaign
+            const creators = lines.slice(4); // row 5+: creator usernames
+
+            const toShow = [];
+
+            for (let col = 0; col < names.length; col++) {
+                const campName = (names[col] || '').trim();
+                if (!campName) continue;
+
+                const campCreators = creators
+                    .map(row => (row[col] || '').toLowerCase().trim())
+                    .filter(Boolean);
+
+                const isAllCreators = campCreators.includes('---all---');
+                if (!isAllCreators && !campCreators.includes(username)) continue;
+
+                toShow.push({
+                    id:    campName,
+                    title: campName,
+                    dates: (dates[col] || '').trim(),
+                    url:   (urls[col] || '').trim(),
+                    emoji: (emojis[col] || '').trim() || CAMP_EMOJIS[col % CAMP_EMOJIS.length]
+                });
+            }
+
+            if (!toShow.length) return;
+
+            // Build list of campaign links
+            document.getElementById('campList').innerHTML = toShow.map(c => `
+                <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;text-decoration:none;transition:background 0.15s;">
+                    <span style="font-size:20px;flex-shrink:0;">${c.emoji}</span>
+                    <span style="flex:1;min-width:0;">
+                        <span style="display:block;font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</span>
+                        ${c.dates ? `<span style="font-size:11px;color:#ffaa00;">${c.dates}</span>` : ''}
+                    </span>
+                    <span style="color:#00ccff;font-size:13px;flex-shrink:0;">View →</span>
+                </a>
+            `).join('');
+
+            setTimeout(() => {
+                const overlay = document.getElementById('campOverlay');
+                const panel   = document.getElementById('campPanel');
+                overlay.style.display = 'flex';
+                panel.style.display   = 'block';
+                panel.classList.add('open');
+            }, 1500);
+
+        } catch(e) {
+            console.warn('Campaign popup:', e);
+        }
+    }
+
+    window.closeCampaignPopup = function() {
+        document.getElementById('campOverlay').style.display = 'none';
+        document.getElementById('campPanel').style.display   = 'none';
+        document.getElementById('campPanel').classList.remove('open');
+        document.getElementById('campPanel').style.transform = 'translate(-50%,-50%)';
+    };
+
+    checkCampaigns();
+</script>
+
 </body>
 </html>
