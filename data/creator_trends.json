@@ -7,7 +7,7 @@
     "Mar 2026",
     "Apr 2026"
   ],
-  "generatedAt": "2026-05-26T18:18:21.117644Z",
+  "generatedAt": "2026-05-27T17:35:42.889810Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -95,7 +95,7 @@
         4,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         2,
         2,
@@ -455,7 +455,7 @@
         1,
         2
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -4235,7 +4235,7 @@
         5,
         3
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         1,
         2,
@@ -27335,7 +27335,7 @@
         8,
         5
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         5,
         6,
@@ -34319,6 +34319,66 @@
         0.0,
         0.0,
         0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "skyline1300",
+      "diamondsHistory": [
+        1296.0,
+        1940.0,
+        5579.0,
+        302.0,
+        0,
+        21.0
+      ],
+      "growthRates": [
+        0,
+        49.7,
+        187.6,
+        -94.6,
+        -100.0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        0,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.83,
+        8.73,
+        25.11,
+        1.36,
+        0.0,
+        0.09
       ],
       "bonusHistory": [
         0,
@@ -49510,6 +49570,66 @@
       ]
     },
     {
+      "username": "skyline1300",
+      "diamondsHistory": [
+        1296.0,
+        1940.0,
+        5579.0,
+        302.0,
+        0,
+        21.0
+      ],
+      "growthRates": [
+        0,
+        49.7,
+        187.6,
+        -94.6,
+        -100.0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        0,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.83,
+        8.73,
+        25.11,
+        1.36,
+        0.0,
+        0.09
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
       "username": "biigdawgdancer",
       "diamondsHistory": [
         0.0,
@@ -58319,6 +58439,66 @@
         0.0,
         0.0,
         0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "skyline1300",
+      "diamondsHistory": [
+        1296.0,
+        1940.0,
+        5579.0,
+        302.0,
+        0,
+        21.0
+      ],
+      "growthRates": [
+        0,
+        49.7,
+        187.6,
+        -94.6,
+        -100.0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        0,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        5.83,
+        8.73,
+        25.11,
+        1.36,
+        0.0,
+        0.09
       ],
       "bonusHistory": [
         0,
