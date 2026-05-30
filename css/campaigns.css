@@ -364,6 +364,55 @@
     flex: 1;
 }
 
+/* Campaign Emoji */
+.campaign-emoji {
+    font-size: 26px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+/* NEW badge — pulsing gradient */
+.badge-new {
+    background: linear-gradient(135deg, #ff0055, #ff6600);
+    color: white;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+    animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.06); }
+}
+
+/* FEATURED inline badge */
+.badge-featured {
+    background: rgba(255, 200, 0, 0.12);
+    color: #ffc800;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 200, 0, 0.35);
+    vertical-align: middle;
+}
+
+/* FEATURED card — golden glow */
+.campaign-card.featured {
+    border-color: rgba(255, 200, 0, 0.5);
+    animation: featured-glow 3s ease-in-out infinite;
+}
+
+@keyframes featured-glow {
+    0%, 100% { box-shadow: 0 0 16px rgba(255,200,0,0.18), 0 0 40px rgba(255,200,0,0.06); }
+    50%       { box-shadow: 0 0 28px rgba(255,200,0,0.32), 0 0 60px rgba(255,200,0,0.13); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .campaigns-header {

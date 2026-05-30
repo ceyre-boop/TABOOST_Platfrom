@@ -1,85 +1,162 @@
 // Campaigns Manager
 
-// Sample campaigns data (in production, this would come from backend/Google Sheets)
 const sampleCampaigns = [
     {
-        id: 6,
-        title: "Coachella Showdown",
-        description: "Special Coachella-themed creator competition. Show your festival vibes and win big!",
-        date: "2026-03-23",
-        endDate: "2026-03-30",
-        time: "All Day",
-        type: "Competition",
-        prize: "$10,000",
-        status: "upcoming",
-        participants: 0,
-        requirements: "All levels",
-        opted: []
-    },
-    {
         id: 1,
-        title: "Sunday Knockout Tournament",
-        description: "Competitive streaming tournament. Top 3 creators win bonus rewards.",
-        date: "2026-03-09",
-        time: "8:00 PM EST",
-        type: "Tournament",
-        prize: "$5,000",
-        status: "upcoming",
-        participants: 12,
-        requirements: "Level 3+",
+        title: "CN Showdown (World Cup)",
+        description: "CN Creator Network World Cup showdown. Compete for top placement.",
+        date: "2026-05-23", endDate: "2026-05-31",
+        time: "All Day", type: "Competition", prize: "TBD",
+        status: "live", emoji: "🏆", isNew: false, isFeatured: false,
+        requirements: "All levels",
+        discordUrl: "https://discord.com/channels/958221101182382130/1379570093431984259",
+        participants: 0,
         opted: []
     },
     {
         id: 2,
-        title: "Royal Rumble Live Event",
-        description: "24-hour streaming marathon. Every hour counts toward bonus pool.",
-        date: "2026-03-02",
-        time: "12:00 PM EST",
-        type: "Marathon",
-        prize: "$10,000",
-        status: "live",
-        participants: 45,
-        requirements: "Level 2+",
-        opted: ["singleonthemove", "bryton.39"]
+        title: "Creator Career Program (T 3/4)",
+        description: "Career development program for Tier 3 and 4 creators.",
+        date: "2026-05-01", endDate: "2026-05-31",
+        time: "All Day", type: "Program", prize: "Career Support",
+        status: "live", emoji: "🧑‍💼", isNew: false, isFeatured: false,
+        requirements: "Tier 3–4",
+        discordUrl: "https://discord.com/channels/958221101182382130/1503478062413643828",
+        participants: 0,
+        opted: ["deearnnap","sierralandmagic","kayybaee26","biiig46","alliemsx",
+                "titancosplays","bumbl3beedee","samanthasingsit","sweetlilahxoxo",
+                "damoyee","yourfavderek","fishon053","bridgetryan","imjustnicob",
+                "davidwilliamwatts","maiazakay","luke.h.reynoldsmusic","mystiquedejello",
+                "jordananthonymusic","loisa_asmr","cpayne_04","jeremiahboutross",
+                "bobbyjwil","musicalnugget","legallyjacked","aaronhunt30",
+                "blakeslifeline","kimberlyisabelle0","metalkitten2"]
     },
     {
         id: 3,
-        title: "Music Cypher Collaboration",
-        description: "Musicians collaborate live. Cross-promotion opportunity.",
-        date: "2026-03-15",
-        time: "7:00 PM EST",
-        type: "Collaboration",
-        prize: "Exposure Boost",
-        status: "upcoming",
-        participants: 8,
-        requirements: "Music category",
-        opted: []
+        title: "Creator Career Program (T 5/6)",
+        description: "Career development program for Tier 5 and 6 creators.",
+        date: "2026-05-01", endDate: "2026-05-31",
+        time: "All Day", type: "Program", prize: "Career Support",
+        status: "live", emoji: "🧑‍💼", isNew: false, isFeatured: false,
+        requirements: "Tier 5–6",
+        discordUrl: "https://discord.com/channels/958221101182382130/1503484551576682576",
+        participants: 0,
+        opted: ["ageofangel","koryskitchen","natalianope","coloreomusic","jordan.borges",
+                "b.herbz","shanellenikolee","follow_the_breeze","theviolution",
+                "thetrapviolinist","nicolefarahh","mistresswednesday13","brayden.pantel",
+                "oregonstargirl","steven_dean","mirsowavy","sparksboi97","gaywhonotme",
+                "stephymaddy","sam_g_89","thebellaflora__","itspopejoy","growandglowasmr",
+                "samuelciafaloni","rockylanemusic","cwdetroit","sweetlilahxoxo",
+                "kimberlyisabelle0","metalkitten2","kayybaee26"]
     },
     {
         id: 4,
-        title: "Monthly Award Ceremony",
-        description: "Recognition for top performers. All creators welcome.",
-        date: "2026-03-31",
-        time: "9:00 PM EST",
-        type: "Awards",
-        prize: "Trophies + $2,500",
-        status: "upcoming",
+        title: "Hot Stream Summer (T 3-5)",
+        description: "Summer streaming challenge for Tier 3–5 creators. Stream more, earn more.",
+        date: "2026-05-01", endDate: "2026-06-01",
+        time: "All Day", type: "Challenge", prize: "Bonus Pool",
+        status: "live", emoji: "🌤️", isNew: false, isFeatured: false,
+        requirements: "Tier 3–5",
+        discordUrl: "https://discord.com/channels/958221101182382130/1503486860884840641",
         participants: 0,
-        requirements: "All levels",
-        opted: []
+        opted: ["daisy_dew4","itspopejoy","gaywhonotme","stephymaddy","shanellenikolee",
+                "natalianope","koryskitchen","samuelciafaloni","sam_g_89","follow_the_breeze",
+                "b.herbz","brayden.pantel","oregonstargirl","steven_dean","mirsowavy",
+                "sparksboi97","growandglowasmr","thebellaflora__","alliemsx","imjustnicob",
+                "yourfavderek","bobbyjwil","luke.h.reynoldsmusic","musicalnugget",
+                "jeremiahboutross","legallyjacked","sweetlilahxoxo","kimberlyisabelle0",
+                "blakeslifeline","fishon053","aaronhunt30","davidwilliamwatts",
+                "sierralandmagic","biiig46","jordananthonymusic","maiazakay","deearnnap",
+                "bridgetryan","loisa_asmr","cpayne_04","metalkitten2","kayybaee26"]
     },
     {
         id: 5,
-        title: "Gaming Showdown",
-        description: "Gaming creators battle for top spot. Viewer voting included.",
-        date: "2026-02-25",
-        time: "6:00 PM EST",
-        type: "Competition",
-        prize: "$3,000",
-        status: "ended",
-        participants: 28,
-        requirements: "Gaming category",
-        opted: ["freekbass", "skylerclarkk"]
+        title: "Hot Stream Summer (T 7/8)",
+        description: "Summer streaming challenge for Tier 7–8 creators.",
+        date: "2026-05-01", endDate: "2026-06-01",
+        time: "All Day", type: "Challenge", prize: "Bonus Pool",
+        status: "live", emoji: "🌤️", isNew: false, isFeatured: false,
+        requirements: "Tier 7–8",
+        discordUrl: "https://discord.com/channels/958221101182382130/1503479961435242596",
+        participants: 0,
+        opted: ["skylerclarkk","bryton.39","sarahegant","ashleyinfl","smity194",
+                "sebbythecatdad","burnt.tatertot","hotterjakepaul","stefanielauryn415",
+                "thecyrilia","alexaraeemusic","follow_the_breeze","luke.h.reynoldsmusic",
+                "samanthasingsit","damoyee","thetrapviolinist","theviolution","djuntvld",
+                "jdc..2000","willied78","jordananthonymusic","voyce89","dalanietaylor",
+                "maiazakay","popcultkillers","noisemoist","myfri3ndlogan","mauricethemusic",
+                "melwithaperiod","mattwatersmusic","azyatk","djunieq","meghanpullsmusic",
+                "gentryblue","_iamchilly","lo.forge","sierralevesquemusic","cupcakesareverygood",
+                "daveyboyjones","ivyalexmusic","sparkysinn","rachelgraceviolin","sunshinebloomed",
+                "moji.music","truckernameswag","howlingattheearth","codyglenncoxmusic",
+                "fuzzandfuel","iamchief313","tierneysage","coburnofficial","annaaweartist",
+                "jm.krajc","animalondrums","christianmiller.music","kriss_drummer_live",
+                "kirstenalexismusic","yourfriendm00nmusic","camgtastysoul","harambemuzic",
+                "_reallyrachel_","chuckshadow","roxythekaraokequeen","allyvenableofficial",
+                "joshmacattack","mattlongmusic","coophewitt","davepelldrums","real209er",
+                "nj.eddy","followyourdestinie","boomdrops","codyunderhill86","maxx.mayhem",
+                "officialmandimacias","itsbriannablake","jadeakellymusic","itslorenamedina",
+                "hannahhaylen","sahdude33","johnbcoxmusic","cascleo","internet_hum0r",
+                "tatyanadvoce","itssalami","lvlupgtr.com","realryanmichaels","theelijahcortez",
+                "hellopauljesse","pcdrums76","stephymaddy","rockylanemusic","natalianope",
+                "theviolution","coloreomusic"]
+    },
+    {
+        id: 6,
+        title: "All Summer Sound",
+        description: "Music creators: stream all month long for bonus diamond multipliers.",
+        date: "2026-05-01", endDate: "2026-05-31",
+        time: "All Day", type: "Challenge", prize: "Diamond Multipliers",
+        status: "live", emoji: "🎤", isNew: false, isFeatured: false,
+        requirements: "Music creators",
+        discordUrl: "https://discord.com/channels/958221101182382130/1503498546459050077",
+        participants: 0,
+        opted: ["skylerclarkk","freekbass","thecyrilia","alexaraeemusic","coloreomusic",
+                "rockylanemusic","pcdrums76","stephymaddy","natalianope","theviolution",
+                "follow_the_breeze","luke.h.reynoldsmusic","samanthasingsit","damoyee",
+                "thetrapviolinist","musicalnugget"]
+    },
+    {
+        id: 7,
+        title: "LIVE League S3",
+        description: "Season 3 of LIVE League — the premier competitive streaming series. Open to all creators. Go head-to-head for top diamond rankings.",
+        date: "2026-05-28", endDate: "2026-06-08",
+        time: "All Day", type: "Tournament", prize: "League Rankings + Rewards",
+        status: "live", emoji: "🥇", isNew: true, isFeatured: true,
+        requirements: "All creators",
+        discordUrl: "https://discord.com/channels/958221101182382130/1509344184790941726",
+        participants: 0,
+        opted: []
+    },
+    {
+        id: 8,
+        title: "Gaming Gala: Record Hunter",
+        description: "Gaming creators compete to set new diamond records. Climb the leaderboard and claim your spot in TABOOST history.",
+        date: "2026-05-29", endDate: "2026-06-04",
+        time: "All Day", type: "Competition", prize: "Diamond Records + Prizes",
+        status: "live", emoji: "🎮", isNew: true, isFeatured: false,
+        requirements: "Gaming creators",
+        discordUrl: "https://discord.com/channels/958221101182382130/1509352436157124698",
+        participants: 0,
+        opted: ["chefvaun","yaticasimagination","backwoodscaiden","slaydrigaming","umparker",
+                "imjustnicob","namezcarol","daddylilsky24","doseof.tayyy","therealvioletfoxx",
+                "kaybaby2141","truckernameswag","cosmictay13","unclevlnny","likeromeo",
+                "zanemelz","lunaticcupcakettv","itsbriannablake","annascozycorner",
+                "fathernewman","madizmadz","allltimesam","tyrellgreenlee","arivassallo914",
+                "bryton.39","alliemsx","caroleens","th3onef3ar","kristenkittymeow",
+                "cottonsnivy","xander5klive","ardy.afshar","norsenectarmeadsgaming",
+                "im.just.a.girly39","jeremiahboutross","fatalparadox11877","nekosnowlily",
+                "lady_cabernet","jamjamish","itskbearr","mecheware1959","rhynoxlive",
+                "n00lanttv","leahhmelia","carringtonchronicles","mariigamez333",
+                "briarnorthamerican","homiequest","lluxxid","1codybentley","jazcatraz",
+                "princesscults","barrybee313","clovonet02","queenofhearts0069_",
+                "corruptedcodytv1","hotsenorita2","fizzle_station","_west_000",
+                "boundmanlove","danny.buth","lyvidyka","redrumstudios","dramacat4",
+                "zezecod","modern_ragnar_1.0","thecluelessbunny","drewcasta","xrheaofficial",
+                "official_hd_","samuelciafaloni","the.bolter_32","stycollin","rdino_36",
+                "natures_kill","bumbl3beedee","lmrese","zordoth","titancosplays",
+                "midnightxreign","kenziehuggg","battyfog",".r3ason","mergemadam",
+                "imjustsaiyanbro","stary.750","lokirising"]
     }
 ];
 
@@ -87,6 +164,7 @@ let currentUser = null;
 let campaigns = [];
 let currentFilter = 'all';
 let selectedCampaign = null;
+let seenCampaigns = new Set(JSON.parse(localStorage.getItem('taboost_seen_new') || '[]'));
 
 async function initCampaigns(user) {
     currentUser = user;
@@ -175,21 +253,30 @@ function renderCampaigns() {
     empty.style.display = 'none';
     
     list.innerHTML = filtered.map(c => {
-        const date = new Date(c.date);
+        const date = new Date(c.date + 'T12:00:00');
+        const endDate = c.endDate ? new Date(c.endDate + 'T12:00:00') : null;
+        const sameMonth = endDate && date.getMonth() === endDate.getMonth();
+        const endStr = endDate
+            ? (sameMonth ? `– ${endDate.getDate()}` : `– ${endDate.toLocaleDateString('en-US', {month:'short', day:'numeric'})}`)
+            : c.time;
         const isOpted = c.opted.includes(currentUser?.username);
         const canOptIn = c.status !== 'ended' && !isOpted;
-        
+        const isNewUnseen = c.isNew && !seenCampaigns.has(c.id);
+
         return `
-            <div class="campaign-card ${isOpted ? 'opted-in' : ''} ${c.status === 'live' ? 'live' : ''}">
+            <div class="campaign-card ${c.isFeatured ? 'featured' : ''} ${isOpted ? 'opted-in' : ''} ${c.status === 'live' ? 'live' : ''}">
                 <div class="campaign-date">
+                    <span class="campaign-emoji">${c.emoji || ''}</span>
                     <span class="month">${date.toLocaleDateString('en-US', {month: 'short'})}</span>
                     <span class="day">${date.getDate()}</span>
-                    <span class="time">${c.time}</span>
+                    <span class="time">${endStr}</span>
                 </div>
-                
+
                 <div class="campaign-info">
                     <div class="campaign-title">
                         ${c.title}
+                        ${isNewUnseen ? '<span class="badge-new">NEW</span>' : ''}
+                        ${c.isFeatured ? '<span class="badge-featured">⭐ FEATURED</span>' : ''}
                         ${c.status === 'live' ? '<span class="status-badge live">Live Now</span>' : ''}
                     </div>
                     <div class="campaign-desc">${c.description}</div>
@@ -197,18 +284,19 @@ function renderCampaigns() {
                         <span><i class="fas fa-trophy"></i> ${c.prize}</span>
                         <span><i class="fas fa-tag"></i> ${c.type}</span>
                         <span><i class="fas fa-check-circle"></i> ${c.requirements}</span>
+                        ${c.discordUrl ? `<span><i class="fab fa-discord"></i> <a href="${c.discordUrl}" target="_blank" style="color:#5865F2;text-decoration:none;">Discord</a></span>` : ''}
                     </div>
                 </div>
-                
+
                 <div class="campaign-status">
                     ${!isOpted ? `<span class="status-badge ${c.status}">${c.status}</span>` : ''}
                     <span class="participant-count">
                         <i class="fas fa-users"></i> ${c.participants + c.opted.length} joined
                     </span>
                 </div>
-                
+
                 ${c.status !== 'ended' ? `
-                    <button class="optin-btn ${isOpted ? 'opted' : ''}" 
+                    <button class="optin-btn ${isOpted ? 'opted' : ''}"
                             onclick="${canOptIn ? `openOptInModal(${c.id})` : ''}"
                             ${isOpted ? 'disabled' : ''}>
                         ${isOpted ? '<i class="fas fa-check"></i> Opted In' : '<i class="fas fa-plus"></i> Opt In'}
@@ -222,19 +310,36 @@ function renderCampaigns() {
 function openOptInModal(campaignId) {
     selectedCampaign = campaigns.find(c => c.id === campaignId);
     if (!selectedCampaign) return;
-    
+
+    // Mark as seen so NEW badge disappears
+    if (selectedCampaign.isNew && !seenCampaigns.has(selectedCampaign.id)) {
+        seenCampaigns.add(selectedCampaign.id);
+        localStorage.setItem('taboost_seen_new', JSON.stringify([...seenCampaigns]));
+        renderCampaigns();
+    }
+
     const modal = document.getElementById('optinModal');
     const preview = document.getElementById('modalCampaignPreview');
-    
+    const startStr = new Date(selectedCampaign.date + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'});
+    const endStr = selectedCampaign.endDate
+        ? new Date(selectedCampaign.endDate + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'})
+        : '';
+
     preview.innerHTML = `
-        <h4>${selectedCampaign.title}</h4>
-        <p>${selectedCampaign.description}</p>
-        <div style="margin-top: 10px; font-size: 13px; color: #888;">
-            <span><i class="fas fa-calendar"></i> ${new Date(selectedCampaign.date).toLocaleDateString()}</span>
-            <span style="margin-left: 15px;"><i class="fas fa-trophy"></i> ${selectedCampaign.prize}</span>
+        <h4 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:22px;">${selectedCampaign.emoji || ''}</span>
+            ${selectedCampaign.title}
+            ${selectedCampaign.isFeatured ? '<span class="badge-featured">⭐ FEATURED</span>' : ''}
+        </h4>
+        <p style="margin-top:8px;color:#888;line-height:1.5;">${selectedCampaign.description}</p>
+        <div style="margin-top:12px;font-size:13px;color:#888;display:flex;flex-wrap:wrap;gap:15px;">
+            <span><i class="fas fa-calendar"></i> ${startStr}${endStr ? ' – ' + endStr : ''}</span>
+            <span><i class="fas fa-users"></i> ${selectedCampaign.participants + selectedCampaign.opted.length} participants</span>
+            <span><i class="fas fa-trophy"></i> ${selectedCampaign.prize}</span>
         </div>
+        ${selectedCampaign.discordUrl ? `<div style="margin-top:10px;"><a href="${selectedCampaign.discordUrl}" target="_blank" style="color:#5865F2;font-size:13px;text-decoration:none;font-weight:600;"><i class="fab fa-discord"></i> Join Discord channel</a></div>` : ''}
     `;
-    
+
     modal.classList.add('active');
 }
 
