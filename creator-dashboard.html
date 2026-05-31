@@ -1360,10 +1360,6 @@
             const features = lines[4]; // row 5: FEATURE flag per campaign
             const creators = lines.slice(5); // row 6+: creator usernames
 
-            // Track seen campaigns so NEW badge only shows once
-            const seenKey = 'taboost_seen_camp_popup';
-            const seen = new Set(JSON.parse(localStorage.getItem(seenKey) || '[]'));
-
             const toShow = [];
 
             for (let col = 0; col < names.length; col++) {
@@ -1383,27 +1379,19 @@
                     dates:      (dates[col] || '').trim(),
                     url:        (urls[col] || '').trim(),
                     emoji:      (emojis[col] || '').trim() || CAMP_EMOJIS[col % CAMP_EMOJIS.length],
-                    isFeatured: (features[col] || '').trim().toUpperCase() === 'FEATURE',
-                    isNew:      !seen.has(campName)
+                    isFeatured: (features[col] || '').trim().toUpperCase() === 'FEATURE'
                 });
             }
 
             if (!toShow.length) return;
-
-            // Mark all shown campaigns as seen
-            toShow.forEach(c => seen.add(c.id));
-            localStorage.setItem(seenKey, JSON.stringify([...seen]));
 
             // Build list of campaign links
             document.getElementById('campList').innerHTML = toShow.map(c => {
                 const featuredStyle = c.isFeatured
                     ? 'background:rgba(255,200,0,0.08);border-color:rgba(255,200,0,0.45);box-shadow:0 0 16px rgba(255,200,0,0.18);'
                     : 'background:rgba(0,204,255,0.06);border-color:rgba(0,204,255,0.15);';
-                const newBadge = c.isNew
-                    ? `<span style="background:linear-gradient(135deg,#ff0055,#ff6600);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;text-transform:uppercase;letter-spacing:0.5px;flex-shrink:0;">NEW</span>`
-                    : '';
                 const featuredBadge = c.isFeatured
-                    ? `<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">⭐ FEATURED</span>`
+                    ? `<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">🔥 HOT</span>`
                     : '';
                 return `
                 <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${featuredStyle}">
@@ -1411,7 +1399,7 @@
                     <span style="flex:1;min-width:0;">
                         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
                             <span style="font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</span>
-                            ${newBadge}${featuredBadge}
+                            ${featuredBadge}
                         </span>
                         ${c.dates ? `<span style="font-size:11px;color:#ffaa00;">${c.dates}</span>` : ''}
                     </span>

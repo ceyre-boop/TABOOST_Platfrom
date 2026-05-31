@@ -164,7 +164,6 @@ let currentUser = null;
 let campaigns = [];
 let currentFilter = 'all';
 let selectedCampaign = null;
-let seenCampaigns = new Set(JSON.parse(localStorage.getItem('taboost_seen_new') || '[]'));
 
 async function initCampaigns(user) {
     currentUser = user;
@@ -261,8 +260,6 @@ function renderCampaigns() {
             : c.time;
         const isOpted = c.opted.includes(currentUser?.username);
         const canOptIn = c.status !== 'ended' && !isOpted;
-        const isNewUnseen = c.isNew && !seenCampaigns.has(c.id);
-
         return `
             <div class="campaign-card ${c.isFeatured ? 'featured' : ''} ${isOpted ? 'opted-in' : ''} ${c.status === 'live' ? 'live' : ''}">
                 <div class="campaign-date">
@@ -275,8 +272,7 @@ function renderCampaigns() {
                 <div class="campaign-info">
                     <div class="campaign-title">
                         ${c.title}
-                        ${isNewUnseen ? '<span class="badge-new">NEW</span>' : ''}
-                        ${c.isFeatured ? '<span class="badge-featured">⭐ FEATURED</span>' : ''}
+                        ${c.isFeatured ? '<span class="badge-featured">🔥 HOT</span>' : ''}
                         ${c.status === 'live' ? '<span class="status-badge live">Live Now</span>' : ''}
                     </div>
                     <div class="campaign-desc">${c.description}</div>
@@ -311,13 +307,6 @@ function openOptInModal(campaignId) {
     selectedCampaign = campaigns.find(c => c.id === campaignId);
     if (!selectedCampaign) return;
 
-    // Mark as seen so NEW badge disappears
-    if (selectedCampaign.isNew && !seenCampaigns.has(selectedCampaign.id)) {
-        seenCampaigns.add(selectedCampaign.id);
-        localStorage.setItem('taboost_seen_new', JSON.stringify([...seenCampaigns]));
-        renderCampaigns();
-    }
-
     const modal = document.getElementById('optinModal');
     const preview = document.getElementById('modalCampaignPreview');
     const startStr = new Date(selectedCampaign.date + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric'});
@@ -329,7 +318,7 @@ function openOptInModal(campaignId) {
         <h4 style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span style="font-size:22px;">${selectedCampaign.emoji || ''}</span>
             ${selectedCampaign.title}
-            ${selectedCampaign.isFeatured ? '<span class="badge-featured">⭐ FEATURED</span>' : ''}
+            ${selectedCampaign.isFeatured ? '<span class="badge-featured">🔥 HOT</span>' : ''}
         </h4>
         <p style="margin-top:8px;color:#888;line-height:1.5;">${selectedCampaign.description}</p>
         <div style="margin-top:12px;font-size:13px;color:#888;display:flex;flex-wrap:wrap;gap:15px;">
