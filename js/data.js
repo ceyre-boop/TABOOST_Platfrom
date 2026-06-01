@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-05-31T18:48:37.723Z
+// Generated: 2026-06-01T15:46:01.122Z
 // Total: 3873 creators
 
 const creatorsData = [
@@ -10,8 +10,8 @@ const creatorsData = [
     "name": "Rank Boost",
     "email": "Rank Boost@taboost.me",
     "status": "5/31/2026",
-    "level": "35,000",
-    "month": "-35000",
+    "level": "70,000",
+    "month": "-70000",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -154927,7 +154927,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-05-31T18:48:37.723Z",
+  lastUpdated: "2026-06-01T15:46:01.122Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
