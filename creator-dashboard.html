@@ -1436,9 +1436,94 @@
                 panel.classList.add('open');
             }, 1500);
 
+            // Inject campaigns into the personal calendar
+            injectCampaignEvents(toShow);
+
         } catch(e) {
             console.warn('Campaign popup:', e);
         }
+    }
+
+    function parseDateRange(dateStr) {
+        if (!dateStr) return null;
+        const MONTHS = {
+            Jan:0, Feb:1, Mar:2, Apr:3, May:4,
+            Jun:5, June:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11
+        };
+        const parts = dateStr.split(' - ');
+        if (parts.length !== 2) return null;
+
+        const startTokens = parts[0].trim().split(' ');
+        const endTokens   = parts[1].trim().split(' ');
+        const year = new Date().getFullYear();
+
+        const startMonth = MONTHS[startTokens[0]];
+        const startDay   = parseInt(startTokens[1]);
+
+        let endMonth, endDay;
+        if (endTokens.length === 1) {
+            endMonth = startMonth;
+            endDay   = parseInt(endTokens[0]);
+        } else {
+            endMonth = MONTHS[endTokens[0]];
+            endDay   = parseInt(endTokens[1]);
+        }
+
+        if (isNaN(startDay) || isNaN(endDay) || startMonth === undefined) return null;
+
+        const start = new Date(year, startMonth, startDay, 0, 0, 0);
+        const end   = new Date(year, endMonth,   endDay,   0, 0, 0);
+        return { start, end };
+    }
+
+    function injectCampaignEvents(campaigns) {
+        const calEl = document.getElementById('weeklyCalendar');
+        if (!calEl) return;
+
+        const today = new Date(); today.setHours(0,0,0,0);
+        const days = Array.from({length: 9}, (_, i) => {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+            return d;
+        });
+
+        const dayCells = calEl.querySelectorAll('.calendar-day');
+
+        campaigns.forEach(c => {
+            if (c.badge === 'FINISHED') return;
+
+            const range = parseDateRange(c.dates);
+            if (!range) return;
+
+            const color = c.badge === 'FEATURED' ? '#ffc800'
+                        : c.badge === 'NEW'      ? '#ff0055'
+                        :                          '#00ccff';
+
+            days.forEach((day, idx) => {
+                if (day < range.start || day > range.end) return;
+                const cell = dayCells[idx];
+                if (!cell) return;
+
+                const eventsEl = cell.querySelector('.day-events');
+                if (!eventsEl) return;
+
+                const noEvent = eventsEl.querySelector('.no-event');
+                if (noEvent) noEvent.remove();
+
+                const atStart  = day.getTime() === range.start.getTime() || idx === 0;
+                const atEnd    = day.getTime() === range.end.getTime()   || idx === 8;
+                const posClass = atStart ? 'multiday-start' : atEnd ? 'multiday-end' : 'multiday-middle';
+
+                eventsEl.insertAdjacentHTML('afterbegin', `
+                    <div class="calendar-event campaign multiday ${posClass}"
+                         style="border-left-color:${color};cursor:pointer;"
+                         onclick="if('${c.url}')window.open('${c.url}','_blank')">
+                        <span class="event-time-badge" style="color:${color};">All Day</span>
+                        <div class="event-title-small">${c.emoji} ${c.title}</div>
+                    </div>
+                `);
+            });
+        });
     }
 
     window.closeCampaignPopup = function() {
