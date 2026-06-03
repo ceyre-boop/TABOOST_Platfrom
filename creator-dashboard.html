@@ -1333,7 +1333,7 @@
     // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji, row5=badge (FEATURED|NEW|FINISHED|blank), row6+=usernames
     // "---ALL---" in creators column means every creator sees it
 
-    const CAMP_EMOJIS = ['🎯','🏆','⚡','🎪','🚀','🎖️','💥','🌟'];
+    const CAMP_EMOJIS = ['🥇','🌍','😂','🎮','🏆','🎤','⚡','🌟'];
 
     async function checkCampaigns() {
         // Wait for currentUser to be set by dashboard auth
@@ -1389,8 +1389,8 @@
                     title: campName,
                     dates: (dates[col] || '').trim(),
                     url:   (urls[col] || '').trim(),
-                    emoji: (emojis[col] || '').trim() || CAMP_EMOJIS[col % CAMP_EMOJIS.length],
-                    badge: (features[col] || '').trim().toUpperCase() // FEATURED | NEW | FINISHED | ''
+                    emoji: ((emojis[col] || '').trim().replace(/\?/g, '') || CAMP_EMOJIS[col % CAMP_EMOJIS.length]),
+                    badge: (features[col] || '').trim().toUpperCase().replace(/^FEATURE$/, 'FEATURED') // FEATURED | NEW | FINISHED | ''
                 });
             }
 
