@@ -1346,13 +1346,13 @@ function updateScoreAndLevels() {
     const isMaxLevel = myData.level === '5' || myData.level === 5;
     
     if (isMaxLevel && daysGoal === 0) {
-        document.getElementById('daysStreamed').textContent = `${currentDays} days (MAX)`;
+        document.getElementById('daysStreamed').textContent = `${currentDays} days`;
     } else {
         document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
     }
-    
+
     if (isMaxLevel && hoursGoal === 0) {
-        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs (MAX)`;
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs`;
     } else {
         document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
     }

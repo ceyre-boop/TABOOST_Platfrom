@@ -261,7 +261,7 @@ function renderCampaigns() {
         const isOpted = c.opted.includes(currentUser?.username);
         const canOptIn = c.status !== 'ended' && !isOpted;
         return `
-            <div class="campaign-card ${c.isFeatured ? 'featured' : ''} ${isOpted ? 'opted-in' : ''} ${c.status === 'live' ? 'live' : ''}">
+            <div class="campaign-card ${c.isFeatured ? 'featured' : ''} ${c.isFinished ? 'finished' : ''} ${isOpted ? 'opted-in' : ''} ${c.status === 'live' ? 'live' : ''}">
                 <div class="campaign-date">
                     <span class="campaign-emoji">${c.emoji || ''}</span>
                     <span class="month">${date.toLocaleDateString('en-US', {month: 'short'})}</span>
@@ -273,6 +273,7 @@ function renderCampaigns() {
                     <div class="campaign-title">
                         ${c.title}
                         ${c.isFeatured ? '<span class="badge-featured">🔥 HOT</span>' : ''}
+                        ${c.isFinished ? '<span class="badge-finished">FINISHED</span>' : ''}
                         ${c.status === 'live' ? '<span class="status-badge live">Live Now</span>' : ''}
                     </div>
                     <div class="campaign-desc">${c.description}</div>
