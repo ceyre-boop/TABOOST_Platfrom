@@ -34,7 +34,6 @@ function generateRollingCalendar() {
             title: "Royal Rumble",
             type: "live",
             time: "6:00PM PT",
-            // Recurring every Tuesday
             recurring: { dayOfWeek: 2 }, // Tuesday
             color: "#ff0044"
         },
@@ -53,141 +52,6 @@ function generateRollingCalendar() {
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
             color: "#ff0044"
-        },
-        {
-            id: 4,
-            title: "Bunny's Wishes",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-01'),
-            endDate: createLocalDate('2026-04-13'),
-            color: "#ff66b2"
-        },
-        {
-            id: 5,
-            title: "Creator Spotlight",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-02'),
-            endDate: createLocalDate('2026-04-13'),
-            color: "#ffcc00"
-        },
-        {
-            id: 6,
-            title: "Fan Club Loyalty League",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-02'),
-            endDate: createLocalDate('2026-04-17'),
-            color: "#ff3300"
-        },
-        {
-            id: 7,
-            title: "Blooming Beats: LIVE Music",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-03'),
-            endDate: createLocalDate('2026-04-12'),
-            color: "#cc33ff"
-        },
-        {
-            id: 8,
-            title: "Easter Egg-stravaganza",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-03'),
-            endDate: createLocalDate('2026-04-12'),
-            color: "#33cc33"
-        },
-        {
-            id: 9,
-            title: "Live Workshop",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-02'),
-            endDate: createLocalDate('2026-04-26'),
-            color: "#3399ff"
-        },
-        {
-            id: 10,
-            title: "A Tiny Diny World",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-03'),
-            endDate: createLocalDate('2026-05-31'),
-            color: "#ff9933"
-        },
-        {
-            id: 11,
-            title: "CN Showdown (World Cup)",
-            type: "special",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-22'),
-            endDate: createLocalDate('2026-04-30'),
-            color: "#00ccff"
-        },
-        {
-            id: 12,
-            title: "Creator Career Program (T3/4)",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-01'),
-            endDate: createLocalDate('2026-05-31'),
-            color: "#ff0044"
-        },
-        {
-            id: 13,
-            title: "Creator Career Program (T5/6)",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-01'),
-            endDate: createLocalDate('2026-05-31'),
-            color: "#ff3366"
-        },
-        {
-            id: 14,
-            title: "Hot Stream Summer (T3-5)",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-01'),
-            endDate: createLocalDate('2026-06-01'),
-            color: "#ff6600"
-        },
-        {
-            id: 15,
-            title: "Hot Stream Summer (T7/8)",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-01'),
-            endDate: createLocalDate('2026-06-01'),
-            color: "#ff884d"
-        },
-        {
-            id: 16,
-            title: "Crece con tu Equipo",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-05'),
-            endDate: createLocalDate('2026-05-17'),
-            color: "#00b894"
-        },
-        {
-            id: 17,
-            title: "All Summer Sound",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-05-01'),
-            endDate: createLocalDate('2026-05-31'),
-            color: "#00ccff"
-        },
-        {
-            id: 18,
-            title: "Guest Mission",
-            type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-04-22'),
-            endDate: createLocalDate('2026-05-20'),
-            color: "#aa88ff"
         },
         {
             id: 19,
@@ -259,40 +123,24 @@ function generateRollingCalendar() {
         ],
         tiktokCampaigns: [
             {
-                name: "Creator Career Program (T3/4)",
-                dates: "May 1 - May 31"
+                name: "LIVE League S3",
+                dates: "May 28 - Jun 8"
             },
             {
-                name: "Creator Career Program (T5/6)",
-                dates: "May 1 - May 31"
+                name: "One World One Sound",
+                dates: "Jun 1 - Jun 10"
             },
             {
-                name: "Hot Stream Summer (T3-5)",
-                dates: "May 1 - Jun 1"
-            },
-            {
-                name: "Hot Stream Summer (T7/8)",
-                dates: "May 1 - Jun 1"
-            },
-            {
-                name: "Crece con tu Equipo",
-                dates: "May 5 - May 17"
-            },
-            {
-                name: "All Summer Sound",
-                dates: "May 1 - May 31"
-            },
-            {
-                name: "Guest Mission",
-                dates: "Apr 22 - May 20"
-            },
-            {
-                name: "A Tiny Diny World",
-                dates: "May 3 - May 31"
+                name: "Laugh Now",
+                dates: "Jun 1 - Jun 9"
             },
             {
                 name: "My LIVE My Story",
                 dates: "May 5 - Jun 5"
+            },
+            {
+                name: "Deals For You Days",
+                dates: "Jun 17 - Jul 2"
             }
         ]
     };
