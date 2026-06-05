@@ -7,7 +7,7 @@
     "Apr 2026",
     "May 2026"
   ],
-  "generatedAt": "2026-06-04T16:59:13.879449Z",
+  "generatedAt": "2026-06-05T16:34:19.577536Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -786,7 +786,7 @@
         0,
         0.0,
         759.29,
-        0.0
+        1018.89
       ]
     },
     {
@@ -2766,7 +2766,7 @@
         0,
         1644.92,
         1702.16,
-        0.0
+        1014.67
       ]
     },
     {
@@ -2795,7 +2795,7 @@
         8,
         8
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         6,
         6,
@@ -5075,7 +5075,7 @@
         7,
         7
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         6,
         5,
@@ -5106,7 +5106,7 @@
         0,
         0.0,
         483.8,
-        0.0
+        615.62
       ]
     },
     {
@@ -5435,7 +5435,7 @@
         5,
         6
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 4,
       "levelHistory": [
         null,
         null,
@@ -7355,7 +7355,7 @@
         6,
         5
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         3,
@@ -8586,7 +8586,7 @@
         0,
         0.0,
         498.5,
-        0.0
+        539.46
       ]
     },
     {
@@ -13715,7 +13715,7 @@
         4,
         5
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         1,
         1,
@@ -24126,7 +24126,7 @@
         0,
         0.0,
         722.98,
-        0.0
+        597.88
       ]
     },
     {
@@ -27395,7 +27395,7 @@
         5,
         5
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         6,
         6,
@@ -50890,7 +50890,7 @@
       ]
     },
     {
-      "username": "victoria.booktok1773",
+      "username": "tori.1773",
       "diamondsHistory": [
         0,
         0,
@@ -52955,7 +52955,7 @@
         4,
         3
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         null,
         null,
@@ -59831,6 +59831,126 @@
     },
     {
       "username": "shefwtaytay_",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "gensters_",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0,
+        0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "username": "road_vision",
       "diamondsHistory": [
         0,
         0,
