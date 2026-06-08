@@ -855,12 +855,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202605222254"></script>
-    <script src="js/rewards-data.js?v=202605222254"></script>
-    <script src="js/events-data.js?v=202605222254"></script>
-    <script src="js/weekly-calendar-data.js?v=202605222254"></script>
-    <script src="js/sheets-data.js?v=202605222254"></script>
-    <script src="js/creator-dashboard.js?v=202605222254"></script>
+    <script src="js/csv-data-loader.js?v=202606082002"></script>
+    <script src="js/rewards-data.js?v=202606082002"></script>
+    <script src="js/events-data.js?v=202606082002"></script>
+    <script src="js/weekly-calendar-data.js?v=202606082002"></script>
+    <script src="js/sheets-data.js?v=202606082002"></script>
+    <script src="js/creator-dashboard.js?v=202606082002"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1476,9 +1476,16 @@
         return { start, end };
     }
 
-    function injectCampaignEvents(campaigns) {
+    function injectCampaignEvents(campaigns, attempt) {
+        attempt = attempt || 0;
         const calEl = document.getElementById('weeklyCalendar');
         if (!calEl) return;
+
+        const dayCells = calEl.querySelectorAll('.calendar-day');
+        if (dayCells.length === 0) {
+            if (attempt < 10) setTimeout(() => injectCampaignEvents(campaigns, attempt + 1), 500);
+            return;
+        }
 
         const today = new Date(); today.setHours(0,0,0,0);
         const days = Array.from({length: 9}, (_, i) => {
@@ -1486,8 +1493,6 @@
             d.setDate(today.getDate() + i);
             return d;
         });
-
-        const dayCells = calEl.querySelectorAll('.calendar-day');
 
         campaigns.forEach(c => {
             if (c.badge === 'FINISHED') return;
