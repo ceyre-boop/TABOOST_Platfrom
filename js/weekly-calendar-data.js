@@ -61,15 +61,6 @@ function generateRollingCalendar() {
             startDate: createLocalDate('2026-05-05'),
             endDate: createLocalDate('2026-06-05'),
             color: "#ffd166"
-        },
-        {
-            id: 20,
-            title: "Deals For You Days",
-            type: "campaign",
-            time: "All Day",
-            startDate: createLocalDate('2026-06-17'),
-            endDate: createLocalDate('2026-07-02'),
-            color: "#ffcc00"
         }
     ];
     
@@ -137,10 +128,6 @@ function generateRollingCalendar() {
             {
                 name: "My LIVE My Story",
                 dates: "May 5 - Jun 5"
-            },
-            {
-                name: "Deals For You Days",
-                dates: "Jun 17 - Jul 2"
             }
         ]
     };
