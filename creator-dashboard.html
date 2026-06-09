@@ -63,16 +63,15 @@
                 document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
 
                 if (role === 'agent') {
-                    const isCreator = !!(userData?.isCreator);
                     const viewParam = new URLSearchParams(window.location.search).get('view');
 
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(window.currentUser.agentEmail);
 
-                    // Dual agents (also creators) default to their creator panel; pure
-                    // agents have no creator record, so default them to the Agent View.
-                    if (viewParam === 'agent' || !isCreator) {
+                    // Always show the creator panel first — Agent View is reachable via the
+                    // toggle (or an explicit ?view=agent deep-link).
+                    if (viewParam === 'agent') {
                         window.showAgentPanel();
                     } else {
                         window.showCreatorPanel();
@@ -856,12 +855,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606090156"></script>
-    <script src="js/rewards-data.js?v=202606090156"></script>
-    <script src="js/events-data.js?v=202606090156"></script>
-    <script src="js/weekly-calendar-data.js?v=202606090156"></script>
-    <script src="js/sheets-data.js?v=202606090156"></script>
-    <script src="js/creator-dashboard.js?v=202606090156"></script>
+    <script src="js/csv-data-loader.js?v=202606092051"></script>
+    <script src="js/rewards-data.js?v=202606092051"></script>
+    <script src="js/events-data.js?v=202606092051"></script>
+    <script src="js/weekly-calendar-data.js?v=202606092051"></script>
+    <script src="js/sheets-data.js?v=202606092051"></script>
+    <script src="js/creator-dashboard.js?v=202606092051"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
