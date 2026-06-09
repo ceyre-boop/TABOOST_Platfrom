@@ -762,10 +762,15 @@
                 let cid = '';
                 let username = '';
                 
+                let manager = 'Unassigned';
                 if (values.length >= 3) {
                     // Has 3+ columns - likely: blank, CID, Username
                     cid = values[1]?.trim(); // Column B
                     username = values[2]?.toLowerCase().trim(); // Column C
+                    // Agent column (index 8 in the Live Agency Report layout); handle co-managed "A+B"
+                    if (values.length >= 9 && values[8]?.trim()) {
+                        manager = values[8].split('+')[0].trim();
+                    }
                 } else if (values.length === 2) {
                     // 2 columns - likely: CID, Username
                     cid = values[0]?.trim();
@@ -782,7 +787,7 @@
                     uploadedCreators.push({
                         cid: cid,
                         username: username,
-                        manager: 'CARRINGTON'
+                        manager: manager
                     });
                 }
             }
