@@ -56,7 +56,7 @@
                     role: role,
                     name: userData?.displayName || userData?.name || user.displayName,
                     username: userData?.username || user.displayName,
-                    agentEmail: user.email.toLowerCase(),
+                    agentEmail: (userData?.agentEmail || user.email).toLowerCase(),
                     isCreator: userData?.isCreator || false
                 };
 
@@ -68,7 +68,7 @@
 
                     const btn = document.getElementById('agentViewToggle');
                     if (btn) btn.style.display = 'inline-flex';
-                    window.loadAgentPanel(user.email.toLowerCase());
+                    window.loadAgentPanel(window.currentUser.agentEmail);
 
                     // Always show creator panel first — agent panel accessible via toggle
                     if (viewParam === 'agent') {
@@ -855,12 +855,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606082002"></script>
-    <script src="js/rewards-data.js?v=202606082002"></script>
-    <script src="js/events-data.js?v=202606082002"></script>
-    <script src="js/weekly-calendar-data.js?v=202606082002"></script>
-    <script src="js/sheets-data.js?v=202606082002"></script>
-    <script src="js/creator-dashboard.js?v=202606082002"></script>
+    <script src="js/csv-data-loader.js?v=202606090128"></script>
+    <script src="js/rewards-data.js?v=202606090128"></script>
+    <script src="js/events-data.js?v=202606090128"></script>
+    <script src="js/weekly-calendar-data.js?v=202606090128"></script>
+    <script src="js/sheets-data.js?v=202606090128"></script>
+    <script src="js/creator-dashboard.js?v=202606090128"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";

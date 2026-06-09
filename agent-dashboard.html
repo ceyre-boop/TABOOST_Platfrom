@@ -53,7 +53,7 @@
                     email: user.email,
                     role: 'agent',
                     name: userData.displayName || userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
-                    agentEmail: user.email.toLowerCase(),
+                    agentEmail: (userData.agentEmail || user.email).toLowerCase(),
                     isCreator: !!(userData.isCreator)
                 };
 
