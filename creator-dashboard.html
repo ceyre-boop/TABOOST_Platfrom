@@ -70,8 +70,9 @@
                     if (btn) btn.style.display = 'inline-flex';
                     window.loadAgentPanel(window.currentUser.agentEmail);
 
-                    // Always show creator panel first — agent panel accessible via toggle
-                    if (viewParam === 'agent') {
+                    // Dual agents (also creators) default to their creator panel; pure
+                    // agents have no creator record, so default them to the Agent View.
+                    if (viewParam === 'agent' || !isCreator) {
                         window.showAgentPanel();
                     } else {
                         window.showCreatorPanel();
