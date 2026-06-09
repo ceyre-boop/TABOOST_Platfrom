@@ -69,16 +69,50 @@ service cloud.firestore {
     // Creator data - performance metrics
     match /creators/{cid} {
       // Creator can read their own data (matched by UID in document)
-      allow read: if isAuthenticated() 
+      allow read: if isAuthenticated()
         && resource.data.uid == request.auth.uid;
-      
+
       // Admin can read all creator data
       allow read: if isAdmin();
-      
+
       // Admin can write creator data
       allow write: if isAdmin();
     }
-    
+
+    // ===== UK region (mirrors creatorRoster / creators) =====
+    // Auth (users) and roles are shared US+UK; only the data collections are namespaced.
+
+    // UK creator roster - pre-approved UK creators
+    match /ukCreatorRoster/{username} {
+      // ANYONE can read roster (to check if username exists before signup)
+      allow read: if true;
+
+      // Only admins can create roster entries
+      allow create: if isAdmin();
+
+      // Allow users to claim their own entry (set claimed: true + their uid)
+      allow update: if isAuthenticated()
+        && resource.data.claimed == false
+        && request.resource.data.claimed == true
+        && request.resource.data.uid == request.auth.uid;
+
+      // Admins can do anything
+      allow delete: if isAdmin();
+    }
+
+    // UK creator data - performance metrics
+    match /ukCreators/{cid} {
+      // Creator can read their own data (matched by UID in document)
+      allow read: if isAuthenticated()
+        && resource.data.uid == request.auth.uid;
+
+      // Admin can read all UK creator data
+      allow read: if isAdmin();
+
+      // Admin can write UK creator data
+      allow write: if isAdmin();
+    }
+
     // Admin collection - isolated admin data
     match /admins/{adminId} {
       // Only the specific admin can read their data

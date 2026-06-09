@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>TABOOST - Login</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .logo {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .logo-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff0044;
+            box-shadow: 0 0 30px rgba(255,0,68,0.3);
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+        .tagline {
+            text-align: center;
+            color: #ff0044;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ff0044;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #ff0044, #cc0033);
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover { opacity: 0.9; }
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .toggle a {
+            color: #ff0044;
+            text-decoration: none;
+        }
+        .error {
+            background: rgba(255,0,68,0.1);
+            border: 1px solid #ff0044;
+            color: #ff0044;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .success {
+            background: rgba(0,255,136,0.1);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            color: #888;
+            margin-top: 10px;
+        }
+        .helper-text {
+            color: #666;
+            font-size: 0.75rem;
+            margin-top: 5px;
+        }
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+        .forgot-password a {
+            color: #888;
+            font-size: 0.8rem;
+            text-decoration: none;
+        }
+        .forgot-password a:hover {
+            color: #ff0044;
+        }
+        .email-display {
+            background: rgba(0,255,136,0.05);
+            border: 1px solid rgba(0,255,136,0.2);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: none;
+        }
+        .email-display.visible {
+            display: block;
+        }
+        .email-display label {
+            color: #00ff88;
+            font-size: 0.75rem;
+            margin-bottom: 4px;
+        }
+        .email-display .email-value {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        .signup-hint {
+            background: rgba(255,0,68,0.05);
+            border: 1px dashed rgba(255,0,68,0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        .signup-hint.visible {
+            display: block;
+        }
+        .signup-hint p {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        .signup-hint a {
+            color: #ff0044;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="images/taboost-genie.jpg" alt="TABOOST" class="logo-img">
+        </div>
+        <p class="tagline">Turn Your Hustle Into a Business</p>
+        <p class="subtitle">Sign in to your account</p>
+        
+        <div class="error" id="error"></div>
+        <div class="success" id="success"></div>
+        
+        <form id="loginForm">
+            <!-- CREATOR USERNAME -->
+            <div class="form-group">
+                <label>TikTok Username *</label>
+                <input type="text" id="username" placeholder="@yourusername or yourusername" required>
+                <p class="helper-text">Enter your TikTok username to search/login</p>
+            </div>
+            
+            <!-- EMAIL (Auto-filled or manual entry) -->
+            <div class="email-display" id="emailDisplay">
+                <label>Email Address</label>
+                <div class="email-value" id="emailValue"></div>
+            </div>
+            
+            <div class="form-group" id="emailInputGroup" style="display:none;">
+                <label>Email Address *</label>
+                <input type="email" id="emailInput" placeholder="you@example.com">
+                <p class="helper-text">Please enter your email address</p>
+            </div>
+            
+            <div class="form-group">
+                <label>Password *</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+            
+            <div class="forgot-password">
+                <a href="reset-password.html">Forgot password?</a>
+            </div>
+            
+            <button type="submit" class="btn" id="loginBtn">Sign In</button>
+            <div class="loading" id="loginLoading">Looking up your account...</div>
+        </form>
+        
+        <div class="toggle">
+            <span>First time here?</span>
+            <a href="signup.html">Create account</a>
+        </div>
+        
+        <div class="signup-hint" id="signupHint">
+            <p>Don't have an account yet?</p>
+            <a href="signup.html">Sign up here first →</a>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        // NUCLEAR OPTION: Clear ALL storage to prevent any cached redirects
+        console.log('Clearing all storage...');
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        // Clear any URL parameters that might cause redirects
+        if (window.location.search.includes('redirect') || window.location.search.includes('return')) {
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
+        
+        // Unregister any service workers that might be caching old pages
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                registrations.forEach(registration => {
+                    console.log('Unregistering service worker:', registration);
+                    registration.unregister();
+                });
+            });
+        }
+
+        let foundEmail = null;
+
+        function showError(msg) {
+            const el = document.getElementById('error');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('success').style.display = 'none';
+        }
+
+        function showSuccess(msg) {
+            const el = document.getElementById('success');
+            el.textContent = msg;
+            el.style.display = 'block';
+            document.getElementById('error').style.display = 'none';
+        }
+
+        function hideMessages() {
+            document.getElementById('error').style.display = 'none';
+            document.getElementById('success').style.display = 'none';
+            document.getElementById('signupHint').classList.remove('visible');
+        }
+
+        // Check if already logged in — guard prevents multiple simultaneous redirects
+        let _redirecting = false;
+        auth.onAuthStateChanged((user) => {
+            if (user && !_redirecting) {
+                _redirecting = true;
+                redirectToDashboard();
+            }
+        });
+
+        async function redirectToDashboard() {
+            try {
+                const user = auth.currentUser;
+                console.log('Current user:', user?.email);
+                
+                const userDoc = await db.collection('users').doc(user.uid).get();
+                const userData = userDoc.data() || {};
+                console.log('User data:', userData);
+                
+                let role = userData.role || 'creator';
+                if (user.email?.toLowerCase() === 'marco@taboost.me') {
+                    role = 'admin';
+                    console.log('Admin detected via email');
+                }
+                
+                console.log('Role determined:', role);
+                
+                // HARD CODED REDIRECTS
+                if (role === 'admin') {
+                    window.location.href = 'dashboard.html';
+                } else if (role === 'manager') {
+                    window.location.href = 'managers.html';
+                } else {
+                    // Agents and creators both go to creator-dashboard — the toggle handles switching
+                    window.location.href = 'creator-dashboard.html';
+                }
+                
+            } catch (error) {
+                console.error('Redirect error:', error);
+                alert('Redirect error: ' + error.message); // DEBUG
+                // Default to creator dashboard on error
+                window.location.replace('creator-dashboard.html');
+            }
+        }
+
+        // Look up email when username is entered
+        async function lookupEmail(username) {
+            console.log('Looking up email for:', username);
+            
+            // Method 1: Check users collection by tiktokUsername
+            try {
+                const usersSnapshot = await db.collection('users')
+                    .where('tiktokUsername', '==', username)
+                    .limit(1)
+                    .get();
+                
+                if (!usersSnapshot.empty) {
+                    const userData = usersSnapshot.docs[0].data();
+                    if (userData.email) {
+                        return { email: userData.email, source: 'users' };
+                    }
+                }
+            } catch (e) {
+                console.log('Users lookup error:', e);
+            }
+            
+            // Method 2: Check users collection by username field (usually identical to tiktokUsername)
+            try {
+                const usernameSnapshot = await db.collection('users')
+                    .where('username', '==', username)
+                    .limit(1)
+                    .get();
+                
+                if (!usernameSnapshot.empty) {
+                    const userData = usernameSnapshot.docs[0].data();
+                    if (userData.email) {
+                        return { email: userData.email, source: 'users' };
+                    }
+                }
+            } catch (e) {
+                console.log('Username field lookup error:', e);
+            }
+            
+            return null;
+        }
+
+        // AUTOFILL EMAIL ON USERNAME BLUR
+        document.getElementById('username').addEventListener('blur', async (e) => {
+            let username = e.target.value.trim().toLowerCase().replace(/^@/, '');
+            if (!username || username.includes('@')) return;
+            
+            const lookup = await lookupEmail(username);
+            if (lookup && lookup.email) {
+                foundEmail = lookup.email;
+                document.getElementById('emailInputGroup').style.display = 'block';
+                const emailInput = document.getElementById('emailInput');
+                emailInput.value = lookup.email;
+                // Add a subtle green background to indicate it was autofilled
+                emailInput.style.backgroundColor = 'rgba(0,255,136,0.1)';
+                emailInput.style.borderColor = 'rgba(0,255,136,0.5)';
+                emailInput.placeholder = 'Confirm or change your email';
+                console.log('Autofilled email:', lookup.email);
+                
+                // Keep the email display hidden as we are using the input field now
+                document.getElementById('emailDisplay').classList.remove('visible');
+            }
+        });
+
+        // LOGIN HANDLER
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            let username = document.getElementById('username').value.trim().toLowerCase();
+            const password = document.getElementById('password').value;
+            const btn = document.getElementById('loginBtn');
+            const loading = document.getElementById('loginLoading');
+            
+            // Remove @ if present
+            username = username.replace(/^@/, '');
+            
+            btn.disabled = true;
+            loading.style.display = 'block';
+            hideMessages();
+            
+            try {
+                // Check if user entered email instead of username
+                let email = null;
+                if (username.includes('@')) {
+                    email = username;
+                    foundEmail = email;
+                    console.log('Using entered email:', email);
+                } else {
+                    // Try to look up email from users collection with timeout
+                    showSuccess('Looking up your account...');
+                    
+                    // Add timeout to prevent hanging
+                    const lookupPromise = lookupEmail(username);
+                    const timeoutPromise = new Promise((_, reject) => 
+                        setTimeout(() => reject(new Error('timeout')), 3000)
+                    );
+                    
+                    try {
+                        const lookup = await Promise.race([lookupPromise, timeoutPromise]);
+                        if (lookup) {
+                            foundEmail = lookup.email;
+                            console.log('Found email from', lookup.source, ':', foundEmail);
+                        }
+                    } catch (e) {
+                        console.log('Lookup failed or timed out:', e);
+                        // Continue without found email
+                    }
+                }
+                
+                // Check if user already entered email in the input field
+                const existingEmail = document.getElementById('emailInput').value.trim();
+                
+                if (!existingEmail) {
+                    // First time - show email input
+                    document.getElementById('emailInputGroup').style.display = 'block';
+                    if (foundEmail) {
+                        document.getElementById('emailInput').value = foundEmail;
+                        document.getElementById('emailInput').placeholder = 'Confirm or change your email';
+                    } else {
+                        document.getElementById('emailInput').placeholder = 'Enter your email address';
+                        showError(`Please enter your email address to sign in.`);
+                    }
+                    document.getElementById('emailInput').focus();
+                    
+                    // Don't auto-submit - wait for user to enter/confirm email
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                    btn.textContent = 'Sign In';
+                    return;
+                }
+                
+                // User has entered email - proceed with sign in
+                foundEmail = existingEmail;
+                
+                // Get email (either from lookup or from input if user had to enter it)
+                let loginEmail = foundEmail;
+                const manualEmail = document.getElementById('emailInput').value.trim();
+                // Always prefer manually entered email if provided
+                if (manualEmail) {
+                    loginEmail = manualEmail;
+                    // Hide the auto-found email display since we're using manual
+                    document.getElementById('emailDisplay').classList.remove('visible');
+                }
+                
+                if (!loginEmail) {
+                    showError('Please enter your email address.');
+                    document.getElementById('emailInputGroup').style.display = 'block';
+                    btn.disabled = false;
+                    loading.style.display = 'none';
+                    return;
+                }
+                
+                // Now sign in
+                console.log('Signing in with:', loginEmail);
+                showSuccess('Signing in...');
+                
+                try {
+                    await auth.signInWithEmailAndPassword(loginEmail, password);
+                    // Success! Redirect
+                    redirectToDashboard();
+                } catch (signInError) {
+                    // If sign-in fails with user-not-found and we used looked-up email,
+                    // show email input so user can enter their actual email
+                    if ((signInError.code === 'auth/user-not-found' || signInError.code === 'auth/invalid-credential') 
+                        && !username.includes('@') && !document.getElementById('emailInput').value.trim()) {
+                        
+                        showError(`The email we found (${loginEmail}) doesn't match your account. Please enter your actual email address below.`);
+                        document.getElementById('emailInputGroup').style.display = 'block';
+                        document.getElementById('emailInput').focus();
+                        document.getElementById('emailDisplay').classList.remove('visible');
+                        btn.disabled = false;
+                        loading.style.display = 'none';
+                        btn.textContent = 'Try Again';
+                        return;
+                    }
+                    // Otherwise re-throw to be handled by outer catch
+                    throw signInError;
+                }
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                // User-friendly error messages
+                let message = 'Unable to sign in. Please try again.';
+                
+                switch (error.code) {
+                    case 'auth/user-not-found':
+                    case 'auth/invalid-credential':
+                        message = 'Username or password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password</a> or create an account if you haven\'t signed up yet.';
+                        break;
+                    case 'auth/wrong-password':
+                        message = 'Password is incorrect. <a href="reset-password.html" style="color: #ff0044; text-decoration: underline;">Reset your password here</a>.';
+                        break;
+                    case 'auth/invalid-email':
+                        message = 'Please enter a valid email address.';
+                        document.getElementById('emailInputGroup').style.display = 'block';
+                        break;
+                    case 'auth/user-disabled':
+                        message = 'This account has been disabled. Please contact your manager.';
+                        break;
+                    case 'auth/too-many-requests':
+                        message = 'Too many failed login attempts. Please wait a few minutes and try again.';
+                        break;
+                    case 'auth/network-request-failed':
+                        message = 'Network connection issue. Please check your internet and try again.';
+                        break;
+                    default:
+                        if (error.message && error.message.includes('credential')) {
+                            message = 'Login information is incorrect. Please check your username and password.';
+                        }
+                }
+                
+                showError(message);
+                
+                if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
+                    document.getElementById('signupHint').classList.add('visible');
+                }
+                
+                btn.disabled = false;
+                loading.style.display = 'none';
+                btn.textContent = 'Sign In';
+            }
+        });
+
+        function showForgotPassword() {
+            const username = document.getElementById('username').value;
+            if (foundEmail) {
+                auth.sendPasswordResetEmail(foundEmail)
+                    .then(() => showSuccess('Password reset email sent to ' + foundEmail))
+                    .catch(err => showError('Could not send reset email: ' + err.message));
+            } else if (username && username.includes('@')) {
+                auth.sendPasswordResetEmail(username)
+                    .then(() => showSuccess('Password reset email sent!'))
+                    .catch(err => showError('Could not send reset email: ' + err.message));
+            } else {
+                showError('Please enter your username or email address first');
+                document.getElementById('emailInputGroup').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Agent Dashboard - TABOOST</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let _agentRedirecting = false;
+        onAuthStateChanged(auth, async (user) => {
+            if (_agentRedirecting) return;
+            if (!user) {
+                _agentRedirecting = true;
+                window.location.href = 'agent-login.html';
+                return;
+            }
+
+            try {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data() || {};
+                let role = userData.role || 'creator';
+
+                if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
+
+                if (role === 'admin')   { _agentRedirecting = true; window.location.href = 'dashboard.html'; return; }
+                if (role === 'manager') { _agentRedirecting = true; window.location.href = 'managers.html'; return; }
+                if (role === 'creator') { _agentRedirecting = true; window.location.href = 'creator-dashboard.html'; return; }
+
+                // role === 'agent'
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: 'agent',
+                    name: userData.displayName || userData.name || userData.agentName || user.displayName || user.email.split('@')[0],
+                    agentEmail: (userData.agentEmail || user.email).toLowerCase(),
+                    isCreator: !!(userData.isCreator)
+                };
+
+                document.getElementById('agentName').textContent = window.currentUser.name;
+
+                // Only show Creator View if this agent also has a creator account
+                if (!window.currentUser.isCreator) {
+                    const cvBtn = document.querySelector('a[href*="view=creator"]');
+                    if (cvBtn) cvBtn.style.display = 'none';
+                }
+
+                loadAgentData(window.currentUser.agentEmail);
+            } catch (err) {
+                console.error('Auth error:', err);
+                // Do NOT redirect on error — avoids login loop. Show message instead.
+                document.getElementById('agentName').textContent = 'Error loading — please refresh';
+            }
+        });
+
+        window.logout = async () => {
+            await signOut(auth);
+            window.location.href = 'agent-login.html';
+        };
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/creator-dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ── Ledger Table ─────────────────────────────────── */
+        .ledger-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .ledger-table th {
+            text-align: left;
+            padding: 10px 14px;
+            color: var(--text-secondary, #888);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            white-space: nowrap;
+        }
+        .ledger-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        .ledger-table tr:last-child td { border-bottom: none; }
+        .ledger-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+        .creator-cell { display: flex; flex-direction: column; gap: 2px; }
+        .creator-username { font-weight: 600; }
+        .creator-month { font-size: 11px; color: #888; }
+
+        .tier-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 2px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255,255,255,0.08);
+            white-space: nowrap;
+        }
+        .tier-up   { color: #00ff88; }
+        .tier-down { color: #ff4466; }
+        .tier-flat { color: #888; }
+
+        .diamonds-cell {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-weight: 600;
+            color: #00ccff !important;
+        }
+        .diamonds-cell i { font-size: 12px; color: #00ccff !important; }
+
+        /* ── Agent logo image ────────────────────────────── */
+        .agent-logo-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* ── Stat card tweaks for this page ──────────────── */
+        .stat-card::before, .stat-card::after {
+            display: none !important;
+        }
+        .stat-value.green { color: var(--success, #00ff88); }
+
+        /* ── Empty / loading states ───────────────────────── */
+        .loading-row td {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        .no-data { text-align: center; padding: 40px; color: #888; }
+
+        /* ── Mobile ───────────────────────────────────────── */
+        @media (max-width: 640px) {
+            .creator-layout { padding: 16px 12px; }
+
+            /* Header: center everything on mobile */
+            .creator-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 14px;
+                padding-bottom: 16px;
+            }
+            .creator-profile {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .creator-info {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 6px;
+            }
+            .creator-actions {
+                width: 100%;
+                justify-content: center;
+            }
+            .creator-actions a,
+            .creator-actions button {
+                padding: 8px 14px !important;
+                font-size: 12px !important;
+            }
+
+            .agent-logo-img {
+                width: 80px !important;
+                height: 80px !important;
+                border-radius: 20px !important;
+            }
+            .creator-name { font-size: 1.3rem !important; }
+
+            /* Stats: 1 column on very small, 2 columns otherwise */
+            .stats-grid {
+                grid-template-columns: 1fr 1fr !important;
+                gap: 10px !important;
+            }
+            .stats-grid .stat-card:first-child {
+                grid-column: 1 / -1; /* Monthly diamonds spans full width */
+            }
+            .stat-value { font-size: 1.6rem !important; }
+            .stat-label { font-size: 11px !important; }
+
+            /* Section card padding */
+            .section-card { padding: 16px 12px !important; }
+            .section-header { margin-bottom: 12px !important; }
+            .section-header h2 { font-size: 1rem !important; }
+
+            /* Table scrolls horizontally — no columns hidden */
+            .ledger-table { font-size: 12px; min-width: 480px; }
+            .ledger-table th { padding: 8px 10px; font-size: 10px; letter-spacing: 0.4px; }
+            .ledger-table td { padding: 10px 10px; }
+
+            .tier-badge { padding: 2px 5px; font-size: 11px; }
+            .diamonds-cell { font-size: 12px; }
+
+            /* Footer */
+            .creator-footer { font-size: 11px !important; text-align: center; }
+        }
+
+        @media (max-width: 380px) {
+            .stats-grid { grid-template-columns: 1fr !important; }
+            .stats-grid .stat-card:first-child { grid-column: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="creator-layout">
+
+        <!-- Header -->
+        <div class="creator-header" id="agentHeader">
+            <div class="creator-profile">
+                <img src="images/agent-avatar.png" alt="Agent" class="agent-logo-img">
+                <div class="creator-info">
+                    <h1 class="creator-name" id="agentName">Loading...</h1>
+                    <span class="creator-badge" style="background: rgba(255,170,0,0.15); color: #ffaa00; border: 1px solid rgba(255,170,0,0.3); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.5px;">
+                        <i class="fas fa-user-tie"></i> AGENT
+                    </span>
+                </div>
+            </div>
+            <div class="creator-actions" style="display:flex; gap:10px; align-items:center;">
+                <a href="creator-dashboard.html?view=creator" style="padding: 10px 16px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; cursor: pointer; font-size: 13px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-user"></i> Creator View
+                </a>
+                <button class="btn btn-secondary" onclick="window.logout()" style="padding: 10px 20px; border-radius: 10px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); color: #fff; cursor: pointer; font-size: 14px;">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
+            </div>
+        </div>
+
+        <!-- 3 Stat Boxes -->
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-header">
+                    <span class="stat-label">Total Monthly Diamonds</span>
+                </div>
+                <div class="stat-value" id="statTotalDiamonds">--</div>
+                <div class="stat-footer">
+                    <small style="color:#888;" id="statActiveCreators">From -- active creators</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Total Creators</span>
+                </div>
+                <div class="stat-value" id="statTotalCreators">--</div>
+                <div class="stat-footer">
+                    <small style="color:#00ff88;" id="statAddedThisMonth">-- added this month</small>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Earnings This Month</span>
+                </div>
+                <div class="stat-value green" id="statEarnings">--</div>
+                <div class="stat-footer">
+                    <small style="color:#888;">Current month</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Creator Ledger -->
+        <div class="section-card" style="margin-top: 24px;">
+            <div class="section-header">
+                <h2><i class="fas fa-list" style="color: #ffaa00;"></i> My Creators</h2>
+                <span id="ledgerCount" style="color:#888; font-size:13px;"></span>
+            </div>
+
+            <div style="overflow-x: auto;">
+                <table class="ledger-table">
+                    <thead>
+                        <tr>
+                            <th>Creator</th>
+                            <th>Days</th>
+                            <th>Hours</th>
+                            <th>Level</th>
+                            <th>Tier</th>
+                            <th>Needed</th>
+                            <th>Diamonds</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ledgerBody">
+                        <tr class="loading-row"><td colspan="7"><i class="fas fa-spinner fa-spin"></i> Loading creators...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="creator-footer">
+            <p>Questions? Contact your manager, <a href="mailto:info@taboost.me">info@taboost.me</a>, or <a href="https://discord.gg/Akfwz536BW" target="_blank"><i class="fab fa-discord"></i> Discord</a></p>
+            <p>© 2026 TABOOST Agency. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        const GITHUB_BASE = '';
+
+        function parseDiamondValue(n) {
+            const raw = String(n || '').replace(/,/g, '');
+            // Matches optional leading symbol(s), numeric values like 1200 / 1.5 / .5, and optional K/M suffix.
+            const match = raw.match(/^\s*[^\d.-]*(-?(?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/);
+            if (!match) return 0;
+
+            const base = parseFloat(match[1]) || 0;
+            const unit = (match[2] || '').toUpperCase();
+            const multiplier = unit === 'M' ? 1000000 : unit === 'K' ? 1000 : 1;
+            return Math.round(base * multiplier);
+        }
+
+        // Non-negative numeric values with optional K/M suffix (e.g. 1200, 1.5K, 2M).
+        const NUMERIC_VALUE_WITH_SUFFIX_PATTERN = /^\s*[^\d.-]*((?:\d+\.?\d*|\.\d+))\s*([kKmM]?)\s*[^\dA-Za-z]*\s*$/;
+
+        function fmtK(n) {
+            const v = (typeof n === 'number' && Number.isFinite(n))
+                ? Math.trunc(n)
+                : parseDiamondValue(n);
+            if (v >= 1000000) return (v / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+            if (v >= 1000) return (v / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+            return v.toLocaleString();
+        }
+
+// Parse CSV preserving column order (handles duplicate header names via index)
+        function parseCsvRaw(text) {
+            const lines = text.trim().split(/\r?\n/);
+            if (lines.length < 2) return { headers: [], rows: [] };
+            const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+            const rows = lines.slice(1).map(line => {
+                const vals = [];
+                let cur = '', inQ = false;
+                for (let i = 0; i < line.length; i++) {
+                    const ch = line[i];
+                    if (ch === '"') { inQ = !inQ; }
+                    else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+                    else { cur += ch; }
+                }
+                vals.push(cur.trim());
+                return vals;
+            });
+            return { headers, rows };
+        }
+
+        function findCol(headers, ...names) {
+            for (const name of names) {
+                const i = headers.findIndex(h => h.toLowerCase().trim() === name.toLowerCase().trim());
+                if (i >= 0) return i;
+            }
+            return -1;
+        }
+
+        async function loadAgentData(agentEmail) {
+            const emailKey = (agentEmail || '').toLowerCase().trim();
+
+            // ── Agents.csv — aggregate stats ────────────────────────
+            try {
+                const resp = await fetch(`${GITHUB_BASE}/data/agents.csv?v=${Date.now()}`);
+                if (resp.ok) {
+                    const { headers, rows } = parseCsvRaw(await resp.text());
+
+                    // Columns: Agent User, Short Name, 1st Creator, Total ?, Creators TM, Creators, May 2026
+                    // "Total ?" = diamond emoji that didn't encode — match by index 3 as fallback
+                    const iEmail    = findCol(headers, 'Agent User', 'Backstage Email', 'Email');
+                    const iCreators = findCol(headers, 'Creators', 'Total Creators');
+                    const iCreatorsTM = findCol(headers, 'Creators TM', 'Added This Month', 'N');
+                    // Diamond total: try known names, fall back to column index 3
+                    let iDiamonds = findCol(headers, 'Total 💎', 'Total Diamonds', 'Total ?');
+                    if (iDiamonds < 0) iDiamonds = 3;
+
+                    // Earnings = the "May 2026" (current month) column — last column
+                    const monthLabel = new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' });
+                    let iEarnings = findCol(headers, monthLabel);
+                    if (iEarnings < 0) iEarnings = headers.length - 1; // fallback: last column
+
+                    const row = rows.find(r => (r[iEmail] || '').toLowerCase().trim() === emailKey);
+                    if (row) {
+                        const diamonds = parseInt((row[iDiamonds] || '0').replace(/[^0-9]/g, '')) || 0;
+                        const creators = parseInt((row[iCreators] || '0').replace(/[^0-9]/g, '')) || 0;
+                        const added    = iCreatorsTM >= 0 ? parseInt((row[iCreatorsTM] || '0').replace(/[^0-9]/g, '')) || 0 : 0;
+                        const earnings = iEarnings >= 0 ? (row[iEarnings] || '$0').trim() : '$0';
+
+                        document.getElementById('statTotalDiamonds').textContent = fmtK(diamonds) + ' 💎';
+                        document.getElementById('statTotalCreators').textContent = creators.toLocaleString();
+                        document.getElementById('statAddedThisMonth').textContent = `+${added} added this month`;
+                        document.getElementById('statEarnings').textContent = earnings;
+
+                    } else {
+                        console.warn('No agents.csv row found for email:', emailKey);
+                    }
+                }
+            } catch (e) {
+                console.error('agents.csv error:', e);
+            }
+
+            // ── Agents-C.csv — creator ledger ───────────────────────
+            const tbody = document.getElementById('ledgerBody');
+            try {
+                const resp = await fetch(`${GITHUB_BASE}/data/agents-dash-c.csv?v=${Date.now()}`);
+                if (!resp.ok) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">Ledger data not yet available.</td></tr>';
+                    return;
+                }
+
+                const { headers, rows } = parseCsvRaw(await resp.text());
+
+                // Column indices from agents-dash-c: Agent, Creator, Month, Level, Tier, Tier Status, Score, Days, Hours, Diamonds
+                const iAgent    = findCol(headers, 'Agent');
+                const iCreator  = findCol(headers, 'Creator', 'Username', 'TikTok');
+                const iMonth    = findCol(headers, 'Month');
+                const iLevel    = findCol(headers, 'Level', 'Lvl');
+                const iTier     = findCol(headers, 'Tier');
+                // Older exports may name this same field "Tier Left" instead of "Tier Goal".
+                const iTierGoal = findCol(headers, 'Tier Goal', 'Tier Left');
+                const iTierSt   = findCol(headers, 'Tier Status', 'Tier LM');
+                const iDays     = findCol(headers, 'Days', 'Live Days');
+                const iHours    = findCol(headers, 'Hours');
+                const iDiamonds = findCol(headers, 'Diamonds', '💎');
+
+                const myRows = rows
+                    .filter(r => (r[iAgent] || '').toLowerCase().trim() === emailKey)
+                    .map(r => ({
+                        row: r,
+                        diamondsValue: parseDiamondValue(r[iDiamonds])
+                    }))
+                    .sort((a, b) => {
+                        const diamondsDiff = b.diamondsValue - a.diamondsValue;
+                        if (diamondsDiff !== 0) return diamondsDiff;
+                        return (a.row[iCreator] || '').localeCompare(b.row[iCreator] || '');
+                    });
+
+                // Monthly diamonds + active creators from ledger
+                const monthlyDiamonds = myRows.reduce((sum, entry) => sum + entry.diamondsValue, 0);
+                const activeCreators  = myRows.filter(entry => entry.diamondsValue > 0).length;
+                document.getElementById('statTotalDiamonds').textContent = fmtK(monthlyDiamonds) + ' 💎';
+                document.getElementById('statActiveCreators').textContent = `From ${activeCreators} active creator${activeCreators !== 1 ? 's' : ''}`;
+
+                document.getElementById('ledgerCount').textContent =
+                    `${myRows.length} creator${myRows.length !== 1 ? 's' : ''}`;
+
+                if (myRows.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="no-data">No creators found for your account.</td></tr>';
+                    return;
+                }
+
+                tbody.innerHTML = myRows.map(entry => {
+                    const r = entry.row;
+                    const creator   = r[iCreator]  || '--';
+                    const month     = r[iMonth]    || '';
+                    const rawLevel  = r[iLevel]    || '';
+                    const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
+                    const tier      = r[iTier]     || '--';
+                    const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
+                    const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal).replace(/,/g, ''));
+                    const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
+                    const tierSt    = r[iTierSt]   || '';
+                    const days      = r[iDays]     || '--';
+                    const hours     = r[iHours]    || '--';
+                    const diamonds  = fmtK(entry.diamondsValue);
+
+                    // Arrow on Tier column only
+                    let arrow = '', cls = 'tier-flat';
+                    if (tierSt.toLowerCase() === 'up')   { arrow = ' ↑'; cls = 'tier-up'; }
+                    if (tierSt.toLowerCase() === 'down') { arrow = ' ↓'; cls = 'tier-down'; }
+
+                    return `<tr>
+                        <td>
+                            <span class="creator-username">@${creator}</span>
+                            ${month ? `<span class="creator-month" style="color:#555; font-size:11px; margin-left:6px;">Mo.${month}</span>` : ''}
+                        </td>
+                        <td>${days}</td>
+                        <td>${hours}</td>
+                        <td><span style="color:#aaa;">${level}</span></td>
+                        <td><span class="tier-badge"><span class="${cls}">${tier}${arrow}</span></span></td>
+                        <td><span style="color:#ffaa00;">${tierGoal}</span></td>
+                        <td><span class="diamonds-cell">${diamonds} <i class="fas fa-gem" style="font-size:11px;"></i></span></td>
+                    </tr>`;
+                }).join('');
+
+            } catch (e) {
+                console.error('agents-dash-c.csv error:', e);
+                tbody.innerHTML = '<tr><td colspan="7" class="no-data">Error loading creator data.</td></tr>';
+            }
+        }
+    </script>
+</body>
+</html>

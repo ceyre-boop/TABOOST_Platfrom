@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABOOST — Agent Bulk Import</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff0044, #ffaa00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+        .subtitle { text-align: center; color: #888; margin-bottom: 30px; font-size: 14px; }
+        .card { background: #1a1a1a; border-radius: 12px; padding: 24px; margin-bottom: 20px; border: 1px solid #2a2a2a; }
+        .card h2 { font-size: 11px; color: #888; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+        .field { margin-bottom: 16px; }
+        label { display: block; font-size: 11px; color: #666; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%; padding: 12px 14px;
+            background: #0d0d0d; border: 1px solid #333; border-radius: 8px;
+            color: #fff; font-size: 14px;
+        }
+        input:focus { outline: none; border-color: #ff0044; }
+
+        /* Two file zones */
+        .file-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .file-zone {
+            border: 2px dashed #333; border-radius: 10px; padding: 28px 16px;
+            text-align: center; cursor: pointer; transition: border-color 0.2s, background 0.2s;
+        }
+        .file-zone:hover, .file-zone.drag { border-color: #ff0044; background: rgba(255,0,68,0.04); }
+        .file-zone.loaded { border-color: #00ff88; background: rgba(0,255,136,0.04); }
+        .file-zone .icon { font-size: 2rem; }
+        .file-zone strong { display: block; margin: 8px 0 4px; color: #ddd; font-size: 14px; }
+        .file-zone p { color: #888; font-size: 12px; }
+        .file-zone .loaded-name { color: #00ff88; font-size: 12px; margin-top: 6px; font-family: monospace; }
+        input[type="file"] { display: none; }
+
+        /* Column map */
+        .col-map { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 14px 18px; font-size: 12px; line-height: 2; }
+        .col-map .col-row { display: flex; gap: 10px; align-items: center; }
+        .col-key { color: #ffaa00; font-family: monospace; min-width: 140px; }
+        .col-val { color: #888; }
+        .col-val.found { color: #00ff88; }
+
+        /* Preview */
+        .preview-wrap { overflow-x: auto; margin-top: 16px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th { text-align: left; padding: 8px 12px; color: #666; font-size: 11px; text-transform: uppercase; letter-spacing: 0.6px; border-bottom: 1px solid #2a2a2a; white-space: nowrap; }
+        td { padding: 10px 12px; border-bottom: 1px solid #1a1a1a; color: #ddd; }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+        .badge-pending { background: rgba(255,170,0,0.12); color: #ffaa00; border: 1px solid rgba(255,170,0,0.25); }
+        .badge-ok      { background: rgba(0,255,136,0.1);  color: #00ff88; }
+        .badge-skip    { background: rgba(255,255,255,0.06); color: #888; }
+        .badge-err     { background: rgba(255,80,80,0.1);  color: #ff6666; }
+
+        /* Stats + progress */
+        .stats-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 16px; }
+        .stat-box { background: #0d0d0d; border: 1px solid #222; border-radius: 8px; padding: 14px; text-align: center; }
+        .stat-num { font-size: 1.8rem; font-weight: 700; }
+        .stat-lbl { font-size: 11px; color: #666; margin-top: 2px; }
+        .progress-bar { width: 100%; height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin: 14px 0; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg,#ff0044,#ffaa00); width: 0%; transition: width 0.3s; }
+
+        /* Log */
+        .log { background: #050505; border: 1px solid #1a1a1a; border-radius: 8px; padding: 14px; max-height: 260px; overflow-y: auto; font-family: monospace; font-size: 12px; }
+        .log-entry { margin: 2px 0; }
+        .ok  { color: #00ff88; } .err { color: #ff6666; }
+        .inf { color: #60a5fa; } .wrn { color: #ffaa00; }
+
+        /* Buttons */
+        .btn { background: linear-gradient(135deg,#ff0044,#cc0033); color: #fff; border: none; padding: 14px 36px; font-size: 15px; font-weight: 700; border-radius: 8px; cursor: pointer; transition: opacity 0.2s; }
+        .btn:hover:not(:disabled) { opacity: 0.85; }
+        .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+        .btn-sec { background: #222; color: #aaa; border: 1px solid #333; padding: 10px 20px; font-size: 13px; font-weight: 600; border-radius: 8px; cursor: pointer; }
+        .btn-sec:hover { background: #2a2a2a; color: #fff; }
+        .row-actions { display: flex; gap: 12px; align-items: center; margin-top: 20px; }
+
+        .warn-box { background: rgba(255,0,68,0.07); border: 1px solid rgba(255,0,68,0.2); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #ff9999; margin-bottom: 16px; }
+        .info-box { background: rgba(96,165,250,0.07); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #93c5fd; line-height: 1.7; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Agent Bulk Import</h1>
+    <p class="subtitle">Reads your two Google Sheets exports → creates Firebase Auth accounts + Firestore agent docs</p>
+
+    <!-- Step 1 -->
+    <div class="card">
+        <h2>Step 1 — Default Agent Password</h2>
+        <div class="warn-box">⚠️ This creates real Firebase Auth accounts. Duplicate emails are skipped — only their Firestore doc is updated.</div>
+        <div class="field" style="margin-bottom:0">
+            <label>Temporary password all agents will use to first log in</label>
+            <input type="text" id="defaultPassword" value="Taboost2026!">
+        </div>
+    </div>
+
+    <!-- Step 2 — Two file upload -->
+    <div class="card">
+        <h2>Step 2 — Upload Both CSV Files</h2>
+        <div class="info-box" style="margin-bottom:16px;">
+            Export both tabs from Google Sheets as CSV and drop them here. Column order is detected automatically.
+        </div>
+        <div class="file-grid">
+            <!-- Agents file -->
+            <div>
+                <p style="font-size:12px; color:#888; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">① Agents tab (identity + stats)</p>
+                <div class="file-zone" id="dropAgents" onclick="document.getElementById('fileAgents').click()">
+                    <div class="icon">👤</div>
+                    <strong>Live Data - Agents.csv</strong>
+                    <p>Backstage Email, Short Name, Creators, Total 💎…</p>
+                    <div class="loaded-name" id="agentsFileName" style="display:none;"></div>
+                </div>
+                <input type="file" id="fileAgents" accept=".csv">
+            </div>
+            <!-- Agents-C file -->
+            <div>
+                <p style="font-size:12px; color:#888; margin-bottom:8px; text-transform:uppercase; letter-spacing:0.5px;">② Agents-C tab (creator ledger)</p>
+                <div class="file-zone" id="dropAgentsC" onclick="document.getElementById('fileAgentsC').click()">
+                    <div class="icon">📋</div>
+                    <strong>Live Data - Agents-C.csv</strong>
+                    <p>Agent, Creator, Month, Level, Tier…</p>
+                    <div class="loaded-name" id="agentsCFileName" style="display:none;"></div>
+                </div>
+                <input type="file" id="fileAgentsC" accept=".csv">
+            </div>
+        </div>
+
+        <!-- Column map preview -->
+        <div id="colMapSection" style="display:none; margin-top:20px;">
+            <p style="font-size:11px; color:#666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Detected columns</p>
+            <div class="col-map" id="colMap"></div>
+        </div>
+    </div>
+
+    <!-- Step 3 — Preview -->
+    <div class="card" id="previewCard" style="display:none;">
+        <h2>Step 3 — Preview (<span id="previewCount">0</span> agents)</h2>
+        <div class="preview-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Short Name</th>
+                        <th>Login Email</th>
+                        <th>Total 💎</th>
+                        <th>Creators</th>
+                        <th>Added May</th>
+                        <th>Earnings May</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="previewBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Step 4 — Import -->
+    <div class="card">
+        <h2>Step 4 — Import</h2>
+        <div class="stats-row">
+            <div class="stat-box"><div class="stat-num" id="cntTotal">0</div><div class="stat-lbl">Total</div></div>
+            <div class="stat-box"><div class="stat-num ok" id="cntOk">0</div><div class="stat-lbl">Created</div></div>
+            <div class="stat-box"><div class="stat-num wrn" id="cntSkip">0</div><div class="stat-lbl">Updated</div></div>
+            <div class="stat-box"><div class="stat-num err" id="cntErr">0</div><div class="stat-lbl">Errors</div></div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="row-actions">
+            <button class="btn" id="importBtn" onclick="runImport()" disabled>🚀 Import Agents</button>
+            <button class="btn-sec" id="resetBtn" onclick="sendResetEmails()" style="display:none;">📧 Send Reset Emails to Existing Accounts</button>
+            <button class="btn-sec" onclick="downloadLog()">⬇ Download Log</button>
+        </div>
+        <div id="resetNote" style="display:none; background:rgba(255,170,0,0.08); border:1px solid rgba(255,170,0,0.25); border-radius:8px; padding:12px 16px; font-size:13px; color:#ffcc88; margin-top:12px;">
+            ⚠️ <strong id="resetCount">0</strong> agents had existing Firebase accounts — their password was <strong>not</strong> changed by the import. Click above to email them a password reset link so they can set a new password and log in.
+        </div>
+        <div class="log" id="logBox" style="margin-top:20px;">
+            <div class="log-entry inf">Ready. Upload both CSV files to begin.</div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
+    firebase.initializeApp({
+        apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+        authDomain: "taboost-platform.firebaseapp.com",
+        projectId: "taboost-platform",
+        storageBucket: "taboost-platform.firebasestorage.app",
+        messagingSenderId: "379293685859",
+        appId: "1:379293685859:web:d89592adbf67360b574056"
+    });
+    const auth = firebase.auth();
+    const db   = firebase.firestore();
+
+    // ── State ────────────────────────────────────────────────────────
+    let agentsData  = null;
+    let agentsCData = null;
+    let parsedAgents = [];
+    let logLines = [];
+    let skippedEmails = []; // existing Auth accounts that need password reset
+
+    // ── CSV parser (preserves index order for duplicate header names) ──
+    function parseCsvRaw(text) {
+        const lines = text.trim().split(/\r?\n/);
+        if (lines.length < 2) return { headers: [], rows: [] };
+        const headers = splitLine(lines[0]).map(h => h.trim());
+        const rows = lines.slice(1).map(line => splitLine(line).map(v => v.trim())).filter(r => r.some(v => v));
+        return { headers, rows };
+    }
+
+    function splitLine(line) {
+        const vals = []; let cur = '', inQ = false;
+        for (let i = 0; i < line.length; i++) {
+            const ch = line[i];
+            if (ch === '"') { inQ = !inQ; }
+            else if (ch === ',' && !inQ) { vals.push(cur); cur = ''; }
+            else { cur += ch; }
+        }
+        vals.push(cur);
+        return vals;
+    }
+
+    // Find first index matching any of the name variants (case-insensitive, trimmed)
+    function findCol(headers, ...names) {
+        for (const name of names) {
+            const idx = headers.findIndex(h => h.toLowerCase().trim() === name.toLowerCase().trim());
+            if (idx >= 0) return idx;
+        }
+        return -1;
+    }
+
+    // ── File drop wiring ─────────────────────────────────────────────
+    function wireZone(zoneId, inputId, onFile) {
+        const zone  = document.getElementById(zoneId);
+        const input = document.getElementById(inputId);
+        zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('drag'); });
+        zone.addEventListener('dragleave', () => zone.classList.remove('drag'));
+        zone.addEventListener('drop', e => {
+            e.preventDefault(); zone.classList.remove('drag');
+            if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0], onFile);
+        });
+        input.addEventListener('change', e => { if (e.target.files[0]) readFile(e.target.files[0], onFile); });
+    }
+
+    function readFile(file, cb) {
+        const r = new FileReader();
+        r.onload = e => cb(file.name, parseCsvRaw(e.target.result));
+        r.readAsText(file);
+    }
+
+    wireZone('dropAgents',  'fileAgents',  (name, data) => {
+        agentsData = data;
+        document.getElementById('agentsFileName').textContent = name;
+        document.getElementById('agentsFileName').style.display = 'block';
+        document.getElementById('dropAgents').classList.add('loaded');
+        tryBuild();
+    });
+
+    wireZone('dropAgentsC', 'fileAgentsC', (name, data) => {
+        agentsCData = data;
+        document.getElementById('agentsCFileName').textContent = name;
+        document.getElementById('agentsCFileName').style.display = 'block';
+        document.getElementById('dropAgentsC').classList.add('loaded');
+        tryBuild();
+    });
+
+    // ── Build agent list once both files loaded ───────────────────────
+    function tryBuild() {
+        if (!agentsData) return;
+
+        const h = agentsData.headers;
+
+        // Column indices — agents.csv
+        // "May 2026" appears twice: first = creators added this month (N), second = earnings (Q)
+        const iEmail    = findCol(h, 'Backstage Email', 'Email', 'email');
+        const iName     = findCol(h, 'Short Name', 'Name', 'Agent');
+        const iLegal    = findCol(h, 'Legal Name', 'Full Name');
+        const iCreators = findCol(h, 'Creators', 'Total Creators', 'K');
+        const iDiamonds = findCol(h, 'Total 💎', 'Total Diamonds', 'L');
+
+        // Find the two "May 2026" columns (or current month label) by scanning all indices
+        const monthLabel = getCurrentMonthLabel();
+        const monthIndices = h.reduce((acc, col, i) => {
+            if (col.trim().toLowerCase() === monthLabel.toLowerCase()) acc.push(i);
+            return acc;
+        }, []);
+        const iAddedMonth    = monthIndices[0] ?? -1; // first occurrence = count added
+        const iEarningsMonth = monthIndices[1] ?? -1; // second = earnings $
+
+        const iPrevEarnings  = findCol(h, getPrevMonthLabel());
+
+        // Show column map
+        showColMap({
+            'Login Email (Backstage Email)': iEmail >= 0,
+            'Display Name (Short Name)':     iName >= 0,
+            'Total Creators':                iCreators >= 0,
+            'All-Time Diamonds':             iDiamonds >= 0,
+            [`Added — ${monthLabel} [col ${iAddedMonth+1}]`]: iAddedMonth >= 0,
+            [`Earnings — ${monthLabel} [col ${iEarningsMonth+1}]`]: iEarningsMonth >= 0,
+        });
+
+        const defaultPwd = document.getElementById('defaultPassword').value || 'Taboost2026!';
+
+        parsedAgents = agentsData.rows.map(row => {
+            const email = (row[iEmail] || '').toLowerCase().trim();
+            const name  = (row[iName]  || '').trim();
+            if (!email || !name) return null;
+
+            const raw = v => (row[v] || '').trim();
+            const diamonds = parseInt(raw(iDiamonds).replace(/[^0-9]/g, '')) || 0;
+            const creators = parseInt(raw(iCreators).replace(/[^0-9]/g, '')) || 0;
+            const added    = parseInt(raw(iAddedMonth).replace(/[^0-9]/g, '')) || 0;
+            const earnings = raw(iEarningsMonth) || '$0';
+
+            return {
+                email,
+                agentName:         name.toUpperCase(),
+                displayName:       name,
+                legalName:         iLegal >= 0 ? raw(iLegal) : '',
+                password:          defaultPwd,
+                totalDiamonds:     diamonds,
+                totalCreators:     creators,
+                addedThisMonth:    added,
+                earningsThisMonth: earnings
+            };
+        }).filter(Boolean);
+
+        document.getElementById('cntTotal').textContent = parsedAgents.length;
+        document.getElementById('previewCount').textContent = parsedAgents.length;
+        renderPreview();
+        document.getElementById('previewCard').style.display = 'block';
+        document.getElementById('importBtn').disabled = parsedAgents.length === 0;
+    }
+
+    function getCurrentMonthLabel() {
+        return new Date().toLocaleString('en-US', { month: 'long', year: 'numeric' }); // "May 2026"
+    }
+    function getPrevMonthLabel() {
+        const d = new Date(); d.setMonth(d.getMonth() - 1);
+        return d.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    }
+
+    function showColMap(cols) {
+        const el = document.getElementById('colMap');
+        el.innerHTML = Object.entries(cols).map(([k, found]) =>
+            `<div class="col-row"><span class="col-key">${k}</span><span class="col-val ${found ? 'found' : ''}">${found ? '✅ found' : '⚠️ not found'}</span></div>`
+        ).join('');
+        document.getElementById('colMapSection').style.display = 'block';
+    }
+
+    function renderPreview() {
+        document.getElementById('previewBody').innerHTML = parsedAgents.map((a, i) => `
+            <tr>
+                <td style="color:#555">${i+1}</td>
+                <td><strong>${a.displayName}</strong></td>
+                <td style="font-size:12px; color:#aaa;">${a.email}</td>
+                <td style="color:#00ccff;">${a.totalDiamonds.toLocaleString()}</td>
+                <td>${a.totalCreators}</td>
+                <td style="color:#888;">${a.addedThisMonth}</td>
+                <td style="color:#00ff88;">${a.earningsThisMonth}</td>
+                <td><span class="badge badge-pending" id="badge_${i}">PENDING</span></td>
+            </tr>
+        `).join('');
+    }
+
+    // ── Logging ──────────────────────────────────────────────────────
+    function log(msg, cls = 'inf') {
+        const line = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        logLines.push(line);
+        const box = document.getElementById('logBox');
+        const div = document.createElement('div');
+        div.className = `log-entry ${cls}`;
+        div.textContent = line;
+        box.appendChild(div);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function downloadLog() {
+        const blob = new Blob([logLines.join('\n')], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `agent-import-${Date.now()}.txt`;
+        a.click();
+    }
+
+    // ── Main import ──────────────────────────────────────────────────
+    async function runImport() {
+        if (!parsedAgents.length) return;
+
+        document.getElementById('importBtn').disabled = true;
+        let ok = 0, skip = 0, err = 0;
+        log(`Starting import of ${parsedAgents.length} agents…`, 'inf');
+
+        for (let i = 0; i < parsedAgents.length; i++) {
+            const agent = parsedAgents[i];
+            const pct = Math.round(((i+1) / parsedAgents.length) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            log(`[${i+1}/${parsedAgents.length}] ${agent.displayName} — ${agent.email}`, 'inf');
+
+            let uid = null;
+            let isNew = false;
+
+            // Create Auth account via secondary app to avoid signing admin out
+            try {
+                const secApp  = firebase.initializeApp(firebase.app().options, `agent_${i}_${Date.now()}`);
+                const secAuth = secApp.auth();
+                const cred = await secAuth.createUserWithEmailAndPassword(agent.email, agent.password);
+                uid   = cred.user.uid;
+                isNew = true;
+                await secAuth.signOut();
+                await secApp.delete();
+                log(`  ✅ Auth created — UID: ${uid}`, 'ok');
+            } catch (e) {
+                if (e.code === 'auth/email-already-in-use') {
+                    log(`  ⚠️  Email exists — finding UID in Firestore…`, 'wrn');
+                    skippedEmails.push(agent.email);
+                    try {
+                        const snap = await db.collection('agents').where('email', '==', agent.email).limit(1).get();
+                        if (!snap.empty) uid = snap.docs[0].id;
+                        const usnap = await db.collection('users').where('email', '==', agent.email).limit(1).get();
+                        if (!usnap.empty) uid = uid || usnap.docs[0].id;
+                        log(`  ✅ UID resolved: ${uid || 'not found — will auto-ID'}`, uid ? 'ok' : 'wrn');
+                    } catch (fe) {
+                        log(`  ⚠️  Lookup failed: ${fe.message}`, 'wrn');
+                    }
+                    skip++;
+                } else {
+                    log(`  ❌ Auth error: ${e.message}`, 'err');
+                    err++;
+                    setBadge(i, 'err', 'ERROR');
+                    updateCounts(ok, skip, err);
+                    continue;
+                }
+            }
+
+            // Write Firestore docs
+            try {
+                const agentDoc = {
+                    agentName:         agent.agentName,
+                    displayName:       agent.displayName,
+                    legalName:         agent.legalName,
+                    email:             agent.email,
+                    role:              'agent',
+                    totalDiamonds:     agent.totalDiamonds,
+                    totalCreators:     agent.totalCreators,
+                    addedThisMonth:    agent.addedThisMonth,
+                    earningsThisMonth: agent.earningsThisMonth,
+                    updatedAt:         firebase.firestore.FieldValue.serverTimestamp(),
+                    ...(isNew ? { createdAt: firebase.firestore.FieldValue.serverTimestamp() } : {})
+                };
+
+                const agentRef = uid
+                    ? db.collection('agents').doc(uid)
+                    : db.collection('agents').doc();
+                await agentRef.set(agentDoc, { merge: true });
+
+                if (uid) {
+                    await db.collection('users').doc(uid).set({
+                        role:        'agent',
+                        agentName:   agent.agentName,
+                        displayName: agent.displayName,
+                        email:       agent.email,
+                        name:        agent.displayName,
+                        // Flag dual-role users so login shows a dashboard picker
+                        isCreator:   !isNew
+                    }, { merge: true });
+                }
+
+                log(`  ✅ Firestore written (agents + users)`, 'ok');
+                setBadge(i, 'ok', isNew ? 'CREATED' : 'UPDATED');
+                ok++;
+            } catch (e) {
+                log(`  ❌ Firestore write failed: ${e.message}`, 'err');
+                setBadge(i, 'err', 'FS ERR');
+                err++;
+            }
+
+            updateCounts(ok, skip, err);
+            await sleep(400);
+        }
+
+        document.getElementById('progressFill').style.width = '100%';
+        log('──────────────────────────────────', 'inf');
+        log(`Done! ✅ ${ok} created  ⚠️ ${skip} existing (need reset)  ❌ ${err} errors`, ok > 0 ? 'ok' : 'wrn');
+        document.getElementById('importBtn').disabled = false;
+
+        if (skippedEmails.length > 0) {
+            document.getElementById('resetBtn').style.display  = 'inline-block';
+            document.getElementById('resetNote').style.display = 'block';
+            document.getElementById('resetCount').textContent  = skippedEmails.length;
+            log(`📧 ${skippedEmails.length} existing accounts need a password reset — click "Send Reset Emails"`, 'wrn');
+        }
+    }
+
+    async function sendResetEmails() {
+        if (!skippedEmails.length) return;
+        document.getElementById('resetBtn').disabled = true;
+        log(`Sending password reset emails to ${skippedEmails.length} existing accounts…`, 'inf');
+        let sent = 0, failed = 0;
+        for (const email of skippedEmails) {
+            try {
+                await auth.sendPasswordResetEmail(email);
+                log(`  ✅ Reset email sent → ${email}`, 'ok');
+                sent++;
+            } catch (e) {
+                log(`  ❌ Failed → ${email}: ${e.message}`, 'err');
+                failed++;
+            }
+            await sleep(300);
+        }
+        log(`Reset emails done: ${sent} sent, ${failed} failed`, sent > 0 ? 'ok' : 'err');
+        document.getElementById('resetBtn').disabled = false;
+    }
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function setBadge(i, cls, text) {
+        const el = document.getElementById(`badge_${i}`);
+        if (el) { el.className = `badge badge-${cls}`; el.textContent = text; }
+    }
+    function updateCounts(ok, skip, err) {
+        document.getElementById('cntOk').textContent   = ok;
+        document.getElementById('cntSkip').textContent = skip;
+        document.getElementById('cntErr').textContent  = err;
+    }
+</script>
+</body>
+</html>

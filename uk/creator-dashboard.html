@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Live Dashboard - Taboost</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+        
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // Skip early auth check in test mode
+        const _params = new URLSearchParams(window.location.search);
+        if (!_params.get('testUser')) {
+        // Check Firebase Auth state — run setup ONCE only
+        let _mod1Init = false;
+        onAuthStateChanged(auth, async (user) => {
+            if (_mod1Init) return;
+            if (!user) {
+                window.location.href = 'firebase-login.html';
+                return;
+            }
+            _mod1Init = true;
+
+            // Get user role from Firestore
+            try {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data();
+
+                let role = userData?.role || 'creator';
+                if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
+
+
+
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: role,
+                    name: userData?.displayName || userData?.name || user.displayName,
+                    username: userData?.username || user.displayName,
+                    agentEmail: (userData?.agentEmail || user.email).toLowerCase(),
+                    isCreator: userData?.isCreator || false
+                };
+
+                document.getElementById('creatorName').textContent = window.currentUser.name || window.currentUser.username;
+
+                if (role === 'agent') {
+                    const viewParam = new URLSearchParams(window.location.search).get('view');
+
+                    const btn = document.getElementById('agentViewToggle');
+                    if (btn) btn.style.display = 'inline-flex';
+                    window.loadAgentPanel(window.currentUser.agentEmail);
+
+                    // Always show the creator panel first — Agent View is reachable via the
+                    // toggle (or an explicit ?view=agent deep-link).
+                    if (viewParam === 'agent') {
+                        window.showAgentPanel();
+                    } else {
+                        window.showCreatorPanel();
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                // Continue anyway - user is authenticated
+                window.currentUser = {
+                    uid: user.uid,
+                    email: user.email,
+                    role: 'creator',
+                    name: user.displayName || user.email.split('@')[0]
+                };
+            }
+        });
+        } // end skip test mode
+        
+        // Expose for logout
+        window.logout = async () => {
+            await auth.signOut();
+            window.location.href = 'firebase-login.html';
+        };
+    </script>
+    <link rel="stylesheet" href="css/styles.css?v=202503092112">
+    <link rel="stylesheet" href="css/creator-dashboard.css?v=202503092112">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* FORCE REMOVE RED BAR - OVERRIDE ALL */
+        .stat-card::before,
+        .stat-card::after {
+            display: none !important;
+            content: none !important;
+            width: 0 !important;
+            height: 0 !important;
+            background: transparent !important;
+            border: none !important;
+        }
+        
+        /* PRO BONUS SECTION - Glow Effect */
+        .pro-bonus-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.1) 100%);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            animation: proBonusGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes proBonusGlow {
+            from {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.5), 0 0 60px rgba(255, 140, 0, 0.2);
+                border-color: rgba(255, 215, 0, 0.6);
+            }
+        }
+        
+        .pro-bonus-header {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .pro-bonus-glow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            border-radius: 50px;
+            color: #000;
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+            animation: proBadgePulse 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes proBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .pro-bonus-glow i {
+            font-size: 18px;
+        }
+        
+        .pro-bonus-details {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .pro-bonus-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .pro-bonus-total {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+        }
+        
+        .pro-label {
+            color: #888;
+            font-size: 13px;
+        }
+        
+        .pro-value {
+            color: #fff;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .pro-bonus-total .pro-value {
+            color: #ffd700;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        
+        .pro-bonus-formula {
+            text-align: center;
+            color: #666;
+            font-size: 11px;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        /* Halo effect for score section when Pro Bonus is active */
+        .score-section.pro-active {
+            animation: scoreHalo 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes scoreHalo {
+            from {
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.2), inset 0 0 30px rgba(255, 215, 0, 0.05);
+            }
+            to {
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), inset 0 0 50px rgba(255, 215, 0, 0.1);
+            }
+        }
+        
+        /* Small Pro Bonus Badge - inline with header */
+        .score-header-with-badge {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .score-header-with-badge h2 {
+            flex-shrink: 0;
+        }
+        
+        .pro-bonus-badge-inline {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 auto;
+        }
+        
+        .pro-bonus-badge-inline i {
+            font-size: 10px;
+        }
+        
+        /* Pro Bonus revenue item highlight */
+        .revenue-item.pro-revenue-active {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 140, 0, 0.05) 100%);
+            animation: proRevenuePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes proRevenuePulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+            }
+        }
+        
+        /* Extended score badge — two-line pill for bonus tiers */
+        .score-badge.bonus-pros {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #ffd700, #ffaa00);
+            color: #000;
+        }
+        .score-badge.bonus-masters {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1px;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #cc0040, #ff0050, #cc0040);
+            color: #fff;
+            border: 1px solid #cc0040;
+        }
+        .score-badge .badge-score-num {
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .score-badge .badge-score-label {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+
+        /* Masters (90+) halo on score section — red version of gold pro-active */
+        .score-section.masters-active {
+            animation: scoreMastersHalo 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes scoreMastersHalo {
+            from {
+                box-shadow: 0 0 30px rgba(255, 0, 80, 0.25), inset 0 0 30px rgba(255, 0, 80, 0.06);
+            }
+            to {
+                box-shadow: 0 0 55px rgba(255, 0, 80, 0.5), inset 0 0 55px rgba(255, 0, 80, 0.12);
+            }
+        }
+
+        /* Masters revenue item — red pulse */
+        .revenue-item.masters-revenue-active {
+            border: 2px solid rgba(255, 0, 80, 0.55);
+            background: linear-gradient(135deg, rgba(204, 0, 64, 0.15) 0%, rgba(255, 0, 80, 0.07) 100%);
+            animation: mastersRevenuePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes mastersRevenuePulse {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(255, 0, 80, 0.35);
+            }
+            50% {
+                box-shadow: 0 0 28px rgba(255, 0, 80, 0.6);
+            }
+        }
+
+        /* Masters background on the revenue section card */
+        .revenue-section.masters-bg {
+            background: linear-gradient(135deg, rgba(204, 0, 64, 0.1), rgba(255, 0, 80, 0.04));
+            border-color: rgba(255, 0, 80, 0.25);
+        }
+
+        /* Mobile layout for Score section */
+        @media (max-width: 768px) {
+            .score-header-with-badge {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
+                gap: 8px;
+                align-items: center;
+            }
+            
+            .score-header-with-badge h2 {
+                grid-column: 1;
+                grid-row: 1;
+                font-size: 16px;
+                margin: 0;
+            }
+            
+            .score-header-with-badge .score-badge {
+                grid-column: 2;
+                grid-row: 1;
+                font-size: 14px;
+            }
+            
+            .score-header-with-badge .pro-bonus-badge-inline {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                justify-self: center;
+                margin: 4px 0;
+                font-size: 10px;
+                padding: 3px 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- BUILD: 2025-03-09-09:04 -->
+    <div class="creator-layout">
+        <!-- Header lives OUTSIDE both panels so toggle button is always visible -->
+        <!-- Sidebar Logo for Mobile -->
+        <div class="mobile-logo">
+            <img src="images/taboost-logo.jpg?v=20250305" alt="TABOOST">
+        </div>
+
+        <header class="creator-header">
+            <div class="creator-profile">
+                <img src="images/creator-avatar.jpg" alt="Creator" class="creator-avatar-img" id="creatorAvatar">
+                <div class="creator-info">
+                    <h1 id="creatorName">Loading...</h1>
+                    <p><i class="fas fa-clock"></i> <span id="joinDate">--</span></p>
+                    <div class="creator-badges" id="creatorBadges">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <a class="manager-pill" id="managerPill" href="#" target="_blank" title="Contact manager">
+                    <i class="fas fa-user-tie"></i>
+                    <span id="managerName">--</span>
+                </a>
+                <button id="agentViewToggle" onclick="toggleAgentPanel()" style="display:none; padding: 8px 14px; border-radius: 8px; background: rgba(255,170,0,0.12); border: 1px solid rgba(255,170,0,0.3); color: #ffaa00; font-size: 13px; font-weight: 600; cursor:pointer; align-items: center; gap: 6px;">
+                    <i class="fas fa-user-tie"></i> <span id="agentToggleLabel">Agent View</span>
+                </button>
+                <button class="settings-btn" onclick="openSettings()">
+                    <i class="fas fa-cog"></i> Settings
+                </button>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </header>
+
+        <div id="creatorPanel">
+        <!-- 1. Welcome Message -->
+        <div class="welcome-banner" id="welcomeBanner">
+            <div class="welcome-content">
+                <i class="fas fa-rocket"></i>
+                <div>
+                    <h3 id="welcomeTitle">Welcome back!</h3>
+                    <p id="welcomeMessage">Check out your latest earnings and goals.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 2. Current Diamonds / Rank / Rewards -->
+        <div class="stats-grid">
+            <div class="stat-card primary">
+                <div class="stat-header">
+                    <span class="stat-label">This Month's Diamonds</span>
+                </div>
+                <div class="stat-value" id="currentDiamonds">--</div>
+                <div class="stat-usd" id="currentUSD" style="display: none;">--</div>
+                <div class="stat-trend" id="diamondTrend">
+                    <span class="trend-indicator">
+                        <i class="fas fa-chart-line"></i> --% vs last month
+                    </span>
+                </div>
+                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                    <small class="last-updated">Last updated: <span id="lastUpdatedTime">--</span></small>
+                    <button class="tt-btn" onclick="openTooltip('diamonds')" aria-label="What are diamonds?">
+                        <i class="fas fa-gem" style="font-size:9px;"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">My Rank</span>
+                </div>
+                <div class="rank-display">
+                    <span class="rank-number" id="currentRank">--</span>
+                    <span class="rank-total">of <span id="totalCreators">--</span></span>
+                </div>
+                <div class="rank-progress">
+                    <div class="rank-bar" id="rankBar"></div>
+                </div>
+                <p class="rank-goal" id="rankGoal">-- more to rank up</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-header">
+                    <span class="stat-label">Current Rewards Available</span>
+                </div>
+                <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
+                <div class="stat-breakdown" id="rewardsBreakdown">
+                    <span>Total Rewards Earned: --</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 3. My Creator Score -->
+        <div class="section-card score-section">
+            <div class="section-header score-header-with-badge">
+                <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
+                <!-- Pro Bonus Badge - inline with header -->
+                <div id="proBonusBadge" class="pro-bonus-badge-inline" style="display: none;">
+                    <i class="fas fa-crown"></i>
+                    <span>PRO BONUS UNLOCKED</span>
+                </div>
+                <span class="score-badge" id="scoreBadge">Score: --</span>
+            </div>
+            
+            <!-- Score Progress Bar -->
+            <div class="score-progress-container">
+                <div class="score-chart-wrapper">
+                    <div class="score-scale-line">
+                        <div class="scale-item" style="left: 0%">
+                            <span class="scale-num">0</span>
+                        </div>
+                        <div class="scale-item" style="left: 10%">
+                            <span class="scale-num">10</span>
+                            <span class="scale-tier tier-starters">STARTERS</span>
+                        </div>
+                        <div class="scale-item" style="left: 30%">
+                            <span class="scale-num">30</span>
+                            <span class="scale-tier tier-nextups">NEXT-UPS</span>
+                        </div>
+                        <div class="scale-item" style="left: 50%">
+                            <span class="scale-num">50</span>
+                            <span class="scale-tier tier-stars">STARS</span>
+                        </div>
+                        <div class="scale-item" style="left: 70%" id="prosScaleItem">
+                            <span class="scale-num">70</span>
+                            <span class="scale-tier tier-pros">PROS</span>
+                        </div>
+                        <div class="scale-item" style="left: 90%" id="mastersScaleItem">
+                            <span class="scale-num">90</span>
+                            <span class="scale-tier tier-masters">MASTERS</span>
+                        </div>
+                        <div class="scale-item" style="left: 100%">
+                            <span class="scale-num">100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="score-segmented-bar">
+                    <div class="score-segments" id="scoreSegments"></div>
+                    <!-- Tick marks at tier boundaries -->
+                    <div class="tier-ticks">
+                        <div class="tier-tick" style="left: 0%"></div>
+                        <div class="tier-tick" style="left: 10%"></div>
+                        <div class="tier-tick" style="left: 30%"></div>
+                        <div class="tier-tick" style="left: 50%"></div>
+                        <div class="tier-tick" style="left: 70%"></div>
+                        <div class="tier-tick" style="left: 90%"></div>
+                        <div class="tier-tick" style="left: 100%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Score Breakdown -->
+            <div class="score-breakdown">
+                <div class="breakdown-item">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Activity Level</span>
+                    <strong id="scoreActivity">--</strong>
+                </div>
+                <div class="breakdown-item">
+                    <i class="fas fa-gem"></i>
+                    <span>3-Month Diamonds</span>
+                    <strong id="scoreDiamonds">--</strong>
+                </div>
+                <div class="breakdown-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Rank Change</span>
+                    <strong id="rankChange">--</strong>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 4. My Revenue Streams -->
+        <div class="section-card revenue-section">
+            <div class="section-header">
+                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
+            </div>
+            <div class="revenue-grid">
+                <div class="revenue-item">
+                    <div class="revenue-icon" style="background: rgba(0,212,255,0.1); color: #00d4ff;">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Estimated TikTok Payout</span>
+                        <span class="revenue-value" id="diamondRevenueUSD">--</span>
+                    </div>
+                    <span class="revenue-note" id="diamondRevenue">--</span>
+                </div>
+                <!-- UK: no Agency Cash Bonus — removed (US-only reward) -->
+            </div>
+        </div>
+        
+        <!-- 5. My Monthly Goals -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals</h2>
+                <span class="days-remaining" id="daysRemaining">-- days left</span>
+            </div>
+            <div class="goals-grid" id="goalsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 6. Activity Level -->
+        <div class="section-card activity-level-section">
+            <div class="section-header">
+                <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> Activity Level</h2>
+                <span class="level-badge" id="currentLevelBadge">Level --</span>
+            </div>
+            
+            <!-- Level Progress -->
+            <div class="level-tracker">
+                <!-- Level 0 -->
+                <div class="level-step" data-level="0">
+                    <div class="level-icon">0</div>
+                    <div class="level-req">7 Days<br>15 Hours</div>
+                </div>
+                <!-- Connector 0-1 -->
+                <div class="level-connector"></div>
+                <div class="level-connector-vertical"></div>
+                <!-- Level 1 -->
+                <div class="level-step" data-level="1">
+                    <div class="level-icon">1</div>
+                    <div class="level-req">8 Days<br>20 Hours</div>
+                </div>
+                <!-- Connector 1-2 -->
+                <div class="level-connector"></div>
+                <div class="level-connector-vertical"></div>
+                <!-- Level 2 -->
+                <div class="level-step" data-level="2">
+                    <div class="level-icon">2</div>
+                    <div class="level-req">11 Days<br>30 Hours</div>
+                </div>
+                <!-- Connector 2-3 -->
+                <div class="level-connector"></div>
+                <div class="level-connector-vertical"></div>
+                <!-- Level 3 -->
+                <div class="level-step" data-level="3">
+                    <div class="level-icon">3</div>
+                    <div class="level-req">15 Days<br>40 Hours</div>
+                </div>
+                <!-- Connector 3-4 -->
+                <div class="level-connector"></div>
+                <div class="level-connector-vertical"></div>
+                <!-- Level 4 -->
+                <div class="level-step" data-level="4">
+                    <div class="level-icon">4</div>
+                    <div class="level-req">18 Days<br>60 Hours</div>
+                </div>
+                <!-- Connector 4-5 -->
+                <div class="level-connector"></div>
+                <div class="level-connector-vertical"></div>
+                <!-- Level 5 -->
+                <div class="level-step" data-level="5">
+                    <div class="level-icon">5</div>
+                    <div class="level-req">22 Days<br>80 Hours</div>
+                </div>
+            </div>
+            
+            <!-- Current Progress -->
+            <div class="current-progress">
+                <div class="progress-stat">
+                    <span class="progress-label">Days Streamed</span>
+                    <span class="progress-value" id="daysStreamed">-- / --</span>
+                    <div class="mini-bar"><div class="mini-fill" id="daysFill"></div></div>
+                </div>
+                <div class="progress-stat">
+                    <span class="progress-label">Hours Streamed</span>
+                    <span class="progress-value" id="hoursStreamedLevel">-- / --</span>
+                    <div class="mini-bar"><div class="mini-fill" id="hoursFillLevel"></div></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 6. 6 Month Chart -->
+        
+        <!-- 6. 6 Month Chart -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line" style="color: var(--taboost-red);"></i> History Chart</h2>
+                <div class="chart-tabs">
+                    <button class="chart-tab active" data-period="history">6 Month History</button>
+                </div>
+            </div>
+            <div class="chart-container">
+                <canvas id="performanceChart"></canvas>
+            </div>
+            <div class="chart-insights" id="chartInsights">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 7. Recent Rewards -->
+        <div class="section-card awards-card">
+            <div class="section-header">
+                <h2><i class="fas fa-gift" style="color: #ffd700;"></i> Recent Rewards</h2>
+            </div>
+            <div class="awards-list" id="awardsList">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 8. My Achievements -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-medal" style="color: #ffd700;"></i> My Achievements</h2>
+                <span class="achievement-count" id="achievementCount">-- unlocked</span>
+            </div>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+        
+        <!-- 9. 3x3 Rolling Calendar -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-calendar-alt" style="color: var(--taboost-red);"></i> Live Calendar</h2>
+                <span class="calendar-week" id="calendarWeek">--</span>
+            </div>
+            
+            <!-- TABOOST Campaign Banner -->
+            <div class="campaign-banner" id="taboostCampaignBanner">
+                <!-- Populated by JS -->
+            </div>
+            
+            <!-- Weekly Schedule Grid -->
+            <div class="weekly-calendar" id="weeklyCalendar">
+                <!-- Populated by JS -->
+            </div>
+            
+
+        </div>
+        
+        <!-- 10. Earnings History -->
+        <div class="section-card">
+            <div class="section-header">
+                <h2><i class="fas fa-history" style="color: var(--taboost-red);"></i> Earnings History</h2>
+            </div>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Diamonds</th>
+                        <th>Est $ Value</th>
+                        <th>Bonus</th>
+                        <th>Change</th>
+                    </tr>
+                </thead>
+                <tbody id="historyTableBody">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
+        </div>
+        
+
+        
+        </div><!-- end creatorPanel -->
+
+        <!-- ═══════════════════════════════════════════════════
+             AGENT PANEL — hidden until toggled or role=agent
+             ═══════════════════════════════════════════════════ -->
+        <div id="agentPanel" style="display:none;">
+
+            <!-- Agent stat cards -->
+            <div class="stats-grid" style="margin-bottom:16px;">
+                <div class="stat-card primary" style="position:relative;">
+                    <div class="stat-header"><span class="stat-label">Total Monthly Diamonds</span></div>
+                    <div class="stat-value" id="ap_diamonds">--</div>
+                    <div class="stat-footer"><small style="color:#888;" id="ap_active">From -- active creators</small></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header"><span class="stat-label">Total Creators</span></div>
+                    <div class="stat-value" id="ap_creators">--</div>
+                    <div class="stat-footer"><small style="color:#00ff88;" id="ap_added">-- added this month</small></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-header"><span class="stat-label">Earnings This Month</span></div>
+                    <div class="stat-value" style="color:var(--success,#00ff88);" id="ap_earnings">--</div>
+                    <div class="stat-footer"><small style="color:#888;">Current month</small></div>
+                </div>
+            </div>
+
+            <!-- Creator ledger -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2><i class="fas fa-list" style="color:#ffaa00;"></i> My Creators</h2>
+                    <span id="ap_count" style="color:#888;font-size:13px;"></span>
+                </div>
+                <div style="overflow-x:auto;">
+                    <table class="ap-table">
+                        <thead>
+                            <tr>
+                                <th>Creator</th>
+                                <th>Days</th>
+                                <th>Hours</th>
+                                <th>Level</th>
+                                <th>Tier</th>
+                                <th>Needed</th>
+                                <th>Diamonds</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ap_tbody">
+                            <tr><td colspan="7" style="text-align:center;padding:30px;color:#888;"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- end agent panel -->
+
+        <footer class="creator-footer">
+            <p>Questions? Contact <span id="footerManager">your manager</span>, <a href="mailto:info@taboost.me">info@taboost.me</a>, or <a href="https://discord.gg/Akfwz536BW" target="_blank"><i class="fab fa-discord"></i> Discord</a></p>
+            <p>© 2026 TABOOST Agency. All rights reserved.</p>
+            <p style="font-size: 11px; color: var(--text-secondary); margin-top: 10px; opacity: 0.7;">All diamond revenue calculations are estimates based on standard TikTok Live conversion, exact amounts will vary per creator</p>
+        </footer>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-overlay" onclick="closeSettings()"></div>
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2><i class="fas fa-cog"></i> Settings</h2>
+                <button class="settings-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="settings-content">
+                <!-- Profile Settings -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-user"></i> Profile Settings</h3>
+                    <div class="settings-field">
+                        <label>Display Name</label>
+                        <input type="text" id="settingDisplayName" placeholder="Your display name">
+                    </div>
+                    <div class="settings-field">
+                        <label>Email</label>
+                        <input type="email" id="settingEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="settings-field">
+                        <label>Role</label>
+                        <input type="text" id="settingRole" value="Creator" readonly>
+                    </div>
+                    <button class="settings-save-btn" onclick="saveProfileSettings()">Save Changes</button>
+                </div>
+                
+                <!-- Security -->
+                <div class="settings-section">
+                    <h3><i class="fas fa-shield-alt"></i> Security</h3>
+                    <div class="settings-field">
+                        <label>Current Password</label>
+                        <input type="password" id="settingCurrentPassword" placeholder="••••••••">
+                    </div>
+                    <div class="settings-field">
+                        <label>New Password</label>
+                        <input type="password" id="settingNewPassword" placeholder="Enter new password">
+                    </div>
+                    <div class="settings-field">
+                        <label>Confirm Password</label>
+                        <input type="password" id="settingConfirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <button class="settings-save-btn" onclick="updatePassword()">Update Password</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/csv-data-loader.js?v=202606092051"></script>
+    <script src="js/rewards-data.js?v=202606092051"></script>
+    <script src="js/events-data.js?v=202606092051"></script>
+    <script src="js/weekly-calendar-data.js?v=202606092051"></script>
+    <script src="js/sheets-data.js?v=202606092051"></script>
+    <script src="js/creator-dashboard.js?v=202606092051"></script>
+    <script type="module">
+        // Initialize dashboard with Firebase user
+        import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        // Reuse existing app if already initialized by the auth module above
+        const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        // ============================================
+        // TEST MODE: ?testUser=username bypasses auth
+        // Usage: creator-dashboard.html?testUser=kaemi.s
+        // ============================================
+        const urlParams = new URLSearchParams(window.location.search);
+        const testUser = urlParams.get('testUser');
+        
+        if (testUser) {
+            console.log('🧪 TEST MODE: Loading dashboard for', testUser);
+            const dashboardUser = {
+                name: testUser.toLowerCase().replace(/^@/, ''),
+                email: 'test@taboost.me',
+                creatorId: null,
+                role: 'creator'
+            };
+            document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
+            initCreatorDashboard(dashboardUser);
+        } else {
+        // Auth is already handled by the module at the top of this file.
+        // This module reuses the same app instance and listens for the user.
+        let _dashInit = false;
+        onAuthStateChanged(auth, async (firebaseUser) => {
+            if (_dashInit) return; // prevent double-firing
+            if (!firebaseUser) {
+                // Module 1 already handles the redirect — don't redirect again here
+                return;
+            }
+            
+            // Get user data from Firestore
+            let userData = null;
+            try {
+                const userDoc = await getDoc(doc(db, 'users', firebaseUser.uid));
+                userData = userDoc.data();
+            } catch (e) {
+                console.warn('Could not load user data:', e);
+            }
+            
+            // Determine role
+            let role = userData?.role || 'creator';
+            if (firebaseUser.email?.toLowerCase() === 'marco@taboost.me') {
+                role = 'admin';
+            }
+            
+            // Admins stay on creator dashboard — agent view toggle available
+
+
+            // Build user object for dashboard
+            // Use username from Firestore (set during signup) or fallback to email prefix
+            const username = userData?.username || firebaseUser.email.split('@')[0];
+            const dashboardUser = {
+                name: username,
+                email: firebaseUser.email,
+                creatorId: userData?.cid || userData?.creatorId || null,
+                role: role
+            };
+            
+            console.log('🔐 Firebase Auth: Loading dashboard for', username);
+            
+            // Rotating greetings
+            const greetings = [
+                "What's good! Ready to crush it? 🔥",
+                "Back at it! Let's see those numbers 📊",
+                "Yo! Another day, another bag 💰",
+                "Hey legend! Time to check your glow-up ✨",
+                "In the building! Let's goooo 🚀",
+                "Show me the money! 💎",
+                "Another day closer to that bag 💪",
+                "Rise and grind time! ☕",
+                "Ready to make it happen? 🎯",
+                "Let's check that progress! 📈",
+                "Back to secure the bag! 🛍️",
+                "Time to see those gains! 💵",
+                "Hustle mode: activated ⚡",
+                "Main character energy today! 🌟",
+                "Stacking diamonds daily! 💎"
+            ];
+            const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+            document.getElementById('welcomeMessage').textContent = randomGreeting;
+            
+            // Initialize dashboard
+            _dashInit = true;
+            initCreatorDashboard(dashboardUser);
+        });
+        } // end normal auth flow
+        
+        window.logout = async () => {
+            await auth.signOut();
+            window.location.href = 'firebase-login.html';
+        };
+        
+        function exportData(format) {
+            const creatorName = document.getElementById('creatorName').textContent;
+            alert(`Exporting ${format.toUpperCase()} report for ${creatorName}...`);
+        }
+    </script>
+
+<!-- ANTI-UBAKERY SAFEGUARD: Clear any malicious redirects -->
+<script>
+// Clear all redirect-related storage on page load
+(function() {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            keysToRemove.push(key);
+        }
+    }
+    keysToRemove.forEach(key => {
+        console.log('Removing stored key:', key);
+        localStorage.removeItem(key);
+    });
+    
+    // Also check sessionStorage
+    const sessionKeysToRemove = [];
+    for (let i = 0; i < sessionStorage.length; i++) {
+        const key = sessionStorage.key(i);
+        if (key && (key.includes('redirect') || key.includes('ubakery') || key.includes('bakery'))) {
+            sessionKeysToRemove.push(key);
+        }
+    }
+    sessionKeysToRemove.forEach(key => {
+        console.log('Removing session key:', key);
+        sessionStorage.removeItem(key);
+    });
+    
+    console.log('Anti-redirect safeguard active - cleared', keysToRemove.length + sessionKeysToRemove.length, 'keys');
+})();
+</script>
+<!-- ── Tooltip overlay ───────────────────────────────────── -->
+<div id="ttOverlay" onclick="closeTooltip()" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;padding:20px;"></div>
+
+<div id="ttPanel" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:2001;max-width:520px;margin:0 auto 0;padding:0 12px 12px;">
+    <div style="background:linear-gradient(145deg,#151520,#1a1a2e);border:1px solid rgba(255,255,255,0.1);border-radius:20px;overflow:hidden;box-shadow:0 -20px 60px rgba(0,0,0,0.6);">
+        <!-- Drag handle -->
+        <div style="display:flex;justify-content:center;padding:12px 0 0;">
+            <div style="width:36px;height:4px;background:rgba(255,255,255,0.15);border-radius:2px;"></div>
+        </div>
+        <!-- Icon + title -->
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 22px 0;">
+            <div id="ttIcon" style="width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:linear-gradient(135deg,#00ccff22,#00aaff11);border:1px solid rgba(0,204,255,0.25);">💎</div>
+            <div>
+                <div id="ttTitle" style="font-size:17px;font-weight:700;color:#fff;letter-spacing:-0.3px;">Diamonds</div>
+                <div id="ttSubtitle" style="font-size:12px;color:#888;margin-top:2px;">TikTok LIVE metric</div>
+            </div>
+            <button onclick="closeTooltip()" style="margin-left:auto;background:rgba(255,255,255,0.08);border:none;color:#888;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">×</button>
+        </div>
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.06);margin:16px 22px;"></div>
+        <!-- Body -->
+        <div id="ttBody" style="padding:0 22px 24px;font-size:14px;line-height:1.7;color:#ccc;"></div>
+    </div>
+</div>
+
+<style>
+    /* ── Tooltip badge button ──────────────────────────────── */
+    .tt-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px; height: 18px;
+        border-radius: 50%;
+        background: rgba(0,204,255,0.15);
+        border: 1px solid rgba(0,204,255,0.35);
+        color: #00ccff;
+        cursor: pointer;
+        font-size: 10px;
+        padding: 0;
+        flex-shrink: 0;
+        transition: background 0.15s, transform 0.15s;
+        vertical-align: middle;
+    }
+    .tt-btn:hover, .tt-btn:active {
+        background: rgba(0,204,255,0.3);
+        transform: scale(1.15);
+    }
+
+    /* ── Panel slide-up animation ──────────────────────────── */
+    @keyframes ttSlideUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to   { transform: translateY(0);    opacity: 1; }
+    }
+    #ttPanel.open { animation: ttSlideUp 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+</style>
+
+<script>
+    const TOOLTIPS = {
+        diamonds: {
+            icon: '💎',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Diamonds',
+            subtitle: 'TikTok LIVE metric',
+            body: `
+                <p>The number of <strong style="color:#00ccff;">Diamonds</strong> you've received this month from <strong>Gifts</strong> and <strong>Star Comments</strong> — earned based on the popularity of your content.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Multi-Guest LIVEs</div>
+                    In multi-guest streams, Diamonds include gifts based on your popularity <strong>both as a host and as a guest</strong> — but <em>exclude</em> diamonds earned from your guests' own popularity.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Diamonds convert to real earnings — the more you earn, the higher your Creator Score.</p>
+            `
+        }
+    };
+
+    function openTooltip(key) {
+        const t = TOOLTIPS[key];
+        if (!t) return;
+
+        document.getElementById('ttIcon').textContent      = t.icon;
+        document.getElementById('ttIcon').style.background = t.iconBg;
+        document.getElementById('ttIcon').style.borderColor = t.iconBorder;
+        document.getElementById('ttTitle').textContent     = t.title;
+        document.getElementById('ttSubtitle').textContent  = t.subtitle;
+        document.getElementById('ttBody').innerHTML        = t.body;
+
+        const overlay = document.getElementById('ttOverlay');
+        const panel   = document.getElementById('ttPanel');
+        overlay.style.display = 'flex';
+        panel.style.display   = 'block';
+        panel.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeTooltip() {
+        document.getElementById('ttOverlay').style.display = 'none';
+        document.getElementById('ttPanel').style.display   = 'none';
+        document.getElementById('ttPanel').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    window.openTooltip  = openTooltip;
+    window.closeTooltip = closeTooltip;
+</script>
+
+<!-- ── Agent panel styles ─────────────────────────────────── -->
+<style>
+    .ap-table { width:100%; border-collapse:collapse; font-size:14px; min-width:480px; }
+    .ap-table th { text-align:left; padding:10px 12px; color:#888; font-size:11px; text-transform:uppercase; letter-spacing:.7px; border-bottom:1px solid rgba(255,255,255,.08); white-space:nowrap; }
+    .ap-table td { padding:11px 12px; border-bottom:1px solid rgba(255,255,255,.05); color:#fff; }
+    .ap-table tr:last-child td { border-bottom:none; }
+    .ap-table tr:hover td { background:rgba(255,255,255,.03); }
+    .ap-tier-up   { color:#00ff88; font-weight:600; }
+    .ap-tier-down { color:#ff4466; font-weight:600; }
+    .ap-tier-flat { color:#888; }
+    .ap-diamonds  { color:#00ccff !important; font-weight:600; }
+    .ap-diamonds i { color:#00ccff !important; }
+    /* hide creator content wrapper when agent panel is active */
+    #creatorPanel.hidden { display:none !important; }
+</style>
+
+<!-- ── Agent panel JS ─────────────────────────────────────── -->
+<script>
+    let _agentPanelLoaded = false;
+    let _showingAgent = false;
+
+    window.showAgentPanel = function() {
+        _showingAgent = true;
+        document.getElementById('agentPanel').style.display = 'block';
+        document.getElementById('creatorPanel').classList.add('hidden');
+        const lbl = document.getElementById('agentToggleLabel');
+        if (lbl) lbl.textContent = 'Creator View';
+    };
+
+    window.showCreatorPanel = function() {
+        _showingAgent = false;
+        document.getElementById('agentPanel').style.display = 'none';
+        document.getElementById('creatorPanel').classList.remove('hidden');
+        const lbl = document.getElementById('agentToggleLabel');
+        if (lbl) lbl.textContent = 'Agent View';
+    };
+
+    window.toggleAgentPanel = function() {
+        if (_showingAgent) { window.showCreatorPanel(); } else { window.showAgentPanel(); }
+    };
+
+    window.loadAgentPanel = loadAgentPanel;
+
+    function apFmtK(n) {
+        const v = parseInt(String(n || '').replace(/,/g, '')) || 0;
+        if (v >= 1000000) return (v/1000000).toFixed(1).replace(/\.0$/,'')+'M';
+        if (v >= 1000)    return (v/1000).toFixed(1).replace(/\.0$/,'')+'K';
+        return v.toLocaleString();
+    }
+
+    function apParseCsv(text) {
+        const lines = text.trim().split(/\r?\n/);
+        if (lines.length < 2) return { headers:[], rows:[] };
+        const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g,''));
+        const rows = lines.slice(1).map(line => {
+            const vals=[]; let cur='', inQ=false;
+            for (let i=0;i<line.length;i++) {
+                const ch=line[i];
+                if (ch==='"'){inQ=!inQ;}
+                else if(ch===','&&!inQ){vals.push(cur.trim());cur='';}
+                else{cur+=ch;}
+            }
+            vals.push(cur.trim());
+            return vals;
+        });
+        return { headers, rows };
+    }
+
+    function apFindCol(headers, ...names) {
+        for (const name of names) {
+            const i = headers.findIndex(h => h.toLowerCase().trim() === name.toLowerCase().trim());
+            if (i >= 0) return i;
+        }
+        return -1;
+    }
+
+    async function loadAgentPanel(agentEmail) {
+        if (_agentPanelLoaded) return;
+        _agentPanelLoaded = true;
+        const emailKey = agentEmail.toLowerCase().trim();
+        const bust = '?v=' + Date.now();
+
+        // ── Agents.csv stats ──────────────────────────────────
+        try {
+            const r = await fetch('data/agents.csv' + bust);
+            if (r.ok) {
+                const { headers, rows } = apParseCsv(await r.text());
+                const iEmail    = apFindCol(headers,'Agent User','Backstage Email','Email');
+                const iCreators = apFindCol(headers,'Creators','Total Creators');
+                const iTM       = apFindCol(headers,'Creators TM','Added This Month');
+                let   iDiamonds = apFindCol(headers,'Total 💎','Total Diamonds','Total ?');
+                if (iDiamonds < 0) iDiamonds = 3;
+                const monthLabel = new Date().toLocaleString('en-US',{month:'long',year:'numeric'});
+                let iEarnings = apFindCol(headers, monthLabel);
+                if (iEarnings < 0) iEarnings = headers.length - 1;
+
+                const row = rows.find(r => (r[iEmail]||'').toLowerCase().trim() === emailKey);
+                if (row) {
+                    document.getElementById('ap_creators').textContent = parseInt((row[iCreators]||'0').replace(/[^0-9]/g,''))||0;
+                    document.getElementById('ap_added').textContent    = '+' + (parseInt((row[iTM]||'0').replace(/[^0-9]/g,''))||0) + ' added this month';
+                    document.getElementById('ap_earnings').textContent = (row[iEarnings]||'$0').trim();
+                }
+            }
+        } catch(e) { console.error('agents.csv',e); }
+
+        // ── Agents-C.csv ledger ───────────────────────────────
+        const tbody = document.getElementById('ap_tbody');
+        try {
+            const r = await fetch('data/agents-dash-c.csv' + bust);
+            if (!r.ok) { tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:30px;color:#888;">Ledger not available yet.</td></tr>'; return; }
+
+            const { headers, rows } = apParseCsv(await r.text());
+            const iAgent  = apFindCol(headers,'Agent');
+            const iCreate = apFindCol(headers,'Creator','Username','TikTok');
+            const iMonth  = apFindCol(headers,'Month');
+            const iLevel  = apFindCol(headers,'Level','Lvl');
+            const iTier   = apFindCol(headers,'Tier');
+            const iTierGoal = apFindCol(headers,'Tier Goal','Tier Left');
+            const iTierSt = apFindCol(headers,'Tier Status','Tier LM');
+            const iDays   = apFindCol(headers,'Days','Live Days');
+            const iHours  = apFindCol(headers,'Hours');
+            const iDiams  = apFindCol(headers,'Diamonds','💎');
+
+            const myRows = rows
+                .filter(r => (r[iAgent]||'').toLowerCase().trim() === emailKey)
+                .map(r => ({ r, d: parseInt((r[iDiams]||'0').replace(/,/g,''))||0 }))
+                .sort((a,b) => b.d - a.d);
+
+            // Update stat box from ledger data
+            const monthlyDiamonds = myRows.reduce((s,e)=>s+e.d,0);
+            const active = myRows.filter(e=>e.d>0).length;
+            document.getElementById('ap_diamonds').textContent = apFmtK(monthlyDiamonds) + ' 💎';
+            document.getElementById('ap_active').textContent   = 'From ' + active + ' active creator' + (active!==1?'s':'');
+
+            document.getElementById('ap_count').textContent = myRows.length + ' creator' + (myRows.length!==1?'s':'');
+
+            if (!myRows.length) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:#888;">No creators found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = myRows.map(({r,d}) => {
+                const name   = r[iCreate] || '--';
+                const month  = r[iMonth]  || '';
+                const rawLvl = r[iLevel]  || '';
+                const level  = (rawLvl==='-1'||rawLvl==='') ? '---' : rawLvl;
+                const tier   = r[iTier]   || '--';
+                const tierSt = (r[iTierSt]||'').toLowerCase();
+                const rawNeeded = iTierGoal >= 0 ? (r[iTierGoal]||'') : '';
+                const needed  = rawNeeded ? (parseInt(rawNeeded.replace(/,/g,''))||0).toLocaleString() : '--';
+                const days   = r[iDays]   || '--';
+                const hours  = r[iHours]  || '--';
+                let arrow='', cls='ap-tier-flat';
+                if (tierSt==='up')   { arrow=' ↑'; cls='ap-tier-up'; }
+                if (tierSt==='down') { arrow=' ↓'; cls='ap-tier-down'; }
+                return `<tr>
+                    <td><strong>@${name}</strong>${month?` <span style="color:#555;font-size:11px;">Mo.${month}</span>`:''}</td>
+                    <td>${days}</td>
+                    <td>${hours}</td>
+                    <td style="color:#aaa;">${level}</td>
+                    <td><span class="${cls}">${tier}${arrow}</span></td>
+                    <td style="color:#ffaa00;">${needed}</td>
+                    <td class="ap-diamonds">${apFmtK(d)} <i class="fas fa-gem" style="font-size:11px;"></i></td>
+                </tr>`;
+            }).join('');
+
+        } catch(e) {
+            console.error('agents-dash-c.csv',e);
+            tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:30px;color:#888;">Error loading creators.</td></tr>';
+        }
+    }
+</script>
+
+<!-- ── Campaign Popup ───────────────────────────────────────── -->
+<div id="campOverlay" onclick="closeCampaignPopup()" style="display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.65);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);align-items:center;justify-content:center;padding:20px;"></div>
+
+<div id="campPanel" style="display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3001;width:calc(100% - 40px);max-width:460px;">
+    <div style="background:linear-gradient(145deg,#151520,#1c1a2e);border:1px solid rgba(0,204,255,0.2);border-radius:20px;overflow:hidden;box-shadow:0 -24px 60px rgba(0,0,0,0.7);">
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;padding:18px 20px 0;">
+            <div id="campIcon" style="width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#ff004f;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:30px;height:30px;fill:#fff;"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.17 8.17 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+            </div>
+            <div style="flex:1;min-width:0;">
+                <div style="font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.5px;line-height:1.1;background:linear-gradient(90deg,#fff 60%,#00ccff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">MY CAMPAIGNS</div>
+            </div>
+            <button onclick="closeCampaignPopup()" style="background:rgba(255,255,255,0.08);border:none;color:#888;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;line-height:1;">×</button>
+        </div>
+        <!-- Divider -->
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:14px 20px;"></div>
+        <!-- Campaign list — min 2 rows height, grows with content -->
+        <div id="campList" style="padding:0 20px 22px;display:flex;flex-direction:column;gap:10px;min-height:116px;"></div>
+    </div>
+</div>
+
+<style>
+    @keyframes campPopIn {
+        from { opacity: 0; transform: translate(-50%,-50%) scale(0.92); }
+        to   { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+    #campPanel.open { animation: campPopIn 0.28s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+</style>
+
+<style>
+  @keyframes camp-gold-pulse {
+    0%,100% { box-shadow: 0 0 12px rgba(255,200,0,.22), 0 0 0 1px rgba(255,200,0,.4); }
+    50%      { box-shadow: 0 0 26px rgba(255,200,0,.5),  0 0 0 1px rgba(255,200,0,.7); }
+  }
+  @keyframes camp-red-pulse {
+    0%,100% { box-shadow: 0 0 10px rgba(255,0,85,.25), 0 0 0 1px rgba(255,0,85,.4); }
+    50%      { box-shadow: 0 0 22px rgba(255,0,85,.55), 0 0 0 1px rgba(255,0,85,.75); }
+  }
+</style>
+
+<script>
+    // Campaign popup — reads from data/campaigns.csv
+    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji, row5=badge (FEATURED|NEW|FINISHED|blank), row6+=usernames
+    // "---ALL---" in creators column means every creator sees it
+
+    const CAMP_EMOJIS = ['🥇','🌍','😂','🎮','🏆','🎤','⚡','🌟'];
+
+    async function checkCampaigns() {
+        // Wait for currentUser to be set by dashboard auth
+        let attempts = 0;
+        while (!window.currentUser?.username && attempts < 30) {
+            await new Promise(r => setTimeout(r, 500));
+            attempts++;
+        }
+        const username = (window.currentUser?.username || window.currentUser?.name || '').toLowerCase().trim();
+        if (!username) return;
+
+        try {
+            const resp = await fetch('data/campaigns.csv?v=' + Date.now());
+            if (!resp.ok) return;
+            const text = await resp.text();
+            const lines = text.trim().split(/\r?\n/).map(l => {
+                // Parse CSV line respecting quotes
+                const vals = []; let cur = '', inQ = false;
+                for (let i = 0; i < l.length; i++) {
+                    const ch = l[i];
+                    if (ch === '"') { inQ = !inQ; }
+                    else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+                    else cur += ch;
+                }
+                vals.push(cur.trim());
+                return vals;
+            });
+
+            if (lines.length < 6) return;
+
+            const names    = lines[0]; // row 1: campaign names
+            const dates    = lines[1]; // row 2: date ranges
+            const urls     = lines[2]; // row 3: discord/CTA URLs
+            const emojis   = lines[3]; // row 4: emoji/icon per campaign
+            const features = lines[4]; // row 5: FEATURE flag per campaign
+            const creators = lines.slice(5); // row 6+: creator usernames
+
+            const toShow = [];
+
+            for (let col = 0; col < names.length; col++) {
+                const campName = (names[col] || '').trim();
+                if (!campName) continue;
+
+                const campCreators = creators
+                    .map(row => (row[col] || '').toLowerCase().trim())
+                    .filter(Boolean);
+
+                const isAllCreators = campCreators.includes('---all---');
+                if (!isAllCreators && !campCreators.includes(username)) continue;
+
+                toShow.push({
+                    id:    campName,
+                    title: campName,
+                    dates: (dates[col] || '').trim(),
+                    url:   (urls[col] || '').trim(),
+                    emoji: ((emojis[col] || '').trim().replace(/\?/g, '') || CAMP_EMOJIS[col % CAMP_EMOJIS.length]),
+                    badge: (features[col] || '').trim().toUpperCase().replace(/^FEATURE$/, 'FEATURED') // FEATURED | NEW | FINISHED | ''
+                });
+            }
+
+            if (!toShow.length) return;
+
+            // Build list of campaign links
+            document.getElementById('campList').innerHTML = toShow.map(c => {
+                const b = c.badge;
+                const cardStyle = b === 'FEATURED'
+                    ? 'background:rgba(255,200,0,0.07);border-color:rgba(255,200,0,0.5);animation:camp-gold-pulse 2.5s ease-in-out infinite;'
+                    : b === 'NEW'
+                    ? 'background:rgba(255,0,85,0.07);border-color:rgba(255,0,85,0.5);animation:camp-red-pulse 2s ease-in-out infinite;'
+                    : b === 'FINISHED'
+                    ? 'background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);filter:grayscale(65%) opacity(0.5);'
+                    : 'background:rgba(0,204,255,0.06);border-color:rgba(0,204,255,0.15);';
+                const badgePill = b === 'FEATURED'
+                    ? `<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">🔥 HOT</span>`
+                    : b === 'NEW'
+                    ? `<span style="background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">NEW</span>`
+                    : b === 'FINISHED'
+                    ? `<span style="background:rgba(255,255,255,0.08);color:#666;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0;">FINISHED</span>`
+                    : '';
+                const arrowColor = b === 'FEATURED' ? '#ffc800' : b === 'NEW' ? '#ff3366' : '#00ccff';
+                return `
+                <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${cardStyle}">
+                    <span style="font-size:20px;flex-shrink:0;">${c.emoji}</span>
+                    <span style="flex:1;min-width:0;">
+                        <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
+                            <span style="font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</span>
+                            ${badgePill}
+                        </span>
+                        ${c.dates ? `<span style="font-size:11px;color:#ffaa00;">${c.dates}</span>` : ''}
+                    </span>
+                    <span style="color:${arrowColor};font-size:13px;flex-shrink:0;">View →</span>
+                </a>`;
+            }).join('');
+
+            setTimeout(() => {
+                const overlay = document.getElementById('campOverlay');
+                const panel   = document.getElementById('campPanel');
+                overlay.style.display = 'flex';
+                panel.style.display   = 'block';
+                panel.classList.add('open');
+            }, 1500);
+
+            // Inject campaigns into the personal calendar
+            injectCampaignEvents(toShow);
+
+        } catch(e) {
+            console.warn('Campaign popup:', e);
+        }
+    }
+
+    function parseDateRange(dateStr) {
+        if (!dateStr) return null;
+        const MONTHS = {
+            Jan:0, Feb:1, Mar:2, Apr:3, May:4,
+            Jun:5, June:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11
+        };
+        const parts = dateStr.split(' - ');
+        if (parts.length !== 2) return null;
+
+        const startTokens = parts[0].trim().split(' ');
+        const endTokens   = parts[1].trim().split(' ');
+        const year = new Date().getFullYear();
+
+        const startMonth = MONTHS[startTokens[0]];
+        const startDay   = parseInt(startTokens[1]);
+
+        let endMonth, endDay;
+        if (endTokens.length === 1) {
+            endMonth = startMonth;
+            endDay   = parseInt(endTokens[0]);
+        } else {
+            endMonth = MONTHS[endTokens[0]];
+            endDay   = parseInt(endTokens[1]);
+        }
+
+        if (isNaN(startDay) || isNaN(endDay) || startMonth === undefined) return null;
+
+        const start = new Date(year, startMonth, startDay, 0, 0, 0);
+        const end   = new Date(year, endMonth,   endDay,   0, 0, 0);
+        return { start, end };
+    }
+
+    function injectCampaignEvents(campaigns, attempt) {
+        attempt = attempt || 0;
+        const calEl = document.getElementById('weeklyCalendar');
+        if (!calEl) return;
+
+        const dayCells = calEl.querySelectorAll('.calendar-day');
+        if (dayCells.length === 0) {
+            if (attempt < 10) setTimeout(() => injectCampaignEvents(campaigns, attempt + 1), 500);
+            return;
+        }
+
+        const today = new Date(); today.setHours(0,0,0,0);
+        const days = Array.from({length: 9}, (_, i) => {
+            const d = new Date(today);
+            d.setDate(today.getDate() + i);
+            return d;
+        });
+
+        campaigns.forEach(c => {
+            if (c.badge === 'FINISHED') return;
+
+            const range = parseDateRange(c.dates);
+            if (!range) return;
+
+            const color = c.badge === 'FEATURED' ? '#ffc800'
+                        : c.badge === 'NEW'      ? '#ff0055'
+                        :                          '#00ccff';
+
+            days.forEach((day, idx) => {
+                if (day < range.start || day > range.end) return;
+                const cell = dayCells[idx];
+                if (!cell) return;
+
+                const eventsEl = cell.querySelector('.day-events');
+                if (!eventsEl) return;
+
+                const noEvent = eventsEl.querySelector('.no-event');
+                if (noEvent) noEvent.remove();
+
+                const atStart  = day.getTime() === range.start.getTime() || idx === 0;
+                const atEnd    = day.getTime() === range.end.getTime()   || idx === 8;
+                const posClass = atStart ? 'multiday-start' : atEnd ? 'multiday-end' : 'multiday-middle';
+
+                eventsEl.insertAdjacentHTML('afterbegin', `
+                    <div class="calendar-event campaign multiday ${posClass}"
+                         style="border-left-color:${color};cursor:pointer;"
+                         onclick="if('${c.url}')window.open('${c.url}','_blank')">
+                        <span class="event-time-badge" style="color:${color};">All Day</span>
+                        <div class="event-title-small">${c.emoji} ${c.title}</div>
+                    </div>
+                `);
+            });
+        });
+    }
+
+    window.closeCampaignPopup = function() {
+        document.getElementById('campOverlay').style.display = 'none';
+        document.getElementById('campPanel').style.display   = 'none';
+        document.getElementById('campPanel').classList.remove('open');
+        document.getElementById('campPanel').style.transform = 'translate(-50%,-50%)';
+    };
+
+    checkCampaigns();
+</script>
+
+</body>
+</html>
