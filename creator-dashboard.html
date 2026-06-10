@@ -451,7 +451,6 @@
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-label">My Rank</span>
-                    <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button>
                 </div>
                 <div class="rank-display">
                     <span class="rank-number" id="currentRank">--</span>
@@ -460,17 +459,22 @@
                 <div class="rank-progress">
                     <div class="rank-bar" id="rankBar"></div>
                 </div>
-                <p class="rank-goal" id="rankGoal">-- more to rank up</p>
+                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                    <p class="rank-goal" id="rankGoal" style="margin:0;padding-top:0;border-top:none;">-- more to rank up</p>
+                    <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button>
+                </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-label">Current Rewards Available</span>
-                    <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
-                <div class="stat-breakdown" id="rewardsBreakdown">
-                    <span>Total Rewards Earned: --</span>
+                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                    <div class="stat-breakdown" id="rewardsBreakdown" style="margin:0;padding-top:0;border-top:none;">
+                        <span>Total Rewards Earned: --</span>
+                    </div>
+                    <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button>
                 </div>
             </div>
         </div>
@@ -857,12 +861,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606101515"></script>
-    <script src="js/rewards-data.js?v=202606101515"></script>
-    <script src="js/events-data.js?v=202606101515"></script>
-    <script src="js/weekly-calendar-data.js?v=202606101515"></script>
-    <script src="js/sheets-data.js?v=202606101515"></script>
-    <script src="js/creator-dashboard.js?v=202606101515"></script>
+    <script src="js/csv-data-loader.js?v=202606101525"></script>
+    <script src="js/rewards-data.js?v=202606101525"></script>
+    <script src="js/events-data.js?v=202606101525"></script>
+    <script src="js/weekly-calendar-data.js?v=202606101525"></script>
+    <script src="js/sheets-data.js?v=202606101525"></script>
+    <script src="js/creator-dashboard.js?v=202606101525"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
