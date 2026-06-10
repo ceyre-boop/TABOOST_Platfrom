@@ -451,6 +451,7 @@
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-label">My Rank</span>
+                    <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button>
                 </div>
                 <div class="rank-display">
                     <span class="rank-number" id="currentRank">--</span>
@@ -465,6 +466,7 @@
             <div class="stat-card">
                 <div class="stat-header">
                     <span class="stat-label">Current Rewards Available</span>
+                    <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
                 <div class="stat-breakdown" id="rewardsBreakdown">
@@ -476,7 +478,7 @@
         <!-- 3. My Creator Score -->
         <div class="section-card score-section">
             <div class="section-header score-header-with-badge">
-                <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score</h2>
+                <h2><i class="fas fa-star" style="color: #ffd700;"></i> My Creator Score <button class="tt-btn" onclick="openTooltip('score')" aria-label="What is my Creator Score?"><i class="fas fa-question" style="font-size:9px;"></i></button></h2>
                 <!-- Pro Bonus Badge - inline with header -->
                 <div id="proBonusBadge" class="pro-bonus-badge-inline" style="display: none;">
                     <i class="fas fa-crown"></i>
@@ -555,7 +557,7 @@
         <!-- 4. My Revenue Streams -->
         <div class="section-card revenue-section">
             <div class="section-header">
-                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams</h2>
+                <h2><i class="fas fa-coins" style="color: var(--taboost-success);"></i> My Revenue Streams <button class="tt-btn" onclick="openTooltip('revenue')" aria-label="What are my Revenue Streams?"><i class="fas fa-question" style="font-size:9px;"></i></button></h2>
             </div>
             <div class="revenue-grid">
                 <div class="revenue-item">
@@ -584,7 +586,7 @@
         <!-- 5. My Monthly Goals -->
         <div class="section-card">
             <div class="section-header">
-                <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals</h2>
+                <h2><i class="fas fa-bullseye" style="color: var(--taboost-red);"></i> My Monthly Goals <button class="tt-btn" onclick="openTooltip('goals')" aria-label="What are my Monthly Goals?"><i class="fas fa-question" style="font-size:9px;"></i></button></h2>
                 <span class="days-remaining" id="daysRemaining">-- days left</span>
             </div>
             <div class="goals-grid" id="goalsGrid">
@@ -595,7 +597,7 @@
         <!-- 6. Activity Level -->
         <div class="section-card activity-level-section">
             <div class="section-header">
-                <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> Activity Level</h2>
+                <h2><i class="fas fa-layer-group" style="color: var(--taboost-red);"></i> Activity Level <button class="tt-btn" onclick="openTooltip('activity')" aria-label="What is Activity Level?"><i class="fas fa-question" style="font-size:9px;"></i></button></h2>
                 <span class="level-badge" id="currentLevelBadge">Level --</span>
             </div>
             
@@ -855,12 +857,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606092051"></script>
-    <script src="js/rewards-data.js?v=202606092051"></script>
-    <script src="js/events-data.js?v=202606092051"></script>
-    <script src="js/weekly-calendar-data.js?v=202606091821"></script>
-    <script src="js/sheets-data.js?v=202606092051"></script>
-    <script src="js/creator-dashboard.js?v=202606092051"></script>
+    <script src="js/csv-data-loader.js?v=202606101515"></script>
+    <script src="js/rewards-data.js?v=202606101515"></script>
+    <script src="js/events-data.js?v=202606101515"></script>
+    <script src="js/weekly-calendar-data.js?v=202606101515"></script>
+    <script src="js/sheets-data.js?v=202606101515"></script>
+    <script src="js/creator-dashboard.js?v=202606101515"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -896,6 +898,8 @@
                 creatorId: null,
                 role: 'creator'
             };
+            // Expose currentUser so the Campaigns popup (checkCampaigns) resolves in preview mode too
+            window.currentUser = { ...dashboardUser, username: dashboardUser.name };
             document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
             initCreatorDashboard(dashboardUser);
         } else {
@@ -1080,6 +1084,113 @@
                     In multi-guest streams, Diamonds include gifts based on your popularity <strong>both as a host and as a guest</strong> — but <em>exclude</em> diamonds earned from your guests' own popularity.
                 </div>
                 <p style="color:#888;font-size:12px;margin-top:8px;">Diamonds convert to real earnings — the more you earn, the higher your Creator Score.</p>
+            `
+        },
+        ranks: {
+            icon: '#',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Ranks',
+            subtitle: 'TABOOST network metric',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Rank</strong> shows where your current Diamond total places you compared to other creators in the TABOOST creator network.</p>
+                <p>Ranks are based on Diamonds earned during the current month and update daily along with the rest of your performance/data.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Creator Privacy</div>
+                    To protect creator privacy, other creator names are not shown. You'll only see your own rank position and how many Diamonds you need to pass the next creator ahead of you.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Higher ranks help you track your momentum, stay competitive, and work toward stronger LIVE performance.</p>
+            `
+        },
+        rewards: {
+            icon: '🎁',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Rewards',
+            subtitle: 'TABOOST incentives',
+            body: `
+                <p><strong style="color:#00ccff;">Rewards</strong> show the gift-based incentives you've earned directly from TABOOST through agency programs, creator incentives, challenges, and performance opportunities.</p>
+                <p>This section tracks your current earned rewards, lifetime rewards earned, and how many rewards have already been redeemed.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">How Rewards Work</div>
+                    Available rewards can be requested by contacting your Manager. Redeemed rewards are rewards that have already been claimed, paid out, or fulfilled by the agency.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Rewards are separate from TikTok Diamond revenue and are additional incentives provided by TABOOST.</p>
+            `
+        },
+        score: {
+            icon: '⭐',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'My Creator Score',
+            subtitle: 'TABOOST performance score',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Creator Score</strong> is a TABOOST-made performance score designed to measure your overall LIVE creator health, consistency, and earning momentum.</p>
+                <p>Your score is based on your recent activity and Diamond performance over the last rolling 2 months, including live days, hours streamed, Diamond Level, and Diamond Tier movement.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Unlockable Benefits</div>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <div><strong style="color:#00ccff;">30+ Score:</strong> Rewards eligibility</div>
+                        <div><strong style="color:#00ccff;">70+ Score:</strong> Cash Back eligibility</div>
+                        <div><strong style="color:#00ccff;">90+ Score:</strong> Rank Boost eligibility</div>
+                    </div>
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">You can also receive a score bonus when you rank up your Diamond Tier equal to the tier you achieved this month.</p>
+            `
+        },
+        revenue: {
+            icon: '🪙',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'My Revenue Streams',
+            subtitle: 'Estimated earnings',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Revenue Streams</strong> show your estimated earnings from TikTok LIVE and eligible TABOOST agency bonuses.</p>
+                <p>This includes your estimated Diamond revenue, plus any cash bonus unlocked through TABOOST.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Agency Cash Bonus</div>
+                    Cash bonus eligibility begins at a Creator Score of 70+ and requires your Diamond Tier to be maintained or ranked up.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Diamond revenue shown in the TABOOST app is an estimate only. Your final dollar amount is calculated by TikTok based on TikTok LIVE's Scaled Rewards and is available inside your TikTok app.</p>
+            `
+        },
+        goals: {
+            icon: '🎯',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'My Monthly Goals',
+            subtitle: 'Your monthly targets',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Monthly Goals</strong> show your personal LIVE performance targets for the current calendar month.</p>
+                <p>These goals include live-stream days, total hours streamed, and Diamonds earned.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Why Goals Matter</div>
+                    Hitting your monthly goals can improve your Activity Level, strengthen your Creator Score, help you maintain or rank up your Diamond Tier, and unlock additional TABOOST benefits.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Use this section as your monthly checklist for staying consistent and maximizing your LIVE performance.</p>
+            `
+        },
+        activity: {
+            icon: '📊',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Activity Level',
+            subtitle: 'TikTok-defined level',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Activity Level</strong> is a TikTok-defined level based on how many days and hours you go LIVE during the calendar month.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Activity Levels</div>
+                    <div style="display:flex;flex-direction:column;gap:6px;">
+                        <div><strong style="color:#00ccff;">Base Level 0:</strong> 7 days / 15 hours</div>
+                        <div><strong style="color:#00ccff;">Level 1:</strong> 8 days / 20 hours</div>
+                        <div><strong style="color:#00ccff;">Level 2:</strong> 11 days / 30 hours</div>
+                        <div><strong style="color:#00ccff;">Level 3:</strong> 15 days / 40 hours</div>
+                        <div><strong style="color:#00ccff;">Level 4:</strong> 18 days / 60 hours</div>
+                        <div><strong style="color:#00ccff;">Level 5:</strong> 22 days / 80 hours</div>
+                    </div>
+                </div>
+                <p>Activity Level resets each calendar month and can help improve your Creator Score, monthly performance, and eligibility for rewards or bonuses.</p>
+                <p style="color:#888;font-size:12px;margin-top:8px;">A LIVE "day" counts when a creator completes 60 or more total LIVE minutes during TikTok's UTC-based 24-hour tracking period, which runs from 5:00 PM PT to 4:59 PM PT.</p>
             `
         }
     };
