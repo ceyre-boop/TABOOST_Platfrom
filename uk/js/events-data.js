@@ -1,40 +1,8 @@
 // Taboost Events Calendar Data
 // Upcoming events, cyphers, and agency activities
 
-const taboostEvents = [
-    {
-        date: "2025-03-20",
-        title: "Diamond Rush Challenge",
-        type: "challenge",
-        time: "All Day",
-        description: "24-hour streaming challenge. Top 10 earners get bonus rewards!",
-        icon: "💎"
-    },
-    {
-        date: "2025-03-22",
-        title: "Creator Workshop: Growth Tips",
-        type: "workshop",
-        time: "7:00 PM EST",
-        description: "Learn proven strategies to grow your audience and increase engagement.",
-        icon: "📈"
-    },
-    {
-        date: "2025-03-27",
-        title: "Live Q&A with Marco",
-        type: "qa",
-        time: "6:00 PM EST",
-        description: "Monthly live session. Ask questions, get answers, share feedback.",
-        icon: "🎙️"
-    },
-    {
-        date: "2025-04-03",
-        title: "Spring Creator Showcase",
-        type: "showcase",
-        time: "8:00 PM EST",
-        description: "Featured performances from top Taboost creators. Open mic slots available!",
-        icon: "🌟"
-    }
-];
+// UK: no US events — intentionally empty
+const taboostEvents = [];
 
 // Helper function to format date
 function formatEventDate(dateString) {
