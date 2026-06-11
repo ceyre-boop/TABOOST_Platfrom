@@ -808,16 +808,15 @@ function initPerformanceChart() {
             trimmedTier = [tierLM, ...trimmedTier];      // green Tier-LM dot only
         }
 
-        // Center the points: pad symmetrically (both sides) up to the full-history width
-        // so few-point charts sit centered, not pinned to the left edge.
-        const TARGET_SLOTS = 6;
-        if (trimmedLabels.length < TARGET_SLOTS) {
-            const pad = TARGET_SLOTS - trimmedLabels.length;
-            const left = Math.floor(pad / 2);
-            const right = pad - left;
-            trimmedLabels = [...Array(left).fill(''), ...trimmedLabels, ...Array(right).fill('')];
-            trimmedData  = [...Array(left).fill(null), ...trimmedData, ...Array(right).fill(null)];
-            trimmedTier  = [...Array(left).fill(null), ...trimmedTier, ...Array(right).fill(null)];
+        // Center the real data: pad an EQUAL number of empty slots on each side so the
+        // data cluster always sits dead-center, regardless of how many points there are.
+        const MIN_WIDTH = 5;
+        if (trimmedLabels.length < MIN_WIDTH) {
+            const padEach = Math.ceil((MIN_WIDTH - trimmedLabels.length) / 2);
+            const blanks = () => Array(padEach).fill(null);
+            trimmedLabels = [...Array(padEach).fill(''), ...trimmedLabels, ...Array(padEach).fill('')];
+            trimmedData  = [...blanks(), ...trimmedData, ...blanks()];
+            trimmedTier  = [...blanks(), ...trimmedTier, ...blanks()];
         }
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
