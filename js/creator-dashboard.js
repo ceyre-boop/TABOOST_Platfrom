@@ -798,12 +798,26 @@ function initPerformanceChart() {
         let trimmedData = dataPoints.slice(trimStart);
         let trimmedTier = tierData.slice(trimStart);
 
-        // If fewer than 4 points, pad left with empty slots so data is centered not left-aligned
-        const MIN_SLOTS = 4;
-        while (trimmedLabels.length < MIN_SLOTS) {
-            trimmedLabels = ['', ...trimmedLabels];
-            trimmedData = [null, ...trimmedData];
-            trimmedTier = [null, ...trimmedTier];
+        // Month-1 creators trim down to a single "Current" point. If a last-month tier
+        // exists, prepend a previous-month slot that plots ONLY the Tier LM (no diamonds
+        // dot), so the green Tier line shows a short trajectory into Current.
+        if (trimmedData.length === 1 && tierLM !== null) {
+            const prevLabel = labels[labels.length - 2] || 'Last Month';
+            trimmedLabels = [prevLabel, ...trimmedLabels];
+            trimmedData = [null, ...trimmedData];        // no pink dot for the prior month
+            trimmedTier = [tierLM, ...trimmedTier];      // green Tier-LM dot only
+        }
+
+        // Center the points: pad symmetrically (both sides) up to the full-history width
+        // so few-point charts sit centered, not pinned to the left edge.
+        const TARGET_SLOTS = 6;
+        if (trimmedLabels.length < TARGET_SLOTS) {
+            const pad = TARGET_SLOTS - trimmedLabels.length;
+            const left = Math.floor(pad / 2);
+            const right = pad - left;
+            trimmedLabels = [...Array(left).fill(''), ...trimmedLabels, ...Array(right).fill('')];
+            trimmedData  = [...Array(left).fill(null), ...trimmedData, ...Array(right).fill(null)];
+            trimmedTier  = [...Array(left).fill(null), ...trimmedTier, ...Array(right).fill(null)];
         }
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
@@ -915,8 +929,9 @@ function initPerformanceChart() {
                     }
                 },
                 x: {
+                    offset: true,
                     grid: { display: false },
-                    ticks: { 
+                    ticks: {
                         color: '#888',
                         font: { size: isMobile ? 8 : 10 }
                     }
