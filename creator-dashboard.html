@@ -431,7 +431,7 @@
         <div class="stats-grid">
             <div class="stat-card primary">
                 <div class="stat-header">
-                    <span class="stat-label">This Month's Diamonds</span>
+                    <span class="stat-label">This Month's Diamonds <button class="tt-btn" onclick="openTooltip('diamonds')" aria-label="What are diamonds?"><i class="fas fa-gem" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="stat-value" id="currentDiamonds">--</div>
                 <div class="stat-usd" id="currentUSD" style="display: none;">--</div>
@@ -440,17 +440,14 @@
                         <i class="fas fa-chart-line"></i> --% vs last month
                     </span>
                 </div>
-                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                <div class="stat-footer">
                     <small class="last-updated">Last updated: <span id="lastUpdatedTime">--</span></small>
-                    <button class="tt-btn" onclick="openTooltip('diamonds')" aria-label="What are diamonds?">
-                        <i class="fas fa-gem" style="font-size:9px;"></i>
-                    </button>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">My Rank</span>
+                    <span class="stat-label">My Rank <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="rank-display">
                     <span class="rank-number" id="currentRank">--</span>
@@ -459,22 +456,20 @@
                 <div class="rank-progress">
                     <div class="rank-bar" id="rankBar"></div>
                 </div>
-                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                <div class="stat-footer">
                     <p class="rank-goal" id="rankGoal" style="margin:0;padding-top:0;border-top:none;">-- more to rank up</p>
-                    <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button>
                 </div>
             </div>
             
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">Current Rewards Available</span>
+                    <span class="stat-label">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
-                <div class="stat-footer" style="display:flex;justify-content:space-between;align-items:center;">
+                <div class="stat-footer">
                     <div class="stat-breakdown" id="rewardsBreakdown" style="margin:0;padding-top:0;border-top:none;">
                         <span>Total Rewards Earned: --</span>
                     </div>
-                    <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button>
                 </div>
             </div>
         </div>
@@ -861,12 +856,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606110303"></script>
-    <script src="js/rewards-data.js?v=202606110303"></script>
-    <script src="js/events-data.js?v=202606110303"></script>
-    <script src="js/weekly-calendar-data.js?v=202606110303"></script>
-    <script src="js/sheets-data.js?v=202606110303"></script>
-    <script src="js/creator-dashboard.js?v=202606110303"></script>
+    <script src="js/csv-data-loader.js?v=202606110315"></script>
+    <script src="js/rewards-data.js?v=202606110315"></script>
+    <script src="js/events-data.js?v=202606110315"></script>
+    <script src="js/weekly-calendar-data.js?v=202606110315"></script>
+    <script src="js/sheets-data.js?v=202606110315"></script>
+    <script src="js/creator-dashboard.js?v=202606110315"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
