@@ -799,12 +799,25 @@ function initPerformanceChart() {
         let trimmedData = dataPoints.slice(trimStart);
         let trimmedTier = tierData.slice(trimStart);
 
-        // If fewer than 4 points, pad left with empty slots so data is centered not left-aligned
-        const MIN_SLOTS = 4;
-        while (trimmedLabels.length < MIN_SLOTS) {
-            trimmedLabels = ['', ...trimmedLabels];
-            trimmedData = [null, ...trimmedData];
-            trimmedTier = [null, ...trimmedTier];
+        // Month-1 creators trim down to a single "Current" point. If a last-month tier
+        // exists, prepend a previous-month slot that plots ONLY the Tier LM (no diamonds
+        // dot), so the green Tier line shows a short trajectory into Current.
+        if (trimmedData.length === 1 && tierLM !== null) {
+            const prevLabel = labels[labels.length - 2] || 'Last Month';
+            trimmedLabels = [prevLabel, ...trimmedLabels];
+            trimmedData = [null, ...trimmedData];        // no pink dot for the prior month
+            trimmedTier = [tierLM, ...trimmedTier];      // green Tier-LM dot only
+        }
+
+        // Center the real data: pad an EQUAL number of empty slots on each side so the
+        // data cluster always sits dead-center, regardless of how many points there are.
+        const MIN_WIDTH = 5;
+        if (trimmedLabels.length < MIN_WIDTH) {
+            const padEach = Math.ceil((MIN_WIDTH - trimmedLabels.length) / 2);
+            const blanks = () => Array(padEach).fill(null);
+            trimmedLabels = [...Array(padEach).fill(''), ...trimmedLabels, ...Array(padEach).fill('')];
+            trimmedData  = [...blanks(), ...trimmedData, ...blanks()];
+            trimmedTier  = [...blanks(), ...trimmedTier, ...blanks()];
         }
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
@@ -916,8 +929,9 @@ function initPerformanceChart() {
                     }
                 },
                 x: {
+                    offset: true,
                     grid: { display: false },
-                    ticks: { 
+                    ticks: {
                         color: '#888',
                         font: { size: isMobile ? 8 : 10 }
                     }
