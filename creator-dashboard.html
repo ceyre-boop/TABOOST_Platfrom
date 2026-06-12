@@ -447,7 +447,7 @@
             
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">My Rank <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button></span>
+                    <span class="stat-label" style="white-space:nowrap;">My Rank <button class="tt-btn" onclick="openTooltip('ranks')" aria-label="What is My Rank?"><i class="fas fa-hashtag" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="rank-display">
                     <span class="rank-number" id="currentRank">--</span>
@@ -463,7 +463,7 @@
             
             <div class="stat-card">
                 <div class="stat-header">
-                    <span class="stat-label">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
+                    <span class="stat-label" style="white-space:nowrap;">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
                 <div class="stat-footer">
@@ -710,6 +710,9 @@
                 <span class="calendar-week" id="calendarWeek">--</span>
             </div>
             
+            <!-- My Campaigns label + info tooltip -->
+            <div style="display:flex;align-items:center;gap:8px;margin:4px 0 10px;font-size:13px;font-weight:700;color:#fff;letter-spacing:-0.2px;">My Campaigns <button class="tt-btn" onclick="openTooltip('campaigns')" aria-label="What are My Campaigns?"><i class="fas fa-question" style="font-size:9px;"></i></button></div>
+
             <!-- TABOOST Campaign Banner -->
             <div class="campaign-banner" id="taboostCampaignBanner">
                 <!-- Populated by JS -->
@@ -856,12 +859,12 @@
         </div>
     </div>
     
-    <script src="js/csv-data-loader.js?v=202606120209"></script>
-    <script src="js/rewards-data.js?v=202606120209"></script>
-    <script src="js/events-data.js?v=202606120209"></script>
-    <script src="js/weekly-calendar-data.js?v=202606120209"></script>
-    <script src="js/sheets-data.js?v=202606120209"></script>
-    <script src="js/creator-dashboard.js?v=202606120209"></script>
+    <script src="js/csv-data-loader.js?v=202606120244"></script>
+    <script src="js/rewards-data.js?v=202606120244"></script>
+    <script src="js/events-data.js?v=202606120244"></script>
+    <script src="js/weekly-calendar-data.js?v=202606120244"></script>
+    <script src="js/sheets-data.js?v=202606120244"></script>
+    <script src="js/creator-dashboard.js?v=202606120244"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1172,6 +1175,20 @@
                     </div>
                 </div>
                 <p style="color:#888;font-size:12px;margin-top:8px;">A LIVE "day" counts when you stream 60+ total minutes during TikTok's UTC-based 24-hour tracking period, which runs from 5:00 PM PT to 4:59 PM PT.</p>
+            `
+        },
+        campaigns: {
+            icon: '📣',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'My Campaigns',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Campaigns</strong> show the active TABOOST promotions and contests you're eligible for, with their dates and how to join.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">How Campaigns Work</div>
+                    Tap a campaign to view details and join via Discord. Featured and new campaigns are highlighted; finished ones drop off.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Joining campaigns can boost your Diamonds, rewards, and standing in the Creator Network.</p>
             `
         }
     };
