@@ -172,11 +172,11 @@ function updateLastUpdated() {
         dateStr = yesterday.toLocaleDateString('en-US', { 
             month: 'short', 
             day: 'numeric',
-            timeZone: 'America/Los_Angeles'
+            timeZone: 'Europe/London'
         });
     }
 
-    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
+    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 1:00 AM GMT`;
 }
 
 // Load real month data from CSV (column F - Month)
@@ -215,9 +215,12 @@ function formatNumberPlain(num) {
     return parseInt(num).toLocaleString();
 }
 
+// UK currency: estimated revenue is sourced in USD (column AN / diamond rate); convert to GBP for display.
+const USD_TO_GBP = 0.79; // adjust this single value to change the USD→GBP rate site-wide
+
 function formatUSD(diamonds) {
     const usd = (diamonds || 0) * 0.005;
-    return '≈ $' + Math.round(usd).toLocaleString('en-US');
+    return '≈ £' + Math.round(usd * USD_TO_GBP).toLocaleString('en-GB');
 }
 
 function updateProfile(user) {
@@ -367,7 +370,7 @@ function updateStats() {
     // Use real dollar value from estRev (column AN), fallback to rewardsMonth, then to diamond rate.
     // UK sheet has no Est Rev / Rewards columns, so the diamond rate (0.005) is the live fallback.
     const realDollarValue = myData.estRev || parseFloat(myData.rewardsMonth?.toString().replace(/[$,]/g, '')) || Math.round((myData.diamonds || 0) * 0.005);
-    document.getElementById('currentUSD').textContent = '≈ $' + Math.round(realDollarValue).toLocaleString('en-US');
+    document.getElementById('currentUSD').textContent = '≈ £' + Math.round(realDollarValue * USD_TO_GBP).toLocaleString('en-GB');
     
     // Growth trend - compare current diamonds to prorated last month target
     // (where they'd be at this point in the month if they matched last month's pace)
@@ -1091,10 +1094,10 @@ function updateHistory() {
                 
                 return {
                     diamonds: diamonds,
-                    revenue: '$' + Math.round(revenue).toLocaleString('en-US'),
+                    revenue: '£' + Math.round(revenue * USD_TO_GBP).toLocaleString('en-GB'),
                     rawRevenue: revenue,
                     bonus: bonus,
-                    bonusStr: bonus > 0 ? '$' + Math.round(bonus).toLocaleString('en-US') : '--'
+                    bonusStr: bonus > 0 ? '£' + Math.round(bonus * USD_TO_GBP).toLocaleString('en-GB') : '--'
                 };
             });
             
@@ -1362,7 +1365,7 @@ function updateScoreAndLevels() {
     if (diamondRevenueUSDEl) {
         const estRev = myData.estRev || Math.round(diamonds * 0.005);
         console.log('DEBUG - estRev value:', estRev, 'from myData:', myData.username);
-        diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
+        diamondRevenueUSDEl.textContent = '≈ £' + Math.round(estRev * USD_TO_GBP).toLocaleString('en-GB');
     }
     
     // Update diamonds as note on right side (matching Cash Bonus layout)
