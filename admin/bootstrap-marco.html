@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TABOOST — Bootstrap Marco Account</title>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <style>
+    body { background:#0a0a0a; color:#fff; font-family:'Manrope',system-ui,sans-serif; display:flex; align-items:center; justify-content:center; min-height:100vh; margin:0; }
+    .card { background:#111; border:1px solid #242424; border-radius:16px; padding:40px; max-width:480px; width:100%; }
+    h1 { color:#FF0050; font-size:1.3rem; margin:0 0 8px; }
+    p { color:#888; font-size:0.9rem; margin:0 0 24px; }
+    label { display:block; color:#aaa; font-size:0.8rem; margin-bottom:6px; }
+    input { width:100%; padding:12px; background:#1a1a1a; border:1px solid #333; border-radius:8px; color:#fff; font-size:1rem; box-sizing:border-box; margin-bottom:16px; }
+    input:focus { outline:none; border-color:#FF0050; }
+    button { width:100%; padding:14px; background:#FF0050; border:none; border-radius:8px; color:#fff; font-size:1rem; font-weight:700; cursor:pointer; }
+    button:disabled { opacity:0.5; cursor:not-allowed; }
+    .result { margin-top:20px; padding:16px; border-radius:8px; font-size:0.9rem; line-height:1.6; display:none; }
+    .result.success { background:rgba(0,200,150,0.1); border:1px solid #00C896; color:#00C896; }
+    .result.error { background:rgba(255,0,80,0.1); border:1px solid #FF0050; color:#FF0050; }
+    .done-link { display:inline-block; margin-top:16px; padding:12px 20px; background:#FF0050; color:#fff; border-radius:8px; text-decoration:none; font-weight:700; font-size:0.9rem; }
+    .warning { background:rgba(255,184,0,0.1); border:1px solid #FFB800; color:#FFB800; border-radius:8px; padding:12px 16px; font-size:0.85rem; margin-bottom:20px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>⚡ Bootstrap Marco's Account</h1>
+    <p>Creates Firebase Auth + Firestore user doc for marco@taboost.me. Run once, then delete this page.</p>
+
+    <div class="warning">⚠️ This page will log the current browser session in as Marco. After it completes, you'll be signed in as him.</div>
+
+    <label>Password for marco@taboost.me</label>
+    <input type="password" id="pw" placeholder="Choose a strong password" autocomplete="new-password">
+
+    <label>Confirm password</label>
+    <input type="password" id="pw2" placeholder="Repeat password" autocomplete="new-password">
+
+    <button id="btn" onclick="createMarco()">Create Marco's Account</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+      authDomain: "taboost-platform.firebaseapp.com",
+      projectId: "taboost-platform",
+      storageBucket: "taboost-platform.firebasestorage.app",
+      messagingSenderId: "379293685859",
+      appId: "1:379293685859:web:d89592adbf67360b574056"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    async function createMarco() {
+      const pw = document.getElementById('pw').value.trim();
+      const pw2 = document.getElementById('pw2').value.trim();
+      const btn = document.getElementById('btn');
+      const result = document.getElementById('result');
+
+      result.style.display = 'none';
+
+      if (!pw || pw.length < 8) {
+        showResult('error', 'Password must be at least 8 characters.');
+        return;
+      }
+      if (pw !== pw2) {
+        showResult('error', 'Passwords do not match.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Creating account…';
+
+      try {
+        // Create Firebase Auth account
+        const cred = await auth.createUserWithEmailAndPassword('marco@taboost.me', pw);
+        const uid = cred.user.uid;
+
+        // Write Firestore user doc
+        await db.collection('users').doc(uid).set({
+          email: 'marco@taboost.me',
+          username: 'marco',
+          name: 'Marco',
+          role: 'admin',
+          admin: 'marco',
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+        showResult('success', `
+          ✅ Account created successfully!<br><br>
+          <strong>Email:</strong> marco@taboost.me<br>
+          <strong>UID:</strong> ${uid}<br>
+          <strong>Firestore:</strong> users/${uid} — admin: "marco", role: "admin"<br><br>
+          You're now signed in as Marco. Click below to go to your dashboard.
+          <br><br>
+          <a class="done-link" href="dashboard.html">Open CEO Dashboard →</a>
+          <br><br>
+          <small style="color:#888;">Delete admin/bootstrap-marco.html from your repo after this — it's a one-shot tool.</small>
+        `);
+        btn.textContent = 'Done ✓';
+
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Create Marco\'s Account';
+
+        if (err.code === 'auth/email-already-in-use') {
+          // Account exists in Auth but maybe not Firestore — just write the doc
+          try {
+            const user = auth.currentUser;
+            if (user && user.email === 'marco@taboost.me') {
+              await db.collection('users').doc(user.uid).set({
+                email: 'marco@taboost.me',
+                username: 'marco',
+                name: 'Marco',
+                role: 'admin',
+                admin: 'marco',
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+              }, { merge: true });
+              showResult('success', `
+                ✅ Auth account already existed — Firestore doc updated with admin field.<br><br>
+                <strong>UID:</strong> ${user.uid}<br><br>
+                <a class="done-link" href="dashboard.html">Open CEO Dashboard →</a>
+              `);
+            } else {
+              showResult('error', `Auth account for marco@taboost.me already exists but you're not signed in as Marco. Use the login page to sign in, then come back here to fix the Firestore doc if needed.<br><br>Error: ${err.message}`);
+            }
+          } catch (firestoreErr) {
+            showResult('error', 'Firestore write failed: ' + firestoreErr.message);
+          }
+        } else {
+          showResult('error', 'Error: ' + err.message);
+        }
+      }
+    }
+
+    function showResult(type, html) {
+      const el = document.getElementById('result');
+      el.className = 'result ' + type;
+      el.innerHTML = html;
+      el.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
