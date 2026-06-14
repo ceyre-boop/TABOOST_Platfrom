@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TABOOST CEO Cockpit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #111111;
+      --card-2: #161616;
+      --card-3: #1c1c1c;
+      --accent: #FF0050;
+      --red: #FF0050;
+      --green: #00C896;
+      --yellow: #FFB800;
+      --text: #ffffff;
+      --secondary: #888888;
+      --muted: #5f5f5f;
+      --line: #242424;
+      --line-strong: #343434;
+      --font: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      letter-spacing: 0;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    body::selection {
+      background: rgba(255,0,80,0.34);
+      color: var(--text);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 76px;
+      padding: 14px 24px;
+      background: rgba(10,10,10,0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(12px);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    header h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: 1.15rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    header p {
+      margin: 4px 0 0;
+      color: var(--secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .delorean-quote {
+      flex: 1;
+      max-width: 620px;
+      color: var(--secondary);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #dashboardContent {
+      padding: 22px;
+    }
+
+    .division-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    @media (min-width: 1024px) {
+      .division-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .division-card {
+      min-width: 0;
+      min-height: 320px;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 3px solid transparent;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: border-color .18s ease, transform .18s ease, background .18s ease;
+    }
+
+    .division-card:hover {
+      border-left-color: var(--accent);
+      background: #121212;
+      transform: translateY(-1px);
+    }
+
+    .division-card h2 {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 15px;
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      flex: 0 0 8px;
+      background: var(--secondary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+
+    .kpi-card {
+      min-height: 78px;
+      padding: 10px;
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .kpi-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--secondary);
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-transform: uppercase;
+    }
+
+    .kpi-value {
+      display: block;
+      color: var(--text);
+      font-size: 1.12rem;
+      font-weight: 800;
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+
+    .kpi-sub {
+      display: block;
+      margin-top: 5px;
+      color: var(--secondary);
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    @keyframes skeleton-pulse {0%,100%{opacity:.4}50%{opacity:.8}}
+
+    .skeleton-bar {
+      height: 20px;
+      background: #333;
+      border-radius: 4px;
+      margin: 8px 0;
+      animation: skeleton-pulse 1.5s infinite;
+    }
+
+    .gpt-alerts {
+      min-height: 92px;
+      padding: 12px;
+      background: #0d0d0d;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 0.82rem;
+    }
+
+    .alert-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin: 0 0 8px;
+      color: #dddddd;
+      font-weight: 600;
+    }
+
+    .alert-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .alert-dot {
+      width: 7px;
+      height: 7px;
+      flex: 0 0 7px;
+      margin-top: 6px;
+      border-radius: 50%;
+    }
+
+    .gpt-center-section {
+      grid-column: 1 / -1;
+      padding: 18px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .gpt-center-section h2,
+    .gpt-center-section h3 {
+      margin: 0 0 12px;
+      color: var(--text);
+      font-size: 0.98rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .starter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 12px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 7px 10px;
+      background: var(--card-2);
+      color: #d6d6d6;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      font-family: var(--font);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: border-color .18s ease, color .18s ease, background .18s ease;
+    }
+
+    .chip:hover,
+    .chip:focus-visible {
+      background: #181818;
+      color: var(--text);
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    #gptInput {
+      width: 100%;
+      min-height: 92px;
+      resize: vertical;
+      padding: 12px;
+      background: #0b0b0b;
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    #gptInput:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255,0,80,0.14);
+    }
+
+    #gptConversation {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .conversation-card,
+    #gptConversation .message-card {
+      padding: 12px;
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #e8e8e8;
+      font-size: 0.85rem;
+    }
+
+    .conversation-card.user,
+    #gptConversation .message-card.user {
+      border-left: 3px solid var(--accent);
+    }
+
+    .conversation-card.assistant,
+    #gptConversation .message-card.assistant {
+      border-left: 3px solid var(--green);
+    }
+
+    .placeholder-card {
+      padding: 14px;
+      background: #0d0d0d;
+      border: 1px dashed var(--line-strong);
+      border-radius: 8px;
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .discord-compose-card,
+    .discord-preview-card {
+      padding: 14px;
+      background: var(--card-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .discord-compose-card label,
+    .discord-preview-card label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--secondary);
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .discord-compose-card textarea,
+    .discord-compose-card input,
+    .discord-compose-card select {
+      width: 100%;
+      min-height: 38px;
+      padding: 9px 10px;
+      background: #0b0b0b;
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.85rem;
+    }
+
+    .discord-compose-card textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .discord-preview-card {
+      white-space: pre-wrap;
+      color: #e6e6e6;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9998;
+      min-width: 230px;
+      max-width: min(420px, calc(100vw - 36px));
+      padding: 12px 14px;
+      background: var(--card-2);
+      color: var(--text);
+      border: 1px solid var(--line-strong);
+      border-left: 4px solid var(--green);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .toast.success {
+      border-left-color: var(--green);
+    }
+
+    .toast.error {
+      border-left-color: var(--red);
+    }
+
+    button,
+    .button,
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 8px 12px;
+      background: var(--accent);
+      color: var(--text);
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 0.82rem;
+      font-weight: 800;
+      line-height: 1;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+
+    button:hover,
+    .button:hover,
+    .link-button:hover {
+      background: #d90043;
+      border-color: #d90043;
+      transform: translateY(-1px);
+    }
+
+    button.secondary,
+    .button.secondary,
+    .link-button.secondary {
+      background: var(--card-2);
+      color: #e8e8e8;
+      border-color: var(--line-strong);
+    }
+
+    button.secondary:hover,
+    .button.secondary:hover,
+    .link-button.secondary:hover {
+      background: #1d1d1d;
+      border-color: var(--accent);
+    }
+
+    a {
+      color: var(--text);
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .division-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 13px;
+    }
+
+    .division-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      color: #e9e9e9;
+      border-bottom: 1px solid rgba(255,255,255,0.18);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .division-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #0d0d0d;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      font-size: 0.78rem;
+    }
+
+    thead {
+      background: #171717;
+    }
+
+    th,
+    td {
+      padding: 9px 10px;
+      border-bottom: 1px solid var(--line);
+      color: #dedede;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--secondary);
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    td strong {
+      color: var(--text);
+    }
+
+    tbody tr:hover {
+      background: rgba(255,255,255,0.025);
+    }
+
+    tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .deals-table,
+    .deal-table {
+      margin-top: 12px;
+    }
+
+    .deal-stage {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 8px;
+      background: rgba(255,184,0,0.12);
+      color: var(--yellow);
+      border: 1px solid rgba(255,184,0,0.22);
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .metric-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .metric-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .metric-row:last-child {
+      border-bottom: 0;
+    }
+
+    .metric-row span:first-child {
+      color: var(--secondary);
+      font-size: 0.74rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .metric-row span:last-child {
+      color: var(--text);
+      font-size: 0.95rem;
+      font-weight: 800;
+      text-align: right;
+      overflow-wrap: anywhere;
+    }
+
+    .ai-note {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: rgba(0,200,150,0.08);
+      border: 1px solid rgba(0,200,150,0.18);
+      border-radius: 8px;
+      color: #dff9f2;
+      font-size: 0.82rem;
+      font-weight: 650;
+    }
+
+    .error-card {
+      padding: 12px;
+      background: rgba(255,0,80,0.08);
+      border: 1px solid rgba(255,0,80,0.25);
+      border-radius: 8px;
+      color: #ffdbe6;
+      font-size: 0.84rem;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .delorean-quote {
+        order: 3;
+        flex: 1 0 100%;
+        max-width: none;
+        text-align: left;
+      }
+
+      .kpi-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      header {
+        padding: 12px 14px;
+      }
+
+      #dashboardContent {
+        padding: 14px;
+      }
+
+      .division-card,
+      .gpt-center-section {
+        padding: 14px;
+      }
+
+      .kpi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      button,
+      .button,
+      .link-button {
+        width: 100%;
+      }
+
+      .division-links {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <span id="gigawattsText" style="display:none; position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#FF0050; color:#fff; padding:8px 16px; border-radius:8px; z-index:9999; font-weight:700; font-size:1.1rem;">⚡ 1.21 Gigawatts!</span>
+  <header>
+    <div class="header-left">
+      <img id="taboostLogo" src="../images/taboost-genie.jpg" alt="TABOOST" style="height:48px; width:48px; object-fit:cover; cursor:pointer; border-radius:10px;" onclick="deloreanEasterEgg()">
+      <div>
+        <h1 id="greeting">Good morning, Marco</h1>
+        <p id="currentDate"></p>
+      </div>
+    </div>
+    <div id="deloreanQuote" class="delorean-quote"></div>
+    <button type="button" onclick="auth.signOut().then(()=>location.href='../firebase-login.html')">Sign Out</button>
+  </header>
+  <div id="dashboardContent" style="display:none;">
+    <div class="division-grid">
+      <section class="division-card" id="liveDivision">
+        <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>🔴 LIVE (US)</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveRevenue"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveScore"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveLevel5"><div class="skeleton-bar"></div></div>
+        </div>
+        <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
+        <div class="division-links">
+          <a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a>
+          <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
+        </div>
+      </section>
+      <section class="division-card" id="shopDivision">
+        <h2><span class="status-dot" id="shopDot"></span>🛍️ SHOP</h2>
+        <div id="shopBody">
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar" style="width:80%"></div>
+        </div>
+        <div class="division-links">
+          <a class="division-link" href="../shop/index.html">View Shop Dashboard →</a>
+        </div>
+      </section>
+      <!-- DIVISION GRID CONTINUES IN PART 2 -->
+  <script>
+    /*
+      REPLACE_ME_OPENAI_KEY: Enables GPT-powered KPI insights, executive summaries, and command responses.
+      REPLACE_ME_SUPABASE_URL: Enables Supabase-backed data access for divisions or utilities appended in part 2.
+      REPLACE_ME_SUPABASE_ANON_KEY: Enables authenticated anonymous Supabase browser reads for part 2 features.
+      REPLACE_ME_MONDAY_TOKEN: Enables Monday.com board reads and deal pipeline summaries.
+      REPLACE_ME_MONDAY_BOARD_ID: Selects the Monday.com board used for Monday division KPIs.
+      REPLACE_ME_DISCORD_ANNOUNCEMENTS: Enables announcement-channel Discord webhook posting.
+      REPLACE_ME_DISCORD_MANAGERS: Enables manager-channel Discord webhook posting.
+      REPLACE_ME_DISCORD_TALENT_GENERAL: Enables talent-general Discord webhook posting.
+    */
+    const firebaseConfig = { apiKey:"AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE", authDomain:"taboost-platform.firebaseapp.com", projectId:"taboost-platform", storageBucket:"taboost-platform.firebasestorage.app", messagingSenderId:"379293685859", appId:"1:379293685859:web:d89592adbf67360b574056" };
+    firebase.initializeApp(firebaseConfig); const auth = firebase.auth(); const db = firebase.firestore();
+    const OPENAI_KEY = 'REPLACE_ME_OPENAI_KEY';
+    let liveKPIs = {}; let shopKPIs = {}; let talentKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
+
+    function setDot(id, color){ const el=document.getElementById(id); if(el) el.style.background=color; }
+
+    function showToast(msg, type='success'){
+      try {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          try { toast.remove(); } catch (err) {}
+        }, 3000);
+      } catch (err) {}
+    }
+
+    function deloreanEasterEgg(){
+      const logo = document.getElementById('taboostLogo');
+      const gigawatts = document.getElementById('gigawattsText');
+      if (logo) {
+        logo.style.transition = 'filter .3s';
+        logo.style.filter = 'blur(8px) brightness(3)';
+        setTimeout(() => { logo.style.filter = 'none'; }, 300);
+        setTimeout(() => { logo.style.filter = 'blur(8px) brightness(3)'; }, 400);
+        setTimeout(() => { logo.style.filter = 'none'; }, 700);
+      }
+      if (gigawatts) {
+        gigawatts.style.display = 'block';
+        setTimeout(() => { gigawatts.style.display = 'none'; }, 2000);
+      }
+    }
+
+    function updateHeaderContext(){
+      try {
+        const now = new Date();
+        const hour = now.getHours();
+        const greetingText = hour < 12 ? 'Good morning, Marco' : hour < 18 ? 'Good afternoon, Marco' : 'Good evening, Marco';
+        const dateText = now.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+        const quotes = [
+          "Roads? Where we're going, we don't need roads.",
+          "All systems nominal. Great Scott.",
+          "Time circuits: on. Agency: running.",
+          "1.21 gigawatts. Right on schedule.",
+          "Your density has brought you here, Marco.",
+          "The future is whatever you make it, so make it a good one."
+        ];
+        const greeting = document.getElementById('greeting');
+        const currentDate = document.getElementById('currentDate');
+        const quote = document.getElementById('deloreanQuote');
+        if (greeting) greeting.textContent = greetingText;
+        if (currentDate) currentDate.textContent = dateText;
+        if (quote) quote.textContent = quotes[Math.floor(Math.random() * quotes.length)];
+      } catch (err) {}
+    }
+    updateHeaderContext();
+
+    async function callGPT(systemPrompt, userPrompt){
+      try {
+        if (!OPENAI_KEY || OPENAI_KEY === 'REPLACE_ME_OPENAI_KEY') return null;
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_KEY}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o',
+            messages: [
+              { role: 'system', content: systemPrompt },
+              { role: 'user', content: userPrompt }
+            ],
+            max_tokens: 400
+          })
+        });
+        if (!response?.ok) return null;
+        const data = await response.json();
+        return data?.choices?.[0]?.message?.content?.trim() || null;
+      } catch (err) {
+        return null;
+      }
+    }
+
+    async function parseCSV(url){
+      try {
+        const response = await fetch(url, { cache: 'no-store' });
+        if (!response?.ok) throw new Error(`CSV load failed: ${response.status}`);
+        const text = await response.text();
+        const rows = [];
+        let row = [];
+        let field = '';
+        let inQuotes = false;
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          const next = text[i + 1];
+          if (char === '"' && inQuotes && next === '"') {
+            field += '"';
+            i++;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === ',' && !inQuotes) {
+            row.push(field);
+            field = '';
+          } else if ((char === '\n' || char === '\r') && !inQuotes) {
+            if (char === '\r' && next === '\n') i++;
+            row.push(field);
+            if (row.some(cell => cell !== '')) rows.push(row);
+            row = [];
+            field = '';
+          } else {
+            field += char;
+          }
+        }
+        if (field.length || row.length) {
+          row.push(field);
+          if (row.some(cell => cell !== '')) rows.push(row);
+        }
+        return rows;
+      } catch (err) {
+        throw err;
+      }
+    }
+
+    function cleanNum(val){
+      if (val === null || val === undefined) return 0;
+      const cleaned = String(val).replace(/[$,%\s,]/g, '').trim();
+      const num = Number.parseFloat(cleaned);
+      return Number.isFinite(num) ? num : 0;
+    }
+
+    auth.onAuthStateChanged(async (user) => {
+      try {
+        if (!user) {
+          location.href = '../firebase-login.html';
+          return;
+        }
+        const userDoc = await db.collection('users').doc(user.uid).get();
+        const userData = userDoc.data() || {};
+        const isMarco = userData.admin === 'marco' || user.email?.toLowerCase() === 'marco@taboost.me';
+        if (!isMarco) {
+          location.href = '../creator-dashboard.html';
+          return;
+        }
+        const content = document.getElementById('dashboardContent');
+        if (content) content.style.display = 'block';
+        await loadAllDivisions();
+      } catch (err) {
+        showToast('Unable to verify admin access', 'error');
+        location.href = '../firebase-login.html';
+      }
+    });
+
+    async function loadAllDivisions(){ await Promise.allSettled([loadLiveDivision(), loadShopDivision(), loadTalentDivision(), loadMondayDivision()]); }
+
+    function renderKPICard(id, label, value, sub=''){
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.innerHTML = `<span class="kpi-label">${label}</span><span class="kpi-value">${value}</span>${sub ? `<span class="kpi-sub">${sub}</span>` : ''}`;
+    }
+
+    function renderAlertLines(targetId, text){
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      const lines = String(text || '').split('\n').map(line => line.replace(/^[-*•\d.\s]+/, '').trim()).filter(Boolean);
+      target.innerHTML = lines.map(line => {
+        const upper = line.toUpperCase();
+        const color = upper.includes('CRITICAL') ? '#FF0050' : upper.includes('WARNING') ? '#FFB800' : '#00C896';
+        return `<div class="alert-line"><span class="alert-dot" style="background:${color}"></span><span>${line}</span></div>`;
+      }).join('') || '<div class="alert-line"><span class="alert-dot" style="background:#00C896"></span><span>No live alerts found.</span></div>';
+    }
+
+    async function loadLiveDivision(){
+      try {
+        const rows = await parseCSV('../data/current.csv');
+        const dataRows = rows?.[0]?.some(cell => String(cell || '').toLowerCase().includes('username')) ? rows.slice(1) : rows;
+        const active = dataRows.filter(r => r?.[10] === 'Y');
+        const totalCreators = active.length;
+        const totalDiamonds = active.reduce((sum, r) => sum + cleanNum(r?.[19]), 0);
+        const totalRevenue = active.reduce((sum, r) => sum + cleanNum(r?.[39]), 0);
+        const scores = active.map(r => cleanNum(r?.[32])).filter(score => score > 0);
+        const avgScore = scores.length ? scores.reduce((sum, score) => sum + score, 0) / scores.length : 0;
+        const level5Count = active.filter(r => cleanNum(r?.[30]) >= 5).length;
+        liveKPIs = { totalCreators, totalDiamonds, totalRevenue, avgScore, level5Count };
+
+        renderKPICard('liveCreators', 'Active Creators', totalCreators.toLocaleString());
+        renderKPICard('liveDiamonds', 'Diamonds', totalDiamonds.toLocaleString());
+        renderKPICard('liveRevenue', 'Revenue', `$${totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`);
+        renderKPICard('liveScore', 'Avg Score', `${avgScore.toFixed(1)}/100`);
+        renderKPICard('liveLevel5', 'Level 5+', level5Count.toLocaleString());
+
+        const topByDiamonds = [...active]
+          .sort((a, b) => cleanNum(b?.[19]) - cleanNum(a?.[19]))
+          .slice(0, 5)
+          .map(r => `${r?.[2] || 'Unknown'}: ${cleanNum(r?.[19]).toLocaleString()} diamonds`)
+          .join('; ');
+        const bottomByScore = [...active]
+          .filter(r => cleanNum(r?.[32]) > 0)
+          .sort((a, b) => cleanNum(a?.[32]) - cleanNum(b?.[32]))
+          .slice(0, 5)
+          .map(r => `${r?.[2] || 'Unknown'}: ${cleanNum(r?.[32]).toFixed(1)}`)
+          .join('; ');
+
+        const ai = await callGPT(
+          'You are TABOOST CEO cockpit analyst. Return 3 concise executive alert bullets. Prefix urgent issues with CRITICAL, risks with WARNING, and wins with OK.',
+          `Live US KPIs: ${totalCreators} active creators, ${totalDiamonds} diamonds, $${totalRevenue} revenue, ${avgScore.toFixed(1)}/100 average score, ${level5Count} level 5+ creators. Top 5 by diamonds: ${topByDiamonds || 'none'}. Bottom 5 by score: ${bottomByScore || 'none'}.`
+        );
+        if (ai) {
+          renderAlertLines('liveAlerts', ai);
+        } else {
+          renderAlertLines('liveAlerts', 'OK Connect OPENAI_KEY for AI insights');
+        }
+        setDot('liveDot', '#00C896');
+      } catch (err) {
+        const section = document.getElementById('liveDivision');
+        if (section) {
+          section.innerHTML = '<h2><span class="status-dot" id="liveDot" style="background:#FF0050;width:8px;height:8px;border-radius:50%;"></span>🔴 LIVE (US)</h2><div class="error-card">Live data could not be loaded from ../data/current.csv.</div><div class="division-links"><a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a><a class="division-link" href="../uk/index.html">View UK Dashboard →</a></div>';
+        }
+        setDot('liveDot', '#FF0050');
+      }
+    }
+
+    async function loadShopDivision(){
+      const body = document.getElementById('shopBody');
+      try {
+        const snapshot = await db.collection('shop').get();
+        if (!snapshot || snapshot.empty) {
+          if (body) body.innerHTML = '<div class="placeholder-card">Shop data not yet connected</div>';
+          setDot('shopDot', '#FFB800');
+          return;
+        }
+        const items = [];
+        snapshot.forEach(doc => items.push({ id: doc.id, ...(doc.data() || {}) }));
+        const gmv = items.reduce((sum, item) => sum + cleanNum(item?.gmv || item?.totalGmv || item?.monthly_gmv), 0);
+        const tap = items.reduce((sum, item) => sum + cleanNum(item?.tap || item?.tapEarnings), 0);
+        const activeCreators = items.filter(item => item?.active === true).length;
+        const topProduct = [...items].sort((a, b) => cleanNum(b?.revenue || b?.gmv) - cleanNum(a?.revenue || a?.gmv))[0] || {};
+        const topProductName = topProduct?.productName || topProduct?.name || 'No product';
+        const topProductRevenue = cleanNum(topProduct?.revenue || topProduct?.gmv);
+        shopKPIs = { gmv, tap, activeCreators, topProductName, topProductRevenue };
+        shopKPIs.summary = `Shop: $${gmv.toLocaleString(undefined, { maximumFractionDigits: 0 })} GMV, $${tap.toLocaleString(undefined, { maximumFractionDigits: 0 })} TAP earnings, ${activeCreators} active creators, top product ${topProductName}.`;
+
+        if (body) {
+          body.innerHTML = `
+            <ul class="metric-list">
+              <li class="metric-row"><span>GMV</span><span>$${gmv.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></li>
+              <li class="metric-row"><span>TAP Earnings</span><span>$${tap.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></li>
+              <li class="metric-row"><span>Active Creators</span><span>${activeCreators.toLocaleString()}</span></li>
+              <li class="metric-row"><span>Top Product</span><span>${topProductName}${topProductRevenue ? ` · $${topProductRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : ''}</span></li>
+            </ul>
+          `;
+        }
+
+        const ai = await callGPT(
+          'You are TABOOST CEO cockpit analyst. Summarize shop performance in one concise executive sentence.',
+          shopKPIs.summary
+        );
+        if (ai && body) body.insertAdjacentHTML('beforeend', `<div class="ai-note">${ai}</div>`);
+        setDot('shopDot', '#00C896');
+      } catch (err) {
+        if (body) body.innerHTML = '<div class="placeholder-card">Shop data not yet connected</div>';
+        setDot('shopDot', '#FFB800');
+      }
+    }
+    function ensureSection(id, innerHTML) {
+      let s = document.getElementById(id);
+      if (!s) {
+        const grid = document.querySelector('#dashboardContent .division-grid');
+        s = document.createElement('section');
+        s.className = 'division-card';
+        s.id = id;
+        if (grid) grid.appendChild(s);
+        else document.getElementById('dashboardContent')?.appendChild(s);
+      }
+      s.innerHTML = innerHTML;
+      return s;
+    }
+
+    function escapeHTML(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[ch]);
+    }
+
+    const SUPABASE_URL = 'REPLACE_ME_SUPABASE_URL';
+    const SUPABASE_ANON_KEY = 'REPLACE_ME_SUPABASE_ANON_KEY';
+    const MONDAY_TOKEN = 'REPLACE_ME_MONDAY_TOKEN';
+    const MONDAY_BOARD_ID = 'REPLACE_ME_MONDAY_BOARD_ID';
+    const DISCORD_WEBHOOKS = {
+      announcements: 'REPLACE_ME_DISCORD_ANNOUNCEMENTS',
+      managers: 'REPLACE_ME_DISCORD_MANAGERS',
+      'talent-general': 'REPLACE_ME_DISCORD_TALENT_GENERAL'
+    };
+
+    let talentFeedTimer = null;
+
+    async function loadTalentDivision() {
+      ensureSection('talentDivision', `
+        <h2><span class="status-dot" id="talentDot" style="background:#FFB800;"></span>📧 TALENT</h2>
+        <div id="talentBody">
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+        </div>
+      `);
+
+      const body = document.getElementById('talentBody');
+
+      try {
+        if (SUPABASE_URL.startsWith('REPLACE_ME') || SUPABASE_ANON_KEY.startsWith('REPLACE_ME')) {
+          if (body) body.innerHTML = '<div class="placeholder-card">Email system credentials needed</div>';
+          setDot('talentDot', '#FFB800');
+          talentKPIs.summary = 'Not configured';
+          return;
+        }
+
+        const headers = {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: 'Bearer ' + SUPABASE_ANON_KEY
+        };
+        const resp = await fetch(`${SUPABASE_URL}/rest/v1/email_logs?select=*&order=created_at.desc&limit=10`, { headers });
+
+        if (resp.status === 404 || !resp.ok) {
+          if (body) body.innerHTML = '<div class="placeholder-card">Email system offline</div>';
+          setDot('talentDot', '#FF3B30');
+          talentKPIs.summary = 'Email system offline';
+          return;
+        }
+
+        const parsed = await resp.json();
+        const rows = Array.isArray(parsed) ? parsed : [];
+        const now = new Date();
+        const todayKey = now.toDateString();
+        const sentRows = rows.filter((row) => String(row.status || '').toLowerCase() === 'sent');
+        const todayRows = rows.filter((row) => row.created_at && new Date(row.created_at).toDateString() === todayKey);
+        const draftsSentToday = sentRows.filter((row) => row.created_at && new Date(row.created_at).toDateString() === todayKey).length;
+        const total = rows.length;
+        const systemHealth = total ? `${((sentRows.length / total) * 100).toFixed(0)}%` : 'n/a';
+        const creators = new Set(rows.map((row) => row.creator || row.creator_name || row.talent || '').filter(Boolean));
+        let pendingDrafts = 0;
+
+        try {
+          const countResp = await fetch(`${SUPABASE_URL}/rest/v1/email_logs?select=count&status=eq.pending_review`, {
+            headers: {
+              ...headers,
+              Prefer: 'count=exact'
+            }
+          });
+          const range = countResp.headers.get('content-range') || '';
+          const match = range.match(/\/(\d+)$/);
+          pendingDrafts = match ? Number(match[1]) : 0;
+        } catch (err) {
+          pendingDrafts = 0;
+        }
+
+        const activity = rows.map((row) => {
+          const creator = row.creator || row.creator_name || row.talent || 'Unknown creator';
+          const action = row.action || row.subject || row.status || 'email activity';
+          const time = row.created_at ? new Date(row.created_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : 'unknown time';
+          return `<li class="metric-row"><span>${escapeHTML(creator)} — ${escapeHTML(action)}</span><span>${escapeHTML(time)}</span></li>`;
+        }).join('');
+
+        if (body) {
+          body.innerHTML = `
+            <div class="kpi-grid">
+              <div class="kpi-card"><span>Processed Today</span><strong>${todayRows.length.toLocaleString()}</strong></div>
+              <div class="kpi-card"><span>Drafts Sent Today</span><strong>${draftsSentToday.toLocaleString()}</strong></div>
+              <div class="kpi-card"><span>Pending Review</span><strong style="color:${pendingDrafts > 0 ? '#FF6B00' : '#00C896'};">${pendingDrafts.toLocaleString()}</strong></div>
+              <div class="kpi-card"><span>System Health</span><strong>${systemHealth}</strong></div>
+              <div class="kpi-card"><span>Connected Talents</span><strong>${creators.size.toLocaleString()}</strong></div>
+            </div>
+            <ul class="activity-feed">${activity || '<li class="metric-row"><span>No recent email activity</span><span>--</span></li>'}</ul>
+            <div class="quick-ask">
+              <input id="talentAskInput" placeholder="Ask about email ops...">
+              <button onclick="askTalentGPT()">Ask</button>
+              <div id="talentAskAnswer"></div>
+            </div>
+          `;
+        }
+
+        talentKPIs.summary = `${todayRows.length} emails processed today, ${draftsSentToday} drafts sent, ${pendingDrafts} pending review, ${creators.size} connected talents, ${systemHealth} health`;
+        setDot('talentDot', '#00C896');
+
+        if (talentFeedTimer) clearInterval(talentFeedTimer);
+        talentFeedTimer = setInterval(loadTalentDivision, 60000);
+      } catch (err) {
+        if (body) body.innerHTML = '<div class="placeholder-card">Talent email data unavailable</div>';
+        setDot('talentDot', '#FF3B30');
+        talentKPIs.summary = 'Talent email data unavailable';
+      }
+    }
+
+    async function askTalentGPT() {
+      try {
+        const q = document.getElementById('talentAskInput')?.value?.trim();
+        if (!q) return;
+        const ans = await callGPT('You are an email-ops analyst for TABOOST. Be concise.', 'Email summary: ' + (talentKPIs.summary || 'no data') + '. Question: ' + q);
+        const target = document.getElementById('talentAskAnswer');
+        if (target) target.textContent = ans || 'Connect OPENAI_KEY to enable AI answers.';
+      } catch (err) {
+        const target = document.getElementById('talentAskAnswer');
+        if (target) target.textContent = 'AI answer unavailable.';
+      }
+    }
+
+    async function queryMonday(query) {
+      try {
+        const resp = await fetch('https://api.monday.com/v2', {
+          method: 'POST',
+          headers: {
+            Authorization: MONDAY_TOKEN,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ query })
+        });
+        if (!resp.ok) throw new Error('Monday request failed');
+        return await resp.json();
+      } catch (err) {
+        return { error: err.message || 'Monday request failed' };
+      }
+    }
+
+    async function loadMondayDivision() {
+      ensureSection('mondayDivision', `
+        <h2><span class="status-dot" id="mondayDot" style="background:#FFB800;"></span>📅 BRAND DEALS</h2>
+        <div id="mondayBody">
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+        </div>
+      `);
+
+      const body = document.getElementById('mondayBody');
+
+      try {
+        if (MONDAY_TOKEN.startsWith('REPLACE_ME') || MONDAY_BOARD_ID.startsWith('REPLACE_ME')) {
+          if (body) {
+            body.innerHTML = `
+              <div class="placeholder-card">Monday.com API token required</div>
+              <a href="https://monday.com" target="_blank" rel="noopener">Create New Deal</a>
+            `;
+          }
+          setDot('mondayDot', '#FFB800');
+          mondayKPIs.summary = 'Not configured';
+          return;
+        }
+
+        const boardQuery = `{ boards(ids: ${MONDAY_BOARD_ID}) { items_page { items { id name column_values { id text } } } } }`;
+        const res = await queryMonday(boardQuery);
+        if (res?.error || res?.errors) throw new Error('Monday data unavailable');
+
+        const items = res?.data?.boards?.[0]?.items_page?.items || [];
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const thisMonth = today.getMonth();
+        const thisYear = today.getFullYear();
+
+        const deals = items.map((item) => {
+          const values = {};
+          (item.column_values || []).forEach((col) => {
+            values[String(col.id || '').toLowerCase()] = col.text || '';
+          });
+          const findValue = (keys) => {
+            const key = Object.keys(values).find((k) => keys.some((needle) => k.includes(needle)));
+            return key ? values[key] : '';
+          };
+          return {
+            id: item.id,
+            brand: item.name || 'Unnamed brand',
+            talent: findValue(['talent', 'creator', 'person']) || '',
+            value: findValue(['value', 'budget', 'amount', 'deal']) || '',
+            due: findValue(['due', 'date', 'deadline']) || '',
+            status: findValue(['status', 'stage']) || ''
+          };
+        });
+
+        const parseMoney = (value) => {
+          const num = Number(String(value || '').replace(/[^0-9.-]/g, ''));
+          return Number.isFinite(num) ? num : 0;
+        };
+        const isDone = (status) => String(status || '').toLowerCase() === 'done';
+        const openDeals = deals.filter((deal) => !isDone(deal.status));
+        const closedThisMonth = deals.filter((deal) => {
+          const due = deal.due ? new Date(deal.due) : null;
+          return isDone(deal.status) && due && !Number.isNaN(due.valueOf()) && due.getMonth() === thisMonth && due.getFullYear() === thisYear;
+        }).length;
+        const pipelineValue = deals.reduce((sum, deal) => sum + parseMoney(deal.value), 0);
+        const overdue = deals.filter((deal) => {
+          const due = deal.due ? new Date(deal.due) : null;
+          return !isDone(deal.status) && due && !Number.isNaN(due.valueOf()) && due < today;
+        }).length;
+
+        const rows = deals.map((deal) => {
+          const status = deal.status || 'Unknown';
+          const color = isDone(status) ? '#00C896' : status.toLowerCase().includes('risk') || status.toLowerCase().includes('late') ? '#FF3B30' : '#FFB800';
+          return `
+            <tr>
+              <td>${escapeHTML(deal.brand)}</td>
+              <td>${escapeHTML(deal.talent || '--')}</td>
+              <td>${escapeHTML(deal.value || '--')}</td>
+              <td>${escapeHTML(deal.due || '--')}</td>
+              <td><span style="color:${color};">${escapeHTML(status)}</span></td>
+              <td><button onclick="draftFollowup(${JSON.stringify(deal.brand).replace(/"/g, '&quot;')}, ${JSON.stringify(deal.talent || 'the creator').replace(/"/g, '&quot;')})">Draft Follow-up</button></td>
+            </tr>
+          `;
+        }).join('');
+
+        if (body) {
+          body.innerHTML = `
+            <div class="kpi-grid">
+              <div class="kpi-card"><span>Open Deals</span><strong>${openDeals.length.toLocaleString()}</strong></div>
+              <div class="kpi-card"><span>Closed This Month</span><strong>${closedThisMonth.toLocaleString()}</strong></div>
+              <div class="kpi-card"><span>Pipeline Value</span><strong>$${pipelineValue.toLocaleString(undefined, { maximumFractionDigits: 0 })}</strong></div>
+              <div class="kpi-card"><span>Overdue</span><strong style="color:${overdue > 0 ? '#FF3B30' : '#00C896'};">${overdue.toLocaleString()}</strong></div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;">
+              <button onclick="summarizeDeals()">Summarize This Week</button>
+              <a href="https://monday.com" target="_blank" rel="noopener">Create New Deal</a>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Brand</th><th>Talent</th><th>Value</th><th>Due</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody>${rows || '<tr><td colspan="6">No brand deals found</td></tr>'}</tbody>
+              </table>
+            </div>
+          `;
+        }
+
+        mondayKPIs.summary = `${openDeals.length} open deals, ${closedThisMonth} closed this month, $${pipelineValue.toLocaleString(undefined, { maximumFractionDigits: 0 })} pipeline, ${overdue} overdue`;
+        setDot('mondayDot', '#00C896');
+      } catch (err) {
+        if (body) body.innerHTML = '<div class="placeholder-card">Brand deals unavailable</div>';
+        setDot('mondayDot', '#FF3B30');
+        mondayKPIs.summary = 'Brand deals unavailable';
+      }
+    }
+
+    function draftFollowup(brand, talent) {
+      const ta = document.getElementById('gptInput');
+      if (ta) {
+        ta.value = 'Draft a follow-up message for the ' + brand + ' deal with ' + talent + '.';
+        ta.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function summarizeDeals() {
+      const ta = document.getElementById('gptInput');
+      if (ta) {
+        ta.value = 'Summarize this week across all open brand deals: ' + (mondayKPIs.summary || 'no deal data') + '. Give me priorities.';
+        ta.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function renderSports() {
+      ensureSection('sportsDivision', `<div class="placeholder-card"><div style="font-size:3rem;">🏆</div><h3>TABOOST Sports</h3><p style="color:#888;">Coming Soon — In Development</p><p style="color:#FF0050; font-size:0.85rem; margin-top:8px; font-style:italic;">"This division is 30 minutes in the future."</p></div>`);
+    }
+
+    function fillGPTInput(text) {
+      const ta = document.getElementById('gptInput');
+      if (ta) {
+        ta.value = text;
+        ta.focus();
+      }
+    }
+
+    function buildCommandCenterSystemPrompt() {
+      return `You are Marco's AI chief of staff for TABOOST talent agency. Today is ${new Date().toDateString()}.
+
+LIVE DIVISION (US):
+- Active creators: ${liveKPIs.totalCreators}
+- Total diamonds this month: ${liveKPIs.totalDiamonds?.toLocaleString()}
+- Est. revenue: $${liveKPIs.totalRevenue?.toLocaleString()}
+- Average creator score: ${liveKPIs.avgScore}
+
+SHOP DIVISION: ${shopKPIs.summary || 'Data not yet connected'}
+
+TALENT (Email): ${talentKPIs.summary || 'Not configured'}
+
+BRAND DEALS (Monday.com): ${mondayKPIs.summary || 'Not configured'}
+
+Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel, not fluff. Format responses with markdown.`;
+    }
+
+    function renderMarkdown(md) {
+      const escaped = escapeHTML(md || '');
+      const lines = escaped.split('\n');
+      let html = '';
+      let inList = false;
+
+      lines.forEach((line) => {
+        const formatted = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+        if (/^###\s+/.test(formatted)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h4>${formatted.replace(/^###\s+/, '')}</h4>`;
+        } else if (/^##\s+/.test(formatted)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h3>${formatted.replace(/^##\s+/, '')}</h3>`;
+        } else if (/^#\s+/.test(formatted)) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<h2>${formatted.replace(/^#\s+/, '')}</h2>`;
+        } else if (/^[-*]\s+/.test(formatted)) {
+          if (!inList) {
+            html += '<ul>';
+            inList = true;
+          }
+          html += `<li>${formatted.replace(/^[-*]\s+/, '')}</li>`;
+        } else if (formatted.trim()) {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += `<p>${formatted}</p>`;
+        } else {
+          if (inList) {
+            html += '</ul>';
+            inList = false;
+          }
+          html += '<br>';
+        }
+      });
+
+      if (inList) html += '</ul>';
+      return html;
+    }
+
+    async function submitGPTCommand() {
+      const input = document.getElementById('gptInput');
+      const q = input?.value?.trim();
+      if (!q) return;
+      const btn = document.getElementById('gptSubmitBtn');
+
+      try {
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = 'Thinking...';
+        }
+        commandMessages.push({ role: 'user', content: q });
+        appendConversation('user', q);
+        input.value = '';
+        const ans = await callGPT(buildCommandCenterSystemPrompt(), q);
+        const text = ans || 'Connect OPENAI_KEY to enable the Command Center.';
+        commandMessages.push({ role: 'assistant', content: text });
+        lastGPTResponse = text;
+        appendConversation('assistant', text);
+      } catch (err) {
+        appendConversation('assistant', 'Command Center is unavailable right now.');
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Ask GPT';
+        }
+      }
+    }
+
+    function appendConversation(role, text) {
+      const c = document.getElementById('gptConversation');
+      if (!c) return;
+
+      if (role === 'user') {
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble user-bubble';
+        bubble.style.marginLeft = 'auto';
+        bubble.textContent = text;
+        c.appendChild(bubble);
+        c.scrollTop = c.scrollHeight;
+        return;
+      }
+
+      const card = document.createElement('div');
+      card.className = 'assistant-message';
+      card.dataset.raw = text;
+      card.innerHTML = `
+        <div class="assistant-response">${renderMarkdown(text)}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+          <button onclick="copyText(this, this.closest('.assistant-message')?.dataset?.raw || '')">Copy</button>
+          <button onclick="prefillDiscord(this.closest('.assistant-message')?.dataset?.raw || '')">Send to Discord</button>
+        </div>
+      `;
+      c.appendChild(card);
+      c.scrollTop = c.scrollHeight;
+    }
+
+    function clearGPTConversation() {
+      commandMessages = [];
+      const c = document.getElementById('gptConversation');
+      if (c) c.innerHTML = '';
+    }
+
+    function copyText(btn, text) {
+      navigator.clipboard?.writeText(text).then(() => showToast('Copied to clipboard')).catch(() => showToast('Copy failed', 'error'));
+    }
+
+    function prefillDiscord(text) {
+      const ta = document.getElementById('discordMessage');
+      if (ta) {
+        ta.value = text;
+        document.getElementById('discordCompose')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function previewDiscord() {
+      const ch = document.getElementById('discordChannel')?.value;
+      const msg = document.getElementById('discordMessage')?.value?.trim();
+      if (!msg) {
+        showToast('Write a message first', 'error');
+        return;
+      }
+      document.getElementById('discordPreviewChannel').textContent = '#' + ch;
+      document.getElementById('discordPreviewBody').textContent = msg;
+      document.getElementById('discordCompose').style.display = 'none';
+      document.getElementById('discordPreview').style.display = 'block';
+    }
+
+    function editDiscord() {
+      document.getElementById('discordPreview').style.display = 'none';
+      document.getElementById('discordCompose').style.display = 'block';
+    }
+
+    function confirmDiscord() {
+      const ch = document.getElementById('discordChannel')?.value;
+      const msg = document.getElementById('discordMessage')?.value?.trim();
+      sendDiscordMessage(ch, msg);
+      document.getElementById('discordPreview').style.display = 'none';
+      document.getElementById('discordCompose').style.display = 'block';
+      document.getElementById('discordMessage').value = '';
+    }
+
+    async function sendDiscordMessage(channel, message) {
+      try {
+        const webhook = DISCORD_WEBHOOKS[channel];
+        if (!webhook || webhook.startsWith('REPLACE_ME')) {
+          alert('Discord webhook not configured for #' + channel);
+          return;
+        }
+        const resp = await fetch(webhook, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            content: message,
+            username: 'TABOOST HQ'
+          })
+        });
+        if (resp.ok) showToast('Discord message sent');
+        else showToast('Discord send failed', 'error');
+      } catch (err) {
+        showToast('Network error', 'error');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSports();
+    });
+    renderSports();
+  </script>
+        </div> <!-- /division-grid -->
+
+        <section id="gptCommandCenter" class="gpt-center-section">
+          <h2>🤖 GPT COMMAND CENTER</h2>
+          <p style="color:#888">Ask Marco anything about the agency. Context from all active divisions is included.</p>
+          <div class="starter-chips">
+            <button onclick="fillGPTInput('Who should I focus on this week?')">Who should I focus on this week?</button>
+            <button onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday morning brief</button>
+            <button onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5 performers</button>
+          </div>
+          <textarea id="gptInput" placeholder="Ask about your agency..."></textarea>
+          <div style="display:flex;gap:8px;margin-top:8px;">
+            <button id="gptSubmitBtn" onclick="submitGPTCommand()">Ask GPT</button>
+            <button onclick="clearGPTConversation()">Clear</button>
+          </div>
+          <div id="gptConversation"></div>
+        </section>
+
+        <section id="discordQuickPost" class="gpt-center-section">
+          <h2>📨 DISCORD QUICK POST</h2>
+          <div id="discordCompose">
+            <select id="discordChannel">
+              <option value="announcements">#announcements</option>
+              <option value="managers">#managers</option>
+              <option value="talent-general">#talent-general</option>
+            </select>
+            <textarea id="discordMessage" placeholder="Compose a message for the team..."></textarea>
+            <button onclick="previewDiscord()">Preview →</button>
+          </div>
+          <div id="discordPreview" style="display:none;">
+            <div class="discord-preview-card" style="background:#2b2d31;border-left:4px solid #5865F2;border-radius:6px;color:#f2f3f5;padding:14px;margin:12px 0;">
+              <strong>TABOOST HQ</strong> → <span id="discordPreviewChannel"></span>
+              <p id="discordPreviewBody"></p>
+            </div>
+            <button onclick="confirmDiscord()">Confirm Send</button>
+            <button onclick="editDiscord()">Edit</button>
+          </div>
+        </section>
+      </div> <!-- /dashboardContent -->
+    </body>
+  </html>
