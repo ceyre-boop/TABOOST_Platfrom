@@ -914,18 +914,41 @@
         <!-- Talent + Brand Deals injected here (compact chip until credentials connected) -->
   <script>
     /*
-      REPLACE_ME_OPENAI_KEY: Enables GPT-powered KPI insights, executive summaries, and command responses.
-      REPLACE_ME_SUPABASE_URL: Enables Supabase-backed data access for divisions or utilities appended in part 2.
-      REPLACE_ME_SUPABASE_ANON_KEY: Enables authenticated anonymous Supabase browser reads for part 2 features.
-      REPLACE_ME_MONDAY_TOKEN: Enables Monday.com board reads and deal pipeline summaries.
-      REPLACE_ME_MONDAY_BOARD_ID: Selects the Monday.com board used for Monday division KPIs.
-      REPLACE_ME_DISCORD_ANNOUNCEMENTS: Enables announcement-channel Discord webhook posting.
-      REPLACE_ME_DISCORD_MANAGERS: Enables manager-channel Discord webhook posting.
-      REPLACE_ME_DISCORD_TALENT_GENERAL: Enables talent-general Discord webhook posting.
+      SETUP: fill in the CONFIG constants just below. Full step-by-step: admin/SETUP.md
+      REPLACE_ME_OPENAI_KEY: GPT Command Center + AI insight notes (platform.openai.com/api-keys).
+      REPLACE_ME_EMAIL_API_KEY: TALENT division — API_KEY from your email-automation Render service.
+      REPLACE_ME_MONDAY_TOKEN / _BOARD_ID: BRAND DEALS — Monday.com API token + board id.
+      REPLACE_ME_DISCORD_*: Discord Quick Post — channel webhook URLs.
+      SHOP needs no key (reads public shop.taboost.me). Live US/UK reads data/current.csv.
     */
     const firebaseConfig = { apiKey:"AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE", authDomain:"taboost-platform.firebaseapp.com", projectId:"taboost-platform", storageBucket:"taboost-platform.firebasestorage.app", messagingSenderId:"379293685859", appId:"1:379293685859:web:d89592adbf67360b574056" };
     firebase.initializeApp(firebaseConfig); const auth = firebase.auth(); const db = firebase.firestore();
+
+    // ════════════════════════════════════════════════════════════════════
+    //  CONFIG — fill these in to activate each division. Full steps: admin/SETUP.md
+    //  ⚠ This file is PUBLIC on GitHub Pages — anything here is readable by anyone.
+    //     Use read-only / low-scope keys and rotate them if leaked.
+    // ════════════════════════════════════════════════════════════════════
+    // GPT Command Center + AI insight notes → platform.openai.com/api-keys
     const OPENAI_KEY = 'REPLACE_ME_OPENAI_KEY';
+    // TALENT division → your email-automation backend (Render). URL is prefilled;
+    //   paste the API_KEY from your Render service's Environment tab.
+    const EMAIL_API_URL = 'https://email-automation-qp2v.onrender.com';
+    const EMAIL_API_KEY = 'REPLACE_ME_EMAIL_API_KEY';
+    // BRAND DEALS division → Monday.com (monday.com → avatar → Developers → API token)
+    const MONDAY_TOKEN = 'REPLACE_ME_MONDAY_TOKEN';
+    const MONDAY_BOARD_ID = 'REPLACE_ME_MONDAY_BOARD_ID';
+    // DISCORD Quick Post → channel webhook URLs (Server Settings → Integrations → Webhooks)
+    const DISCORD_WEBHOOKS = {
+      announcements: 'REPLACE_ME_DISCORD_ANNOUNCEMENTS',
+      managers: 'REPLACE_ME_DISCORD_MANAGERS',
+      'talent-general': 'REPLACE_ME_DISCORD_TALENT_GENERAL'
+    };
+    // SHOP division needs NO key — it reads public data from shop.taboost.me.
+    const SHOP_TOTALS_URL = 'https://shop.taboost.me/data/shop/totals.csv';
+    const SHOP_TOTALS_FALLBACK = 'https://raw.githubusercontent.com/ceyre-boop/TABOOST-Shop/main/data/shop/totals.csv';
+    // ════════════════════════════════════════════════════════════════════
+
     let liveKPIs = {}; let shopKPIs = {}; let talentKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
 
     function setDot(id, color){
@@ -1191,33 +1214,40 @@
       }
     }
 
+    // SHOP → live public data from shop.taboost.me (no credentials). Cross-origin OK (CORS *).
     async function loadShopDivision(){
       const body = document.getElementById('shopBody');
+      const money = n => '$' + Math.round(n).toLocaleString();
       try {
-        const snapshot = await db.collection('shop').get();
-        if (!snapshot || snapshot.empty) {
-          if (body) body.innerHTML = '<div class="placeholder-card">Shop data not yet connected</div>';
-          setDot('shopDot', '#FFB800');
-          return;
-        }
-        const items = [];
-        snapshot.forEach(doc => items.push({ id: doc.id, ...(doc.data() || {}) }));
-        const gmv = items.reduce((sum, item) => sum + cleanNum(item?.gmv || item?.totalGmv || item?.monthly_gmv), 0);
-        const tap = items.reduce((sum, item) => sum + cleanNum(item?.tap || item?.tapEarnings), 0);
-        const activeCreators = items.filter(item => item?.active === true).length;
-        const topProduct = [...items].sort((a, b) => cleanNum(b?.revenue || b?.gmv) - cleanNum(a?.revenue || a?.gmv))[0] || {};
-        const topProductName = topProduct?.productName || topProduct?.name || 'No product';
-        const topProductRevenue = cleanNum(topProduct?.revenue || topProduct?.gmv);
-        shopKPIs = { gmv, tap, activeCreators, topProductName, topProductRevenue };
-        shopKPIs.summary = `Shop: $${gmv.toLocaleString(undefined, { maximumFractionDigits: 0 })} GMV, $${tap.toLocaleString(undefined, { maximumFractionDigits: 0 })} TAP earnings, ${activeCreators} active creators, top product ${topProductName}.`;
+        let rows;
+        try { rows = await parseCSV(SHOP_TOTALS_URL); }
+        catch (e) { rows = await parseCSV(SHOP_TOTALS_FALLBACK); } // custom-domain hiccup fallback
+        if (!rows || rows.length < 2) throw new Error('empty shop data');
+
+        const H = {}; (rows[0] || []).forEach((h, i) => { H[String(h).trim()] = i; });
+        const col = (r, name) => r[H[name]];
+        const data = rows.slice(1).filter(r => r[H['User']]);
+
+        const sum = name => data.reduce((s, r) => s + cleanNum(col(r, name)), 0);
+        const gmv = sum('Total GMV');
+        const tapGmv = sum('TaP GMV');
+        const commission = sum('Total Comm');
+        const shopCreators = data.length;
+        const top = data.slice().sort((a, b) => cleanNum(col(b, 'Total GMV')) - cleanNum(col(a, 'Total GMV')))[0] || [];
+        const topName = (col(top, 'Name') || col(top, 'User') || 'Unknown').toString().trim();
+        const topGmv = cleanNum(col(top, 'Total GMV'));
+
+        shopKPIs = { gmv, tapGmv, commission, shopCreators, topName, topGmv };
+        shopKPIs.summary = `Shop: ${money(gmv)} total GMV, ${money(tapGmv)} TAP GMV, ${money(commission)} commission across ${shopCreators} shop creators. Top creator: ${topName} (${money(topGmv)}).`;
 
         if (body) {
           body.innerHTML = `
             <ul class="metric-list">
-              <li class="metric-row"><span>GMV</span><span>$${gmv.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></li>
-              <li class="metric-row"><span>TAP Earnings</span><span>$${tap.toLocaleString(undefined, { maximumFractionDigits: 0 })}</span></li>
-              <li class="metric-row"><span>Active Creators</span><span>${activeCreators.toLocaleString()}</span></li>
-              <li class="metric-row"><span>Top Product</span><span>${topProductName}${topProductRevenue ? ` · $${topProductRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}` : ''}</span></li>
+              <li class="metric-row"><span>Total GMV</span><span>${money(gmv)}</span></li>
+              <li class="metric-row"><span>TAP GMV</span><span>${money(tapGmv)}</span></li>
+              <li class="metric-row"><span>Commission</span><span>${money(commission)}</span></li>
+              <li class="metric-row"><span>Shop Creators</span><span>${shopCreators.toLocaleString()}</span></li>
+              <li class="metric-row"><span>Top Creator</span><span>${escapeHTML(topName)} · ${money(topGmv)}</span></li>
             </ul>
           `;
         }
@@ -1229,7 +1259,7 @@
         if (ai && body) body.insertAdjacentHTML('beforeend', `<div class="ai-note">${ai}</div>`);
         setDot('shopDot', '#00C896');
       } catch (err) {
-        if (body) body.innerHTML = '<div class="placeholder-card">Shop data not yet connected</div>';
+        if (body) body.innerHTML = '<div class="placeholder-card">Shop data unavailable — could not reach shop.taboost.me</div>';
         setDot('shopDot', '#FFB800');
       }
     }
@@ -1257,24 +1287,26 @@
       })[ch]);
     }
 
-    const SUPABASE_URL = 'REPLACE_ME_SUPABASE_URL';
-    const SUPABASE_ANON_KEY = 'REPLACE_ME_SUPABASE_ANON_KEY';
-    const MONDAY_TOKEN = 'REPLACE_ME_MONDAY_TOKEN';
-    const MONDAY_BOARD_ID = 'REPLACE_ME_MONDAY_BOARD_ID';
-    const DISCORD_WEBHOOKS = {
-      announcements: 'REPLACE_ME_DISCORD_ANNOUNCEMENTS',
-      managers: 'REPLACE_ME_DISCORD_MANAGERS',
-      'talent-general': 'REPLACE_ME_DISCORD_TALENT_GENERAL'
-    };
-
     let talentFeedTimer = null;
 
+    // Authenticated call to the email-automation API (x-api-key). AbortController guards the
+    // Render free-tier cold start (service sleeps and can take ~50s to wake on first request).
+    async function emailApi(path, timeoutMs){
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), timeoutMs || 60000);
+      try {
+        const resp = await fetch(EMAIL_API_URL + path, { headers: { 'x-api-key': EMAIL_API_KEY }, signal: ctrl.signal });
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        return await resp.json();
+      } finally { clearTimeout(t); }
+    }
+
     async function loadTalentDivision() {
-      // Collapsed integration chip until Supabase credentials are connected
-      if (SUPABASE_URL.startsWith('REPLACE_ME') || SUPABASE_ANON_KEY.startsWith('REPLACE_ME')) {
+      // Collapsed integration chip until the email-automation API key is set
+      if (EMAIL_API_KEY.startsWith('REPLACE_ME')) {
         const chip = ensureSection('talentDivision', `
           <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Talent <small>· email ops — integration required</small></span>
-          <button type="button" class="ic-btn" onclick="showToast('Add Supabase URL + anon key in the dashboard source to connect Talent.')">Connect</button>
+          <button type="button" class="ic-btn" onclick="showToast('Paste your email-automation API key into EMAIL_API_KEY (see admin/SETUP.md), then add https://live.taboost.me to ALLOWED_ORIGINS on Render.')">Connect</button>
         `);
         chip.className = 'integration-chip';
         talentKPIs.summary = 'Not configured';
@@ -1284,91 +1316,63 @@
       const section = ensureSection('talentDivision', `
         <h2><span class="status-dot" id="talentDot" style="background:#FFB800;"></span>Talent</h2>
         <div id="talentBody">
-          <div class="skeleton-bar"></div>
-          <div class="skeleton-bar"></div>
-          <div class="skeleton-bar"></div>
+          <div class="placeholder-card" style="border-style:solid">Waking email service… (Render free tier can take ~50s on first load)</div>
         </div>
       `);
       section.className = 'division-card';
-
       const body = document.getElementById('talentBody');
 
-      try {
-
-        const headers = {
-          apikey: SUPABASE_ANON_KEY,
-          Authorization: 'Bearer ' + SUPABASE_ANON_KEY
-        };
-        const resp = await fetch(`${SUPABASE_URL}/rest/v1/email_logs?select=*&order=created_at.desc&limit=10`, { headers });
-
-        if (resp.status === 404 || !resp.ok) {
-          if (body) body.innerHTML = '<div class="placeholder-card">Email system offline</div>';
+      // operational-load = headline metrics; one retry covers cold-start / transient
+      let load;
+      try { load = await emailApi('/api/analytics/operational-load?days=7', 60000); }
+      catch (err) {
+        try { load = await emailApi('/api/analytics/operational-load?days=7', 60000); }
+        catch (e2) {
+          if (body) body.innerHTML = '<div class="placeholder-card">Email service unreachable. It may be asleep (Render free tier), the API key may be wrong, or CORS is blocking — add <strong>https://live.taboost.me</strong> to ALLOWED_ORIGINS on Render. Refresh to retry.</div>';
           setDot('talentDot', '#FF3B30');
-          talentKPIs.summary = 'Email system offline';
+          talentKPIs.summary = 'Email service unreachable';
           return;
         }
-
-        const parsed = await resp.json();
-        const rows = Array.isArray(parsed) ? parsed : [];
-        const now = new Date();
-        const todayKey = now.toDateString();
-        const sentRows = rows.filter((row) => String(row.status || '').toLowerCase() === 'sent');
-        const todayRows = rows.filter((row) => row.created_at && new Date(row.created_at).toDateString() === todayKey);
-        const draftsSentToday = sentRows.filter((row) => row.created_at && new Date(row.created_at).toDateString() === todayKey).length;
-        const total = rows.length;
-        const systemHealth = total ? `${((sentRows.length / total) * 100).toFixed(0)}%` : 'n/a';
-        const creators = new Set(rows.map((row) => row.creator || row.creator_name || row.talent || '').filter(Boolean));
-        let pendingDrafts = 0;
-
-        try {
-          const countResp = await fetch(`${SUPABASE_URL}/rest/v1/email_logs?select=count&status=eq.pending_review`, {
-            headers: {
-              ...headers,
-              Prefer: 'count=exact'
-            }
-          });
-          const range = countResp.headers.get('content-range') || '';
-          const match = range.match(/\/(\d+)$/);
-          pendingDrafts = match ? Number(match[1]) : 0;
-        } catch (err) {
-          pendingDrafts = 0;
-        }
-
-        const activity = rows.map((row) => {
-          const creator = row.creator || row.creator_name || row.talent || 'Unknown creator';
-          const action = row.action || row.subject || row.status || 'email activity';
-          const time = row.created_at ? new Date(row.created_at).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) : 'unknown time';
-          return `<li class="metric-row"><span>${escapeHTML(creator)} — ${escapeHTML(action)}</span><span>${escapeHTML(time)}</span></li>`;
-        }).join('');
-
-        if (body) {
-          body.innerHTML = `
-            <div class="kpi-grid">
-              <div class="kpi-card"><span>Processed Today</span><strong>${todayRows.length.toLocaleString()}</strong></div>
-              <div class="kpi-card"><span>Drafts Sent Today</span><strong>${draftsSentToday.toLocaleString()}</strong></div>
-              <div class="kpi-card"><span>Pending Review</span><strong style="color:${pendingDrafts > 0 ? '#FF6B00' : '#00C896'};">${pendingDrafts.toLocaleString()}</strong></div>
-              <div class="kpi-card"><span>System Health</span><strong>${systemHealth}</strong></div>
-              <div class="kpi-card"><span>Connected Talents</span><strong>${creators.size.toLocaleString()}</strong></div>
-            </div>
-            <ul class="activity-feed">${activity || '<li class="metric-row"><span>No recent email activity</span><span>--</span></li>'}</ul>
-            <div class="quick-ask">
-              <input id="talentAskInput" placeholder="Ask about email ops...">
-              <button onclick="askTalentGPT()">Ask</button>
-              <div id="talentAskAnswer"></div>
-            </div>
-          `;
-        }
-
-        talentKPIs.summary = `${todayRows.length} emails processed today, ${draftsSentToday} drafts sent, ${pendingDrafts} pending review, ${creators.size} connected talents, ${systemHealth} health`;
-        setDot('talentDot', '#00C896');
-
-        if (talentFeedTimer) clearInterval(talentFeedTimer);
-        talentFeedTimer = setInterval(loadTalentDivision, 60000);
-      } catch (err) {
-        if (body) body.innerHTML = '<div class="placeholder-card">Talent email data unavailable</div>';
-        setDot('talentDot', '#FF3B30');
-        talentKPIs.summary = 'Talent email data unavailable';
       }
+
+      let feed = null;
+      try { feed = await emailApi('/api/analytics/email-feed?limit=8', 30000); } catch (e) { feed = null; }
+
+      const total = Number(load.total_emails || 0);
+      const autoRate = Math.round(Number(load.automation_rate || 0) * 100);
+      const minsSaved = Number(load.estimated_minutes_saved || 0);
+      const savedLabel = minsSaved >= 60 ? (minsSaved / 60).toFixed(1) + 'h' : minsSaved + 'm';
+      const overrides = Number(load.human_overrides || 0);
+      const pollErrors = Number(load.poll_error_count || 0);
+
+      const items = Array.isArray(feed) ? feed : (feed && Array.isArray(feed.items) ? feed.items : []);
+      const activity = items.slice(0, 8).map((row) => {
+        const who = row.talent || row.creator || row.from_email || row.sender || 'email';
+        const what = row.subject || row.scenario || row.classification || row.action || 'activity';
+        const when = row.processed_at || row.received_at || row.created_at;
+        const time = when ? new Date(when).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+        return `<li class="metric-row"><span>${escapeHTML(String(who))} — ${escapeHTML(String(what))}</span><span>${escapeHTML(time)}</span></li>`;
+      }).join('');
+
+      if (body) {
+        body.innerHTML = `
+          <div class="kpi-grid">
+            <div class="kpi-card"><span class="kpi-label">Emails (7d)</span><span class="kpi-value">${fmtCompact(total)}</span></div>
+            <div class="kpi-card"><span class="kpi-label">Automation</span><span class="kpi-value">${autoRate}%</span></div>
+            <div class="kpi-card"><span class="kpi-label">Time Saved</span><span class="kpi-value">${savedLabel}</span></div>
+            <div class="kpi-card"><span class="kpi-label">Overrides</span><span class="kpi-value">${overrides.toLocaleString()}</span></div>
+            <div class="kpi-card"><span class="kpi-label">Poll Errors</span><span class="kpi-value" style="color:${pollErrors > 0 ? '#FF6B00' : '#00C896'}">${pollErrors.toLocaleString()}</span></div>
+          </div>
+          <ul class="metric-list" style="margin-top:12px">${activity || '<li class="metric-row"><span>No recent email activity</span><span>--</span></li>'}</ul>
+          <div class="division-links"><a class="division-link" href="${EMAIL_API_URL}/ops" target="_blank" rel="noopener">Open Email Ops →</a></div>
+        `;
+      }
+
+      talentKPIs.summary = `${total} emails in 7d, ${autoRate}% automated, ~${minsSaved} min saved, ${overrides} human overrides, ${pollErrors} poll errors.`;
+      setDot('talentDot', pollErrors > 0 ? '#FFB800' : '#00C896');
+
+      if (talentFeedTimer) clearInterval(talentFeedTimer);
+      talentFeedTimer = setInterval(loadTalentDivision, 120000);
     }
 
     async function askTalentGPT() {
