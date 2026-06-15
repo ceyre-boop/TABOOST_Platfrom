@@ -159,7 +159,7 @@
       font-size: 1rem;
       font-weight: 800;
       letter-spacing: 0.01em;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .status-dot {
@@ -174,7 +174,7 @@
 
     .kpi-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(98px, 1fr));
       gap: 8px;
       margin: 0 0 14px;
     }
@@ -201,11 +201,13 @@
     .kpi-value {
       display: block;
       color: var(--text);
-      font-size: 1.7rem;
+      font-size: clamp(0.95rem, 1.5vw, 1.4rem);
       font-weight: 800;
       letter-spacing: -0.01em;
       line-height: 1.05;
-      overflow-wrap: anywhere;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .kpi-sub {
@@ -283,7 +285,7 @@
       color: var(--text);
       font-size: 0.98rem;
       font-weight: 800;
-      text-transform: uppercase;
+      text-transform: none;
     }
 
     .starter-chips {
@@ -613,7 +615,7 @@
       font-size: 0.95rem;
       font-weight: 800;
       text-align: right;
-      overflow-wrap: anywhere;
+      white-space: nowrap;
     }
 
     .ai-note {
@@ -684,6 +686,169 @@
         align-items: flex-start;
       }
     }
+
+    /* ===== Header: greeting block + live status strip + sign-out icon ===== */
+    .header-status {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .hs-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 22px;
+      border-right: 1px solid var(--line);
+    }
+    .hs-item:last-child { border-right: 0; }
+    .hs-value {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 0.98rem; font-weight: 800; color: var(--text); white-space: nowrap;
+    }
+    .hs-label {
+      margin-top: 3px; font-size: 0.6rem; font-weight: 700; color: var(--secondary);
+      text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+    }
+    .signout-icon {
+      width: 40px; height: 40px; min-height: 40px; flex: 0 0 40px; padding: 0;
+      background: transparent; border: 1px solid var(--line-strong); border-radius: 10px;
+      color: var(--secondary);
+    }
+    .signout-icon:hover { background: rgba(255,0,80,0.1); border-color: var(--accent); color: var(--accent); transform: none; }
+
+    /* ===== CEO Scorecard — full-width 5-chip strip ===== */
+    .scorecard {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      margin: 0 0 20px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .score-chip {
+      padding: 18px 16px;
+      border-right: 1px solid var(--line);
+      min-width: 0;
+    }
+    .score-chip:last-child { border-right: 0; }
+    .score-num {
+      display: inline-block; max-width: 100%;
+      font-size: clamp(1.25rem, 2.5vw, 2.05rem);
+      font-weight: 800; color: var(--text); line-height: 1.05;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      padding-bottom: 6px; border-bottom: 3px solid var(--accent);
+    }
+    .score-label {
+      display: block; margin-top: 9px;
+      font-size: 0.66rem; font-weight: 700; color: var(--secondary);
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+    @media (max-width: 860px) {
+      .scorecard { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .score-chip:nth-child(odd) { border-right: 1px solid var(--line); }
+    }
+
+    /* ===== 3-column cockpit grid ===== */
+    .cockpit-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (min-width: 1100px) {
+      .cockpit-grid { grid-template-columns: minmax(0,1.05fr) minmax(0,1.05fr) minmax(330px, 0.9fr); }
+    }
+    .cockpit-col { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+
+    /* ===== GPT persistent rail (glassmorphism, TABOOST dark tones) ===== */
+    .gpt-rail {
+      align-self: start;
+      display: flex; flex-direction: column;
+      padding: 18px;
+      background: linear-gradient(160deg, rgba(28,28,32,0.72), rgba(15,15,17,0.74));
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .gpt-rail::before {
+      content: ""; position: absolute; inset: 0; border-radius: 14px; pointer-events: none;
+    }
+    @media (min-width: 1100px) {
+      .gpt-rail { position: sticky; top: 92px; max-height: calc(100vh - 110px); }
+    }
+    .gpt-rail h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 3px; font-size: 0.95rem; font-weight: 800; }
+    .gpt-rail .rail-sub { color: var(--secondary); font-size: 0.75rem; margin: 0 0 12px; }
+    .gpt-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .gpt-tag {
+      padding: 4px 9px; min-height: 0; background: var(--card-2); color: var(--secondary);
+      border: 1px solid var(--line-strong); border-radius: 6px; font-size: 0.71rem; font-weight: 700; cursor: pointer;
+    }
+    .gpt-tag:hover { border-color: var(--accent); color: var(--text); background: rgba(255,0,80,0.06); transform: none; }
+    .gpt-inputbar { display: flex; gap: 8px; align-items: flex-end; }
+    .gpt-inputbar textarea {
+      flex: 1; min-height: 44px; max-height: 130px; resize: none; padding: 11px 12px;
+      background: #0b0b0b; color: var(--text); border: 1px solid var(--line-strong); border-radius: 10px;
+      font-family: var(--font); font-size: 0.86rem; line-height: 1.4;
+    }
+    .gpt-inputbar textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(255,0,80,0.14); }
+    .gpt-send { width: 44px; height: 44px; min-height: 44px; flex: 0 0 44px; padding: 0; border-radius: 10px; font-size: 1.15rem; }
+    .gpt-rail #gptConversation { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; overflow-y: auto; }
+    .chat-bubble { padding: 10px 12px; border-radius: 10px; font-size: 0.83rem; max-width: 92%; animation: fadeIn .35s ease; }
+    .user-bubble { background: rgba(255,0,80,0.12); border: 1px solid rgba(255,0,80,0.25); align-self: flex-end; }
+    .assistant-message {
+      padding: 12px; background: var(--card-2); border: 1px solid var(--line);
+      border-left: 3px solid var(--green); border-radius: 10px; font-size: 0.83rem; animation: fadeIn .4s ease;
+    }
+    .assistant-message p { margin: 0 0 8px; }
+    .assistant-message h2, .assistant-message h3, .assistant-message h4 { margin: 6px 0; font-size: 0.86rem; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+    /* ===== Integration-required chip (Talent / Brand Deals collapsed states) ===== */
+    .division-card.compact { min-height: auto; }
+    .integration-chip {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 14px 16px; background: var(--card); border: 1px solid var(--line);
+      border-left: 3px solid var(--yellow); border-radius: 12px;
+    }
+    .integration-chip .ic-label { display: flex; align-items: center; gap: 9px; font-size: 0.86rem; font-weight: 800; color: var(--text); }
+    .integration-chip .ic-label small { color: var(--secondary); font-weight: 600; }
+    .integration-chip .ic-btn { min-height: 32px; padding: 6px 14px; font-size: 0.77rem; border-radius: 8px; }
+
+    /* ===== Sports — slim pill at very bottom ===== */
+    .sports-pill {
+      display: flex; align-items: center; gap: 10px; margin-top: 18px;
+      padding: 11px 18px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 999px; color: var(--secondary); font-size: 0.82rem; font-weight: 700;
+    }
+    .sports-pill .sp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: 0 0 8px; }
+    .sports-pill .sp-note { color: var(--muted); font-weight: 600; font-style: italic; margin-left: auto; }
+
+    /* ===== Discord compose window ===== */
+    .discord-compose-section {
+      margin-top: 18px; padding: 18px; background: var(--card);
+      border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow);
+    }
+    .discord-compose-section h2 { margin: 0 0 12px; font-size: 0.95rem; font-weight: 800; }
+    .discord-channel-tags { display: flex; gap: 6px; margin-bottom: 10px; flex-wrap: wrap; }
+    .dc-tag {
+      padding: 5px 12px; min-height: 0; background: var(--card-2); border: 1px solid var(--line-strong);
+      border-radius: 999px; font-size: 0.73rem; font-weight: 700; color: var(--secondary); cursor: pointer;
+    }
+    .dc-tag.active { background: rgba(255,0,80,0.12); border-color: var(--accent); color: var(--text); }
+    .dc-composer { display: flex; gap: 10px; align-items: flex-end; }
+    .dc-composer textarea {
+      flex: 1; min-height: 46px; max-height: 140px; resize: vertical; padding: 11px 12px;
+      background: #0b0b0b; color: var(--text); border: 1px solid var(--line-strong); border-radius: 10px;
+      font-family: var(--font); font-size: 0.88rem;
+    }
+    .dc-composer textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(255,0,80,0.14); }
+    .dc-send { flex: 0 0 auto; }
   </style>
 </head>
 <body>
@@ -696,38 +861,57 @@
         <p id="currentDate"></p>
       </div>
     </div>
-    <div id="deloreanQuote" class="delorean-quote"></div>
-    <button type="button" onclick="auth.signOut().then(()=>location.href='../firebase-login.html')">Sign Out</button>
+    <div class="header-status">
+      <div class="hs-item"><span class="hs-value" id="hsRevenue">—</span><span class="hs-label">Revenue · MTD</span></div>
+      <div class="hs-item"><span class="hs-value" id="hsCreators">—</span><span class="hs-label">Active Creators</span></div>
+      <div class="hs-item"><span class="hs-value"><span class="status-dot" id="hsSystemDot" style="background:var(--muted)"></span><span id="hsSystemText">Booting</span></span><span class="hs-label">System Status</span></div>
+    </div>
+    <button type="button" class="signout-icon" title="Sign Out" aria-label="Sign Out" onclick="auth.signOut().then(()=>location.href='../firebase-login.html')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+    </button>
   </header>
   <div id="dashboardContent" style="display:none;">
-    <div class="division-grid">
-      <section class="division-card" id="liveDivision">
-        <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>🔴 LIVE (US)</h2>
-        <div class="kpi-grid">
-          <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
-          <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
-          <div class="kpi-card" id="liveRevenue"><div class="skeleton-bar"></div></div>
-          <div class="kpi-card" id="liveScore"><div class="skeleton-bar"></div></div>
-          <div class="kpi-card" id="liveLevel5"><div class="skeleton-bar"></div></div>
-        </div>
-        <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
-        <div class="division-links">
-          <a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a>
-          <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
-        </div>
-      </section>
-      <section class="division-card" id="shopDivision">
-        <h2><span class="status-dot" id="shopDot"></span>🛍️ SHOP</h2>
-        <div id="shopBody">
-          <div class="skeleton-bar"></div>
-          <div class="skeleton-bar"></div>
-          <div class="skeleton-bar" style="width:80%"></div>
-        </div>
-        <div class="division-links">
-          <a class="division-link" href="../shop/index.html">View Shop Dashboard →</a>
-        </div>
-      </section>
-      <!-- DIVISION GRID CONTINUES IN PART 2 -->
+    <!-- CEO Scorecard — top, highest visual weight -->
+    <div class="scorecard" id="scorecard">
+      <div class="score-chip"><span class="score-num" id="scActiveCreators">—</span><span class="score-label">Active Creators</span></div>
+      <div class="score-chip"><span class="score-num" id="scDiamonds">—</span><span class="score-label">Total Diamonds</span></div>
+      <div class="score-chip"><span class="score-num" id="scRevenue">—</span><span class="score-label">Revenue MTD</span></div>
+      <div class="score-chip"><span class="score-num" id="scAvgScore">—</span><span class="score-label">Avg Score</span></div>
+      <div class="score-chip"><span class="score-num" id="scLevel5">—</span><span class="score-label">Level 5+ Count</span></div>
+    </div>
+
+    <!-- 3-column cockpit: Live/UK · Shop+integrations · GPT rail -->
+    <div class="cockpit-grid">
+      <div class="cockpit-col" id="leftColumn">
+        <section class="division-card" id="liveDivision">
+          <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · US &amp; UK</h2>
+          <div class="kpi-grid">
+            <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveRevenue"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveScore"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveLevel5"><div class="skeleton-bar"></div></div>
+          </div>
+          <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
+          <div class="division-links">
+            <a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a>
+            <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
+          </div>
+        </section>
+      </div>
+      <div class="cockpit-col" id="centerColumn">
+        <section class="division-card" id="shopDivision">
+          <h2><span class="status-dot" id="shopDot"></span>Shop</h2>
+          <div id="shopBody">
+            <div class="skeleton-bar"></div>
+            <div class="skeleton-bar"></div>
+            <div class="skeleton-bar" style="width:80%"></div>
+          </div>
+          <div class="division-links">
+            <a class="division-link" href="../shop/index.html">View Shop Dashboard →</a>
+          </div>
+        </section>
+        <!-- Talent + Brand Deals injected here (compact chip until credentials connected) -->
   <script>
     /*
       REPLACE_ME_OPENAI_KEY: Enables GPT-powered KPI insights, executive summaries, and command responses.
@@ -912,6 +1096,36 @@
       el.innerHTML = `<span class="kpi-label">${label}</span><span class="kpi-value">${value}</span>${sub ? `<span class="kpi-sub">${sub}</span>` : ''}`;
     }
 
+    function fmtCompact(n){
+      n = Number(n) || 0;
+      if (n >= 1e9) return (n / 1e9).toFixed(1) + 'B';
+      if (n >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+      if (n >= 1e3) return (n / 1e3).toFixed(0) + 'K';
+      return n.toLocaleString();
+    }
+
+    function setText(id, value){ const el = document.getElementById(id); if (el) el.textContent = value; }
+
+    // Fill the CEO scorecard + header status strip from the live division KPIs
+    function renderScorecard(){
+      const k = liveKPIs || {};
+      const money = (k.totalRevenue != null) ? '$' + Math.round(k.totalRevenue).toLocaleString() : '—';
+      setText('scActiveCreators', k.totalCreators != null ? k.totalCreators.toLocaleString() : '—');
+      setText('scDiamonds', k.totalDiamonds != null ? fmtCompact(k.totalDiamonds) : '—');
+      setText('scRevenue', money);
+      setText('scAvgScore', k.avgScore != null ? `${k.avgScore.toFixed(1)}/100` : '—');
+      setText('scLevel5', k.level5Count != null ? k.level5Count.toLocaleString() : '—');
+      setText('hsRevenue', (k.totalRevenue != null) ? '$' + fmtCompact(k.totalRevenue) : '—');
+      setText('hsCreators', k.totalCreators != null ? k.totalCreators.toLocaleString() : '—');
+    }
+
+    function setSystemStatus(ok){
+      const dot = document.getElementById('hsSystemDot');
+      const txt = document.getElementById('hsSystemText');
+      if (dot) dot.style.background = ok ? 'var(--green)' : 'var(--red)';
+      if (txt) txt.textContent = ok ? 'Operational' : 'Degraded';
+    }
+
     function renderAlertLines(targetId, text){
       const target = document.getElementById(targetId);
       if (!target) return;
@@ -937,9 +1151,9 @@
         liveKPIs = { totalCreators, totalDiamonds, totalRevenue, avgScore, level5Count };
 
         renderKPICard('liveCreators', 'Active Creators', totalCreators.toLocaleString());
-        renderKPICard('liveDiamonds', 'Diamonds', totalDiamonds.toLocaleString());
-        renderKPICard('liveRevenue', 'Revenue', `$${totalRevenue.toLocaleString(undefined, { maximumFractionDigits: 0 })}`);
-        renderKPICard('liveScore', 'Avg Score', `${avgScore.toFixed(1)}/100`);
+        renderKPICard('liveDiamonds', 'Diamonds', fmtCompact(totalDiamonds));
+        renderKPICard('liveRevenue', 'Revenue', `$${fmtCompact(totalRevenue)}`);
+        renderKPICard('liveScore', 'Avg Score', `${avgScore.toFixed(1)}`);
         renderKPICard('liveLevel5', 'Level 5+', level5Count.toLocaleString());
 
         const topByDiamonds = [...active]
@@ -958,6 +1172,9 @@
           'You are TABOOST CEO cockpit analyst. Return 3 concise executive alert bullets. Prefix urgent issues with CRITICAL, risks with WARNING, and wins with OK.',
           `Live US KPIs: ${totalCreators} active creators, ${totalDiamonds} diamonds, $${totalRevenue} revenue, ${avgScore.toFixed(1)}/100 average score, ${level5Count} level 5+ creators. Top 5 by diamonds: ${topByDiamonds || 'none'}. Bottom 5 by score: ${bottomByScore || 'none'}.`
         );
+        renderScorecard();
+        setSystemStatus(true);
+
         if (ai) {
           renderAlertLines('liveAlerts', ai);
         } else {
@@ -967,9 +1184,10 @@
       } catch (err) {
         const section = document.getElementById('liveDivision');
         if (section) {
-          section.innerHTML = '<h2><span class="status-dot" id="liveDot" style="background:#FF0050;width:8px;height:8px;border-radius:50%;"></span>🔴 LIVE (US)</h2><div class="error-card">Live data could not be loaded from ../data/current.csv.</div><div class="division-links"><a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a><a class="division-link" href="../uk/index.html">View UK Dashboard →</a></div>';
+          section.innerHTML = '<h2><span class="status-dot" id="liveDot" style="background:#FF0050;width:8px;height:8px;border-radius:50%;"></span>Live · US &amp; UK</h2><div class="error-card">Live data could not be loaded from ../data/current.csv.</div><div class="division-links"><a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a><a class="division-link" href="../uk/index.html">View UK Dashboard →</a></div>';
         }
         setDot('liveDot', '#FF0050');
+        setSystemStatus(false);
       }
     }
 
@@ -1018,11 +1236,11 @@
     function ensureSection(id, innerHTML) {
       let s = document.getElementById(id);
       if (!s) {
-        const grid = document.querySelector('#dashboardContent .division-grid');
+        const col = document.getElementById('centerColumn') || document.querySelector('#dashboardContent .cockpit-grid');
         s = document.createElement('section');
         s.className = 'division-card';
         s.id = id;
-        if (grid) grid.appendChild(s);
+        if (col) col.appendChild(s);
         else document.getElementById('dashboardContent')?.appendChild(s);
       }
       s.innerHTML = innerHTML;
@@ -1052,24 +1270,30 @@
     let talentFeedTimer = null;
 
     async function loadTalentDivision() {
-      ensureSection('talentDivision', `
-        <h2><span class="status-dot" id="talentDot" style="background:#FFB800;"></span>📧 TALENT</h2>
+      // Collapsed integration chip until Supabase credentials are connected
+      if (SUPABASE_URL.startsWith('REPLACE_ME') || SUPABASE_ANON_KEY.startsWith('REPLACE_ME')) {
+        const chip = ensureSection('talentDivision', `
+          <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Talent <small>· email ops — integration required</small></span>
+          <button type="button" class="ic-btn" onclick="showToast('Add Supabase URL + anon key in the dashboard source to connect Talent.')">Connect</button>
+        `);
+        chip.className = 'integration-chip';
+        talentKPIs.summary = 'Not configured';
+        return;
+      }
+
+      const section = ensureSection('talentDivision', `
+        <h2><span class="status-dot" id="talentDot" style="background:#FFB800;"></span>Talent</h2>
         <div id="talentBody">
           <div class="skeleton-bar"></div>
           <div class="skeleton-bar"></div>
           <div class="skeleton-bar"></div>
         </div>
       `);
+      section.className = 'division-card';
 
       const body = document.getElementById('talentBody');
 
       try {
-        if (SUPABASE_URL.startsWith('REPLACE_ME') || SUPABASE_ANON_KEY.startsWith('REPLACE_ME')) {
-          if (body) body.innerHTML = '<div class="placeholder-card">Email system credentials needed</div>';
-          setDot('talentDot', '#FFB800');
-          talentKPIs.summary = 'Not configured';
-          return;
-        }
 
         const headers = {
           apikey: SUPABASE_ANON_KEY,
@@ -1178,29 +1402,30 @@
     }
 
     async function loadMondayDivision() {
-      ensureSection('mondayDivision', `
-        <h2><span class="status-dot" id="mondayDot" style="background:#FFB800;"></span>📅 BRAND DEALS</h2>
+      // Collapsed integration chip until Monday.com credentials are connected
+      if (MONDAY_TOKEN.startsWith('REPLACE_ME') || MONDAY_BOARD_ID.startsWith('REPLACE_ME')) {
+        const chip = ensureSection('mondayDivision', `
+          <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Brand Deals <small>· Monday.com — integration required</small></span>
+          <button type="button" class="ic-btn" onclick="showToast('Add Monday.com token + board ID in the dashboard source to connect Brand Deals.')">Connect</button>
+        `);
+        chip.className = 'integration-chip';
+        mondayKPIs.summary = 'Not configured';
+        return;
+      }
+
+      const section = ensureSection('mondayDivision', `
+        <h2><span class="status-dot" id="mondayDot" style="background:#FFB800;"></span>Brand Deals</h2>
         <div id="mondayBody">
           <div class="skeleton-bar"></div>
           <div class="skeleton-bar"></div>
           <div class="skeleton-bar"></div>
         </div>
       `);
+      section.className = 'division-card';
 
       const body = document.getElementById('mondayBody');
 
       try {
-        if (MONDAY_TOKEN.startsWith('REPLACE_ME') || MONDAY_BOARD_ID.startsWith('REPLACE_ME')) {
-          if (body) {
-            body.innerHTML = `
-              <div class="placeholder-card">Monday.com API token required</div>
-              <a href="https://monday.com" target="_blank" rel="noopener">Create New Deal</a>
-            `;
-          }
-          setDot('mondayDot', '#FFB800');
-          mondayKPIs.summary = 'Not configured';
-          return;
-        }
 
         const boardQuery = `{ boards(ids: ${MONDAY_BOARD_ID}) { items_page { items { id name column_values { id text } } } } }`;
         const res = await queryMonday(boardQuery);
@@ -1308,9 +1533,8 @@
       }
     }
 
-    function renderSports() {
-      ensureSection('sportsDivision', `<div class="placeholder-card"><div style="font-size:3rem;">🏆</div><h3>TABOOST Sports</h3><p style="color:#888;">Coming Soon — In Development</p><p style="color:#FF0050; font-size:0.85rem; margin-top:8px; font-style:italic;">"This division is 30 minutes in the future."</p></div>`);
-    }
+    // Sports is now a static slim pill at the bottom of the page (see #sportsDivision markup).
+    function renderSports() { /* no-op: pill is static */ }
 
     function fillGPTInput(text) {
       const ta = document.getElementById('gptInput');
@@ -1465,8 +1689,15 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
       }
     }
 
+    let selectedDiscordChannel = 'announcements';
+    function selectDiscordChannel(channel, el){
+      selectedDiscordChannel = channel;
+      document.querySelectorAll('#discordChannelTags .dc-tag').forEach(b => b.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
     function previewDiscord() {
-      const ch = document.getElementById('discordChannel')?.value;
+      const ch = selectedDiscordChannel;
       const msg = document.getElementById('discordMessage')?.value?.trim();
       if (!msg) {
         showToast('Write a message first', 'error');
@@ -1484,7 +1715,7 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
     }
 
     function confirmDiscord() {
-      const ch = document.getElementById('discordChannel')?.value;
+      const ch = selectedDiscordChannel;
       const msg = document.getElementById('discordMessage')?.value?.trim();
       sendDiscordMessage(ch, msg);
       document.getElementById('discordPreview').style.display = 'none';
@@ -1519,44 +1750,54 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
     });
     renderSports();
   </script>
-        </div> <!-- /division-grid -->
+        </div> <!-- /centerColumn -->
 
-        <section id="gptCommandCenter" class="gpt-center-section">
-          <h2>🤖 GPT COMMAND CENTER</h2>
-          <p style="color:#888">Ask Marco anything about the agency. Context from all active divisions is included.</p>
-          <div class="starter-chips">
-            <button onclick="fillGPTInput('Who should I focus on this week?')">Who should I focus on this week?</button>
-            <button onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday morning brief</button>
-            <button onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5 performers</button>
+        <aside class="gpt-rail" id="gptCommandCenter">
+          <h2>Command Center</h2>
+          <p class="rail-sub">Ask anything — context from all active divisions is included.</p>
+          <div class="gpt-tags">
+            <button type="button" class="gpt-tag" onclick="fillGPTInput('Who should I focus on this week?')">Focus this week</button>
+            <button type="button" class="gpt-tag" onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday brief</button>
+            <button type="button" class="gpt-tag" onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5</button>
+            <button type="button" class="gpt-tag" style="margin-left:auto" onclick="clearGPTConversation()">Clear</button>
           </div>
-          <textarea id="gptInput" placeholder="Ask about your agency..."></textarea>
-          <div style="display:flex;gap:8px;margin-top:8px;">
-            <button id="gptSubmitBtn" onclick="submitGPTCommand()">Ask GPT</button>
-            <button onclick="clearGPTConversation()">Clear</button>
+          <div class="gpt-inputbar">
+            <textarea id="gptInput" rows="1" placeholder="Ask about your agency..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
+            <button type="button" class="gpt-send" id="gptSubmitBtn" onclick="submitGPTCommand()" title="Send" aria-label="Send">↑</button>
           </div>
           <div id="gptConversation"></div>
-        </section>
+        </aside>
+      </div> <!-- /cockpit-grid -->
 
-        <section id="discordQuickPost" class="gpt-center-section">
-          <h2>📨 DISCORD QUICK POST</h2>
-          <div id="discordCompose">
-            <select id="discordChannel">
-              <option value="announcements">#announcements</option>
-              <option value="managers">#managers</option>
-              <option value="talent-general">#talent-general</option>
-            </select>
+      <section id="discordQuickPost" class="discord-compose-section">
+        <h2>Discord Quick Post</h2>
+        <div id="discordCompose">
+          <div class="discord-channel-tags" id="discordChannelTags">
+            <button type="button" class="dc-tag active" data-channel="announcements" onclick="selectDiscordChannel('announcements',this)">#announcements</button>
+            <button type="button" class="dc-tag" data-channel="managers" onclick="selectDiscordChannel('managers',this)">#managers</button>
+            <button type="button" class="dc-tag" data-channel="talent-general" onclick="selectDiscordChannel('talent-general',this)">#talent-general</button>
+          </div>
+          <div class="dc-composer">
             <textarea id="discordMessage" placeholder="Compose a message for the team..."></textarea>
-            <button onclick="previewDiscord()">Preview →</button>
+            <button type="button" class="dc-send" onclick="previewDiscord()">Preview →</button>
           </div>
-          <div id="discordPreview" style="display:none;">
-            <div class="discord-preview-card" style="background:#2b2d31;border-left:4px solid #5865F2;border-radius:6px;color:#f2f3f5;padding:14px;margin:12px 0;">
-              <strong>TABOOST HQ</strong> → <span id="discordPreviewChannel"></span>
-              <p id="discordPreviewBody"></p>
-            </div>
-            <button onclick="confirmDiscord()">Confirm Send</button>
-            <button onclick="editDiscord()">Edit</button>
+        </div>
+        <div id="discordPreview" style="display:none;">
+          <div class="discord-preview-card" style="background:#2b2d31;border-left:4px solid #5865F2;border-radius:6px;color:#f2f3f5;padding:14px;margin:12px 0;">
+            <strong>TABOOST HQ</strong> → <span id="discordPreviewChannel"></span>
+            <p id="discordPreviewBody"></p>
           </div>
-        </section>
-      </div> <!-- /dashboardContent -->
+          <button type="button" onclick="confirmDiscord()">Confirm Send</button>
+          <button type="button" class="secondary" onclick="editDiscord()">Edit</button>
+        </div>
+      </section>
+
+      <!-- Sports — slim pill at very bottom -->
+      <div class="sports-pill" id="sportsDivision">
+        <span class="sp-dot"></span>
+        <span>Sports Division — In Development</span>
+        <span class="sp-note">30 minutes in the future.</span>
+      </div>
+    </div> <!-- /dashboardContent -->
     </body>
   </html>
