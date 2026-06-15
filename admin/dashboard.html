@@ -6,7 +6,7 @@
   <title>TABOOST CEO Cockpit</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
@@ -25,7 +25,9 @@
       --muted: #5f5f5f;
       --line: #242424;
       --line-strong: #343434;
-      --font: "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font: "DM Sans", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --fd: "Bebas Neue", "Manrope", sans-serif;   /* big display stat numbers (live-site look) */
+      --fm: "DM Mono", ui-monospace, "SFMono-Regular", monospace; /* mono labels / ticker / timestamps */
       --shadow: 0 4px 20px rgba(0,0,0,0.4);
     }
 
@@ -192,8 +194,10 @@
       display: block;
       margin-bottom: 7px;
       color: var(--secondary);
-      font-size: 0.68rem;
-      font-weight: 800;
+      font-family: var(--fm);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
       line-height: 1.1;
       text-transform: uppercase;
     }
@@ -201,10 +205,11 @@
     .kpi-value {
       display: block;
       color: var(--text);
-      font-size: clamp(0.95rem, 1.5vw, 1.4rem);
-      font-weight: 800;
-      letter-spacing: -0.01em;
-      line-height: 1.05;
+      font-family: var(--fd);
+      font-size: clamp(1.5rem, 2.4vw, 2.1rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      line-height: 1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -706,11 +711,11 @@
     .hs-item:last-child { border-right: 0; }
     .hs-value {
       display: flex; align-items: center; gap: 7px;
-      font-size: 0.98rem; font-weight: 800; color: var(--text); white-space: nowrap;
+      font-family: var(--fd); font-size: 1.4rem; font-weight: 400; letter-spacing: 0.02em; color: var(--text); white-space: nowrap;
     }
     .hs-label {
-      margin-top: 3px; font-size: 0.6rem; font-weight: 700; color: var(--secondary);
-      text-transform: uppercase; letter-spacing: 0.05em; white-space: nowrap;
+      margin-top: 1px; font-family: var(--fm); font-size: 0.58rem; font-weight: 500; color: var(--secondary);
+      text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
     }
     .signout-icon {
       width: 40px; height: 40px; min-height: 40px; flex: 0 0 40px; padding: 0;
@@ -737,15 +742,17 @@
     .score-chip:last-child { border-right: 0; }
     .score-num {
       display: inline-block; max-width: 100%;
-      font-size: clamp(1.25rem, 2.5vw, 2.05rem);
-      font-weight: 800; color: var(--text); line-height: 1.05;
+      font-family: var(--fd);
+      font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+      font-weight: 400; letter-spacing: 0.02em; color: var(--text); line-height: 1;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
       padding-bottom: 6px; border-bottom: 3px solid var(--accent);
     }
     .score-label {
       display: block; margin-top: 9px;
-      font-size: 0.66rem; font-weight: 700; color: var(--secondary);
-      text-transform: uppercase; letter-spacing: 0.05em;
+      font-family: var(--fm);
+      font-size: 0.62rem; font-weight: 500; color: var(--secondary);
+      text-transform: uppercase; letter-spacing: 0.06em;
     }
     @media (max-width: 860px) {
       .scorecard { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -844,6 +851,49 @@
     }
     .dc-composer textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(255,0,80,0.14); }
     .dc-send { flex: 0 0 auto; }
+    /* ===== Command Center polish ===== */
+    .gpt-rail .rail-head { display: flex; align-items: center; gap: 8px; margin-bottom: 3px; }
+    .gpt-rail .rail-head h2 { margin: 0; }
+    .rail-spark { color: var(--accent); font-size: 0.95rem; }
+    .rail-badge { font-family: var(--fm); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.1em; color: var(--accent); border: 1px solid rgba(255,0,80,0.4); border-radius: 999px; padding: 2px 7px; margin-left: auto; }
+    .gpt-connect { margin: 0 0 12px; padding: 14px; text-align: center; background: linear-gradient(160deg, rgba(255,0,80,0.09), rgba(20,20,22,0.4)); border: 1px solid rgba(255,0,80,0.25); border-radius: 12px; }
+    .gpt-connect-title { font-weight: 800; font-size: 0.92rem; margin-bottom: 3px; }
+    .gpt-connect-sub { color: var(--secondary); font-size: 0.76rem; margin-bottom: 10px; }
+    .gpt-inputbar textarea:disabled, .gpt-send:disabled { opacity: 0.45; cursor: not-allowed; }
+    .assistant-message.thinking { padding: 14px; }
+    .assistant-message.thinking .dots { display: flex; gap: 5px; }
+    .assistant-message.thinking .dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: thinkdot 1.2s infinite ease-in-out; }
+    .assistant-message.thinking .dots span:nth-child(2) { animation-delay: 0.2s; }
+    .assistant-message.thinking .dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes thinkdot { 0%,80%,100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.1); opacity: 1; } }
+
+    /* ===== Live ticker (live-site aesthetic) ===== */
+    .cockpit-ticker { overflow: hidden; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+    .cockpit-ticker .ticker-track { display: inline-flex; white-space: nowrap; padding: 9px 0; animation: cockpitTicker 42s linear infinite; }
+    .cockpit-ticker:hover .ticker-track { animation-play-state: paused; }
+    .cockpit-ticker .tk-item { font-family: var(--fm); font-size: 0.72rem; color: var(--secondary); padding: 0 24px; border-right: 1px solid var(--line); letter-spacing: 0.02em; }
+    .cockpit-ticker .tk-item strong { color: var(--accent); font-weight: 500; margin-right: 6px; }
+    @keyframes cockpitTicker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== KPI card flourish (live-site corner accent) ===== */
+    .kpi-card { position: relative; }
+    .kpi-card::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0.5; }
+
+    /* ===== Settings modal ===== */
+    .modal-overlay { position: fixed; inset: 0; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px; background: rgba(0,0,0,0.66); backdrop-filter: blur(4px); }
+    .modal-card { width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; padding: 22px; background: var(--card); border: 1px solid var(--line-strong); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+    .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    .modal-head h2 { margin: 0; font-size: 1.1rem; font-weight: 800; }
+    .modal-x { width: 32px; height: 32px; min-height: 32px; padding: 0; background: transparent; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--secondary); font-size: 1.2rem; line-height: 1; }
+    .modal-x:hover { color: var(--text); border-color: var(--accent); transform: none; }
+    .modal-sub { color: var(--secondary); font-size: 0.8rem; margin: 0 0 16px; }
+    .set-label { display: flex; align-items: center; gap: 8px; margin: 14px 0 4px; font-size: 0.78rem; font-weight: 800; color: var(--text); text-transform: none; }
+    .set-state { font-size: 0.66rem; font-weight: 700; color: var(--secondary); padding: 2px 7px; border: 1px solid var(--line-strong); border-radius: 999px; }
+    .set-state.on { color: var(--green); border-color: rgba(0,200,150,0.4); background: rgba(0,200,150,0.08); }
+    .set-help { margin: 0 0 6px; color: var(--muted); font-size: 0.72rem; }
+    .set-input { width: 100%; margin-bottom: 8px; padding: 10px 12px; background: #0b0b0b; color: var(--text); border: 1px solid var(--line-strong); border-radius: 9px; font-family: var(--font); font-size: 0.85rem; }
+    .set-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,0,80,0.14); }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
   </style>
 </head>
 <body>
@@ -861,11 +911,49 @@
       <div class="hs-item"><span class="hs-value" id="hsCreators">—</span><span class="hs-label">Active Creators</span></div>
       <div class="hs-item"><span class="hs-value"><span class="status-dot" id="hsSystemDot" style="background:var(--muted)"></span><span id="hsSystemText">Booting</span></span><span class="hs-label">System Status</span></div>
     </div>
+    <button type="button" class="signout-icon" title="Settings" aria-label="Settings" onclick="openSettings()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
     <button type="button" class="signout-icon" title="Sign Out" aria-label="Sign Out" onclick="auth.signOut().then(()=>location.href='../firebase-login.html')">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
     </button>
   </header>
+
+  <!-- Settings modal — Marco sets API keys here (saved to Firestore admin-only) -->
+  <div id="settingsOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeSettings()">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="Settings">
+      <div class="modal-head">
+        <h2>Connections</h2>
+        <button type="button" class="modal-x" onclick="closeSettings()" aria-label="Close">×</button>
+      </div>
+      <p class="modal-sub">Keys are stored privately in your account (Firestore, admin-only) — never in the page source. They sync across your devices.</p>
+
+      <label class="set-label">OpenAI API key <span class="set-state" id="stOpenai">not set</span></label>
+      <p class="set-help">Powers the Command Center + AI insight notes. Get one at platform.openai.com/api-keys</p>
+      <input type="password" id="setOpenai" class="set-input" placeholder="sk-..." autocomplete="off">
+
+      <label class="set-label">Monday.com API token <span class="set-state" id="stMonday">not set</span></label>
+      <p class="set-help">Brand Deals pipeline. Monday → avatar → Developers → My access tokens</p>
+      <input type="password" id="setMondayToken" class="set-input" placeholder="eyJhbGci..." autocomplete="off">
+      <label class="set-label">Monday board ID</label>
+      <input type="text" id="setMondayBoard" class="set-input" placeholder="1234567890" autocomplete="off">
+
+      <label class="set-label">Discord webhooks <span class="set-state" id="stDiscord">not set</span></label>
+      <p class="set-help">Optional — for Quick Post. Discord → Server Settings → Integrations → Webhooks</p>
+      <input type="password" id="setDiscordAnn" class="set-input" placeholder="#announcements webhook URL" autocomplete="off">
+      <input type="password" id="setDiscordMgr" class="set-input" placeholder="#managers webhook URL" autocomplete="off">
+      <input type="password" id="setDiscordTal" class="set-input" placeholder="#talent-general webhook URL" autocomplete="off">
+
+      <div class="modal-actions">
+        <button type="button" class="secondary" onclick="closeSettings()">Cancel</button>
+        <button type="button" id="setSaveBtn" onclick="saveSettings()">Save &amp; connect</button>
+      </div>
+    </div>
+  </div>
   <div id="dashboardContent" style="display:none;">
+    <!-- Live ticker (matches the live ops dashboard) -->
+    <div class="cockpit-ticker" id="cockpitTicker"></div>
+
     <!-- CEO Scorecard — top, highest visual weight -->
     <div class="scorecard" id="scorecard">
       <div class="score-chip"><span class="score-num" id="scActiveCreators">—</span><span class="score-label">Active Creators</span></div>
@@ -932,24 +1020,29 @@
     firebase.initializeApp(firebaseConfig); const auth = firebase.auth(); const db = firebase.firestore();
 
     // ════════════════════════════════════════════════════════════════════
-    //  CONFIG — fill these in to activate each division. Full steps: admin/SETUP.md
-    //  ⚠ This file is PUBLIC on GitHub Pages — anything here is readable by anyone.
-    //     Use read-only / low-scope keys and rotate them if leaked.
+    //  CONFIG — set keys from the dashboard (⚙ Settings, top-right). They save to a
+    //  Firestore admin-only doc (marco_config/keys) — NOT to this public file.
+    //  Shop + Live US/UK need no keys (public data).
     // ════════════════════════════════════════════════════════════════════
-    // GPT Command Center (+ learning memory) + AI insight notes → platform.openai.com/api-keys
-    const OPENAI_KEY = 'REPLACE_ME_OPENAI_KEY';
-    // BRAND DEALS division → Monday.com (monday.com → avatar → Developers → API token)
-    const MONDAY_TOKEN = 'REPLACE_ME_MONDAY_TOKEN';
-    const MONDAY_BOARD_ID = 'REPLACE_ME_MONDAY_BOARD_ID';
-    // DISCORD Quick Post → channel webhook URLs (Server Settings → Integrations → Webhooks)
-    const DISCORD_WEBHOOKS = {
-      announcements: 'REPLACE_ME_DISCORD_ANNOUNCEMENTS',
-      managers: 'REPLACE_ME_DISCORD_MANAGERS',
-      'talent-general': 'REPLACE_ME_DISCORD_TALENT_GENERAL'
-    };
-    // SHOP division needs NO key — it reads public data from shop.taboost.me.
     const SHOP_TOTALS_URL = 'https://shop.taboost.me/data/shop/totals.csv';
     const SHOP_TOTALS_FALLBACK = 'https://raw.githubusercontent.com/ceyre-boop/TABOOST-Shop/main/data/shop/totals.csv';
+
+    // Runtime config loaded from Firestore (marco_config/keys). Filled by loadConfig().
+    let appCfg = { openaiKey: '', mondayToken: '', mondayBoardId: '', discord: { announcements: '', managers: '', 'talent-general': '' } };
+    const configDoc = () => db.collection('marco_config').doc('keys');
+    async function loadConfig(){
+      try {
+        const snap = await configDoc().get();
+        const d = snap.exists ? (snap.data() || {}) : {};
+        appCfg = {
+          openaiKey: d.openaiKey || '',
+          mondayToken: d.mondayToken || '',
+          mondayBoardId: d.mondayBoardId || '',
+          discord: Object.assign({ announcements: '', managers: '', 'talent-general': '' }, d.discord || {})
+        };
+      } catch (err) { /* missing doc / rules not published → stays empty */ }
+    }
+    const hasKey = v => !!(v && !String(v).startsWith('REPLACE_ME'));
     // ════════════════════════════════════════════════════════════════════
 
     let liveKPIs = {}; let shopKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
@@ -1021,14 +1114,59 @@
     }
     updateHeaderContext();
 
+    // ── Settings modal — Marco's API keys, saved to Firestore (marco_config/keys) ──
+    function openSettings(){
+      const el = document.getElementById('settingsOverlay');
+      if (!el) return;
+      const v = (id, val) => { const i = document.getElementById(id); if (i) i.value = hasKey(val) ? val : ''; };
+      v('setOpenai', appCfg.openaiKey);
+      v('setMondayToken', appCfg.mondayToken);
+      const mb = document.getElementById('setMondayBoard'); if (mb) mb.value = appCfg.mondayBoardId || '';
+      v('setDiscordAnn', appCfg.discord.announcements);
+      v('setDiscordMgr', appCfg.discord.managers);
+      v('setDiscordTal', appCfg.discord['talent-general']);
+      renderSettingsState();
+      el.style.display = 'flex';
+    }
+    function closeSettings(){ const el = document.getElementById('settingsOverlay'); if (el) el.style.display = 'none'; }
+    function renderSettingsState(){
+      const set = (id, ok) => { const e = document.getElementById(id); if (e) { e.textContent = ok ? 'set ✓' : 'not set'; e.className = 'set-state ' + (ok ? 'on' : ''); } };
+      set('stOpenai', hasKey(appCfg.openaiKey));
+      set('stMonday', hasKey(appCfg.mondayToken) && hasKey(appCfg.mondayBoardId));
+      set('stDiscord', hasKey(appCfg.discord.announcements) || hasKey(appCfg.discord.managers) || hasKey(appCfg.discord['talent-general']));
+      if (typeof updateGptKeyState === 'function') updateGptKeyState();
+    }
+    async function saveSettings(){
+      const val = id => (document.getElementById(id)?.value || '').trim();
+      appCfg = {
+        openaiKey: val('setOpenai'),
+        mondayToken: val('setMondayToken'),
+        mondayBoardId: val('setMondayBoard'),
+        discord: { announcements: val('setDiscordAnn'), managers: val('setDiscordMgr'), 'talent-general': val('setDiscordTal') }
+      };
+      const btn = document.getElementById('setSaveBtn');
+      if (btn) { btn.disabled = true; btn.textContent = 'Saving…'; }
+      try {
+        await configDoc().set({ ...appCfg, updatedAt: new Date().toISOString() }, { merge: true });
+        showToast('Connections saved');
+        renderSettingsState();
+        closeSettings();
+        if (typeof loadAllDivisions === 'function') loadAllDivisions();
+      } catch (err) {
+        showToast('Save failed — publish the marco_config Firestore rule (see SETUP.md)', 'error');
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Save & connect'; }
+      }
+    }
+
     async function callGPT(systemPrompt, userPrompt){
       try {
-        if (!OPENAI_KEY || OPENAI_KEY === 'REPLACE_ME_OPENAI_KEY') return null;
+        if (!hasKey(appCfg.openaiKey)) return null;
         const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${OPENAI_KEY}`
+            'Authorization': `Bearer ${appCfg.openaiKey}`
           },
           body: JSON.stringify({
             model: 'gpt-4o',
@@ -1110,6 +1248,8 @@
         }
         const content = document.getElementById('dashboardContent');
         if (content) content.style.display = 'block';
+        await loadConfig();      // API keys from Firestore (marco_config) — not the public source
+        renderSettingsState();
         loadMemory();            // GPT learning memory (Firestore)
         await loadAllDivisions();
       } catch (err) {
@@ -1118,7 +1258,22 @@
       }
     });
 
-    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); }
+    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); buildCockpitTicker(); }
+
+    // Scrolling live ticker (Live US/UK + Shop) — matches the live ops dashboard
+    function buildCockpitTicker(){
+      const t = document.getElementById('cockpitTicker'); if (!t) return;
+      const us = regionKPIs.us, uk = regionKPIs.uk, sh = shopKPIs;
+      const items = [];
+      if (us) items.push(`<strong>LIVE · US</strong> ${us.totalCreators} creators · ${fmtCompact(us.totalDiamonds)} 💎 · $${fmtCompact(us.totalRevenue)}`);
+      if (uk) items.push(`<strong>LIVE · UK</strong> ${uk.totalCreators} creators · ${fmtCompact(uk.totalDiamonds)} 💎 · $${fmtCompact(uk.totalRevenue)}`);
+      if (sh && sh.gmv) items.push(`<strong>SHOP</strong> $${fmtCompact(sh.gmv)} GMV · ${sh.shopCreators} creators · $${fmtCompact(sh.commission)} comm`);
+      if (us || uk) items.push(`<strong>AGENCY</strong> ${((us?.totalCreators)||0)+((uk?.totalCreators)||0)} active creators`);
+      if (!items.length) { t.style.display = 'none'; return; }
+      t.style.display = 'block';
+      const row = items.map(it => `<span class="tk-item">${it}</span>`).join('');
+      t.innerHTML = `<div class="ticker-track">${row}${row}</div>`;
+    }
 
     function renderKPICard(id, label, value, sub=''){
       const el = document.getElementById(id);
@@ -1305,7 +1460,7 @@
         const resp = await fetch('https://api.monday.com/v2', {
           method: 'POST',
           headers: {
-            Authorization: MONDAY_TOKEN,
+            Authorization: appCfg.mondayToken,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({ query })
@@ -1318,16 +1473,17 @@
     }
 
     async function loadMondayDivision() {
-      // Collapsed integration chip until Monday.com credentials are connected
-      if (MONDAY_TOKEN.startsWith('REPLACE_ME') || MONDAY_BOARD_ID.startsWith('REPLACE_ME')) {
+      // Collapsed integration chip until Monday.com credentials are connected (set via ⚙ Settings)
+      if (!hasKey(appCfg.mondayToken) || !hasKey(appCfg.mondayBoardId)) {
         const chip = ensureSection('mondayDivision', `
-          <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Brand Deals <small>· Monday.com — integration required</small></span>
-          <button type="button" class="ic-btn" onclick="showToast('Add Monday.com token + board ID in the dashboard source to connect Brand Deals.')">Connect</button>
+          <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Brand Deals <small>· Monday.com — not connected</small></span>
+          <button type="button" class="ic-btn" onclick="openSettings()">Connect</button>
         `);
         chip.className = 'integration-chip';
         mondayKPIs.summary = 'Not configured';
         return;
       }
+      const MONDAY_BOARD_ID = appCfg.mondayBoardId;
 
       const section = ensureSection('mondayDivision', `
         <h2><span class="status-dot" id="mondayDot" style="background:#FFB800;"></span>Brand Deals</h2>
@@ -1596,22 +1752,42 @@ When Marco states a preference, decision, priority, or fact about the agency, re
       showToast('Memory cleared');
     }
 
+    // Toggle the "Connect OpenAI" CTA based on whether a key is set
+    function updateGptKeyState(){
+      const connect = document.getElementById('gptConnect');
+      const has = hasKey(appCfg.openaiKey);
+      if (connect) connect.style.display = has ? 'none' : 'block';
+      ['gptInput', 'gptSubmitBtn'].forEach(id => { const e = document.getElementById(id); if (e) e.disabled = !has; });
+    }
+
+    function showThinking(){
+      const c = document.getElementById('gptConversation');
+      if (!c) return null;
+      const el = document.createElement('div');
+      el.className = 'assistant-message thinking';
+      el.innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
+      c.appendChild(el);
+      c.scrollTop = c.scrollHeight;
+      return el;
+    }
+
     async function submitGPTCommand() {
+      if (!hasKey(appCfg.openaiKey)) { openSettings(); return; }
       const input = document.getElementById('gptInput');
       const q = input?.value?.trim();
       if (!q) return;
       const btn = document.getElementById('gptSubmitBtn');
+      let thinking = null;
 
       try {
-        if (btn) {
-          btn.disabled = true;
-          btn.textContent = '…';
-        }
+        if (btn) { btn.disabled = true; btn.textContent = '…'; }
         commandMessages.push({ role: 'user', content: q });
         appendConversation('user', q);
         input.value = '';
+        thinking = showThinking();
         const ans = await callGPT(buildCommandCenterSystemPrompt(), q);
-        const text = ans || 'Connect OPENAI_KEY to enable the Command Center.';
+        if (thinking) thinking.remove();
+        const text = ans || 'Connect OpenAI in ⚙ Settings to enable the Command Center.';
         commandMessages.push({ role: 'assistant', content: text });
         lastGPTResponse = text;
         appendConversation('assistant', text);
@@ -1624,12 +1800,10 @@ When Marco states a preference, decision, priority, or fact about the agency, re
           learnFromExchange(q, text).then(() => saveMemory());
         }
       } catch (err) {
+        if (thinking) thinking.remove();
         appendConversation('assistant', 'Command Center is unavailable right now.');
       } finally {
-        if (btn) {
-          btn.disabled = false;
-          btn.textContent = '↑';
-        }
+        if (btn) { btn.disabled = false; btn.textContent = '↑'; }
       }
     }
 
@@ -1715,9 +1889,10 @@ When Marco states a preference, decision, priority, or fact about the agency, re
 
     async function sendDiscordMessage(channel, message) {
       try {
-        const webhook = DISCORD_WEBHOOKS[channel];
-        if (!webhook || webhook.startsWith('REPLACE_ME')) {
-          alert('Discord webhook not configured for #' + channel);
+        const webhook = (appCfg.discord || {})[channel];
+        if (!hasKey(webhook)) {
+          showToast('No Discord webhook set for #' + channel + ' — add it in ⚙ Settings', 'error');
+          openSettings();
           return;
         }
         const resp = await fetch(webhook, {
@@ -1739,12 +1914,24 @@ When Marco states a preference, decision, priority, or fact about the agency, re
         </div> <!-- /centerColumn -->
 
         <aside class="gpt-rail" id="gptCommandCenter">
-          <h2>Command Center</h2>
-          <p class="rail-sub">Ask anything — it remembers and learns as you go. Context from all divisions included.</p>
+          <div class="rail-head">
+            <span class="rail-spark">✦</span>
+            <h2>Command Center</h2>
+            <span class="rail-badge">AI</span>
+          </div>
+          <p class="rail-sub">Your chief of staff — it remembers and learns as you go, with context from every division.</p>
+
+          <!-- shown when no OpenAI key is connected -->
+          <div class="gpt-connect" id="gptConnect" style="display:none">
+            <div class="gpt-connect-title">Connect OpenAI to activate</div>
+            <div class="gpt-connect-sub">Add your API key once and the Command Center comes alive.</div>
+            <button type="button" onclick="openSettings()">⚙ Connect OpenAI</button>
+          </div>
+
           <div class="mem-bar">
             <span class="mem-info">🧠 Memory · <strong id="memCount">0</strong> learnings</span>
             <button type="button" class="gpt-tag" onclick="exportMemory()" title="Download as Obsidian markdown">Export .md</button>
-            <button type="button" class="gpt-tag" onclick="clearMemory()" title="Clear all learnings + log">Clear memory</button>
+            <button type="button" class="gpt-tag" onclick="clearMemory()" title="Clear all learnings + log">Clear</button>
           </div>
           <div class="gpt-tags">
             <button type="button" class="gpt-tag" onclick="fillGPTInput('Who should I focus on this week?')">Focus this week</button>
@@ -1753,10 +1940,10 @@ When Marco states a preference, decision, priority, or fact about the agency, re
             <button type="button" class="gpt-tag" style="margin-left:auto" onclick="clearGPTConversation()">Clear chat</button>
           </div>
           <div class="gpt-inputbar">
-            <textarea id="gptInput" rows="1" placeholder="Ask about your agency..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
+            <textarea id="gptInput" rows="1" placeholder="Ask about your agency…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
             <button type="button" class="gpt-send" id="gptSubmitBtn" onclick="submitGPTCommand()" title="Send" aria-label="Send">↑</button>
           </div>
-          <div id="gptConversation"></div>
+          <div id="gptConversation" class="gpt-convo"></div>
         </aside>
       </div> <!-- /cockpit-grid -->
 

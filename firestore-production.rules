@@ -151,5 +151,10 @@ service cloud.firestore {
     match /marco_memory/{docId} {
       allow read, write: if isAdmin();
     }
+
+    // Marco CEO cockpit — integration API keys (admin only; keeps keys out of the public source)
+    match /marco_config/{docId} {
+      allow read, write: if isAdmin();
+    }
   }
 }
