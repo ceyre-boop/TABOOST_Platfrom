@@ -735,19 +735,28 @@ async function parseCSV(url){
 }
 const num=v=>{const n=parseFloat(String(v==null?'':v).replace(/[$,%\s]/g,''));return Number.isFinite(n)?n:0;};
 
-async function loadData(){
+function showDataError(){
+  const link='<a href="#" onclick="loadData(0);return false;" style="color:var(--red);text-decoration:underline">Retry</a>';
+  const tk=document.getElementById('ticker');
+  if(tk) tk.innerHTML='<div style="padding:10px 24px;color:var(--red);font-family:var(--fm);font-size:11px">⚠️ Couldn\'t load live data. '+link+'</div>';
+  ['cr-tbody','lb-tbody','d-tbody'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='<tr><td colspan="10" style="padding:28px;text-align:center;color:var(--t3)">⚠️ Couldn\'t load live data. '+link+'</td></tr>';});
+}
+
+async function loadData(attempt=0){
+  // cache-bust so a stale/CDN-cached CSV (10-min max-age) is never served
+  const bust='?t='+Date.now();
   let rows;
-  try{ rows=await parseCSV('data/current.csv'); }
+  try{ rows=await parseCSV('data/current.csv'+bust); }
   catch(e){
-    console.error('Live data load failed',e);
-    const tk=document.getElementById('ticker');
-    if(tk) tk.innerHTML='<div style="padding:10px 24px;color:var(--red);font-family:var(--fm);font-size:11px">⚠️ Could not load live data from data/current.csv</div>';
+    console.error('Live data load failed (attempt '+attempt+')',e);
+    if(attempt<3){ setTimeout(()=>loadData(attempt+1), 800*(attempt+1)); return; }
+    showDataError();
     return;
   }
   // load 6-month trend history for the equity chart (best-effort)
-  try{ const tr=await fetch('data/creator_trends.json',{cache:'no-store'}); if(tr.ok) TRENDS=await tr.json(); }catch(e){ TRENDS=null; }
+  try{ const tr=await fetch('data/creator_trends.json'+bust,{cache:'no-store'}); if(tr.ok) TRENDS=await tr.json(); }catch(e){ TRENDS=null; }
   const dataRows=rows.filter((r,i)=> i>0 && r[COL.user] && !/username|^6\//i.test(String(r[COL.user])));
-  D=dataRows.map(r=>({
+  const built=dataRows.map(r=>({
     n:String(r[COL.user]||'').trim(),
     m:String(r[COL.mgr]||'—').trim().toUpperCase()||'—',
     b:String(r[COL.badge]||'').trim(),
@@ -764,6 +773,13 @@ async function loadData(){
     active:String(r[COL.active]||'').trim().toUpperCase()==='Y',
     rev:num(r[COL.estRev]),
   })).filter(c=>c.n);
+  // Empty result usually means a partial/empty CSV captured mid auto-sync write — retry before giving up
+  if(built.length===0){
+    if(attempt<3){ setTimeout(()=>loadData(attempt+1), 800*(attempt+1)); return; }
+    showDataError();
+    return;
+  }
+  D=built;
   D.sort((a,b)=>b.d-a.d);
   MTOTAL=D.reduce((s,c)=>s+c.d,0)||1;
   const mg={};
@@ -1198,7 +1214,7 @@ function renderReports(){
 }
 
 // ──── EXPOSE handlers to global scope (this is a module — inline onclick needs window.*) ────
-Object.assign(window,{showPage,globalSearch,crPage,setCRMgr,sortCR,toggleActiveCR,exportCreatorsCSV,lbPg,lbSetMgr,sortLB,adminResetCreatorPassword,refreshSignupLog,exportSignupLog});
+Object.assign(window,{loadData,showPage,globalSearch,crPage,setCRMgr,sortCR,toggleActiveCR,exportCreatorsCSV,lbPg,lbSetMgr,sortLB,adminResetCreatorPassword,refreshSignupLog,exportSignupLog});
 
 // ──── INIT ──── load live data, then render everything
 loadData();
