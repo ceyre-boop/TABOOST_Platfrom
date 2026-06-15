@@ -444,12 +444,12 @@ tbody tr:last-child td{border-bottom:none}
   <!-- ════════════ CREATORS ════════════ -->
   <div id="page-creators" class="page">
     <div class="sec-h fu">
-      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub">802 creators · Live from Google Sheets</div></div>
-      <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost">All Groups</button><button class="tb-btn tb-btn-red">↓ Export CSV</button></div>
+      <div><div class="sec-title">ALL CREATORS</div><div class="sec-sub" id="cr-sub">Loading… · Live from Google Sheets</div></div>
+      <div style="display:flex;gap:8px"><button class="tb-btn tb-btn-ghost" onclick="toggleActiveCR(this)">Active Only</button><button class="tb-btn tb-btn-red" onclick="exportCreatorsCSV()">↓ Export CSV</button></div>
     </div>
-    <div class="filter-bar fu1" id="cr-filters"></div>
+    <div class="filter-bar fu1" id="cr-filters" style="flex-wrap:nowrap;overflow-x:auto"></div>
     <div class="card fu2">
-      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>TIER</th><th>DIAMONDS</th><th>REWARDS</th><th>HRS</th><th>SCORE</th><th>PACE</th></tr></thead><tbody id="cr-tbody"></tbody></table></div>
+      <div style="overflow-x:auto"><table><thead id="cr-thead"></thead><tbody id="cr-tbody"></tbody></table></div>
       <div class="pag"><button class="pag-btn" onclick="crPage(-1)">← PREV</button><div class="pag-info" id="cr-pag-info"></div><button class="pag-btn" onclick="crPage(1)">NEXT →</button></div>
     </div>
   </div>
@@ -514,9 +514,9 @@ tbody tr:last-child td{border-bottom:none}
       <div class="kpi"><div class="kpi-label">Total Hours</div><div class="kpi-val" style="font-size:26px">—</div></div>
       <div class="kpi"><div class="kpi-label">Creators</div><div class="kpi-val" style="font-size:26px">—</div></div>
     </div>
-    <div class="filter-bar fu2" id="lb-filters"></div>
+    <div class="filter-bar fu2" id="lb-filters" style="flex-wrap:nowrap;overflow-x:auto"></div>
     <div class="card fu3">
-      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>CREATOR</th><th>MANAGER</th><th>GROUP</th><th>TIER</th><th>DIAMONDS</th><th>💎/HR</th><th>REWARDS</th><th>HRS</th><th>SCORE</th></tr></thead><tbody id="lb-tbody"></tbody></table></div>
+      <div style="overflow-x:auto"><table><thead id="lb-thead"></thead><tbody id="lb-tbody"></tbody></table></div>
       <div class="pag"><button class="pag-btn" onclick="lbPg(-1)">← PREV</button><div class="pag-info" id="lb-pag-info"></div><button class="pag-btn" onclick="lbPg(1)">NEXT →</button></div>
     </div>
   </div>
@@ -715,7 +715,7 @@ window.logout = async () => {
 let D=[], MGRS=[], MTOTAL=0, TRENDS=null;
 
 // Column indices in data/current.csv (proven map, matches admin dashboard)
-const COL={user:2,badge:7,mgr:8,active:10,hours:16,diamonds:19,tier:21,tierGoal:22,last30:27,prev1:28,prev2:29,score:32,earned:33,estRev:39};
+const COL={user:2,badge:7,mgr:8,active:10,hours:16,diamonds:19,pace:20,tier:21,tierGoal:22,last30:27,prev1:28,prev2:29,score:32,earned:33,estRev:39};
 
 async function parseCSV(url){
   const res=await fetch(url,{cache:'no-store'});
@@ -760,6 +760,7 @@ async function loadData(){
     p2:num(r[COL.prev2]),
     s:Math.round(num(r[COL.score])),
     tg:num(r[COL.tierGoal]),
+    pace:num(r[COL.pace]),
     active:String(r[COL.active]||'').trim().toUpperCase()==='Y',
     rev:num(r[COL.estRev]),
   })).filter(c=>c.n);
@@ -974,45 +975,91 @@ function renderEquity(){
   document.getElementById('eq-axis').innerHTML=labels.map(m=>`<div style="flex:1;font-family:var(--fm);font-size:9px;color:var(--t4);text-align:center">${m}</div>`).join('');
 }
 
+// ──── SHARED: tier segment + sortable-table helpers ────
+function seg(t){return t>=6?{l:'Elite',c:'#ff0044'}:t===5?{l:'Pro',c:'#ffab00'}:t===4?{l:'Rising',c:'#64b5f6'}:t>=2?{l:'Active',c:'#00e676'}:{l:'Rookie',c:'#888888'};}
+function sortRows(rows,st){
+  if(!st.key)return rows.slice();
+  const{key,dir}=st;
+  return rows.slice().sort((a,b)=>{
+    let av,bv;
+    if(key==='dph'){av=a.h>0?a.d/a.h:0;bv=b.h>0?b.d/b.h:0;}
+    else if(key==='seg'){av=a.t;bv=b.t;}
+    else{av=a[key];bv=b[key];}
+    if(typeof av==='string')return av.localeCompare(bv)*dir;
+    return((av||0)-(bv||0))*dir;
+  });
+}
+function caret(st,key){return st.key===key?` <span style="color:var(--red)">${st.dir<0?'▼':'▲'}</span>`:'';}
+function toggleSort(st,key,defDir){if(st.key===key)st.dir=-st.dir;else{st.key=key;st.dir=defDir;}}
+
 // ──── CREATORS TABLE ────
-let crIdx=0,crFilter='',crMgr='';
+let crIdx=0,crFilter='',crMgr='',crActiveOnly=false,crSort={key:'d',dir:-1};
 const CPP=25;
-function getFiltered(){return D.filter(c=>(!crFilter||(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase()))&&(!crMgr||c.m.includes(crMgr)))}
+const CR_COLS=[{l:'RANK'},{l:'CREATOR',k:'n'},{l:'MANAGER',k:'m'},{l:'TIER',k:'t'},{l:'DIAMONDS',k:'d'},{l:'REWARDS',k:'r'},{l:'HRS',k:'h'},{l:'SCORE',k:'s'},{l:'PACE',k:'pace'}];
+function getFiltered(){
+  const fl=D.filter(c=>(!crFilter||(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase()))&&(!crMgr||c.m===crMgr)&&(!crActiveOnly||c.active));
+  return sortRows(fl,crSort);
+}
+function renderCRHead(){
+  const th=document.getElementById('cr-thead');if(!th)return;
+  th.innerHTML='<tr>'+CR_COLS.map(c=>c.k?`<th onclick="sortCR('${c.k}')" style="cursor:pointer;user-select:none">${c.l}${caret(crSort,c.k)}</th>`:`<th>${c.l}</th>`).join('')+'</tr>';
+}
 function renderCR(){
   const fl=getFiltered();const start=crIdx*CPP;const end=Math.min(start+CPP,fl.length);
   const page=fl.slice(start,end);
-  document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td style="font-size:11px;color:var(--t4)">–</td></tr>`}).join('');
-  document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.ceil(fl.length/CPP)} · ${start+1}–${end} of ${fl.length}`;
+  renderCRHead();
+  document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);const pcol=(c.tg>0&&c.pace>=c.tg)?'var(--green)':'var(--t3)';return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td class="mono" style="color:${pcol}">${c.pace>0?f(c.pace):'–'}</td></tr>`}).join('');
+  document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.max(1,Math.ceil(fl.length/CPP))} · ${fl.length?start+1:0}–${end} of ${fl.length}`;
+  const sub=document.getElementById('cr-sub');if(sub)sub.textContent=`${D.length.toLocaleString()} creators · Live from Google Sheets`;
 }
 function crPage(d){const max=Math.ceil(getFiltered().length/CPP)-1;crIdx=Math.max(0,Math.min(max,crIdx+d));renderCR()}
+function sortCR(k){toggleSort(crSort,k,-1);crIdx=0;renderCR()}
 function globalSearch(v){crFilter=v;crIdx=0;renderCR();lbIdx=0;renderLB()}
-
+function toggleActiveCR(el){crActiveOnly=!crActiveOnly;el.classList.toggle('tb-btn-red',crActiveOnly);el.classList.toggle('tb-btn-ghost',!crActiveOnly);el.textContent=crActiveOnly?'✓ Active Only':'Active Only';crIdx=0;renderCR();}
 function renderCRFilters(){
-  const mgrs=['All',...new Set(D.map(c=>c.m))].slice(0,10);
-  document.getElementById('cr-filters').innerHTML=mgrs.map(m=>`<button class="fb-btn${m==='All'?' active':''}" onclick="setCRMgr('${m}',this)">${m}</button>`).join('');
+  const mgrs=['All',...MGRS.map(m=>m.n)];
+  document.getElementById('cr-filters').innerHTML=mgrs.map(m=>{const act=(m==='All'?!crMgr:m===crMgr);return `<button class="fb-btn${act?' active':''}" onclick="setCRMgr('${m}',this)">${m}</button>`;}).join('');
 }
 function setCRMgr(m,el){crMgr=m==='All'?'':m;crIdx=0;document.querySelectorAll('#cr-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderCR()}
+function exportCreatorsCSV(){
+  const fl=getFiltered();
+  const head=['Rank','Username','Manager','Tier','Diamonds','Rewards','Hours','Score','ProjectedPace'];
+  const esc=v=>{const s=String(v);return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
+  const csv=[head.join(','),...fl.map((c,i)=>[i+1,c.n,c.m,c.t,c.d,c.r,c.h,c.s,c.pace].map(esc).join(','))].join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});const url=URL.createObjectURL(blob);const a=document.createElement('a');
+  a.href=url;a.download='creators_'+new Date().toISOString().split('T')[0]+'.csv';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
+}
 
 // ──── LEADERBOARD ────
-let lbIdx=0;const LPP=25;
+let lbIdx=0,lbMgr='',lbSort={key:'d',dir:-1};const LPP=25;
+const LB_COLS=[{l:'RANK'},{l:'CREATOR',k:'n'},{l:'MANAGER',k:'m'},{l:'GROUP',k:'seg'},{l:'TIER',k:'t'},{l:'DIAMONDS',k:'d'},{l:'💎/HR',k:'dph'},{l:'REWARDS',k:'r'},{l:'HRS',k:'h'},{l:'SCORE',k:'s'}];
+function lbFiltered(){
+  const fl=D.filter(c=>(!crFilter||(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase()))&&(!lbMgr||c.m===lbMgr));
+  return sortRows(fl,lbSort);
+}
+function renderLBHead(){
+  const th=document.getElementById('lb-thead');if(!th)return;
+  th.innerHTML='<tr>'+LB_COLS.map(c=>c.k?`<th onclick="sortLB('${c.k}')" style="cursor:pointer;user-select:none">${c.l}${caret(lbSort,c.k)}</th>`:`<th>${c.l}</th>`).join('')+'</tr>';
+}
 function renderLB(){
-  const fl=crFilter?D.filter(c=>(c.n+c.m).toLowerCase().includes(crFilter.toLowerCase())):D;
-  const start=lbIdx*LPP;const end=Math.min(start+LPP,fl.length);
+  const fl=lbFiltered();const start=lbIdx*LPP;const end=Math.min(start+LPP,fl.length);
   const page=fl.slice(start,end);
+  renderLBHead();
   document.getElementById('lb-tbody').innerHTML=page.map((c,i)=>{
-    const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);
+    const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);const sg=seg(c.t);
     const rk=rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':`<span class="mono" style="color:var(--t4)">${rank}</span>`;
     const dph=c.h>0?Math.round(c.d/c.h):0;
-    return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td style="font-size:11px;color:var(--t4)">Staff</td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
+    return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc" style="background:${sg.c}22;color:${sg.c};border:1px solid ${sg.c}55">${sg.l}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
   }).join('');
-  document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.ceil(fl.length/LPP)} · ${start+1}–${end} of ${fl.length}`;
+  document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.max(1,Math.ceil(fl.length/LPP))} · ${fl.length?start+1:0}–${end} of ${fl.length}`;
 }
-function lbPg(d){const max=Math.ceil(D.length/LPP)-1;lbIdx=Math.max(0,Math.min(max,lbIdx+d));renderLB()}
+function lbPg(d){const max=Math.ceil(lbFiltered().length/LPP)-1;lbIdx=Math.max(0,Math.min(max,lbIdx+d));renderLB()}
+function sortLB(k){toggleSort(lbSort,k,-1);lbIdx=0;renderLB()}
 function renderLBFilters(){
-  const mgrs=['All',...new Set(D.map(c=>c.m))].slice(0,10);
-  document.getElementById('lb-filters').innerHTML=mgrs.map(m=>`<button class="fb-btn${m==='All'?' active':''}" onclick="lbSetMgr('${m}',this)">${m}</button>`).join('');
+  const mgrs=['All',...MGRS.map(m=>m.n)];
+  document.getElementById('lb-filters').innerHTML=mgrs.map(m=>{const act=(m==='All'?!lbMgr:m===lbMgr);return `<button class="fb-btn${act?' active':''}" onclick="lbSetMgr('${m}',this)">${m}</button>`;}).join('');
 }
-function lbSetMgr(m,el){document.querySelectorAll('#lb-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');lbIdx=0;renderLB()}
+function lbSetMgr(m,el){lbMgr=m==='All'?'':m;lbIdx=0;document.querySelectorAll('#lb-filters .fb-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderLB()}
 
 // ──── DIAMONDS PAGE ────
 function renderDBars(){
@@ -1151,7 +1198,7 @@ function renderReports(){
 }
 
 // ──── EXPOSE handlers to global scope (this is a module — inline onclick needs window.*) ────
-Object.assign(window,{showPage,globalSearch,crPage,setCRMgr,lbPg,lbSetMgr,adminResetCreatorPassword,refreshSignupLog,exportSignupLog});
+Object.assign(window,{showPage,globalSearch,crPage,setCRMgr,sortCR,toggleActiveCR,exportCreatorsCSV,lbPg,lbSetMgr,sortLB,adminResetCreatorPassword,refreshSignupLog,exportSignupLog});
 
 // ──── INIT ──── load live data, then render everything
 loadData();
