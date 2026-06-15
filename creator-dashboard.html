@@ -1434,11 +1434,15 @@
     0%,100% { box-shadow: 0 0 10px rgba(255,0,85,.25), 0 0 0 1px rgba(255,0,85,.4); }
     50%      { box-shadow: 0 0 22px rgba(255,0,85,.55), 0 0 0 1px rgba(255,0,85,.75); }
   }
+  @keyframes camp-orange-pulse {
+    0%,100% { box-shadow: 0 0 10px rgba(255,122,0,.25), 0 0 0 1px rgba(255,122,0,.4); }
+    50%      { box-shadow: 0 0 22px rgba(255,122,0,.55), 0 0 0 1px rgba(255,122,0,.75); }
+  }
 </style>
 
 <script>
     // Campaign popup — reads from data/campaigns.csv
-    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji, row5=badge (FEATURED|NEW|FINISHED|blank), row6+=usernames
+    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji, row5=badge (FEATURED|NEW|FINISHED|REGISTRATION|blank), row6+=usernames
     // "---ALL---" in creators column means every creator sees it
 
     const CAMP_EMOJIS = ['🥇','🌍','😂','🎮','🏆','🎤','⚡','🌟'];
@@ -1498,7 +1502,7 @@
                     dates: (dates[col] || '').trim(),
                     url:   (urls[col] || '').trim(),
                     emoji: ((emojis[col] || '').trim().replace(/\?/g, '') || CAMP_EMOJIS[col % CAMP_EMOJIS.length]),
-                    badge: (features[col] || '').trim().toUpperCase().replace(/^FEATURE$/, 'FEATURED') // FEATURED | NEW | FINISHED | ''
+                    badge: (features[col] || '').trim().toUpperCase().replace(/^FEATURE$/, 'FEATURED') // FEATURED | NEW | FINISHED | REGISTRATION | ''
                 });
             }
 
@@ -1511,6 +1515,8 @@
                     ? 'background:rgba(255,200,0,0.07);border-color:rgba(255,200,0,0.5);animation:camp-gold-pulse 2.5s ease-in-out infinite;'
                     : b === 'NEW'
                     ? 'background:rgba(255,0,85,0.07);border-color:rgba(255,0,85,0.5);animation:camp-red-pulse 2s ease-in-out infinite;'
+                    : b === 'REGISTRATION'
+                    ? 'background:rgba(255,122,0,0.07);border-color:rgba(255,122,0,0.5);animation:camp-orange-pulse 2s ease-in-out infinite;'
                     : b === 'FINISHED'
                     ? 'background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);filter:grayscale(65%) opacity(0.5);'
                     : 'background:rgba(0,204,255,0.06);border-color:rgba(0,204,255,0.15);';
@@ -1518,10 +1524,12 @@
                     ? `<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">🔥 HOT</span>`
                     : b === 'NEW'
                     ? `<span style="background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">NEW</span>`
+                    : b === 'REGISTRATION'
+                    ? `<span style="background:linear-gradient(135deg,#ff6a00,#ff9500);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">REGISTRATION</span>`
                     : b === 'FINISHED'
                     ? `<span style="background:rgba(255,255,255,0.08);color:#666;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0;">FINISHED</span>`
                     : '';
-                const arrowColor = b === 'FEATURED' ? '#ffc800' : b === 'NEW' ? '#ff3366' : '#00ccff';
+                const arrowColor = b === 'FEATURED' ? '#ffc800' : b === 'NEW' ? '#ff3366' : b === 'REGISTRATION' ? '#ff9500' : '#00ccff';
                 return `
                 <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${cardStyle}">
                     <span style="font-size:20px;flex-shrink:0;">${c.emoji}</span>
