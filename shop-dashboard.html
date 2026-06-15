@@ -886,6 +886,8 @@ function showPage(id,el){
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
   if(el)el.classList.add('active');
   document.getElementById('tb-title').textContent=titles[id]||id.toUpperCase();
+  // self-heal: if shop data never loaded (e.g. stale cache), refetch on tab view
+  if(!D.length && typeof loadData==='function') loadData(0);
   playTudum();
   // re-trigger animations
   document.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,50)});
