@@ -784,6 +784,9 @@
     }
     .gpt-rail h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 3px; font-size: 0.95rem; font-weight: 800; }
     .gpt-rail .rail-sub { color: var(--secondary); font-size: 0.75rem; margin: 0 0 12px; }
+    .mem-bar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin: 0 0 12px; padding: 8px 10px; background: var(--card-2); border: 1px solid var(--line); border-radius: 9px; }
+    .mem-info { font-size: 0.72rem; color: var(--secondary); margin-right: auto; }
+    .mem-info strong { color: var(--text); }
     .gpt-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .gpt-tag {
       padding: 4px 9px; min-height: 0; background: var(--card-2); color: var(--secondary);
@@ -820,14 +823,6 @@
     .integration-chip .ic-label small { color: var(--secondary); font-weight: 600; }
     .integration-chip .ic-btn { min-height: 32px; padding: 6px 14px; font-size: 0.77rem; border-radius: 8px; }
 
-    /* ===== Sports — slim pill at very bottom ===== */
-    .sports-pill {
-      display: flex; align-items: center; gap: 10px; margin-top: 18px;
-      padding: 11px 18px; background: var(--card); border: 1px solid var(--line);
-      border-radius: 999px; color: var(--secondary); font-size: 0.82rem; font-weight: 700;
-    }
-    .sports-pill .sp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: 0 0 8px; }
-    .sports-pill .sp-note { color: var(--muted); font-weight: 600; font-style: italic; margin-left: auto; }
 
     /* ===== Discord compose window ===== */
     .discord-compose-section {
@@ -884,7 +879,7 @@
     <div class="cockpit-grid">
       <div class="cockpit-col" id="leftColumn">
         <section class="division-card" id="liveDivision">
-          <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · US &amp; UK</h2>
+          <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · US</h2>
           <div class="kpi-grid">
             <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
             <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
@@ -894,7 +889,20 @@
           </div>
           <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
           <div class="division-links">
-            <a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a>
+            <a class="division-link" href="../dashboard.html">View Full US Dashboard →</a>
+          </div>
+        </section>
+        <section class="division-card" id="liveUkDivision">
+          <h2><span class="status-dot" id="liveUkDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · UK</h2>
+          <div class="kpi-grid">
+            <div class="kpi-card" id="liveUkCreators"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveUkDiamonds"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveUkRevenue"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveUkScore"><div class="skeleton-bar"></div></div>
+            <div class="kpi-card" id="liveUkLevel5"><div class="skeleton-bar"></div></div>
+          </div>
+          <div class="gpt-alerts" id="liveUkAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
+          <div class="division-links">
             <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
           </div>
         </section>
@@ -908,15 +916,14 @@
             <div class="skeleton-bar" style="width:80%"></div>
           </div>
           <div class="division-links">
-            <a class="division-link" href="../shop/index.html">View Shop Dashboard →</a>
+            <a class="division-link" href="https://shop.taboost.me" target="_blank" rel="noopener">View Shop Dashboard →</a>
           </div>
         </section>
-        <!-- Talent + Brand Deals injected here (compact chip until credentials connected) -->
+        <!-- Brand Deals injected here (compact chip until Monday credentials connected) -->
   <script>
     /*
       SETUP: fill in the CONFIG constants just below. Full step-by-step: admin/SETUP.md
-      REPLACE_ME_OPENAI_KEY: GPT Command Center + AI insight notes (platform.openai.com/api-keys).
-      REPLACE_ME_EMAIL_API_KEY: TALENT division — API_KEY from your email-automation Render service.
+      REPLACE_ME_OPENAI_KEY: GPT Command Center (+ learning memory) + AI insight notes.
       REPLACE_ME_MONDAY_TOKEN / _BOARD_ID: BRAND DEALS — Monday.com API token + board id.
       REPLACE_ME_DISCORD_*: Discord Quick Post — channel webhook URLs.
       SHOP needs no key (reads public shop.taboost.me). Live US/UK reads data/current.csv.
@@ -929,12 +936,8 @@
     //  ⚠ This file is PUBLIC on GitHub Pages — anything here is readable by anyone.
     //     Use read-only / low-scope keys and rotate them if leaked.
     // ════════════════════════════════════════════════════════════════════
-    // GPT Command Center + AI insight notes → platform.openai.com/api-keys
+    // GPT Command Center (+ learning memory) + AI insight notes → platform.openai.com/api-keys
     const OPENAI_KEY = 'REPLACE_ME_OPENAI_KEY';
-    // TALENT division → your email-automation backend (Render). URL is prefilled;
-    //   paste the API_KEY from your Render service's Environment tab.
-    const EMAIL_API_URL = 'https://email-automation-qp2v.onrender.com';
-    const EMAIL_API_KEY = 'REPLACE_ME_EMAIL_API_KEY';
     // BRAND DEALS division → Monday.com (monday.com → avatar → Developers → API token)
     const MONDAY_TOKEN = 'REPLACE_ME_MONDAY_TOKEN';
     const MONDAY_BOARD_ID = 'REPLACE_ME_MONDAY_BOARD_ID';
@@ -949,7 +952,9 @@
     const SHOP_TOTALS_FALLBACK = 'https://raw.githubusercontent.com/ceyre-boop/TABOOST-Shop/main/data/shop/totals.csv';
     // ════════════════════════════════════════════════════════════════════
 
-    let liveKPIs = {}; let shopKPIs = {}; let talentKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
+    let liveKPIs = {}; let shopKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
+    const regionKPIs = { us: null, uk: null };   // Live US / Live UK; scorecard sums both
+    let marcoMemory = { learnings: [], log: [] }; // GPT learning memory (Firestore-backed)
 
     function setDot(id, color){
       const el=document.getElementById(id);
@@ -1084,7 +1089,8 @@
 
     function cleanNum(val){
       if (val === null || val === undefined) return 0;
-      const cleaned = String(val).replace(/[$,%\s,]/g, '').trim();
+      // strip any currency symbol ($, £, mangled "?"), commas, %, spaces — keep digits/dot/minus
+      const cleaned = String(val).replace(/[^0-9.\-]/g, '');
       const num = Number.parseFloat(cleaned);
       return Number.isFinite(num) ? num : 0;
     }
@@ -1104,6 +1110,7 @@
         }
         const content = document.getElementById('dashboardContent');
         if (content) content.style.display = 'block';
+        loadMemory();            // GPT learning memory (Firestore)
         await loadAllDivisions();
       } catch (err) {
         showToast('Unable to verify admin access', 'error');
@@ -1111,7 +1118,7 @@
       }
     });
 
-    async function loadAllDivisions(){ await Promise.allSettled([loadLiveDivision(), loadShopDivision(), loadTalentDivision(), loadMondayDivision()]); }
+    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); }
 
     function renderKPICard(id, label, value, sub=''){
       const el = document.getElementById(id);
@@ -1129,17 +1136,23 @@
 
     function setText(id, value){ const el = document.getElementById(id); if (el) el.textContent = value; }
 
-    // Fill the CEO scorecard + header status strip from the live division KPIs
+    // CEO scorecard + header status strip = Live US + Live UK combined (whichever has loaded)
     function renderScorecard(){
-      const k = liveKPIs || {};
-      const money = (k.totalRevenue != null) ? '$' + Math.round(k.totalRevenue).toLocaleString() : '—';
-      setText('scActiveCreators', k.totalCreators != null ? k.totalCreators.toLocaleString() : '—');
-      setText('scDiamonds', k.totalDiamonds != null ? fmtCompact(k.totalDiamonds) : '—');
-      setText('scRevenue', money);
-      setText('scAvgScore', k.avgScore != null ? `${k.avgScore.toFixed(1)}/100` : '—');
-      setText('scLevel5', k.level5Count != null ? k.level5Count.toLocaleString() : '—');
-      setText('hsRevenue', (k.totalRevenue != null) ? '$' + fmtCompact(k.totalRevenue) : '—');
-      setText('hsCreators', k.totalCreators != null ? k.totalCreators.toLocaleString() : '—');
+      const regions = [regionKPIs.us, regionKPIs.uk].filter(Boolean);
+      if (!regions.length) return;
+      const totalCreators = regions.reduce((s, k) => s + (k.totalCreators || 0), 0);
+      const totalDiamonds = regions.reduce((s, k) => s + (k.totalDiamonds || 0), 0);
+      const totalRevenue  = regions.reduce((s, k) => s + (k.totalRevenue  || 0), 0);
+      const level5Count   = regions.reduce((s, k) => s + (k.level5Count   || 0), 0);
+      const wSum          = regions.reduce((s, k) => s + ((k.avgScore || 0) * (k.totalCreators || 0)), 0);
+      const avgScore      = totalCreators ? wSum / totalCreators : 0;
+      setText('scActiveCreators', totalCreators.toLocaleString());
+      setText('scDiamonds', fmtCompact(totalDiamonds));
+      setText('scRevenue', '$' + Math.round(totalRevenue).toLocaleString());
+      setText('scAvgScore', `${avgScore.toFixed(1)}/100`);
+      setText('scLevel5', level5Count.toLocaleString());
+      setText('hsRevenue', '$' + fmtCompact(totalRevenue));
+      setText('hsCreators', totalCreators.toLocaleString());
     }
 
     function setSystemStatus(ok){
@@ -1160,9 +1173,15 @@
       }).join('') || '<div class="alert-line"><span class="alert-dot" style="background:#00C896"></span><span>No live alerts found.</span></div>';
     }
 
-    async function loadLiveDivision(){
+    const LIVE_REGIONS = {
+      us: { csv: '../data/current.csv',    sectionId: 'liveDivision',   prefix: 'live',   dot: 'liveDot',   alerts: 'liveAlerts',   title: 'Live · US', dash: '../dashboard.html', dashLabel: 'View Full US Dashboard →', label: 'US' },
+      uk: { csv: '../uk/data/current.csv', sectionId: 'liveUkDivision', prefix: 'liveUk', dot: 'liveUkDot', alerts: 'liveUkAlerts', title: 'Live · UK', dash: '../uk/index.html',    dashLabel: 'View UK Dashboard →',      label: 'UK' }
+    };
+
+    async function loadLiveRegion(region){
+      const cfg = LIVE_REGIONS[region];
       try {
-        const rows = await parseCSV('../data/current.csv');
+        const rows = await parseCSV(cfg.csv);
         const dataRows = rows?.[0]?.some(cell => String(cell || '').toLowerCase().includes('username')) ? rows.slice(1) : rows;
         const active = dataRows.filter(r => r?.[10] === 'Y');
         const totalCreators = active.length;
@@ -1171,46 +1190,39 @@
         const scores = active.map(r => cleanNum(r?.[32])).filter(score => score > 0);
         const avgScore = scores.length ? scores.reduce((sum, score) => sum + score, 0) / scores.length : 0;
         const level5Count = active.filter(r => cleanNum(r?.[30]) >= 5).length;
-        liveKPIs = { totalCreators, totalDiamonds, totalRevenue, avgScore, level5Count };
+        const kpi = { totalCreators, totalDiamonds, totalRevenue, avgScore, level5Count };
+        regionKPIs[region] = kpi;
+        if (region === 'us') liveKPIs = kpi; // primary region — used in the command-center prompt
 
-        renderKPICard('liveCreators', 'Active Creators', totalCreators.toLocaleString());
-        renderKPICard('liveDiamonds', 'Diamonds', fmtCompact(totalDiamonds));
-        renderKPICard('liveRevenue', 'Revenue', `$${fmtCompact(totalRevenue)}`);
-        renderKPICard('liveScore', 'Avg Score', `${avgScore.toFixed(1)}`);
-        renderKPICard('liveLevel5', 'Level 5+', level5Count.toLocaleString());
+        renderKPICard(cfg.prefix + 'Creators', 'Active Creators', totalCreators.toLocaleString());
+        renderKPICard(cfg.prefix + 'Diamonds', 'Diamonds', fmtCompact(totalDiamonds));
+        renderKPICard(cfg.prefix + 'Revenue', 'Revenue', `$${fmtCompact(totalRevenue)}`);
+        renderKPICard(cfg.prefix + 'Score', 'Avg Score', `${avgScore.toFixed(1)}`);
+        renderKPICard(cfg.prefix + 'Level5', 'Level 5+', level5Count.toLocaleString());
+
+        renderScorecard();
+        setSystemStatus(true);
 
         const topByDiamonds = [...active]
           .sort((a, b) => cleanNum(b?.[19]) - cleanNum(a?.[19]))
           .slice(0, 5)
           .map(r => `${r?.[2] || 'Unknown'}: ${cleanNum(r?.[19]).toLocaleString()} diamonds`)
           .join('; ');
-        const bottomByScore = [...active]
-          .filter(r => cleanNum(r?.[32]) > 0)
-          .sort((a, b) => cleanNum(a?.[32]) - cleanNum(b?.[32]))
-          .slice(0, 5)
-          .map(r => `${r?.[2] || 'Unknown'}: ${cleanNum(r?.[32]).toFixed(1)}`)
-          .join('; ');
-
         const ai = await callGPT(
           'You are TABOOST CEO cockpit analyst. Return 3 concise executive alert bullets. Prefix urgent issues with CRITICAL, risks with WARNING, and wins with OK.',
-          `Live US KPIs: ${totalCreators} active creators, ${totalDiamonds} diamonds, $${totalRevenue} revenue, ${avgScore.toFixed(1)}/100 average score, ${level5Count} level 5+ creators. Top 5 by diamonds: ${topByDiamonds || 'none'}. Bottom 5 by score: ${bottomByScore || 'none'}.`
+          `Live ${cfg.label} KPIs: ${totalCreators} active creators, ${totalDiamonds} diamonds, $${totalRevenue} revenue, ${avgScore.toFixed(1)}/100 average score, ${level5Count} level 5+ creators. Top 5 by diamonds: ${topByDiamonds || 'none'}.`
         );
-        renderScorecard();
-        setSystemStatus(true);
-
-        if (ai) {
-          renderAlertLines('liveAlerts', ai);
-        } else {
-          renderAlertLines('liveAlerts', 'OK Connect OPENAI_KEY for AI insights');
-        }
-        setDot('liveDot', '#00C896');
+        renderAlertLines(cfg.alerts, ai || 'OK Connect OPENAI_KEY for AI insights');
+        // store a compact summary for the command-center prompt
+        kpi.summary = `Live ${cfg.label}: ${totalCreators} active, ${fmtCompact(totalDiamonds)} diamonds, $${fmtCompact(totalRevenue)} rev, ${avgScore.toFixed(1)}/100 avg, ${level5Count} level 5+.`;
+        setDot(cfg.dot, '#00C896');
       } catch (err) {
-        const section = document.getElementById('liveDivision');
+        const section = document.getElementById(cfg.sectionId);
         if (section) {
-          section.innerHTML = '<h2><span class="status-dot" id="liveDot" style="background:#FF0050;width:8px;height:8px;border-radius:50%;"></span>Live · US &amp; UK</h2><div class="error-card">Live data could not be loaded from ../data/current.csv.</div><div class="division-links"><a class="division-link" href="../dashboard.html">View Full Live Dashboard →</a><a class="division-link" href="../uk/index.html">View UK Dashboard →</a></div>';
+          section.innerHTML = `<h2><span class="status-dot" id="${cfg.dot}" style="background:#FF0050;width:8px;height:8px;border-radius:50%;"></span>${cfg.title}</h2><div class="error-card">Live data could not be loaded from ${cfg.csv}.</div><div class="division-links"><a class="division-link" href="${cfg.dash}">${cfg.dashLabel}</a></div>`;
         }
-        setDot('liveDot', '#FF0050');
-        setSystemStatus(false);
+        setDot(cfg.dot, '#FF0050');
+        if (region === 'us') setSystemStatus(false);
       }
     }
 
@@ -1287,106 +1299,6 @@
       })[ch]);
     }
 
-    let talentFeedTimer = null;
-
-    // Authenticated call to the email-automation API (x-api-key). AbortController guards the
-    // Render free-tier cold start (service sleeps and can take ~50s to wake on first request).
-    async function emailApi(path, timeoutMs){
-      const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), timeoutMs || 60000);
-      try {
-        const resp = await fetch(EMAIL_API_URL + path, { headers: { 'x-api-key': EMAIL_API_KEY }, signal: ctrl.signal });
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        return await resp.json();
-      } finally { clearTimeout(t); }
-    }
-
-    async function loadTalentDivision() {
-      // Collapsed integration chip until the email-automation API key is set
-      if (EMAIL_API_KEY.startsWith('REPLACE_ME')) {
-        const chip = ensureSection('talentDivision', `
-          <span class="ic-label"><span class="status-dot" style="background:var(--yellow)"></span>Talent <small>· email ops — integration required</small></span>
-          <button type="button" class="ic-btn" onclick="showToast('Paste your email-automation API key into EMAIL_API_KEY (see admin/SETUP.md), then add https://live.taboost.me to ALLOWED_ORIGINS on Render.')">Connect</button>
-        `);
-        chip.className = 'integration-chip';
-        talentKPIs.summary = 'Not configured';
-        return;
-      }
-
-      const section = ensureSection('talentDivision', `
-        <h2><span class="status-dot" id="talentDot" style="background:#FFB800;"></span>Talent</h2>
-        <div id="talentBody">
-          <div class="placeholder-card" style="border-style:solid">Waking email service… (Render free tier can take ~50s on first load)</div>
-        </div>
-      `);
-      section.className = 'division-card';
-      const body = document.getElementById('talentBody');
-
-      // operational-load = headline metrics; one retry covers cold-start / transient
-      let load;
-      try { load = await emailApi('/api/analytics/operational-load?days=7', 60000); }
-      catch (err) {
-        try { load = await emailApi('/api/analytics/operational-load?days=7', 60000); }
-        catch (e2) {
-          if (body) body.innerHTML = '<div class="placeholder-card">Email service unreachable. It may be asleep (Render free tier), the API key may be wrong, or CORS is blocking — add <strong>https://live.taboost.me</strong> to ALLOWED_ORIGINS on Render. Refresh to retry.</div>';
-          setDot('talentDot', '#FF3B30');
-          talentKPIs.summary = 'Email service unreachable';
-          return;
-        }
-      }
-
-      let feed = null;
-      try { feed = await emailApi('/api/analytics/email-feed?limit=8', 30000); } catch (e) { feed = null; }
-
-      const total = Number(load.total_emails || 0);
-      const autoRate = Math.round(Number(load.automation_rate || 0) * 100);
-      const minsSaved = Number(load.estimated_minutes_saved || 0);
-      const savedLabel = minsSaved >= 60 ? (minsSaved / 60).toFixed(1) + 'h' : minsSaved + 'm';
-      const overrides = Number(load.human_overrides || 0);
-      const pollErrors = Number(load.poll_error_count || 0);
-
-      const items = Array.isArray(feed) ? feed : (feed && Array.isArray(feed.items) ? feed.items : []);
-      const activity = items.slice(0, 8).map((row) => {
-        const who = row.talent || row.creator || row.from_email || row.sender || 'email';
-        const what = row.subject || row.scenario || row.classification || row.action || 'activity';
-        const when = row.processed_at || row.received_at || row.created_at;
-        const time = when ? new Date(when).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
-        return `<li class="metric-row"><span>${escapeHTML(String(who))} — ${escapeHTML(String(what))}</span><span>${escapeHTML(time)}</span></li>`;
-      }).join('');
-
-      if (body) {
-        body.innerHTML = `
-          <div class="kpi-grid">
-            <div class="kpi-card"><span class="kpi-label">Emails (7d)</span><span class="kpi-value">${fmtCompact(total)}</span></div>
-            <div class="kpi-card"><span class="kpi-label">Automation</span><span class="kpi-value">${autoRate}%</span></div>
-            <div class="kpi-card"><span class="kpi-label">Time Saved</span><span class="kpi-value">${savedLabel}</span></div>
-            <div class="kpi-card"><span class="kpi-label">Overrides</span><span class="kpi-value">${overrides.toLocaleString()}</span></div>
-            <div class="kpi-card"><span class="kpi-label">Poll Errors</span><span class="kpi-value" style="color:${pollErrors > 0 ? '#FF6B00' : '#00C896'}">${pollErrors.toLocaleString()}</span></div>
-          </div>
-          <ul class="metric-list" style="margin-top:12px">${activity || '<li class="metric-row"><span>No recent email activity</span><span>--</span></li>'}</ul>
-          <div class="division-links"><a class="division-link" href="${EMAIL_API_URL}/ops" target="_blank" rel="noopener">Open Email Ops →</a></div>
-        `;
-      }
-
-      talentKPIs.summary = `${total} emails in 7d, ${autoRate}% automated, ~${minsSaved} min saved, ${overrides} human overrides, ${pollErrors} poll errors.`;
-      setDot('talentDot', pollErrors > 0 ? '#FFB800' : '#00C896');
-
-      if (talentFeedTimer) clearInterval(talentFeedTimer);
-      talentFeedTimer = setInterval(loadTalentDivision, 120000);
-    }
-
-    async function askTalentGPT() {
-      try {
-        const q = document.getElementById('talentAskInput')?.value?.trim();
-        if (!q) return;
-        const ans = await callGPT('You are an email-ops analyst for TABOOST. Be concise.', 'Email summary: ' + (talentKPIs.summary || 'no data') + '. Question: ' + q);
-        const target = document.getElementById('talentAskAnswer');
-        if (target) target.textContent = ans || 'Connect OPENAI_KEY to enable AI answers.';
-      } catch (err) {
-        const target = document.getElementById('talentAskAnswer');
-        if (target) target.textContent = 'AI answer unavailable.';
-      }
-    }
 
     async function queryMonday(query) {
       try {
@@ -1537,8 +1449,6 @@
       }
     }
 
-    // Sports is now a static slim pill at the bottom of the page (see #sportsDivision markup).
-    function renderSports() { /* no-op: pill is static */ }
 
     function fillGPTInput(text) {
       const ta = document.getElementById('gptInput');
@@ -1549,21 +1459,23 @@
     }
 
     function buildCommandCenterSystemPrompt() {
+      const learnings = (marcoMemory.learnings || []).slice(-40).map(l => `- ${l.text}`).join('\n') || '- (none yet)';
+      const recent = (marcoMemory.log || []).slice(-8).map(m => `${m.role === 'user' ? 'Marco' : 'You'}: ${String(m.content).slice(0, 280)}`).join('\n') || '(no prior conversation)';
       return `You are Marco's AI chief of staff for TABOOST talent agency. Today is ${new Date().toDateString()}.
 
-LIVE DIVISION (US):
-- Active creators: ${liveKPIs.totalCreators}
-- Total diamonds this month: ${liveKPIs.totalDiamonds?.toLocaleString()}
-- Est. revenue: $${liveKPIs.totalRevenue?.toLocaleString()}
-- Average creator score: ${liveKPIs.avgScore}
+MEMORY — what you've learned about how Marco runs the agency (use it, build on it):
+${learnings}
 
-SHOP DIVISION: ${shopKPIs.summary || 'Data not yet connected'}
+RECENT CONVERSATION:
+${recent}
 
-TALENT (Email): ${talentKPIs.summary || 'Not configured'}
-
+LIVE · US: ${regionKPIs.us?.summary || 'loading'}
+LIVE · UK: ${regionKPIs.uk?.summary || 'loading'}
+SHOP: ${shopKPIs.summary || 'Data not yet connected'}
 BRAND DEALS (Monday.com): ${mondayKPIs.summary || 'Not configured'}
 
-Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel, not fluff. Format responses with markdown.`;
+Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel, not fluff.
+When Marco states a preference, decision, priority, or fact about the agency, remember it. Format responses with markdown.`;
     }
 
     function renderMarkdown(md) {
@@ -1618,6 +1530,72 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
       return html;
     }
 
+    // ── GPT learning memory — Firestore-backed, Obsidian-style ──
+    const memoryDoc = () => db.collection('marco_memory').doc('vault');
+    let memorySaveTimer = null;
+
+    async function loadMemory(){
+      try {
+        const snap = await memoryDoc().get();
+        const d = snap.exists ? (snap.data() || {}) : {};
+        marcoMemory = { learnings: Array.isArray(d.learnings) ? d.learnings : [], log: Array.isArray(d.log) ? d.log : [] };
+      } catch (err) {
+        marcoMemory = { learnings: [], log: [] };  // missing doc / rules not yet published → start empty
+      }
+      updateMemoryBar();
+    }
+
+    function saveMemory(){
+      marcoMemory.log = (marcoMemory.log || []).slice(-40);
+      marcoMemory.learnings = (marcoMemory.learnings || []).slice(-60);
+      updateMemoryBar();
+      if (memorySaveTimer) clearTimeout(memorySaveTimer);
+      memorySaveTimer = setTimeout(() => {
+        memoryDoc().set({ learnings: marcoMemory.learnings, log: marcoMemory.log, updatedAt: new Date().toISOString() }, { merge: true })
+          .catch(() => showToast('Memory save failed — publish the marco_memory Firestore rule (see SETUP.md)', 'error'));
+      }, 800);
+    }
+
+    async function learnFromExchange(userMsg, assistantMsg){
+      try {
+        const known = (marcoMemory.learnings || []).map(l => l.text).join(' | ');
+        const out = await callGPT(
+          "You distill durable memory for a CEO's AI chief of staff. From the exchange, output 0-2 SHORT durable facts about how Marco runs TABOOST — his preferences, decisions, priorities, or stable facts. One per line, no bullets or numbering. Skip anything transient or already known. If nothing durable, output exactly: NONE",
+          `Already known: ${known || '(none)'}\n\nMarco: ${userMsg}\nYou: ${assistantMsg}`
+        );
+        if (!out) return;
+        out.split('\n').map(s => s.replace(/^[-*•\d.\s]+/, '').trim()).filter(Boolean).forEach(text => {
+          if (text.toUpperCase() === 'NONE') return;
+          const dup = (marcoMemory.learnings || []).some(l => l.text.toLowerCase() === text.toLowerCase());
+          if (!dup) marcoMemory.learnings.push({ ts: new Date().toISOString(), text });
+        });
+      } catch (err) { /* best-effort; never blocks the answer */ }
+    }
+
+    function updateMemoryBar(){
+      const el = document.getElementById('memCount');
+      if (el) el.textContent = (marcoMemory.learnings || []).length;
+    }
+
+    function exportMemory(){
+      const date = new Date().toISOString().split('T')[0];
+      const learnings = (marcoMemory.learnings || []).map(l => `- ${l.text}`).join('\n') || '- (none yet)';
+      const log = (marcoMemory.log || []).map(m => `**${m.role === 'user' ? 'Marco' : 'GPT'}** (${String(m.ts || '').slice(0, 16).replace('T', ' ')}): ${m.content}`).join('\n\n') || '(empty)';
+      const md = `---\ntitle: Marco Command Center Memory\nexported: ${date}\ntags: [taboost, marco, command-center]\n---\n\n# Marco — Command Center Memory\n\n## Learnings\n${learnings}\n\n## Recent log\n${log}\n`;
+      const blob = new Blob([md], { type: 'text/markdown' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = `marco-memory-${date}.md`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+    }
+
+    function clearMemory(){
+      if (!confirm('Clear all GPT memory (learnings + log)? This cannot be undone.')) return;
+      marcoMemory = { learnings: [], log: [] };
+      saveMemory();
+      showToast('Memory cleared');
+    }
+
     async function submitGPTCommand() {
       const input = document.getElementById('gptInput');
       const q = input?.value?.trim();
@@ -1627,7 +1605,7 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
       try {
         if (btn) {
           btn.disabled = true;
-          btn.textContent = 'Thinking...';
+          btn.textContent = '…';
         }
         commandMessages.push({ role: 'user', content: q });
         appendConversation('user', q);
@@ -1637,12 +1615,20 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
         commandMessages.push({ role: 'assistant', content: text });
         lastGPTResponse = text;
         appendConversation('assistant', text);
+        // Only persist/learn from real answers (not the no-key fallback)
+        if (ans) {
+          const now = new Date().toISOString();
+          marcoMemory.log.push({ ts: now, role: 'user', content: q });
+          marcoMemory.log.push({ ts: now, role: 'assistant', content: text });
+          saveMemory();
+          learnFromExchange(q, text).then(() => saveMemory());
+        }
       } catch (err) {
         appendConversation('assistant', 'Command Center is unavailable right now.');
       } finally {
         if (btn) {
           btn.disabled = false;
-          btn.textContent = 'Ask GPT';
+          btn.textContent = '↑';
         }
       }
     }
@@ -1749,21 +1735,22 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
       }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      renderSports();
-    });
-    renderSports();
   </script>
         </div> <!-- /centerColumn -->
 
         <aside class="gpt-rail" id="gptCommandCenter">
           <h2>Command Center</h2>
-          <p class="rail-sub">Ask anything — context from all active divisions is included.</p>
+          <p class="rail-sub">Ask anything — it remembers and learns as you go. Context from all divisions included.</p>
+          <div class="mem-bar">
+            <span class="mem-info">🧠 Memory · <strong id="memCount">0</strong> learnings</span>
+            <button type="button" class="gpt-tag" onclick="exportMemory()" title="Download as Obsidian markdown">Export .md</button>
+            <button type="button" class="gpt-tag" onclick="clearMemory()" title="Clear all learnings + log">Clear memory</button>
+          </div>
           <div class="gpt-tags">
             <button type="button" class="gpt-tag" onclick="fillGPTInput('Who should I focus on this week?')">Focus this week</button>
             <button type="button" class="gpt-tag" onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday brief</button>
             <button type="button" class="gpt-tag" onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5</button>
-            <button type="button" class="gpt-tag" style="margin-left:auto" onclick="clearGPTConversation()">Clear</button>
+            <button type="button" class="gpt-tag" style="margin-left:auto" onclick="clearGPTConversation()">Clear chat</button>
           </div>
           <div class="gpt-inputbar">
             <textarea id="gptInput" rows="1" placeholder="Ask about your agency..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
@@ -1795,13 +1782,6 @@ Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel
           <button type="button" class="secondary" onclick="editDiscord()">Edit</button>
         </div>
       </section>
-
-      <!-- Sports — slim pill at very bottom -->
-      <div class="sports-pill" id="sportsDivision">
-        <span class="sp-dot"></span>
-        <span>Sports Division — In Development</span>
-        <span class="sp-note">30 minutes in the future.</span>
-      </div>
     </div> <!-- /dashboardContent -->
     </body>
   </html>

@@ -140,10 +140,15 @@ service cloud.firestore {
     // Payouts
     match /payouts/{docId} {
       // Creator can read their own payouts
-      allow read: if isAuthenticated() 
+      allow read: if isAuthenticated()
         && resource.data.uid == request.auth.uid;
-      
+
       // Admin can manage all payouts
+      allow read, write: if isAdmin();
+    }
+
+    // Marco CEO cockpit — GPT Command Center learning memory (admin only)
+    match /marco_memory/{docId} {
       allow read, write: if isAdmin();
     }
   }
