@@ -880,7 +880,16 @@
       box-shadow: 0 -16px 44px rgba(0,0,0,0.5), 0 -1px 0 rgba(255,0,80,0.45);
       backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     }
-    .command-dock .gpt-connect { margin: 0 auto 10px; max-width: 540px; width: 100%; }
+    /* compact inline connect row inside the dock (replaces the big panel) */
+    .command-dock .dock-connect {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin: 0 auto 10px; width: 100%; max-width: 1320px;
+      padding: 8px 14px; text-align: left;
+      background: linear-gradient(90deg, rgba(255,0,80,0.10), rgba(20,20,22,0.3));
+      border: 1px solid rgba(255,0,80,0.25); border-radius: 10px;
+    }
+    .command-dock .dock-connect .gpt-connect-title { font-weight: 700; font-size: 0.82rem; margin: 0; }
+    .command-dock .dock-connect button { min-height: 32px; padding: 6px 14px; font-size: 0.78rem; }
     .dock-convo {
       display: none; flex-direction: column; gap: 10px;
       max-height: 46vh; overflow-y: auto; margin: 0 auto 12px; padding: 2px;
@@ -1152,6 +1161,20 @@
       } catch (err) {}
     }
     updateHeaderContext();
+
+    // Keep page content clear of the fixed Command Center dock (its height varies with the
+    // connect CTA / expanded conversation). A ResizeObserver keeps the bottom padding in sync.
+    function syncDockPadding(){
+      const dock = document.getElementById('gptCommandCenter');
+      const dc = document.getElementById('dashboardContent');
+      if (dock && dc && dock.offsetHeight) dc.style.paddingBottom = (dock.offsetHeight + 28) + 'px';
+    }
+    (function(){
+      const dock = document.getElementById('gptCommandCenter');
+      if (window.ResizeObserver && dock) { new ResizeObserver(syncDockPadding).observe(dock); }
+      window.addEventListener('resize', syncDockPadding);
+      setTimeout(syncDockPadding, 300);
+    })();
 
     // ── Settings modal — Marco's API keys, saved to Firestore (marco_config/keys) ──
     function openSettings(){
@@ -1988,11 +2011,10 @@ When Marco states a preference, decision, priority, or fact about the agency, re
       <!-- conversation expands upward; hidden until there are messages -->
       <div id="gptConversation" class="dock-convo"></div>
 
-      <!-- shown when no OpenAI key is connected -->
-      <div class="gpt-connect" id="gptConnect" style="display:none">
-        <div class="gpt-connect-title">Connect OpenAI to activate your chief of staff</div>
-        <div class="gpt-connect-sub">Add your API key once and the Command Center comes alive.</div>
-        <button type="button" onclick="openSettings()">⚙ Connect OpenAI</button>
+      <!-- shown when no OpenAI key is connected (compact inline row) -->
+      <div class="gpt-connect dock-connect" id="gptConnect" style="display:none">
+        <span class="gpt-connect-title">✦ Connect OpenAI to activate your chief of staff</span>
+        <button type="button" onclick="openSettings()">⚙ Connect</button>
       </div>
 
       <div class="dock-bar">
