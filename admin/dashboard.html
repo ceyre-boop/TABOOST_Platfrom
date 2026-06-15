@@ -65,8 +65,9 @@
       gap: 20px;
       min-height: 76px;
       padding: 14px 24px;
-      background: rgba(10,10,10,0.92);
+      background: linear-gradient(90deg, rgba(10,10,10,0.95) 0%, rgba(20,17,24,0.95) 50%, rgba(10,10,10,0.95) 100%);
       border-bottom: 1px solid var(--line);
+      box-shadow: 0 1px 0 rgba(255,0,80,0.12);
       backdrop-filter: blur(12px);
     }
 
@@ -97,9 +98,10 @@
     .delorean-quote {
       flex: 1;
       max-width: 620px;
-      color: var(--secondary);
-      font-size: 0.82rem;
-      font-weight: 600;
+      color: #555;
+      font-size: 0.78rem;
+      font-weight: 500;
+      font-style: italic;
       text-align: center;
       white-space: nowrap;
       overflow: hidden;
@@ -129,7 +131,7 @@
       padding: 18px;
       background: var(--card);
       border: 1px solid var(--line);
-      border-left: 3px solid transparent;
+      border-left: 3px solid rgba(255,0,80,0.25);
       border-radius: 12px;
       box-shadow: var(--shadow);
       transition: border-color .18s ease, transform .18s ease, background .18s ease;
@@ -141,15 +143,22 @@
       transform: translateY(-1px);
     }
 
+    /* status-driven accents set by JS */
+    .division-card.healthy { border-left-color: var(--green); }
+    .division-card.warning { border-left-color: var(--yellow); }
+    .division-card.offline { border-left-color: var(--muted); }
+
     .division-card h2 {
       display: flex;
       align-items: center;
       gap: 9px;
-      margin: 0 0 15px;
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
       color: var(--text);
       font-size: 1rem;
       font-weight: 800;
-      letter-spacing: 0;
+      letter-spacing: 0.01em;
       text-transform: uppercase;
     }
 
@@ -192,9 +201,10 @@
     .kpi-value {
       display: block;
       color: var(--text);
-      font-size: 1.12rem;
+      font-size: 1.7rem;
       font-weight: 800;
-      line-height: 1.08;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
       overflow-wrap: anywhere;
     }
 
@@ -249,11 +259,22 @@
 
     .gpt-center-section {
       grid-column: 1 / -1;
-      padding: 18px;
+      position: relative;
+      padding: 22px 18px 18px;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 12px;
       box-shadow: var(--shadow);
+    }
+
+    .gpt-center-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 18px;
+      right: 18px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
     }
 
     .gpt-center-section h2,
@@ -723,7 +744,18 @@
     const OPENAI_KEY = 'REPLACE_ME_OPENAI_KEY';
     let liveKPIs = {}; let shopKPIs = {}; let talentKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
 
-    function setDot(id, color){ const el=document.getElementById(id); if(el) el.style.background=color; }
+    function setDot(id, color){
+      const el=document.getElementById(id);
+      if(el) el.style.background=color;
+      // reflect status on the parent division card's left border (presentation only)
+      const card = el && el.closest('.division-card');
+      if(card){
+        card.classList.remove('healthy','warning','offline');
+        if(color==='#00C896') card.classList.add('healthy');
+        else if(color==='#FFB800') card.classList.add('warning');
+        else if(color==='#FF0050') card.classList.add('offline');
+      }
+    }
 
     function showToast(msg, type='success'){
       try {
