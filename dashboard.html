@@ -319,7 +319,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="nav-link" onclick="showPage('diamonds',this)"><span class="nav-icon">💎</span><span>Diamonds</span></div>
     <div class="nav-link" onclick="showPage('streams',this)"><span class="nav-icon">📡</span><span>Live Streams</span></div>
     <div class="nav-section-lbl">Management</div>
-    <div class="nav-link" onclick="showPage('managers',this)"><span class="nav-icon">👤</span><span>Managers</span></div>
+    <div class="nav-link" onclick="showPage('managers',this)"><span class="nav-icon">👤</span><span>Agents</span></div>
     <div class="nav-link" onclick="showPage('leaderboard',this)"><span class="nav-icon">🏆</span><span>Leaderboard</span></div>
     <div class="nav-link" onclick="showPage('health',this)"><span class="nav-icon">⚠️</span><span>Creator Health</span><span class="nav-badge">!</span></div>
     <div class="nav-link" onclick="showPage('milestones',this)"><span class="nav-icon">🎯</span><span>Milestones</span></div>
@@ -493,15 +493,15 @@ tbody tr:last-child td{border-bottom:none}
   <!-- ════════════ MANAGERS ════════════ -->
   <div id="page-managers" class="page">
     <div class="g4 fu">
-      <div class="kpi"><div class="kpi-label">Total Managers</div><div class="kpi-val">—</div><div class="kpi-sub">Active assignments</div></div>
-      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">—</div><div class="kpi-sub">Per manager</div></div>
-      <div class="kpi"><div class="kpi-label">Top Manager</div><div class="kpi-val" style="font-size:22px">—</div><div class="kpi-sub">9.4M diamonds</div></div>
-      <div class="kpi"><div class="kpi-label">Top Team 💎</div><div class="kpi-val up" style="font-size:26px">—</div><div class="kpi-sub">Best team</div></div>
+      <div class="kpi"><div class="kpi-label">Total Agents</div><div class="kpi-val">—</div><div class="kpi-sub">Active agents</div></div>
+      <div class="kpi"><div class="kpi-label">Avg Creators</div><div class="kpi-val">—</div><div class="kpi-sub">Per agent</div></div>
+      <div class="kpi"><div class="kpi-label">Top Agent</div><div class="kpi-val" style="font-size:22px">—</div><div class="kpi-sub">9.4M diamonds</div></div>
+      <div class="kpi"><div class="kpi-label">Top Agent 💎</div><div class="kpi-val up" style="font-size:26px">—</div><div class="kpi-sub">Best team</div></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="fu1" id="mgr-grid"></div>
     <div class="card fu2">
-      <div class="card-hd"><div class="card-title">MANAGER RANKINGS</div><div class="card-sub">Performance by total team diamonds</div></div>
-      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>MANAGER</th><th>TEAM</th><th>DIAMONDS</th><th>REWARDS</th><th>AVG HRS</th><th>TOP CREATOR</th><th>SHARE</th></tr></thead><tbody id="mgr-tbody"></tbody></table></div>
+      <div class="card-hd"><div class="card-title">AGENT RANKINGS</div><div class="card-sub">Ranked by total diamonds · data/agents.csv</div></div>
+      <div style="overflow-x:auto"><table><thead><tr><th>RANK</th><th>AGENT</th><th>CREATORS</th><th>DIAMONDS</th><th>L1+ 💎</th><th>SINCE</th><th>SHARE</th></tr></thead><tbody id="mgr-tbody"></tbody></table></div>
     </div>
   </div>
 
@@ -712,7 +712,24 @@ window.logout = async () => {
 };
 
 // ──── DATA (live from data/current.csv, synced from Google Sheets) ────
-let D=[], MGRS=[], MTOTAL=0, TRENDS=null;
+let D=[], MGRS=[], MTOTAL=0, TRENDS=null, AGENTS=[];
+
+// Clean agent roster (data/agents.csv) — used by the Agents tab instead of deriving from creators
+async function loadAgents(){
+  try{
+    const rows=await parseCSV('data/agents.csv?t='+Date.now());
+    const H={}; (rows[0]||[]).forEach((h,i)=>H[String(h).trim()]=i);
+    const col=(r,n)=>r[H[n]];
+    AGENTS=rows.slice(1).map(r=>({
+      n:String(col(r,'Short Name')||'').trim(),
+      email:String(col(r,'Agent User')||'').trim(),
+      d:num(col(r,'Total ?')),
+      cn:num(col(r,'Creators')),
+      l1:num(col(r,'L1+ ?')),
+      since:String(col(r,'1st Creator')||'').trim()
+    })).filter(a=>a.n && a.d>0).sort((a,b)=>b.d-a.d);
+  }catch(e){ AGENTS=[]; }
+}
 
 // Column indices in data/current.csv (proven map, matches admin dashboard)
 const COL={user:2,badge:7,mgr:8,active:10,hours:16,diamonds:19,pace:20,tier:21,tierGoal:22,last30:27,prev1:28,prev2:29,score:32,earned:33,estRev:39};
@@ -785,6 +802,7 @@ async function loadData(attempt=0){
   const mg={};
   D.forEach(c=>{const k=c.m;(mg[k]=mg[k]||{n:k,c:0,d:0,r:0,h:0,list:[]});mg[k].c++;mg[k].d+=c.d;mg[k].r+=c.r;mg[k].h+=c.h;mg[k].list.push(c);});
   MGRS=Object.values(mg).sort((a,b)=>b.d-a.d).map(m=>({n:m.n,c:m.c,d:m.d,r:m.r,h:m.h,top:m.list.slice().sort((a,b)=>b.d-a.d).slice(0,3).map(c=>c.n)}));
+  await loadAgents();
   renderAll();
 }
 
@@ -831,11 +849,11 @@ function updateKPIs(){
   setKPI('Active Creators', activeCount.toLocaleString(), '<span style="color:var(--green)">🟢</span> Live this month');
   setKPI('Avg Hrs/Creator', (activeCount?(totalHours/activeCount).toFixed(1):0)+'h', 'Active creators only');
   setKPI('Max Hours', maxH.h+'h', maxH.n);
-  // Managers page
-  setKPI('Total Managers', MGRS.length, 'Active assignments');
-  setKPI('Avg Creators', MGRS.length?Math.round(D.length/MGRS.length):0, 'Per manager');
-  setKPI('Top Manager', MGRS[0]?MGRS[0].n:'—', (MGRS[0]?f(MGRS[0].d):'0')+' diamonds');
-  setKPI('Top Team 💎', MGRS[0]?f(MGRS[0].d):'0', 'Best: '+(MGRS[0]?MGRS[0].n:'—'));
+  // Agents page (from data/agents.csv)
+  setKPI('Total Agents', AGENTS.length, 'Active agents');
+  setKPI('Avg Creators', AGENTS.length?Math.round(AGENTS.reduce((s,a)=>s+a.cn,0)/AGENTS.length):0, 'Per agent');
+  setKPI('Top Agent', AGENTS[0]?AGENTS[0].n:'—', (AGENTS[0]?f(AGENTS[0].d):'0')+' diamonds');
+  setKPI('Top Agent 💎', AGENTS[0]?f(AGENTS[0].d):'0', 'Best: '+(AGENTS[0]?AGENTS[0].n:'—'));
   // Leaderboard page
   setKPI('Creators', D.length.toLocaleString());
   // Health page
@@ -912,7 +930,7 @@ setInterval(()=>{document.getElementById('tb-clock').textContent=new Date().toLo
 document.getElementById('tb-clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false});
 
 // ──── PAGE SWITCH ────
-const titles={dashboard:'DASHBOARD',creators:'ALL CREATORS',diamonds:'DIAMONDS',streams:'LIVE STREAMS',managers:'MANAGERS',leaderboard:'LEADERBOARD',health:'CREATOR HEALTH',milestones:'MILESTONES',reports:'REPORTS',alerts:'ALERTS',settings:'SETTINGS'};
+const titles={dashboard:'DASHBOARD',creators:'ALL CREATORS',diamonds:'DIAMONDS',streams:'LIVE STREAMS',managers:'AGENTS',leaderboard:'LEADERBOARD',health:'CREATOR HEALTH',milestones:'MILESTONES',reports:'REPORTS',alerts:'ALERTS',settings:'SETTINGS'};
 function showPage(id,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
@@ -1120,25 +1138,27 @@ function renderEffTable(){
 // ──── MANAGERS ────
 const mgrColors=['#ff0044','#2979ff','#00e676','#ffab00','#e040fb','#ff6d00','#00bcd4','#8bc34a','#f06292','#4fc3f7'];
 function renderMgrGrid(){
-  document.getElementById('mgr-grid').innerHTML=MGRS.slice(0,9).map((m,i)=>`
+  const max=AGENTS[0]?AGENTS[0].d:1;
+  document.getElementById('mgr-grid').innerHTML=AGENTS.slice(0,9).map((a,i)=>`
     <div class="mgr-card">
-      <div class="mgr-av" style="background:${mgrColors[i]}20;color:${mgrColors[i]};border-color:${mgrColors[i]}30">${m.n[0]}</div>
-      <div class="mgr-name">${m.n}</div>
+      <div class="mgr-av" style="background:${mgrColors[i]}20;color:${mgrColors[i]};border-color:${mgrColors[i]}30">${a.n[0]||'?'}</div>
+      <div class="mgr-name">${a.n}</div>
       <div style="font-size:10px;color:var(--t4);margin-top:2px">#${i+1} by diamonds</div>
-      <div style="margin-top:10px"><div style="height:4px" class="pb"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${mgrColors[i]}"></div></div></div>
+      <div style="margin-top:10px"><div style="height:4px" class="pb"><div class="pf" style="width:${(a.d/max*100).toFixed(1)}%;background:${mgrColors[i]}"></div></div></div>
       <div class="mgr-stats">
-        <div><div class="ms-lbl">Creators</div><div class="ms-val">${m.c}</div></div>
-        <div><div class="ms-lbl">Diamonds</div><div class="ms-val" style="color:${mgrColors[i]}">${f(m.d)}</div></div>
-        <div><div class="ms-lbl">Rewards</div><div class="ms-val">${f(m.r)}</div></div>
-        <div><div class="ms-lbl">Avg Hrs</div><div class="ms-val">${m.c>0?(m.h/m.c).toFixed(1):0}h</div></div>
+        <div><div class="ms-lbl">Creators</div><div class="ms-val">${a.cn}</div></div>
+        <div><div class="ms-lbl">Diamonds</div><div class="ms-val" style="color:${mgrColors[i]}">${f(a.d)}</div></div>
+        <div><div class="ms-lbl">L1+ 💎</div><div class="ms-val">${f(a.l1)}</div></div>
+        <div><div class="ms-lbl">Since</div><div class="ms-val" style="font-size:12px">${a.since||'–'}</div></div>
       </div>
-      <div class="mgr-top"><div class="mgr-top-lbl">Top Creators</div>${m.top.map(t=>`<div class="mgr-top-item">→ ${t}</div>`).join('')}</div>
     </div>`).join('');
 }
 function renderMgrTable(){
-  document.getElementById('mgr-tbody').innerHTML=MGRS.map((m,i)=>{
-    const share=(m.d/MTOTAL*100).toFixed(1);const cl=mgrColors[i]||'var(--t3)';
-    return`<tr><td>${i<3?['🥇','🥈','🥉'][i]:`<span class="mono" style="color:var(--t4)">#${i+1}</span>`}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="av" style="width:26px;height:26px;font-size:11px;background:${cl}20;border-color:${cl}30">${m.n[0]}</div><strong style="color:var(--t1)">${m.n}</strong></div></td><td class="mono">${m.c}</td><td class="mono"><strong style="color:${cl}">${ff(m.d)}</strong></td><td class="mono up">${f(m.r)}</td><td class="mono">${m.c>0?(m.h/m.c).toFixed(1):0}h</td><td style="color:var(--t3);font-size:11px">${m.top[0]||'–'}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="pb" style="width:80px;height:4px"><div class="pf" style="width:${(m.d/MGRS[0].d*100).toFixed(1)}%;background:${cl}"></div></div><span class="mono" style="font-size:10px;color:${cl}">${share}%</span></div></td></tr>`;
+  const total=AGENTS.reduce((s,a)=>s+a.d,0)||1;
+  const max=AGENTS[0]?AGENTS[0].d:1;
+  document.getElementById('mgr-tbody').innerHTML=AGENTS.map((a,i)=>{
+    const share=(a.d/total*100).toFixed(1);const cl=mgrColors[i]||'var(--t3)';
+    return`<tr><td>${i<3?['🥇','🥈','🥉'][i]:`<span class="mono" style="color:var(--t4)">#${i+1}</span>`}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="av" style="width:26px;height:26px;font-size:11px;background:${cl}20;border-color:${cl}30">${a.n[0]||'?'}</div><strong style="color:var(--t1)">${a.n}</strong></div></td><td class="mono">${a.cn}</td><td class="mono"><strong style="color:${cl}">${ff(a.d)}</strong></td><td class="mono up">${f(a.l1)}</td><td class="mono" style="color:var(--t3);font-size:11px">${a.since||'–'}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="pb" style="width:80px;height:4px"><div class="pf" style="width:${(a.d/max*100).toFixed(1)}%;background:${cl}"></div></div><span class="mono" style="font-size:10px;color:${cl}">${share}%</span></div></td></tr>`;
   }).join('');
 }
 
