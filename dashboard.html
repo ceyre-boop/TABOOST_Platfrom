@@ -309,7 +309,7 @@ tbody tr:last-child td{border-bottom:none}
     <div class="logo-name">TABOOST</div>
   </div>
   <div class="search-wrap">
-    <input class="search-inp" type="text" placeholder="Search creators..." oninput="globalSearch(this.value)">
+    <input class="search-inp" type="search" name="taboost_creator_search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Search creators..." oninput="globalSearch(this.value)">
   </div>
   <nav>
     <div class="nav-section-lbl">Main</div>
@@ -1044,11 +1044,12 @@ function renderCR(){
   renderCRHead();
   document.getElementById('cr-tbody').innerHTML=page.map((c,i)=>{const rank=start+i+1;const cl=mc(c.m);const scl=sc(c.s);const pcol=(c.tg>0&&c.pace>=c.tg)?'var(--green)':'var(--t3)';return`<tr><td><span class="mono" style="color:var(--t4)">${rank}</span></td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td class="mono"><strong>${ff(c.d)}</strong></td><td class="mono up">${ff(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track" style="width:60px"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td><td class="mono" style="color:${pcol}">${c.pace>0?f(c.pace):'–'}</td></tr>`}).join('');
   document.getElementById('cr-pag-info').textContent=`Page ${crIdx+1} of ${Math.max(1,Math.ceil(fl.length/CPP))} · ${fl.length?start+1:0}–${end} of ${fl.length}`;
+  if(fl.length===0&&D.length>0) document.getElementById('cr-tbody').innerHTML='<tr><td colspan="9" style="padding:24px;text-align:center;color:var(--t3)">No matches'+(crFilter?` for “${crFilter}”`:'')+' — <a href="#" onclick="globalSearch(\'\');return false;" style="color:var(--red);text-decoration:underline">clear search</a></td></tr>';
   const sub=document.getElementById('cr-sub');if(sub)sub.textContent=`${D.length.toLocaleString()} creators · Live from Google Sheets`;
 }
 function crPage(d){const max=Math.ceil(getFiltered().length/CPP)-1;crIdx=Math.max(0,Math.min(max,crIdx+d));renderCR()}
 function sortCR(k){toggleSort(crSort,k,-1);crIdx=0;renderCR()}
-function globalSearch(v){crFilter=v;crIdx=0;renderCR();lbIdx=0;renderLB()}
+function globalSearch(v){v=(v||'').trim();if(v.includes('@')){const inp=document.querySelector('.search-inp');if(inp)inp.value='';v='';}crFilter=v;crIdx=0;renderCR();lbIdx=0;renderLB()}
 function toggleActiveCR(el){crActiveOnly=!crActiveOnly;el.classList.toggle('tb-btn-red',crActiveOnly);el.classList.toggle('tb-btn-ghost',!crActiveOnly);el.textContent=crActiveOnly?'✓ Active Only':'Active Only';crIdx=0;renderCR();}
 function renderCRFilters(){
   const mgrs=['All',...MGRS.map(m=>m.n)];
@@ -1086,6 +1087,7 @@ function renderLB(){
     return`<tr><td>${rk}</td><td><div class="cc"><div class="av" style="background:${cl}20;border-color:${cl}30">${ini(c.n)}</div><div><div class="cn">${c.n}</div><div class="ch2">${c.b||'–'}</div></div></div></td><td><span style="font-size:11px;color:${cl};font-weight:700">${c.m}</span></td><td><span class="tc" style="background:${sg.c}22;color:${sg.c};border:1px solid ${sg.c}55">${sg.l}</span></td><td><span class="tc ${tc(c.t)}">T${c.t}</span></td><td><strong class="mono">${ff(c.d)}</strong></td><td class="mono" style="color:var(--t3)">${dph>0?dph.toLocaleString():'-'}</td><td class="mono up">${f(c.r)}</td><td class="mono">${c.h}h</td><td><div class="sb"><span class="sb-num" style="color:${scl}">${c.s}</span><div class="sb-track"><div class="sb-fill" style="width:${c.s}%;background:${scl}"></div></div></div></td></tr>`;
   }).join('');
   document.getElementById('lb-pag-info').textContent=`Page ${lbIdx+1} of ${Math.max(1,Math.ceil(fl.length/LPP))} · ${fl.length?start+1:0}–${end} of ${fl.length}`;
+  if(fl.length===0&&D.length>0) document.getElementById('lb-tbody').innerHTML='<tr><td colspan="10" style="padding:24px;text-align:center;color:var(--t3)">No matches'+(crFilter?` for “${crFilter}”`:'')+' — <a href="#" onclick="globalSearch(\'\');return false;" style="color:var(--red);text-decoration:underline">clear search</a></td></tr>';
 }
 function lbPg(d){const max=Math.ceil(lbFiltered().length/LPP)-1;lbIdx=Math.max(0,Math.min(max,lbIdx+d));renderLB()}
 function sortLB(k){toggleSort(lbSort,k,-1);lbIdx=0;renderLB()}
@@ -1238,6 +1240,12 @@ Object.assign(window,{loadData,showPage,globalSearch,crPage,setCRMgr,sortCR,togg
 
 // ──── INIT ──── load live data, then render everything
 loadData();
+
+// Defeat Chrome autofilling the search box with the saved email (it would filter every creator out).
+(function guardSearch(){
+  const fix=()=>{const inp=document.querySelector('.search-inp');if(inp&&inp.value)inp.value='';if(crFilter){crFilter='';crIdx=0;lbIdx=0;if(D.length){renderCR();renderLB();}}};
+  [400,900,1600,2600].forEach(t=>setTimeout(fix,t));
+})();
 
 // Animate bars on scroll/load
 const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.pf').forEach(f=>{const w=f.style.width;f.style.width='0%';setTimeout(()=>f.style.width=w,80)})}})},{threshold:0.1});
