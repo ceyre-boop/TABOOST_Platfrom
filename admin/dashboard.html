@@ -111,25 +111,26 @@
     }
 
     #dashboardContent {
-      padding: 22px;
+      padding: 22px 22px 132px;  /* bottom space so content clears the docked Command Center */
     }
 
     .division-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 18px;
-      align-items: start;
+      align-items: stretch;
     }
-
-    @media (min-width: 1024px) {
-      .division-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    @media (min-width: 760px) {
+      .division-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+    @media (min-width: 1120px) {
+      .division-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    #brandDealsSlot:not(:empty) { margin-top: 18px; }
 
     .division-card {
       min-width: 0;
-      min-height: 320px;
+      min-height: 0;
       padding: 18px;
       background: var(--card);
       border: 1px solid var(--line);
@@ -234,14 +235,16 @@
     }
 
     .gpt-alerts {
-      min-height: 92px;
-      padding: 12px;
+      padding: 10px 12px;
       background: #0d0d0d;
       border: 1px solid var(--line);
       border-radius: 8px;
       color: var(--text);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
     }
+    .gpt-alerts.slim { padding: 7px 11px; color: var(--muted); font-size: 0.74rem; }
+    .gpt-alerts.slim a { color: var(--secondary); }
+    .gpt-alerts.slim a:hover { color: var(--accent); }
 
     .alert-line {
       display: flex;
@@ -867,6 +870,43 @@
     .assistant-message.thinking .dots span:nth-child(3) { animation-delay: 0.4s; }
     @keyframes thinkdot { 0%,80%,100% { transform: scale(0.7); opacity: 0.4; } 40% { transform: scale(1.1); opacity: 1; } }
 
+    /* ===== Command Center — docked AI dispatch bar ===== */
+    .command-dock {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 800;
+      display: flex; flex-direction: column;
+      padding: 12px 18px 14px;
+      background: linear-gradient(180deg, rgba(18,18,20,0.84), rgba(10,10,11,0.95));
+      border-top: 1px solid var(--line-strong);
+      box-shadow: 0 -16px 44px rgba(0,0,0,0.5), 0 -1px 0 rgba(255,0,80,0.45);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    }
+    .command-dock .gpt-connect { margin: 0 auto 10px; max-width: 540px; width: 100%; }
+    .dock-convo {
+      display: none; flex-direction: column; gap: 10px;
+      max-height: 46vh; overflow-y: auto; margin: 0 auto 12px; padding: 2px;
+      width: 100%; max-width: 1100px;
+    }
+    .command-dock.has-convo .dock-convo { display: flex; }
+    .dock-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; width: 100%; max-width: 1320px; margin: 0 auto; }
+    .dock-brand { display: flex; align-items: center; gap: 7px; flex: 0 0 auto; }
+    .dock-brand .dock-title { font-weight: 800; font-size: 0.92rem; }
+    .dock-chips { display: flex; gap: 6px; flex: 0 0 auto; flex-wrap: wrap; }
+    .dock-input { display: flex; align-items: flex-end; gap: 8px; flex: 1 1 320px; min-width: 240px; }
+    .dock-input textarea {
+      flex: 1; min-height: 46px; max-height: 130px; resize: none; padding: 12px 14px;
+      background: #0b0b0b; color: var(--text); border: 1px solid var(--line-strong); border-radius: 12px;
+      font-family: var(--font); font-size: 0.9rem; line-height: 1.4;
+    }
+    .dock-input textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(255,0,80,0.16); }
+    #gptInput:disabled, .gpt-send:disabled { opacity: 0.45; cursor: not-allowed; }
+    .dock-meta { display: flex; align-items: center; gap: 6px; flex: 0 0 auto; }
+    .dock-meta .mem-info { font-size: 0.74rem; color: var(--secondary); }
+    .dock-meta .mem-info strong { color: var(--text); }
+    @media (max-width: 760px) {
+      .dock-chips, .dock-meta .gpt-tag { display: none; }
+      #dashboardContent { padding-bottom: 160px; }
+    }
+
     /* ===== Live ticker (live-site aesthetic) ===== */
     .cockpit-ticker { overflow: hidden; margin: 0 0 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
     .cockpit-ticker .ticker-track { display: inline-flex; white-space: nowrap; padding: 9px 0; animation: cockpitTicker 42s linear infinite; }
@@ -964,50 +1004,49 @@
     </div>
 
     <!-- 3-column cockpit: Live/UK · Shop+integrations · GPT rail -->
-    <div class="cockpit-grid">
-      <div class="cockpit-col" id="leftColumn">
-        <section class="division-card" id="liveDivision">
-          <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · US</h2>
-          <div class="kpi-grid">
-            <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveRevenue"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveScore"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveLevel5"><div class="skeleton-bar"></div></div>
-          </div>
-          <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
-          <div class="division-links">
-            <a class="division-link" href="../dashboard.html">View Full US Dashboard →</a>
-          </div>
-        </section>
-        <section class="division-card" id="liveUkDivision">
-          <h2><span class="status-dot" id="liveUkDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · UK</h2>
-          <div class="kpi-grid">
-            <div class="kpi-card" id="liveUkCreators"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveUkDiamonds"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveUkRevenue"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveUkScore"><div class="skeleton-bar"></div></div>
-            <div class="kpi-card" id="liveUkLevel5"><div class="skeleton-bar"></div></div>
-          </div>
-          <div class="gpt-alerts" id="liveUkAlerts"><div class="skeleton-bar"></div><div class="skeleton-bar" style="width:80%"></div></div>
-          <div class="division-links">
-            <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
-          </div>
-        </section>
-      </div>
-      <div class="cockpit-col" id="centerColumn">
-        <section class="division-card" id="shopDivision">
-          <h2><span class="status-dot" id="shopDot"></span>Shop</h2>
-          <div id="shopBody">
-            <div class="skeleton-bar"></div>
-            <div class="skeleton-bar"></div>
-            <div class="skeleton-bar" style="width:80%"></div>
-          </div>
-          <div class="division-links">
-            <a class="division-link" href="../shop-dashboard.html">View Shop Dashboard →</a>
-          </div>
-        </section>
-        <!-- Brand Deals injected here (compact chip until Monday credentials connected) -->
+    <div class="division-grid">
+      <section class="division-card" id="liveDivision">
+        <h2><span class="status-dot" id="liveDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · US</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card" id="liveCreators"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveDiamonds"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveRevenue"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveScore"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveLevel5"><div class="skeleton-bar"></div></div>
+        </div>
+        <div class="gpt-alerts" id="liveAlerts"><div class="skeleton-bar"></div></div>
+        <div class="division-links">
+          <a class="division-link" href="../dashboard.html">View Full US Dashboard →</a>
+        </div>
+      </section>
+      <section class="division-card" id="liveUkDivision">
+        <h2><span class="status-dot" id="liveUkDot" style="background:#888;width:8px;height:8px;border-radius:50%;"></span>Live · UK</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card" id="liveUkCreators"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveUkDiamonds"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveUkRevenue"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveUkScore"><div class="skeleton-bar"></div></div>
+          <div class="kpi-card" id="liveUkLevel5"><div class="skeleton-bar"></div></div>
+        </div>
+        <div class="gpt-alerts" id="liveUkAlerts"><div class="skeleton-bar"></div></div>
+        <div class="division-links">
+          <a class="division-link" href="../uk/index.html">View UK Dashboard →</a>
+        </div>
+      </section>
+      <section class="division-card" id="shopDivision">
+        <h2><span class="status-dot" id="shopDot"></span>Shop</h2>
+        <div id="shopBody">
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar"></div>
+          <div class="skeleton-bar" style="width:80%"></div>
+        </div>
+        <div class="division-links">
+          <a class="division-link" href="../shop-dashboard.html">View Shop Dashboard →</a>
+        </div>
+      </section>
+    </div>
+    <!-- Brand Deals injected here as a full-width strip -->
+    <div id="brandDealsSlot"></div>
   <script>
     /*
       SETUP: fill in the CONFIG constants just below. Full step-by-step: admin/SETUP.md
@@ -1367,7 +1406,14 @@
           'You are TABOOST CEO cockpit analyst. Return 3 concise executive alert bullets. Prefix urgent issues with CRITICAL, risks with WARNING, and wins with OK.',
           `Live ${cfg.label} KPIs: ${totalCreators} active creators, ${totalDiamonds} diamonds, $${totalRevenue} revenue, ${avgScore.toFixed(1)}/100 average score, ${level5Count} level 5+ creators. Top 5 by diamonds: ${topByDiamonds || 'none'}.`
         );
-        renderAlertLines(cfg.alerts, ai || 'OK Connect OPENAI_KEY for AI insights');
+        const alertsEl = document.getElementById(cfg.alerts);
+        if (ai) {
+          if (alertsEl) alertsEl.classList.remove('slim');
+          renderAlertLines(cfg.alerts, ai);
+        } else if (alertsEl) {
+          alertsEl.classList.add('slim');
+          alertsEl.innerHTML = '✨ <a href="#" onclick="openSettings();return false;">Connect AI for live insights</a>';
+        }
         // store a compact summary for the command-center prompt
         kpi.summary = `Live ${cfg.label}: ${totalCreators} active, ${fmtCompact(totalDiamonds)} diamonds, $${fmtCompact(totalRevenue)} rev, ${avgScore.toFixed(1)}/100 avg, ${level5Count} level 5+.`;
         setDot(cfg.dot, '#00C896');
@@ -1433,7 +1479,7 @@
     function ensureSection(id, innerHTML) {
       let s = document.getElementById(id);
       if (!s) {
-        const col = document.getElementById('centerColumn') || document.querySelector('#dashboardContent .cockpit-grid');
+        const col = document.getElementById('brandDealsSlot') || document.querySelector('#dashboardContent .division-grid');
         s = document.createElement('section');
         s.className = 'division-card';
         s.id = id;
@@ -1810,6 +1856,7 @@ When Marco states a preference, decision, priority, or fact about the agency, re
     function appendConversation(role, text) {
       const c = document.getElementById('gptConversation');
       if (!c) return;
+      document.getElementById('gptCommandCenter')?.classList.add('has-convo'); // expand the dock upward
 
       if (role === 'user') {
         const bubble = document.createElement('div');
@@ -1839,6 +1886,7 @@ When Marco states a preference, decision, priority, or fact about the agency, re
       commandMessages = [];
       const c = document.getElementById('gptConversation');
       if (c) c.innerHTML = '';
+      document.getElementById('gptCommandCenter')?.classList.remove('has-convo'); // collapse the dock
     }
 
     function copyText(btn, text) {
@@ -1911,41 +1959,6 @@ When Marco states a preference, decision, priority, or fact about the agency, re
     }
 
   </script>
-        </div> <!-- /centerColumn -->
-
-        <aside class="gpt-rail" id="gptCommandCenter">
-          <div class="rail-head">
-            <span class="rail-spark">✦</span>
-            <h2>Command Center</h2>
-            <span class="rail-badge">AI</span>
-          </div>
-          <p class="rail-sub">Your chief of staff — it remembers and learns as you go, with context from every division.</p>
-
-          <!-- shown when no OpenAI key is connected -->
-          <div class="gpt-connect" id="gptConnect" style="display:none">
-            <div class="gpt-connect-title">Connect OpenAI to activate</div>
-            <div class="gpt-connect-sub">Add your API key once and the Command Center comes alive.</div>
-            <button type="button" onclick="openSettings()">⚙ Connect OpenAI</button>
-          </div>
-
-          <div class="mem-bar">
-            <span class="mem-info">🧠 Memory · <strong id="memCount">0</strong> learnings</span>
-            <button type="button" class="gpt-tag" onclick="exportMemory()" title="Download as Obsidian markdown">Export .md</button>
-            <button type="button" class="gpt-tag" onclick="clearMemory()" title="Clear all learnings + log">Clear</button>
-          </div>
-          <div class="gpt-tags">
-            <button type="button" class="gpt-tag" onclick="fillGPTInput('Who should I focus on this week?')">Focus this week</button>
-            <button type="button" class="gpt-tag" onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday brief</button>
-            <button type="button" class="gpt-tag" onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5</button>
-            <button type="button" class="gpt-tag" style="margin-left:auto" onclick="clearGPTConversation()">Clear chat</button>
-          </div>
-          <div class="gpt-inputbar">
-            <textarea id="gptInput" rows="1" placeholder="Ask about your agency…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
-            <button type="button" class="gpt-send" id="gptSubmitBtn" onclick="submitGPTCommand()" title="Send" aria-label="Send">↑</button>
-          </div>
-          <div id="gptConversation" class="gpt-convo"></div>
-        </aside>
-      </div> <!-- /cockpit-grid -->
 
       <section id="discordQuickPost" class="discord-compose-section">
         <h2>Discord Quick Post</h2>
@@ -1969,6 +1982,42 @@ When Marco states a preference, decision, priority, or fact about the agency, re
           <button type="button" class="secondary" onclick="editDiscord()">Edit</button>
         </div>
       </section>
+
+    <!-- Command Center — docked AI dispatch bar (always visible) -->
+    <div class="command-dock" id="gptCommandCenter">
+      <!-- conversation expands upward; hidden until there are messages -->
+      <div id="gptConversation" class="dock-convo"></div>
+
+      <!-- shown when no OpenAI key is connected -->
+      <div class="gpt-connect" id="gptConnect" style="display:none">
+        <div class="gpt-connect-title">Connect OpenAI to activate your chief of staff</div>
+        <div class="gpt-connect-sub">Add your API key once and the Command Center comes alive.</div>
+        <button type="button" onclick="openSettings()">⚙ Connect OpenAI</button>
+      </div>
+
+      <div class="dock-bar">
+        <div class="dock-brand">
+          <span class="rail-spark">✦</span>
+          <span class="dock-title">Command Center</span>
+          <span class="rail-badge">AI</span>
+        </div>
+        <div class="dock-chips">
+          <button type="button" class="gpt-tag" onclick="fillGPTInput('Who should I focus on this week?')">Focus this week</button>
+          <button type="button" class="gpt-tag" onclick="fillGPTInput('Summarize everything for my Monday morning review')">Monday brief</button>
+          <button type="button" class="gpt-tag" onclick="fillGPTInput('Who are my top 5 performers across Live and Shop?')">Top 5</button>
+        </div>
+        <div class="dock-input">
+          <textarea id="gptInput" rows="1" placeholder="Ask or dispatch anything across the agency…" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();submitGPTCommand();}"></textarea>
+          <button type="button" class="gpt-send" id="gptSubmitBtn" onclick="submitGPTCommand()" title="Send" aria-label="Send">↑</button>
+        </div>
+        <div class="dock-meta">
+          <span class="mem-info">🧠 <strong id="memCount">0</strong></span>
+          <button type="button" class="gpt-tag" onclick="exportMemory()" title="Export memory as Obsidian markdown">Export</button>
+          <button type="button" class="gpt-tag" onclick="clearGPTConversation()" title="Clear conversation">Clear chat</button>
+          <button type="button" class="gpt-tag" onclick="clearMemory()" title="Clear all memory">Wipe</button>
+        </div>
+      </div>
+    </div> <!-- /command-dock -->
     </div> <!-- /dashboardContent -->
     </body>
   </html>
