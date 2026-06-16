@@ -301,6 +301,26 @@
             document.getElementById('error').style.display = 'none';
         }
 
+        // Turn any auth/system error into plain, friendly text — never show raw codes or messages to the user.
+        function friendlyAuthError(error, fallback) {
+            const code = (error && error.code) || '';
+            const messages = {
+                'auth/user-not-found': "We couldn't find an account with those details. Please double-check and try again.",
+                'auth/invalid-credential': 'Your username or password is incorrect. Please try again.',
+                'auth/invalid-login-credentials': 'Your username or password is incorrect. Please try again.',
+                'auth/wrong-password': 'That password is incorrect. Please try again.',
+                'auth/invalid-email': 'Please enter a valid email address.',
+                'auth/missing-password': 'Please enter your password.',
+                'auth/user-disabled': 'This account has been disabled. Please contact your manager.',
+                'auth/too-many-requests': 'Too many attempts. Please wait a few minutes, then try again.',
+                'auth/network-request-failed': 'Connection problem. Please check your internet and try again.',
+                'auth/email-already-in-use': 'An account with this email already exists. Try signing in instead.',
+                'auth/weak-password': 'Please choose a stronger password — at least 8 characters.',
+                'auth/requires-recent-login': 'For your security, please sign in again to continue.'
+            };
+            return messages[code] || fallback || 'Something went wrong. Please try again.';
+        }
+
         function hideMessages() {
             document.getElementById('error').style.display = 'none';
             document.getElementById('success').style.display = 'none';
@@ -345,8 +365,7 @@
                 
             } catch (error) {
                 console.error('Redirect error:', error);
-                alert('Redirect error: ' + error.message); // DEBUG
-                // Default to creator dashboard on error
+                // No code shown to the user — fall back to the creator dashboard quietly.
                 window.location.replace('creator-dashboard.html');
             }
         }
@@ -579,11 +598,11 @@
             if (foundEmail) {
                 auth.sendPasswordResetEmail(foundEmail)
                     .then(() => showSuccess('Password reset email sent to ' + foundEmail))
-                    .catch(err => showError('Could not send reset email: ' + err.message));
+                    .catch(err => showError(friendlyAuthError(err, "We couldn't send the reset email just now. Please check the address and try again.")));
             } else if (username && username.includes('@')) {
                 auth.sendPasswordResetEmail(username)
                     .then(() => showSuccess('Password reset email sent!'))
-                    .catch(err => showError('Could not send reset email: ' + err.message));
+                    .catch(err => showError(friendlyAuthError(err, "We couldn't send the reset email just now. Please check the address and try again.")));
             } else {
                 showError('Please enter your username or email address first');
                 document.getElementById('emailInputGroup').style.display = 'block';

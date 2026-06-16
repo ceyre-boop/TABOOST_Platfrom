@@ -313,7 +313,7 @@
                 document.getElementById('step2-dot').classList.add('active');
                 
             } catch (error) {
-                showError('Error checking roster: ' + error.message);
+                showError("We couldn't verify your account right now. Please try again in a moment.");
                 btn.disabled = false;
                 loading.style.display = 'none';
             }

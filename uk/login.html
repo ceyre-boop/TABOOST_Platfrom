@@ -256,13 +256,10 @@
             const users = JSON.parse(localStorage.getItem('taboost_user') || '{}');
             const signupLog = JSON.parse(localStorage.getItem('taboost_signup_log_v1') || '[]');
             
-            console.log('Stored passwords:', passwords);
-            console.log('Current user:', users);
-            console.log('Signup log:', signupLog);
-            
-            alert('DEBUG INFO:\n\nPasswords stored: ' + Object.keys(passwords).join(', ') + 
-                  '\n\nCurrent user: ' + (users.username || 'none') +
-                  '\n\nTotal signups: ' + signupLog.length);
+            // Dev-only: log to console, never surface internal data in a popup.
+            console.log('Stored password keys:', Object.keys(passwords).length);
+            console.log('Current user:', users.username || 'none');
+            console.log('Signup log entries:', signupLog.length);
         }
         
         // Run debug on load
