@@ -111,7 +111,7 @@
     }
 
     #dashboardContent {
-      padding: 22px 22px 132px;  /* bottom space so content clears the docked Command Center */
+      padding: 22px 22px 250px;  /* generous floor so content clears the docked Command Center even before JS measures it; syncDockPadding() shrinks this once the dock's real height is known */
     }
 
     .division-grid {
@@ -903,7 +903,7 @@
     .dock-meta .mem-info strong { color: var(--text); }
     @media (max-width: 760px) {
       .dock-chips, .dock-meta .gpt-tag { display: none; }
-      #dashboardContent { padding-bottom: 160px; }
+      #dashboardContent { padding-bottom: 280px; }
     }
 
     /* ===== Live ticker (live-site aesthetic) ===== */
@@ -1148,13 +1148,21 @@
     function syncDockPadding(){
       const dock = document.getElementById('gptCommandCenter');
       const dc = document.getElementById('dashboardContent');
-      if (dock && dc && dock.offsetHeight) dc.style.paddingBottom = (dock.offsetHeight + 28) + 'px';
+      if (!dock || !dc) return;
+      // measure after the browser has laid the dock out (connect row + wrapped bar settle a frame late)
+      requestAnimationFrame(() => {
+        const h = dock.offsetHeight;
+        if (h) dc.style.paddingBottom = (h + 64) + 'px';  // comfortable gap so the last content (Discord) clears the dock at max scroll
+      });
     }
     (function(){
       const dock = document.getElementById('gptCommandCenter');
       if (window.ResizeObserver && dock) { new ResizeObserver(syncDockPadding).observe(dock); }
       window.addEventListener('resize', syncDockPadding);
-      setTimeout(syncDockPadding, 300);
+      window.addEventListener('load', syncDockPadding);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncDockPadding);
+      // fonts, auth reveal, and the connect-row toggle all change the dock height at different times — re-measure across the early window
+      [300, 800, 1600, 2600].forEach(t => setTimeout(syncDockPadding, t));
     })();
 
     // ── Settings modal — Marco's API keys, saved to Firestore (marco_config/keys) ──
@@ -1802,8 +1810,9 @@ When Marco states a preference, decision, priority, or fact about the agency, re
     function updateGptKeyState(){
       const connect = document.getElementById('gptConnect');
       const has = hasKey(appCfg.openaiKey);
-      if (connect) connect.style.display = has ? 'none' : 'block';
+      if (connect) connect.style.display = has ? 'none' : 'flex';
       ['gptInput', 'gptSubmitBtn'].forEach(id => { const e = document.getElementById(id); if (e) e.disabled = !has; });
+      if (typeof syncDockPadding === 'function') syncDockPadding(); // dock height just changed
     }
 
     function showThinking(){
@@ -1857,6 +1866,7 @@ When Marco states a preference, decision, priority, or fact about the agency, re
       const c = document.getElementById('gptConversation');
       if (!c) return;
       document.getElementById('gptCommandCenter')?.classList.add('has-convo'); // expand the dock upward
+      if (typeof syncDockPadding === 'function') syncDockPadding(); // dock grew — re-reserve space
 
       if (role === 'user') {
         const bubble = document.createElement('div');
