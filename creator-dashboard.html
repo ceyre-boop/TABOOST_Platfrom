@@ -1588,10 +1588,11 @@
         const e = parseToken(parts[1], s.month); // end month defaults to start month ("June 10 -17")
         if (e.month === undefined || isNaN(e.day)) return null;
 
-        return {
-            start: new Date(year, s.month, s.day, 0, 0, 0),
-            end:   new Date(year, e.month, e.day, 0, 0, 0)
-        };
+        let start = new Date(year, s.month, s.day, 0, 0, 0);
+        let end   = new Date(year, e.month, e.day, 0, 0, 0);
+        // Tolerate reversed ranges (data typos like "June 17 - 15") so the campaign still shows.
+        if (end < start) { const tmp = start; start = end; end = tmp; }
+        return { start, end };
     }
 
     function injectCampaignEvents(campaigns, attempt) {
