@@ -1563,33 +1563,35 @@
     function parseDateRange(dateStr) {
         if (!dateStr) return null;
         const MONTHS = {
-            Jan:0, Feb:1, Mar:2, Apr:3, May:4,
-            Jun:5, June:5, Jul:6, Aug:7, Sep:8, Oct:9, Nov:10, Dec:11
+            jan:0, january:0, feb:1, february:1, mar:2, march:2, apr:3, april:3, may:4,
+            jun:5, june:5, jul:6, july:6, aug:7, august:7, sep:8, sept:8, september:8,
+            oct:9, october:9, nov:10, november:10, dec:11, december:11
         };
-        const parts = dateStr.split(' - ');
+        // Normalize: lowercase, strip ordinal suffixes (1st/2nd/17th), collapse whitespace.
+        const clean = dateStr.toLowerCase().replace(/(\d+)(st|nd|rd|th)\b/g, '$1').replace(/\s+/g, ' ').trim();
+        // Split on hyphen / en-dash / em-dash with ANY (or no) surrounding spaces —
+        // tolerates "June 10 -17", "June 1 - 28", "Jul 4-Aug 2", etc.
+        const parts = clean.split(/\s*[-–—]\s*/);
         if (parts.length !== 2) return null;
 
-        const startTokens = parts[0].trim().split(' ');
-        const endTokens   = parts[1].trim().split(' ');
+        const parseToken = (tok, fallbackMonth) => {
+            const t = tok.trim().split(' ').filter(Boolean);
+            let month, day;
+            if (t.length >= 2) { month = MONTHS[t[0]]; day = parseInt(t[1], 10); }
+            else { month = fallbackMonth; day = parseInt(t[0], 10); }
+            return { month, day };
+        };
+
         const year = new Date().getFullYear();
+        const s = parseToken(parts[0], undefined);
+        if (s.month === undefined || isNaN(s.day)) return null;
+        const e = parseToken(parts[1], s.month); // end month defaults to start month ("June 10 -17")
+        if (e.month === undefined || isNaN(e.day)) return null;
 
-        const startMonth = MONTHS[startTokens[0]];
-        const startDay   = parseInt(startTokens[1]);
-
-        let endMonth, endDay;
-        if (endTokens.length === 1) {
-            endMonth = startMonth;
-            endDay   = parseInt(endTokens[0]);
-        } else {
-            endMonth = MONTHS[endTokens[0]];
-            endDay   = parseInt(endTokens[1]);
-        }
-
-        if (isNaN(startDay) || isNaN(endDay) || startMonth === undefined) return null;
-
-        const start = new Date(year, startMonth, startDay, 0, 0, 0);
-        const end   = new Date(year, endMonth,   endDay,   0, 0, 0);
-        return { start, end };
+        return {
+            start: new Date(year, s.month, s.day, 0, 0, 0),
+            end:   new Date(year, e.month, e.day, 0, 0, 0)
+        };
     }
 
     function injectCampaignEvents(campaigns, attempt) {
