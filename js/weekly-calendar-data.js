@@ -51,6 +51,23 @@ function generateRollingCalendar() {
             type: "live",
             time: "6:00PM PT",
             recurring: { dayOfWeek: 0 }, // Sunday
+            skip: ['2026-06-21'], // moved to Saturday 6/20 this week
+            color: "#ff0044"
+        },
+        {
+            id: 20,
+            title: "Community Fest Kickoff",
+            type: "live",
+            time: "9:00PM PT",
+            date: '2026-06-17', // today
+            color: "#ff0044"
+        },
+        {
+            id: 21,
+            title: "Saturday Knockout",
+            type: "live",
+            time: "6:00PM PT",
+            date: '2026-06-20', // this week only (normally Sunday Knockout)
             color: "#ff0044"
         },
         {
@@ -67,9 +84,13 @@ function generateRollingCalendar() {
     // Add events to days
     days.forEach(day => {
         events.forEach(event => {
-            // Check recurring events
+            // Build this day's ISO date (local) for skip/single-date matching
+            const isoDate = `${day.fullDate.getFullYear()}-${String(day.fullDate.getMonth() + 1).padStart(2, '0')}-${String(day.fullDate.getDate()).padStart(2, '0')}`;
+
+            // Check recurring events (honoring per-date skips)
             if (event.recurring) {
-                if (day.fullDate.getDay() === event.recurring.dayOfWeek) {
+                const skipped = event.skip && event.skip.includes(isoDate);
+                if (day.fullDate.getDay() === event.recurring.dayOfWeek && !skipped) {
                     day.events.push({
                         title: event.title,
                         type: event.type,
@@ -78,6 +99,16 @@ function generateRollingCalendar() {
                         isMultiDay: false
                     });
                 }
+            }
+            // Check single-date timed events (one-offs that show their real time)
+            if (event.date && isoDate === event.date) {
+                day.events.push({
+                    title: event.title,
+                    type: event.type,
+                    time: event.time,
+                    color: event.color,
+                    isMultiDay: false
+                });
             }
             // Check specific date range events (multi-day)
             if (event.startDate && event.endDate) {
