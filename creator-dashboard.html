@@ -706,12 +706,9 @@
         <!-- 9. 3x3 Rolling Calendar -->
         <div class="section-card">
             <div class="section-header">
-                <h2><i class="fas fa-calendar-alt" style="color: var(--taboost-red);"></i> Live Calendar</h2>
+                <h2><i class="fas fa-calendar-alt" style="color: var(--taboost-red);"></i> Live Calendar <button class="tt-btn" onclick="openTooltip('campaigns')" aria-label="About the calendar"><i class="fas fa-question" style="font-size:9px;"></i></button></h2>
                 <span class="calendar-week" id="calendarWeek">--</span>
             </div>
-            
-            <!-- My Campaigns label + info tooltip -->
-            <div style="display:flex;align-items:center;gap:8px;margin:4px 0 10px;font-size:13px;font-weight:700;color:#fff;letter-spacing:-0.2px;">My Campaigns <button class="tt-btn" onclick="openTooltip('campaigns')" aria-label="What are My Campaigns?"><i class="fas fa-question" style="font-size:9px;"></i></button></div>
 
             <!-- TABOOST Campaign Banner -->
             <div class="campaign-banner" id="taboostCampaignBanner">
