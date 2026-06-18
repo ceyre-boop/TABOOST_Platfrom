@@ -1195,9 +1195,11 @@
                 const iTM       = apFindCol(headers,'Creators TM','Added This Month');
                 let   iDiamonds = apFindCol(headers,'Total 💎','Total Diamonds','Total ?');
                 if (iDiamonds < 0) iDiamonds = 3;
-                const monthLabel = new Date().toLocaleString('en-US',{month:'long',year:'numeric'});
-                let iEarnings = apFindCol(headers, monthLabel);
-                if (iEarnings < 0) iEarnings = headers.length - 1;
+                const _now = new Date();
+                const monthShort = _now.toLocaleString('en-US',{month:'short',year:'numeric'}); // "Jun 2026" — matches the sheet header
+                const monthLong  = _now.toLocaleString('en-US',{month:'long', year:'numeric'}); // "June 2026"
+                let iEarnings = apFindCol(headers, monthShort, monthLong);
+                if (iEarnings < 0) iEarnings = Math.min(6, headers.length - 1); // Col G = Agent tab earnings column
 
                 const row = rows.find(r => (r[iEmail]||'').toLowerCase().trim() === emailKey);
                 if (row) {
