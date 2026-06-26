@@ -937,6 +937,51 @@
     .set-input { width: 100%; margin-bottom: 8px; padding: 10px 12px; background: #ffffff; color: var(--text); border: 1px solid var(--line-strong); border-radius: 9px; font-family: var(--font); font-size: 0.85rem; }
     .set-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(255,0,80,0.14); }
     .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 18px; }
+
+    /* ===== Triage Strip ===== */
+    .triage-strip { margin: 0 0 16px; }
+    .triage-row { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; padding: 10px 14px;
+      background: var(--card); border: 1px solid var(--line); border-left: 3px solid var(--accent);
+      border-radius: 12px; box-shadow: var(--shadow); }
+    .triage-chip { min-height: 0; padding: 6px 12px; background: var(--card-2); border: 1px solid var(--line-strong);
+      border-radius: 999px; color: var(--text); font-family: var(--font); font-size: 0.82rem; font-weight: 700; cursor: pointer; }
+    .triage-chip.warn { color: #9a6a00; border-color: rgba(154,106,0,0.35); background: rgba(255,184,0,0.10); }
+    .triage-chip.win  { color: #0a8f63; border-color: rgba(10,143,99,0.35); background: rgba(0,200,150,0.10); }
+    .triage-chip:hover { transform: translateY(-1px); }
+    .triage-dot { color: var(--muted); padding: 0 2px; }
+    .triage-clear { color: var(--green); font-weight: 700; font-size: 0.86rem; }
+    .triage-panel { margin-top: 10px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line);
+      border-radius: 12px; box-shadow: var(--shadow); }
+    .tp-list { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+    .tp-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 7px 2px; border-bottom: 1px solid var(--line); }
+    .tp-row:last-of-type { border-bottom: 0; }
+    .tp-name { font-weight: 700; font-size: 0.84rem; color: var(--text); }
+    .tp-name small { color: var(--secondary); font-weight: 600; font-size: 0.72rem; margin-left: 4px; }
+    .tp-meta { font-size: 0.78rem; color: var(--secondary); }
+    .tp-meta .down, .prod-pl.down { color: #c81d52; }
+    .tp-meta .up, .prod-pl.up { color: #0a8f63; }
+    .tp-action { margin-top: 4px; min-height: 0; padding: 8px 14px; font-size: 0.8rem; }
+    .tp-action.post { background: #5865F2; border-color: #5865F2; }
+    .tp-action.post:hover { background: #4752c4; border-color: #4752c4; }
+
+    /* ===== Operational Productivity ===== */
+    .ops-section { margin: 18px 0 0; }
+    .ops-title { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; font-size: 1rem; font-weight: 800; color: var(--text); }
+    .ops-sub { font-size: 0.74rem; font-weight: 500; color: var(--secondary); text-transform: none; }
+    .prod-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 720px)  { .prod-grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (min-width: 1100px) { .prod-grid { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    .prod-card { padding: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); }
+    .prod-head { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+    .prod-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 8px; margin-bottom: 12px; }
+    .prod-stats > div { display: flex; flex-direction: column; }
+    .ps-val { font-family: var(--fd); font-weight: 700; font-size: 1.25rem; color: var(--text); line-height: 1.1; font-variant-numeric: tabular-nums; }
+    .ps-lbl { font-size: 0.7rem; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 2px; }
+    .prod-pl { display: inline-block; font-size: 0.82rem; font-weight: 800; }
+    .prod-pl.muted { color: var(--muted); font-weight: 600; }
+    .monday-card { display: flex; flex-direction: column; border-left: 3px solid var(--yellow); }
+    .monday-copy { color: var(--secondary); font-size: 0.84rem; margin: 0 0 12px; }
   </style>
 </head>
 <body>
@@ -1001,6 +1046,12 @@
       <div class="score-chip"><span class="score-num" id="scLevel5">—</span><span class="score-label">Level 5+ Count</span></div>
     </div>
 
+    <!-- Triage strip — "what needs Marco today" (computed from the live CSVs) -->
+    <div class="triage-strip" id="triageStrip" style="display:none;">
+      <div class="triage-row" id="triageRow"></div>
+      <div class="triage-panels" id="triagePanels"></div>
+    </div>
+
     <!-- 3-column cockpit: Live/UK · Shop+integrations · GPT rail -->
     <div class="division-grid">
       <section class="division-card" id="liveDivision">
@@ -1041,6 +1092,13 @@
     </div>
     <!-- Brand Deals injected here as a full-width strip -->
     <div id="brandDealsSlot"></div>
+
+    <!-- Operational Productivity — staffing vs revenue (config in admin/admin.js) -->
+    <section class="ops-section" id="opsProductivity" style="display:none;">
+      <h2 class="ops-title">Operational Productivity <span class="ops-sub">staffing vs revenue</span></h2>
+      <div class="prod-grid" id="prodGrid"></div>
+    </section>
+  <script src="admin.js"></script>
   <script>
     /*
       SETUP: fill in the CONFIG constants just below. Full step-by-step: admin/SETUP.md
@@ -1313,7 +1371,150 @@
       }
     });
 
-    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); buildCockpitTicker(); }
+    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); buildCockpitTicker(); renderTriage(); renderProductivity(); }
+
+    // ─── Triage Strip — "what needs Marco today" (computed from the loaded CSVs) ───
+    let _triageData = null;
+    function renderTriage(){
+      const strip = document.getElementById('triageStrip');
+      const row = document.getElementById('triageRow');
+      const panels = document.getElementById('triagePanels');
+      if (!strip || !row || !panels) return;
+      const creators = [...((regionKPIs.us && regionKPIs.us.creators) || []), ...((regionKPIs.uk && regionKPIs.uk.creators) || [])];
+      if (!creators.length) { strip.style.display = 'none'; return; }
+
+      // 1) Slipping creators — pace >15% below their trailing-30-day diamonds
+      const slipping = creators
+        .filter(c => c.last30 > 0 && c.pace < 0.85 * c.last30)
+        .map(c => ({ ...c, pctBelow: Math.round((1 - c.pace / c.last30) * 100) }))
+        .sort((a, b) => b.pctBelow - a.pctBelow);
+
+      // 2) Milestones — newly hit Level 5 this month, or crossed a diamond tier
+      const milestones = creators.filter(c => (c.level >= 5 && c.levelLM < 5) || (c.tier > c.tierLM))
+        .map(c => ({ ...c, why: (c.level >= 5 && c.levelLM < 5) ? 'Level 5' : `Tier ${c.tier}` }));
+
+      // 3) Slipping agent rosters — combined diamonds down vs last month
+      const byAgent = {};
+      creators.forEach(c => {
+        const a = c.agent || '—';
+        (byAgent[a] = byAgent[a] || { agent: a, thisMonth: 0, lastMonth: 0, list: [] });
+        byAgent[a].thisMonth += c.diamonds; byAgent[a].lastMonth += c.lastMonth; byAgent[a].list.push(c);
+      });
+      const agentsDown = Object.values(byAgent)
+        .filter(a => a.lastMonth > 0 && a.thisMonth < a.lastMonth && a.agent !== '—')
+        .map(a => ({ ...a, pctDrop: Math.round((1 - a.thisMonth / a.lastMonth) * 100) }))
+        .sort((a, b) => b.pctDrop - a.pctDrop);
+
+      _triageData = { slipping, milestones, agentsDown };
+      strip.style.display = 'block';
+
+      if (!slipping.length && !milestones.length && !agentsDown.length) {
+        row.innerHTML = '<span class="triage-clear">✓ All clear — nothing needs you right now</span>';
+        panels.innerHTML = '';
+        return;
+      }
+
+      const chips = [];
+      if (slipping.length)  chips.push(`<button type="button" class="triage-chip warn"  onclick="toggleTriage('slip')">⚠ ${slipping.length} creator${slipping.length!==1?'s':''} slipping</button>`);
+      if (milestones.length) chips.push(`<button type="button" class="triage-chip win" onclick="toggleTriage('mile')">🎉 ${milestones.length} milestone${milestones.length!==1?'s':''} to celebrate</button>`);
+      if (agentsDown.length) { const top = agentsDown[0]; chips.push(`<button type="button" class="triage-chip warn" onclick="toggleTriage('agent')">📉 ${agentsDown.length===1 ? escapeHTML(top.agent)+' roster down '+top.pctDrop+'%' : agentsDown.length+' agent rosters down'}</button>`); }
+      row.innerHTML = chips.join('<span class="triage-dot">·</span>');
+      panels.innerHTML = '';
+    }
+
+    function toggleTriage(which){
+      const panels = document.getElementById('triagePanels');
+      if (!panels || !_triageData) return;
+      if (panels.dataset.open === which) { panels.innerHTML = ''; panels.dataset.open = ''; return; }
+      panels.dataset.open = which;
+      const fmt = n => Number(n||0).toLocaleString();
+      let html = '';
+      if (which === 'slip') {
+        html = `<div class="triage-panel"><div class="tp-list">` +
+          _triageData.slipping.slice(0, 12).map(c => `<div class="tp-row"><span class="tp-name">${escapeHTML(c.name)} <small>${c.region}</small></span><span class="tp-meta">pace ${fmt(c.pace)} vs 30-day ${fmt(c.last30)} · <strong class="down">${c.pctBelow}% below</strong></span></div>`).join('') +
+          `</div><button type="button" class="tp-action" onclick="triageAction('slip')">✦ Draft outreach in Command Center</button></div>`;
+      } else if (which === 'mile') {
+        html = `<div class="triage-panel"><div class="tp-list">` +
+          _triageData.milestones.slice(0, 12).map(c => `<div class="tp-row"><span class="tp-name">${escapeHTML(c.name)} <small>${c.region}</small></span><span class="tp-meta"><strong class="up">${c.why}</strong></span></div>`).join('') +
+          `</div><button type="button" class="tp-action post" onclick="triageAction('mile')">📣 Post to Discord</button></div>`;
+      } else if (which === 'agent') {
+        html = `<div class="triage-panel">` +
+          _triageData.agentsDown.slice(0, 8).map(a => `<div class="tp-row"><span class="tp-name">${escapeHTML(a.agent)}</span><span class="tp-meta">${fmt(a.thisMonth)} vs ${fmt(a.lastMonth)} last month · <strong class="down">${a.pctDrop}% down</strong> · ${a.list.length} creators</span></div>`).join('') +
+          `<button type="button" class="tp-action" onclick="triageAction('agent')">✦ Draft agent check-in in Command Center</button></div>`;
+      }
+      panels.innerHTML = html;
+    }
+
+    function triageAction(which){
+      if (!_triageData) return;
+      if (which === 'mile') {
+        const names = _triageData.milestones.map(c => `${c.name} (${c.why})`).join(', ');
+        sendDiscordMessage('announcements', `🎉 Milestone watch — congrats to: ${names}. Keep it going! — TABOOST HQ`);
+        return;
+      }
+      if (which === 'slip') {
+        const names = _triageData.slipping.slice(0, 12).map(c => `${c.name} (${c.pctBelow}% below pace)`).join(', ');
+        fillGPTInput(`Draft a short, encouraging "let's get back on pace" message I can send to these slipping creators: ${names}. Focus on hours/consistency driving diamonds.`);
+        return;
+      }
+      if (which === 'agent') {
+        const a = _triageData.agentsDown[0];
+        fillGPTInput(`Draft a check-in message for agent ${a.agent} — their roster diamonds are down ${a.pctDrop}% vs last month (${a.list.length} creators). Constructive, specific, supportive.`);
+      }
+    }
+
+    // ─── Operational Productivity — staffing vs revenue (config: admin/admin.js) ───
+    function renderProductivity(){
+      const section = document.getElementById('opsProductivity');
+      const grid = document.getElementById('prodGrid');
+      if (!section || !grid) return;
+      const cfg = (window.STAFFING_CONFIG && Array.isArray(window.STAFFING_CONFIG.teams)) ? window.STAFFING_CONFIG.teams : [];
+      const usd = n => '$' + fmtCompact(n);
+      const revenueFor = name => {
+        const k = String(name || '').toLowerCase();
+        if (k.includes('us')) return regionKPIs.us ? regionKPIs.us.totalRevenue : null;
+        if (k.includes('uk')) return regionKPIs.uk ? regionKPIs.uk.totalRevenue : null;
+        if (k.includes('shop')) return (shopKPIs && shopKPIs.commission != null) ? shopKPIs.commission : null;
+        return null; // Talent / unknown — brand-deal revenue not connected yet
+      };
+
+      const cards = cfg.map(team => {
+        const rev = revenueFor(team.name);
+        const hc = Number(team.headcount) || 0;
+        const cost = Number(team.monthlyCost) || 0;
+        const revKnown = rev != null;
+        const costKnown = cost > 0;
+        const rph = (revKnown && hc > 0) ? usd(rev / hc) : '—';
+        let plHtml = '<span class="prod-pl muted">Awaiting staffing data</span>';
+        if (revKnown && costKnown) {
+          const pl = rev - cost;
+          plHtml = `<span class="prod-pl ${pl >= 0 ? 'up' : 'down'}">${pl >= 0 ? '▲ Profit' : '▼ Loss'} ${usd(Math.abs(pl))}</span>`;
+        } else if (!revKnown) {
+          plHtml = '<span class="prod-pl muted">Awaiting data</span>';
+        }
+        return `<div class="prod-card">
+          <div class="prod-head">${escapeHTML(team.name)}</div>
+          <div class="prod-stats">
+            <div><span class="ps-val">${hc || '—'}</span><span class="ps-lbl">Headcount</span></div>
+            <div><span class="ps-val">${costKnown ? usd(cost) : '—'}</span><span class="ps-lbl">Monthly cost</span></div>
+            <div><span class="ps-val">${revKnown ? usd(rev) : '—'}</span><span class="ps-lbl">Revenue</span></div>
+            <div><span class="ps-val">${rph}</span><span class="ps-lbl">Rev / head</span></div>
+          </div>
+          ${plHtml}
+        </div>`;
+      }).join('');
+
+      // Monday.com placeholder (brand-deal pipeline) — Connect stub
+      const mondayCard = `<div class="prod-card monday-card">
+          <div class="prod-head">Monday.com</div>
+          <p class="monday-copy">Connect to unlock brand-deal pipeline data.</p>
+          <button type="button" class="tp-action" onclick="openSettings()">Connect</button>
+          <!-- TODO: when Marco provides the Monday token, wire the brand-deal pipeline (deals, stage, value) here -->
+        </div>`;
+
+      grid.innerHTML = cards + mondayCard;
+      section.style.display = 'block';
+    }
 
     // Scrolling live ticker (Live US/UK + Shop) — matches the live ops dashboard
     function buildCockpitTicker(){
@@ -1399,6 +1600,20 @@
         const avgScore = scores.length ? scores.reduce((sum, score) => sum + score, 0) / scores.length : 0;
         const level5Count = active.filter(r => cleanNum(r?.[30]) >= 5).length;
         const kpi = { totalCreators, totalDiamonds, totalRevenue, avgScore, level5Count };
+        // Retain a slim per-creator array so the Triage Strip can compute (rows were previously discarded)
+        kpi.creators = active.map(r => ({
+          name: r?.[2] || 'Unknown',
+          agent: String(r?.[8] || '').trim(),
+          diamonds: cleanNum(r?.[19]),
+          pace: cleanNum(r?.[20]),
+          tier: cleanNum(r?.[21]),
+          tierLM: cleanNum(r?.[25]),
+          last30: cleanNum(r?.[27]),
+          lastMonth: cleanNum(r?.[28]),
+          level: cleanNum(r?.[4]),
+          levelLM: cleanNum(r?.[30]),
+          region: cfg.label
+        }));
         regionKPIs[region] = kpi;
         if (region === 'us') liveKPIs = kpi; // primary region — used in the command-center prompt
 
