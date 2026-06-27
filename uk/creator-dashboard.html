@@ -377,6 +377,7 @@
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="/js/genie-intro.js" defer></script>
 </head>
 <body>
     <!-- BUILD: 2025-03-09-09:04 -->
@@ -1141,6 +1142,7 @@
     };
 
     window.toggleAgentPanel = function() {
+        if (window.playGenieIntro) window.playGenieIntro();   // replay intro on every agent<->creator switch
         if (_showingAgent) { window.showCreatorPanel(); } else { window.showAgentPanel(); }
     };
 
