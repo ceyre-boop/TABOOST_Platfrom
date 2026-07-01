@@ -1640,20 +1640,20 @@
     }
     
     .achievements-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
     }
-    
+
     .achievement-item {
-        padding: 15px 10px;
+        padding: 12px 6px;
     }
-    
+
     .achievement-icon {
-        font-size: 24px;
+        font-size: 22px;
     }
-    
+
     .achievement-name {
-        font-size: 11px;
+        font-size: 10px;
     }
     
     .achievement-desc {
