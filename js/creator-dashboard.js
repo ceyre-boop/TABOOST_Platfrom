@@ -1264,19 +1264,33 @@ function renderMonthAchievements(index) {
 
     const unlocked = [
         row.diamonds >= 1000000,            // Million Diamond Club
-        (row.days ?? -1) >= 22,             // Stream Master  (missing data = -1 -> locked)
+        (row.days ?? -1) >= 22,             // Stream Master  (days-based)
         (row.bonusRaw || 0) > 0,            // Reward King
-        (row.hours ?? -1) >= 80,            // Hour Crusher   (missing data = -1 -> locked)
+        (row.hours ?? -1) >= 80,            // Hour Crusher   (hours-based)
         tierUp,                             // Growth Star
         rank !== null && rank <= 10         // Top 10
     ];
 
-    container.innerHTML = MONTH_ACHIEVEMENT_DEFS.map((a, i) => `
-        <div class="mini-achievement ${unlocked[i] ? 'unlocked' : 'locked'}" title="${a.desc}">
+    // Stream Master (index 1) and Hour Crusher (index 3) come from per-month stream stats.
+    // Some past months predate our stream-stat history — for those, show a neutral "not
+    // recorded" state rather than "locked", so an active month never looks like a failure.
+    const missing = v => v === undefined || v === null || v === -1;
+    const noData = [false, missing(row.days), false, missing(row.hours), false, false];
+
+    const tiles = MONTH_ACHIEVEMENT_DEFS.map((a, i) => {
+        const state = noData[i] ? 'nodata' : (unlocked[i] ? 'unlocked' : 'locked');
+        const title = noData[i] ? `${a.name} — stream stats not recorded for this month` : a.desc;
+        return `
+        <div class="mini-achievement ${state}" title="${title}">
             <span class="mini-achievement-icon">${a.icon}</span>
             <span class="mini-achievement-name">${a.name}</span>
-        </div>
-    `).join('');
+        </div>`;
+    }).join('');
+
+    const note = noData.some(Boolean)
+        ? `<div class="mini-achievement-note">📊 Days &amp; hours weren't recorded for this month yet</div>`
+        : '';
+    container.innerHTML = tiles + note;
 }
 
 function updateScoreAndLevels() {
