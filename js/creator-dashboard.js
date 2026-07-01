@@ -6,6 +6,9 @@ let allCreators = [];
 let performanceChart = null;
 let creatorMonths = {}; // Real month data from CSV column F
 let creatorIdMap = {}; // Map creatorId to creator data
+let historyPeriods = []; // Period labels for Earnings History rows (true index, pre-filter)
+let historyRowsData = []; // Computed row data for Earnings History, indexed to match historyPeriods
+let historyTrends = null; // Resolved creatorTrends[username] entry for the current creator, if found
 
 async function initCreatorDashboard(user) {
     await taboostData.loadFromCSV();
@@ -1056,28 +1059,30 @@ function updateHistory() {
     
     // Use real earnings history from historical CSV (Revenue columns AJ-AO)
     let earningsData = [];
-    
+    let trends = null;
+
     if (myData.earningsHistory && myData.earningsHistory.length >= 6) {
         // Use real earnings from CSV - reverse to match chronological order
         earningsData = [...myData.earningsHistory].reverse();
     } else {
         // Fallback to trends data or calculated estimates
-        let trends = creatorTrends[myData.username];
-        
+        trends = creatorTrends[myData.username];
+
         // Case-insensitive lookup
         if (!trends) {
             const usernameLower = myData.username.toLowerCase();
-            const matchingKey = Object.keys(creatorTrends).find(key => 
+            const matchingKey = Object.keys(creatorTrends).find(key =>
                 key.toLowerCase() === usernameLower
             );
             if (matchingKey) trends = creatorTrends[matchingKey];
         }
-        
+
         if (trends && trends.diamondsHistory && trends.diamondsHistory.length >= 6) {
             // FIX: Convert trends data to earningsData format
             const revenueHist = trends.revenueHistory || [];
             const bonusHist = trends.bonusHistory || [];
-            
+            const tierHist = trends.tierHistory || [];
+
             // Dynamically take the last 6 months
             const startIdx = Math.max(0, trends.diamondsHistory.length - 6);
             earningsData = trends.diamondsHistory.slice(startIdx).map((diamonds, idx) => {
@@ -1087,73 +1092,82 @@ function updateHistory() {
                     revenue = Math.round(diamonds * 0.005);
                 }
                 const bonus = parseFloat(bonusHist[realIdx]) || 0;
-                
+
                 return {
                     diamonds: diamonds,
                     revenue: '$' + Math.round(revenue).toLocaleString('en-US'),
                     rawRevenue: revenue,
                     bonus: bonus,
-                    bonusStr: bonus > 0 ? '$' + Math.round(bonus).toLocaleString('en-US') : '--'
+                    bonusStr: bonus > 0 ? '$' + Math.round(bonus).toLocaleString('en-US') : '--',
+                    tier: tierHist[realIdx] ?? null
                 };
             });
-            
+
         } else {
+            trends = null;
             // Fallback: build from available data with estimated revenue
             const current = myData.diamonds || 0;
             const lastMonth = myData.diamondsLastMonth || current;
             const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
             earningsData = [
-                { diamonds: Math.round(twoMonthsAgo * 0.8 || current * 0.65), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(twoMonthsAgo * 0.85 || current * 0.7), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' },
-                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' }
+                { diamonds: Math.round(twoMonthsAgo * 0.8 || current * 0.65), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null },
+                { diamonds: Math.round(twoMonthsAgo * 0.85 || current * 0.7), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null },
+                { diamonds: Math.round(twoMonthsAgo * 0.92 || current * 0.8), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null },
+                { diamonds: Math.round(twoMonthsAgo || current * 0.85), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null },
+                { diamonds: Math.round(lastMonth * 0.95 || current * 0.9), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null },
+                { diamonds: Math.round(lastMonth || current * 0.95), revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null }
             ];
         }
     }
     
     // Build rows with calculated changes using Revenue + Bonus
     const rows = periods.map((period, index) => {
-        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--' };
+        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null };
         const diamonds = parseInt(data.diamonds) || 0;
         const prevData = index > 0 ? earningsData[index - 1] : null;
-        
+
         let change = '--';
         if (prevData) {
             const currentTotal = (data.rawRevenue || (diamonds * 0.005)) + (data.bonus || 0);
             const prevTotal = (prevData.rawRevenue || (parseInt(prevData.diamonds || 0) * 0.005)) + (prevData.bonus || 0);
-            
+
             if (prevTotal > 0) {
                 const changeVal = ((currentTotal - prevTotal) / prevTotal * 100);
                 change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
             }
         }
-        
+
         // Revenue from CSV
         let revenueRaw = data.revenue || '$0.00';
         const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈' + revenueRaw;
-        
+
         return {
             period: period,
             diamonds: diamonds,
             usd: revenue,
             bonus: data.bonusStr,
+            bonusRaw: data.bonus || 0,
+            tier: data.tier ?? null,
             change: change
         };
     });
-    
-    // Filter out months with no data (newer creators won't have all 6 months)
-    const visibleRows = rows.filter(r => r.diamonds > 0);
 
-    document.getElementById('historyTableBody').innerHTML = visibleRows.map(r => {
+    historyPeriods = periods;
+    historyRowsData = rows;
+    historyTrends = trends;
+
+    // Filter out months with no data (newer creators won't have all 6 months),
+    // but keep each rendered row's true index (into rows/trends arrays) for the click handler.
+    document.getElementById('historyTableBody').innerHTML = rows.map((r, index) => ({ r, index }))
+        .filter(({ r }) => r.diamonds > 0)
+        .map(({ r, index }) => {
         const isChange = r.change !== '--';
         const changeClass = isChange ? (r.change.includes('↑') ? 'up' : 'down') : '';
         const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
         const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
-        
+
         return `
-            <tr>
+            <tr class="history-row-clickable" data-month-index="${index}" onclick="openMonthDetail(${index})">
                 <td><strong>${r.period}</strong></td>
                 <td>${formatNumber(r.diamonds)} 💎</td>
                 <td style="color: var(--success);">${r.usd}</td>
@@ -1168,6 +1182,84 @@ function updateHistory() {
             </tr>
         `;
     }).join('');
+}
+
+function formatChangeBadge(change) {
+    if (change === '--') return '--';
+    const changeClass = change.includes('↑') ? 'up' : 'down';
+    const changeIcon = change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down';
+    const changeText = change.replace(/[↑↓] /, '');
+    return `
+        <span class="trend-indicator ${changeClass}">
+            <i class="fas ${changeIcon}"></i> ${changeText}
+        </span>
+    `;
+}
+
+function getRankForMonth(username, monthIndex) {
+    if (!username) return null;
+    const usernameLower = username.toLowerCase();
+    const ranked = Object.values(creatorTrends)
+        .map(c => ({ username: c.username, diamonds: (c.diamondsHistory && c.diamondsHistory[monthIndex]) || 0 }))
+        .sort((a, b) => b.diamonds - a.diamonds);
+    const idx = ranked.findIndex(c => (c.username || '').toLowerCase() === usernameLower);
+    return idx === -1 ? null : idx + 1;
+}
+
+function openMonthDetail(index) {
+    const row = historyRowsData[index];
+    if (!row) return;
+
+    document.getElementById('monthDetailTitle').innerHTML = `<i class="fas fa-calendar-check"></i> ${row.period}`;
+    document.getElementById('monthDetailDiamonds').textContent = formatNumber(row.diamonds) + ' 💎';
+
+    const rank = getRankForMonth(myData.username, index);
+    document.getElementById('monthDetailRank').textContent = rank ? ('#' + rank) : '--';
+
+    document.getElementById('monthDetailTier').textContent = (row.tier && row.tier > 0) ? 'Tier ' + row.tier : 'No Tier';
+    document.getElementById('monthDetailUsd').textContent = row.usd;
+    document.getElementById('monthDetailBonus').textContent = row.bonus === '--' ? '--' : row.bonus;
+    document.getElementById('monthDetailChange').innerHTML = formatChangeBadge(row.change);
+
+    renderMonthAchievements(index);
+
+    document.getElementById('monthDetailModal').classList.add('active');
+}
+
+function closeMonthDetail() {
+    document.getElementById('monthDetailModal').classList.remove('active');
+}
+
+const MONTH_ACHIEVEMENT_DEFS = [
+    { name: 'Million Diamond Club', icon: '💎', desc: '1M+ diamonds' },
+    { name: 'Reward King', icon: '💰', desc: 'Earned a bonus' },
+    { name: 'Growth Star', icon: '🌟', desc: 'Ranked up tier' },
+    { name: 'Top 10', icon: '👑', desc: 'Reached top 10' }
+];
+
+function renderMonthAchievements(index) {
+    const container = document.getElementById('monthAchievementsStrip');
+    const row = historyRowsData[index];
+    if (!row) return;
+
+    const prevTier = index > 0 ? (historyRowsData[index - 1]?.tier || 0) : 0;
+    const curTier = row.tier || 0;
+    const tierUp = prevTier > 0 && curTier > prevTier;
+    const rank = getRankForMonth(myData.username, index);
+
+    const unlocked = [
+        row.diamonds >= 1000000,
+        (row.bonusRaw || 0) > 0,
+        tierUp,
+        rank !== null && rank <= 10
+    ];
+
+    container.innerHTML = MONTH_ACHIEVEMENT_DEFS.map((a, i) => `
+        <div class="mini-achievement ${unlocked[i] ? 'unlocked' : 'locked'}" title="${a.desc}">
+            <span class="mini-achievement-icon">${a.icon}</span>
+            <span class="mini-achievement-name">${a.name}</span>
+        </div>
+    `).join('');
 }
 
 function updateScoreAndLevels() {

@@ -658,6 +658,106 @@
     font-size: 14px;
 }
 
+.history-row-clickable {
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.history-row-clickable:hover {
+    background: rgba(255,255,255,0.03);
+}
+
+/* Earnings History header button - export-btn without the flex:1 export-buttons sizing */
+.section-header .export-btn {
+    flex: none;
+    padding: 10px 16px;
+}
+
+.section-header .export-btn i {
+    font-size: 16px;
+}
+
+/* Month Detail Modal stats */
+.month-detail-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.month-detail-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.month-detail-stat-row:last-child {
+    border-bottom: none;
+}
+
+.month-detail-stat-label {
+    color: #aaa;
+    font-size: 0.85rem;
+}
+
+.month-detail-stat-value {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.month-achievements-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.month-achievements-label {
+    color: #aaa;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.mini-achievements-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.mini-achievement {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mini-achievement.unlocked {
+    border-color: rgba(255, 215, 0, 0.3);
+    background: rgba(255, 215, 0, 0.05);
+}
+
+.mini-achievement.locked {
+    filter: grayscale(1);
+    opacity: 0.4;
+}
+
+.mini-achievement-icon {
+    font-size: 16px;
+}
+
+.mini-achievement-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
 /* Awards */
 .awards-card {
     background: linear-gradient(135deg, rgba(255,215,0,0.05), rgba(255,215,0,0.02));

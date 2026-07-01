@@ -728,6 +728,10 @@
         <div class="section-card">
             <div class="section-header">
                 <h2><i class="fas fa-history" style="color: var(--taboost-red);"></i> Earnings History</h2>
+                <button class="export-btn" onclick="openMonthDetail(historyPeriods.length - 1)">
+                    <i class="fas fa-eye"></i>
+                    <span>View Last Month</span>
+                </button>
             </div>
             <table class="history-table">
                 <thead>
@@ -856,7 +860,52 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Month Detail Modal -->
+    <div class="settings-modal" id="monthDetailModal">
+        <div class="settings-overlay" onclick="closeMonthDetail()"></div>
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2 id="monthDetailTitle"><i class="fas fa-calendar-check"></i> Month</h2>
+                <button class="settings-close" onclick="closeMonthDetail()"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="settings-content">
+                <div class="month-detail-stats">
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Diamonds</span>
+                        <span class="month-detail-stat-value" id="monthDetailDiamonds">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">My Rank</span>
+                        <span class="month-detail-stat-value" id="monthDetailRank">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Tier</span>
+                        <span class="month-detail-stat-value" id="monthDetailTier">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Est Value</span>
+                        <span class="month-detail-stat-value" id="monthDetailUsd" style="color: var(--success);">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Bonus</span>
+                        <span class="month-detail-stat-value" id="monthDetailBonus" style="color: #ffd700;">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Change</span>
+                        <span class="month-detail-stat-value" id="monthDetailChange">--</span>
+                    </div>
+                </div>
+
+                <div class="month-achievements-section">
+                    <div class="month-achievements-label">Achievements that month</div>
+                    <div class="mini-achievements-strip" id="monthAchievementsStrip"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="js/csv-data-loader.js?v=202606120244"></script>
     <script src="js/rewards-data.js?v=202606120244"></script>
     <script src="js/events-data.js?v=202606120244"></script>
