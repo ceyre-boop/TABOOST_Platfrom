@@ -87,7 +87,7 @@
         };
     </script>
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
-    <link rel="stylesheet" href="css/creator-dashboard.css?v=202503092112">
+    <link rel="stylesheet" href="css/creator-dashboard.css?v=1782862223225">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -646,6 +646,10 @@
         <div class="section-card">
             <div class="section-header">
                 <h2><i class="fas fa-history" style="color: var(--taboost-red);"></i> Earnings History</h2>
+                <button class="export-btn" onclick="openMonthDetail(historyPeriods.length - 1)">
+                    <i class="fas fa-eye"></i>
+                    <span>View Last Month</span>
+                </button>
             </div>
             <table class="history-table">
                 <thead>
@@ -736,13 +740,62 @@
             </div>
         </div>
     </div>
-    
-    <script src="js/csv-data-loader.js?v=1774322000000"></script>
-    <script src="js/rewards-data.js?v=1774322000000"></script>
-    <script src="js/events-data.js?v=1774322000000"></script>
-    <script src="js/weekly-calendar-data.js?v=1774322000000"></script>
-    <script src="js/sheets-data.js?v=1774322000000"></script>
-    <script src="js/creator-dashboard.js?v=1774322000000"></script>
+
+    <!-- Month Detail Modal -->
+    <div class="settings-modal" id="monthDetailModal">
+        <div class="settings-overlay" onclick="closeMonthDetail()"></div>
+        <div class="settings-panel">
+            <div class="settings-header">
+                <h2 id="monthDetailTitle"><i class="fas fa-calendar-check"></i> Month</h2>
+                <button class="settings-close" onclick="closeMonthDetail()"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="settings-content">
+                <div class="month-detail-stats">
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Diamonds</span>
+                        <span class="month-detail-stat-value" id="monthDetailDiamonds">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">My Rank</span>
+                        <span class="month-detail-stat-value" id="monthDetailRank">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Creator Score</span>
+                        <span class="month-detail-stat-value" id="monthDetailScore">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Activity Level</span>
+                        <span class="month-detail-stat-value" id="monthDetailLevel">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Tier</span>
+                        <span class="month-detail-stat-value" id="monthDetailTier">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Est Value</span>
+                        <span class="month-detail-stat-value" id="monthDetailUsd" style="color: var(--success);">--</span>
+                    </div>
+                    <div class="month-detail-stat-row">
+                        <span class="month-detail-stat-label">Change</span>
+                        <span class="month-detail-stat-value" id="monthDetailChange">--</span>
+                    </div>
+                </div>
+
+                <div class="month-achievements-section" id="monthAchievementsSection" style="display:none;">
+                    <div class="month-achievements-label">Achievements that month</div>
+                    <div class="mini-achievements-strip" id="monthAchievementsStrip"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/csv-data-loader.js?v=202607010014"></script>
+    <script src="js/rewards-data.js?v=202607010014"></script>
+    <script src="js/events-data.js?v=202607010014"></script>
+    <script src="js/weekly-calendar-data.js?v=202607010014"></script>
+    <script src="js/sheets-data.js?v=202607010014"></script>
+    <script src="js/creator-dashboard.js?v=202607010014"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
