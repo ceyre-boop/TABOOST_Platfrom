@@ -1120,6 +1120,17 @@ function updateHistory() {
         }
     }
     
+    // Resolve this creator's trend record for per-month Days/Hours. Done independently of the
+    // earnings-history path above (which leaves `trends` null for creators with a myData.earningsHistory).
+    let hdTrend = creatorTrends[myData.username];
+    if (!hdTrend) {
+        const ul = myData.username.toLowerCase();
+        const k = Object.keys(creatorTrends).find(key => key.toLowerCase() === ul);
+        if (k) hdTrend = creatorTrends[k];
+    }
+    const daysHist = (hdTrend && hdTrend.daysHistory) || [];
+    const hoursHist = (hdTrend && hdTrend.hoursHistory) || [];
+
     // Build rows with calculated changes using Revenue + Bonus
     const rows = periods.map((period, index) => {
         const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null };
@@ -1148,6 +1159,8 @@ function updateHistory() {
             bonus: data.bonusStr,
             bonusRaw: data.bonus || 0,
             tier: data.tier ?? null,
+            days: (daysHist[index] ?? -1),
+            hours: (hoursHist[index] ?? -1),
             change: change
         };
     });
@@ -1232,7 +1245,9 @@ function closeMonthDetail() {
 
 const MONTH_ACHIEVEMENT_DEFS = [
     { name: 'Million Diamond Club', icon: '💎', desc: '1M+ diamonds' },
+    { name: 'Stream Master', icon: '📺', desc: '22+ days streamed' },
     { name: 'Reward King', icon: '💰', desc: 'Earned a bonus' },
+    { name: 'Hour Crusher', icon: '⏰', desc: '80+ hours' },
     { name: 'Growth Star', icon: '🌟', desc: 'Ranked up tier' },
     { name: 'Top 10', icon: '👑', desc: 'Reached top 10' }
 ];
@@ -1248,10 +1263,12 @@ function renderMonthAchievements(index) {
     const rank = getRankForMonth(myData.username, index);
 
     const unlocked = [
-        row.diamonds >= 1000000,
-        (row.bonusRaw || 0) > 0,
-        tierUp,
-        rank !== null && rank <= 10
+        row.diamonds >= 1000000,            // Million Diamond Club
+        (row.days ?? -1) >= 22,             // Stream Master  (missing data = -1 -> locked)
+        (row.bonusRaw || 0) > 0,            // Reward King
+        (row.hours ?? -1) >= 80,            // Hour Crusher   (missing data = -1 -> locked)
+        tierUp,                             // Growth Star
+        rank !== null && rank <= 10         // Top 10
     ];
 
     container.innerHTML = MONTH_ACHIEVEMENT_DEFS.map((a, i) => `
