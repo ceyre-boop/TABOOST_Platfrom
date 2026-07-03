@@ -341,7 +341,9 @@ function updateProfile(user) {
     if (myData.diamonds && myData.diamondsLastMonth) {
         const _today = new Date();
         const _daysInMonth = new Date(_today.getFullYear(), _today.getMonth() + 1, 0).getDate();
-        const _dayOfMonth = _today.getDate();
+        // Data pipeline reports through yesterday — today's activity isn't synced
+        // yet, so prorate against completed days only, not the in-progress day.
+        const _dayOfMonth = Math.max(0, _today.getDate() - 1);
         const _proratedTarget = myData.diamondsLastMonth * (_dayOfMonth / _daysInMonth);
         growth = _proratedTarget > 0 ? ((myData.diamonds - _proratedTarget) / _proratedTarget) * 100 : 0;
     }
@@ -378,7 +380,9 @@ function updateStats() {
     if (myData.diamonds && myData.diamondsLastMonth) {
         const today = new Date();
         const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
-        const dayOfMonth = today.getDate();
+        // Data pipeline reports through yesterday — today's activity isn't synced
+        // yet, so prorate against completed days only, not the in-progress day.
+        const dayOfMonth = Math.max(0, today.getDate() - 1);
         const proratedTarget = myData.diamondsLastMonth * (dayOfMonth / daysInMonth);
         growth = proratedTarget > 0 ? ((myData.diamonds - proratedTarget) / proratedTarget) * 100 : 0;
     }
@@ -474,8 +478,11 @@ function updateGoals() {
     const now = new Date();
     const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
     const today = now.getDate();
-    const daysElapsed = today; // Day 1 = 1 day elapsed
-    const daysLeft = daysInMonth - today;
+    // Data pipeline reports through yesterday — today's activity isn't synced
+    // yet, so "days elapsed" means completed reporting days, not the calendar
+    // day-in-progress.
+    const daysElapsed = Math.max(0, today - 1);
+    const daysLeft = daysInMonth - daysElapsed;
     const timeElapsedPct = daysElapsed / daysInMonth; // 0.0 to 1.0
     
     document.getElementById('daysRemaining').textContent = `${daysLeft} days left in month (${daysElapsed}/${daysInMonth})`;
