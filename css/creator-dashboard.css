@@ -1884,6 +1884,33 @@
         font-size: 16px;
     }
 
+    /* Keep Earnings History title + button on one row instead of stacking */
+    .earnings-history-section .section-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .earnings-history-section .section-header h2 {
+        font-size: 15px;
+    }
+
+    .earnings-history-section .section-header .export-btn {
+        flex: 0 0 auto;
+        align-self: center;
+        padding: 10px 14px;
+        gap: 6px;
+    }
+
+    .earnings-history-section .section-header .export-btn i {
+        font-size: 16px;
+    }
+
+    .earnings-history-section .section-header .export-btn span {
+        font-size: 13px;
+    }
+
     .level-badge {
         font-size: 12px;
         padding: 4px 12px;
@@ -2121,7 +2148,24 @@
     .activity-level-section .section-header h2 {
         font-size: 14px;
     }
-    
+
+    .earnings-history-section .section-header h2 {
+        font-size: 13px;
+    }
+
+    .earnings-history-section .section-header .export-btn {
+        padding: 8px 10px;
+        gap: 5px;
+    }
+
+    .earnings-history-section .section-header .export-btn i {
+        font-size: 14px;
+    }
+
+    .earnings-history-section .section-header .export-btn span {
+        font-size: 12px;
+    }
+
     .level-badge {
         font-size: 11px;
         padding: 3px 10px;
