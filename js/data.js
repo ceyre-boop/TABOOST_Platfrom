@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-07-03T00:37:52.776Z
+// Generated: 2026-07-03T01:40:29.254Z
 // Total: 970 creators
 
 const creatorsData = [
@@ -24611,17 +24611,17 @@ const creatorsData = [
     "email": "courtgoescoastal@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "1",
-    "manager": "N/A",
-    "m": "N/A",
+    "month": "",
+    "manager": "CARRINGTON",
+    "m": "CARRINGTON",
     "claimed": false,
     "score": 0,
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": 0,
-    "diamonds2MonthsAgo": 0,
+    "diamondsLastMonth": -1,
+    "diamonds2MonthsAgo": -2,
     "hours": 0,
     "hoursGoal": 15,
     "hoursLeft": "15",
@@ -38807,7 +38807,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-07-03T00:37:52.776Z",
+  lastUpdated: "2026-07-03T01:40:29.254Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
