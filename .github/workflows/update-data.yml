@@ -6,12 +6,16 @@ on:
       - 'data/*.csv'
   workflow_dispatch:
 
+concurrency:
+  group: update-data-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-data:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    
+
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -21,12 +25,16 @@ jobs:
       with:
         node-version: '20'
     
-    - name: Find and process latest CSV
+    - name: Process current creator snapshot
       run: |
-        # Find the most recent CSV file in data folder
-        LATEST_CSV=$(ls -t data/*.csv | head -1)
-        echo "Processing: $LATEST_CSV"
-        node update-data.js "$LATEST_CSV"
+        # update-data.js parses columns by fixed position matching data/current.csv's
+        # schema (Host, 7/1, Level, Month, ... Days, Day Pace, Days Goal, Hours, Hrs Goal, ...).
+        # This must stay pinned to current.csv specifically — picking "whichever CSV was
+        # touched most recently" (the previous `ls -t data/*.csv` approach) is unsafe:
+        # actions/checkout does not preserve per-file commit timestamps, so it can silently
+        # select a differently-shaped CSV (history.csv, agents.csv, campaigns.csv, etc.) and
+        # positional-column parsing will produce garbage creator data with no error raised.
+        node update-data.js data/current.csv
         
     - name: Regenerate creator_trends.json from history
       run: |
@@ -37,5 +45,18 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add js/data.js data/creator_trends.json
-        git diff --staged --quiet || git commit -m "Auto-update creator data from CSV"
-        git push
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+          exit 0
+        fi
+        git commit -m "Auto-update creator data from CSV"
+        for i in 1 2 3 4 5; do
+          if git push; then
+            exit 0
+          fi
+          echo "Push rejected (attempt $i) — rebasing onto latest main and retrying"
+          git fetch origin main
+          git rebase origin/main
+        done
+        echo "::error::Failed to push after 5 retries"
+        exit 1
