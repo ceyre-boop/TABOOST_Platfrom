@@ -1464,13 +1464,17 @@ function updateScoreAndLevels() {
     
     // Current progress toward CURRENT level goal (not next level)
     // Matching the HTML display requirements
+    // TikTok Activity Level thresholds — updated per TikTok's tier-requirement change
+    // effective 2026-07-01. Levels 0-1 unchanged. Level 2 days 11->12; hours for
+    // levels 2-5 increased (days unchanged for levels 3-5). Keep in sync with
+    // TOOLTIPS.activity and the .level-req labels in creator-dashboard.html.
     const levelReqs = [
         { level: 0, days: 7, hours: 15 },
         { level: 1, days: 8, hours: 20 },
-        { level: 2, days: 11, hours: 30 },  // Fixed: was 12, should be 11
-        { level: 3, days: 15, hours: 40 },  // Fixed: was 16, should be 15
-        { level: 4, days: 18, hours: 60 },  // Fixed: was 20, should be 18
-        { level: 5, days: 22, hours: 80 }   // Fixed: was 25, should be 22
+        { level: 2, days: 12, hours: 35 },
+        { level: 3, days: 15, hours: 50 },
+        { level: 4, days: 18, hours: 70 },
+        { level: 5, days: 22, hours: 90 }
     ];
     
     // Activity Level uses activityDaysGoal (column O) and activityHoursGoal (column R)
