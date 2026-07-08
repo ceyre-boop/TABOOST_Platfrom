@@ -128,6 +128,7 @@
       .division-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     #brandDealsSlot:not(:empty) { margin-top: 18px; }
+    #brandDealsSlot > * + * { margin-top: 18px; }
 
     .division-card {
       min-width: 0;
@@ -174,6 +175,49 @@
       background: var(--secondary);
       border-radius: 50%;
       box-shadow: 0 0 0 3px rgba(255,255,255,0.04);
+    }
+
+    /* Native <details> collapsible — first use of this pattern in the file (no accordion
+       component existed before), styled to match .division-card h2's summary look. */
+    .division-card details > summary {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 13px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid var(--line);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      list-style: none;
+    }
+    .division-card details > summary::-webkit-details-marker { display: none; }
+    .division-card details > summary::after {
+      content: '▾';
+      margin-left: auto;
+      color: var(--secondary);
+      transition: transform .18s ease;
+    }
+    .division-card details[open] > summary::after { transform: rotate(180deg); }
+    .division-card details.tap-bonus-history {
+      margin-top: 14px;
+      padding-top: 4px;
+      border-top: 1px dashed var(--line);
+    }
+    .division-card details.tap-bonus-history > summary {
+      margin-bottom: 8px;
+      padding-bottom: 0;
+      border-bottom: 0;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+    .tap-bonus-summary {
+      margin-left: 4px;
+      color: var(--secondary);
+      font-size: 0.78rem;
+      font-weight: 600;
     }
 
     .kpi-grid {
@@ -1119,6 +1163,15 @@
     const SHOP_TOTALS_URL = 'https://shop.taboost.me/data/shop/totals.csv';
     const SHOP_TOTALS_FALLBACK = 'https://raw.githubusercontent.com/ceyre-boop/TABOOST-Shop/main/data/shop/totals.csv';
 
+    // TAP Bonus — reads tapBonusClaims directly from Firestore (same "taboost-platform" project as
+    // auth/db above, no new config needed). Dollar amounts mirror the hardcoded server-side lookup in
+    // TABOOST-Shop's scripts/tap-bonus-email.gs (TIER_AMOUNTS) — keep these two in sync if tiers change.
+    const TAP_BONUS_TIERS = {
+      tier1: { amount: 500,  label: 'Tier 1', goal: '$100K TAP GMV' },
+      tier2: { amount: 1000, label: 'Tier 2', goal: '$250K TAP GMV' },
+      tier3: { amount: 1500, label: 'Tier 3', goal: '$1M TAP GMV' }
+    };
+
     // Runtime config loaded from Firestore (marco_config/keys). Filled by loadConfig().
     let appCfg = { openaiKey: '', mondayToken: '', mondayBoardId: '', discord: { announcements: '', managers: '', 'talent-general': '' } };
     const configDoc = () => db.collection('marco_config').doc('keys');
@@ -1137,7 +1190,8 @@
     const hasKey = v => !!(v && !String(v).startsWith('REPLACE_ME'));
     // ════════════════════════════════════════════════════════════════════
 
-    let liveKPIs = {}; let shopKPIs = {}; let mondayKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
+    let liveKPIs = {}; let shopKPIs = {}; let mondayKPIs = {}; let tapBonusKPIs = {}; let lastGPTResponse = ''; let commandMessages = [];
+    let _tapBonusClaims = []; // cache of last-fetched tapBonusClaims docs, for optimistic-after-write re-render
     const regionKPIs = { us: null, uk: null };   // Live US / Live UK; scorecard sums both
     let marcoMemory = { learnings: [], log: [] }; // GPT learning memory (Firestore-backed)
 
@@ -1372,7 +1426,7 @@
       }
     });
 
-    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision()]); buildCockpitTicker(); renderTriage(); renderProductivity(); }
+    async function loadAllDivisions(){ await Promise.allSettled([loadLiveRegion('us'), loadLiveRegion('uk'), loadShopDivision(), loadMondayDivision(), loadTapBonusDivision()]); buildCockpitTicker(); renderTriage(); renderProductivity(); }
 
     // ─── Triage Strip — "what needs Marco today" (computed from the loaded CSVs) ───
     let _triageData = null;
@@ -1863,6 +1917,107 @@
       }
     }
 
+    // TAP BONUS — creators opt in / claim cash bonuses on shop.taboost.me (TABOOST-Shop repo).
+    // That feature's Apps Script webhook only sends email (doGet always errors, no read-back API);
+    // all real state lives in Firestore's tapBonusClaims collection, in the same "taboost-platform"
+    // project this dashboard already authenticates against — so this just reads it directly.
+    function fmtClaimDate(ts) {
+      if (!ts || typeof ts.toDate !== 'function') return '—';
+      return ts.toDate().toLocaleDateString();
+    }
+
+    async function loadTapBonusDivision() {
+      try {
+        const snap = await db.collection('tapBonusClaims').get();
+        _tapBonusClaims = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        const outstanding = _tapBonusClaims.filter(c => c.paid !== true);
+        const paid = _tapBonusClaims.filter(c => c.paid === true);
+        const outstandingTotal = outstanding.reduce((sum, c) => sum + (TAP_BONUS_TIERS[c.tier]?.amount || 0), 0);
+        tapBonusKPIs.summary = `${outstanding.length} outstanding TAP bonus claim${outstanding.length === 1 ? '' : 's'}, $${outstandingTotal.toLocaleString()} owed, ${paid.length} paid to date`;
+        renderTapBonusTable();
+        setDot('tapBonusDot', '#00C896');
+      } catch (err) {
+        console.error('loadTapBonusDivision failed:', err);
+        ensureSection('tapBonusDivision', `
+          <h2><span class="status-dot" id="tapBonusDot" style="background:#FF0050;"></span>TAP Bonus Requests</h2>
+          <div class="error-card">TAP bonus claims could not be loaded${err && err.code === 'permission-denied' ? ' (permission denied — check Firestore rules)' : ''}.</div>
+        `);
+        setDot('tapBonusDot', '#FF0050');
+        tapBonusKPIs.summary = 'Unavailable';
+      }
+    }
+
+    function renderTapBonusTable() {
+      const outstanding = _tapBonusClaims.filter(c => c.paid !== true).sort((a, b) => (b.claimedAt?.toMillis?.() || 0) - (a.claimedAt?.toMillis?.() || 0));
+      const paid = _tapBonusClaims.filter(c => c.paid === true).sort((a, b) => (b.paidAt?.toMillis?.() || 0) - (a.paidAt?.toMillis?.() || 0));
+      const outstandingTotal = outstanding.reduce((sum, c) => sum + (TAP_BONUS_TIERS[c.tier]?.amount || 0), 0);
+
+      const claimRow = c => `
+        <tr>
+          <td>${escapeHTML(c.creatorName || 'Unknown creator')}</td>
+          <td title="${escapeHTML(TAP_BONUS_TIERS[c.tier]?.goal || '')}">${escapeHTML(TAP_BONUS_TIERS[c.tier]?.label || c.tier)}</td>
+          <td>$${(TAP_BONUS_TIERS[c.tier]?.amount || 0).toLocaleString()}</td>
+          <td>${fmtClaimDate(c.claimedAt)}</td>
+          <td><button type="button" data-claim-id="${escapeHTML(c.id)}" onclick="markTapBonusPaid('${c.id}')">Mark Paid</button></td>
+        </tr>`;
+
+      const paidRow = c => `
+        <tr>
+          <td>${escapeHTML(c.creatorName || 'Unknown creator')}</td>
+          <td>${escapeHTML(TAP_BONUS_TIERS[c.tier]?.label || c.tier)}</td>
+          <td>$${(TAP_BONUS_TIERS[c.tier]?.amount || 0).toLocaleString()}</td>
+          <td>${fmtClaimDate(c.claimedAt)}</td>
+          <td>${fmtClaimDate(c.paidAt)}</td>
+        </tr>`;
+
+      const html = `
+        <details id="tapBonusDetails" open>
+          <summary>
+            <span class="status-dot" id="tapBonusDot"></span>
+            TAP Bonus Requests
+            <span class="tap-bonus-summary">${outstanding.length} outstanding &middot; $${outstandingTotal.toLocaleString()} owed</span>
+          </summary>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Creator</th><th>Tier</th><th>Amount</th><th>Claimed</th><th>Action</th></tr></thead>
+              <tbody>${outstanding.length ? outstanding.map(claimRow).join('') : '<tr><td colspan="5">No outstanding TAP bonus claims 🎉</td></tr>'}</tbody>
+            </table>
+          </div>
+          ${paid.length ? `
+          <details class="tap-bonus-history">
+            <summary>Paid (${paid.length})</summary>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Creator</th><th>Tier</th><th>Amount</th><th>Claimed</th><th>Paid</th></tr></thead>
+                <tbody>${paid.map(paidRow).join('')}</tbody>
+              </table>
+            </div>
+          </details>` : ''}
+        </details>
+      `;
+      ensureSection('tapBonusDivision', html);
+    }
+
+    async function markTapBonusPaid(claimId) {
+      if (!confirm('Mark this TAP bonus claim as paid?')) return;
+      const btn = document.querySelector(`button[data-claim-id="${claimId}"]`);
+      if (btn) { btn.disabled = true; btn.textContent = 'Marking…'; }
+      try {
+        await db.collection('tapBonusClaims').doc(claimId).update({
+          paid: true,
+          paidAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        const claim = _tapBonusClaims.find(c => c.id === claimId);
+        if (claim) { claim.paid = true; claim.paidAt = { toDate: () => new Date(), toMillis: () => Date.now() }; }
+        showToast('Marked as paid');
+        renderTapBonusTable();
+      } catch (err) {
+        console.error('markTapBonusPaid failed:', err);
+        showToast(err && err.code === 'permission-denied' ? 'Permission denied — Firestore rules may not be deployed yet' : 'Could not mark as paid, try again', 'error');
+        if (btn) { btn.disabled = false; btn.textContent = 'Mark Paid'; }
+      }
+    }
+
     function draftFollowup(brand, talent) {
       const ta = document.getElementById('gptInput');
       if (ta) {
@@ -1903,6 +2058,7 @@ LIVE · US: ${regionKPIs.us?.summary || 'loading'}
 LIVE · UK: ${regionKPIs.uk?.summary || 'loading'}
 SHOP: ${shopKPIs.summary || 'Data not yet connected'}
 BRAND DEALS (Monday.com): ${mondayKPIs.summary || 'Not configured'}
+TAP BONUS CLAIMS: ${tapBonusKPIs.summary || 'Not loaded'}
 
 Be direct, data-driven, and concise. Marco is the CEO and wants actionable intel, not fluff.
 When Marco states a preference, decision, priority, or fact about the agency, remember it. Format responses with markdown.`;
