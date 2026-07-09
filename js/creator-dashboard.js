@@ -1443,13 +1443,13 @@ function updateScoreAndLevels() {
     const rankChangeEl = document.getElementById('rankChange');
     
     if (tierStatus.toLowerCase().includes('up')) {
-        rankChangeEl.textContent = '⬆ Up';
+        rankChangeEl.textContent = '⬆ Tier Up';
         rankChangeEl.style.color = '#00ff88'; // Green
     } else if (tierStatus.toLowerCase().includes('down')) {
-        rankChangeEl.textContent = '⬇ Down';
+        rankChangeEl.textContent = '⬇ Tier Down';
         rankChangeEl.style.color = '#ff0044'; // Red
     } else {
-        rankChangeEl.textContent = '➡ Same';
+        rankChangeEl.textContent = '➡ Tier Same';
         rankChangeEl.style.color = '#888';
     }
     
