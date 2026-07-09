@@ -1454,6 +1454,26 @@
     color: var(--taboost-red);
 }
 
+.footer-logout {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 6px 12px;
+    background: transparent;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, color 0.2s;
+}
+
+.footer-logout:hover {
+    opacity: 1;
+    color: var(--taboost-red);
+}
+
 /* MOBILE-FIRST RESPONSIVE DESIGN */
 
 /* Large tablets and small laptops */
