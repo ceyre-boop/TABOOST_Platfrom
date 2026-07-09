@@ -1626,7 +1626,7 @@ function updateScoreAndLevels() {
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = 'Cash Bonus Unlocked';
+            proBonusRevenueNote.textContent = 'Must Maintain 70+';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
 
             if (scoreSection) {
@@ -1642,7 +1642,7 @@ function updateScoreAndLevels() {
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = 'Need Rank Same or Up';
+            proBonusRevenueNote.textContent = 'Need Tier Same/Up';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
             if (scoreSection) {
                 if (scoreValue >= 90) {
@@ -1656,7 +1656,7 @@ function updateScoreAndLevels() {
             // Locked — score too low
             proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
             proBonusRevenueValue.style.color = '#888';
-            proBonusRevenueNote.textContent = `${scoreValue}/70 Score`;
+            proBonusRevenueNote.textContent = 'Need Score 70+';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
 
             if (scoreSection) {
