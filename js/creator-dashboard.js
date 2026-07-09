@@ -1176,6 +1176,9 @@ function updateHistory() {
     historyRowsData = rows;
     historyTrends = trends;
 
+    // The in-progress calendar month isn't final until it closes — its bonus renders greyed + "est.".
+    const currentMonthLabel = new Date().toLocaleString('en-US', { month: 'short' });
+
     // Filter out months with no data (newer creators won't have all 6 months),
     // but keep each rendered row's true index (into rows/trends arrays) for the click handler.
     document.getElementById('historyTableBody').innerHTML = rows.map((r, index) => ({ r, index }))
@@ -1186,12 +1189,21 @@ function updateHistory() {
         const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
         const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
 
+        // Cash Back Bonus: grey + "est." for the in-progress month (not final until month-end);
+        // finalized months stay gold. Disclaimer (Score 70+) surfaced via tooltip on every cell.
+        const bonusIsCurrent = r.period === currentMonthLabel;
+        const bonusColor = bonusIsCurrent ? '#888' : '#ffd700';
+        const bonusTip = bonusIsCurrent
+            ? 'Estimate — not final until month-end. Must maintain Score 70+ to qualify.'
+            : 'Cash Back Bonus — must maintain Score 70+ to qualify.';
+        const bonusEst = (bonusIsCurrent && r.bonus !== '--') ? ' <span style="font-size:0.68em;color:#777;">est.</span>' : '';
+
         return `
             <tr class="history-row-clickable" data-month-index="${index}" onclick="openMonthDetail(${index})">
                 <td><strong>${r.period}</strong></td>
                 <td>${formatNumber(r.diamonds)} 💎</td>
                 <td style="color: var(--success);">${r.usd}</td>
-                <td style="color: #ffd700;">${r.bonus === '--' ? '--' : r.bonus}</td>
+                <td style="color: ${bonusColor};" title="${bonusTip}">${r.bonus === '--' ? '--' : r.bonus}${bonusEst}</td>
                 <td>
                     ${isChange ? `
                         <span class="trend-indicator ${changeClass}">
@@ -1238,7 +1250,13 @@ function openMonthDetail(index) {
 
     document.getElementById('monthDetailTier').textContent = (row.tier && row.tier > 0) ? 'Tier ' + row.tier : 'No Tier';
     document.getElementById('monthDetailUsd').textContent = row.usd;
-    document.getElementById('monthDetailBonus').textContent = row.bonus === '--' ? '--' : row.bonus;
+    const bonusDetailEl = document.getElementById('monthDetailBonus');
+    const bonusDetailIsCurrent = row.period === new Date().toLocaleString('en-US', { month: 'short' });
+    bonusDetailEl.textContent = row.bonus === '--' ? '--' : (row.bonus + (bonusDetailIsCurrent ? ' (est.)' : ''));
+    bonusDetailEl.style.color = bonusDetailIsCurrent ? '#888' : '#ffd700';
+    bonusDetailEl.title = bonusDetailIsCurrent
+        ? 'Estimate — not final until month-end. Must maintain Score 70+ to qualify.'
+        : 'Cash Back Bonus — must maintain Score 70+ to qualify.';
     document.getElementById('monthDetailChange').innerHTML = formatChangeBadge(row.change);
 
     renderMonthAchievements(index);
