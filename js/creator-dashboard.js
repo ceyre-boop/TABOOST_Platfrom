@@ -1176,8 +1176,8 @@ function updateHistory() {
     historyRowsData = rows;
     historyTrends = trends;
 
-    // The in-progress calendar month isn't final until it closes — its bonus renders greyed + "est.".
-    const currentMonthLabel = new Date().toLocaleString('en-US', { month: 'short' });
+    // Earnings History shows completed months only — every bonus here is final,
+    // so it always renders gold and is never greyed out or marked "est.".
 
     // Filter out months with no data (newer creators won't have all 6 months),
     // but keep each rendered row's true index (into rows/trends arrays) for the click handler.
@@ -1189,21 +1189,12 @@ function updateHistory() {
         const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
         const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
 
-        // Cash Back Bonus: grey + "est." for the in-progress month (not final until month-end);
-        // finalized months stay gold. Disclaimer (Score 70+) surfaced via tooltip on every cell.
-        const bonusIsCurrent = r.period === currentMonthLabel;
-        const bonusColor = bonusIsCurrent ? '#888' : '#ffd700';
-        const bonusTip = bonusIsCurrent
-            ? 'The current month is an estimate and is not final until month-end.'
-            : '';
-        const bonusEst = (bonusIsCurrent && r.bonus !== '--') ? ' <span style="font-size:0.68em;color:#777;">est.</span>' : '';
-
         return `
             <tr class="history-row-clickable" data-month-index="${index}" onclick="openMonthDetail(${index})">
                 <td><strong>${r.period}</strong></td>
                 <td>${formatNumber(r.diamonds)} 💎</td>
                 <td style="color: var(--success);">${r.usd}</td>
-                <td style="color: ${bonusColor};" title="${bonusTip}">${r.bonus === '--' ? '--' : r.bonus}${bonusEst}</td>
+                <td style="color: #ffd700;">${r.bonus === '--' ? '--' : r.bonus}</td>
                 <td>
                     ${isChange ? `
                         <span class="trend-indicator ${changeClass}">
@@ -1251,12 +1242,10 @@ function openMonthDetail(index) {
     document.getElementById('monthDetailTier').textContent = (row.tier && row.tier > 0) ? 'Tier ' + row.tier : 'No Tier';
     document.getElementById('monthDetailUsd').textContent = row.usd;
     const bonusDetailEl = document.getElementById('monthDetailBonus');
-    const bonusDetailIsCurrent = row.period === new Date().toLocaleString('en-US', { month: 'short' });
-    bonusDetailEl.textContent = row.bonus === '--' ? '--' : (row.bonus + (bonusDetailIsCurrent ? ' (est.)' : ''));
-    bonusDetailEl.style.color = bonusDetailIsCurrent ? '#888' : '#ffd700';
-    bonusDetailEl.title = bonusDetailIsCurrent
-        ? 'The current month is an estimate and is not final until month-end.'
-        : '';
+    // Completed months only — bonus is always final (gold), never an estimate.
+    bonusDetailEl.textContent = row.bonus === '--' ? '--' : row.bonus;
+    bonusDetailEl.style.color = '#ffd700';
+    bonusDetailEl.title = '';
     document.getElementById('monthDetailChange').innerHTML = formatChangeBadge(row.change);
 
     renderMonthAchievements(index);
@@ -1621,8 +1610,12 @@ function updateScoreAndLevels() {
         const rankQualified = tsr === '' || tsr === '-' ||
                               tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
 
+        // 3-stage Agency Cash Bonus logic:
+        //   Score < 70              -> "Need Score 70+"  + badge "{score}/70 Score"
+        //   Score 70+ & tier down   -> "Need Tier Same/Up" + badge "Tier Down"
+        //   Score 70+ & tier same/up-> dollar amount       + badge "Must Maintain 70+"
         if (scoreValue >= 70 && rankQualified) {
-            // Unlocked — show bonus amount in gold
+            // Stage 3 — Qualified: show bonus dollar amount in gold
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
@@ -1638,25 +1631,20 @@ function updateScoreAndLevels() {
                 }
             }
         } else if (scoreValue >= 70 && !rankQualified) {
-            // Score qualified but rank is down — keep gold colors, just change note text
-            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
-            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
-            proBonusRevenueValue.style.color = '#ffd700';
-            proBonusRevenueNote.textContent = 'Need Tier Same/Up';
-            if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
+            // Stage 2 — Score qualified but tier dropped: must recover tier to earn the bonus
+            proBonusRevenueValue.textContent = 'Need Tier Same/Up';
+            proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueNote.textContent = 'Tier Down';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
+
             if (scoreSection) {
-                if (scoreValue >= 90) {
-                    scoreSection.classList.add('masters-active');
-                    scoreSection.classList.remove('pro-active');
-                } else {
-                    scoreSection.classList.remove('masters-active');
-                }
+                scoreSection.classList.remove('masters-active');
             }
         } else {
-            // Locked — score too low
-            proBonusRevenueValue.textContent = 'Score 70+ to Unlock';
+            // Stage 1 — Score below 70: show progress toward the 70 threshold
+            proBonusRevenueValue.textContent = 'Need Score 70+';
             proBonusRevenueValue.style.color = '#888';
-            proBonusRevenueNote.textContent = 'Need Score 70+';
+            proBonusRevenueNote.textContent = scoreValue + '/70 Score';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
 
             if (scoreSection) {
