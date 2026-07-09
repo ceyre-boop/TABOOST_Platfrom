@@ -1194,8 +1194,8 @@ function updateHistory() {
         const bonusIsCurrent = r.period === currentMonthLabel;
         const bonusColor = bonusIsCurrent ? '#888' : '#ffd700';
         const bonusTip = bonusIsCurrent
-            ? 'Estimate — not final until month-end. Must maintain Score 70+ to qualify.'
-            : 'Cash Back Bonus — must maintain Score 70+ to qualify.';
+            ? 'The current month is an estimate and is not final until month-end.'
+            : '';
         const bonusEst = (bonusIsCurrent && r.bonus !== '--') ? ' <span style="font-size:0.68em;color:#777;">est.</span>' : '';
 
         return `
@@ -1255,8 +1255,8 @@ function openMonthDetail(index) {
     bonusDetailEl.textContent = row.bonus === '--' ? '--' : (row.bonus + (bonusDetailIsCurrent ? ' (est.)' : ''));
     bonusDetailEl.style.color = bonusDetailIsCurrent ? '#888' : '#ffd700';
     bonusDetailEl.title = bonusDetailIsCurrent
-        ? 'Estimate — not final until month-end. Must maintain Score 70+ to qualify.'
-        : 'Cash Back Bonus — must maintain Score 70+ to qualify.';
+        ? 'The current month is an estimate and is not final until month-end.'
+        : '';
     document.getElementById('monthDetailChange').innerHTML = formatChangeBadge(row.change);
 
     renderMonthAchievements(index);
