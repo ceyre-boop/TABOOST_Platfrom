@@ -1527,6 +1527,14 @@
     color: white;
 }
 
+/* Status text (e.g. "Need Tier Same/Up") — smaller so it fits one line.
+   Money amounts keep the full .revenue-value size. Toggled in JS. */
+.revenue-value.is-text {
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
 .revenue-level,
 .revenue-amount,
 .revenue-score,
@@ -1536,6 +1544,13 @@
     background: rgba(255,255,255,0.05);
     border-radius: 10px;
     color: #888;
+}
+
+/* Keep the status badge on one line so a one-line status value beside it
+   doesn't push it to wrap. */
+.revenue-note {
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .revenue-disclaimer {
@@ -2048,6 +2063,10 @@
     
     .revenue-value {
         font-size: 18px;
+    }
+
+    .revenue-value.is-text {
+        font-size: 14px;
     }
 
     .revenue-disclaimer {

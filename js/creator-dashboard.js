@@ -1619,6 +1619,7 @@ function updateScoreAndLevels() {
             const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
             proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
             proBonusRevenueValue.style.color = '#ffd700';
+            proBonusRevenueValue.classList.remove('is-text'); // money — keep full size
             proBonusRevenueNote.textContent = 'Must Maintain 70+';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
 
@@ -1634,6 +1635,7 @@ function updateScoreAndLevels() {
             // Stage 2 — Score qualified but tier dropped: must recover tier to earn the bonus
             proBonusRevenueValue.textContent = 'Need Tier Same/Up';
             proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueValue.classList.add('is-text'); // status text — shrink to one line
             proBonusRevenueNote.textContent = 'Tier Down';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
 
@@ -1644,6 +1646,7 @@ function updateScoreAndLevels() {
             // Stage 1 — Score below 70: show progress toward the 70 threshold
             proBonusRevenueValue.textContent = 'Need Score 70+';
             proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueValue.classList.add('is-text'); // status text — shrink to one line
             proBonusRevenueNote.textContent = scoreValue + '/70 Score';
             if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
 
