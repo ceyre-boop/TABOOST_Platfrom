@@ -1495,10 +1495,37 @@
 
 <script>
     // Campaign popup — reads from data/campaigns.csv
-    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji, row5=badge (FEATURED|NEW|FINISHED|REGISTRATION|blank), row6+=usernames
-    // "---ALL---" in creators column means every creator sees it
+    // CSV format: col-per-campaign, row1=name, row2=dates, row3=discord URL, row4=emoji,
+    //   row5=badge(s) — comma-separated, any of NEW|HOT|REGISTER|GAMER|DONE
+    //   (legacy FEATURED/FEATURE→HOT, FINISHED→DONE, REGISTRATION→REGISTER auto-mapped), row6+=usernames
+    // "-ALL-" / "---ALL---" in creators column means every creator sees it
 
     const CAMP_EMOJIS = ['🥇','🌍','😂','🎮','🏆','🎤','⚡','🌟'];
+
+    // Campaign pills — the ONLY 5 valid values. Old sheet values are aliased to
+    // their new equivalents so nothing breaks until Marco updates the sheet.
+    // Row 5 of campaigns.csv may hold comma-separated values (e.g. "GAMER,NEW");
+    // Sheets quotes comma-cells so the quote-aware CSV parser keeps them as one column.
+    const BADGE_ALIAS = { FEATURED:'HOT', FEATURE:'HOT', FINISHED:'DONE', REGISTRATION:'REGISTER' };
+    const BADGE_SPECS = {
+        HOT:      { pill:`<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">🔥 HOT</span>`,
+                    accent:'#ffc800', cardBg:'rgba(255,200,0,0.07)', cardBorder:'rgba(255,200,0,0.5)', anim:'camp-gold-pulse 2.5s ease-in-out infinite' },
+        NEW:      { pill:`<span style="background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">NEW</span>`,
+                    accent:'#ff3366', cardBg:'rgba(255,0,85,0.07)', cardBorder:'rgba(255,0,85,0.5)', anim:'camp-red-pulse 2s ease-in-out infinite' },
+        REGISTER: { pill:`<span style="background:linear-gradient(135deg,#ff6a00,#ff9500);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">REGISTER</span>`,
+                    accent:'#ff9500', cardBg:'rgba(255,122,0,0.07)', cardBorder:'rgba(255,122,0,0.5)', anim:'camp-orange-pulse 2s ease-in-out infinite' },
+        GAMER:    { pill:`<span style="background:#7c3aed;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">GAMER</span>`,
+                    accent:'#a855f7', cardBg:'rgba(124,58,237,0.08)', cardBorder:'rgba(124,58,237,0.5)', anim:null },
+        DONE:     { pill:`<span style="background:rgba(255,255,255,0.08);color:#666;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0;">DONE</span>`,
+                    accent:'#666', dimmed:true, anim:null },
+    };
+    const BADGE_PRIORITY = ['DONE','HOT','NEW','REGISTER','GAMER']; // one badge drives card bg/pulse/accent
+    function normalizeBadges(raw) {
+        return [...new Set((raw || '').split(',')
+            .map(s => s.trim().toUpperCase())
+            .map(s => BADGE_ALIAS[s] || s)
+            .filter(s => BADGE_SPECS[s]))];  // keep only the 5 valid values
+    }
 
     async function checkCampaigns() {
         // Wait for currentUser to be set by dashboard auth
@@ -1557,7 +1584,7 @@
                     dates: (dates[col] || '').trim(),
                     url:   (urls[col] || '').trim(),
                     emoji: ((emojis[col] || '').trim().replace(/\?/g, '') || CAMP_EMOJIS[col % CAMP_EMOJIS.length]),
-                    badge: (features[col] || '').trim().toUpperCase().replace(/^FEATURE$/, 'FEATURED') // FEATURED | NEW | FINISHED | REGISTRATION | ''
+                    badges: normalizeBadges(features[col]) // array, e.g. ['GAMER','NEW'] — see BADGE_SPECS
                 });
             }
 
@@ -1565,33 +1592,26 @@
 
             // Build list of campaign links
             document.getElementById('campList').innerHTML = toShow.map(c => {
-                const b = c.badge;
-                const cardStyle = b === 'FEATURED'
-                    ? 'background:rgba(255,200,0,0.07);border-color:rgba(255,200,0,0.5);animation:camp-gold-pulse 2.5s ease-in-out infinite;'
-                    : b === 'NEW'
-                    ? 'background:rgba(255,0,85,0.07);border-color:rgba(255,0,85,0.5);animation:camp-red-pulse 2s ease-in-out infinite;'
-                    : b === 'REGISTRATION'
-                    ? 'background:rgba(255,122,0,0.07);border-color:rgba(255,122,0,0.5);animation:camp-orange-pulse 2s ease-in-out infinite;'
-                    : b === 'FINISHED'
+                const badges = c.badges || [];
+                // Render every pill that applies (side by side; wrapper below wraps them).
+                const pills = badges.map(b => BADGE_SPECS[b]?.pill).filter(Boolean).join('');
+                // One badge drives the card background / pulse / arrow color:
+                // DONE dims the card; otherwise the top active badge wins.
+                const primary = BADGE_PRIORITY.find(b => badges.includes(b));
+                const spec = primary ? BADGE_SPECS[primary] : null;
+                const cardStyle = !spec
+                    ? 'background:rgba(0,204,255,0.06);border-color:rgba(0,204,255,0.15);'
+                    : spec.dimmed
                     ? 'background:rgba(255,255,255,0.03);border-color:rgba(255,255,255,0.08);filter:grayscale(65%) opacity(0.5);'
-                    : 'background:rgba(0,204,255,0.06);border-color:rgba(0,204,255,0.15);';
-                const badgePill = b === 'FEATURED'
-                    ? `<span style="background:rgba(255,200,0,0.12);color:#ffc800;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;border:1px solid rgba(255,200,0,0.3);flex-shrink:0;">🔥 HOT</span>`
-                    : b === 'NEW'
-                    ? `<span style="background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">NEW</span>`
-                    : b === 'REGISTRATION'
-                    ? `<span style="background:linear-gradient(135deg,#ff6a00,#ff9500);color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;letter-spacing:0.4px;flex-shrink:0;">REGISTRATION</span>`
-                    : b === 'FINISHED'
-                    ? `<span style="background:rgba(255,255,255,0.08);color:#666;font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;flex-shrink:0;">FINISHED</span>`
-                    : '';
-                const arrowColor = b === 'FEATURED' ? '#ffc800' : b === 'NEW' ? '#ff3366' : b === 'REGISTRATION' ? '#ff9500' : '#00ccff';
+                    : `background:${spec.cardBg};border-color:${spec.cardBorder};${spec.anim ? `animation:${spec.anim};` : ''}`;
+                const arrowColor = spec ? spec.accent : '#00ccff';
                 return `
                 <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${cardStyle}">
                     <span style="font-size:20px;flex-shrink:0;">${c.emoji}</span>
                     <span style="flex:1;min-width:0;">
                         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
                             <span style="font-size:14px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${c.title}</span>
-                            ${badgePill}
+                            ${pills}
                         </span>
                         ${c.dates ? `<span style="font-size:11px;color:#ffaa00;">${c.dates}</span>` : ''}
                     </span>
@@ -1669,14 +1689,17 @@
         });
 
         campaigns.forEach(c => {
-            if (c.badge === 'FINISHED') return;
+            const cb = c.badges || [];
+            if (cb.includes('DONE')) return;
 
             const range = parseDateRange(c.dates);
             if (!range) return;
 
-            const color = c.badge === 'FEATURED' ? '#ffc800'
-                        : c.badge === 'NEW'      ? '#ff0055'
-                        :                          '#00ccff';
+            const color = cb.includes('HOT')      ? '#ffc800'
+                        : cb.includes('NEW')      ? '#ff0055'
+                        : cb.includes('GAMER')    ? '#a855f7'
+                        : cb.includes('REGISTER') ? '#ff9500'
+                        :                           '#00ccff';
 
             days.forEach((day, idx) => {
                 if (day < range.start || day > range.end) return;
