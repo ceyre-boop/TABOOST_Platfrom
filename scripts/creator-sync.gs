@@ -96,6 +96,41 @@ function testCreatorSync() {
 }
 
 // ============================================
+// FORCE SYNC — one-tap manual override
+// Same push as "Sync Now" but ALWAYS reports what happened,
+// so a manual run can't silently fail or half-fail unnoticed.
+// ============================================
+function forceSync() {
+  const ui = SpreadsheetApp.getUi();
+  let outcome;
+  try {
+    outcome = syncCreatorSheetsToGitHub();
+  } catch (e) {
+    ui.alert(
+      '❌ Force Sync FAILED',
+      'Nothing was pushed to GitHub.\n\nError: ' + e.message +
+      '\n\nIf this is the first run or the GitHub token expired, use "🔧 First Time Setup" first.',
+      ui.ButtonSet.OK
+    );
+    return;
+  }
+
+  const ok = outcome.results.filter(function(r) { return r.status === 'success'; });
+  const failed = outcome.results.filter(function(r) { return r.status === 'error'; });
+
+  let msg = 'Pushed ' + ok.length + '/' + outcome.results.length +
+            ' sheets in ' + outcome.duration + 's\n\n';
+  ok.forEach(function(r) { msg += '✅ ' + r.sheet + ' → ' + r.path + '  (' + r.commit + ')\n'; });
+  failed.forEach(function(r) { msg += '❌ ' + r.sheet + ': ' + r.error + '\n'; });
+
+  if (failed.length === 0) {
+    ui.alert('🔄 Force Sync DONE', msg + '\nLive site (live.taboost.me) updates in ~1 min.', ui.ButtonSet.OK);
+  } else {
+    ui.alert('⚠️ Force Sync PARTIAL', msg + '\nSome sheets did NOT push. Fix the errors above and run Force Sync again.', ui.ButtonSet.OK);
+  }
+}
+
+// ============================================
 // EXPORT CSV (Raw from Google)
 // ============================================
 function exportSheetToCSV(sheetId, gid) {
@@ -246,6 +281,24 @@ function createDailyTrigger() {
   SpreadsheetApp.getUi().alert('✅ Daily sync at 10:00 AM PT (California time) enabled');
 }
 
+// Twice daily — 10 AM AND 10 PM PT (California time).
+// This is the intended production schedule. Deletes any existing
+// sync triggers first, then installs exactly two, so re-running it
+// can never pile up duplicate triggers.
+function createTwiceDailyTrigger() {
+  deleteTriggers();
+  [10, 22].forEach(function(hour) {
+    ScriptApp.newTrigger('syncCreatorSheetsToGitHub')
+      .timeBased()
+      .everyDays(1)
+      .atHour(hour)
+      .nearMinute(0)
+      .inTimezone('America/Los_Angeles')
+      .create();
+  });
+  SpreadsheetApp.getUi().alert('✅ Twice-daily sync enabled\n\nRuns at 10:00 AM and 10:00 PM PT (California time).');
+}
+
 // Alias for clarity
 function setupDailyAutoSync() {
   return createDailyTrigger();
@@ -262,6 +315,32 @@ function deleteTriggers() {
 function stopSync() {
   deleteTriggers();
   SpreadsheetApp.getUi().alert('⏸️ Sync stopped');
+}
+
+// Diagnostic — confirms whether the auto-sync trigger is actually installed.
+// Apps Script does not expose a trigger's next-run time or hour, so this
+// reports how many time-based sync triggers exist; open Triggers in the
+// editor sidebar for exact schedule details.
+function checkTriggers() {
+  const ui = SpreadsheetApp.getUi();
+  const triggers = ScriptApp.getProjectTriggers().filter(function(t) {
+    return t.getHandlerFunction() === 'syncCreatorSheetsToGitHub';
+  });
+
+  if (triggers.length === 0) {
+    ui.alert('⚠️ No auto-sync trigger set',
+      'The creator sync is NOT scheduled to run automatically.\n\n' +
+      'Click "⏰ Twice-Daily Auto-Sync (10 AM & 10 PM PT)" to turn it on.',
+      ui.ButtonSet.OK);
+    return;
+  }
+
+  let msg = triggers.length + ' time-based sync trigger(s) installed:\n\n';
+  triggers.forEach(function(t, i) {
+    msg += (i + 1) + '. ' + t.getEventType() + '  (id ' + t.getUniqueId() + ')\n';
+  });
+  msg += '\nExact run times aren\'t exposed here — open the ⏰ Triggers panel in the Apps Script editor to see the schedule.';
+  ui.alert('🔍 Trigger status', msg, ui.ButtonSet.OK);
 }
 
 // ============================================
@@ -294,11 +373,15 @@ function logResults(results, duration) {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('🔄 CREATOR SYNC')
-    .addItem('⚡ Sync Now', 'syncCreatorSheetsToGitHub')
+    .addItem('🔄 Force Sync Now', 'forceSync')
+    .addSeparator()
+    .addItem('⚡ Sync Now (silent)', 'syncCreatorSheetsToGitHub')
     .addItem('🔧 First Time Setup', 'setupCreatorSync')
     .addSeparator()
+    .addItem('⏰ Twice-Daily Auto-Sync (10 AM & 10 PM PT)', 'createTwiceDailyTrigger')
     .addItem('⏰ Daily Auto-Sync (10 AM PT)', 'createDailyTrigger')
     .addItem('⏰ Hourly Auto-Sync', 'createHourlyTrigger')
+    .addItem('🔍 Check Trigger Status', 'checkTriggers')
     .addItem('⏸️ Stop Auto-Sync', 'stopSync')
     .addToUi();
 }
