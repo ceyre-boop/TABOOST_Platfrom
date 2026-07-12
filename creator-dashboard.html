@@ -1546,7 +1546,9 @@
                     .map(row => (row[col] || '').toLowerCase().trim())
                     .filter(Boolean);
 
-                const isAllCreators = campCreators.includes('---all---');
+                // "all creators" sentinel — tolerant of any dash/space wrapping
+                // (sheet has used ---ALL---, -ALL-, etc.) and case.
+                const isAllCreators = campCreators.some(c => c.replace(/[-\s]/g, '') === 'all');
                 if (!isAllCreators && !campCreators.includes(username)) continue;
 
                 toShow.push({
