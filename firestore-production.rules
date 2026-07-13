@@ -156,5 +156,17 @@ service cloud.firestore {
     match /marco_config/{docId} {
       allow read, write: if isAdmin();
     }
+
+    // Agency Cash Bonus claims — one create-only doc per (creator, month), id = "{uid}_{YYYY-MM}".
+    // Create-only is the anti-double-claim guard: a re-claim would be an update, which no rule allows.
+    // ⚠️ SHARED 'taboost-platform' project (also used by TABOOST-Shop). The DEPLOYED ruleset must
+    //    ALSO include Shop's tapBonusClaims rule — do NOT publish a ruleset that drops either one.
+    match /cashbackClaims/{claimId} {
+      allow read: if isAuthenticated() && resource.data.uid == request.auth.uid;
+      allow create: if isAuthenticated()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid', 'creatorName', 'month', 'claimedAt']);
+      allow read, write: if isAdmin();
+    }
   }
 }

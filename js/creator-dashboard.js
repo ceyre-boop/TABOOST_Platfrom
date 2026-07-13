@@ -414,6 +414,123 @@ function updateStats() {
     document.getElementById('rewardsBreakdown').innerHTML = `
         <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>
     `;
+
+    // Agency Cash Bonus CLAIM flow — overrides this box during days 1-5 of the
+    // month following a qualified month (otherwise leaves it as the Rewards box).
+    applyCashbackState(myData);
+}
+
+// ============================================================
+// AGENCY CASH BONUS — CLAIM FLOW (US)
+// Days 1-5 of the month AFTER a qualified month, the "Current Rewards Available"
+// box becomes a "CASHBACK EARNED" claim card. Claiming writes a create-only
+// Firestore doc cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email
+// to marco@taboost.me via an Apps Script web app. After day 5 it reverts.
+// ============================================================
+const CASHBACK_WEBHOOK_URL = '';    // TODO: set to deployed scripts/cashback-claim-email.gs /exec URL
+const CASHBACK_WEBHOOK_SECRET = ''; // TODO: set to the Apps Script shared secret
+
+function applyCashbackState(myData) {
+    try {
+        if (!myData) return;
+        const preview = new URLSearchParams(location.search).get('cashbackPreview'); // debug: force state, no Firestore
+
+        const now = new Date();
+        const day = now.getDate();
+        const qm = new Date(now.getFullYear(), now.getMonth() - 1, 1); // previous calendar month
+        const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
+
+        const scoreValue = parseInt(myData.score) || 0;
+        const tsr = (myData.tierStatus || '').toString().toLowerCase().trim();
+        const rankQualified = tsr === '' || tsr === '-' ||
+                              tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
+        let bonusAmount = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
+
+        let inWindow = day <= 5;
+        let qualified = scoreValue >= 70 && rankQualified && bonusAmount > 0;
+
+        if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
+            inWindow = true;
+            qualified = true;
+            if (bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
+        }
+
+        if (!(inWindow && qualified)) return; // leave the normal Rewards box untouched
+
+        const creatorName = myData.username || myData.name || 'Creator';
+        renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null);
+    } catch (e) {
+        console.warn('cashback state error:', e);
+    }
+}
+
+function cashbackClaimBtnHTML() {
+    return `<button id="cashbackClaimBtn" style="margin-top:8px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0a;font-weight:800;font-size:14px;letter-spacing:0.3px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;box-shadow:0 0 18px rgba(0,255,136,0.45);transition:transform 0.15s;">🎁 CLAIM BONUS</button>`;
+}
+function cashbackClaimedHTML(data) {
+    let when = '';
+    try {
+        const d = data && data.claimedAt && data.claimedAt.toDate ? data.claimedAt.toDate() : null;
+        if (d) when = ' · ' + (d.getMonth() + 1) + '/' + d.getDate();
+    } catch (e) {}
+    return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;">✓ CLAIMED${when}</span>`;
+}
+
+function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
+    const label = document.getElementById('rewardsLabel');
+    const value = document.getElementById('totalRewards');
+    const footer = document.getElementById('rewardsBreakdown');
+    if (!label || !value || !footer) return;
+
+    label.textContent = '💰 CASHBACK EARNED';
+    value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
+
+    const showClaimButton = () => {
+        footer.innerHTML = cashbackClaimBtnHTML();
+        const btn = document.getElementById('cashbackClaimBtn');
+        if (btn) btn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
+    };
+
+    const fs = window.__fs;
+    if (isPreview || !fs || !fs.uid || !fs.getDoc) { showClaimButton(); return; }
+
+    // Real mode: show CLAIMED if already claimed this month, else the claim button.
+    const claimId = fs.uid + '_' + qualMonth;
+    fs.getDoc(fs.doc(fs.db, 'cashbackClaims', claimId))
+        .then(snap => { if (snap && snap.exists()) footer.innerHTML = cashbackClaimedHTML(snap.data()); else showClaimButton(); })
+        .catch(() => showClaimButton());
+}
+
+async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
+    const btn = document.getElementById('cashbackClaimBtn');
+    const footer = document.getElementById('rewardsBreakdown');
+    if (btn) { btn.disabled = true; btn.textContent = 'Claiming…'; }
+    try {
+        const fs = window.__fs;
+        if (!isPreview && fs && fs.uid && fs.setDoc) {
+            const claimId = fs.uid + '_' + qualMonth;
+            await fs.setDoc(fs.doc(fs.db, 'cashbackClaims', claimId), {
+                uid: fs.uid,
+                creatorName: creatorName,
+                month: qualMonth,
+                claimedAt: fs.serverTimestamp()
+            });
+        }
+        // Fire-and-forget email to Marco. text/plain avoids an Apps Script CORS preflight.
+        if (CASHBACK_WEBHOOK_URL) {
+            fetch(CASHBACK_WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify({ secret: CASHBACK_WEBHOOK_SECRET, creatorName: creatorName, amount: amount, month: qualMonth })
+            }).catch(e => console.warn('cashback email failed (claim was still recorded):', e));
+        }
+        if (footer) footer.innerHTML = cashbackClaimedHTML({});
+    } catch (e) {
+        console.warn('cashback claim failed:', e);
+        if (footer) footer.innerHTML = `<span style="color:#ff5577;font-size:12px;display:block;margin-bottom:6px;">Could not record claim — try again.</span>` + cashbackClaimBtnHTML();
+        const rbtn = document.getElementById('cashbackClaimBtn');
+        if (rbtn) rbtn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
+    }
 }
 
 function updateRank() {

@@ -459,9 +459,9 @@
                 </div>
             </div>
             
-            <div class="stat-card">
+            <div class="stat-card" id="rewardsCard">
                 <div class="stat-header">
-                    <span class="stat-label" style="white-space:nowrap;">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
+                    <span class="stat-label" id="rewardsLabel" style="white-space:nowrap;">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
                 </div>
                 <div class="stat-value" id="totalRewards" style="color: var(--taboost-success);">--</div>
                 <div class="stat-footer">
@@ -914,12 +914,12 @@
     <script src="js/events-data.js?v=202607090244"></script>
     <script src="js/weekly-calendar-data.js?v=202607090244"></script>
     <script src="js/sheets-data.js?v=202607090244"></script>
-    <script src="js/creator-dashboard.js?v=202607092010"></script>
+    <script src="js/creator-dashboard.js?v=202607131848"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
@@ -934,7 +934,11 @@
         const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        
+
+        // Expose a Firestore handle for the classic-script cashback claim flow
+        // (mirrors how the Shop dashboard exposes window.__tapFirestore).
+        window.__fs = { db, doc, getDoc, setDoc, serverTimestamp, uid: null };
+
         // ============================================
         // TEST MODE: ?testUser=username bypasses auth
         // Usage: creator-dashboard.html?testUser=kaemi.s
@@ -964,7 +968,8 @@
                 // Module 1 already handles the redirect — don't redirect again here
                 return;
             }
-            
+            if (window.__fs) window.__fs.uid = firebaseUser.uid; // for cashback claim writes
+
             // Get user data from Firestore
             let userData = null;
             try {
