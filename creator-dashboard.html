@@ -914,7 +914,7 @@
     <script src="js/events-data.js?v=202607090244"></script>
     <script src="js/weekly-calendar-data.js?v=202607090244"></script>
     <script src="js/sheets-data.js?v=202607090244"></script>
-    <script src="js/creator-dashboard.js?v=202607131900"></script>
+    <script src="js/creator-dashboard.js?v=202607131927"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1192,9 +1192,23 @@
                 <p>Your <strong style="color:#00ccff;">Revenue Streams</strong> show your estimated earnings from TikTok LIVE and any eligible TABOOST agency cash bonuses.</p>
                 <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
                     <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Cash Back Bonus</div>
-                    Cash bonus eligibility begins at a Creator Score of 70+ and requires your Diamond Tier to be maintained or ranked up.
+                    Cash bonus eligibility unlocks at a month-end Creator Score of 70+ and requires your Diamond Tier to be maintained or ranked up.
                 </div>
                 <p style="color:#888;font-size:12px;margin-top:8px;">Diamond revenue shown in the TABOOST app is an estimate only. Your final dollar amount is calculated by TikTok based on TikTok LIVE's Scaled Rewards and is available inside your TikTok app.</p>
+            `
+        },
+        cashback: {
+            icon: '💵',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Cash Back Bonus',
+            body: `
+                <p>Your <strong style="color:#00ccff;">Cash Back Bonus</strong> eligibility begins at a Creator Score of 70+ and requires your Diamond Tier to be maintained or ranked up.</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">Claim Deadline</div>
+                    Cash bonus must be claimed by the 5th of the month for your bonus to be processed.
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Claimed cash back bonuses will be paid out via PayPal by the 10th of each following month.</p>
             `
         },
         goals: {

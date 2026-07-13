@@ -483,7 +483,7 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
     const footer = document.getElementById('rewardsBreakdown');
     if (!label || !value || !footer) return;
 
-    label.textContent = '💰 CASHBACK EARNED';
+    label.innerHTML = '💰 CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
     const showClaimButton = () => {
