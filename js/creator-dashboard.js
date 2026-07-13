@@ -466,7 +466,7 @@ function applyCashbackState(myData) {
 }
 
 function cashbackClaimBtnHTML() {
-    return `<button id="cashbackClaimBtn" style="margin-top:8px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0a;font-weight:800;font-size:14px;letter-spacing:0.3px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;box-shadow:0 0 18px rgba(0,255,136,0.45);transition:transform 0.15s;">💵 CLAIM BONUS</button>`;
+    return `<button id="cashbackClaimBtn" style="margin-top:8px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0a;font-weight:800;font-size:14px;letter-spacing:0.3px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;box-shadow:0 0 18px rgba(0,255,136,0.45);transition:transform 0.15s;">CLAIM BONUS</button>`;
 }
 function cashbackClaimedHTML(data) {
     let when = '';
@@ -483,7 +483,7 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
     const footer = document.getElementById('rewardsBreakdown');
     if (!label || !value || !footer) return;
 
-    label.innerHTML = '💰 CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
+    label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
     const showClaimButton = () => {
