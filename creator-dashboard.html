@@ -1527,52 +1527,6 @@
             .filter(s => BADGE_SPECS[s]))];  // keep only the 5 valid values
     }
 
-    // Campaign links are app/Discord deep links: they open on mobile but 404 in a
-    // desktop browser. So on desktop we COPY the link instead of opening it. Detect
-    // by pointer/touch — a narrow desktop window is still desktop and still 404s.
-    const IS_MOBILE = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
-                      || (window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
-
-    function campFallbackCopy(text) {
-        const ta = document.createElement('textarea');
-        ta.value = text; ta.style.position = 'fixed'; ta.style.top = '-9999px'; ta.style.opacity = '0';
-        document.body.appendChild(ta); ta.focus(); ta.select();
-        try { document.execCommand('copy'); } catch (e) {}
-        document.body.removeChild(ta);
-    }
-    function campCopyText(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            return navigator.clipboard.writeText(text).catch(() => campFallbackCopy(text));
-        }
-        campFallbackCopy(text);
-        return Promise.resolve();
-    }
-    function campToast(msg) {
-        const t = document.createElement('div');
-        t.textContent = msg;
-        t.style.cssText = 'position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:4000;'
-            + 'background:#111;color:#fff;border:1px solid rgba(255,255,255,0.15);border-radius:10px;'
-            + 'padding:10px 16px;font-size:13px;font-weight:600;box-shadow:0 6px 24px rgba(0,0,0,0.5);'
-            + 'opacity:0;transition:opacity 0.2s;';
-        document.body.appendChild(t);
-        requestAnimationFrame(() => { t.style.opacity = '1'; });
-        setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 250); }, 1600);
-    }
-    // Shared click handler for the popup <a> and the calendar <div>.
-    // Mobile: open the link. Desktop: copy it (+ confirm) instead of 404-ing.
-    window.campHandleLink = function(el, ev) {
-        const url = el.dataset.url || '';
-        if (!url) { if (ev) ev.preventDefault(); return false; }
-        if (IS_MOBILE) { if (el.tagName !== 'A') window.open(url, '_blank'); return true; }
-        if (ev) ev.preventDefault();
-        campCopyText(url).then(() => {
-            const cta = el.querySelector('.camp-cta');
-            if (cta) { cta.textContent = '✓ Copied!'; setTimeout(() => { cta.textContent = '📋 Copy Link'; }, 1500); }
-            else campToast('✓ Campaign link copied');
-        });
-        return false;
-    };
-
     async function checkCampaigns() {
         // Wait for currentUser to be set by dashboard auth
         let attempts = 0;
@@ -1652,7 +1606,7 @@
                     : `background:${spec.cardBg};border-color:${spec.cardBorder};${spec.anim ? `animation:${spec.anim};` : ''}`;
                 const arrowColor = spec ? spec.accent : '#00ccff';
                 return `
-                <a href="${c.url || '#'}" target="_blank" rel="noopener" data-url="${(c.url || '').replace(/"/g, '&quot;')}" onclick="return campHandleLink(this, event)" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${cardStyle}">
+                <a href="${c.url || '#'}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid;border-radius:12px;text-decoration:none;transition:background 0.15s;${cardStyle}">
                     <span style="font-size:20px;flex-shrink:0;">${c.emoji}</span>
                     <span style="flex:1;min-width:0;">
                         <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px;">
@@ -1661,7 +1615,7 @@
                         </span>
                         ${c.dates ? `<span style="font-size:11px;color:#ffaa00;">${c.dates}</span>` : ''}
                     </span>
-                    <span class="camp-cta" style="color:${arrowColor};font-size:13px;flex-shrink:0;white-space:nowrap;">${IS_MOBILE ? 'View →' : '📋 Copy Link'}</span>
+                    <span style="color:${arrowColor};font-size:13px;flex-shrink:0;">View →</span>
                 </a>`;
             }).join('');
 
@@ -1765,8 +1719,7 @@
                 eventsEl.insertAdjacentHTML('afterbegin', `
                     <div class="calendar-event campaign multiday ${posClass}"
                          style="border-left-color:${color};cursor:pointer;"
-                         data-url="${(c.url || '').replace(/"/g, '&quot;')}"
-                         onclick="campHandleLink(this, event)">
+                         onclick="if('${c.url}')window.open('${c.url}','_blank')">
                         <span class="event-time-badge" style="color:${color};">All Day</span>
                         <div class="event-title-small">${c.emoji} ${c.title}</div>
                     </div>
