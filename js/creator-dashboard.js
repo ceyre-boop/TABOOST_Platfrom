@@ -429,6 +429,7 @@ function updateStats() {
 // ============================================================
 const CASHBACK_WEBHOOK_URL = '';    // TODO: set to deployed scripts/cashback-claim-email.gs /exec URL
 const CASHBACK_WEBHOOK_SECRET = ''; // TODO: set to the Apps Script shared secret
+const CASHBACK_WINDOW_DAYS = 15;    // production value is 5 — TEMP 15 for testing so it shows mid-month
 
 function applyCashbackState(myData) {
     try {
@@ -446,7 +447,7 @@ function applyCashbackState(myData) {
                               tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
         let bonusAmount = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
 
-        let inWindow = day <= 5;
+        let inWindow = day <= CASHBACK_WINDOW_DAYS;
         let qualified = scoreValue >= 70 && rankQualified && bonusAmount > 0;
 
         if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
@@ -465,7 +466,7 @@ function applyCashbackState(myData) {
 }
 
 function cashbackClaimBtnHTML() {
-    return `<button id="cashbackClaimBtn" style="margin-top:8px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0a;font-weight:800;font-size:14px;letter-spacing:0.3px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;box-shadow:0 0 18px rgba(0,255,136,0.45);transition:transform 0.15s;">🎁 CLAIM BONUS</button>`;
+    return `<button id="cashbackClaimBtn" style="margin-top:8px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0a;font-weight:800;font-size:14px;letter-spacing:0.3px;border:none;border-radius:10px;padding:10px 20px;cursor:pointer;box-shadow:0 0 18px rgba(0,255,136,0.45);transition:transform 0.15s;">💵 CLAIM BONUS</button>`;
 }
 function cashbackClaimedHTML(data) {
     let when = '';
