@@ -478,7 +478,7 @@ function cashbackClaimedHTML(data) {
         const d = data && data.claimedAt && data.claimedAt.toDate ? data.claimedAt.toDate() : null;
         if (d) when = ' · ' + (d.getMonth() + 1) + '/' + d.getDate();
     } catch (e) {}
-    return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;">✓ CLAIMED${when}</span>`;
+    return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;">Claim Payment Processed${when}</span>`;
 }
 
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
@@ -521,14 +521,14 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
                 claimedAt: fs.serverTimestamp()
             });
         }
-        // Fire-and-forget email to Marco — real claims only (never in preview, so email + record always match).
-        // text/plain avoids an Apps Script CORS preflight.
-        if (!isPreview && CASHBACK_WEBHOOK_URL) {
+        // Fire-and-forget email to Marco. Preview claims also email (so it's testable) but are
+        // marked [TEST] and write NO Firestore record. text/plain avoids an Apps Script CORS preflight.
+        if (CASHBACK_WEBHOOK_URL) {
             fetch(CASHBACK_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ secret: CASHBACK_WEBHOOK_SECRET, creatorName: creatorName, amount: amount, month: qualMonth })
-            }).catch(e => console.warn('cashback email failed (claim was still recorded):', e));
+                body: JSON.stringify({ secret: CASHBACK_WEBHOOK_SECRET, creatorName: (isPreview ? '[TEST] ' : '') + creatorName, amount: amount, month: qualMonth })
+            }).catch(e => console.warn('cashback email failed:', e));
         }
         if (footer) footer.innerHTML = cashbackClaimedHTML({});
     } catch (e) {
