@@ -444,15 +444,25 @@ function applyCashbackState(myData) {
         const qm = new Date(now.getFullYear(), now.getMonth() - 1, 1); // previous calendar month
         const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
 
-        const scoreValue = parseInt(myData.score) || 0;
-        const tsr = (myData.tierStatus || '').toString().toLowerCase().trim();
-        const rankQualified = tsr === '' || tsr === '-' ||
-                              tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
-        let bonusAmount = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
+        // Qualification + amount come from the LAST completed month's EARNED bonus, not the
+        // current in-progress month (you claim last month's bonus after the month ends).
+        // creator_trends.json (loaded by loadCreatorTrends) holds per-month bonusHistory; the
+        // bonus is >$0 only if they qualified that month (Score 70+ AND tier maintained/up,
+        // computed upstream), so bonus>0 IS the qualification. myData.* is the current month.
+        const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const qmLabel = MON[qm.getMonth()] + ' ' + qm.getFullYear(); // e.g. "Jun 2026"
+        let bonusAmount = 0;
+        const tKey = Object.keys(creatorTrends || {}).find(k => k.toLowerCase() === (myData.username || myData.name || '').toLowerCase());
+        const trends = tKey ? creatorTrends[tKey] : null;
+        if (trends && Array.isArray(trends.bonusHistory) && trends.bonusHistory.length) {
+            let idx = (trendMonths || []).indexOf(qmLabel);
+            if (idx < 0) idx = trends.bonusHistory.length - 1; // fallback: last completed month
+            bonusAmount = parseFloat(trends.bonusHistory[idx]) || 0;
+        }
 
         const windowDays = (qualMonth === CASHBACK_FIRST_MONTH.qualMonth) ? CASHBACK_FIRST_MONTH.days : CASHBACK_WINDOW_DAYS;
         let inWindow = day <= windowDays;
-        let qualified = scoreValue >= 70 && rankQualified && bonusAmount > 0;
+        let qualified = bonusAmount > 0; // earned a bonus last month = qualified last month
 
         if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
             inWindow = true;
