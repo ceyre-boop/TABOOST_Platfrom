@@ -129,6 +129,8 @@ async function initCreatorDashboard(user) {
         updateActivityStats();
         console.log('DEBUG - Starting updateScoreAndLevels');
         updateScoreAndLevels();
+        console.log('DEBUG - Starting renderAgencyBenefits');
+        renderAgencyBenefits(myData);
         console.log('DEBUG - Starting initPerformanceChart');
         initPerformanceChart();
         console.log('DEBUG - Starting updateAchievements');
@@ -435,6 +437,7 @@ const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of 
 const CASHBACK_FORCE_WINDOW_UNTIL = '2026-07-15';
 
 function applyCashbackState(myData) {
+    window.__bonusClaimLive = false; // becomes true when a claim is live this window
     try {
         if (!myData) return;
         const preview = new URLSearchParams(location.search).get('cashbackPreview'); // debug: force state, no Firestore
@@ -462,8 +465,9 @@ function applyCashbackState(myData) {
             if (bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
         }
 
-        if (!(inWindow && qualified)) return; // leave the normal Rewards box untouched
+        if (!(inWindow && qualified)) return; // leave the BONUS tab in its default status view
 
+        window.__bonusClaimLive = true; // renderAgencyBenefits flags the BONUS tab with a claim dot
         const creatorName = myData.username || myData.name || 'Creator';
         renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null);
     } catch (e) {
@@ -484,10 +488,17 @@ function cashbackClaimedHTML(data) {
 }
 
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
-    const label = document.getElementById('rewardsLabel');
-    const value = document.getElementById('totalRewards');
-    const footer = document.getElementById('rewardsBreakdown');
-    if (!label || !value || !footer) return;
+    // Claim now lives in the BONUS tab of the Agency Benefits box (not the rewards box).
+    const label = document.getElementById('bonusClaimLabel');
+    const value = document.getElementById('bonusClaimValue');
+    const footer = document.getElementById('bonusClaimFooter');
+    const claimBlock = document.getElementById('bonusClaimBlock');
+    const statusBlock = document.getElementById('bonusStatusBlock');
+    if (!label || !value || !footer || !claimBlock) return;
+
+    // Swap the BONUS pane from its default status view to the claim view.
+    if (statusBlock) statusBlock.style.display = 'none';
+    claimBlock.style.display = 'block';
 
     label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
@@ -510,7 +521,7 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
 
 async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
     const btn = document.getElementById('cashbackClaimBtn');
-    const footer = document.getElementById('rewardsBreakdown');
+    const footer = document.getElementById('bonusClaimFooter');
     if (btn) { btn.disabled = true; btn.textContent = 'Claiming…'; }
     try {
         const fs = window.__fs;
@@ -540,6 +551,65 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
         if (rbtn) rbtn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     }
 }
+
+// ============================================================
+// AGENCY BENEFITS BOX — score-gated tabs (REWARDS | BONUS | BOOST)
+// Score < 30 -> box hidden. 30-69 -> REWARDS. 70-89 -> +BONUS. 90+ -> +BOOST.
+// Tab content is already populated by updateStats()/updateScoreAndLevels()/
+// applyCashbackState(); this only builds the strip and shows the first tab.
+// ============================================================
+function renderAgencyBenefits(myData) {
+    const section = document.getElementById('benefitsSection');
+    const tabsEl = document.getElementById('benefitsTabs');
+    if (!section || !tabsEl) return;
+
+    const score = parseInt(myData && myData.score) || 0;
+    if (score < 30) { section.style.display = 'none'; return; } // below 30: hide entirely
+
+    // Unlocked tabs, in fixed order
+    const tabs = [{ key: 'rewards', label: 'REWARDS' }];
+    if (score >= 70) tabs.push({ key: 'bonus', label: 'BONUS' });
+    if (score >= 90) tabs.push({ key: 'boost', label: 'BOOST' });
+
+    section.style.display = 'block';
+
+    // Build the strip: unlocked tabs only, with a visual "|" between them
+    tabsEl.innerHTML = '';
+    tabs.forEach((t, i) => {
+        if (i > 0) {
+            const sep = document.createElement('span');
+            sep.className = 'benefit-sep';
+            sep.textContent = '|';
+            tabsEl.appendChild(sep);
+        }
+        const btn = document.createElement('button');
+        btn.className = 'benefit-tab inactive';
+        btn.dataset.tab = t.key;
+        btn.textContent = t.label;
+        if (t.key === 'bonus' && window.__bonusClaimLive) {
+            const dot = document.createElement('span'); // "claim available" indicator
+            dot.className = 'benefit-tab-claim-dot';
+            btn.appendChild(dot);
+        }
+        btn.addEventListener('click', () => switchBenefitTab(t.key));
+        tabsEl.appendChild(btn);
+    });
+
+    switchBenefitTab(tabs[0].key); // default: first unlocked tab (always REWARDS)
+}
+
+function switchBenefitTab(name) {
+    document.querySelectorAll('#benefitsSection .benefit-pane').forEach(p => {
+        p.classList.toggle('active', p.dataset.pane === name);
+    });
+    document.querySelectorAll('#benefitsTabs .benefit-tab').forEach(b => {
+        const on = b.dataset.tab === name;
+        b.classList.toggle('active', on);
+        b.classList.toggle('inactive', !on);
+    });
+}
+window.renderAgencyBenefits = renderAgencyBenefits;
+window.switchBenefitTab = switchBenefitTab;
 
 function updateRank() {
     const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
