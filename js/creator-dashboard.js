@@ -427,8 +427,8 @@ function updateStats() {
 // Firestore doc cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email
 // to marco@taboost.me via an Apps Script web app. After day 5 it reverts.
 // ============================================================
-const CASHBACK_WEBHOOK_URL = '';    // TODO: set to deployed scripts/cashback-claim-email.gs /exec URL
-const CASHBACK_WEBHOOK_SECRET = ''; // TODO: set to the Apps Script shared secret
+const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwURskkt7rnKBB--7ktYYcM1Rcsx4ylSnBfxJ8DBV1_PPH-0FBSRqsGp6NMCwBCWNAa/exec';
+const CASHBACK_WEBHOOK_SECRET = '4babcaa9-2e36-434c-bdd8-40cc2a3f92ab'; // client secret is public (like Shop's) — email is notify-only, verify before paying
 const CASHBACK_WINDOW_DAYS = 5;     // production: bonus is claimable the 1st–5th of the month
 // One-time: extend the FIRST rollout month's window to 15 days so creators can still see/claim
 // after the 5th had already passed. Auto-reverts to 5 for every later month (no manual change).
