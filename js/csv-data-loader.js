@@ -177,6 +177,7 @@ const CSV_LOADER = {
       unlocked: this.cleanValue(get('Unlocked', 'unlocked'), 'string', '0'),
       estRev: this.cleanValue(get('Est Rev', 'EstRev', 'estRev', 'Est. Revenue', 'Est Revenue', 'Est.Revenue', 'EstRevenue'), 'int', 0),
       bonus: this.cleanValue(get('Bonus', 'bonus'), 'string', '$0.00'),
+      lmBonus: this.cleanValue(get('LM Bonus', 'lmBonus'), 'string', '$0.00'), // last month's earned bonus (claimable)
       daysMonth: this.cleanValue(get('Month Goal', 'Days Month', 'daysMonth', 'monthGoal'), 'int', 0),
       hoursMonth: this.cleanValue(get('Hours Month', 'hoursMonth'), 'int', 0),
       rewardsMonth: this.cleanValue(get('Rewards', 'rewards', 'Rewards Month'), 'string', '0')

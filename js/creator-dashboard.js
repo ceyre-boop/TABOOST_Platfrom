@@ -429,10 +429,7 @@ function updateStats() {
 // ============================================================
 const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwURskkt7rnKBB--7ktYYcM1Rcsx4ylSnBfxJ8DBV1_PPH-0FBSRqsGp6NMCwBCWNAa/exec';
 const CASHBACK_WEBHOOK_SECRET = '4babcaa9-2e36-434c-bdd8-40cc2a3f92ab'; // client secret is public (like Shop's) — email is notify-only, verify before paying
-const CASHBACK_WINDOW_DAYS = 5;     // production: bonus is claimable the 1st–5th of the month
-// One-time: extend the FIRST rollout month's window to 15 days so creators can still see/claim
-// after the 5th had already passed. Auto-reverts to 5 for every later month (no manual change).
-const CASHBACK_FIRST_MONTH = { qualMonth: '2026-06', days: 15 };
+const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of the month
 
 function applyCashbackState(myData) {
     try {
@@ -444,25 +441,13 @@ function applyCashbackState(myData) {
         const qm = new Date(now.getFullYear(), now.getMonth() - 1, 1); // previous calendar month
         const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
 
-        // Qualification + amount come from the LAST completed month's EARNED bonus, not the
-        // current in-progress month (you claim last month's bonus after the month ends).
-        // creator_trends.json (loaded by loadCreatorTrends) holds per-month bonusHistory; the
-        // bonus is >$0 only if they qualified that month (Score 70+ AND tier maintained/up,
-        // computed upstream), so bonus>0 IS the qualification. myData.* is the current month.
-        const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        const qmLabel = MON[qm.getMonth()] + ' ' + qm.getFullYear(); // e.g. "Jun 2026"
-        let bonusAmount = 0;
-        const tKey = Object.keys(creatorTrends || {}).find(k => k.toLowerCase() === (myData.username || myData.name || '').toLowerCase());
-        const trends = tKey ? creatorTrends[tKey] : null;
-        if (trends && Array.isArray(trends.bonusHistory) && trends.bonusHistory.length) {
-            let idx = (trendMonths || []).indexOf(qmLabel);
-            if (idx < 0) idx = trends.bonusHistory.length - 1; // fallback: last completed month
-            bonusAmount = parseFloat(trends.bonusHistory[idx]) || 0;
-        }
+        // Eligibility + amount = the "LM Bonus" column in current.csv (last month's earned bonus).
+        // Marco's sheet already applied the Score-70+/tier qualification, so the dashboard only
+        // needs: is LM Bonus > $0? (myData.bonus/score/tierStatus are the CURRENT month — not used.)
+        let bonusAmount = parseFloat((myData.lmBonus || '').toString().replace(/[$,]/g, '')) || 0;
 
-        const windowDays = (qualMonth === CASHBACK_FIRST_MONTH.qualMonth) ? CASHBACK_FIRST_MONTH.days : CASHBACK_WINDOW_DAYS;
-        let inWindow = day <= windowDays;
-        let qualified = bonusAmount > 0; // earned a bonus last month = qualified last month
+        let inWindow = day >= 1 && day <= CASHBACK_WINDOW_DAYS; // 1st–5th of the month only
+        let qualified = bonusAmount > 0;
 
         if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
             inWindow = true;
