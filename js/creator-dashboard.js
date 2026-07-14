@@ -129,6 +129,8 @@ async function initCreatorDashboard(user) {
         updateActivityStats();
         console.log('DEBUG - Starting updateScoreAndLevels');
         updateScoreAndLevels();
+        console.log('DEBUG - Starting renderAgencyBenefits');
+        renderAgencyBenefits(myData);
         console.log('DEBUG - Starting initPerformanceChart');
         initPerformanceChart();
         console.log('DEBUG - Starting updateAchievements');
@@ -540,6 +542,97 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
         if (rbtn) rbtn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     }
 }
+
+// ============================================================
+// AGENCY BENEFITS BOX — additive, score-gated tabs (REWARDS | BONUS | BOOST)
+// Self-contained: reads myData, writes only ab_* IDs. Does NOT touch the top
+// rewards/cashback card or the My Revenue Streams box (those stay as-is).
+// Score < 30 -> hidden. 30-69 -> REWARDS. 70-89 -> +BONUS. 90+ -> +BOOST.
+// ============================================================
+function renderAgencyBenefits(myData) {
+    const section = document.getElementById('benefitsSection');
+    const tabsEl = document.getElementById('benefitsTabs');
+    if (!section || !tabsEl) return;
+
+    const score = parseInt(myData && myData.score) || 0;
+    if (score < 30) { section.style.display = 'none'; return; } // below 30: hide entirely
+
+    // REWARDS pane — same math as updateStats(), written to this box's own elements
+    const currentAvailable = parseInt((myData.unlocked || '0').toString().replace(/,/g, '')) || 0;
+    const totalEarned = myData.earned || 0;
+    const totalUsed = totalEarned - currentAvailable;
+    const rv = document.getElementById('ab_rewardsValue');
+    const rb = document.getElementById('ab_rewardsBreakdown');
+    if (rv) rv.textContent = currentAvailable < 0
+        ? '-' + formatNumberPlain(Math.abs(currentAvailable))
+        : formatNumberPlain(currentAvailable);
+    if (rb) rb.innerHTML = `<span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>`;
+
+    // BONUS pane — same 3-stage Agency Cash Bonus status as updateScoreAndLevels()
+    const bv = document.getElementById('ab_bonusValue');
+    const bn = document.getElementById('ab_bonusNote');
+    const bi = document.getElementById('ab_bonusItem');
+    if (bv && bn) {
+        const tsr = (myData.tierStatus || '').toLowerCase().trim();
+        const rankOk = tsr === '' || tsr === '-' || tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
+        if (score >= 70 && rankOk) {
+            const cashBonus = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
+            bv.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
+            bv.style.color = '#ffd700';
+            bv.classList.remove('is-text');
+            bn.textContent = 'Must Maintain 70+';
+            if (bi) bi.classList.add('pro-revenue-active');
+        } else if (score >= 70 && !rankOk) {
+            bv.textContent = 'Need Tier Same/Up';
+            bv.style.color = '#888';
+            bv.classList.add('is-text');
+            bn.textContent = 'Tier Down';
+            if (bi) bi.classList.remove('pro-revenue-active');
+        } else {
+            bv.textContent = 'Need Score 70+';
+            bv.style.color = '#888';
+            bv.classList.add('is-text');
+            bn.textContent = score + '/70 Score';
+            if (bi) bi.classList.remove('pro-revenue-active');
+        }
+    }
+
+    section.style.display = 'block';
+
+    // Build the tab strip: unlocked tabs only, with a visual "|" between them
+    const tabs = [{ key: 'rewards', label: 'REWARDS' }];
+    if (score >= 70) tabs.push({ key: 'bonus', label: 'BONUS' });
+    if (score >= 90) tabs.push({ key: 'boost', label: 'BOOST' });
+    tabsEl.innerHTML = '';
+    tabs.forEach((t, i) => {
+        if (i > 0) {
+            const sep = document.createElement('span');
+            sep.className = 'benefit-sep';
+            sep.textContent = '|';
+            tabsEl.appendChild(sep);
+        }
+        const btn = document.createElement('button');
+        btn.className = 'benefit-tab inactive';
+        btn.dataset.tab = t.key;
+        btn.textContent = t.label;
+        btn.addEventListener('click', () => switchBenefitTab(t.key));
+        tabsEl.appendChild(btn);
+    });
+    switchBenefitTab(tabs[0].key); // default: first unlocked tab (always REWARDS)
+}
+
+function switchBenefitTab(name) {
+    document.querySelectorAll('#benefitsSection .benefit-pane').forEach(p => {
+        p.classList.toggle('active', p.dataset.pane === name);
+    });
+    document.querySelectorAll('#benefitsTabs .benefit-tab').forEach(b => {
+        const on = b.dataset.tab === name;
+        b.classList.toggle('active', on);
+        b.classList.toggle('inactive', !on);
+    });
+}
+window.renderAgencyBenefits = renderAgencyBenefits;
+window.switchBenefitTab = switchBenefitTab;
 
 function updateRank() {
     const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));

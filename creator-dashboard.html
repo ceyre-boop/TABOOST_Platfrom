@@ -374,6 +374,51 @@
                 padding: 3px 10px;
             }
         }
+
+        /* ── Agency Benefits box (Rewards | Bonus | Boost tabs) — additive ── */
+        .benefits-tabs {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .benefit-tab {
+            background: none;
+            border: none;
+            padding: 2px 0;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #ff0055;
+            transition: opacity .2s ease, text-shadow .2s ease;
+            animation: benefit-glow 2s ease-in-out infinite;
+        }
+        .benefit-tab.inactive { opacity: 0.45; }
+        .benefit-tab.active { opacity: 1; }
+        .benefit-sep {
+            color: rgba(255,255,255,0.22);
+            font-weight: 400;
+            font-size: 15px;
+            user-select: none;
+            pointer-events: none;
+        }
+        @keyframes benefit-glow {
+            0%, 100% { text-shadow: 0 0 6px rgba(255,0,85,0.30); }
+            50%      { text-shadow: 0 0 16px rgba(255,0,85,0.80); }
+        }
+        .benefit-pane { display: none; }
+        .benefit-pane.active { display: block; }
+        .benefit-boost-msg {
+            color: var(--text-secondary, #b9b3bd);
+            font-size: 14px;
+            line-height: 1.55;
+            padding: 6px 0;
+            margin: 0;
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -472,6 +517,47 @@
             </div>
         </div>
         
+        <!-- Agency Benefits (ADDITIVE summary box: score-gated Rewards | Bonus | Boost tabs).
+             Self-contained with ab_* IDs — reads from myData, steals nothing from other boxes. -->
+        <div class="section-card benefits-section" id="benefitsSection" style="display:none;">
+            <div class="section-header">
+                <h2><i class="fas fa-award" style="color:#ff0055;"></i> Agency Benefits</h2>
+            </div>
+            <div class="benefits-tabs" id="benefitsTabs"></div>
+
+            <div class="benefit-pane" data-pane="rewards">
+                <div class="stat-header">
+                    <span class="stat-label" style="white-space:nowrap;">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
+                </div>
+                <div class="stat-value" id="ab_rewardsValue" style="color: var(--taboost-success);">--</div>
+                <div class="stat-footer">
+                    <div class="stat-breakdown" id="ab_rewardsBreakdown" style="margin:0;padding-top:0;border-top:none;">
+                        <span>Total Rewards Earned: --</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="benefit-pane" data-pane="bonus">
+                <div class="revenue-item highlight" id="ab_bonusItem">
+                    <div class="revenue-icon" style="background: rgba(255,215,0,0.1); color: #ffd700;">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="revenue-info">
+                        <span class="revenue-name">Agency Cash Bonus</span>
+                        <span class="revenue-value" id="ab_bonusValue">Score 70+ to Unlock</span>
+                    </div>
+                    <span class="revenue-note" id="ab_bonusNote">Pro Level Benefit</span>
+                </div>
+                <p class="revenue-disclaimer">
+                    Must maintain Pro status through final day of month to receive agency cash bonus
+                </p>
+            </div>
+
+            <div class="benefit-pane" data-pane="boost">
+                <p class="benefit-boost-msg">Rank Boost eligibility unlocked at 90+ Score.</p>
+            </div>
+        </div>
+
         <!-- 3. My Creator Score -->
         <div class="section-card score-section">
             <div class="section-header score-header-with-badge">
@@ -912,9 +998,9 @@
     <script src="js/csv-data-loader.js?v=202607132311"></script>
     <script src="js/rewards-data.js?v=202607090244"></script>
     <script src="js/events-data.js?v=202607090244"></script>
-    <script src="js/weekly-calendar-data.js?v=202607141945"></script>
+    <script src="js/weekly-calendar-data.js?v=202607142010"></script>
     <script src="js/sheets-data.js?v=202607090244"></script>
-    <script src="js/creator-dashboard.js?v=202607141945"></script>
+    <script src="js/creator-dashboard.js?v=202607142010"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
