@@ -429,7 +429,10 @@ function updateStats() {
 // ============================================================
 const CASHBACK_WEBHOOK_URL = '';    // TODO: set to deployed scripts/cashback-claim-email.gs /exec URL
 const CASHBACK_WEBHOOK_SECRET = ''; // TODO: set to the Apps Script shared secret
-const CASHBACK_WINDOW_DAYS = 15;    // production value is 5 — TEMP 15 for testing so it shows mid-month
+const CASHBACK_WINDOW_DAYS = 5;     // production: bonus is claimable the 1st–5th of the month
+// One-time: extend the FIRST rollout month's window to 15 days so creators can still see/claim
+// after the 5th had already passed. Auto-reverts to 5 for every later month (no manual change).
+const CASHBACK_FIRST_MONTH = { qualMonth: '2026-06', days: 15 };
 
 function applyCashbackState(myData) {
     try {
@@ -447,7 +450,8 @@ function applyCashbackState(myData) {
                               tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
         let bonusAmount = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
 
-        let inWindow = day <= CASHBACK_WINDOW_DAYS;
+        const windowDays = (qualMonth === CASHBACK_FIRST_MONTH.qualMonth) ? CASHBACK_FIRST_MONTH.days : CASHBACK_WINDOW_DAYS;
+        let inWindow = day <= windowDays;
         let qualified = scoreValue >= 70 && rankQualified && bonusAmount > 0;
 
         if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
