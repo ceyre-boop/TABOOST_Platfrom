@@ -138,19 +138,7 @@ function generateRollingCalendar() {
             }
         });
     });
-
-    // Order each day's events chronologically by start time (earliest first),
-    // so multiple same-day events (e.g. Rookie Rumble 5pm before Royal Rumble 6pm)
-    // read in the order they actually happen. All-day / multi-day markers sort first.
-    const timeToMinutes = (t) => {
-        const m = String(t || '').match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
-        if (!m) return -1;
-        let h = parseInt(m[1]) % 12;
-        if (/PM/i.test(m[3])) h += 12;
-        return h * 60 + parseInt(m[2]);
-    };
-    days.forEach(day => day.events.sort((a, b) => timeToMinutes(a.time) - timeToMinutes(b.time)));
-
+    
     return {
         currentDateRange: `${days[0].date} - ${days[8].date}`,
         days: days,
