@@ -427,8 +427,8 @@ function updateStats() {
 // Firestore doc cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email
 // to marco@taboost.me via an Apps Script web app. After day 5 it reverts.
 // ============================================================
-const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwURskkt7rnKBB--7ktYYcM1Rcsx4ylSnBfxJ8DBV1_PPH-0FBSRqsGp6NMCwBCWNAa/exec';
-const CASHBACK_WEBHOOK_SECRET = '4babcaa9-2e36-434c-bdd8-40cc2a3f92ab'; // client secret is public (like Shop's) — email is notify-only, verify before paying
+const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
+const CASHBACK_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // client secret is public (like Shop's) — email is notify-only, verify before paying
 const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of the month
 // TEMP rollout: treat every day THROUGH this date as if it were inside the 1–5 window, so the
 // box shows now for the first-launch demo. Auto-reverts to strict 1–5 the day after. '' = off.
