@@ -38,6 +38,14 @@ function generateRollingCalendar() {
             color: "#ff0044"
         },
         {
+            id: 4,
+            title: "Rookie Rumble",
+            type: "live",
+            time: "5:00PM PT",
+            recurring: { dayOfWeek: 2 }, // Tuesday
+            color: "#ff0044"
+        },
+        {
             id: 2,
             title: "Music Cypher",
             type: "live",
