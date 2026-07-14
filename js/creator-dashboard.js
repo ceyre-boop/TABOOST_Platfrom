@@ -432,9 +432,8 @@ function updateStats() {
 const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
 const CASHBACK_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // client secret is public (like Shop's) — email is notify-only, verify before paying
 const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of the month
-// TEMP rollout: treat every day THROUGH this date as if it were inside the 1–5 window, so the
-// box shows now for the first-launch demo. Auto-reverts to strict 1–5 the day after. '' = off.
-const CASHBACK_FORCE_WINDOW_UNTIL = '2026-07-15';
+// Force-window override (kept for future rollouts). '' = OFF → strict 1st–5th only.
+const CASHBACK_FORCE_WINDOW_UNTIL = '';
 
 function applyCashbackState(myData) {
     window.__bonusClaimLive = false; // becomes true when a claim is live this window
