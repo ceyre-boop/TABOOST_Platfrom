@@ -521,8 +521,9 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
                 claimedAt: fs.serverTimestamp()
             });
         }
-        // Fire-and-forget email to Marco. text/plain avoids an Apps Script CORS preflight.
-        if (CASHBACK_WEBHOOK_URL) {
+        // Fire-and-forget email to Marco — real claims only (never in preview, so email + record always match).
+        // text/plain avoids an Apps Script CORS preflight.
+        if (!isPreview && CASHBACK_WEBHOOK_URL) {
             fetch(CASHBACK_WEBHOOK_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
