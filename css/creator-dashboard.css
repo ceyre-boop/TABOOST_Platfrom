@@ -189,7 +189,9 @@
 /* Stats Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    /* minmax(0,1fr) keeps all 3 columns exactly equal — a card with wide content
+       (e.g. the Agency Benefits box) can't grow its track past its 1/3 share. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     margin-bottom: 25px;
 }
@@ -1621,7 +1623,7 @@
     
     .stats-grid,
     .goals-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
     
     .activity-stats {
@@ -2296,7 +2298,7 @@
     }
     
     .stats-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
     
     .activity-stats {
