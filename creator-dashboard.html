@@ -537,17 +537,11 @@
                     </div>
                 </div>
 
+                <!-- BONUS pane = the LM Bonus claim box (only shown when they earned one last month) -->
                 <div class="benefit-pane" data-pane="bonus">
-                    <div id="ab_bonusStatusBlock">
-                        <span class="stat-label benefit-sublabel">Agency Cash Bonus</span>
-                        <div class="stat-value" id="ab_bonusValue" style="color:#ffd700;">--</div>
-                        <div class="stat-breakdown" id="ab_bonusNote" style="margin-top:6px;">Pro Level Benefit</div>
-                    </div>
-                    <div id="ab_bonusClaimBlock" style="display:none;">
-                        <span class="stat-label benefit-sublabel" id="ab_bonusClaimLabel">CASHBACK EARNED</span>
-                        <div class="stat-value" id="ab_bonusClaimValue" style="color:#00ff88;">--</div>
-                        <div class="stat-breakdown" id="ab_bonusClaimFooter" style="margin-top:6px;"></div>
-                    </div>
+                    <span class="stat-label benefit-sublabel" id="ab_bonusClaimLabel">CASHBACK EARNED</span>
+                    <div class="stat-value" id="ab_bonusClaimValue" style="color:#00ff88;">--</div>
+                    <div class="stat-breakdown" id="ab_bonusClaimFooter" style="margin-top:6px;"></div>
                 </div>
 
                 <div class="benefit-pane" data-pane="boost">
@@ -1002,7 +996,7 @@
     <script src="js/events-data.js?v=202607090244"></script>
     <script src="js/weekly-calendar-data.js?v=202607142010"></script>
     <script src="js/sheets-data.js?v=202607090244"></script>
-    <script src="js/creator-dashboard.js?v=202607142110"></script>
+    <script src="js/creator-dashboard.js?v=202607142230"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";

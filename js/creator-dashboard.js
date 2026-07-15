@@ -415,7 +415,8 @@ const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of 
 const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict 1st–5th only (no launch grace period)
 
 function applyCashbackState(myData) {
-    window.__bonusClaimLive = false; // true when a claim is live this window (drives the BONUS tab dot)
+    window.__bonusHasBonus = false;  // BONUS tab appears only when they earned a bonus last month
+    window.__bonusClaimLive = false; // claim actionable now (days 1-5) → tab dot + default-to-BONUS
     try {
         if (!myData) return;
         const preview = new URLSearchParams(location.search).get('cashbackPreview'); // debug: force state, no Firestore
@@ -435,19 +436,18 @@ function applyCashbackState(myData) {
             const todayISO = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             if (todayISO <= CASHBACK_FORCE_WINDOW_UNTIL) inWindow = true;
         }
-        let qualified = bonusAmount > 0;
-
-        if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234
+        if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234 — force the window
             inWindow = true;
-            qualified = true;
             if (bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
         }
 
-        if (!(inWindow && qualified)) return; // leave the BONUS tab in its default status view
+        const hasBonus = bonusAmount > 0; // did they earn a cash bonus last month?
+        window.__bonusHasBonus = hasBonus;              // gates the BONUS tab's existence
+        window.__bonusClaimLive = hasBonus && inWindow; // claim actionable → dot + default-to-BONUS
+        if (!hasBonus) return; // nothing to claim → BONUS tab hidden entirely
 
-        window.__bonusClaimLive = true;
         const creatorName = myData.username || myData.name || 'Creator';
-        renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null);
+        renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null, inWindow);
     } catch (e) {
         console.warn('cashback state error:', e);
     }
@@ -460,41 +460,41 @@ function cashbackClaimedHTML(data) {
     let when = '';
     try {
         const d = data && data.claimedAt && data.claimedAt.toDate ? data.claimedAt.toDate() : null;
-        if (d) when = ' · ' + (d.getMonth() + 1) + '/' + d.getDate();
+        if (d) when = ' on ' + (d.getMonth() + 1) + '/' + d.getDate();
     } catch (e) {}
-    return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;">Claim Payment Processed${when}</span>`;
+    return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;"><i class="fas fa-check-circle"></i> Claimed${when}</span>`;
 }
 
-function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
-    // Claim lives in the BONUS tab of the Agency Benefits box.
+function cashbackWindowNoteHTML() {
+    return `<span style="color:#888;font-size:12px;">Available to claim on the 1st–5th</span>`;
+}
+
+function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) {
+    // BONUS pane = the claim box: what they earned last month + claim/claimed state.
     const label = document.getElementById('ab_bonusClaimLabel');
     const value = document.getElementById('ab_bonusClaimValue');
     const footer = document.getElementById('ab_bonusClaimFooter');
-    const claimBlock = document.getElementById('ab_bonusClaimBlock');
-    const statusBlock = document.getElementById('ab_bonusStatusBlock');
-    if (!label || !value || !footer || !claimBlock) return;
-
-    // Swap the BONUS pane from its default status view to the claim view.
-    if (statusBlock) statusBlock.style.display = 'none';
-    claimBlock.style.display = 'block';
+    if (!label || !value || !footer) return;
 
     label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
-    const showClaimButton = () => {
+    // Unclaimed: CLAIM button during the 1st–5th window, else a "when to claim" note.
+    const showUnclaimed = () => {
+        if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML(); return; }
         footer.innerHTML = cashbackClaimBtnHTML();
         const btn = document.getElementById('cashbackClaimBtn');
         if (btn) btn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     };
 
     const fs = window.__fs;
-    if (isPreview || !fs || !fs.uid || !fs.getDoc) { showClaimButton(); return; }
+    if (isPreview || !fs || !fs.uid || !fs.getDoc) { showUnclaimed(); return; }
 
-    // Real mode: show CLAIMED if already claimed this month, else the claim button.
+    // Real mode: "Claimed on [date]" if already claimed this month, else the unclaimed footer.
     const claimId = fs.uid + '_' + qualMonth;
     fs.getDoc(fs.doc(fs.db, 'cashbackClaims', claimId))
-        .then(snap => { if (snap && snap.exists()) footer.innerHTML = cashbackClaimedHTML(snap.data()); else showClaimButton(); })
-        .catch(() => showClaimButton());
+        .then(snap => { if (snap && snap.exists()) footer.innerHTML = cashbackClaimedHTML(snap.data()); else showUnclaimed(); })
+        .catch(() => showUnclaimed());
 }
 
 async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
@@ -556,34 +556,8 @@ function renderAgencyBenefits(myData) {
         : formatNumberPlain(currentAvailable);
     if (rb) rb.innerHTML = `<span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>`;
 
-    // BONUS pane — same 3-stage Agency Cash Bonus status as updateScoreAndLevels()
-    const bv = document.getElementById('ab_bonusValue');
-    const bn = document.getElementById('ab_bonusNote');
-    const bi = document.getElementById('ab_bonusItem');
-    if (bv && bn) {
-        const tsr = (myData.tierStatus || '').toLowerCase().trim();
-        const rankOk = tsr === '' || tsr === '-' || tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
-        if (score >= 70 && rankOk) {
-            const cashBonus = parseFloat((myData.bonus || '').toString().replace(/[$,]/g, '')) || 0;
-            bv.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
-            bv.style.color = '#ffd700';
-            bv.classList.remove('is-text');
-            bn.textContent = 'Must Maintain 70+';
-            if (bi) bi.classList.add('pro-revenue-active');
-        } else if (score >= 70 && !rankOk) {
-            bv.textContent = 'Need Tier Same/Up';
-            bv.style.color = '#888';
-            bv.classList.add('is-text');
-            bn.textContent = 'Tier Down';
-            if (bi) bi.classList.remove('pro-revenue-active');
-        } else {
-            bv.textContent = 'Need Score 70+';
-            bv.style.color = '#888';
-            bv.classList.add('is-text');
-            bn.textContent = score + '/70 Score';
-            if (bi) bi.classList.remove('pro-revenue-active');
-        }
-    }
+    // BONUS pane is the LM Bonus claim box — populated by applyCashbackState() below,
+    // and only shown as a tab when they actually earned a bonus last month.
 
     // BOOST pane — rank boosts available (Column AM "Unis")
     const boostEl = document.getElementById('ab_boostValue');
@@ -592,9 +566,9 @@ function renderAgencyBenefits(myData) {
     // Cashback claim (5-day rule): may flip the BONUS pane to the claim view + set the dot flag
     applyCashbackState(myData);
 
-    // Build the tab strip: unlocked tabs only, with a visual "|" between them
+    // Build the tab strip: REWARDS always; BONUS only when they earned a bonus last month; BOOST at 90+
     const tabs = [{ key: 'rewards', label: 'REWARDS' }];
-    if (score >= 70) tabs.push({ key: 'bonus', label: 'BONUS' });
+    if (window.__bonusHasBonus) tabs.push({ key: 'bonus', label: 'BONUS' });
     if (score >= 90) tabs.push({ key: 'boost', label: 'BOOST' });
     tabsEl.innerHTML = '';
     tabs.forEach((t, i) => {
@@ -616,7 +590,9 @@ function renderAgencyBenefits(myData) {
         btn.addEventListener('click', () => switchBenefitTab(t.key));
         tabsEl.appendChild(btn);
     });
-    switchBenefitTab(tabs[0].key); // default: first unlocked tab (always REWARDS)
+    // Default: BONUS during the 1st–5th claim window (so they can claim), else REWARDS
+    const defaultTab = (window.__bonusClaimLive && tabs.some(t => t.key === 'bonus')) ? 'bonus' : 'rewards';
+    switchBenefitTab(defaultTab);
 }
 
 function switchBenefitTab(name) {
