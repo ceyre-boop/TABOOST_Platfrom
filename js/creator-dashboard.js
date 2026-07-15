@@ -396,30 +396,8 @@ function updateStats() {
         </span>
     `;
     
-    // Rewards - Use pre-calculated values from data (Column AJ = unlocked/available)
-    // Marco confirmed: Use the 'unlocked' field directly from CSV column AJ - EXACT VALUE even if negative
-    const unlockedRaw = (myData.unlocked || '0').toString().replace(/,/g, '');
-    const currentAvailable = parseInt(unlockedRaw) || 0; // Allow negative numbers
-    
-    // Total Earned from Column AH (earned field)
-    const totalEarned = myData.earned || 0;
-    
-    // Calculate Used: Total Earned - Current Available (AJ)
-    const totalUsed = totalEarned - currentAvailable;
-    
-    // Format with sign if negative
-    const currentRewardsAvailable = currentAvailable < 0 
-        ? '-' + formatNumberPlain(Math.abs(currentAvailable))
-        : formatNumberPlain(currentAvailable);
-    
-    document.getElementById('totalRewards').textContent = currentRewardsAvailable;
-    document.getElementById('rewardsBreakdown').innerHTML = `
-        <span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>
-    `;
-
-    // Agency Cash Bonus CLAIM flow — overrides this box during days 1-5 of the
-    // month following a qualified month (otherwise leaves it as the Rewards box).
-    applyCashbackState(myData);
+    // Rewards + the Agency Cash Bonus CLAIM flow now render inside the Agency Benefits
+    // box (top-right card) — handled by renderAgencyBenefits() from the same myData fields.
 }
 
 // ============================================================
@@ -437,6 +415,7 @@ const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of 
 const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict 1st–5th only (no launch grace period)
 
 function applyCashbackState(myData) {
+    window.__bonusClaimLive = false; // true when a claim is live this window (drives the BONUS tab dot)
     try {
         if (!myData) return;
         const preview = new URLSearchParams(location.search).get('cashbackPreview'); // debug: force state, no Firestore
@@ -464,8 +443,9 @@ function applyCashbackState(myData) {
             if (bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
         }
 
-        if (!(inWindow && qualified)) return; // leave the normal Rewards box untouched
+        if (!(inWindow && qualified)) return; // leave the BONUS tab in its default status view
 
+        window.__bonusClaimLive = true;
         const creatorName = myData.username || myData.name || 'Creator';
         renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null);
     } catch (e) {
@@ -486,10 +466,17 @@ function cashbackClaimedHTML(data) {
 }
 
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
-    const label = document.getElementById('rewardsLabel');
-    const value = document.getElementById('totalRewards');
-    const footer = document.getElementById('rewardsBreakdown');
-    if (!label || !value || !footer) return;
+    // Claim lives in the BONUS tab of the Agency Benefits box.
+    const label = document.getElementById('ab_bonusClaimLabel');
+    const value = document.getElementById('ab_bonusClaimValue');
+    const footer = document.getElementById('ab_bonusClaimFooter');
+    const claimBlock = document.getElementById('ab_bonusClaimBlock');
+    const statusBlock = document.getElementById('ab_bonusStatusBlock');
+    if (!label || !value || !footer || !claimBlock) return;
+
+    // Swap the BONUS pane from its default status view to the claim view.
+    if (statusBlock) statusBlock.style.display = 'none';
+    claimBlock.style.display = 'block';
 
     label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
@@ -512,7 +499,7 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview) {
 
 async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
     const btn = document.getElementById('cashbackClaimBtn');
-    const footer = document.getElementById('rewardsBreakdown');
+    const footer = document.getElementById('ab_bonusClaimFooter');
     if (btn) { btn.disabled = true; btn.textContent = 'Claiming…'; }
     try {
         const fs = window.__fs;
@@ -544,10 +531,11 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
 }
 
 // ============================================================
-// AGENCY BENEFITS BOX — additive, score-gated tabs (REWARDS | BONUS | BOOST)
-// Self-contained: reads myData, writes only ab_* IDs. Does NOT touch the top
-// rewards/cashback card or the My Revenue Streams box (those stay as-is).
-// Score < 30 -> hidden. 30-69 -> REWARDS. 70-89 -> +BONUS. 90+ -> +BOOST.
+// AGENCY BENEFITS BOX — occupies the top-right stat-card slot (replaced the old
+// rewards card). Score-gated tabs; own ab_* IDs. Always visible so the slot is
+// never empty: REWARDS always. +BONUS at 70+ (holds the cashback claim/5-day rule).
+// +BOOST at 90+ (rank boosts available, Column AM "Unis"). My Revenue Streams
+// stays separate/untouched.
 // ============================================================
 function renderAgencyBenefits(myData) {
     const section = document.getElementById('benefitsSection');
@@ -555,9 +543,9 @@ function renderAgencyBenefits(myData) {
     if (!section || !tabsEl) return;
 
     const score = parseInt(myData && myData.score) || 0;
-    if (score < 30) { section.style.display = 'none'; return; } // below 30: hide entirely
+    section.style.display = 'block'; // always shown — this box IS the top-right card
 
-    // REWARDS pane — same math as updateStats(), written to this box's own elements
+    // REWARDS pane — same math as the old rewards card, written to this box's own elements
     const currentAvailable = parseInt((myData.unlocked || '0').toString().replace(/,/g, '')) || 0;
     const totalEarned = myData.earned || 0;
     const totalUsed = totalEarned - currentAvailable;
@@ -597,7 +585,12 @@ function renderAgencyBenefits(myData) {
         }
     }
 
-    section.style.display = 'block';
+    // BOOST pane — rank boosts available (Column AM "Unis")
+    const boostEl = document.getElementById('ab_boostValue');
+    if (boostEl) boostEl.textContent = (parseInt(myData.unis) || 0).toLocaleString('en-US');
+
+    // Cashback claim (5-day rule): may flip the BONUS pane to the claim view + set the dot flag
+    applyCashbackState(myData);
 
     // Build the tab strip: unlocked tabs only, with a visual "|" between them
     const tabs = [{ key: 'rewards', label: 'REWARDS' }];
@@ -615,6 +608,11 @@ function renderAgencyBenefits(myData) {
         btn.className = 'benefit-tab inactive';
         btn.dataset.tab = t.key;
         btn.textContent = t.label;
+        if (t.key === 'bonus' && window.__bonusClaimLive) {
+            const dot = document.createElement('span'); // "claim available" indicator
+            dot.className = 'benefit-tab-claim-dot';
+            btn.appendChild(dot);
+        }
         btn.addEventListener('click', () => switchBenefitTab(t.key));
         tabsEl.appendChild(btn);
     });
