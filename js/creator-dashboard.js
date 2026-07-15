@@ -434,7 +434,7 @@ const CASHBACK_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // clien
 const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of the month
 // TEMP rollout: treat every day THROUGH this date as if it were inside the 1–5 window, so the
 // box shows now for the first-launch demo. Auto-reverts to strict 1–5 the day after. '' = off.
-const CASHBACK_FORCE_WINDOW_UNTIL = '2026-07-15';
+const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict 1st–5th only (no launch grace period)
 
 function applyCashbackState(myData) {
     try {
