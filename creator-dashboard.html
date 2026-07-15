@@ -524,13 +524,10 @@
             <!-- Agency Benefits — replaces the old rewards card in the top-right slot.
                  Score-gated tabs (Rewards | Bonus | Boost), own ab_* IDs, always visible. -->
             <div class="stat-card benefits-section" id="benefitsSection">
-                <div class="stat-header">
-                    <span class="stat-label">Agency Benefits</span>
-                </div>
                 <div class="benefits-tabs" id="benefitsTabs"></div>
 
                 <div class="benefit-pane" data-pane="rewards">
-                    <span class="stat-label benefit-sublabel" style="white-space:nowrap;">Current Rewards Available <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
+                    <span class="stat-label benefit-sublabel" style="white-space:nowrap;">REWARDS AVAILABLE <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
                     <div class="stat-value" id="ab_rewardsValue" style="color: var(--taboost-success);">--</div>
                     <div class="stat-breakdown" id="ab_rewardsBreakdown" style="margin-top:6px;">
                         <span>Total Rewards Earned: --</span>
@@ -545,7 +542,7 @@
                 </div>
 
                 <div class="benefit-pane" data-pane="boost">
-                    <span class="stat-label benefit-sublabel">Rank Boosts</span>
+                    <span class="stat-label benefit-sublabel">RANK BOOSTS <button class="tt-btn" onclick="openTooltip('boost')" aria-label="What are Rank Boosts?"><i class="fas fa-question" style="font-size:9px;"></i></button></span>
                     <div class="benefit-boost-row">
                         <span class="stat-value" id="ab_boostValue" style="color: var(--taboost-success);">--</span>
                         <span class="benefit-boost-avail">Available</span>
@@ -991,12 +988,12 @@
         </div>
     </div>
 
-    <script src="js/csv-data-loader.js?v=202607142110"></script>
-    <script src="js/rewards-data.js?v=202607090244"></script>
-    <script src="js/events-data.js?v=202607090244"></script>
-    <script src="js/weekly-calendar-data.js?v=202607142010"></script>
-    <script src="js/sheets-data.js?v=202607090244"></script>
-    <script src="js/creator-dashboard.js?v=202607142230"></script>
+    <script src="js/csv-data-loader.js?v=202607152356"></script>
+    <script src="js/rewards-data.js?v=202607152356"></script>
+    <script src="js/events-data.js?v=202607152356"></script>
+    <script src="js/weekly-calendar-data.js?v=202607152356"></script>
+    <script src="js/sheets-data.js?v=202607152356"></script>
+    <script src="js/creator-dashboard.js?v=202607152356"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -1291,6 +1288,20 @@
                     Cash bonus must be claimed by the 5th of the month for your payout to be processed.
                 </div>
                 <p style="color:#888;font-size:12px;margin-top:8px;">Claimed cash back bonuses will be paid out via PayPal by the 10th of each following month.</p>
+            `
+        },
+        boost: {
+            icon: '🚀',
+            iconBg: 'linear-gradient(135deg,#00ccff22,#00aaff11)',
+            iconBorder: 'rgba(0,204,255,0.25)',
+            title: 'Rank Boosts',
+            body: `
+                <p>The highest honor in TABOOST — you unlock the elite benefit of up to <strong style="color:#00ccff;">2 reset rank boosts per month</strong>, the opportunity for two 35K Uni drops!</p>
+                <div style="background:rgba(0,204,255,0.06);border:1px solid rgba(0,204,255,0.15);border-radius:12px;padding:14px 16px;margin:14px 0;">
+                    <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#00ccff;margin-bottom:8px;">How Boosts Work</div>
+                    Schedule a daily ranks run with your manager. You'll receive your first Uni drop after nightly reset and earn a second if you are still in the ranks the following day!
+                </div>
+                <p style="color:#888;font-size:12px;margin-top:8px;">Daily Top 99 ranks reset for the US is at 9PM PT / 12AM ET.</p>
             `
         },
         goals: {
