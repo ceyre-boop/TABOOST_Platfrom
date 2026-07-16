@@ -29,6 +29,16 @@ function setupCashbackSecret() {
   return secret;
 }
 
+// Run once from the editor (Editor ▸ Run ▸ testEmail) to grant the send-email
+// scope and confirm delivery. This is the step that fixes "no emails arriving":
+// setupCashbackSecret() does NOT touch MailApp, so it never triggers the
+// script.send_mail consent — running this does. Authorize when prompted, then
+// check marco@taboost.me for the test message.
+function testEmail() {
+  MailApp.sendEmail(RECIPIENT, 'TABOOST cashback webhook — test', 'If you received this, the send-email permission is granted and claim emails will now work.');
+  Logger.log('Test email sent to ' + RECIPIENT);
+}
+
 function doPost(e) {
   try {
     var body = JSON.parse(e.postData.contents);
