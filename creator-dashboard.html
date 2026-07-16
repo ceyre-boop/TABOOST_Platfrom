@@ -524,10 +524,11 @@
             <!-- Agency Benefits — replaces the old rewards card in the top-right slot.
                  Score-gated tabs (Rewards | Bonus | Boost), own ab_* IDs, always visible. -->
             <div class="stat-card benefits-section" id="benefitsSection">
+                <!-- Shared grey label on top (matches the sibling stat cards); updated per tab by switchBenefitTab(). Red tabs sit below it. -->
+                <span class="stat-label benefit-sublabel" id="ab_activeLabel" style="white-space:nowrap; margin-bottom:12px;"></span>
                 <div class="benefits-tabs" id="benefitsTabs"></div>
 
                 <div class="benefit-pane" data-pane="rewards">
-                    <span class="stat-label benefit-sublabel" style="white-space:nowrap;">REWARDS AVAILABLE <button class="tt-btn" onclick="openTooltip('rewards')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button></span>
                     <div class="stat-value" id="ab_rewardsValue" style="color: var(--taboost-success);">--</div>
                     <div class="stat-breakdown" id="ab_rewardsBreakdown" style="margin-top:6px;">
                         <span>Total Rewards Earned: --</span>
@@ -536,13 +537,11 @@
 
                 <!-- BONUS pane = the LM Bonus claim box (only shown when they earned one last month) -->
                 <div class="benefit-pane" data-pane="bonus">
-                    <span class="stat-label benefit-sublabel" id="ab_bonusClaimLabel">CASHBACK EARNED</span>
                     <div class="stat-value" id="ab_bonusClaimValue" style="color:#00ff88;">--</div>
                     <div class="stat-breakdown" id="ab_bonusClaimFooter" style="margin-top:6px;"></div>
                 </div>
 
                 <div class="benefit-pane" data-pane="boost">
-                    <span class="stat-label benefit-sublabel">RANK BOOSTS <button class="tt-btn" onclick="openTooltip('boost')" aria-label="What are Rank Boosts?"><i class="fas fa-question" style="font-size:9px;"></i></button></span>
                     <div class="benefit-boost-row">
                         <span class="stat-value" id="ab_boostValue" style="color: var(--taboost-success);">--</span>
                         <span class="benefit-boost-avail">Available</span>
@@ -988,12 +987,12 @@
         </div>
     </div>
 
-    <script src="js/csv-data-loader.js?v=202607152356"></script>
-    <script src="js/rewards-data.js?v=202607152356"></script>
-    <script src="js/events-data.js?v=202607152356"></script>
-    <script src="js/weekly-calendar-data.js?v=202607152356"></script>
-    <script src="js/sheets-data.js?v=202607152356"></script>
-    <script src="js/creator-dashboard.js?v=202607152356"></script>
+    <script src="js/csv-data-loader.js?v=202607160056"></script>
+    <script src="js/rewards-data.js?v=202607160056"></script>
+    <script src="js/events-data.js?v=202607160056"></script>
+    <script src="js/weekly-calendar-data.js?v=202607160056"></script>
+    <script src="js/sheets-data.js?v=202607160056"></script>
+    <script src="js/creator-dashboard.js?v=202607160056"></script>
     <script type="module">
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";

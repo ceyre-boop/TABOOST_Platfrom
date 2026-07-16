@@ -471,12 +471,12 @@ function cashbackWindowNoteHTML() {
 
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) {
     // BONUS pane = the claim box: what they earned last month + claim/claimed state.
-    const label = document.getElementById('ab_bonusClaimLabel');
+    const label = document.getElementById('ab_bonusClaimLabel'); // legacy; label now lives in shared #ab_activeLabel
     const value = document.getElementById('ab_bonusClaimValue');
     const footer = document.getElementById('ab_bonusClaimFooter');
-    if (!label || !value || !footer) return;
+    if (!value || !footer) return;
 
-    label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
+    if (label) label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
     // Unclaimed: CLAIM button during the 1st–5th window, else a "when to claim" note.
@@ -595,6 +595,13 @@ function renderAgencyBenefits(myData) {
     switchBenefitTab(defaultTab);
 }
 
+// Shared grey label shown on top of the card; swapped in when the active tab changes.
+const AB_LABELS = {
+    rewards: 'REWARDS AVAILABLE <button class="tt-btn" onclick="openTooltip(\'rewards\')" aria-label="What are Rewards?"><i class="fas fa-gift" style="font-size:9px;"></i></button>',
+    bonus: 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>',
+    boost: 'RANK BOOSTS <button class="tt-btn" onclick="openTooltip(\'boost\')" aria-label="What are Rank Boosts?"><i class="fas fa-question" style="font-size:9px;"></i></button>'
+};
+
 function switchBenefitTab(name) {
     document.querySelectorAll('#benefitsSection .benefit-pane').forEach(p => {
         p.classList.toggle('active', p.dataset.pane === name);
@@ -604,6 +611,8 @@ function switchBenefitTab(name) {
         b.classList.toggle('active', on);
         b.classList.toggle('inactive', !on);
     });
+    const lbl = document.getElementById('ab_activeLabel');
+    if (lbl && AB_LABELS[name]) lbl.innerHTML = AB_LABELS[name];
 }
 window.renderAgencyBenefits = renderAgencyBenefits;
 window.switchBenefitTab = switchBenefitTab;
