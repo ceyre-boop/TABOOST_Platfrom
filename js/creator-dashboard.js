@@ -1237,7 +1237,7 @@ function updateAchievements() {
         { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
         { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
         { name: 'Reward King', icon: '💰', unlocked: (myData.rewardsMonth && parseInt(myData.rewardsMonth.toString().replace(/,/g, '')) > 0) || (myData.bonus && parseFloat(myData.bonus.toString().replace(/[$,]/g, '')) > 0), desc: 'Earned a Bonus' },
-        { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
+        { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 90, desc: '90+ hours' },
         { name: 'Growth Star', icon: '🌟', unlocked: (myData.tierStatus || '').toLowerCase().includes('up'), desc: 'Ranked up tier' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
     ];
@@ -1462,7 +1462,7 @@ const MONTH_ACHIEVEMENT_DEFS = [
     { name: 'Million Diamond Club', icon: '💎', desc: '1M+ diamonds' },
     { name: 'Stream Master', icon: '📺', desc: '22+ days streamed' },
     { name: 'Reward King', icon: '💰', desc: 'Earned a bonus' },
-    { name: 'Hour Crusher', icon: '⏰', desc: '80+ hours' },
+    { name: 'Hour Crusher', icon: '⏰', desc: '90+ hours' },
     { name: 'Growth Star', icon: '🌟', desc: 'Ranked up tier' },
     { name: 'Top 10', icon: '👑', desc: 'Reached top 10' }
 ];
@@ -1481,7 +1481,7 @@ function renderMonthAchievements(index) {
         row.diamonds >= 1000000,            // Million Diamond Club
         (row.days ?? -1) >= 22,             // Stream Master  (days-based)
         (row.bonusRaw || 0) > 0,            // Reward King
-        (row.hours ?? -1) >= 80,            // Hour Crusher   (hours-based)
+        (row.hours ?? -1) >= 90,            // Hour Crusher   (hours-based)
         tierUp,                             // Growth Star
         rank !== null && rank <= 10         // Top 10
     ];

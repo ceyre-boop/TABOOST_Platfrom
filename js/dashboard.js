@@ -667,7 +667,7 @@ function updateAchievements() {
         { name: 'Million Diamond Club', icon: '💎', unlocked: (myData.diamonds || 0) >= 1000000, desc: '1M+ diamonds' },
         { name: 'Stream Master', icon: '📺', unlocked: (myData.validLiveDays || 0) >= 22, desc: '22+ days streamed' },
         { name: 'Reward King', icon: '💰', unlocked: (myData.diamonds || 0) >= 100000, desc: '100K+ diamonds' },
-        { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 80, desc: '80+ hours' },
+        { name: 'Hour Crusher', icon: '⏰', unlocked: (myData.hours || 0) >= 90, desc: '90+ hours' },
         { name: 'Growth Star', icon: '🚀', unlocked: (myData.growthDirection || '').toLowerCase() === 'up', desc: 'Upward growth' },
         { name: 'Top 10', icon: '👑', unlocked: false, desc: 'Reach top 10' } // Will update based on rank
     ];
