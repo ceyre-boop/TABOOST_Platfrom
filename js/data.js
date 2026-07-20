@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-07-20T17:32:57.997Z
+// Generated: 2026-07-20T17:33:21.972Z
 // Total: 1028 creators
 
 const creatorsData = [
@@ -41127,7 +41127,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-07-20T17:32:57.997Z",
+  lastUpdated: "2026-07-20T17:33:21.972Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
