@@ -402,46 +402,59 @@ function updateStats() {
 
 // ============================================================
 // AGENCY CASH BONUS — CLAIM FLOW (US)
-// Days 1-5 of the month AFTER a qualified month, the "Current Rewards Available"
-// box becomes a "CASHBACK EARNED" claim card. Claiming writes a create-only
-// Firestore doc cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email
-// to marco@taboost.me via an Apps Script web app. After day 5 it reverts.
+// From the LAST DAY of a qualified month through the 5th of the next month, the
+// "Current Rewards Available" box becomes a "CASHBACK EARNED" claim card showing
+// column AO "Bonus". Claiming writes a create-only Firestore doc
+// cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email to
+// marco@taboost.me via an Apps Script web app. From the 6th through the
+// second-to-last day it shows column AP "LM Bonus" with no claim button
+// (unclaimed bonuses get zeroed in that column by the sheet).
 // ============================================================
 const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
 const CASHBACK_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // client secret is public (like Shop's) — email is notify-only, verify before paying
-const CASHBACK_WINDOW_DAYS = 5;     // bonus is claimable only the 1st–5th of the month
-// TEMP rollout: treat every day THROUGH this date as if it were inside the 1–5 window, so the
-// box shows now for the first-launch demo. Auto-reverts to strict 1–5 the day after. '' = off.
-const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict 1st–5th only (no launch grace period)
+const CASHBACK_WINDOW_DAYS = 5;     // claim deadline: the 5th (window opens on the last day of the prior month)
+// TEMP rollout: treat every day THROUGH this date as if it were inside the claim window, so the
+// box shows now for the first-launch demo. Auto-reverts to the strict window the day after. '' = off.
+const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict last-day→5th only (no launch grace period)
 
 function applyCashbackState(myData) {
-    window.__bonusHasBonus = false;  // BONUS tab appears only when they earned a bonus last month
-    window.__bonusClaimLive = false; // claim actionable now (days 1-5) → tab dot + default-to-BONUS
+    window.__bonusHasBonus = false;  // BONUS tab appears only when there's a bonus amount to show
+    window.__bonusClaimLive = false; // claim actionable now (last day → 5th) → tab dot + default-to-BONUS
     try {
         if (!myData) return;
         const preview = new URLSearchParams(location.search).get('cashbackPreview'); // debug: force state, no Firestore
 
         const now = new Date();
         const day = now.getDate();
-        const qm = new Date(now.getFullYear(), now.getMonth() - 1, 1); // previous calendar month
-        const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
+        const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate(); // 28–31
 
-        // Eligibility + amount = the "LM Bonus" column in current.csv (last month's earned bonus).
-        // Marco's sheet already applied the Score-70+/tier qualification, so the dashboard only
-        // needs: is LM Bonus > $0? (myData.bonus/score/tierStatus are the CURRENT month — not used.)
-        let bonusAmount = parseFloat((myData.lmBonus || '').toString().replace(/[$,]/g, '')) || 0;
-
-        let inWindow = day >= 1 && day <= CASHBACK_WINDOW_DAYS; // 1st–5th of the month only
-        if (CASHBACK_FORCE_WINDOW_UNTIL) { // TEMP rollout: pretend it's the 1–5 window through the set date
+        // Claim window = the last day of the month (Marco leaves month-end up for a day or two)
+        // through the 5th of the next month.
+        let inWindow = day === lastDay || day <= CASHBACK_WINDOW_DAYS;
+        if (CASHBACK_FORCE_WINDOW_UNTIL) { // TEMP rollout: pretend it's the claim window through the set date
             const todayISO = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             if (todayISO <= CASHBACK_FORCE_WINDOW_UNTIL) inWindow = true;
         }
-        if (preview !== null) { // ?cashbackPreview or ?cashbackPreview=1234 — force the window
-            inWindow = true;
-            if (bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
-        }
+        if (preview !== null) inWindow = true; // ?cashbackPreview — force the window (also picks column AO)
 
-        const hasBonus = bonusAmount > 0; // did they earn a cash bonus last month?
+        // The qualifying month must resolve identically on Jul 31 and on Aug 2 so one claim doc
+        // covers the whole window: on the last day it's the month that's ending, else the prior month.
+        const qm = (day === lastDay)
+            ? new Date(now.getFullYear(), now.getMonth(), 1)
+            : new Date(now.getFullYear(), now.getMonth() - 1, 1);
+        const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
+
+        // In-window the claimable figure is column AO "Bonus" (myData.bonus) — the month just ended.
+        // Outside it we display column AP "LM Bonus", which the sheet zeroes out for non-claimers.
+        // Marco's sheet already applied the Score-70+/tier qualification, so the dashboard only
+        // needs: is the amount > $0?
+        const rawAmount = inWindow ? myData.bonus : myData.lmBonus;
+        let bonusAmount = parseFloat((rawAmount || '').toString().replace(/[$,]/g, '')) || 0;
+
+        // ?cashbackPreview=1234 — inject a synthetic amount when there's no real one
+        if (preview !== null && bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
+
+        const hasBonus = bonusAmount > 0; // is there a bonus amount to show at all?
         window.__bonusHasBonus = hasBonus;              // gates the BONUS tab's existence
         window.__bonusClaimLive = hasBonus && inWindow; // claim actionable → dot + default-to-BONUS
         if (!hasBonus) return; // nothing to claim → BONUS tab hidden entirely
@@ -465,12 +478,13 @@ function cashbackClaimedHTML(data) {
     return `<span style="display:inline-flex;align-items:center;gap:6px;color:#00ff88;font-weight:700;font-size:13px;"><i class="fas fa-check-circle"></i> Claimed${when}</span>`;
 }
 
+// Out-of-window + unclaimed → the deadline has passed (the in-window branch never calls this).
 function cashbackWindowNoteHTML() {
-    return `<span style="color:#888;font-size:12px;">Available to claim on the 1st–5th</span>`;
+    return `<span style="color:#888;font-size:12px;">Claim window closed</span>`;
 }
 
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) {
-    // BONUS pane = the claim box: what they earned last month + claim/claimed state.
+    // BONUS pane = the claim box: the bonus amount (AO in-window, AP after) + claim/claimed state.
     const label = document.getElementById('ab_bonusClaimLabel'); // legacy; label now lives in shared #ab_activeLabel
     const value = document.getElementById('ab_bonusClaimValue');
     const footer = document.getElementById('ab_bonusClaimFooter');
@@ -479,7 +493,7 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) 
     if (label) label.innerHTML = 'CASHBACK EARNED <button class="tt-btn" onclick="openTooltip(\'cashback\')" aria-label="About the Cash Back Bonus"><i class="fas fa-question" style="font-size:9px;"></i></button>';
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
-    // Unclaimed: CLAIM button during the 1st–5th window, else a "when to claim" note.
+    // Unclaimed: CLAIM button during the last-day→5th window, else a "window closed" note.
     const showUnclaimed = () => {
         if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML(); return; }
         footer.innerHTML = cashbackClaimBtnHTML();
@@ -533,7 +547,7 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
 // ============================================================
 // AGENCY BENEFITS BOX — occupies the top-right stat-card slot (replaced the old
 // rewards card). Score-gated tabs; own ab_* IDs. Always visible so the slot is
-// never empty: REWARDS always. +BONUS at 70+ (holds the cashback claim/5-day rule).
+// never empty: REWARDS always. +BONUS when there's a bonus amount (holds the claim-window rule).
 // +BOOST at 90+ (rank boosts available, Column AM "Unis"). My Revenue Streams
 // stays separate/untouched.
 // ============================================================
@@ -556,17 +570,17 @@ function renderAgencyBenefits(myData) {
         : formatNumberPlain(currentAvailable);
     if (rb) rb.innerHTML = `<span>Total Earned: ${formatNumberPlain(totalEarned)} | Used: ${formatNumberPlain(totalUsed)}</span>`;
 
-    // BONUS pane is the LM Bonus claim box — populated by applyCashbackState() below,
-    // and only shown as a tab when they actually earned a bonus last month.
+    // BONUS pane is the cashback claim box — populated by applyCashbackState() below,
+    // and only shown as a tab when there's a non-zero bonus amount for today's date.
 
     // BOOST pane — rank boosts available (Column AM "Unis")
     const boostEl = document.getElementById('ab_boostValue');
     if (boostEl) boostEl.textContent = (parseInt(myData.unis) || 0).toLocaleString('en-US');
 
-    // Cashback claim (5-day rule): may flip the BONUS pane to the claim view + set the dot flag
+    // Cashback claim (last-day→5th rule): may flip the BONUS pane to the claim view + set the dot flag
     applyCashbackState(myData);
 
-    // Build the tab strip: REWARDS always; BONUS only when they earned a bonus last month; BOOST at 90+
+    // Build the tab strip: REWARDS always; BONUS only when there's a bonus amount; BOOST at 90+
     const tabs = [{ key: 'rewards', label: 'REWARDS' }];
     if (window.__bonusHasBonus) tabs.push({ key: 'bonus', label: 'BONUS' });
     if (score >= 90) tabs.push({ key: 'boost', label: 'BOOST' });
@@ -590,7 +604,7 @@ function renderAgencyBenefits(myData) {
         btn.addEventListener('click', () => switchBenefitTab(t.key));
         tabsEl.appendChild(btn);
     });
-    // Default: BONUS during the 1st–5th claim window (so they can claim), else REWARDS
+    // Default: BONUS during the last-day→5th claim window (so they can claim), else REWARDS
     const defaultTab = (window.__bonusClaimLive && tabs.some(t => t.key === 'bonus')) ? 'bonus' : 'rewards';
     switchBenefitTab(defaultTab);
 }
