@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cashback Claims — TABOOST Admin</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+        background:#0a0a0a; color:#fff; min-height:100vh; padding:32px 20px;
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    }
+    .wrap { max-width:1000px; margin:0 auto; }
+    h1 { font-size:24px; font-weight:800; letter-spacing:-0.3px; margin-bottom:4px; }
+    h1 i { color:#00ff88; margin-right:8px; }
+    .sub { color:#888; font-size:13px; margin-bottom:24px; }
+
+    .bar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:20px; }
+    select, button {
+        background:#161616; color:#fff; border:1px solid #2a2a2a; border-radius:8px;
+        padding:9px 14px; font-size:13px; font-family:inherit; cursor:pointer;
+    }
+    button:hover, select:hover { border-color:#00ff88; }
+    button.primary { background:linear-gradient(135deg,#00ff88,#00cc6a); color:#0a0a0a; font-weight:800; border:none; }
+
+    .stats { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:20px; }
+    .stat { background:#111; border:1px solid #222; border-radius:12px; padding:14px 20px; min-width:130px; }
+    .stat .k { color:#888; font-size:11px; letter-spacing:0.6px; text-transform:uppercase; }
+    .stat .v { font-size:26px; font-weight:800; color:#00ff88; margin-top:4px; }
+
+    table { width:100%; border-collapse:collapse; background:#111; border-radius:12px; overflow:hidden; }
+    th { background:#161616; color:#888; font-size:11px; letter-spacing:0.6px; text-transform:uppercase;
+         text-align:left; padding:12px 16px; font-weight:700; }
+    td { padding:13px 16px; border-top:1px solid #1e1e1e; font-size:14px; }
+    tr:hover td { background:#151515; }
+    .creator { font-weight:700; }
+    .uid { color:#666; font-size:11px; font-family:ui-monospace,Menlo,monospace; }
+    .month { color:#ffd700; font-weight:600; }
+
+    .msg { background:#111; border:1px solid #222; border-radius:12px; padding:28px; text-align:center; color:#888; font-size:14px; }
+    .msg.err { border-color:#ff5577; color:#ff8fa3; text-align:left; line-height:1.6; }
+    .msg.err b { color:#ff5577; display:block; margin-bottom:8px; font-size:15px; }
+    .msg code { background:#000; padding:2px 6px; border-radius:4px; color:#00ff88; font-size:12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1><i class="fas fa-hand-holding-dollar"></i>Cashback Claims</h1>
+    <p class="sub">Every creator who tapped CLAIM BONUS on the Live dashboard. Admin only. Notification-only record &mdash; verify the amount in the sheet before paying.</p>
+
+    <div class="bar">
+        <select id="monthFilter"><option value="">All months</option></select>
+        <button id="refreshBtn">Refresh</button>
+        <button id="csvBtn" class="primary">Download CSV</button>
+    </div>
+
+    <div id="stats" class="stats" style="display:none;"></div>
+    <div id="out"><div class="msg">Signing in&hellip;</div></div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getFirestore, collection, getDocs, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+};
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const out = document.getElementById('out');
+const statsEl = document.getElementById('stats');
+const monthFilter = document.getElementById('monthFilter');
+let claims = [];
+
+const msg = (html, cls) => { out.innerHTML = `<div class="msg ${cls || ''}">${html}</div>`; };
+
+onAuthStateChanged(auth, async (user) => {
+    if (!user) { msg('Not signed in. <a href="login.html" style="color:#00ff88;">Sign in as admin</a> first, then reload this page.'); return; }
+    // The cashbackClaims rule only allows a full collection read for role == 'admin'.
+    try {
+        const roleSnap = await getDoc(doc(db, 'users', user.uid));
+        const role = roleSnap.exists() ? roleSnap.data().role : null;
+        if (role !== 'admin') { msg(`Signed in as <b>${user.email || user.uid}</b> (role: ${role || 'unknown'}). This report needs the admin account.`); return; }
+    } catch (e) { /* fall through — the collection read below is the real gate */ }
+    load();
+});
+
+async function load() {
+    msg('Loading claims&hellip;');
+    try {
+        const snap = await getDocs(collection(db, 'cashbackClaims'));
+        claims = snap.docs.map(d => {
+            const x = d.data() || {};
+            let when = null;
+            try { when = x.claimedAt && x.claimedAt.toDate ? x.claimedAt.toDate() : null; } catch (e) {}
+            return { id: d.id, uid: x.uid || '', creatorName: x.creatorName || '(unnamed)', month: x.month || '', when };
+        }).sort((a, b) => (b.when ? b.when.getTime() : 0) - (a.when ? a.when.getTime() : 0));
+
+        const months = [...new Set(claims.map(c => c.month).filter(Boolean))].sort().reverse();
+        monthFilter.innerHTML = '<option value="">All months</option>' + months.map(m => `<option value="${m}">${m}</option>`).join('');
+        render();
+    } catch (e) {
+        const denied = String(e && e.code || e).includes('permission-denied');
+        msg(denied
+            ? `<b>Permission denied reading cashbackClaims.</b>
+               The Firestore ruleset in the console does not yet include the <code>cashbackClaims</code> block
+               from <code>firestore-production.rules</code>. Until it is published, creators' claims are
+               <b>silently failing to save</b> &mdash; which also means no claim email is sent, because the
+               email fires only after the Firestore write succeeds.<br><br>
+               Fix: Firebase console &rarr; Firestore &rarr; Rules &rarr; publish <code>firestore-production.rules</code>.
+               Keep Shop's <code>tapBonusClaims</code> block in the same ruleset.`
+            : `Could not load claims: ${e && e.message ? e.message : e}`, 'err');
+    }
+}
+
+function render() {
+    const f = monthFilter.value;
+    const rows = f ? claims.filter(c => c.month === f) : claims;
+
+    if (!claims.length) {
+        statsEl.style.display = 'none';
+        msg('No claims recorded yet. Nobody has successfully tapped CLAIM BONUS.');
+        return;
+    }
+
+    const uniqueCreators = new Set(rows.map(c => c.uid || c.creatorName)).size;
+    statsEl.style.display = 'flex';
+    statsEl.innerHTML = `
+        <div class="stat"><div class="k">Claims</div><div class="v">${rows.length}</div></div>
+        <div class="stat"><div class="k">Creators</div><div class="v">${uniqueCreators}</div></div>
+        <div class="stat"><div class="k">Months</div><div class="v">${new Set(rows.map(c => c.month)).size}</div></div>`;
+
+    out.innerHTML = `<table>
+        <thead><tr><th>Creator</th><th>For month</th><th>Claimed at</th></tr></thead>
+        <tbody>${rows.map(c => `<tr>
+            <td><div class="creator">${esc(c.creatorName)}</div><div class="uid">${esc(c.uid)}</div></td>
+            <td class="month">${esc(c.month)}</td>
+            <td>${c.when ? c.when.toLocaleString('en-US') : '&mdash;'}</td>
+        </tr>`).join('')}</tbody></table>`;
+}
+
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, ch => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[ch])); }
+
+document.getElementById('refreshBtn').onclick = load;
+monthFilter.onchange = render;
+document.getElementById('csvBtn').onclick = () => {
+    const f = monthFilter.value;
+    const rows = f ? claims.filter(c => c.month === f) : claims;
+    const csv = ['Creator,UID,Month,ClaimedAt']
+        .concat(rows.map(c => [c.creatorName, c.uid, c.month, c.when ? c.when.toISOString() : '']
+            .map(v => `"${String(v).replace(/"/g, '""')}"`).join(','))).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'cashback-claims' + (f ? '-' + f : '') + '.csv';
+    a.click();
+};
+</script>
+</body>
+</html>

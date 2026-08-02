@@ -515,6 +515,20 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
     const btn = document.getElementById('cashbackClaimBtn');
     const footer = document.getElementById('ab_bonusClaimFooter');
     if (btn) { btn.disabled = true; btn.textContent = 'Claiming…'; }
+
+    // Fire-and-forget email to Marco. Sent FIRST and independently of the Firestore write —
+    // it used to run after the write, so a rules/permission failure silently killed the
+    // notification too and there was no way to tell the two failures apart. Preview claims
+    // also email (so it's testable) but are marked [TEST] and write NO Firestore record.
+    // text/plain avoids an Apps Script CORS preflight.
+    if (CASHBACK_WEBHOOK_URL) {
+        fetch(CASHBACK_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ secret: CASHBACK_WEBHOOK_SECRET, creatorName: (isPreview ? '[TEST] ' : '') + creatorName, amount: amount, month: qualMonth })
+        }).catch(e => console.warn('cashback email failed:', e));
+    }
+
     try {
         const fs = window.__fs;
         if (!isPreview && fs && fs.uid && fs.setDoc) {
@@ -525,15 +539,6 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
                 month: qualMonth,
                 claimedAt: fs.serverTimestamp()
             });
-        }
-        // Fire-and-forget email to Marco. Preview claims also email (so it's testable) but are
-        // marked [TEST] and write NO Firestore record. text/plain avoids an Apps Script CORS preflight.
-        if (CASHBACK_WEBHOOK_URL) {
-            fetch(CASHBACK_WEBHOOK_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify({ secret: CASHBACK_WEBHOOK_SECRET, creatorName: (isPreview ? '[TEST] ' : '') + creatorName, amount: amount, month: qualMonth })
-            }).catch(e => console.warn('cashback email failed:', e));
         }
         if (footer) footer.innerHTML = cashbackClaimedHTML({});
     } catch (e) {
