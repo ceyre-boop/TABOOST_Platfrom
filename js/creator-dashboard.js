@@ -435,7 +435,7 @@ function applyCashbackState(myData) {
             const todayISO = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             if (todayISO <= CASHBACK_FORCE_WINDOW_UNTIL) inWindow = true;
         }
-        if (preview !== null) inWindow = true; // ?cashbackPreview — force the window (also picks column AO)
+        if (preview !== null) inWindow = true; // ?cashbackPreview — force the window
 
         // The qualifying month must resolve identically on Jul 31 and on Aug 2 so one claim doc
         // covers the whole window: on the last day it's the month that's ending, else the prior month.
@@ -444,21 +444,31 @@ function applyCashbackState(myData) {
             : new Date(now.getFullYear(), now.getMonth() - 1, 1);
         const qualMonth = qm.getFullYear() + '-' + String(qm.getMonth() + 1).padStart(2, '0');
 
-        // In-window the claimable figure is column AO "Bonus" (myData.bonus) — the month just ended.
-        // Outside it we display column AP "LM Bonus", which the sheet zeroes out for non-claimers.
-        // Marco's sheet already applied the Score-70+/tier qualification, so the dashboard only
+        // WHICH COLUMN HOLDS THE CLAIMABLE FIGURE TODAY — read this before changing it:
+        //   • Column AP "LM Bonus" (myData.lmBonus) is LAST month's SETTLED bonus. It is the
+        //     claimable number and it holds still all month. This is what days 1–5 must read.
+        //   • Column AO "Bonus" (myData.bonus) is the CURRENT month's LIVE accrual. It climbs
+        //     with every daily sync and resets toward $0 the moment the sheet rolls to a new
+        //     month. It is only trustworthy on the last day of the month, when the month it is
+        //     accruing for is the month that just ended and AP has not rolled over yet — that
+        //     is the month-end display Marco leaves up.
+        // Reading AO during days 1–5 is exactly what made the BONUS tab disappear in August:
+        // the sheet rolled, AO went to $0, and the tab vanished mid-claim-window.
+        // Marco's sheet already applies the Score-70+/tier qualification, so the dashboard only
         // needs: is the amount > $0?
-        const rawAmount = inWindow ? myData.bonus : myData.lmBonus;
+        const rawAmount = (day === lastDay) ? myData.bonus : myData.lmBonus;
         let bonusAmount = parseFloat((rawAmount || '').toString().replace(/[$,]/g, '')) || 0;
 
         // ?cashbackPreview=1234 — inject a synthetic amount when there's no real one
         if (preview !== null && bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
 
         const hasBonus = bonusAmount > 0; // is there a bonus amount to show at all?
-        window.__bonusHasBonus = hasBonus;              // gates the BONUS tab's existence
+        window.__bonusHasBonus = hasBonus;              // forces the BONUS tab open in-window (any score)
         window.__bonusClaimLive = hasBonus && inWindow; // claim actionable → dot + default-to-BONUS
-        if (!hasBonus) return; // nothing to claim → BONUS tab hidden entirely
+        window.__bonusInWindow = inWindow;              // read by the tab strip's force-open rule
 
+        // Always render the pane, even at $0 — a 70+ creator gets the BONUS tab on score alone,
+        // so the pane has to say something rather than show a stale figure from a previous render.
         const creatorName = myData.username || myData.name || 'Creator';
         renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null, inWindow);
     } catch (e) {
@@ -483,8 +493,14 @@ function cashbackWindowNoteHTML() {
     return `<span style="color:#888;font-size:12px;">Claim window closed</span>`;
 }
 
+// Score 70+ but nothing earned last month → the tab exists on score alone, so say so plainly.
+function cashbackNoBonusHTML() {
+    return `<span style="color:#888;font-size:12px;">No cash bonus earned last month</span>`;
+}
+
 function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) {
-    // BONUS pane = the claim box: the bonus amount (AO in-window, AP after) + claim/claimed state.
+    // BONUS pane = the claim box: the bonus amount (AP "LM Bonus", except on the last day of
+    // the month when AO "Bonus" is the settled figure) + claim/claimed state.
     const label = document.getElementById('ab_bonusClaimLabel'); // legacy; label now lives in shared #ab_activeLabel
     const value = document.getElementById('ab_bonusClaimValue');
     const footer = document.getElementById('ab_bonusClaimFooter');
@@ -500,6 +516,9 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) 
         const btn = document.getElementById('cashbackClaimBtn');
         if (btn) btn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     };
+
+    // $0 → nothing to claim and no Firestore doc to look up. Never offer a CLAIM button here.
+    if (!(amount > 0)) { footer.innerHTML = cashbackNoBonusHTML(); return; }
 
     const fs = window.__fs;
     if (isPreview || !fs || !fs.uid || !fs.getDoc) { showUnclaimed(); return; }
@@ -552,9 +571,10 @@ async function handleCashbackClaim(amount, qualMonth, creatorName, isPreview) {
 // ============================================================
 // AGENCY BENEFITS BOX — occupies the top-right stat-card slot (replaced the old
 // rewards card). Score-gated tabs; own ab_* IDs. Always visible so the slot is
-// never empty: REWARDS always. +BONUS when there's a bonus amount (holds the claim-window rule).
-// +BOOST at 90+ (rank boosts available, Column AM "Unis"). My Revenue Streams
-// stays separate/untouched.
+// never empty: REWARDS at 30+ (and as the sub-30 fallback), +BONUS at 70+, +BOOST at
+// 90+ (rank boosts available, Column AM "Unis"). The BONUS tab additionally forces
+// itself open for ANY score during the claim window when there's an amount to claim.
+// My Revenue Streams stays separate/untouched.
 // ============================================================
 function renderAgencyBenefits(myData) {
     const section = document.getElementById('benefitsSection');
@@ -585,9 +605,13 @@ function renderAgencyBenefits(myData) {
     // Cashback claim (last-day→5th rule): may flip the BONUS pane to the claim view + set the dot flag
     applyCashbackState(myData);
 
-    // Build the tab strip: REWARDS always; BONUS only when there's a bonus amount; BOOST at 90+
+    // Build the tab strip — SCORE-GATED (Marco's rule): 30+ REWARDS · 70+ BONUS · 90+ BOOST.
+    // Override: during the claim window (last day → 5th) the BONUS tab opens no matter what the
+    // score is, as long as there's an amount to claim — a creator who earned the bonus last month
+    // but has since dropped below 70 must still be able to claim it.
+    // REWARDS is also the sub-30 fallback so the card is never left empty (it shows 0).
     const tabs = [{ key: 'rewards', label: 'REWARDS' }];
-    if (window.__bonusHasBonus) tabs.push({ key: 'bonus', label: 'BONUS' });
+    if (score >= 70 || (window.__bonusHasBonus && window.__bonusInWindow)) tabs.push({ key: 'bonus', label: 'BONUS' });
     if (score >= 90) tabs.push({ key: 'boost', label: 'BOOST' });
     tabsEl.innerHTML = '';
     tabs.forEach((t, i) => {
