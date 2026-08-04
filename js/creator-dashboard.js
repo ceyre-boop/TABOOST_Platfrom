@@ -260,10 +260,17 @@ function updateProfile(user) {
     const managerName = myData.manager;
     const hasManager = managerName && managerName.trim() !== '' && managerName !== 'Unassigned' && managerName.toLowerCase() !== 'n/a';
     
-    // Discord links for managers
+    // The sheet's Agent column can hold "MANAGER + AGENT" (e.g. "DYLAN + SKYLER"). The pill
+    // DISPLAYS the full pairing exactly as the sheet shows it, but the contact link resolves
+    // off the MANAGER only — the first name listed.
+    const agentDisplay = (myData.agentFull && myData.agentFull.trim()) || managerName;
+    const managerFirst = String(agentDisplay).split('+')[0].trim();
+
+    // Contact link per manager. Discord DM for everyone except Marco, who stays on SMS.
     const managerDiscordLinks = {
-        'carrington': 'https://discord.com/users/953826604260417617',
+        'dylan': 'https://discord.com/users/1423031551515430924',
         'levi': 'https://discord.com/users/463575386010157057',
+        'carrington': 'https://discord.com/users/953826604260417617',
         'marco': 'sms:13235787155',  // Marco uses SMS
         // Add more managers here
     };
@@ -276,15 +283,16 @@ function updateProfile(user) {
     
     if (hasManager) {
         // Has assigned manager
-        document.getElementById('managerName').textContent = managerName;
-        const managerKey = managerName.toLowerCase().trim();
-        
-        // Check for exact match first, then check if Carrington is in the name
+        document.getElementById('managerName').textContent = agentDisplay;
+        const managerKey = managerFirst.toLowerCase();
+
+        // Keyed on the manager (first name) only, so "DYLAN + SKYLER" routes to Dylan.
         let discordLink = managerDiscordLinks[managerKey];
-        if (!discordLink && managerKey.includes('carrington')) {
-            discordLink = managerDiscordLinks['carrington'];
+        if (!discordLink) {
+            const partial = Object.keys(managerDiscordLinks).find(k => managerKey.includes(k));
+            if (partial) discordLink = managerDiscordLinks[partial];
         }
-        
+
         if (discordLink) {
             managerPill.href = discordLink;
             managerPill.style.cursor = 'pointer';

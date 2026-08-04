@@ -134,8 +134,16 @@ const CSV_LOADER = {
     // Find diamonds column (💎 or ?)
     const diamondsCol = headers.find(h => h.includes('💎') || h === '?');
     
-    // Clean manager
-    let manager = get('Agent', 'Manager', 'agent', 'manager');
+    // Clean manager.
+    // The sheet's "Agent" column can hold two names, "MANAGER + AGENT" (e.g. "DYLAN + SKYLER").
+    // `manager` stays the FIRST name only — it is the manager of record and everything else
+    // (roster filtering, Discord/SMS contact routing) keys off it. `agentFull` keeps the raw
+    // pairing exactly as the sheet shows it, for display.
+    const agentRaw = String(get('Agent', 'Manager', 'agent', 'manager') || '').trim();
+    const agentFull = agentRaw.includes('+')
+        ? agentRaw.split('+').map(s => s.trim()).filter(Boolean).join(' + ')
+        : agentRaw;
+    let manager = agentRaw;
     if (manager.includes('+')) manager = manager.split('+')[0].trim();
     manager = this.cleanValue(manager, 'string', 'Unassigned');
     
@@ -149,6 +157,7 @@ const CSV_LOADER = {
       level: String(get('Level', 'level', 'Lvl') || '0'),
       month: String(get('Month', 'month') || ''),
       manager: manager.toUpperCase(),
+      agentFull: agentFull.toUpperCase(), // "DYLAN + SKYLER" as the sheet shows it; '' when unassigned
       m: manager.toUpperCase(),
       claimed: false,
       score: this.cleanValue(get('Score', 'score'), 'int', 0),
