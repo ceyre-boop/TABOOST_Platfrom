@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-06T16:37:29.954Z
+// Generated: 2026-08-06T18:07:34.135Z
 // Total: 1078 creators
 
 const creatorsData = [
@@ -28410,8 +28410,8 @@ const creatorsData = [
     "name": "koltqt",
     "email": "koltqt@taboost.me",
     "status": "GO",
-    "level": "-1",
-    "month": "",
+    "level": "0",
+    "month": "1",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -28420,14 +28420,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": -1,
-    "diamonds2MonthsAgo": -2,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
     "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
+    "hoursGoal": 0,
+    "hoursLeft": "0",
     "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
+    "daysGoal": 0,
+    "daysLeft": "0",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -43127,7 +43127,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-06T16:37:29.954Z",
+  lastUpdated: "2026-08-06T18:07:34.135Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
