@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-08T17:08:54.872Z
+// Generated: 2026-08-09T17:08:39.466Z
 // Total: 1082 creators
 
 const creatorsData = [
@@ -34,12 +34,12 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1335550,
-    "gifted": 1159400,
+    "earned": 1370550,
+    "gifted": 1194400,
     "running": "326,150",
     "multiply": "1x",
     "unlocked": "326,150",
-    "daysMonth": 2,
+    "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
   },
@@ -2931,7 +2931,7 @@ const creatorsData = [
     "email": "azyatk@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "10",
+    "month": "",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
@@ -28810,8 +28810,8 @@ const creatorsData = [
     "name": "omaraep38",
     "email": "omaraep38@taboost.me",
     "status": "GO",
-    "level": "0",
-    "month": "1",
+    "level": "-1",
+    "month": "",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -28820,14 +28820,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": 0,
-    "diamonds2MonthsAgo": 0,
+    "diamondsLastMonth": -1,
+    "diamonds2MonthsAgo": -2,
     "hours": 0,
-    "hoursGoal": 0,
-    "hoursLeft": "0",
+    "hoursGoal": 15,
+    "hoursLeft": "15",
     "validLiveDays": 0,
-    "daysGoal": 0,
-    "daysLeft": "0",
+    "daysGoal": 7,
+    "daysLeft": "7",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -41811,7 +41811,7 @@ const creatorsData = [
     "email": "jackijing@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "36",
+    "month": "",
     "manager": "N/A",
     "m": "N/A",
     "claimed": false,
@@ -43287,7 +43287,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-08T17:08:54.872Z",
+  lastUpdated: "2026-08-09T17:08:39.466Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
