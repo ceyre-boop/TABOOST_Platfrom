@@ -1,6 +1,6 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-11T17:10:06.652Z
-// Total: 1095 creators
+// Generated: 2026-08-12T17:08:31.661Z
+// Total: 1096 creators
 
 const creatorsData = [
   {
@@ -19,7 +19,7 @@ const creatorsData = [
     "diamonds": 1693893,
     "diamondsGoal": 7,
     "diamondsPace": "5,251,068",
-    "diamondsLast30": 5743562,
+    "diamondsLast30": 5771691,
     "diamondsLastMonth": 6229461,
     "diamonds2MonthsAgo": 7911737,
     "hours": 33,
@@ -34,11 +34,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1389550,
-    "gifted": 1203400,
-    "running": "206,150",
+    "earned": 1418550,
+    "gifted": 1217400,
+    "running": "221,150",
     "multiply": "1x",
-    "unlocked": "206,150",
+    "unlocked": "221,150",
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -59,7 +59,7 @@ const creatorsData = [
     "diamonds": 1309098,
     "diamondsGoal": 6,
     "diamondsPace": "4,058,204",
-    "diamondsLast30": 4887129,
+    "diamondsLast30": 5776235,
     "diamondsLastMonth": 4854668,
     "diamonds2MonthsAgo": 3583221,
     "hours": 25,
@@ -99,7 +99,7 @@ const creatorsData = [
     "diamonds": 825855,
     "diamondsGoal": 5,
     "diamondsPace": "2,560,151",
-    "diamondsLast30": 2726459,
+    "diamondsLast30": 2617195,
     "diamondsLastMonth": 2595071,
     "diamonds2MonthsAgo": 1528466,
     "hours": 64,
@@ -139,7 +139,7 @@ const creatorsData = [
     "diamonds": 1512913,
     "diamondsGoal": 6,
     "diamondsPace": "4,690,030",
-    "diamondsLast30": 3070935,
+    "diamondsLast30": 2903387,
     "diamondsLastMonth": 2811270,
     "diamonds2MonthsAgo": 4521401,
     "hours": 50,
@@ -179,7 +179,7 @@ const creatorsData = [
     "diamonds": 590890,
     "diamondsGoal": 5,
     "diamondsPace": "1,831,759",
-    "diamondsLast30": 1938660,
+    "diamondsLast30": 1959222,
     "diamondsLastMonth": 2642673,
     "diamonds2MonthsAgo": 5376023,
     "hours": 35,
@@ -219,7 +219,7 @@ const creatorsData = [
     "diamonds": 450529,
     "diamondsGoal": 4,
     "diamondsPace": "1,396,640",
-    "diamondsLast30": 2636150,
+    "diamondsLast30": 2630271,
     "diamondsLastMonth": 3239783,
     "diamonds2MonthsAgo": 3562676,
     "hours": 33,
@@ -234,8 +234,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "8",
     "growthPercent": 0,
-    "earned": 292000,
-    "gifted": 264000,
+    "earned": 296000,
+    "gifted": 268000,
     "running": "28,000",
     "multiply": "1x",
     "unlocked": "28,000",
@@ -259,7 +259,7 @@ const creatorsData = [
     "diamonds": 678053,
     "diamondsGoal": 5,
     "diamondsPace": "2,101,964",
-    "diamondsLast30": 2539808,
+    "diamondsLast30": 2431424,
     "diamondsLastMonth": 2783038,
     "diamonds2MonthsAgo": 1623545,
     "hours": 32,
@@ -299,7 +299,7 @@ const creatorsData = [
     "diamonds": 673432,
     "diamondsGoal": 5,
     "diamondsPace": "2,087,639",
-    "diamondsLast30": 3932472,
+    "diamondsLast30": 4027464,
     "diamondsLastMonth": 4136713,
     "diamonds2MonthsAgo": 2528387,
     "hours": 20,
@@ -339,7 +339,7 @@ const creatorsData = [
     "diamonds": 580455,
     "diamondsGoal": 5,
     "diamondsPace": "1,799,411",
-    "diamondsLast30": 1694286,
+    "diamondsLast30": 1708034,
     "diamondsLastMonth": 1767492,
     "diamonds2MonthsAgo": 2645571,
     "hours": 26,
@@ -379,7 +379,7 @@ const creatorsData = [
     "diamonds": 870808,
     "diamondsGoal": 5,
     "diamondsPace": "2,699,505",
-    "diamondsLast30": 1589958,
+    "diamondsLast30": 1779680,
     "diamondsLastMonth": 1245854,
     "diamonds2MonthsAgo": 1317345,
     "hours": 48,
@@ -391,7 +391,7 @@ const creatorsData = [
     "tier": 5,
     "tierGoal": 1600000,
     "tierLeft": "729,192",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "6",
     "growthPercent": 0,
     "earned": 328000,
@@ -401,7 +401,7 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "$217.70"
   },
   {
     "id": 11,
@@ -419,7 +419,7 @@ const creatorsData = [
     "diamonds": 571042,
     "diamondsGoal": 5,
     "diamondsPace": "1,770,230",
-    "diamondsLast30": 2040534,
+    "diamondsLast30": 2046254,
     "diamondsLastMonth": 2412709,
     "diamonds2MonthsAgo": 2541238,
     "hours": 29,
@@ -459,7 +459,7 @@ const creatorsData = [
     "diamonds": 433427,
     "diamondsGoal": 4,
     "diamondsPace": "1,343,624",
-    "diamondsLast30": 1320638,
+    "diamondsLast30": 1341226,
     "diamondsLastMonth": 1377948,
     "diamonds2MonthsAgo": 1331187,
     "hours": 54,
@@ -499,7 +499,7 @@ const creatorsData = [
     "diamonds": 432731,
     "diamondsGoal": 4,
     "diamondsPace": "1,341,466",
-    "diamondsLast30": 1365601,
+    "diamondsLast30": 1369917,
     "diamondsLastMonth": 1561672,
     "diamonds2MonthsAgo": 1099751,
     "hours": 49,
@@ -539,7 +539,7 @@ const creatorsData = [
     "diamonds": 405910,
     "diamondsGoal": 4,
     "diamondsPace": "1,258,321",
-    "diamondsLast30": 1144369,
+    "diamondsLast30": 1159784,
     "diamondsLastMonth": 1263692,
     "diamonds2MonthsAgo": 951735,
     "hours": 88,
@@ -619,7 +619,7 @@ const creatorsData = [
     "diamonds": 416008,
     "diamondsGoal": 4,
     "diamondsPace": "1,289,625",
-    "diamondsLast30": 1244370,
+    "diamondsLast30": 1258370,
     "diamondsLastMonth": 1883595,
     "diamonds2MonthsAgo": 2525851,
     "hours": 30,
@@ -659,7 +659,7 @@ const creatorsData = [
     "diamonds": 273814,
     "diamondsGoal": 3,
     "diamondsPace": "848,823",
-    "diamondsLast30": 730119,
+    "diamondsLast30": 765162,
     "diamondsLastMonth": 2650096,
     "diamonds2MonthsAgo": 1377376,
     "hours": 14,
@@ -699,7 +699,7 @@ const creatorsData = [
     "diamonds": 528428,
     "diamondsGoal": 5,
     "diamondsPace": "1,638,127",
-    "diamondsLast30": 1285904,
+    "diamondsLast30": 1320407,
     "diamondsLastMonth": 1427436,
     "diamonds2MonthsAgo": 1572464,
     "hours": 24,
@@ -739,7 +739,7 @@ const creatorsData = [
     "diamonds": 694723,
     "diamondsGoal": 5,
     "diamondsPace": "2,153,641",
-    "diamondsLast30": 1451259,
+    "diamondsLast30": 1364292,
     "diamondsLastMonth": 1043830,
     "diamonds2MonthsAgo": 1286899,
     "hours": 38,
@@ -779,7 +779,7 @@ const creatorsData = [
     "diamonds": 401301,
     "diamondsGoal": 4,
     "diamondsPace": "1,244,033",
-    "diamondsLast30": 1298497,
+    "diamondsLast30": 1315364,
     "diamondsLastMonth": 1129517,
     "diamonds2MonthsAgo": 427546,
     "hours": 88,
@@ -819,7 +819,7 @@ const creatorsData = [
     "diamonds": 328556,
     "diamondsGoal": 4,
     "diamondsPace": "1,018,524",
-    "diamondsLast30": 1189831,
+    "diamondsLast30": 1134882,
     "diamondsLastMonth": 1278309,
     "diamonds2MonthsAgo": 1457721,
     "hours": 26,
@@ -859,7 +859,7 @@ const creatorsData = [
     "diamonds": 342012,
     "diamondsGoal": 4,
     "diamondsPace": "1,060,237",
-    "diamondsLast30": 1794349,
+    "diamondsLast30": 1810831,
     "diamondsLastMonth": 1776344,
     "diamonds2MonthsAgo": 983980,
     "hours": 19,
@@ -939,7 +939,7 @@ const creatorsData = [
     "diamonds": 643951,
     "diamondsGoal": 5,
     "diamondsPace": "1,996,248",
-    "diamondsLast30": 982236,
+    "diamondsLast30": 1118151,
     "diamondsLastMonth": 600023,
     "diamonds2MonthsAgo": 601954,
     "hours": 68,
@@ -979,7 +979,7 @@ const creatorsData = [
     "diamonds": 315462,
     "diamondsGoal": 4,
     "diamondsPace": "977,932",
-    "diamondsLast30": 681261,
+    "diamondsLast30": 679822,
     "diamondsLastMonth": 536696,
     "diamonds2MonthsAgo": 1049773,
     "hours": 46,
@@ -1019,7 +1019,7 @@ const creatorsData = [
     "diamonds": 242756,
     "diamondsGoal": 3,
     "diamondsPace": "752,544",
-    "diamondsLast30": 771667,
+    "diamondsLast30": 764510,
     "diamondsLastMonth": 666980,
     "diamonds2MonthsAgo": 515264,
     "hours": 44,
@@ -1059,7 +1059,7 @@ const creatorsData = [
     "diamonds": 247682,
     "diamondsGoal": 3,
     "diamondsPace": "767,814",
-    "diamondsLast30": 617538,
+    "diamondsLast30": 641221,
     "diamondsLastMonth": 509656,
     "diamonds2MonthsAgo": 341103,
     "hours": 38,
@@ -1099,7 +1099,7 @@ const creatorsData = [
     "diamonds": 404207,
     "diamondsGoal": 4,
     "diamondsPace": "1,253,042",
-    "diamondsLast30": 632411,
+    "diamondsLast30": 637568,
     "diamondsLastMonth": 388030,
     "diamonds2MonthsAgo": 704306,
     "hours": 34,
@@ -1139,7 +1139,7 @@ const creatorsData = [
     "diamonds": 148105,
     "diamondsGoal": 2,
     "diamondsPace": "459,126",
-    "diamondsLast30": 491315,
+    "diamondsLast30": 490724,
     "diamondsLastMonth": 511937,
     "diamonds2MonthsAgo": 397720,
     "hours": 46,
@@ -1219,7 +1219,7 @@ const creatorsData = [
     "diamonds": 231248,
     "diamondsGoal": 3,
     "diamondsPace": "716,869",
-    "diamondsLast30": 645821,
+    "diamondsLast30": 659509,
     "diamondsLastMonth": 551571,
     "diamonds2MonthsAgo": 1018576,
     "hours": 22,
@@ -1259,7 +1259,7 @@ const creatorsData = [
     "diamonds": 220759,
     "diamondsGoal": 3,
     "diamondsPace": "684,353",
-    "diamondsLast30": 434625,
+    "diamondsLast30": 437401,
     "diamondsLastMonth": 294899,
     "diamonds2MonthsAgo": 159336,
     "hours": 33,
@@ -1299,7 +1299,7 @@ const creatorsData = [
     "diamonds": 371522,
     "diamondsGoal": 4,
     "diamondsPace": "1,151,718",
-    "diamondsLast30": 671679,
+    "diamondsLast30": 666671,
     "diamondsLastMonth": 534598,
     "diamonds2MonthsAgo": 2354511,
     "hours": 13,
@@ -1379,7 +1379,7 @@ const creatorsData = [
     "diamonds": 231768,
     "diamondsGoal": 3,
     "diamondsPace": "718,481",
-    "diamondsLast30": 1205555,
+    "diamondsLast30": 1196615,
     "diamondsLastMonth": 1188017,
     "diamonds2MonthsAgo": 600371,
     "hours": 7,
@@ -1419,7 +1419,7 @@ const creatorsData = [
     "diamonds": 112359,
     "diamondsGoal": 2,
     "diamondsPace": "348,313",
-    "diamondsLast30": 286952,
+    "diamondsLast30": 292492,
     "diamondsLastMonth": 279938,
     "diamonds2MonthsAgo": 405092,
     "hours": 59,
@@ -1459,7 +1459,7 @@ const creatorsData = [
     "diamonds": 59942,
     "diamondsGoal": 1,
     "diamondsPace": "185,820",
-    "diamondsLast30": 198819,
+    "diamondsLast30": 215603,
     "diamondsLastMonth": 221778,
     "diamonds2MonthsAgo": 246766,
     "hours": 24,
@@ -1579,7 +1579,7 @@ const creatorsData = [
     "diamonds": 75169,
     "diamondsGoal": 1,
     "diamondsPace": "233,024",
-    "diamondsLast30": 241018,
+    "diamondsLast30": 245076,
     "diamondsLastMonth": 214679,
     "diamonds2MonthsAgo": 152676,
     "hours": 33,
@@ -1619,7 +1619,7 @@ const creatorsData = [
     "diamonds": 72918,
     "diamondsGoal": 1,
     "diamondsPace": "226,046",
-    "diamondsLast30": 242270,
+    "diamondsLast30": 237989,
     "diamondsLastMonth": 242619,
     "diamonds2MonthsAgo": 185752,
     "hours": 23,
@@ -1659,7 +1659,7 @@ const creatorsData = [
     "diamonds": 17065,
     "diamondsGoal": 1,
     "diamondsPace": "52,902",
-    "diamondsLast30": 190870,
+    "diamondsLast30": 190805,
     "diamondsLastMonth": 240219,
     "diamonds2MonthsAgo": 152724,
     "hours": 24,
@@ -1699,7 +1699,7 @@ const creatorsData = [
     "diamonds": 101319,
     "diamondsGoal": 2,
     "diamondsPace": "314,089",
-    "diamondsLast30": 342300,
+    "diamondsLast30": 329686,
     "diamondsLastMonth": 360431,
     "diamonds2MonthsAgo": 319729,
     "hours": 19,
@@ -1739,7 +1739,7 @@ const creatorsData = [
     "diamonds": 110160,
     "diamondsGoal": 2,
     "diamondsPace": "341,496",
-    "diamondsLast30": 316360,
+    "diamondsLast30": 292730,
     "diamondsLastMonth": 288247,
     "diamonds2MonthsAgo": 261299,
     "hours": 22,
@@ -1779,7 +1779,7 @@ const creatorsData = [
     "diamonds": 96274,
     "diamondsGoal": 1,
     "diamondsPace": "298,449",
-    "diamondsLast30": 358007,
+    "diamondsLast30": 334702,
     "diamondsLastMonth": 386370,
     "diamonds2MonthsAgo": 239049,
     "hours": 22,
@@ -1819,7 +1819,7 @@ const creatorsData = [
     "diamonds": 62645,
     "diamondsGoal": 1,
     "diamondsPace": "194,200",
-    "diamondsLast30": 208776,
+    "diamondsLast30": 207559,
     "diamondsLastMonth": 267723,
     "diamonds2MonthsAgo": 304166,
     "hours": 16,
@@ -1859,7 +1859,7 @@ const creatorsData = [
     "diamonds": 8807,
     "diamondsGoal": 1,
     "diamondsPace": "27,302",
-    "diamondsLast30": 87946,
+    "diamondsLast30": 84594,
     "diamondsLastMonth": 120397,
     "diamonds2MonthsAgo": 304948,
     "hours": 28,
@@ -1899,7 +1899,7 @@ const creatorsData = [
     "diamonds": 40220,
     "diamondsGoal": 1,
     "diamondsPace": "124,682",
-    "diamondsLast30": 275814,
+    "diamondsLast30": 285190,
     "diamondsLastMonth": 358274,
     "diamonds2MonthsAgo": 308297,
     "hours": 10,
@@ -1939,7 +1939,7 @@ const creatorsData = [
     "diamonds": 67050,
     "diamondsGoal": 1,
     "diamondsPace": "207,855",
-    "diamondsLast30": 145733,
+    "diamondsLast30": 148755,
     "diamondsLastMonth": 134017,
     "diamonds2MonthsAgo": 95313,
     "hours": 62,
@@ -1979,7 +1979,7 @@ const creatorsData = [
     "diamonds": 14082,
     "diamondsGoal": 1,
     "diamondsPace": "43,654",
-    "diamondsLast30": 224264,
+    "diamondsLast30": 223187,
     "diamondsLastMonth": 323116,
     "diamonds2MonthsAgo": 355536,
     "hours": 30,
@@ -2019,7 +2019,7 @@ const creatorsData = [
     "diamonds": 7344,
     "diamondsGoal": 1,
     "diamondsPace": "22,766",
-    "diamondsLast30": 304245,
+    "diamondsLast30": 280214,
     "diamondsLastMonth": 434289,
     "diamonds2MonthsAgo": 383855,
     "hours": 4,
@@ -2059,7 +2059,7 @@ const creatorsData = [
     "diamonds": 76152,
     "diamondsGoal": 1,
     "diamondsPace": "236,071",
-    "diamondsLast30": 180848,
+    "diamondsLast30": 180908,
     "diamondsLastMonth": 185068,
     "diamonds2MonthsAgo": 86838,
     "hours": 29,
@@ -2099,7 +2099,7 @@ const creatorsData = [
     "diamonds": 157685,
     "diamondsGoal": 2,
     "diamondsPace": "488,824",
-    "diamondsLast30": 340604,
+    "diamondsLast30": 344488,
     "diamondsLastMonth": 234950,
     "diamonds2MonthsAgo": 67561,
     "hours": 25,
@@ -2139,7 +2139,7 @@ const creatorsData = [
     "diamonds": 35619,
     "diamondsGoal": 1,
     "diamondsPace": "110,419",
-    "diamondsLast30": 128526,
+    "diamondsLast30": 121958,
     "diamondsLastMonth": 122716,
     "diamonds2MonthsAgo": 223335,
     "hours": 33,
@@ -2179,7 +2179,7 @@ const creatorsData = [
     "diamonds": 30712,
     "diamondsGoal": 1,
     "diamondsPace": "95,207",
-    "diamondsLast30": 95846,
+    "diamondsLast30": 95701,
     "diamondsLastMonth": 106626,
     "diamonds2MonthsAgo": 91714,
     "hours": 39,
@@ -2219,7 +2219,7 @@ const creatorsData = [
     "diamonds": 87040,
     "diamondsGoal": 1,
     "diamondsPace": "269,824",
-    "diamondsLast30": 209110,
+    "diamondsLast30": 208191,
     "diamondsLastMonth": 168713,
     "diamonds2MonthsAgo": 61099,
     "hours": 26,
@@ -2339,7 +2339,7 @@ const creatorsData = [
     "diamonds": 26837,
     "diamondsGoal": 1,
     "diamondsPace": "83,195",
-    "diamondsLast30": 91867,
+    "diamondsLast30": 91614,
     "diamondsLastMonth": 100402,
     "diamonds2MonthsAgo": 109135,
     "hours": 21,
@@ -2379,7 +2379,7 @@ const creatorsData = [
     "diamonds": 33400,
     "diamondsGoal": 1,
     "diamondsPace": "103,540",
-    "diamondsLast30": 81378,
+    "diamondsLast30": 76871,
     "diamondsLastMonth": 74004,
     "diamonds2MonthsAgo": 53525,
     "hours": 51,
@@ -2419,7 +2419,7 @@ const creatorsData = [
     "diamonds": 27446,
     "diamondsGoal": 1,
     "diamondsPace": "85,083",
-    "diamondsLast30": 74697,
+    "diamondsLast30": 73689,
     "diamondsLastMonth": 66378,
     "diamonds2MonthsAgo": 60293,
     "hours": 125,
@@ -2459,7 +2459,7 @@ const creatorsData = [
     "diamonds": 58800,
     "diamondsGoal": 1,
     "diamondsPace": "182,280",
-    "diamondsLast30": 110891,
+    "diamondsLast30": 107102,
     "diamondsLastMonth": 259109,
     "diamonds2MonthsAgo": 279996,
     "hours": 7,
@@ -2499,7 +2499,7 @@ const creatorsData = [
     "diamonds": 34405,
     "diamondsGoal": 1,
     "diamondsPace": "106,656",
-    "diamondsLast30": 110423,
+    "diamondsLast30": 115553,
     "diamondsLastMonth": 140958,
     "diamonds2MonthsAgo": 70314,
     "hours": 21,
@@ -2539,7 +2539,7 @@ const creatorsData = [
     "diamonds": 12036,
     "diamondsGoal": 1,
     "diamondsPace": "37,312",
-    "diamondsLast30": 45966,
+    "diamondsLast30": 46266,
     "diamondsLastMonth": 51756,
     "diamonds2MonthsAgo": 39820,
     "hours": 56,
@@ -2579,7 +2579,7 @@ const creatorsData = [
     "diamonds": 239,
     "diamondsGoal": 1,
     "diamondsPace": "741",
-    "diamondsLast30": 45365,
+    "diamondsLast30": 45087,
     "diamondsLastMonth": 69772,
     "diamonds2MonthsAgo": 82891,
     "hours": 3,
@@ -2619,7 +2619,7 @@ const creatorsData = [
     "diamonds": 65725,
     "diamondsGoal": 1,
     "diamondsPace": "203,748",
-    "diamondsLast30": 158090,
+    "diamondsLast30": 142695,
     "diamondsLastMonth": 106400,
     "diamonds2MonthsAgo": 93203,
     "hours": 20,
@@ -2659,7 +2659,7 @@ const creatorsData = [
     "diamonds": 40940,
     "diamondsGoal": 1,
     "diamondsPace": "126,914",
-    "diamondsLast30": 85889,
+    "diamondsLast30": 81882,
     "diamondsLastMonth": 112525,
     "diamonds2MonthsAgo": 149405,
     "hours": 45,
@@ -2699,7 +2699,7 @@ const creatorsData = [
     "diamonds": 12041,
     "diamondsGoal": 1,
     "diamondsPace": "37,327",
-    "diamondsLast30": 42176,
+    "diamondsLast30": 42776,
     "diamondsLastMonth": 31415,
     "diamonds2MonthsAgo": 48854,
     "hours": 32,
@@ -2739,7 +2739,7 @@ const creatorsData = [
     "diamonds": 2709,
     "diamondsGoal": 1,
     "diamondsPace": "8,398",
-    "diamondsLast30": 14266,
+    "diamondsLast30": 13847,
     "diamondsLastMonth": 25652,
     "diamonds2MonthsAgo": 53155,
     "hours": 33,
@@ -2779,7 +2779,7 @@ const creatorsData = [
     "diamonds": 2193,
     "diamondsGoal": 1,
     "diamondsPace": "6,798",
-    "diamondsLast30": 9064,
+    "diamondsLast30": 9153,
     "diamondsLastMonth": 22796,
     "diamonds2MonthsAgo": 42008,
     "hours": 51,
@@ -2819,7 +2819,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 141040,
+    "diamondsLast30": 0,
     "diamondsLastMonth": 208072,
     "diamonds2MonthsAgo": 1880266,
     "hours": 0,
@@ -2859,7 +2859,7 @@ const creatorsData = [
     "diamonds": 31860,
     "diamondsGoal": 1,
     "diamondsPace": "98,766",
-    "diamondsLast30": 193368,
+    "diamondsLast30": 198256,
     "diamondsLastMonth": 285875,
     "diamonds2MonthsAgo": 193812,
     "hours": 5,
@@ -2899,7 +2899,7 @@ const creatorsData = [
     "diamonds": 6430,
     "diamondsGoal": 1,
     "diamondsPace": "19,933",
-    "diamondsLast30": 28215,
+    "diamondsLast30": 28389,
     "diamondsLastMonth": 32843,
     "diamonds2MonthsAgo": 22429,
     "hours": 25,
@@ -2939,7 +2939,7 @@ const creatorsData = [
     "diamonds": 60240,
     "diamondsGoal": 1,
     "diamondsPace": "186,744",
-    "diamondsLast30": 149503,
+    "diamondsLast30": 149123,
     "diamondsLastMonth": 162025,
     "diamonds2MonthsAgo": 363931,
     "hours": 15,
@@ -2979,7 +2979,7 @@ const creatorsData = [
     "diamonds": 37461,
     "diamondsGoal": 1,
     "diamondsPace": "116,129",
-    "diamondsLast30": 151835,
+    "diamondsLast30": 146137,
     "diamondsLastMonth": 159539,
     "diamonds2MonthsAgo": 123784,
     "hours": 16,
@@ -3019,7 +3019,7 @@ const creatorsData = [
     "diamonds": 3002,
     "diamondsGoal": 1,
     "diamondsPace": "9,306",
-    "diamondsLast30": 4270,
+    "diamondsLast30": 4253,
     "diamondsLastMonth": 13034,
     "diamonds2MonthsAgo": 7496,
     "hours": 24,
@@ -3059,7 +3059,7 @@ const creatorsData = [
     "diamonds": 1153,
     "diamondsGoal": 1,
     "diamondsPace": "3,574",
-    "diamondsLast30": 8728,
+    "diamondsLast30": 8708,
     "diamondsLastMonth": 8532,
     "diamonds2MonthsAgo": 1892,
     "hours": 57,
@@ -3099,7 +3099,7 @@ const creatorsData = [
     "diamonds": 26092,
     "diamondsGoal": 1,
     "diamondsPace": "80,885",
-    "diamondsLast30": 74705,
+    "diamondsLast30": 72973,
     "diamondsLastMonth": 76418,
     "diamonds2MonthsAgo": 328446,
     "hours": 21,
@@ -3139,7 +3139,7 @@ const creatorsData = [
     "diamonds": 12574,
     "diamondsGoal": 1,
     "diamondsPace": "38,979",
-    "diamondsLast30": 44332,
+    "diamondsLast30": 44176,
     "diamondsLastMonth": 42382,
     "diamonds2MonthsAgo": 39080,
     "hours": 26,
@@ -3299,7 +3299,7 @@ const creatorsData = [
     "diamonds": 38788,
     "diamondsGoal": 1,
     "diamondsPace": "120,243",
-    "diamondsLast30": 342896,
+    "diamondsLast30": 342495,
     "diamondsLastMonth": 312443,
     "diamonds2MonthsAgo": 414736,
     "hours": 11,
@@ -3339,7 +3339,7 @@ const creatorsData = [
     "diamonds": 33741,
     "diamondsGoal": 1,
     "diamondsPace": "104,597",
-    "diamondsLast30": 65024,
+    "diamondsLast30": 66796,
     "diamondsLastMonth": 107103,
     "diamonds2MonthsAgo": 196140,
     "hours": 10,
@@ -3379,7 +3379,7 @@ const creatorsData = [
     "diamonds": 17525,
     "diamondsGoal": 1,
     "diamondsPace": "54,328",
-    "diamondsLast30": 54990,
+    "diamondsLast30": 54702,
     "diamondsLastMonth": 67344,
     "diamonds2MonthsAgo": 170530,
     "hours": 7,
@@ -3419,7 +3419,7 @@ const creatorsData = [
     "diamonds": 15756,
     "diamondsGoal": 1,
     "diamondsPace": "48,844",
-    "diamondsLast30": 53475,
+    "diamondsLast30": 54983,
     "diamondsLastMonth": 53218,
     "diamonds2MonthsAgo": 51423,
     "hours": 12,
@@ -3459,7 +3459,7 @@ const creatorsData = [
     "diamonds": 19814,
     "diamondsGoal": 1,
     "diamondsPace": "61,423",
-    "diamondsLast30": 44372,
+    "diamondsLast30": 44634,
     "diamondsLastMonth": 57808,
     "diamonds2MonthsAgo": 41261,
     "hours": 18,
@@ -3539,7 +3539,7 @@ const creatorsData = [
     "diamonds": 349,
     "diamondsGoal": 1,
     "diamondsPace": "1,082",
-    "diamondsLast30": 2569,
+    "diamondsLast30": 2532,
     "diamondsLastMonth": 3811,
     "diamonds2MonthsAgo": 877,
     "hours": 17,
@@ -3579,7 +3579,7 @@ const creatorsData = [
     "diamonds": 12,
     "diamondsGoal": 1,
     "diamondsPace": "37",
-    "diamondsLast30": 185,
+    "diamondsLast30": 132,
     "diamondsLastMonth": 1392,
     "diamonds2MonthsAgo": 477,
     "hours": 29,
@@ -3619,7 +3619,7 @@ const creatorsData = [
     "diamonds": 68,
     "diamondsGoal": 1,
     "diamondsPace": "211",
-    "diamondsLast30": 83,
+    "diamondsLast30": 88,
     "diamondsLastMonth": 106,
     "diamonds2MonthsAgo": 539,
     "hours": 27,
@@ -3631,7 +3631,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "99,932",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -3699,7 +3699,7 @@ const creatorsData = [
     "diamonds": 63209,
     "diamondsGoal": 1,
     "diamondsPace": "195,948",
-    "diamondsLast30": 252574,
+    "diamondsLast30": 249041,
     "diamondsLastMonth": 202005,
     "diamonds2MonthsAgo": 21362,
     "hours": 11,
@@ -3779,7 +3779,7 @@ const creatorsData = [
     "diamonds": 3702,
     "diamondsGoal": 1,
     "diamondsPace": "11,476",
-    "diamondsLast30": 9084,
+    "diamondsLast30": 9220,
     "diamondsLastMonth": 8445,
     "diamonds2MonthsAgo": 6651,
     "hours": 49,
@@ -3819,7 +3819,7 @@ const creatorsData = [
     "diamonds": 115726,
     "diamondsGoal": 2,
     "diamondsPace": "358,751",
-    "diamondsLast30": 270928,
+    "diamondsLast30": 320001,
     "diamondsLastMonth": 274499,
     "diamonds2MonthsAgo": 207846,
     "hours": 4,
@@ -3859,7 +3859,7 @@ const creatorsData = [
     "diamonds": 32021,
     "diamondsGoal": 1,
     "diamondsPace": "99,265",
-    "diamondsLast30": 90224,
+    "diamondsLast30": 70295,
     "diamondsLastMonth": 80222,
     "diamonds2MonthsAgo": 135880,
     "hours": 10,
@@ -3899,7 +3899,7 @@ const creatorsData = [
     "diamonds": 14747,
     "diamondsGoal": 1,
     "diamondsPace": "45,716",
-    "diamondsLast30": 21975,
+    "diamondsLast30": 22273,
     "diamondsLastMonth": 8537,
     "diamonds2MonthsAgo": 1646,
     "hours": 41,
@@ -3939,7 +3939,7 @@ const creatorsData = [
     "diamonds": 7136,
     "diamondsGoal": 1,
     "diamondsPace": "22,122",
-    "diamondsLast30": 17077,
+    "diamondsLast30": 17221,
     "diamondsLastMonth": 21224,
     "diamonds2MonthsAgo": 32698,
     "hours": 47,
@@ -3979,7 +3979,7 @@ const creatorsData = [
     "diamonds": 46380,
     "diamondsGoal": 1,
     "diamondsPace": "143,778",
-    "diamondsLast30": 294269,
+    "diamondsLast30": 276520,
     "diamondsLastMonth": 261548,
     "diamonds2MonthsAgo": 10467,
     "hours": 7,
@@ -4019,7 +4019,7 @@ const creatorsData = [
     "diamonds": 100712,
     "diamondsGoal": 2,
     "diamondsPace": "312,207",
-    "diamondsLast30": 164934,
+    "diamondsLast30": 158899,
     "diamondsLastMonth": 81458,
     "diamonds2MonthsAgo": 108506,
     "hours": 18,
@@ -4059,7 +4059,7 @@ const creatorsData = [
     "diamonds": 30750,
     "diamondsGoal": 1,
     "diamondsPace": "95,325",
-    "diamondsLast30": 47519,
+    "diamondsLast30": 45820,
     "diamondsLastMonth": 31182,
     "diamonds2MonthsAgo": 217088,
     "hours": 16,
@@ -4099,7 +4099,7 @@ const creatorsData = [
     "diamonds": 250,
     "diamondsGoal": 1,
     "diamondsPace": "775",
-    "diamondsLast30": 834,
+    "diamondsLast30": 2304,
     "diamondsLastMonth": 802,
     "diamonds2MonthsAgo": 1097,
     "hours": 11,
@@ -4179,7 +4179,7 @@ const creatorsData = [
     "diamonds": 4,
     "diamondsGoal": 1,
     "diamondsPace": "12",
-    "diamondsLast30": 71,
+    "diamondsLast30": 72,
     "diamondsLastMonth": 269,
     "diamonds2MonthsAgo": 167,
     "hours": 22,
@@ -4191,7 +4191,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "99,996",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -4219,7 +4219,7 @@ const creatorsData = [
     "diamonds": 11053,
     "diamondsGoal": 1,
     "diamondsPace": "34,264",
-    "diamondsLast30": 33615,
+    "diamondsLast30": 34883,
     "diamondsLastMonth": 34057,
     "diamonds2MonthsAgo": 18567,
     "hours": 23,
@@ -4259,7 +4259,7 @@ const creatorsData = [
     "diamonds": 10340,
     "diamondsGoal": 1,
     "diamondsPace": "32,054",
-    "diamondsLast30": 38565,
+    "diamondsLast30": 38452,
     "diamondsLastMonth": 38512,
     "diamonds2MonthsAgo": 14227,
     "hours": 55,
@@ -4299,7 +4299,7 @@ const creatorsData = [
     "diamonds": 38237,
     "diamondsGoal": 1,
     "diamondsPace": "118,535",
-    "diamondsLast30": 86059,
+    "diamondsLast30": 98936,
     "diamondsLastMonth": 92307,
     "diamonds2MonthsAgo": 70310,
     "hours": 25,
@@ -4311,7 +4311,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "61,763",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -4379,7 +4379,7 @@ const creatorsData = [
     "diamonds": 31232,
     "diamondsGoal": 1,
     "diamondsPace": "96,819",
-    "diamondsLast30": 102984,
+    "diamondsLast30": 85737,
     "diamondsLastMonth": 108627,
     "diamonds2MonthsAgo": 55284,
     "hours": 10,
@@ -4459,7 +4459,7 @@ const creatorsData = [
     "diamonds": 84,
     "diamondsGoal": 1,
     "diamondsPace": "260",
-    "diamondsLast30": 1873,
+    "diamondsLast30": 1866,
     "diamondsLastMonth": 3877,
     "diamonds2MonthsAgo": 589,
     "hours": 8,
@@ -4499,7 +4499,7 @@ const creatorsData = [
     "diamonds": 73,
     "diamondsGoal": 1,
     "diamondsPace": "226",
-    "diamondsLast30": 78,
+    "diamondsLast30": 77,
     "diamondsLastMonth": 103,
     "diamonds2MonthsAgo": 17,
     "hours": 28,
@@ -4539,7 +4539,7 @@ const creatorsData = [
     "diamonds": 1190,
     "diamondsGoal": 1,
     "diamondsPace": "3,689",
-    "diamondsLast30": 7610,
+    "diamondsLast30": 7937,
     "diamondsLastMonth": 9341,
     "diamonds2MonthsAgo": 22312,
     "hours": 6,
@@ -4619,7 +4619,7 @@ const creatorsData = [
     "diamonds": 3,
     "diamondsGoal": 1,
     "diamondsPace": "9",
-    "diamondsLast30": 1153,
+    "diamondsLast30": 1142,
     "diamondsLastMonth": 3890,
     "diamonds2MonthsAgo": 3391,
     "hours": 0,
@@ -4659,7 +4659,7 @@ const creatorsData = [
     "diamonds": 48653,
     "diamondsGoal": 1,
     "diamondsPace": "150,824",
-    "diamondsLast30": 89827,
+    "diamondsLast30": 87265,
     "diamondsLastMonth": 55592,
     "diamonds2MonthsAgo": 48447,
     "hours": 44,
@@ -4671,7 +4671,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "51,347",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 300,
@@ -4699,7 +4699,7 @@ const creatorsData = [
     "diamonds": 12129,
     "diamondsGoal": 1,
     "diamondsPace": "37,600",
-    "diamondsLast30": 67080,
+    "diamondsLast30": 67579,
     "diamondsLastMonth": 60970,
     "diamonds2MonthsAgo": 51371,
     "hours": 19,
@@ -4739,7 +4739,7 @@ const creatorsData = [
     "diamonds": 9198,
     "diamondsGoal": 1,
     "diamondsPace": "28,514",
-    "diamondsLast30": 18077,
+    "diamondsLast30": 20301,
     "diamondsLastMonth": 10015,
     "diamonds2MonthsAgo": 25557,
     "hours": 19,
@@ -4779,7 +4779,7 @@ const creatorsData = [
     "diamonds": 4247,
     "diamondsGoal": 1,
     "diamondsPace": "13,166",
-    "diamondsLast30": 8020,
+    "diamondsLast30": 8047,
     "diamondsLastMonth": 5381,
     "diamonds2MonthsAgo": 0,
     "hours": 59,
@@ -4819,7 +4819,7 @@ const creatorsData = [
     "diamonds": 7548,
     "diamondsGoal": 1,
     "diamondsPace": "23,399",
-    "diamondsLast30": 113626,
+    "diamondsLast30": 106692,
     "diamondsLastMonth": 124297,
     "diamonds2MonthsAgo": 136995,
     "hours": 5,
@@ -4859,7 +4859,7 @@ const creatorsData = [
     "diamonds": 1709,
     "diamondsGoal": 1,
     "diamondsPace": "5,298",
-    "diamondsLast30": 24415,
+    "diamondsLast30": 24958,
     "diamondsLastMonth": 29099,
     "diamonds2MonthsAgo": 13558,
     "hours": 5,
@@ -4899,7 +4899,7 @@ const creatorsData = [
     "diamonds": 32501,
     "diamondsGoal": 1,
     "diamondsPace": "100,753",
-    "diamondsLast30": 32501,
+    "diamondsLast30": 35109,
     "diamondsLastMonth": 9481,
     "diamonds2MonthsAgo": 67521,
     "hours": 36,
@@ -4939,7 +4939,7 @@ const creatorsData = [
     "diamonds": 7269,
     "diamondsGoal": 1,
     "diamondsPace": "22,534",
-    "diamondsLast30": 26301,
+    "diamondsLast30": 32281,
     "diamondsLastMonth": 19242,
     "diamonds2MonthsAgo": 17610,
     "hours": 18,
@@ -4951,7 +4951,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "92,731",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -4979,7 +4979,7 @@ const creatorsData = [
     "diamonds": 2558,
     "diamondsGoal": 1,
     "diamondsPace": "7,930",
-    "diamondsLast30": 4085,
+    "diamondsLast30": 4123,
     "diamondsLastMonth": 3962,
     "diamonds2MonthsAgo": 7427,
     "hours": 34,
@@ -5019,7 +5019,7 @@ const creatorsData = [
     "diamonds": 121,
     "diamondsGoal": 1,
     "diamondsPace": "375",
-    "diamondsLast30": 6375,
+    "diamondsLast30": 6376,
     "diamondsLastMonth": 10789,
     "diamonds2MonthsAgo": 46711,
     "hours": 0,
@@ -5059,7 +5059,7 @@ const creatorsData = [
     "diamonds": 20529,
     "diamondsGoal": 1,
     "diamondsPace": "63,640",
-    "diamondsLast30": 23252,
+    "diamondsLast30": 23133,
     "diamondsLastMonth": 100094,
     "diamonds2MonthsAgo": 58347,
     "hours": 16,
@@ -5099,7 +5099,7 @@ const creatorsData = [
     "diamonds": 16242,
     "diamondsGoal": 1,
     "diamondsPace": "50,350",
-    "diamondsLast30": 59698,
+    "diamondsLast30": 60776,
     "diamondsLastMonth": 70209,
     "diamonds2MonthsAgo": 76988,
     "hours": 6,
@@ -5139,7 +5139,7 @@ const creatorsData = [
     "diamonds": 12673,
     "diamondsGoal": 1,
     "diamondsPace": "39,286",
-    "diamondsLast30": 60228,
+    "diamondsLast30": 60242,
     "diamondsLastMonth": 49014,
     "diamonds2MonthsAgo": 22067,
     "hours": 11,
@@ -5179,7 +5179,7 @@ const creatorsData = [
     "diamonds": 9751,
     "diamondsGoal": 1,
     "diamondsPace": "30,228",
-    "diamondsLast30": 100938,
+    "diamondsLast30": 97458,
     "diamondsLastMonth": 138950,
     "diamonds2MonthsAgo": 44247,
     "hours": 4,
@@ -5219,7 +5219,7 @@ const creatorsData = [
     "diamonds": 8188,
     "diamondsGoal": 1,
     "diamondsPace": "25,383",
-    "diamondsLast30": 25467,
+    "diamondsLast30": 25615,
     "diamondsLastMonth": 25363,
     "diamonds2MonthsAgo": 12402,
     "hours": 20,
@@ -5259,7 +5259,7 @@ const creatorsData = [
     "diamonds": 3707,
     "diamondsGoal": 1,
     "diamondsPace": "11,492",
-    "diamondsLast30": 15750,
+    "diamondsLast30": 13700,
     "diamondsLastMonth": 14451,
     "diamonds2MonthsAgo": 29054,
     "hours": 33,
@@ -5299,7 +5299,7 @@ const creatorsData = [
     "diamonds": 1075,
     "diamondsGoal": 1,
     "diamondsPace": "3,333",
-    "diamondsLast30": 2363,
+    "diamondsLast30": 2288,
     "diamondsLastMonth": 8368,
     "diamonds2MonthsAgo": 1441568,
     "hours": 0,
@@ -5339,7 +5339,7 @@ const creatorsData = [
     "diamonds": 191,
     "diamondsGoal": 1,
     "diamondsPace": "592",
-    "diamondsLast30": 34516,
+    "diamondsLast30": 10960,
     "diamondsLastMonth": 49660,
     "diamonds2MonthsAgo": 48942,
     "hours": 0,
@@ -5379,7 +5379,7 @@ const creatorsData = [
     "diamonds": 2327,
     "diamondsGoal": 1,
     "diamondsPace": "7,214",
-    "diamondsLast30": 2896,
+    "diamondsLast30": 2897,
     "diamondsLastMonth": 656,
     "diamonds2MonthsAgo": 658,
     "hours": 21,
@@ -5419,7 +5419,7 @@ const creatorsData = [
     "diamonds": 74,
     "diamondsGoal": 1,
     "diamondsPace": "229",
-    "diamondsLast30": 286,
+    "diamondsLast30": 276,
     "diamondsLastMonth": 265,
     "diamonds2MonthsAgo": 1479,
     "hours": 12,
@@ -5499,7 +5499,7 @@ const creatorsData = [
     "diamonds": 888,
     "diamondsGoal": 1,
     "diamondsPace": "2,753",
-    "diamondsLast30": 1371,
+    "diamondsLast30": 1372,
     "diamondsLastMonth": 1479,
     "diamonds2MonthsAgo": 6157,
     "hours": 5,
@@ -5539,7 +5539,7 @@ const creatorsData = [
     "diamonds": 13,
     "diamondsGoal": 1,
     "diamondsPace": "40",
-    "diamondsLast30": 1637,
+    "diamondsLast30": 1607,
     "diamondsLastMonth": 5713,
     "diamonds2MonthsAgo": 5951,
     "hours": 5,
@@ -5671,7 +5671,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "100,000",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -5699,7 +5699,7 @@ const creatorsData = [
     "diamonds": 3996,
     "diamondsGoal": 1,
     "diamondsPace": "12,388",
-    "diamondsLast30": 7705,
+    "diamondsLast30": 7295,
     "diamondsLastMonth": 4991,
     "diamonds2MonthsAgo": 19980,
     "hours": 16,
@@ -5779,7 +5779,7 @@ const creatorsData = [
     "diamonds": 53491,
     "diamondsGoal": 1,
     "diamondsPace": "165,822",
-    "diamondsLast30": 83121,
+    "diamondsLast30": 96276,
     "diamondsLastMonth": 30046,
     "diamonds2MonthsAgo": 894,
     "hours": 29,
@@ -5819,7 +5819,7 @@ const creatorsData = [
     "diamonds": 27054,
     "diamondsGoal": 1,
     "diamondsPace": "83,867",
-    "diamondsLast30": 57891,
+    "diamondsLast30": 60015,
     "diamondsLastMonth": 45733,
     "diamonds2MonthsAgo": 42555,
     "hours": 10,
@@ -5859,7 +5859,7 @@ const creatorsData = [
     "diamonds": 4185,
     "diamondsGoal": 1,
     "diamondsPace": "12,974",
-    "diamondsLast30": 8542,
+    "diamondsLast30": 8164,
     "diamondsLastMonth": 4994,
     "diamonds2MonthsAgo": 10664,
     "hours": 9,
@@ -5899,7 +5899,7 @@ const creatorsData = [
     "diamonds": 3045,
     "diamondsGoal": 1,
     "diamondsPace": "9,440",
-    "diamondsLast30": 6213,
+    "diamondsLast30": 5940,
     "diamondsLastMonth": 7855,
     "diamonds2MonthsAgo": 13567,
     "hours": 16,
@@ -5939,7 +5939,7 @@ const creatorsData = [
     "diamonds": 1432,
     "diamondsGoal": 1,
     "diamondsPace": "4,439",
-    "diamondsLast30": 2688,
+    "diamondsLast30": 2700,
     "diamondsLastMonth": 6065,
     "diamonds2MonthsAgo": 3260,
     "hours": 13,
@@ -5991,7 +5991,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "99,253",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -6019,7 +6019,7 @@ const creatorsData = [
     "diamonds": 1021,
     "diamondsGoal": 1,
     "diamondsPace": "3,165",
-    "diamondsLast30": 1049,
+    "diamondsLast30": 2320,
     "diamondsLastMonth": 28,
     "diamonds2MonthsAgo": 0,
     "hours": 18,
@@ -6031,7 +6031,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "98,979",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -6059,7 +6059,7 @@ const creatorsData = [
     "diamonds": 573,
     "diamondsGoal": 1,
     "diamondsPace": "1,776",
-    "diamondsLast30": 9958,
+    "diamondsLast30": 12986,
     "diamondsLastMonth": 17184,
     "diamonds2MonthsAgo": 7122,
     "hours": 18,
@@ -6099,7 +6099,7 @@ const creatorsData = [
     "diamonds": 174611,
     "diamondsGoal": 2,
     "diamondsPace": "541,294",
-    "diamondsLast30": 193299,
+    "diamondsLast30": 193300,
     "diamondsLastMonth": 18688,
     "diamonds2MonthsAgo": -2,
     "hours": 16,
@@ -6139,7 +6139,7 @@ const creatorsData = [
     "diamonds": 77299,
     "diamondsGoal": 1,
     "diamondsPace": "239,627",
-    "diamondsLast30": 134709,
+    "diamondsLast30": 137452,
     "diamondsLastMonth": 68366,
     "diamonds2MonthsAgo": 146651,
     "hours": 6,
@@ -6179,7 +6179,7 @@ const creatorsData = [
     "diamonds": 22226,
     "diamondsGoal": 1,
     "diamondsPace": "68,901",
-    "diamondsLast30": 25573,
+    "diamondsLast30": 28593,
     "diamondsLastMonth": 5217,
     "diamonds2MonthsAgo": 0,
     "hours": 43,
@@ -6219,7 +6219,7 @@ const creatorsData = [
     "diamonds": 162,
     "diamondsGoal": 1,
     "diamondsPace": "502",
-    "diamondsLast30": 6031,
+    "diamondsLast30": 5866,
     "diamondsLastMonth": 17500,
     "diamonds2MonthsAgo": 1001,
     "hours": 8,
@@ -6339,7 +6339,7 @@ const creatorsData = [
     "diamonds": 10502,
     "diamondsGoal": 1,
     "diamondsPace": "32,556",
-    "diamondsLast30": 10609,
+    "diamondsLast30": 10506,
     "diamondsLastMonth": 191,
     "diamonds2MonthsAgo": 0,
     "hours": 88,
@@ -6379,7 +6379,7 @@ const creatorsData = [
     "diamonds": 7147,
     "diamondsGoal": 1,
     "diamondsPace": "22,156",
-    "diamondsLast30": 22261,
+    "diamondsLast30": 15895,
     "diamondsLastMonth": 23419,
     "diamonds2MonthsAgo": 27378,
     "hours": 12,
@@ -6419,7 +6419,7 @@ const creatorsData = [
     "diamonds": 7645,
     "diamondsGoal": 1,
     "diamondsPace": "23,700",
-    "diamondsLast30": 18678,
+    "diamondsLast30": 18375,
     "diamondsLastMonth": 12211,
     "diamonds2MonthsAgo": 0,
     "hours": 42,
@@ -6459,7 +6459,7 @@ const creatorsData = [
     "diamonds": 4668,
     "diamondsGoal": 1,
     "diamondsPace": "14,471",
-    "diamondsLast30": 12932,
+    "diamondsLast30": 12856,
     "diamondsLastMonth": 10560,
     "diamonds2MonthsAgo": 0,
     "hours": 31,
@@ -6471,7 +6471,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "95,332",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -6499,7 +6499,7 @@ const creatorsData = [
     "diamonds": 3098,
     "diamondsGoal": 1,
     "diamondsPace": "9,604",
-    "diamondsLast30": 6990,
+    "diamondsLast30": 6947,
     "diamondsLastMonth": 6385,
     "diamonds2MonthsAgo": 0,
     "hours": 15,
@@ -6539,7 +6539,7 @@ const creatorsData = [
     "diamonds": 1765,
     "diamondsGoal": 1,
     "diamondsPace": "5,472",
-    "diamondsLast30": 2530,
+    "diamondsLast30": 2118,
     "diamondsLastMonth": 2506,
     "diamonds2MonthsAgo": 848,
     "hours": 15,
@@ -6659,7 +6659,7 @@ const creatorsData = [
     "diamonds": 20297,
     "diamondsGoal": 1,
     "diamondsPace": "62,921",
-    "diamondsLast30": 31515,
+    "diamondsLast30": 30980,
     "diamondsLastMonth": 13649,
     "diamonds2MonthsAgo": 3293,
     "hours": 19,
@@ -6699,7 +6699,7 @@ const creatorsData = [
     "diamonds": 6839,
     "diamondsGoal": 1,
     "diamondsPace": "21,201",
-    "diamondsLast30": 29420,
+    "diamondsLast30": 30434,
     "diamondsLastMonth": 43477,
     "diamonds2MonthsAgo": 3813,
     "hours": 11,
@@ -6779,7 +6779,7 @@ const creatorsData = [
     "diamonds": 1306,
     "diamondsGoal": 1,
     "diamondsPace": "4,049",
-    "diamondsLast30": 5685,
+    "diamondsLast30": 5666,
     "diamondsLastMonth": 6216,
     "diamonds2MonthsAgo": 715,
     "hours": 11,
@@ -6819,7 +6819,7 @@ const creatorsData = [
     "diamonds": 556,
     "diamondsGoal": 1,
     "diamondsPace": "1,724",
-    "diamondsLast30": 757,
+    "diamondsLast30": 763,
     "diamondsLastMonth": 814,
     "diamonds2MonthsAgo": 0,
     "hours": 12,
@@ -6859,7 +6859,7 @@ const creatorsData = [
     "diamonds": 385,
     "diamondsGoal": 1,
     "diamondsPace": "1,194",
-    "diamondsLast30": 4252,
+    "diamondsLast30": 4265,
     "diamondsLastMonth": 3911,
     "diamonds2MonthsAgo": 307,
     "hours": 24,
@@ -6871,7 +6871,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "99,615",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -6939,7 +6939,7 @@ const creatorsData = [
     "diamonds": 18593,
     "diamondsGoal": 1,
     "diamondsPace": "57,638",
-    "diamondsLast30": 82927,
+    "diamondsLast30": 86635,
     "diamondsLastMonth": 102861,
     "diamonds2MonthsAgo": 36705,
     "hours": 7,
@@ -6979,7 +6979,7 @@ const creatorsData = [
     "diamonds": 577,
     "diamondsGoal": 1,
     "diamondsPace": "1,789",
-    "diamondsLast30": 2102,
+    "diamondsLast30": 2123,
     "diamondsLastMonth": 5757,
     "diamonds2MonthsAgo": 306,
     "hours": 20,
@@ -7179,7 +7179,7 @@ const creatorsData = [
     "diamonds": 13080,
     "diamondsGoal": 1,
     "diamondsPace": "40,548",
-    "diamondsLast30": 24163,
+    "diamondsLast30": 24155,
     "diamondsLastMonth": 24696,
     "diamonds2MonthsAgo": 20189,
     "hours": 19,
@@ -7259,7 +7259,7 @@ const creatorsData = [
     "diamonds": 4699,
     "diamondsGoal": 1,
     "diamondsPace": "14,567",
-    "diamondsLast30": 13756,
+    "diamondsLast30": 12605,
     "diamondsLastMonth": 16532,
     "diamonds2MonthsAgo": 42928,
     "hours": 6,
@@ -7299,7 +7299,7 @@ const creatorsData = [
     "diamonds": 1529,
     "diamondsGoal": 1,
     "diamondsPace": "4,740",
-    "diamondsLast30": 10050,
+    "diamondsLast30": 10460,
     "diamondsLastMonth": 8556,
     "diamonds2MonthsAgo": 0,
     "hours": 25,
@@ -7379,7 +7379,7 @@ const creatorsData = [
     "diamonds": 331,
     "diamondsGoal": 1,
     "diamondsPace": "1,026",
-    "diamondsLast30": 1213,
+    "diamondsLast30": 1218,
     "diamondsLastMonth": 882,
     "diamonds2MonthsAgo": 0,
     "hours": 12,
@@ -7499,7 +7499,7 @@ const creatorsData = [
     "diamonds": 12796,
     "diamondsGoal": 1,
     "diamondsPace": "39,668",
-    "diamondsLast30": 44913,
+    "diamondsLast30": 46168,
     "diamondsLastMonth": 32117,
     "diamonds2MonthsAgo": 0,
     "hours": 9,
@@ -7539,7 +7539,7 @@ const creatorsData = [
     "diamonds": 598,
     "diamondsGoal": 1,
     "diamondsPace": "1,854",
-    "diamondsLast30": 9655,
+    "diamondsLast30": 9559,
     "diamondsLastMonth": 9620,
     "diamonds2MonthsAgo": 12159,
     "hours": 9,
@@ -7579,7 +7579,7 @@ const creatorsData = [
     "diamonds": 334,
     "diamondsGoal": 1,
     "diamondsPace": "1,035",
-    "diamondsLast30": 662,
+    "diamondsLast30": 641,
     "diamondsLastMonth": 1876,
     "diamonds2MonthsAgo": 1051,
     "hours": 6,
@@ -7659,7 +7659,7 @@ const creatorsData = [
     "diamonds": 115,
     "diamondsGoal": 1,
     "diamondsPace": "357",
-    "diamondsLast30": 2873,
+    "diamondsLast30": 2872,
     "diamondsLastMonth": 2920,
     "diamonds2MonthsAgo": 11960,
     "hours": 2,
@@ -7739,7 +7739,7 @@ const creatorsData = [
     "diamonds": 5,
     "diamondsGoal": 1,
     "diamondsPace": "16",
-    "diamondsLast30": 41,
+    "diamondsLast30": 42,
     "diamondsLastMonth": 62,
     "diamonds2MonthsAgo": 660,
     "hours": 8,
@@ -7859,7 +7859,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 15,
+    "diamondsLast30": 0,
     "diamondsLastMonth": 62,
     "diamonds2MonthsAgo": 8754,
     "hours": 0,
@@ -7979,7 +7979,7 @@ const creatorsData = [
     "diamonds": 18590,
     "diamondsGoal": 1,
     "diamondsPace": "57,629",
-    "diamondsLast30": 52182,
+    "diamondsLast30": 60469,
     "diamondsLastMonth": 43704,
     "diamonds2MonthsAgo": 121548,
     "hours": 2,
@@ -8019,7 +8019,7 @@ const creatorsData = [
     "diamonds": 20129,
     "diamondsGoal": 1,
     "diamondsPace": "62,400",
-    "diamondsLast30": 20138,
+    "diamondsLast30": 20581,
     "diamondsLastMonth": 9,
     "diamonds2MonthsAgo": 103,
     "hours": 56,
@@ -8099,7 +8099,7 @@ const creatorsData = [
     "diamonds": 1251,
     "diamondsGoal": 1,
     "diamondsPace": "3,878",
-    "diamondsLast30": 2503,
+    "diamondsLast30": 2539,
     "diamondsLastMonth": 1252,
     "diamonds2MonthsAgo": 0,
     "hours": 14,
@@ -8179,7 +8179,7 @@ const creatorsData = [
     "diamonds": 24,
     "diamondsGoal": 1,
     "diamondsPace": "74",
-    "diamondsLast30": 616,
+    "diamondsLast30": 619,
     "diamondsLastMonth": 1308,
     "diamonds2MonthsAgo": 1,
     "hours": 29,
@@ -8259,7 +8259,7 @@ const creatorsData = [
     "diamonds": 9579,
     "diamondsGoal": 1,
     "diamondsPace": "29,695",
-    "diamondsLast30": 67166,
+    "diamondsLast30": 72168,
     "diamondsLastMonth": 84465,
     "diamonds2MonthsAgo": 53638,
     "hours": 4,
@@ -8339,7 +8339,7 @@ const creatorsData = [
     "diamonds": 2937,
     "diamondsGoal": 1,
     "diamondsPace": "9,105",
-    "diamondsLast30": 7773,
+    "diamondsLast30": 7786,
     "diamondsLastMonth": 6827,
     "diamonds2MonthsAgo": 20277,
     "hours": 8,
@@ -8379,7 +8379,7 @@ const creatorsData = [
     "diamonds": 1958,
     "diamondsGoal": 1,
     "diamondsPace": "6,070",
-    "diamondsLast30": 1958,
+    "diamondsLast30": 3900,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 6734,
     "hours": 20,
@@ -8391,7 +8391,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "98,042",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 5000,
@@ -8579,7 +8579,7 @@ const creatorsData = [
     "diamonds": 179,
     "diamondsGoal": 1,
     "diamondsPace": "555",
-    "diamondsLast30": 280,
+    "diamondsLast30": 467,
     "diamondsLastMonth": 5618,
     "diamonds2MonthsAgo": 27,
     "hours": 3,
@@ -8619,7 +8619,7 @@ const creatorsData = [
     "diamonds": 102,
     "diamondsGoal": 1,
     "diamondsPace": "316",
-    "diamondsLast30": 145,
+    "diamondsLast30": 173,
     "diamondsLastMonth": 43,
     "diamonds2MonthsAgo": 0,
     "hours": 7,
@@ -8739,7 +8739,7 @@ const creatorsData = [
     "diamonds": 414,
     "diamondsGoal": 1,
     "diamondsPace": "1,283",
-    "diamondsLast30": 76929,
+    "diamondsLast30": 76950,
     "diamondsLastMonth": 76515,
     "diamonds2MonthsAgo": 100240,
     "hours": 0,
@@ -8779,7 +8779,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 37467,
+    "diamondsLast30": 24682,
     "diamondsLastMonth": 47098,
     "diamonds2MonthsAgo": 32038,
     "hours": 0,
@@ -8859,7 +8859,7 @@ const creatorsData = [
     "diamonds": 16952,
     "diamondsGoal": 1,
     "diamondsPace": "52,551",
-    "diamondsLast30": 110089,
+    "diamondsLast30": 109672,
     "diamondsLastMonth": 93605,
     "diamonds2MonthsAgo": 6747,
     "hours": 3,
@@ -8939,7 +8939,7 @@ const creatorsData = [
     "diamonds": 2229,
     "diamondsGoal": 1,
     "diamondsPace": "6,910",
-    "diamondsLast30": 6560,
+    "diamondsLast30": 6580,
     "diamondsLastMonth": 5566,
     "diamonds2MonthsAgo": 35285,
     "hours": 6,
@@ -8979,7 +8979,7 @@ const creatorsData = [
     "diamonds": 723,
     "diamondsGoal": 1,
     "diamondsPace": "2,241",
-    "diamondsLast30": 1780,
+    "diamondsLast30": 2797,
     "diamondsLastMonth": 2152,
     "diamonds2MonthsAgo": 570,
     "hours": 7,
@@ -9099,7 +9099,7 @@ const creatorsData = [
     "diamonds": 320,
     "diamondsGoal": 1,
     "diamondsPace": "992",
-    "diamondsLast30": 469,
+    "diamondsLast30": 463,
     "diamondsLastMonth": 167,
     "diamonds2MonthsAgo": 743,
     "hours": 22,
@@ -9139,7 +9139,7 @@ const creatorsData = [
     "diamonds": 1,
     "diamondsGoal": 1,
     "diamondsPace": "3",
-    "diamondsLast30": 114,
+    "diamondsLast30": 110,
     "diamondsLastMonth": 114,
     "diamonds2MonthsAgo": 2,
     "hours": 4,
@@ -9219,7 +9219,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 611,
+    "diamondsLast30": 396,
     "diamondsLastMonth": 611,
     "diamonds2MonthsAgo": 6118,
     "hours": 0,
@@ -9259,7 +9259,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 360,
+    "diamondsLast30": 354,
     "diamondsLastMonth": 361,
     "diamonds2MonthsAgo": 2385,
     "hours": 0,
@@ -9379,7 +9379,7 @@ const creatorsData = [
     "diamonds": 15191,
     "diamondsGoal": 1,
     "diamondsPace": "47,092",
-    "diamondsLast30": 25974,
+    "diamondsLast30": 27516,
     "diamondsLastMonth": 17138,
     "diamonds2MonthsAgo": 2575,
     "hours": 7,
@@ -9459,7 +9459,7 @@ const creatorsData = [
     "diamonds": 4644,
     "diamondsGoal": 1,
     "diamondsPace": "14,396",
-    "diamondsLast30": 7929,
+    "diamondsLast30": 7954,
     "diamondsLastMonth": 7110,
     "diamonds2MonthsAgo": 7667,
     "hours": 11,
@@ -9499,7 +9499,7 @@ const creatorsData = [
     "diamonds": 1945,
     "diamondsGoal": 1,
     "diamondsPace": "6,030",
-    "diamondsLast30": 2564,
+    "diamondsLast30": 2549,
     "diamondsLastMonth": 885,
     "diamonds2MonthsAgo": 1669,
     "hours": 11,
@@ -9579,7 +9579,7 @@ const creatorsData = [
     "diamonds": 1304,
     "diamondsGoal": 1,
     "diamondsPace": "4,042",
-    "diamondsLast30": 1340,
+    "diamondsLast30": 1503,
     "diamondsLastMonth": 36,
     "diamonds2MonthsAgo": 0,
     "hours": 21,
@@ -9591,7 +9591,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "98,696",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -9699,7 +9699,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 94161,
+    "diamondsLast30": 93530,
     "diamondsLastMonth": 97439,
     "diamonds2MonthsAgo": 4,
     "hours": 0,
@@ -9819,7 +9819,7 @@ const creatorsData = [
     "diamonds": 20390,
     "diamondsGoal": 1,
     "diamondsPace": "63,209",
-    "diamondsLast30": 39529,
+    "diamondsLast30": 31796,
     "diamondsLastMonth": 54102,
     "diamonds2MonthsAgo": 19664,
     "hours": 6,
@@ -9899,7 +9899,7 @@ const creatorsData = [
     "diamonds": 5506,
     "diamondsGoal": 1,
     "diamondsPace": "17,069",
-    "diamondsLast30": 6484,
+    "diamondsLast30": 6621,
     "diamondsLastMonth": 1320,
     "diamonds2MonthsAgo": 3131,
     "hours": 24,
@@ -9939,7 +9939,7 @@ const creatorsData = [
     "diamonds": 7512,
     "diamondsGoal": 1,
     "diamondsPace": "23,287",
-    "diamondsLast30": 32780,
+    "diamondsLast30": 33425,
     "diamondsLastMonth": 28781,
     "diamonds2MonthsAgo": 33344,
     "hours": 0,
@@ -9979,7 +9979,7 @@ const creatorsData = [
     "diamonds": 4082,
     "diamondsGoal": 1,
     "diamondsPace": "12,654",
-    "diamondsLast30": 28507,
+    "diamondsLast30": 26232,
     "diamondsLastMonth": 40014,
     "diamonds2MonthsAgo": 6142,
     "hours": 14,
@@ -10019,7 +10019,7 @@ const creatorsData = [
     "diamonds": 701,
     "diamondsGoal": 1,
     "diamondsPace": "2,173",
-    "diamondsLast30": 1063,
+    "diamondsLast30": 1062,
     "diamondsLastMonth": 1586,
     "diamonds2MonthsAgo": 421,
     "hours": 7,
@@ -10059,7 +10059,7 @@ const creatorsData = [
     "diamonds": 3166,
     "diamondsGoal": 1,
     "diamondsPace": "9,815",
-    "diamondsLast30": 9775,
+    "diamondsLast30": 9793,
     "diamondsLastMonth": 6610,
     "diamonds2MonthsAgo": 111940,
     "hours": 2,
@@ -10099,7 +10099,7 @@ const creatorsData = [
     "diamonds": 240,
     "diamondsGoal": 1,
     "diamondsPace": "744",
-    "diamondsLast30": 2808,
+    "diamondsLast30": 3124,
     "diamondsLastMonth": 2568,
     "diamonds2MonthsAgo": 0,
     "hours": 5,
@@ -10139,7 +10139,7 @@ const creatorsData = [
     "diamonds": 484,
     "diamondsGoal": 1,
     "diamondsPace": "1,500",
-    "diamondsLast30": 1886,
+    "diamondsLast30": 1566,
     "diamondsLastMonth": 2148,
     "diamonds2MonthsAgo": 1739,
     "hours": 7,
@@ -10219,7 +10219,7 @@ const creatorsData = [
     "diamonds": 97,
     "diamondsGoal": 1,
     "diamondsPace": "301",
-    "diamondsLast30": 97,
+    "diamondsLast30": 112,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 20,
@@ -10259,7 +10259,7 @@ const creatorsData = [
     "diamonds": 79,
     "diamondsGoal": 1,
     "diamondsPace": "245",
-    "diamondsLast30": 2659,
+    "diamondsLast30": 2669,
     "diamondsLastMonth": 2580,
     "diamonds2MonthsAgo": 0,
     "hours": 15,
@@ -10339,7 +10339,7 @@ const creatorsData = [
     "diamonds": 33,
     "diamondsGoal": 1,
     "diamondsPace": "102",
-    "diamondsLast30": 36,
+    "diamondsLast30": 70,
     "diamondsLastMonth": 3,
     "diamonds2MonthsAgo": 0,
     "hours": 10,
@@ -10379,7 +10379,7 @@ const creatorsData = [
     "diamonds": 26,
     "diamondsGoal": 1,
     "diamondsPace": "81",
-    "diamondsLast30": 957,
+    "diamondsLast30": 552,
     "diamondsLastMonth": 1458,
     "diamonds2MonthsAgo": 1165,
     "hours": 1,
@@ -10459,7 +10459,7 @@ const creatorsData = [
     "diamonds": 23,
     "diamondsGoal": 1,
     "diamondsPace": "71",
-    "diamondsLast30": 6856,
+    "diamondsLast30": 5965,
     "diamondsLastMonth": 19836,
     "diamonds2MonthsAgo": 3403,
     "hours": 0,
@@ -10539,7 +10539,7 @@ const creatorsData = [
     "diamonds": 22,
     "diamondsGoal": 1,
     "diamondsPace": "68",
-    "diamondsLast30": 22,
+    "diamondsLast30": 25,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 16,
@@ -10619,7 +10619,7 @@ const creatorsData = [
     "diamonds": 6,
     "diamondsGoal": 1,
     "diamondsPace": "19",
-    "diamondsLast30": 445,
+    "diamondsLast30": 468,
     "diamondsLastMonth": 439,
     "diamonds2MonthsAgo": 0,
     "hours": 6,
@@ -10699,7 +10699,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 37076,
+    "diamondsLast30": 13523,
     "diamondsLastMonth": 42218,
     "diamonds2MonthsAgo": 9375,
     "hours": 0,
@@ -11019,7 +11019,7 @@ const creatorsData = [
     "diamonds": 14326,
     "diamondsGoal": 1,
     "diamondsPace": "44,411",
-    "diamondsLast30": 15320,
+    "diamondsLast30": 15323,
     "diamondsLastMonth": 994,
     "diamonds2MonthsAgo": 0,
     "hours": 20,
@@ -11099,7 +11099,7 @@ const creatorsData = [
     "diamonds": 7827,
     "diamondsGoal": 1,
     "diamondsPace": "24,264",
-    "diamondsLast30": 17110,
+    "diamondsLast30": 17135,
     "diamondsLastMonth": 12715,
     "diamonds2MonthsAgo": 51956,
     "hours": 6,
@@ -11179,7 +11179,7 @@ const creatorsData = [
     "diamonds": 5138,
     "diamondsGoal": 1,
     "diamondsPace": "15,928",
-    "diamondsLast30": 12767,
+    "diamondsLast30": 13004,
     "diamondsLastMonth": 10437,
     "diamonds2MonthsAgo": 8998,
     "hours": 6,
@@ -11219,7 +11219,7 @@ const creatorsData = [
     "diamonds": 2957,
     "diamondsGoal": 1,
     "diamondsPace": "9,167",
-    "diamondsLast30": 6742,
+    "diamondsLast30": 7300,
     "diamondsLastMonth": 3785,
     "diamonds2MonthsAgo": 0,
     "hours": 8,
@@ -11299,7 +11299,7 @@ const creatorsData = [
     "diamonds": 414,
     "diamondsGoal": 1,
     "diamondsPace": "1,283",
-    "diamondsLast30": 1430,
+    "diamondsLast30": 1127,
     "diamondsLastMonth": 2110,
     "diamonds2MonthsAgo": 2257,
     "hours": 4,
@@ -11339,7 +11339,7 @@ const creatorsData = [
     "diamonds": 461,
     "diamondsGoal": 1,
     "diamondsPace": "1,429",
-    "diamondsLast30": 714,
+    "diamondsLast30": 748,
     "diamondsLastMonth": 254,
     "diamonds2MonthsAgo": 6883,
     "hours": 13,
@@ -11419,7 +11419,7 @@ const creatorsData = [
     "diamonds": 58,
     "diamondsGoal": 1,
     "diamondsPace": "180",
-    "diamondsLast30": 114,
+    "diamondsLast30": 116,
     "diamondsLastMonth": 158,
     "diamonds2MonthsAgo": 384,
     "hours": 9,
@@ -11459,7 +11459,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 35,
+    "diamondsLast30": 0,
     "diamondsLastMonth": 5359,
     "diamonds2MonthsAgo": 10333,
     "hours": 0,
@@ -11579,7 +11579,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 4,
     "diamondsLastMonth": 6,
     "diamonds2MonthsAgo": 600,
     "hours": 15,
@@ -11779,7 +11779,7 @@ const creatorsData = [
     "diamonds": 33458,
     "diamondsGoal": 1,
     "diamondsPace": "103,720",
-    "diamondsLast30": 49511,
+    "diamondsLast30": 55286,
     "diamondsLastMonth": 16053,
     "diamonds2MonthsAgo": 659,
     "hours": 1,
@@ -11859,7 +11859,7 @@ const creatorsData = [
     "diamonds": 14555,
     "diamondsGoal": 1,
     "diamondsPace": "45,121",
-    "diamondsLast30": 15112,
+    "diamondsLast30": 15652,
     "diamondsLastMonth": 557,
     "diamonds2MonthsAgo": 1,
     "hours": 19,
@@ -11871,7 +11871,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "85,445",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 3500,
@@ -11899,7 +11899,7 @@ const creatorsData = [
     "diamonds": 14428,
     "diamondsGoal": 1,
     "diamondsPace": "44,727",
-    "diamondsLast30": 23376,
+    "diamondsLast30": 23332,
     "diamondsLastMonth": 9121,
     "diamonds2MonthsAgo": 2546,
     "hours": 1,
@@ -12019,7 +12019,7 @@ const creatorsData = [
     "diamonds": 9107,
     "diamondsGoal": 1,
     "diamondsPace": "28,232",
-    "diamondsLast30": 14780,
+    "diamondsLast30": 18361,
     "diamondsLastMonth": 5673,
     "diamonds2MonthsAgo": 0,
     "hours": 5,
@@ -12059,7 +12059,7 @@ const creatorsData = [
     "diamonds": 7896,
     "diamondsGoal": 1,
     "diamondsPace": "24,478",
-    "diamondsLast30": 8155,
+    "diamondsLast30": 8258,
     "diamondsLastMonth": 259,
     "diamonds2MonthsAgo": 21,
     "hours": 2,
@@ -12099,7 +12099,7 @@ const creatorsData = [
     "diamonds": 7573,
     "diamondsGoal": 1,
     "diamondsPace": "23,476",
-    "diamondsLast30": 7574,
+    "diamondsLast30": 7657,
     "diamondsLastMonth": 1,
     "diamonds2MonthsAgo": 827,
     "hours": 29,
@@ -12111,7 +12111,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "92,427",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -12179,7 +12179,7 @@ const creatorsData = [
     "diamonds": 7009,
     "diamondsGoal": 1,
     "diamondsPace": "21,728",
-    "diamondsLast30": 13786,
+    "diamondsLast30": 13954,
     "diamondsLastMonth": 9622,
     "diamonds2MonthsAgo": 6385,
     "hours": 3,
@@ -12219,7 +12219,7 @@ const creatorsData = [
     "diamonds": 6567,
     "diamondsGoal": 1,
     "diamondsPace": "20,358",
-    "diamondsLast30": 8350,
+    "diamondsLast30": 8978,
     "diamondsLastMonth": 4016,
     "diamonds2MonthsAgo": 14608,
     "hours": 4,
@@ -12259,7 +12259,7 @@ const creatorsData = [
     "diamonds": 6324,
     "diamondsGoal": 1,
     "diamondsPace": "19,604",
-    "diamondsLast30": 10692,
+    "diamondsLast30": 10545,
     "diamondsLastMonth": 4410,
     "diamonds2MonthsAgo": 10136,
     "hours": 1,
@@ -12299,7 +12299,7 @@ const creatorsData = [
     "diamonds": 6100,
     "diamondsGoal": 1,
     "diamondsPace": "18,910",
-    "diamondsLast30": 6100,
+    "diamondsLast30": 7146,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 6,
@@ -12339,7 +12339,7 @@ const creatorsData = [
     "diamonds": 5640,
     "diamondsGoal": 1,
     "diamondsPace": "17,484",
-    "diamondsLast30": 14807,
+    "diamondsLast30": 13602,
     "diamondsLastMonth": 12187,
     "diamonds2MonthsAgo": 9885,
     "hours": 2,
@@ -12459,7 +12459,7 @@ const creatorsData = [
     "diamonds": 5024,
     "diamondsGoal": 1,
     "diamondsPace": "15,574",
-    "diamondsLast30": 5024,
+    "diamondsLast30": 5036,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 35,
@@ -12471,7 +12471,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "94,976",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
@@ -12739,7 +12739,7 @@ const creatorsData = [
     "diamonds": 5292,
     "diamondsGoal": 1,
     "diamondsPace": "16,405",
-    "diamondsLast30": 5292,
+    "diamondsLast30": 7304,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 21,
@@ -12779,7 +12779,7 @@ const creatorsData = [
     "diamonds": 4300,
     "diamondsGoal": 1,
     "diamondsPace": "13,330",
-    "diamondsLast30": 6907,
+    "diamondsLast30": 6871,
     "diamondsLastMonth": 8856,
     "diamonds2MonthsAgo": 64,
     "hours": 1,
@@ -12859,7 +12859,7 @@ const creatorsData = [
     "diamonds": 3087,
     "diamondsGoal": 1,
     "diamondsPace": "9,570",
-    "diamondsLast30": 3417,
+    "diamondsLast30": 3453,
     "diamondsLastMonth": 330,
     "diamonds2MonthsAgo": 88,
     "hours": 3,
@@ -12979,7 +12979,7 @@ const creatorsData = [
     "diamonds": 2747,
     "diamondsGoal": 1,
     "diamondsPace": "8,516",
-    "diamondsLast30": 11539,
+    "diamondsLast30": 9760,
     "diamondsLastMonth": 13821,
     "diamonds2MonthsAgo": 3654,
     "hours": 5,
@@ -13059,7 +13059,7 @@ const creatorsData = [
     "diamonds": 2824,
     "diamondsGoal": 1,
     "diamondsPace": "8,754",
-    "diamondsLast30": 4068,
+    "diamondsLast30": 4605,
     "diamondsLastMonth": 1255,
     "diamonds2MonthsAgo": 0,
     "hours": 11,
@@ -13099,7 +13099,7 @@ const creatorsData = [
     "diamonds": 6798,
     "diamondsGoal": 1,
     "diamondsPace": "21,074",
-    "diamondsLast30": 11694,
+    "diamondsLast30": 12733,
     "diamondsLastMonth": 4896,
     "diamonds2MonthsAgo": 0,
     "hours": 6,
@@ -13299,7 +13299,7 @@ const creatorsData = [
     "diamonds": 2372,
     "diamondsGoal": 1,
     "diamondsPace": "7,353",
-    "diamondsLast30": 2787,
+    "diamondsLast30": 2806,
     "diamondsLastMonth": 566,
     "diamonds2MonthsAgo": 37,
     "hours": 2,
@@ -13379,7 +13379,7 @@ const creatorsData = [
     "diamonds": 1384,
     "diamondsGoal": 1,
     "diamondsPace": "4,290",
-    "diamondsLast30": 1384,
+    "diamondsLast30": 1391,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 2,
@@ -13419,7 +13419,7 @@ const creatorsData = [
     "diamonds": 1358,
     "diamondsGoal": 1,
     "diamondsPace": "4,210",
-    "diamondsLast30": 3394,
+    "diamondsLast30": 3401,
     "diamondsLastMonth": 5505,
     "diamonds2MonthsAgo": 12513,
     "hours": 4,
@@ -13499,7 +13499,7 @@ const creatorsData = [
     "diamonds": 1093,
     "diamondsGoal": 1,
     "diamondsPace": "3,388",
-    "diamondsLast30": 1195,
+    "diamondsLast30": 1095,
     "diamondsLastMonth": 102,
     "diamonds2MonthsAgo": 0,
     "hours": 2,
@@ -13539,7 +13539,7 @@ const creatorsData = [
     "diamonds": 1149,
     "diamondsGoal": 1,
     "diamondsPace": "3,562",
-    "diamondsLast30": 2752,
+    "diamondsLast30": 2772,
     "diamondsLastMonth": 1962,
     "diamonds2MonthsAgo": 2859,
     "hours": 0,
@@ -13579,7 +13579,7 @@ const creatorsData = [
     "diamonds": 1041,
     "diamondsGoal": 1,
     "diamondsPace": "3,227",
-    "diamondsLast30": 1757,
+    "diamondsLast30": 1784,
     "diamondsLastMonth": 830,
     "diamonds2MonthsAgo": 727,
     "hours": 5,
@@ -13619,7 +13619,7 @@ const creatorsData = [
     "diamonds": 2396,
     "diamondsGoal": 1,
     "diamondsPace": "7,428",
-    "diamondsLast30": 2396,
+    "diamondsLast30": 3368,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 8,
@@ -13739,7 +13739,7 @@ const creatorsData = [
     "diamonds": 308,
     "diamondsGoal": 1,
     "diamondsPace": "955",
-    "diamondsLast30": 3044,
+    "diamondsLast30": 3130,
     "diamondsLastMonth": 2918,
     "diamonds2MonthsAgo": 380,
     "hours": 12,
@@ -13859,7 +13859,7 @@ const creatorsData = [
     "diamonds": 118,
     "diamondsGoal": 1,
     "diamondsPace": "366",
-    "diamondsLast30": 132,
+    "diamondsLast30": 136,
     "diamondsLastMonth": 14,
     "diamonds2MonthsAgo": 0,
     "hours": 12,
@@ -13979,7 +13979,7 @@ const creatorsData = [
     "diamonds": 17,
     "diamondsGoal": 1,
     "diamondsPace": "53",
-    "diamondsLast30": 188,
+    "diamondsLast30": 193,
     "diamondsLastMonth": 171,
     "diamonds2MonthsAgo": 0,
     "hours": 7,
@@ -14219,7 +14219,7 @@ const creatorsData = [
     "diamonds": 1018,
     "diamondsGoal": 1,
     "diamondsPace": "3,156",
-    "diamondsLast30": 1018,
+    "diamondsLast30": 1028,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 8740,
     "hours": 0,
@@ -14299,7 +14299,7 @@ const creatorsData = [
     "diamonds": 946,
     "diamondsGoal": 1,
     "diamondsPace": "2,933",
-    "diamondsLast30": 3116,
+    "diamondsLast30": 3132,
     "diamondsLastMonth": 2265,
     "diamonds2MonthsAgo": 831,
     "hours": 0,
@@ -14339,7 +14339,7 @@ const creatorsData = [
     "diamonds": 1144,
     "diamondsGoal": 1,
     "diamondsPace": "3,546",
-    "diamondsLast30": 3728,
+    "diamondsLast30": 3928,
     "diamondsLastMonth": 3653,
     "diamonds2MonthsAgo": 2354,
     "hours": 0,
@@ -14379,7 +14379,7 @@ const creatorsData = [
     "diamonds": 1251,
     "diamondsGoal": 1,
     "diamondsPace": "3,878",
-    "diamondsLast30": 2679,
+    "diamondsLast30": 2708,
     "diamondsLastMonth": 2472,
     "diamonds2MonthsAgo": 3648,
     "hours": 0,
@@ -14459,7 +14459,7 @@ const creatorsData = [
     "diamonds": 820,
     "diamondsGoal": 1,
     "diamondsPace": "2,542",
-    "diamondsLast30": 1348,
+    "diamondsLast30": 1225,
     "diamondsLastMonth": 810,
     "diamonds2MonthsAgo": 969,
     "hours": 0,
@@ -14619,7 +14619,7 @@ const creatorsData = [
     "diamonds": 866,
     "diamondsGoal": 1,
     "diamondsPace": "2,685",
-    "diamondsLast30": 2619,
+    "diamondsLast30": 6454,
     "diamondsLastMonth": 1985,
     "diamonds2MonthsAgo": 7429,
     "hours": 0,
@@ -14659,7 +14659,7 @@ const creatorsData = [
     "diamonds": 702,
     "diamondsGoal": 1,
     "diamondsPace": "2,176",
-    "diamondsLast30": 1838,
+    "diamondsLast30": 1867,
     "diamondsLastMonth": 1598,
     "diamonds2MonthsAgo": 559,
     "hours": 2,
@@ -14899,7 +14899,7 @@ const creatorsData = [
     "diamonds": 625,
     "diamondsGoal": 1,
     "diamondsPace": "1,938",
-    "diamondsLast30": 2661,
+    "diamondsLast30": 2685,
     "diamondsLastMonth": 2036,
     "diamonds2MonthsAgo": 18326,
     "hours": 0,
@@ -15139,7 +15139,7 @@ const creatorsData = [
     "diamonds": 1507,
     "diamondsGoal": 1,
     "diamondsPace": "4,672",
-    "diamondsLast30": 1507,
+    "diamondsLast30": 1509,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 1193,
     "hours": 4,
@@ -15259,7 +15259,7 @@ const creatorsData = [
     "diamonds": 440,
     "diamondsGoal": 1,
     "diamondsPace": "1,364",
-    "diamondsLast30": 2714,
+    "diamondsLast30": 2523,
     "diamondsLastMonth": 3700,
     "diamonds2MonthsAgo": 3979,
     "hours": 0,
@@ -15299,7 +15299,7 @@ const creatorsData = [
     "diamonds": 1260,
     "diamondsGoal": 1,
     "diamondsPace": "3,906",
-    "diamondsLast30": 1260,
+    "diamondsLast30": 2842,
     "diamondsLastMonth": 8431,
     "diamonds2MonthsAgo": 19497,
     "hours": 5,
@@ -15339,7 +15339,7 @@ const creatorsData = [
     "diamonds": 396,
     "diamondsGoal": 1,
     "diamondsPace": "1,228",
-    "diamondsLast30": 1650,
+    "diamondsLast30": 1626,
     "diamondsLastMonth": 1254,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -15499,7 +15499,7 @@ const creatorsData = [
     "diamonds": 310,
     "diamondsGoal": 1,
     "diamondsPace": "961",
-    "diamondsLast30": 829,
+    "diamondsLast30": 833,
     "diamondsLastMonth": 556,
     "diamonds2MonthsAgo": 151,
     "hours": 1,
@@ -15539,7 +15539,7 @@ const creatorsData = [
     "diamonds": 326,
     "diamondsGoal": 1,
     "diamondsPace": "1,011",
-    "diamondsLast30": 389,
+    "diamondsLast30": 398,
     "diamondsLastMonth": 65,
     "diamonds2MonthsAgo": 0,
     "hours": 14,
@@ -15551,7 +15551,7 @@ const creatorsData = [
     "tier": 1,
     "tierGoal": 100000,
     "tierLeft": "99,674",
-    "tierStatus": "Down",
+    "tierStatus": "-",
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 5000,
@@ -15579,7 +15579,7 @@ const creatorsData = [
     "diamonds": 311,
     "diamondsGoal": 1,
     "diamondsPace": "964",
-    "diamondsLast30": 437,
+    "diamondsLast30": 1120,
     "diamondsLastMonth": 131,
     "diamonds2MonthsAgo": 2798,
     "hours": 4,
@@ -15659,7 +15659,7 @@ const creatorsData = [
     "diamonds": 285,
     "diamondsGoal": 1,
     "diamondsPace": "884",
-    "diamondsLast30": 316,
+    "diamondsLast30": 313,
     "diamondsLastMonth": 71,
     "diamonds2MonthsAgo": 35,
     "hours": 3,
@@ -15939,7 +15939,7 @@ const creatorsData = [
     "diamonds": 169,
     "diamondsGoal": 1,
     "diamondsPace": "524",
-    "diamondsLast30": 606,
+    "diamondsLast30": 605,
     "diamondsLastMonth": 450,
     "diamonds2MonthsAgo": 10,
     "hours": 0,
@@ -16139,7 +16139,7 @@ const creatorsData = [
     "diamonds": 136,
     "diamondsGoal": 1,
     "diamondsPace": "422",
-    "diamondsLast30": 139,
+    "diamondsLast30": 277,
     "diamondsLastMonth": 5,
     "diamonds2MonthsAgo": 367,
     "hours": 1,
@@ -16179,7 +16179,7 @@ const creatorsData = [
     "diamonds": 123,
     "diamondsGoal": 1,
     "diamondsPace": "381",
-    "diamondsLast30": 429,
+    "diamondsLast30": 480,
     "diamondsLastMonth": 306,
     "diamonds2MonthsAgo": 0,
     "hours": 1,
@@ -16379,7 +16379,7 @@ const creatorsData = [
     "diamonds": 111,
     "diamondsGoal": 1,
     "diamondsPace": "344",
-    "diamondsLast30": 952,
+    "diamondsLast30": 470,
     "diamondsLastMonth": 962,
     "diamonds2MonthsAgo": 1,
     "hours": 1,
@@ -16579,7 +16579,7 @@ const creatorsData = [
     "diamonds": 99,
     "diamondsGoal": 1,
     "diamondsPace": "307",
-    "diamondsLast30": 644,
+    "diamondsLast30": 643,
     "diamondsLastMonth": 2343,
     "diamonds2MonthsAgo": 17312,
     "hours": 0,
@@ -16659,7 +16659,7 @@ const creatorsData = [
     "diamonds": 65,
     "diamondsGoal": 1,
     "diamondsPace": "202",
-    "diamondsLast30": 65,
+    "diamondsLast30": 119,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 6,
@@ -16739,7 +16739,7 @@ const creatorsData = [
     "diamonds": 54,
     "diamondsGoal": 1,
     "diamondsPace": "167",
-    "diamondsLast30": 115,
+    "diamondsLast30": 157,
     "diamondsLastMonth": 62,
     "diamonds2MonthsAgo": 122,
     "hours": 1,
@@ -16859,7 +16859,7 @@ const creatorsData = [
     "diamonds": 50,
     "diamondsGoal": 1,
     "diamondsPace": "155",
-    "diamondsLast30": 3291,
+    "diamondsLast30": 1167,
     "diamondsLastMonth": 3261,
     "diamonds2MonthsAgo": 2177,
     "hours": 0,
@@ -17059,7 +17059,7 @@ const creatorsData = [
     "diamonds": 43,
     "diamondsGoal": 1,
     "diamondsPace": "133",
-    "diamondsLast30": 43,
+    "diamondsLast30": 55,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 6,
@@ -17499,7 +17499,7 @@ const creatorsData = [
     "diamonds": 18,
     "diamondsGoal": 1,
     "diamondsPace": "56",
-    "diamondsLast30": 19,
+    "diamondsLast30": 18,
     "diamondsLastMonth": 1,
     "diamonds2MonthsAgo": 4,
     "hours": 0,
@@ -18059,7 +18059,7 @@ const creatorsData = [
     "diamonds": 9,
     "diamondsGoal": 1,
     "diamondsPace": "28",
-    "diamondsLast30": 244,
+    "diamondsLast30": 241,
     "diamondsLastMonth": 310,
     "diamonds2MonthsAgo": 230,
     "hours": 1,
@@ -18219,7 +18219,7 @@ const creatorsData = [
     "diamonds": 7,
     "diamondsGoal": 1,
     "diamondsPace": "22",
-    "diamondsLast30": 627,
+    "diamondsLast30": 597,
     "diamondsLastMonth": 2206,
     "diamonds2MonthsAgo": 383,
     "hours": 0,
@@ -18699,7 +18699,7 @@ const creatorsData = [
     "diamonds": 3,
     "diamondsGoal": 1,
     "diamondsPace": "9",
-    "diamondsLast30": 934,
+    "diamondsLast30": 821,
     "diamondsLastMonth": 1187,
     "diamonds2MonthsAgo": 12,
     "hours": 0,
@@ -18739,7 +18739,7 @@ const creatorsData = [
     "diamonds": 3,
     "diamondsGoal": 1,
     "diamondsPace": "9",
-    "diamondsLast30": 364,
+    "diamondsLast30": 342,
     "diamondsLastMonth": 488,
     "diamonds2MonthsAgo": 3136,
     "hours": 0,
@@ -18819,7 +18819,7 @@ const creatorsData = [
     "diamonds": 2,
     "diamondsGoal": 1,
     "diamondsPace": "6",
-    "diamondsLast30": 66,
+    "diamondsLast30": 72,
     "diamondsLastMonth": 75,
     "diamonds2MonthsAgo": 151,
     "hours": 2,
@@ -19219,7 +19219,7 @@ const creatorsData = [
     "diamonds": 22,
     "diamondsGoal": 1,
     "diamondsPace": "68",
-    "diamondsLast30": 41,
+    "diamondsLast30": 138,
     "diamondsLastMonth": 208,
     "diamonds2MonthsAgo": 376,
     "hours": 2,
@@ -19299,7 +19299,7 @@ const creatorsData = [
     "diamonds": 1,
     "diamondsGoal": 1,
     "diamondsPace": "3",
-    "diamondsLast30": 1,
+    "diamondsLast30": 15,
     "diamondsLastMonth": 149,
     "diamonds2MonthsAgo": 1604,
     "hours": 1,
@@ -19419,7 +19419,7 @@ const creatorsData = [
     "diamonds": 1,
     "diamondsGoal": 1,
     "diamondsPace": "3",
-    "diamondsLast30": 1,
+    "diamondsLast30": 4,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 1,
@@ -19859,7 +19859,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 21,
+    "diamondsLast30": 0,
     "diamondsLastMonth": 2744,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -20179,7 +20179,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 1829,
+    "diamondsLast30": 16,
     "diamondsLastMonth": 1829,
     "diamonds2MonthsAgo": 301,
     "hours": 0,
@@ -20499,7 +20499,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 1109,
+    "diamondsLast30": 43,
     "diamondsLastMonth": 1175,
     "diamonds2MonthsAgo": 252,
     "hours": 0,
@@ -20539,7 +20539,7 @@ const creatorsData = [
     "diamonds": 8033,
     "diamondsGoal": 1,
     "diamondsPace": "24,902",
-    "diamondsLast30": 9202,
+    "diamondsLast30": 9686,
     "diamondsLastMonth": 1169,
     "diamonds2MonthsAgo": 2484,
     "hours": 2,
@@ -20779,7 +20779,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 628,
+    "diamondsLast30": 646,
     "diamondsLastMonth": 628,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -20859,7 +20859,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 516,
+    "diamondsLast30": 537,
     "diamondsLastMonth": 540,
     "diamonds2MonthsAgo": 3118,
     "hours": 0,
@@ -21219,7 +21219,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 315,
+    "diamondsLast30": 305,
     "diamondsLastMonth": 316,
     "diamonds2MonthsAgo": 0,
     "hours": 1,
@@ -22459,7 +22459,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 30,
+    "diamondsLast30": 25,
     "diamondsLastMonth": 64,
     "diamonds2MonthsAgo": 98,
     "hours": 1,
@@ -23139,7 +23139,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 17,
+    "diamondsLast30": 4,
     "diamondsLastMonth": 19,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -23259,7 +23259,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 16,
+    "diamondsLast30": 141,
     "diamondsLastMonth": 16,
     "diamonds2MonthsAgo": 322,
     "hours": 0,
@@ -23499,7 +23499,7 @@ const creatorsData = [
     "diamonds": 614,
     "diamondsGoal": 1,
     "diamondsPace": "1,903",
-    "diamondsLast30": 614,
+    "diamondsLast30": 813,
     "diamondsLastMonth": 10,
     "diamonds2MonthsAgo": 167,
     "hours": 0,
@@ -26179,7 +26179,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 15,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -27139,7 +27139,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 2,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 130,
     "hours": 0,
@@ -29286,33 +29286,33 @@ const creatorsData = [
   {
     "id": 733,
     "creatorId": "7672388591288336398",
-    "username": "cynergies",
-    "name": "cynergies",
-    "email": "cynergies@taboost.me",
+    "username": "off",
+    "name": "OFF",
+    "email": "OFF@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "1",
-    "manager": "N/A",
-    "m": "N/A",
+    "month": "",
+    "manager": "CARRINGTON",
+    "m": "CARRINGTON",
     "claimed": false,
     "score": 0,
-    "diamonds": 21,
+    "diamonds": 0,
     "diamondsGoal": 1,
-    "diamondsPace": "65",
-    "diamondsLast30": 21,
-    "diamondsLastMonth": 0,
-    "diamonds2MonthsAgo": 0,
-    "hours": 1,
-    "hoursGoal": 11,
-    "hoursLeft": "10",
-    "validLiveDays": 1,
-    "daysGoal": 5,
-    "daysLeft": "4",
+    "diamondsPace": "0",
+    "diamondsLast30": 0,
+    "diamondsLastMonth": -1,
+    "diamonds2MonthsAgo": -2,
+    "hours": 0,
+    "hoursGoal": 15,
+    "hoursLeft": "15",
+    "validLiveDays": 0,
+    "daysGoal": 7,
+    "daysLeft": "7",
     "tier": 1,
-    "tierGoal": 100000,
-    "tierLeft": "99,979",
-    "tierStatus": "Down",
-    "tierLastMonth": "1",
+    "tierGoal": 0,
+    "tierLeft": "0",
+    "tierStatus": "-",
+    "tierLastMonth": "-",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29321,7 +29321,7 @@ const creatorsData = [
     "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
+    "rewardsMonth": "0"
   },
   {
     "id": 734,
@@ -29365,46 +29365,6 @@ const creatorsData = [
   },
   {
     "id": 735,
-    "creatorId": "7496160474296483841",
-    "username": "thejackschittt",
-    "name": "thejackschittt",
-    "email": "thejackschittt@taboost.me",
-    "status": "GO",
-    "level": "-1",
-    "month": "17",
-    "manager": "N/A",
-    "m": "N/A",
-    "claimed": false,
-    "score": 0,
-    "diamonds": 0,
-    "diamondsGoal": 1,
-    "diamondsPace": "0",
-    "diamondsLast30": 7718,
-    "diamondsLastMonth": 0,
-    "diamonds2MonthsAgo": 0,
-    "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
-    "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
-    "tier": 1,
-    "tierGoal": 100000,
-    "tierLeft": "100,000",
-    "tierStatus": "-",
-    "tierLastMonth": "1",
-    "growthPercent": 0,
-    "earned": 0,
-    "gifted": 0,
-    "running": "0",
-    "multiply": "-",
-    "unlocked": "0",
-    "daysMonth": 0,
-    "hoursMonth": 0,
-    "rewardsMonth": "$0.00"
-  },
-  {
-    "id": 736,
     "creatorId": "7672537930375938062",
     "username": "vegasfan165",
     "name": "vegasfan165",
@@ -29444,7 +29404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 737,
+    "id": 736,
     "creatorId": "7672472358145540110",
     "username": "ghillietatts",
     "name": "ghillietatts",
@@ -29484,7 +29444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 738,
+    "id": 737,
     "creatorId": "7672652964947017741",
     "username": "toocooltoya",
     "name": "toocooltoya",
@@ -29509,10 +29469,10 @@ const creatorsData = [
     "daysGoal": 0,
     "daysLeft": "0",
     "tier": 1,
-    "tierGoal": 0,
-    "tierLeft": "0",
-    "tierStatus": "-",
-    "tierLastMonth": "-",
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "Down",
+    "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29524,7 +29484,7 @@ const creatorsData = [
     "rewardsMonth": "0"
   },
   {
-    "id": 739,
+    "id": 738,
     "creatorId": "7672690536448409613",
     "username": "artbyanniemay",
     "name": "artbyanniemay",
@@ -29549,10 +29509,10 @@ const creatorsData = [
     "daysGoal": 0,
     "daysLeft": "0",
     "tier": 1,
-    "tierGoal": 0,
-    "tierLeft": "0",
-    "tierStatus": "-",
-    "tierLastMonth": "-",
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "Down",
+    "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29564,7 +29524,7 @@ const creatorsData = [
     "rewardsMonth": "0"
   },
   {
-    "id": 740,
+    "id": 739,
     "creatorId": "7398692075157504001",
     "username": "yiangie_",
     "name": "yiangie_",
@@ -29589,10 +29549,10 @@ const creatorsData = [
     "daysGoal": 0,
     "daysLeft": "0",
     "tier": 1,
-    "tierGoal": 0,
-    "tierLeft": "0",
-    "tierStatus": "-",
-    "tierLastMonth": "-",
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "Down",
+    "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29604,7 +29564,7 @@ const creatorsData = [
     "rewardsMonth": "0"
   },
   {
-    "id": 741,
+    "id": 740,
     "creatorId": "7672570392485281806",
     "username": "gobgiantcr_",
     "name": "gobgiantcr_",
@@ -29619,7 +29579,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 667,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -29629,10 +29589,10 @@ const creatorsData = [
     "daysGoal": 0,
     "daysLeft": "0",
     "tier": 1,
-    "tierGoal": 0,
-    "tierLeft": "0",
-    "tierStatus": "-",
-    "tierLastMonth": "-",
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "Down",
+    "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29644,7 +29604,7 @@ const creatorsData = [
     "rewardsMonth": "0"
   },
   {
-    "id": 742,
+    "id": 741,
     "creatorId": "7672555885516013581",
     "username": "fearbonzi",
     "name": "fearbonzi",
@@ -29659,7 +29619,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 1,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -29669,10 +29629,10 @@ const creatorsData = [
     "daysGoal": 0,
     "daysLeft": "0",
     "tier": 1,
-    "tierGoal": 0,
-    "tierLeft": "0",
-    "tierStatus": "-",
-    "tierLastMonth": "-",
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "Down",
+    "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 0,
     "gifted": 0,
@@ -29684,7 +29644,87 @@ const creatorsData = [
     "rewardsMonth": "0"
   },
   {
+    "id": 742,
+    "creatorId": "7496160474296483841",
+    "username": "thejackschittt",
+    "name": "thejackschittt",
+    "email": "thejackschittt@taboost.me",
+    "status": "GO",
+    "level": "-1",
+    "month": "17",
+    "manager": "N/A",
+    "m": "N/A",
+    "claimed": false,
+    "score": 0,
+    "diamonds": 0,
+    "diamondsGoal": 1,
+    "diamondsPace": "0",
+    "diamondsLast30": 7718,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
+    "hours": 0,
+    "hoursGoal": 15,
+    "hoursLeft": "15",
+    "validLiveDays": 0,
+    "daysGoal": 7,
+    "daysLeft": "7",
+    "tier": 1,
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "-",
+    "tierLastMonth": "1",
+    "growthPercent": 0,
+    "earned": 0,
+    "gifted": 0,
+    "running": "0",
+    "multiply": "-",
+    "unlocked": "0",
+    "daysMonth": 0,
+    "hoursMonth": 0,
+    "rewardsMonth": "$0.00"
+  },
+  {
     "id": 743,
+    "creatorId": "7496160474296483841",
+    "username": "thejackschittt",
+    "name": "thejackschittt",
+    "email": "thejackschittt@taboost.me",
+    "status": "GO",
+    "level": "-1",
+    "month": "17",
+    "manager": "N/A",
+    "m": "N/A",
+    "claimed": false,
+    "score": 0,
+    "diamonds": 0,
+    "diamondsGoal": 1,
+    "diamondsPace": "0",
+    "diamondsLast30": 7718,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
+    "hours": 0,
+    "hoursGoal": 15,
+    "hoursLeft": "15",
+    "validLiveDays": 0,
+    "daysGoal": 7,
+    "daysLeft": "7",
+    "tier": 1,
+    "tierGoal": 100000,
+    "tierLeft": "100,000",
+    "tierStatus": "-",
+    "tierLastMonth": "1",
+    "growthPercent": 0,
+    "earned": 0,
+    "gifted": 0,
+    "running": "0",
+    "multiply": "-",
+    "unlocked": "0",
+    "daysMonth": 0,
+    "hoursMonth": 0,
+    "rewardsMonth": "$0.00"
+  },
+  {
+    "id": 744,
     "creatorId": "7654824834509225998",
     "username": "xavia.purp",
     "name": "xavia.purp",
@@ -29724,7 +29764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 744,
+    "id": 745,
     "creatorId": "7646443491702226957",
     "username": "marcotheceo",
     "name": "marcotheceo",
@@ -29764,7 +29804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 745,
+    "id": 746,
     "creatorId": "7650257186228158477",
     "username": "itsokshane",
     "name": "itsokshane",
@@ -29804,7 +29844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 746,
+    "id": 747,
     "creatorId": "7651088178157502477",
     "username": "kylee_williams",
     "name": "kylee_williams",
@@ -29844,7 +29884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 747,
+    "id": 748,
     "creatorId": "7371341610770268177",
     "username": "preeettybaaaby",
     "name": "preeettybaaaby",
@@ -29884,7 +29924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 748,
+    "id": 749,
     "creatorId": "7655116072420687886",
     "username": "jellyjamsart",
     "name": "jellyjamsart",
@@ -29924,7 +29964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 749,
+    "id": 750,
     "creatorId": "7655850302670946318",
     "username": "t_ombrown",
     "name": "t_ombrown",
@@ -29964,7 +30004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 750,
+    "id": 751,
     "creatorId": "7635772847754854414",
     "username": "rachelgraceviolin",
     "name": "rachelgraceviolin",
@@ -30004,7 +30044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 751,
+    "id": 752,
     "creatorId": "7637331329603911694",
     "username": "kriss_drummer_live",
     "name": "kriss_drummer_live",
@@ -30044,7 +30084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 752,
+    "id": 753,
     "creatorId": "7636470495126274062",
     "username": "miathefittest",
     "name": "miathefittest",
@@ -30084,7 +30124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 753,
+    "id": 754,
     "creatorId": "7365250581411135489",
     "username": "rhynoxlive",
     "name": "rhynoxlive",
@@ -30124,7 +30164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 754,
+    "id": 755,
     "creatorId": "7638400044118491149",
     "username": "faithtrustandangeldust_",
     "name": "faithtrustandangeldust_",
@@ -30164,7 +30204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 755,
+    "id": 756,
     "creatorId": "7638409578929012749",
     "username": "_ameyak_",
     "name": "_ameyak_",
@@ -30204,7 +30244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 756,
+    "id": 757,
     "creatorId": "7638662327155539981",
     "username": "lvlupgtr.com",
     "name": "lvlupgtr.com",
@@ -30244,7 +30284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 757,
+    "id": 758,
     "creatorId": "7359136918161981445",
     "username": "theelijahcortez",
     "name": "theelijahcortez",
@@ -30284,7 +30324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 758,
+    "id": 759,
     "creatorId": "7630269203248988173",
     "username": "themamatink",
     "name": "themamatink",
@@ -30324,7 +30364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 759,
+    "id": 760,
     "creatorId": "7629511217559912462",
     "username": "harambemuzic",
     "name": "harambemuzic",
@@ -30364,7 +30404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 760,
+    "id": 761,
     "creatorId": "7632399129758515213",
     "username": "nj.eddy",
     "name": "nj.eddy",
@@ -30404,7 +30444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 761,
+    "id": 762,
     "creatorId": "7633498225517051918",
     "username": "internet_hum0r",
     "name": "internet_hum0r",
@@ -30444,7 +30484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 762,
+    "id": 763,
     "creatorId": "7628793293090111502",
     "username": "julieprimo31",
     "name": "julieprimo31",
@@ -30484,7 +30524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 763,
+    "id": 764,
     "creatorId": "7633912170086023182",
     "username": "brigettecandler",
     "name": "brigettecandler",
@@ -30524,7 +30564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 764,
+    "id": 765,
     "creatorId": "7632838031787114510",
     "username": "aniyamyranda",
     "name": "aniyamyranda",
@@ -30564,7 +30604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 765,
+    "id": 766,
     "creatorId": "7629431594486349838",
     "username": "aidanmoyer95",
     "name": "aidanmoyer95",
@@ -30604,7 +30644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 766,
+    "id": 767,
     "creatorId": "7633885402457358349",
     "username": "cascleo",
     "name": "cascleo",
@@ -30644,7 +30684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 767,
+    "id": 768,
     "creatorId": "7359135813306810373",
     "username": "ali.kinsman",
     "name": "ali.kinsman",
@@ -30684,7 +30724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 768,
+    "id": 769,
     "creatorId": "7634533919089770509",
     "username": "kyra.adria",
     "name": "kyra.adria",
@@ -30724,7 +30764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 769,
+    "id": 770,
     "creatorId": "7612028316274475022",
     "username": "tyrellgreenlee",
     "name": "tyrellgreenlee",
@@ -30764,7 +30804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 770,
+    "id": 771,
     "creatorId": "7615439953488592909",
     "username": "janelleexxx",
     "name": "janelleexxx",
@@ -30804,7 +30844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 771,
+    "id": 772,
     "creatorId": "7620552056218238990",
     "username": "khari_marie",
     "name": "khari_marie",
@@ -30844,7 +30884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 772,
+    "id": 773,
     "creatorId": "7620557957587320845",
     "username": "johnbcoxmusic",
     "name": "johnbcoxmusic",
@@ -30884,7 +30924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 773,
+    "id": 774,
     "creatorId": "7614997682968608782",
     "username": "therealestherj",
     "name": "therealestherj",
@@ -30924,7 +30964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 774,
+    "id": 775,
     "creatorId": "7618170833961238542",
     "username": "chey10100",
     "name": "chey10100",
@@ -30964,7 +31004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 775,
+    "id": 776,
     "creatorId": "7620557148803842062",
     "username": "codyunderhill86",
     "name": "codyunderhill86",
@@ -31004,7 +31044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 776,
+    "id": 777,
     "creatorId": "7509779482513965073",
     "username": "namezcarol",
     "name": "namezcarol",
@@ -31044,7 +31084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 777,
+    "id": 778,
     "creatorId": "7616528288537919502",
     "username": "tierneysage",
     "name": "tierneysage",
@@ -31084,7 +31124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 778,
+    "id": 779,
     "creatorId": "7619124999152254989",
     "username": "hannahhaylen",
     "name": "hannahhaylen",
@@ -31124,7 +31164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 779,
+    "id": 780,
     "creatorId": "7621328160352681997",
     "username": "sahdude33",
     "name": "sahdude33",
@@ -31164,7 +31204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 780,
+    "id": 781,
     "creatorId": "7620260745313337357",
     "username": "shopwithkaybae",
     "name": "shopwithkaybae",
@@ -31204,7 +31244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 781,
+    "id": 782,
     "creatorId": "7616905679974187022",
     "username": "officialmandimacias",
     "name": "officialmandimacias",
@@ -31244,7 +31284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 782,
+    "id": 783,
     "creatorId": "7607148259496378381",
     "username": "sattynkolka",
     "name": "sattynkolka",
@@ -31284,7 +31324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 783,
+    "id": 784,
     "creatorId": "7618332605280206862",
     "username": "national_uchiha",
     "name": "national_uchiha",
@@ -31324,7 +31364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 784,
+    "id": 785,
     "creatorId": "7616798541306019854",
     "username": "kyleauthmusic",
     "name": "kyleauthmusic",
@@ -31364,7 +31404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 785,
+    "id": 786,
     "creatorId": "7617670392164925454",
     "username": "joeygrimaldimusic1",
     "name": "joeygrimaldimusic1",
@@ -31404,7 +31444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 786,
+    "id": 787,
     "creatorId": "7601673912480612366",
     "username": "ann041468",
     "name": "ann041468",
@@ -31444,7 +31484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 787,
+    "id": 788,
     "creatorId": "7608679729838931982",
     "username": "ekklesiahorizon",
     "name": "ekklesiahorizon",
@@ -31484,7 +31524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 788,
+    "id": 789,
     "creatorId": "7608338554233602062",
     "username": "deearnnap",
     "name": "deearnnap",
@@ -31524,7 +31564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 789,
+    "id": 790,
     "creatorId": "7494442891004280833",
     "username": "fizzle_station",
     "name": "fizzle_station",
@@ -31564,7 +31604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 790,
+    "id": 791,
     "creatorId": "7427641988100554768",
     "username": "jazcatraz",
     "name": "jazcatraz",
@@ -31604,7 +31644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 791,
+    "id": 792,
     "creatorId": "7608209915718582285",
     "username": "trystinnnn_",
     "name": "trystinnnn_",
@@ -31644,7 +31684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 792,
+    "id": 793,
     "creatorId": "7601674566645202999",
     "username": "threehundredseventytwo",
     "name": "threehundredseventytwo",
@@ -31684,7 +31724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 793,
+    "id": 794,
     "creatorId": "7608318906436075533",
     "username": "alwysovrr",
     "name": "alwysovrr",
@@ -31724,7 +31764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 794,
+    "id": 795,
     "creatorId": "7603559048310505485",
     "username": "jeffrey8bp",
     "name": "jeffrey8bp",
@@ -31764,7 +31804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 795,
+    "id": 796,
     "creatorId": "7601722710653288503",
     "username": "birdiesforeus",
     "name": "birdiesforeus",
@@ -31804,7 +31844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 796,
+    "id": 797,
     "creatorId": "7607844338743164941",
     "username": "jamesanorkawich",
     "name": "jamesanorkawich",
@@ -31844,7 +31884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 797,
+    "id": 798,
     "creatorId": "7605059443780337678",
     "username": "kristenkittymeow",
     "name": "kristenkittymeow",
@@ -31884,7 +31924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 798,
+    "id": 799,
     "creatorId": "7592049908509818894",
     "username": "ash_bittickkk",
     "name": "ash_bittickkk",
@@ -31924,7 +31964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 799,
+    "id": 800,
     "creatorId": "7590918395877539895",
     "username": "rylanlogan.s",
     "name": "rylanlogan.s",
@@ -31964,7 +32004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 800,
+    "id": 801,
     "creatorId": "7591301261329285175",
     "username": "queen_maddy_1202",
     "name": "queen_maddy_1202",
@@ -32004,7 +32044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 801,
+    "id": 802,
     "creatorId": "7598710170574733326",
     "username": "heathen_ikyoto",
     "name": "heathen_ikyoto",
@@ -32044,7 +32084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 802,
+    "id": 803,
     "creatorId": "7595395796338720781",
     "username": "walmart.grey",
     "name": "walmart.grey",
@@ -32084,7 +32124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 803,
+    "id": 804,
     "creatorId": "7595367345045028919",
     "username": "roze.thorne",
     "name": "roze.thorne",
@@ -32124,7 +32164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 804,
+    "id": 805,
     "creatorId": "7594347695071084558",
     "username": "samhandwich0",
     "name": "samhandwich0",
@@ -32164,7 +32204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 805,
+    "id": 806,
     "creatorId": "7589643751258177549",
     "username": "chefkev4real",
     "name": "chefkev4real",
@@ -32204,7 +32244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 806,
+    "id": 807,
     "creatorId": "7593228086796206135",
     "username": "clipbryton",
     "name": "clipbryton",
@@ -32244,7 +32284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 807,
+    "id": 808,
     "creatorId": "7597569248646643725",
     "username": "prazahbostic8",
     "name": "prazahbostic8",
@@ -32284,7 +32324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 808,
+    "id": 809,
     "creatorId": "7597163507775324215",
     "username": "samanthaleighce",
     "name": "samanthaleighce",
@@ -32324,7 +32364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 809,
+    "id": 810,
     "creatorId": "7591745233969299470",
     "username": "nothingsick",
     "name": "nothingsick",
@@ -32364,7 +32404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 810,
+    "id": 811,
     "creatorId": "7592397551714910221",
     "username": "cbrandy13",
     "name": "cbrandy13",
@@ -32404,7 +32444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 811,
+    "id": 812,
     "creatorId": "7359137304226725893",
     "username": "levi_carrington_",
     "name": "levi_carrington_",
@@ -32444,7 +32484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 812,
+    "id": 813,
     "creatorId": "7359139881689448454",
     "username": "dontaskhowmany",
     "name": "dontaskhowmany",
@@ -32484,7 +32524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 813,
+    "id": 814,
     "creatorId": "7582802583895523341",
     "username": "leahhmelia",
     "name": "leahhmelia",
@@ -32524,7 +32564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 814,
+    "id": 815,
     "creatorId": "7557699642381746190",
     "username": "followyourdestinie",
     "name": "followyourdestinie",
@@ -32564,7 +32604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 815,
+    "id": 816,
     "creatorId": "7582018343767425037",
     "username": "moonynikki",
     "name": "moonynikki",
@@ -32604,7 +32644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 816,
+    "id": 817,
     "creatorId": "7408815219029508113",
     "username": "gtrose",
     "name": "gtrose",
@@ -32644,7 +32684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 817,
+    "id": 818,
     "creatorId": "7579762714873118733",
     "username": "tellemwatson",
     "name": "tellemwatson",
@@ -32684,7 +32724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 818,
+    "id": 819,
     "creatorId": "7579054541350486030",
     "username": "tarotwithchris",
     "name": "tarotwithchris",
@@ -32724,7 +32764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 819,
+    "id": 820,
     "creatorId": "7583156191761678391",
     "username": "t.colvvv",
     "name": "t.colvvv",
@@ -32764,7 +32804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 820,
+    "id": 821,
     "creatorId": "7584893327687073805",
     "username": "add.action.coach",
     "name": "add.action.coach",
@@ -32804,7 +32844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 821,
+    "id": 822,
     "creatorId": "7578673000590065677",
     "username": "beachblondemama",
     "name": "beachblondemama",
@@ -32844,7 +32884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 822,
+    "id": 823,
     "creatorId": "7393147089703747600",
     "username": "wow_mschez",
     "name": "wow_mschez",
@@ -32884,7 +32924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 823,
+    "id": 824,
     "creatorId": "7584171455915769911",
     "username": "skibudz67",
     "name": "skibudz67",
@@ -32924,7 +32964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 824,
+    "id": 825,
     "creatorId": "7534965598565089335",
     "username": "chelseaabrahamson85",
     "name": "chelseaabrahamson85",
@@ -32964,7 +33004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 825,
+    "id": 826,
     "creatorId": "7581199131105017869",
     "username": "kuluxka",
     "name": "kuluxka",
@@ -33004,7 +33044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 826,
+    "id": 827,
     "creatorId": "7581270140747137079",
     "username": "swiggitymann",
     "name": "swiggitymann",
@@ -33044,7 +33084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 827,
+    "id": 828,
     "creatorId": "7571164837095587895",
     "username": "oc_tomaz",
     "name": "oc_tomaz",
@@ -33084,7 +33124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 828,
+    "id": 829,
     "creatorId": "7376338046494720016",
     "username": "trinity.blair",
     "name": "trinity.blair",
@@ -33124,7 +33164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 829,
+    "id": 830,
     "creatorId": "7576587015379173390",
     "username": "xrheaofficial",
     "name": "xrheaofficial",
@@ -33164,7 +33204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 830,
+    "id": 831,
     "creatorId": "7514711649840873488",
     "username": "andrewdoeswell",
     "name": "andrewdoeswell",
@@ -33204,7 +33244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 831,
+    "id": 832,
     "creatorId": "7570253201903992845",
     "username": "_van.g03",
     "name": "_van.g03",
@@ -33244,7 +33284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 832,
+    "id": 833,
     "creatorId": "7568663479326883895",
     "username": "cheifkaito",
     "name": "cheifkaito",
@@ -33284,7 +33324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 833,
+    "id": 834,
     "creatorId": "7571863711502090253",
     "username": "maritanightingale6",
     "name": "maritanightingale6",
@@ -33324,7 +33364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 834,
+    "id": 835,
     "creatorId": "7575020052429258807",
     "username": "squeakmelusky",
     "name": "squeakmelusky",
@@ -33364,7 +33404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 835,
+    "id": 836,
     "creatorId": "7572471684901519373",
     "username": "thisjusdank",
     "name": "thisjusdank",
@@ -33404,7 +33444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 836,
+    "id": 837,
     "creatorId": "7574219571838763063",
     "username": "flyonpluto",
     "name": "flyonpluto",
@@ -33444,7 +33484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 837,
+    "id": 838,
     "creatorId": "7573806306994274359",
     "username": "dubocsisters",
     "name": "dubocsisters",
@@ -33484,7 +33524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 838,
+    "id": 839,
     "creatorId": "7574199035477835789",
     "username": "therealkashmonroe",
     "name": "therealkashmonroe",
@@ -33524,7 +33564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 839,
+    "id": 840,
     "creatorId": "7568297768498806839",
     "username": "sirenofthewest",
     "name": "sirenofthewest",
@@ -33564,7 +33604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 840,
+    "id": 841,
     "creatorId": "7573885715550027831",
     "username": "jorosemurphy",
     "name": "jorosemurphy",
@@ -33604,7 +33644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 841,
+    "id": 842,
     "creatorId": "7573939617729265677",
     "username": "brycebecomingsuccessful",
     "name": "brycebecomingsuccessful",
@@ -33644,7 +33684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 842,
+    "id": 843,
     "creatorId": "7572615698829295671",
     "username": "realcapitalp",
     "name": "realcapitalp",
@@ -33684,7 +33724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 843,
+    "id": 844,
     "creatorId": "7573870578680152077",
     "username": "moneygeyser",
     "name": "moneygeyser",
@@ -33724,7 +33764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 844,
+    "id": 845,
     "creatorId": "7567540624602218509",
     "username": "guisellehhh",
     "name": "guisellehhh",
@@ -33764,7 +33804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 845,
+    "id": 846,
     "creatorId": "7571210053597020215",
     "username": "zzprado",
     "name": "zzprado",
@@ -33804,7 +33844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 846,
+    "id": 847,
     "creatorId": "7573814597233262647",
     "username": "jakeylafinances",
     "name": "jakeylafinances",
@@ -33844,7 +33884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 847,
+    "id": 848,
     "creatorId": "7576082587425456141",
     "username": "craigzilla_music",
     "name": "craigzilla_music",
@@ -33884,7 +33924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 848,
+    "id": 849,
     "creatorId": "7568983817575415863",
     "username": "jackmcars12",
     "name": "jackmcars12",
@@ -33924,7 +33964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 849,
+    "id": 850,
     "creatorId": "7567088407923638285",
     "username": "tlawzz_gaming",
     "name": "tlawzz_gaming",
@@ -33964,7 +34004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 850,
+    "id": 851,
     "creatorId": "7564200331450695735",
     "username": "shaleenjanay876",
     "name": "shaleenjanay876",
@@ -34004,7 +34044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 851,
+    "id": 852,
     "creatorId": "7556407679573573645",
     "username": "itslorenamedina",
     "name": "itslorenamedina",
@@ -34044,7 +34084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 852,
+    "id": 853,
     "creatorId": "7563794153663119373",
     "username": "taylorstimeline",
     "name": "taylorstimeline",
@@ -34084,7 +34124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 853,
+    "id": 854,
     "creatorId": "7562312052468105229",
     "username": "jennygraceofficial",
     "name": "jennygraceofficial",
@@ -34124,7 +34164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 854,
+    "id": 855,
     "creatorId": "7445169513122971665",
     "username": "melina_cajunroyaltea",
     "name": "melina_cajunroyaltea",
@@ -34164,7 +34204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 855,
+    "id": 856,
     "creatorId": "7564942466756132919",
     "username": "bladerelic",
     "name": "bladerelic",
@@ -34204,7 +34244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 856,
+    "id": 857,
     "creatorId": "7558154520338087949",
     "username": "blazequeen420_",
     "name": "blazequeen420_",
@@ -34244,7 +34284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 857,
+    "id": 858,
     "creatorId": "7565684672328679437",
     "username": "monalisastyless",
     "name": "monalisastyless",
@@ -34284,7 +34324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 858,
+    "id": 859,
     "creatorId": "7556036445476241422",
     "username": "djgregdean",
     "name": "djgregdean",
@@ -34324,7 +34364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 859,
+    "id": 860,
     "creatorId": "7517725595342651408",
     "username": "2xnique",
     "name": "2xnique",
@@ -34364,7 +34404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 860,
+    "id": 861,
     "creatorId": "7540363984634003470",
     "username": "brianapaine_",
     "name": "brianapaine_",
@@ -34404,7 +34444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 861,
+    "id": 862,
     "creatorId": "7558317816408129549",
     "username": "pistolsndlipgloss",
     "name": "pistolsndlipgloss",
@@ -34444,7 +34484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 862,
+    "id": 863,
     "creatorId": "7558262888209661966",
     "username": "billiejean_406",
     "name": "billiejean_406",
@@ -34484,7 +34524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 863,
+    "id": 864,
     "creatorId": "7564200409796165687",
     "username": "britxfish",
     "name": "britxfish",
@@ -34524,7 +34564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 864,
+    "id": 865,
     "creatorId": "7564169591367417911",
     "username": "wilsonthegood",
     "name": "wilsonthegood",
@@ -34564,7 +34604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 865,
+    "id": 866,
     "creatorId": "7564457242947305527",
     "username": "regalejb",
     "name": "regalejb",
@@ -34604,7 +34644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 866,
+    "id": 867,
     "creatorId": "7558262880408354871",
     "username": "_orionsorbit",
     "name": "_orionsorbit",
@@ -34644,7 +34684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 867,
+    "id": 868,
     "creatorId": "7565708171323523085",
     "username": "micah_fort_went_e",
     "name": "micah_fort_went_e",
@@ -34684,7 +34724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 868,
+    "id": 869,
     "creatorId": "7561872350627610638",
     "username": "princessdianaduh",
     "name": "princessdianaduh",
@@ -34724,7 +34764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 869,
+    "id": 870,
     "creatorId": "7563349948922773517",
     "username": "gn0ah1224",
     "name": "gn0ah1224",
@@ -34764,7 +34804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 870,
+    "id": 871,
     "creatorId": "7561337080069013518",
     "username": "gabbyholiday",
     "name": "gabbyholiday",
@@ -34804,7 +34844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 871,
+    "id": 872,
     "creatorId": "7559309677251772471",
     "username": "leilanisocial",
     "name": "leilanisocial",
@@ -34844,7 +34884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 872,
+    "id": 873,
     "creatorId": "7562344919353049143",
     "username": "sexysuccubus666",
     "name": "sexysuccubus666",
@@ -34884,7 +34924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 873,
+    "id": 874,
     "creatorId": "7517538466369028112",
     "username": "jason.j.knight",
     "name": "jason.j.knight",
@@ -34924,7 +34964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 874,
+    "id": 875,
     "creatorId": "7554197620911095863",
     "username": "realmelina",
     "name": "realmelina",
@@ -34964,7 +35004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 875,
+    "id": 876,
     "creatorId": "7554923164661268494",
     "username": "ogdiablos",
     "name": "ogdiablos",
@@ -35004,7 +35044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 876,
+    "id": 877,
     "creatorId": "7551925540999938103",
     "username": "nightlydaff",
     "name": "nightlydaff",
@@ -35044,7 +35084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 877,
+    "id": 878,
     "creatorId": "7550850474841456654",
     "username": "eyekonicswiftie",
     "name": "eyekonicswiftie",
@@ -35084,7 +35124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 878,
+    "id": 879,
     "creatorId": "7555712827848310798",
     "username": "elenore1950",
     "name": "elenore1950",
@@ -35124,7 +35164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 879,
+    "id": 880,
     "creatorId": "7552892121850658829",
     "username": "michaelcorrera",
     "name": "michaelcorrera",
@@ -35164,7 +35204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 880,
+    "id": 881,
     "creatorId": "7548512478117019662",
     "username": "cf_warrior.xoxo",
     "name": "cf_warrior.xoxo",
@@ -35204,7 +35244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 881,
+    "id": 882,
     "creatorId": "7553020731857322039",
     "username": "depttv",
     "name": "depttv",
@@ -35244,7 +35284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 882,
+    "id": 883,
     "creatorId": "7551917025526988813",
     "username": "laddanurv",
     "name": "laddanurv",
@@ -35284,7 +35324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 883,
+    "id": 884,
     "creatorId": "7555605705676603406",
     "username": "shaunl33t",
     "name": "shaunl33t",
@@ -35324,7 +35364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 884,
+    "id": 885,
     "creatorId": "7548320490268442638",
     "username": "bethanyflauren",
     "name": "bethanyflauren",
@@ -35364,7 +35404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 885,
+    "id": 886,
     "creatorId": "7544949475618635790",
     "username": "extracrispyelle",
     "name": "extracrispyelle",
@@ -35404,7 +35444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 886,
+    "id": 887,
     "creatorId": "7549186597481299982",
     "username": "c.p.a.c.k",
     "name": "c.p.a.c.k",
@@ -35444,7 +35484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 887,
+    "id": 888,
     "creatorId": "7551242840450383927",
     "username": "nikkigooch4",
     "name": "nikkigooch4",
@@ -35484,7 +35524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 888,
+    "id": 889,
     "creatorId": "7359136334830796805",
     "username": "alwayshim19",
     "name": "alwayshim19",
@@ -35524,7 +35564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 889,
+    "id": 890,
     "creatorId": "7549362050292760589",
     "username": "amber01123",
     "name": "amber01123",
@@ -35564,7 +35604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 890,
+    "id": 891,
     "creatorId": "7424398904805900305",
     "username": "ttvgtrose_",
     "name": "ttvgtrose_",
@@ -35579,7 +35619,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 2,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -35604,7 +35644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 891,
+    "id": 892,
     "creatorId": "7538877747918028813",
     "username": "luvmh.j",
     "name": "luvmh.j",
@@ -35644,7 +35684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 892,
+    "id": 893,
     "creatorId": "7538299940934828046",
     "username": "dovahkiinsdaydream",
     "name": "dovahkiinsdaydream",
@@ -35684,7 +35724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 893,
+    "id": 894,
     "creatorId": "7537126891673927735",
     "username": "baby.lange7777",
     "name": "baby.lange7777",
@@ -35724,7 +35764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 894,
+    "id": 895,
     "creatorId": "7539619059638452237",
     "username": "bmoneyslife",
     "name": "bmoneyslife",
@@ -35764,7 +35804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 895,
+    "id": 896,
     "creatorId": "7541126368428474423",
     "username": "stefandakarivlogs",
     "name": "stefandakarivlogs",
@@ -35804,7 +35844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 896,
+    "id": 897,
     "creatorId": "7538899445430403085",
     "username": "unruly_roxi",
     "name": "unruly_roxi",
@@ -35844,7 +35884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 897,
+    "id": 898,
     "creatorId": "7533812161387249678",
     "username": "alecohn",
     "name": "alecohn",
@@ -35884,7 +35924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 898,
+    "id": 899,
     "creatorId": "7537733986077065230",
     "username": "inotmechy",
     "name": "inotmechy",
@@ -35924,7 +35964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 899,
+    "id": 900,
     "creatorId": "7534083780236132366",
     "username": "giraffewalrus1",
     "name": "giraffewalrus1",
@@ -35964,7 +36004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 900,
+    "id": 901,
     "creatorId": "7535262866870681613",
     "username": "dyylpicklle",
     "name": "dyylpicklle",
@@ -36004,7 +36044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 901,
+    "id": 902,
     "creatorId": "7452915501849772048",
     "username": "hannahcardenn",
     "name": "hannahcardenn",
@@ -36044,7 +36084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 902,
+    "id": 903,
     "creatorId": "7535624623631712270",
     "username": "sarah_taylor06",
     "name": "sarah_taylor06",
@@ -36084,7 +36124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 903,
+    "id": 904,
     "creatorId": "7543056721388879927",
     "username": "mariamcgill3",
     "name": "mariamcgill3",
@@ -36124,7 +36164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 904,
+    "id": 905,
     "creatorId": "7543807642234306615",
     "username": "torikayofficial",
     "name": "torikayofficial",
@@ -36164,7 +36204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 905,
+    "id": 906,
     "creatorId": "7544385399389634615",
     "username": "hannahh764",
     "name": "hannahh764",
@@ -36204,7 +36244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 906,
+    "id": 907,
     "creatorId": "7535179859534954551",
     "username": "xoxoseptemberr",
     "name": "xoxoseptemberr",
@@ -36244,7 +36284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 907,
+    "id": 908,
     "creatorId": "7377956668812050449",
     "username": "royal_maiden",
     "name": "royal_maiden",
@@ -36284,7 +36324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 908,
+    "id": 909,
     "creatorId": "7538182665934225463",
     "username": "shiennegh",
     "name": "shiennegh",
@@ -36324,7 +36364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 909,
+    "id": 910,
     "creatorId": "7538874394421280781",
     "username": "denise_edwards71",
     "name": "denise_edwards71",
@@ -36364,7 +36404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 910,
+    "id": 911,
     "creatorId": "7543090187069505591",
     "username": "itslalamovess",
     "name": "itslalamovess",
@@ -36404,7 +36444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 911,
+    "id": 912,
     "creatorId": "7359139215025700869",
     "username": "wh0s.kaliyaah",
     "name": "wh0s.kaliyaah",
@@ -36444,7 +36484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 912,
+    "id": 913,
     "creatorId": "7541718074152697869",
     "username": "mortgage.with.gage",
     "name": "mortgage.with.gage",
@@ -36484,7 +36524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 913,
+    "id": 914,
     "creatorId": "7535949207002464270",
     "username": "chelseagafford",
     "name": "chelseagafford",
@@ -36524,7 +36564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 914,
+    "id": 915,
     "creatorId": "7533400357939101710",
     "username": "kimmie140",
     "name": "kimmie140",
@@ -36564,7 +36604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 915,
+    "id": 916,
     "creatorId": "7533400226460352526",
     "username": "sammysosexy1",
     "name": "sammysosexy1",
@@ -36604,7 +36644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 916,
+    "id": 917,
     "creatorId": "7533400409910689805",
     "username": "buickmckane8",
     "name": "buickmckane8",
@@ -36644,7 +36684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 917,
+    "id": 918,
     "creatorId": "7533845752582553613",
     "username": "gigiguerrero01",
     "name": "gigiguerrero01",
@@ -36684,7 +36724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 918,
+    "id": 919,
     "creatorId": "7537116061758636045",
     "username": "kes_014",
     "name": "kes_014",
@@ -36724,7 +36764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 919,
+    "id": 920,
     "creatorId": "7527879281704419344",
     "username": "itssalami",
     "name": "itssalami",
@@ -36764,7 +36804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 920,
+    "id": 921,
     "creatorId": "7523759456304529409",
     "username": "cjthejoviboi26",
     "name": "cjthejoviboi26",
@@ -36804,7 +36844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 921,
+    "id": 922,
     "creatorId": "7523037433861013505",
     "username": "just.an.average.mark",
     "name": "just.an.average.mark",
@@ -36844,7 +36884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 922,
+    "id": 923,
     "creatorId": "7531173843524730935",
     "username": ".nicomay",
     "name": ".nicomay",
@@ -36884,7 +36924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 923,
+    "id": 924,
     "creatorId": "7516667825638064129",
     "username": "just_kymie",
     "name": "just_kymie",
@@ -36924,7 +36964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 924,
+    "id": 925,
     "creatorId": "7513363198867914753",
     "username": "queenofhearts0069_",
     "name": "queenofhearts0069_",
@@ -36964,7 +37004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 925,
+    "id": 926,
     "creatorId": "7519300322448310289",
     "username": "barrywhit3",
     "name": "barrywhit3",
@@ -37004,7 +37044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 926,
+    "id": 927,
     "creatorId": "7516705469575086096",
     "username": "zacairy",
     "name": "zacairy",
@@ -37044,7 +37084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 927,
+    "id": 928,
     "creatorId": "7514927122901647377",
     "username": "rossauceacademy",
     "name": "rossauceacademy",
@@ -37084,7 +37124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 928,
+    "id": 929,
     "creatorId": "7511412626723946512",
     "username": "karen.ortiz88",
     "name": "karen.ortiz88",
@@ -37124,7 +37164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 929,
+    "id": 930,
     "creatorId": "7514738228092649488",
     "username": "itsknotsnot",
     "name": "itsknotsnot",
@@ -37164,7 +37204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 930,
+    "id": 931,
     "creatorId": "7505245178995884033",
     "username": "alaskanbassgal",
     "name": "alaskanbassgal",
@@ -37204,7 +37244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 931,
+    "id": 932,
     "creatorId": "7499632144470507521",
     "username": "afternoon_dream007",
     "name": "afternoon_dream007",
@@ -37244,7 +37284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 932,
+    "id": 933,
     "creatorId": "7508653795619160065",
     "username": "wadeclark16",
     "name": "wadeclark16",
@@ -37284,7 +37324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 933,
+    "id": 934,
     "creatorId": "7505500794389692432",
     "username": "digitallizardmama",
     "name": "digitallizardmama",
@@ -37324,7 +37364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 934,
+    "id": 935,
     "creatorId": "7506768163925721104",
     "username": "onthatsince94",
     "name": "onthatsince94",
@@ -37364,7 +37404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 935,
+    "id": 936,
     "creatorId": "7502229937454268432",
     "username": "ezay_life1",
     "name": "ezay_life1",
@@ -37404,7 +37444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 936,
+    "id": 937,
     "creatorId": "7499269427771457553",
     "username": "inluvwithpnw",
     "name": "inluvwithpnw",
@@ -37444,7 +37484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 937,
+    "id": 938,
     "creatorId": "7493406574925348880",
     "username": "vcvdog",
     "name": "vcvdog",
@@ -37484,7 +37524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 938,
+    "id": 939,
     "creatorId": "7488604412659843089",
     "username": "billyvena",
     "name": "billyvena",
@@ -37524,7 +37564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 939,
+    "id": 940,
     "creatorId": "7493731746362605584",
     "username": "wilsonfurula",
     "name": "wilsonfurula",
@@ -37564,7 +37604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 940,
+    "id": 941,
     "creatorId": "7488499378634637329",
     "username": "stainedbykane6",
     "name": "stainedbykane6",
@@ -37604,7 +37644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 941,
+    "id": 942,
     "creatorId": "7495179645394944016",
     "username": "laynieyork",
     "name": "laynieyork",
@@ -37644,7 +37684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 942,
+    "id": 943,
     "creatorId": "7488155778486992897",
     "username": "itsdashira",
     "name": "itsdashira",
@@ -37684,7 +37724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 943,
+    "id": 944,
     "creatorId": "7489934126737539073",
     "username": "leticiacm97",
     "name": "leticiacm97",
@@ -37724,7 +37764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 944,
+    "id": 945,
     "creatorId": "7486530145088471056",
     "username": "courtelliottt",
     "name": "courtelliottt",
@@ -37764,7 +37804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 945,
+    "id": 946,
     "creatorId": "7476626950346309649",
     "username": "bincyclopedia",
     "name": "bincyclopedia",
@@ -37804,7 +37844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 946,
+    "id": 947,
     "creatorId": "7476626840392646672",
     "username": "digicardzzz",
     "name": "digicardzzz",
@@ -37844,7 +37884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 947,
+    "id": 948,
     "creatorId": "7484066201136594945",
     "username": "irish.g00dby3",
     "name": "irish.g00dby3",
@@ -37884,7 +37924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 948,
+    "id": 949,
     "creatorId": "7485532583095369744",
     "username": "audreywelly",
     "name": "audreywelly",
@@ -37924,7 +37964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 949,
+    "id": 950,
     "creatorId": "7477736666996834305",
     "username": "joshcorbett03",
     "name": "joshcorbett03",
@@ -37964,7 +38004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 950,
+    "id": 951,
     "creatorId": "7431307183314485249",
     "username": "roxannedover1",
     "name": "roxannedover1",
@@ -38004,7 +38044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 951,
+    "id": 952,
     "creatorId": "7467718585595723793",
     "username": "a_aronfish",
     "name": "a_aronfish",
@@ -38044,7 +38084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 952,
+    "id": 953,
     "creatorId": "7472502126602862608",
     "username": "prettyinink1",
     "name": "prettyinink1",
@@ -38084,7 +38124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 953,
+    "id": 954,
     "creatorId": "7467026650593738769",
     "username": "sydneydixonmusic",
     "name": "sydneydixonmusic",
@@ -38124,7 +38164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 954,
+    "id": 955,
     "creatorId": "7466236236080988161",
     "username": "walleye.1234",
     "name": "walleye.1234",
@@ -38164,7 +38204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 955,
+    "id": 956,
     "creatorId": "7468534081253359632",
     "username": "justjuni309",
     "name": "justjuni309",
@@ -38204,7 +38244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 956,
+    "id": 957,
     "creatorId": "7466236257115570177",
     "username": "emilyanitaa",
     "name": "emilyanitaa",
@@ -38244,7 +38284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 957,
+    "id": 958,
     "creatorId": "7469203327218221072",
     "username": "emmaisabelleparks",
     "name": "emmaisabelleparks",
@@ -38284,7 +38324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 958,
+    "id": 959,
     "creatorId": "7475037566992039953",
     "username": "yesithebear",
     "name": "yesithebear",
@@ -38324,7 +38364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 959,
+    "id": 960,
     "creatorId": "7455479714787147792",
     "username": "_devababy",
     "name": "_devababy",
@@ -38364,7 +38404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 960,
+    "id": 961,
     "creatorId": "7454733148983820304",
     "username": "kristenn_wilson",
     "name": "kristenn_wilson",
@@ -38404,7 +38444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 961,
+    "id": 962,
     "creatorId": "7457713114239451153",
     "username": "meilebishop",
     "name": "meilebishop",
@@ -38444,7 +38484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 962,
+    "id": 963,
     "creatorId": "7454731551385845777",
     "username": "goddisalivee",
     "name": "goddisalivee",
@@ -38484,7 +38524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 963,
+    "id": 964,
     "creatorId": "7460667852887162896",
     "username": "sarahnichole2015",
     "name": "sarahnichole2015",
@@ -38524,7 +38564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 964,
+    "id": 965,
     "creatorId": "7454734552142118928",
     "username": "thewhisperfaerieasmr",
     "name": "thewhisperfaerieasmr",
@@ -38564,7 +38604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 965,
+    "id": 966,
     "creatorId": "7454733986905161745",
     "username": "coach_kmack",
     "name": "coach_kmack",
@@ -38604,7 +38644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 966,
+    "id": 967,
     "creatorId": "7462507750791348240",
     "username": "kaybaby2141",
     "name": "kaybaby2141",
@@ -38644,7 +38684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 967,
+    "id": 968,
     "creatorId": "7457781689205669905",
     "username": "leo_notdicapri0",
     "name": "leo_notdicapri0",
@@ -38684,7 +38724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 968,
+    "id": 969,
     "creatorId": "7459202382103248912",
     "username": "matia.stoltz",
     "name": "matia.stoltz",
@@ -38724,7 +38764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 969,
+    "id": 970,
     "creatorId": "7461391827552256017",
     "username": "mochi.suka",
     "name": "mochi.suka",
@@ -38764,7 +38804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 970,
+    "id": 971,
     "creatorId": "7460976556916326401",
     "username": "moodyverse",
     "name": "moodyverse",
@@ -38804,7 +38844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 971,
+    "id": 972,
     "creatorId": "7359137902569455621",
     "username": "briarconerly",
     "name": "briarconerly",
@@ -38844,7 +38884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 972,
+    "id": 973,
     "creatorId": "7457700597744205841",
     "username": "kystout0",
     "name": "kystout0",
@@ -38884,7 +38924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 973,
+    "id": 974,
     "creatorId": "7460027556662804496",
     "username": "b3autifuldisaster1",
     "name": "b3autifuldisaster1",
@@ -38924,7 +38964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 974,
+    "id": 975,
     "creatorId": "7461440310519021584",
     "username": "melissaeastwick",
     "name": "melissaeastwick",
@@ -38964,7 +39004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 975,
+    "id": 976,
     "creatorId": "7416144195179593729",
     "username": "coffeeaddict8639",
     "name": "coffeeaddict8639",
@@ -39004,7 +39044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 976,
+    "id": 977,
     "creatorId": "7455853474904047617",
     "username": "carelessmariahh",
     "name": "carelessmariahh",
@@ -39044,7 +39084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 977,
+    "id": 978,
     "creatorId": "7455525365369454608",
     "username": "zanemelz",
     "name": "zanemelz",
@@ -39084,7 +39124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 978,
+    "id": 979,
     "creatorId": "7459554941531881473",
     "username": "thecupcakejake",
     "name": "thecupcakejake",
@@ -39124,7 +39164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 979,
+    "id": 980,
     "creatorId": "7463741238701883408",
     "username": "zaptheboy",
     "name": "zaptheboy",
@@ -39164,7 +39204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 980,
+    "id": 981,
     "creatorId": "7443230776042471441",
     "username": "letter2brazy",
     "name": "letter2brazy",
@@ -39204,7 +39244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 981,
+    "id": 982,
     "creatorId": "7446625208414371841",
     "username": "d.russss",
     "name": "d.russss",
@@ -39244,7 +39284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 982,
+    "id": 983,
     "creatorId": "7450994065371365393",
     "username": "tastydan",
     "name": "tastydan",
@@ -39284,7 +39324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 983,
+    "id": 984,
     "creatorId": "7443598365138665488",
     "username": "gigiinextdoor",
     "name": "gigiinextdoor",
@@ -39324,7 +39364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 984,
+    "id": 985,
     "creatorId": "7453999269905842192",
     "username": "soulspiritandlove",
     "name": "soulspiritandlove",
@@ -39364,7 +39404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 985,
+    "id": 986,
     "creatorId": "7451043187663110161",
     "username": "makeawish11eleven",
     "name": "makeawish11eleven",
@@ -39404,7 +39444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 986,
+    "id": 987,
     "creatorId": "7433142229734293521",
     "username": "brookeventre",
     "name": "brookeventre",
@@ -39444,7 +39484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 987,
+    "id": 988,
     "creatorId": "7437289440479035409",
     "username": "sailo1x",
     "name": "sailo1x",
@@ -39484,7 +39524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 988,
+    "id": 989,
     "creatorId": "7439788214732275729",
     "username": "222xbrii",
     "name": "222xbrii",
@@ -39524,7 +39564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 989,
+    "id": 990,
     "creatorId": "7433257890686959633",
     "username": "wizardfroglive",
     "name": "wizardfroglive",
@@ -39564,7 +39604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 990,
+    "id": 991,
     "creatorId": "7439971569637523457",
     "username": "ioninspire",
     "name": "ioninspire",
@@ -39604,7 +39644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 991,
+    "id": 992,
     "creatorId": "7432097339386413072",
     "username": "becomingamillionaregirl",
     "name": "becomingamillionaregirl",
@@ -39644,7 +39684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 992,
+    "id": 993,
     "creatorId": "7437290180924407825",
     "username": "xoxobee30",
     "name": "xoxobee30",
@@ -39684,7 +39724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 993,
+    "id": 994,
     "creatorId": "7436151930373685265",
     "username": "_.anastasiamichelle",
     "name": "_.anastasiamichelle",
@@ -39724,7 +39764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 994,
+    "id": 995,
     "creatorId": "7438813614556938257",
     "username": "jenny.mccown",
     "name": "jenny.mccown",
@@ -39764,7 +39804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 995,
+    "id": 996,
     "creatorId": "7423969750620848129",
     "username": "lawsonbrady",
     "name": "lawsonbrady",
@@ -39804,7 +39844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 996,
+    "id": 997,
     "creatorId": "7426527818483236880",
     "username": "hotworkmusic",
     "name": "hotworkmusic",
@@ -39844,7 +39884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 997,
+    "id": 998,
     "creatorId": "7421703951864643601",
     "username": "typicaljulieth",
     "name": "typicaljulieth",
@@ -39884,7 +39924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 998,
+    "id": 999,
     "creatorId": "7430612680660189200",
     "username": "hazel_b_music",
     "name": "hazel_b_music",
@@ -39924,7 +39964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 999,
+    "id": 1000,
     "creatorId": "7425785766560858113",
     "username": "chiroenergy",
     "name": "chiroenergy",
@@ -39964,7 +40004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1000,
+    "id": 1001,
     "creatorId": "7421759652805001217",
     "username": "_itskendalll",
     "name": "_itskendalll",
@@ -40004,7 +40044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1001,
+    "id": 1002,
     "creatorId": "7422817041553358865",
     "username": "ncproudtrucking",
     "name": "ncproudtrucking",
@@ -40044,7 +40084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1002,
+    "id": 1003,
     "creatorId": "7415856990070751233",
     "username": "zezecod",
     "name": "zezecod",
@@ -40084,7 +40124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1003,
+    "id": 1004,
     "creatorId": "7416879681435238401",
     "username": "nadjakuzmanich2",
     "name": "nadjakuzmanich2",
@@ -40124,7 +40164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1004,
+    "id": 1005,
     "creatorId": "7413973179343011857",
     "username": "ellezworld__",
     "name": "ellezworld__",
@@ -40164,7 +40204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1005,
+    "id": 1006,
     "creatorId": "7416508596743176193",
     "username": "kingchrxstine",
     "name": "kingchrxstine",
@@ -40204,7 +40244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1006,
+    "id": 1007,
     "creatorId": "7413595587108405265",
     "username": "child_king77777",
     "name": "child_king77777",
@@ -40244,7 +40284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1007,
+    "id": 1008,
     "creatorId": "7359135748278190085",
     "username": "troydewberrymusic",
     "name": "troydewberrymusic",
@@ -40284,7 +40324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1008,
+    "id": 1009,
     "creatorId": "7415066153170518032",
     "username": "pannell.emma",
     "name": "pannell.emma",
@@ -40324,7 +40364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1009,
+    "id": 1010,
     "creatorId": "7418364129158791185",
     "username": "linedancerbrooke",
     "name": "linedancerbrooke",
@@ -40364,7 +40404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1010,
+    "id": 1011,
     "creatorId": "7409460148344733713",
     "username": "sonika.vaid",
     "name": "sonika.vaid",
@@ -40404,7 +40444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1011,
+    "id": 1012,
     "creatorId": "7401316826170277905",
     "username": "mariah_rodrice",
     "name": "mariah_rodrice",
@@ -40444,7 +40484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1012,
+    "id": 1013,
     "creatorId": "7398345100306366480",
     "username": "sociopeep",
     "name": "sociopeep",
@@ -40484,7 +40524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1013,
+    "id": 1014,
     "creatorId": "7398434150094553105",
     "username": "az.babe",
     "name": "az.babe",
@@ -40524,7 +40564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1014,
+    "id": 1015,
     "creatorId": "7359135905594114054",
     "username": "shyannesmusic",
     "name": "shyannesmusic",
@@ -40564,7 +40604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1015,
+    "id": 1016,
     "creatorId": "7401098349325107217",
     "username": "theonlyjoxo",
     "name": "theonlyjoxo",
@@ -40604,7 +40644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1016,
+    "id": 1017,
     "creatorId": "7359135262670159878",
     "username": ".thefittestrealtor",
     "name": ".thefittestrealtor",
@@ -40644,7 +40684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1017,
+    "id": 1018,
     "creatorId": "7402978703376105488",
     "username": "manaquinn777",
     "name": "manaquinn777",
@@ -40684,7 +40724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1018,
+    "id": 1019,
     "creatorId": "7391918697927032848",
     "username": "owlympian4",
     "name": "owlympian4",
@@ -40724,7 +40764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1019,
+    "id": 1020,
     "creatorId": "7397914860576587792",
     "username": "layeredfanatic6",
     "name": "layeredfanatic6",
@@ -40764,7 +40804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1020,
+    "id": 1021,
     "creatorId": "7389887665182818321",
     "username": "due.4a.win_",
     "name": "due.4a.win_",
@@ -40804,7 +40844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1021,
+    "id": 1022,
     "creatorId": "7393099990975004689",
     "username": "savi_trends",
     "name": "savi_trends",
@@ -40844,7 +40884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1022,
+    "id": 1023,
     "creatorId": "7391292864048676880",
     "username": "b.angelofficial",
     "name": "b.angelofficial",
@@ -40884,7 +40924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1023,
+    "id": 1024,
     "creatorId": "7387412064681213969",
     "username": "blakenwake",
     "name": "blakenwake",
@@ -40924,7 +40964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1024,
+    "id": 1025,
     "creatorId": "7389792998080561153",
     "username": "dopeyblendz",
     "name": "dopeyblendz",
@@ -40964,7 +41004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1025,
+    "id": 1026,
     "creatorId": "7389889718487531521",
     "username": "iamcaseyclare",
     "name": "iamcaseyclare",
@@ -41004,7 +41044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1026,
+    "id": 1027,
     "creatorId": "7391186570117890065",
     "username": "elizabeth.grego",
     "name": "elizabeth.grego",
@@ -41044,7 +41084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1027,
+    "id": 1028,
     "creatorId": "7379451629730299905",
     "username": "thesequelscream",
     "name": "thesequelscream",
@@ -41084,7 +41124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1028,
+    "id": 1029,
     "creatorId": "7384899651138404353",
     "username": "kimmylexiek",
     "name": "kimmylexiek",
@@ -41099,7 +41139,7 @@ const creatorsData = [
     "diamonds": 0,
     "diamondsGoal": 1,
     "diamondsPace": "0",
-    "diamondsLast30": 0,
+    "diamondsLast30": 6,
     "diamondsLastMonth": 0,
     "diamonds2MonthsAgo": 0,
     "hours": 0,
@@ -41124,7 +41164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1029,
+    "id": 1030,
     "creatorId": "7377491607463018512",
     "username": "killbunkmusic",
     "name": "killbunkmusic",
@@ -41164,7 +41204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1030,
+    "id": 1031,
     "creatorId": "7364254871526359057",
     "username": "katealllison",
     "name": "katealllison",
@@ -41204,7 +41244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1031,
+    "id": 1032,
     "creatorId": "7371646533651005456",
     "username": "sayeh2002",
     "name": "sayeh2002",
@@ -41244,7 +41284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1032,
+    "id": 1033,
     "creatorId": "7359139753872097285",
     "username": "raatheone",
     "name": "raatheone",
@@ -41284,7 +41324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1033,
+    "id": 1034,
     "creatorId": "7363815617020936193",
     "username": "dallrulz",
     "name": "dallrulz",
@@ -41324,7 +41364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1034,
+    "id": 1035,
     "creatorId": "7369837133156352017",
     "username": "crazytrainfizzness",
     "name": "crazytrainfizzness",
@@ -41364,7 +41404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1035,
+    "id": 1036,
     "creatorId": "7367107210025156624",
     "username": "indiamckenzie4",
     "name": "indiamckenzie4",
@@ -41404,7 +41444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1036,
+    "id": 1037,
     "creatorId": "7367590798294089744",
     "username": "foster_girl7",
     "name": "foster_girl7",
@@ -41444,7 +41484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1037,
+    "id": 1038,
     "creatorId": "7371144282998095888",
     "username": "annikaklarissa",
     "name": "annikaklarissa",
@@ -41484,7 +41524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1038,
+    "id": 1039,
     "creatorId": "7367578011811627024",
     "username": "cityboiup",
     "name": "cityboiup",
@@ -41524,7 +41564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1039,
+    "id": 1040,
     "creatorId": "7363815298996420624",
     "username": "ogtittymilk",
     "name": "ogtittymilk",
@@ -41564,7 +41604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1040,
+    "id": 1041,
     "creatorId": "7367054125370228752",
     "username": "trnd.products",
     "name": "trnd.products",
@@ -41604,7 +41644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1041,
+    "id": 1042,
     "creatorId": "7363575522313682945",
     "username": "mgoldcreative",
     "name": "mgoldcreative",
@@ -41644,7 +41684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1042,
+    "id": 1043,
     "creatorId": "7363328581453398017",
     "username": "katiemarie.creates",
     "name": "katiemarie.creates",
@@ -41684,7 +41724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1043,
+    "id": 1044,
     "creatorId": "7359139697056317446",
     "username": "lady.lemonade1",
     "name": "lady.lemonade1",
@@ -41724,7 +41764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1044,
+    "id": 1045,
     "creatorId": "7359430506221486096",
     "username": "brookstravels",
     "name": "brookstravels",
@@ -41764,7 +41804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1045,
+    "id": 1046,
     "creatorId": "7359139487475171333",
     "username": "breydonwhite",
     "name": "breydonwhite",
@@ -41804,7 +41844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1046,
+    "id": 1047,
     "creatorId": "7359139044300980230",
     "username": "prettyliljbirdz",
     "name": "prettyliljbirdz",
@@ -41844,7 +41884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1047,
+    "id": 1048,
     "creatorId": "7359139366972915717",
     "username": "queenhoneybeeluv7",
     "name": "queenhoneybeeluv7",
@@ -41884,7 +41924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1048,
+    "id": 1049,
     "creatorId": "7359139450280116230",
     "username": "ladybug_usa1",
     "name": "ladybug_usa1",
@@ -41924,7 +41964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1049,
+    "id": 1050,
     "creatorId": "7359139396219600901",
     "username": "jonathan_visuals_436",
     "name": "jonathan_visuals_436",
@@ -41964,7 +42004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1050,
+    "id": 1051,
     "creatorId": "7359139456269418501",
     "username": "chrismiller5841",
     "name": "chrismiller5841",
@@ -42004,7 +42044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1051,
+    "id": 1052,
     "creatorId": "7359139070053777414",
     "username": "stephanie_092294",
     "name": "stephanie_092294",
@@ -42044,7 +42084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1052,
+    "id": 1053,
     "creatorId": "7359138475368513541",
     "username": "scarlettjlopez",
     "name": "scarlettjlopez",
@@ -42084,7 +42124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1053,
+    "id": 1054,
     "creatorId": "7359138627353346053",
     "username": "sincereking82",
     "name": "sincereking82",
@@ -42124,7 +42164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1054,
+    "id": 1055,
     "creatorId": "7359138654733926405",
     "username": "01cumminspassenger",
     "name": "01cumminspassenger",
@@ -42164,7 +42204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1055,
+    "id": 1056,
     "creatorId": "7359138466481307654",
     "username": "mtv_nelson",
     "name": "mtv_nelson",
@@ -42204,7 +42244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1056,
+    "id": 1057,
     "creatorId": "7359138290211061765",
     "username": "joannajoy__",
     "name": "joannajoy__",
@@ -42244,7 +42284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1057,
+    "id": 1058,
     "creatorId": "7359137032024752133",
     "username": "djbowiejane",
     "name": "djbowiejane",
@@ -42284,7 +42324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1058,
+    "id": 1059,
     "creatorId": "7359136690818088965",
     "username": "codytiralosi",
     "name": "codytiralosi",
@@ -42324,7 +42364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1059,
+    "id": 1060,
     "creatorId": "7359136550178816006",
     "username": "alextiralosi",
     "name": "alextiralosi",
@@ -42364,7 +42404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1060,
+    "id": 1061,
     "creatorId": "7359135998355472389",
     "username": "brayden.pantel",
     "name": "brayden.pantel",
@@ -42404,7 +42444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1061,
+    "id": 1062,
     "creatorId": "7359135811868557317",
     "username": "lindsey.lou.whoo",
     "name": "lindsey.lou.whoo",
@@ -42444,7 +42484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1062,
+    "id": 1063,
     "creatorId": "7359135826238013445",
     "username": "fun_with_kermit_usa",
     "name": "fun_with_kermit_usa",
@@ -42484,7 +42524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1063,
+    "id": 1064,
     "creatorId": "7359135736874467333",
     "username": "jovanijara99",
     "name": "jovanijara99",
@@ -42524,7 +42564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1064,
+    "id": 1065,
     "creatorId": "7359135416206950406",
     "username": "tripsevenofficial1",
     "name": "tripsevenofficial1",
@@ -42564,7 +42604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1065,
+    "id": 1066,
     "creatorId": "7359135457160069126",
     "username": "katie.n.marie",
     "name": "katie.n.marie",
@@ -42604,7 +42644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1066,
+    "id": 1067,
     "creatorId": "7359135448591040518",
     "username": "firefly_kat26",
     "name": "firefly_kat26",
@@ -42644,7 +42684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1067,
+    "id": 1068,
     "creatorId": "7359135268504469509",
     "username": "jeremygregorymusic",
     "name": "jeremygregorymusic",
@@ -42684,7 +42724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1068,
+    "id": 1069,
     "creatorId": "7359135262674321413",
     "username": "camciesielski",
     "name": "camciesielski",
@@ -42724,7 +42764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1069,
+    "id": 1070,
     "creatorId": "7359135269972606982",
     "username": "rusty_35",
     "name": "rusty_35",
@@ -42764,7 +42804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1070,
+    "id": 1071,
     "creatorId": "7359135273021865990",
     "username": "kathleen_oneill",
     "name": "kathleen_oneill",
@@ -42804,7 +42844,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1071,
+    "id": 1072,
     "creatorId": "7359135232244678661",
     "username": "christianmiller.music",
     "name": "christianmiller.music",
@@ -42844,7 +42884,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1072,
+    "id": 1073,
     "creatorId": "7359135227891056646",
     "username": "queenofdreamz_444",
     "name": "queenofdreamz_444",
@@ -42884,7 +42924,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1073,
+    "id": 1074,
     "creatorId": "7359135227891023878",
     "username": "keystone_outdoors3",
     "name": "keystone_outdoors3",
@@ -42924,7 +42964,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1074,
+    "id": 1075,
     "creatorId": "7359135203316596742",
     "username": "brittanydejardo",
     "name": "brittanydejardo",
@@ -42964,7 +43004,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1075,
+    "id": 1076,
     "creatorId": "7359135181367869445",
     "username": "annaamaxx",
     "name": "annaamaxx",
@@ -43004,7 +43044,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1076,
+    "id": 1077,
     "creatorId": "7359135087579004933",
     "username": "hotter_wallen_",
     "name": "hotter_wallen_",
@@ -43044,7 +43084,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1077,
+    "id": 1078,
     "creatorId": "7359135070302535686",
     "username": "iamjacobsavage",
     "name": "iamjacobsavage",
@@ -43084,7 +43124,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1078,
+    "id": 1079,
     "creatorId": "7359135033598377990",
     "username": "frenchiarmelle",
     "name": "frenchiarmelle",
@@ -43124,7 +43164,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1079,
+    "id": 1080,
     "creatorId": "7359134882947235845",
     "username": "20takejake",
     "name": "20takejake",
@@ -43164,7 +43204,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1080,
+    "id": 1081,
     "creatorId": "7359134813124689926",
     "username": "thetiralositwins",
     "name": "thetiralositwins",
@@ -43204,7 +43244,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1081,
+    "id": 1082,
     "creatorId": "7359134823299940357",
     "username": "tef_talk",
     "name": "tef_talk",
@@ -43244,7 +43284,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1082,
+    "id": 1083,
     "creatorId": "7359134767486369797",
     "username": "kelcie092",
     "name": "kelcie092",
@@ -43284,7 +43324,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1083,
+    "id": 1084,
     "creatorId": "7359134767486402565",
     "username": "malrobisonnn",
     "name": "malrobisonnn",
@@ -43324,7 +43364,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1084,
+    "id": 1085,
     "creatorId": "7359134752903004166",
     "username": "nicoleshaee",
     "name": "nicoleshaee",
@@ -43364,7 +43404,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1085,
+    "id": 1086,
     "creatorId": "7359134700117458949",
     "username": "minderella1teamspreadluv",
     "name": "minderella1teamspreadluv",
@@ -43404,7 +43444,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1086,
+    "id": 1087,
     "creatorId": "7359134735479603205",
     "username": "staceygurns",
     "name": "staceygurns",
@@ -43444,7 +43484,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1087,
+    "id": 1088,
     "creatorId": "7359134685395419141",
     "username": "meg_venus",
     "name": "meg_venus",
@@ -43484,7 +43524,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1088,
+    "id": 1089,
     "creatorId": "7359134507833982981",
     "username": "loisa_asmr",
     "name": "loisa_asmr",
@@ -43524,7 +43564,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1089,
+    "id": 1090,
     "creatorId": "7359134534392348678",
     "username": "jennyfromthe_block_",
     "name": "jennyfromthe_block_",
@@ -43564,7 +43604,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1090,
+    "id": 1091,
     "creatorId": "7359134489861259269",
     "username": "luxtinglesasmr",
     "name": "luxtinglesasmr",
@@ -43604,7 +43644,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1091,
+    "id": 1092,
     "creatorId": "7359134457569312773",
     "username": "allisonrosefinicle",
     "name": "allisonrosefinicle",
@@ -43644,7 +43684,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1092,
+    "id": 1093,
     "creatorId": "7359134463483478021",
     "username": "natalieporretta",
     "name": "natalieporretta",
@@ -43684,7 +43724,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1093,
+    "id": 1094,
     "creatorId": "7359134457615384581",
     "username": "taboostboss",
     "name": "taboostboss",
@@ -43724,7 +43764,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1094,
+    "id": 1095,
     "creatorId": "7359134430037934085",
     "username": "emileeannmiller",
     "name": "emileeannmiller",
@@ -43764,7 +43804,7 @@ const creatorsData = [
     "rewardsMonth": "$0.00"
   },
   {
-    "id": 1095,
+    "id": 1096,
     "creatorId": "7639587601183358989",
     "username": "wayaseraphimmessages",
     "name": "wayaseraphimmessages",
@@ -43807,7 +43847,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-11T17:10:06.652Z",
+  lastUpdated: "2026-08-12T17:08:31.661Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
