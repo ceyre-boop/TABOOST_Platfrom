@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-17T17:08:43.758Z
+// Generated: 2026-08-18T17:08:27.038Z
 // Total: 1115 creators
 
 const creatorsData = [
@@ -4771,7 +4771,7 @@ const creatorsData = [
     "email": "shed_sings@taboost.me",
     "status": "GO",
     "level": "2",
-    "month": "",
+    "month": "26",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
@@ -9931,7 +9931,7 @@ const creatorsData = [
     "email": "bentleybtv@taboost.me",
     "status": "GO",
     "level": "2",
-    "month": "",
+    "month": "42",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
@@ -44607,7 +44607,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-17T17:08:43.758Z",
+  lastUpdated: "2026-08-18T17:08:27.038Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
