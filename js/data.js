@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-21T16:13:07.398Z
+// Generated: 2026-08-22T17:08:53.731Z
 // Total: 1130 creators
 
 const creatorsData = [
@@ -154,12 +154,12 @@ const creatorsData = [
     "tierStatus": "Up",
     "tierLastMonth": "6",
     "growthPercent": 0,
-    "earned": 362000,
-    "gifted": 364000,
+    "earned": 397000,
+    "gifted": 399000,
     "running": "-2,000",
     "multiply": "1x",
     "unlocked": "0",
-    "daysMonth": 2,
+    "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$580.07"
   },
@@ -554,8 +554,8 @@ const creatorsData = [
     "tierStatus": "Up",
     "tierLastMonth": "5",
     "growthPercent": 0,
-    "earned": 38000,
-    "gifted": 18000,
+    "earned": 40000,
+    "gifted": 20000,
     "running": "20,000",
     "multiply": "1x",
     "unlocked": "20,000",
@@ -9955,8 +9955,8 @@ const creatorsData = [
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 12000,
-    "gifted": 7000,
-    "running": "5,000",
+    "gifted": 12000,
+    "running": "0",
     "multiply": "-",
     "unlocked": "0",
     "daysMonth": 0,
@@ -31250,8 +31250,8 @@ const creatorsData = [
     "name": "slothalicious_",
     "email": "slothalicious_@taboost.me",
     "status": "GO",
-    "level": "-1",
-    "month": "",
+    "level": "0",
+    "month": "1",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -31260,14 +31260,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": -1,
-    "diamonds2MonthsAgo": -2,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
     "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
+    "hoursGoal": 0,
+    "hoursLeft": "0",
     "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
+    "daysGoal": 0,
+    "daysLeft": "0",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -45207,7 +45207,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-21T16:13:07.398Z",
+  lastUpdated: "2026-08-22T17:08:53.731Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
