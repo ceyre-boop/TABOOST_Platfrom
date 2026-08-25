@@ -7,7 +7,7 @@
     "Jun 2026",
     "Jul 2026"
   ],
-  "generatedAt": "2026-08-24T16:23:05.463860Z",
+  "generatedAt": "2026-08-25T15:22:18.037200Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -567,7 +567,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -3455,7 +3455,7 @@
         8,
         7
       ],
-      "tierCurrent": 7,
+      "tierCurrent": 8,
       "levelHistory": [
         6,
         5,
@@ -5127,7 +5127,7 @@
         4,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         2,
@@ -7559,7 +7559,7 @@
         7,
         7
       ],
-      "tierCurrent": 6,
+      "tierCurrent": 7,
       "levelHistory": [
         4,
         5,
@@ -10675,7 +10675,7 @@
         3,
         4
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         3,
         4,
@@ -24862,7 +24862,7 @@
       ]
     },
     {
-      "username": "aquarius5518",
+      "username": "penny_carillo",
       "diamondsHistory": [
         7146.0,
         15869.0,
@@ -65826,7 +65826,7 @@
       ]
     },
     {
-      "username": "ifeelthelove3",
+      "username": "ifeelthelove8",
       "diamondsHistory": [
         0,
         0,
@@ -86599,7 +86599,7 @@
         null,
         1
       ],
-      "tierCurrent": 2,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -95162,7 +95162,7 @@
       ]
     },
     {
-      "username": "loonloon0410",
+      "username": "#N/A",
       "diamondsHistory": [
         0,
         0,
@@ -96151,6 +96151,158 @@
     },
     {
       "username": "prettyrixhhbihh",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "daysHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "hoursHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "username": "tiotito007",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "daysHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "hoursHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "username": "man.cave.music5",
       "diamondsHistory": [
         0,
         0,
