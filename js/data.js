@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-08-26T20:44:41.425Z
+// Generated: 2026-08-26T21:18:59.537Z
 // Total: 1128 creators
 
 const creatorsData = [
@@ -7451,17 +7451,17 @@ const creatorsData = [
     "email": "aidensettembrini@taboost.me",
     "status": "GO",
     "level": "1",
-    "month": "",
+    "month": "2",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
-    "score": 4,
+    "score": 5,
     "diamonds": 7984,
     "diamondsGoal": 1,
     "diamondsPace": "9,900",
     "diamondsLast30": 8408,
     "diamondsLastMonth": 3785,
-    "diamonds2MonthsAgo": -2,
+    "diamonds2MonthsAgo": 0,
     "hours": 26,
     "hoursGoal": 35,
     "hoursLeft": "9",
@@ -45127,7 +45127,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-08-26T20:44:41.425Z",
+  lastUpdated: "2026-08-26T21:18:59.537Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
