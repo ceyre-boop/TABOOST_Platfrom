@@ -1,3 +1,6 @@
+// ⛔ DO NOT DEPLOY — DANGEROUS: grants read/write on all/most docs to any logged-in user.
+// Disabled 2026-08-31 during security review. Canonical ruleset is firestore-production.rules.
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {

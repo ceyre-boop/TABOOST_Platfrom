@@ -29,7 +29,8 @@
         
         // Skip early auth check in test mode
         const _params = new URLSearchParams(window.location.search);
-        if (!_params.get('testUser')) {
+        const _testModeAllowed = ['localhost','127.0.0.1'].includes(window.location.hostname) && _params.get('testUser');
+        if (!_testModeAllowed) {
         // Check Firebase Auth state — run setup ONCE only
         let _mod1Init = false;
         onAuthStateChanged(auth, async (user) => {
@@ -876,7 +877,8 @@
         // Usage: creator-dashboard.html?testUser=kaemi.s
         // ============================================
         const urlParams = new URLSearchParams(window.location.search);
-        const testUser = urlParams.get('testUser');
+        const _isLocalDev = ['localhost','127.0.0.1'].includes(window.location.hostname);
+        const testUser = _isLocalDev ? urlParams.get('testUser') : null;
         
         if (testUser) {
             console.log('🧪 TEST MODE: Loading dashboard for', testUser);

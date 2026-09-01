@@ -1,3 +1,6 @@
+// ⛔ DO NOT DEPLOY — legacy ruleset, wrong collection names (creatorData/roster vs live creators/creatorRoster).
+// Deploying this breaks all data access. Canonical ruleset is firestore-production.rules.
+
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
