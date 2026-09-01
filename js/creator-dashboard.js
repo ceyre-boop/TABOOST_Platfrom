@@ -11,39 +11,108 @@ let historyRowsData = []; // Computed row data for Earnings History, indexed to 
 let historyTrends = null; // Resolved creatorTrends[username] entry for the current creator, if found
 
 async function initCreatorDashboard(user) {
-    await taboostData.loadFromCSV();
-    allCreators = taboostData.getAllCreators();
-    
-    // Build Creator ID lookup map (internal tracking)
-    // Creator ID is in the data (column B = Host)
-    creatorIdMap = {};
-    allCreators.forEach(c => {
-        // Use creatorId if available, otherwise try to extract from data
-        const cid = c.creatorId || c._creatorId || c.id;
-        if (cid) {
-            creatorIdMap[cid] = c;
+    // --- Firestore-first PII lookup ---------------------------------------
+    // If this creator's roster row has already been migrated to
+    // creators/{cid} in Firestore, prefer it over the public CSV/JSON files
+    // (which are being phased out as a PII source). Any failure here
+    // (no cid, not migrated yet, denied/offline) falls through silently to
+    // the original public-file path below — nothing here is allowed to throw.
+    let firestoreCreator = null;
+    const fsCreatorId = user.creatorId || user.id;
+    if (fsCreatorId && window.__fs && window.__fs.db && window.__fs.doc && window.__fs.getDoc) {
+        try {
+            const fsSnap = await window.__fs.getDoc(window.__fs.doc(window.__fs.db, 'creators', String(fsCreatorId)));
+            if (fsSnap.exists()) {
+                firestoreCreator = fsSnap.data();
+                console.log('DEBUG - Loaded creator from Firestore:', firestoreCreator.username || fsCreatorId);
+            }
+        } catch (e) {
+            console.warn('DEBUG - Firestore creator read failed, falling back to public CSV:', e);
+            firestoreCreator = null;
         }
-    });
-    
-    // Load real month data from CSV (column F)
-    await loadCreatorMonths();
-    
-    // Load Tier and Score badges from CSV (columns U and AF)
-    await loadCreatorBadges();
-    
-    // Load real 6-month historical trends
-    await loadCreatorTrends();
-    
-    // Load detailed rewards from rewards-history.csv
-    detailedRewardsData = await loadDetailedRewards();
+    }
+
+    if (firestoreCreator) {
+        // Firestore path — the whole point of the migration is that a migrated
+        // creator's browser NEVER fetches the public roster (data/current.csv),
+        // which contains every other creator's PII. Scope allCreators/creatorIdMap
+        // to just this one creator so downstream renders (rank %, agency average,
+        // etc.) have a non-empty array to work with instead of hitting the network.
+        allCreators = [firestoreCreator];
+        creatorIdMap = { [String(fsCreatorId)]: firestoreCreator };
+        console.log('DEBUG - Firestore path: skipping public roster fetch entirely');
+    } else {
+        await taboostData.loadFromCSV();
+        allCreators = taboostData.getAllCreators();
+
+        // Build Creator ID lookup map (internal tracking)
+        // Creator ID is in the data (column B = Host)
+        creatorIdMap = {};
+        allCreators.forEach(c => {
+            // Use creatorId if available, otherwise try to extract from data
+            const cid = c.creatorId || c._creatorId || c.id;
+            if (cid) {
+                creatorIdMap[cid] = c;
+            }
+        });
+    }
+
+    // Load real month data (column F). On the Firestore path NEVER fetch the public
+    // multi-creator file — branch on firestoreCreator presence, not field truthiness,
+    // so a doc missing an embedded field still doesn't leak the roster.
+    if (firestoreCreator) {
+        creatorMonths[String(fsCreatorId)] = firestoreCreator.months ?? 0;
+        console.log('DEBUG - Using embedded Firestore months for', fsCreatorId);
+    } else {
+        await loadCreatorMonths();
+    }
+
+    // Load Tier and Score badges (columns U and AF) — embedded on Firestore path only.
+    if (firestoreCreator) {
+        creatorBadges[String(fsCreatorId)] = firestoreCreator.badge || {};
+        console.log('DEBUG - Using embedded Firestore badge for', fsCreatorId);
+    } else {
+        await loadCreatorBadges();
+    }
+
+    // Load real 6-month historical trends — embedded on Firestore path only.
+    if (firestoreCreator) {
+        creatorTrends = firestoreCreator.trends
+            ? { [(firestoreCreator.username || fsCreatorId)]: firestoreCreator.trends }
+            : {};
+        console.log('DEBUG - Using embedded Firestore trends for', firestoreCreator.username || fsCreatorId);
+    } else {
+        await loadCreatorTrends();
+    }
+
+    // Load detailed rewards from rewards-history.csv — embedded on Firestore path only.
+    if (firestoreCreator) {
+        const embeddedUsername = (firestoreCreator.username || '').toLowerCase();
+        detailedRewardsData = {
+            [embeddedUsername]: (firestoreCreator.rewards || []).map(r => ({
+                type: r.type || '',
+                date: r.date || '',
+                plus: (r.plus !== undefined && r.plus !== null) ? String(r.plus) : '',
+                minus: (r.minus !== undefined && r.minus !== null) ? String(r.minus) : '',
+                icon: getRewardIcon(r.type)
+            }))
+        };
+        console.log('DEBUG - Using embedded Firestore rewards for', embeddedUsername);
+    } else {
+        detailedRewardsData = await loadDetailedRewards();
+    }
     console.log('DEBUG - Detailed rewards loaded for', Object.keys(detailedRewardsData).length, 'creators');
-    
-    // Find my data - first try by Creator ID, then fallback to username
+
+    // Find my data - Firestore doc first, then by Creator ID, then fallback to username
     // In production, user.id would be the Creator ID from login
     let creatorId = user.creatorId || user.id;
     console.log('DEBUG - Looking for creatorId:', creatorId, 'user.name:', user.name);
-    
-    if (creatorId && creatorIdMap[creatorId]) {
+
+    if (firestoreCreator) {
+        myData = firestoreCreator;
+        if (!myData.creatorId) myData.creatorId = creatorId;
+        console.log('DEBUG - Found via Firestore:', myData.username, 'Score:', myData.score);
+    } else if (creatorId && creatorIdMap[creatorId]) {
         myData = creatorIdMap[creatorId];
         console.log('DEBUG - Found by creatorId:', myData.username, 'Score:', myData.score);
     } else {
@@ -669,6 +738,30 @@ window.renderAgencyBenefits = renderAgencyBenefits;
 window.switchBenefitTab = switchBenefitTab;
 
 function updateRank() {
+    // Firestore path — allCreators only holds this one creator (the public
+    // roster is never fetched), so a cross-creator sort here would always
+    // return #1 of 1. The migration precomputes overallRank/totalCreators/
+    // diamondsToNextRank on the creator's own doc — use those directly.
+    if (myData.overallRank != null) {
+        const myRank = myData.overallRank;
+        const total = myData.totalCreators || 1;
+
+        document.getElementById('currentRank').textContent = '#' + myRank;
+        document.getElementById('totalCreators').textContent = total;
+
+        const progress = Math.max(5, 100 - (myRank / total * 100));
+        document.getElementById('rankBar').style.width = progress + '%';
+
+        if (myRank > 1) {
+            const gap = myData.diamondsToNextRank || 0;
+            const targetRank = myRank - 1;
+            document.getElementById('rankGoal').textContent = formatNumber(gap) + ' more diamonds to reach #' + targetRank;
+        } else {
+            document.getElementById('rankGoal').textContent = "You're #1! Keep crushing it! 🔥";
+        }
+        return;
+    }
+
     const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
     const myRank = sorted.findIndex(c => c.username === myData.username) + 1;
     
@@ -1252,8 +1345,12 @@ function initPerformanceChart() {
     });
     
     // Insights using real data
-    const avg = allCreators.reduce((a, c) => a + (c.diamonds || 0), 0) / allCreators.length;
-    const diff = ((myData.diamonds || 0) - avg) / avg * 100;
+    // Firestore path — allCreators only holds this one creator, so use the
+    // agency average precomputed at migration time instead of reducing it.
+    const avg = (myData.agencyAvgDiamonds != null && myData.agencyAvgDiamonds > 0)
+        ? myData.agencyAvgDiamonds
+        : allCreators.reduce((a, c) => a + (c.diamonds || 0), 0) / allCreators.length;
+    const diff = (avg > 0) ? ((myData.diamonds || 0) - avg) / avg * 100 : 0;
     
     document.getElementById('chartInsights').innerHTML = `
         <div class="insight-item ${diff >= 0 ? 'positive' : 'negative'}">
@@ -1294,9 +1391,15 @@ function updateAchievements() {
     ];
     
     // Update Top 10 based on actual rank
-    const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
-    const myRank = sorted.findIndex(c => c.username === myData.username) + 1;
-    achievements[5].unlocked = myRank <= 10;
+    // Firestore path — allCreators only holds this one creator, so use the
+    // overallRank precomputed at migration time instead of sorting it.
+    if (myData.overallRank != null) {
+        achievements[5].unlocked = myData.overallRank <= 10;
+    } else {
+        const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
+        const myRank = sorted.findIndex(c => c.username === myData.username) + 1;
+        achievements[5].unlocked = myRank <= 10;
+    }
     
     const unlockedCount = achievements.filter(a => a.unlocked).length;
     document.getElementById('achievementCount').textContent = `${unlockedCount}/${achievements.length} unlocked`;
@@ -1473,6 +1576,20 @@ function formatChangeBadge(change) {
 
 function getRankForMonth(username, monthIndex) {
     if (!username) return null;
+
+    // Firestore path — creatorTrends only holds this one creator (the public
+    // multi-creator trends fetch is skipped), so a cross-creator sort here
+    // would always return #1. The migration embeds a precomputed rankByMonth
+    // array (aligned to the trends months[] array) on the creator's own doc —
+    // use that directly instead.
+    // overallRank is only set on embedded Firestore docs — use it as the path marker.
+    // On the Firestore path we have NO cross-creator trends, so never fall through to
+    // the sort below (it would return a false #1); return the precomputed rank or null.
+    if (myData && myData.overallRank != null && (myData.username || '').toLowerCase() === username.toLowerCase()) {
+        const rank = Array.isArray(myData.rankByMonth) ? myData.rankByMonth[monthIndex] : null;
+        return (rank === undefined || rank === null) ? null : rank;
+    }
+
     const usernameLower = username.toLowerCase();
     const ranked = Object.values(creatorTrends)
         .map(c => ({ username: c.username, diamonds: (c.diamondsHistory && c.diamondsHistory[monthIndex]) || 0 }))

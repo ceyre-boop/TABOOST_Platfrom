@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABOOST - Migrate Creator PII to Firestore</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+        .container {
+            width: 100%;
+            max-width: 640px;
+        }
+        .logo {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff0044, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 6px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .note {
+            background: rgba(255,193,7,0.08);
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: #ffd873;
+            line-height: 1.5;
+        }
+        .note strong { color: #ffc107; }
+        .card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 30px;
+        }
+        #gateMessage {
+            text-align: center;
+            color: #aaa;
+            padding: 20px 0;
+        }
+        #gateMessage.denied { color: #ff4444; font-weight: 600; }
+        .btn {
+            background: linear-gradient(135deg, #ff0044, #ff6b6b);
+            color: #000;
+            border: none;
+            padding: 14px 32px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .status {
+            background: rgba(0,0,0,0.35);
+            border-radius: 10px;
+            padding: 16px;
+            margin-top: 20px;
+            font-family: 'SF Mono', Menlo, monospace;
+            font-size: 12px;
+            max-height: 360px;
+            overflow-y: auto;
+            display: none;
+        }
+        .status.visible { display: block; }
+        .status div { padding: 2px 0; }
+        .success { color: #22c55e; }
+        .error { color: #ff4444; }
+        .warning { color: #ffc107; }
+        .summary {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">TABOOST</div>
+        <div class="subtitle">Migrate Creator PII to Firestore</div>
+
+        <div class="note">
+            <strong>Note:</strong> Run once now, and again whenever the roster refreshes,
+            until the Sheets&nbsp;&rarr;&nbsp;Firestore sync replaces it.
+        </div>
+
+        <div class="card">
+            <div id="gateMessage">Checking admin access&hellip;</div>
+
+            <div id="runPanel" style="display:none;">
+                <button class="btn" id="runBtn" onclick="runMigration()">Run migration</button>
+                <div class="status" id="status"></div>
+                <div class="summary" id="summary"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reuses the exact same CSV column mapping as the live dashboard (rowToCreator) -->
+    <script src="js/csv-data-loader.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+        import { getFirestore, doc, getDoc, writeBatch, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+            authDomain: "taboost-platform.firebaseapp.com",
+            projectId: "taboost-platform",
+            storageBucket: "taboost-platform.firebasestorage.app",
+            messagingSenderId: "379293685859",
+            appId: "1:379293685859:web:d89592adbf67360b574056"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        const gateMessage = document.getElementById('gateMessage');
+        const runPanel = document.getElementById('runPanel');
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = 'firebase-login.html';
+                return;
+            }
+
+            let isAdmin = user.email?.toLowerCase() === 'marco@taboost.me';
+            try {
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                const userData = userDoc.data();
+                if (userData?.role === 'admin') isAdmin = true;
+            } catch (e) {
+                console.warn('Could not verify admin role:', e);
+            }
+
+            if (!isAdmin) {
+                gateMessage.textContent = 'Admin only.';
+                gateMessage.classList.add('denied');
+                return;
+            }
+
+            gateMessage.style.display = 'none';
+            runPanel.style.display = 'block';
+        });
+
+        window.logout = async () => {
+            await auth.signOut();
+            window.location.href = 'firebase-login.html';
+        };
+
+        // ------------------------------------------------------------------
+        // Migration logic
+        // ------------------------------------------------------------------
+
+        function log(msg, type) {
+            const status = document.getElementById('status');
+            status.classList.add('visible');
+            const div = document.createElement('div');
+            if (type) div.className = type;
+            div.textContent = msg;
+            status.appendChild(div);
+            status.scrollTop = status.scrollHeight;
+        }
+
+        async function fetchText(path) {
+            const res = await fetch(`${path}?v=${Date.now()}`);
+            if (!res.ok) throw new Error(`Failed to fetch ${path}: ${res.status}`);
+            return res.text();
+        }
+
+        async function fetchJSON(path, fallback) {
+            try {
+                const res = await fetch(`${path}?v=${Date.now()}`);
+                if (!res.ok) throw new Error(`${res.status}`);
+                return await res.json();
+            } catch (e) {
+                log(`⚠️ Could not load ${path} — using empty fallback (${e.message})`, 'warning');
+                return fallback;
+            }
+        }
+
+        // rewards-history.csv (fallback rewards.csv) -> { [cid|username]: [{type,date,plus,minus}] }
+        function buildRewardsIndex(csvText) {
+            const { headers, rows } = CSV_LOADER.parseCSV(csvText);
+            const byCid = {};
+            const byUsername = {};
+            rows.forEach(row => {
+                const cid = String(row['CID'] || '').trim();
+                const username = String(row['TikTok'] || '').toLowerCase().trim();
+                if (!cid && !username) return;
+                const entry = {
+                    type: row['Type'] || '',
+                    date: row['Date'] || '',
+                    plus: row['Plus'] || '',
+                    minus: row['Minus'] || ''
+                };
+                if (cid) {
+                    if (!byCid[cid]) byCid[cid] = [];
+                    byCid[cid].push(entry);
+                }
+                if (username) {
+                    if (!byUsername[username]) byUsername[username] = [];
+                    byUsername[username].push(entry);
+                }
+            });
+            return { byCid, byUsername };
+        }
+
+        window.runMigration = async function runMigration() {
+            const btn = document.getElementById('runBtn');
+            const summary = document.getElementById('summary');
+            btn.disabled = true;
+            summary.textContent = '';
+
+            try {
+                log('📥 Fetching current.csv (or live-data-current.csv fallback)...');
+                let currentCsvText;
+                try {
+                    currentCsvText = await fetchText('data/current.csv');
+                } catch (e) {
+                    log('⚠️ current.csv not found, trying live-data-current.csv', 'warning');
+                    currentCsvText = await fetchText('data/live-data-current.csv');
+                }
+
+                const { headers, rows } = CSV_LOADER.parseCSV(currentCsvText);
+                const creators = rows
+                    .map((row, idx) => CSV_LOADER.rowToCreator(row, idx, headers))
+                    .filter(c => c && c.creatorId);
+
+                log(`✅ Parsed ${creators.length} creators from current.csv`);
+
+                log('📥 Fetching creator_months.json, creator_badges.json, creator_trends.json, rewards-history.csv...');
+                const [monthsMap, badgesMap, trendsData] = await Promise.all([
+                    fetchJSON('data/creator_months.json', {}),
+                    fetchJSON('data/creator_badges.json', {}),
+                    fetchJSON('data/creator_trends.json', { creators: [] })
+                ]);
+
+                let rewardsCsvText = '';
+                try {
+                    rewardsCsvText = await fetchText('data/rewards-history.csv');
+                } catch (e) {
+                    log('⚠️ rewards-history.csv not found, trying rewards.csv', 'warning');
+                    try {
+                        rewardsCsvText = await fetchText('data/rewards.csv');
+                    } catch (e2) {
+                        log(`⚠️ No rewards file found — rewards will be empty (${e2.message})`, 'warning');
+                    }
+                }
+                const rewardsIndex = rewardsCsvText ? buildRewardsIndex(rewardsCsvText) : { byCid: {}, byUsername: {} };
+
+                const trendsByUsername = {};
+                (trendsData.creators || []).forEach(t => {
+                    if (t && t.username) trendsByUsername[t.username.toLowerCase()] = t;
+                });
+
+                // Precompute each creator's rank per month, aligned to trendsData.months[].
+                // This lets the dashboard show an accurate monthly rank on the Firestore
+                // path without ever fetching every other creator's trend history —
+                // the ranking work happens once, here, at migration time.
+                const trendMonthCount = (trendsData.months || []).length;
+                const rankByMonthByUsername = {};
+                if (trendMonthCount > 0) {
+                    const allTrendCreators = trendsData.creators || [];
+                    for (let m = 0; m < trendMonthCount; m++) {
+                        const rankedForMonth = allTrendCreators
+                            .map(t => ({
+                                username: (t.username || '').toLowerCase(),
+                                diamonds: (t.diamondsHistory && t.diamondsHistory[m]) || 0
+                            }))
+                            .sort((a, b) => b.diamonds - a.diamonds);
+                        rankedForMonth.forEach((entry, idx) => {
+                            if (!entry.username) return;
+                            if (!rankByMonthByUsername[entry.username]) rankByMonthByUsername[entry.username] = new Array(trendMonthCount).fill(null);
+                            rankByMonthByUsername[entry.username][m] = idx + 1;
+                        });
+                    }
+                    log(`✅ Computed monthly ranks for ${Object.keys(rankByMonthByUsername).length} creators across ${trendMonthCount} months`);
+                }
+
+                // Precompute the current-period leaderboard aggregates once, here, so
+                // the dashboard never needs to fetch every other creator's data on the
+                // Firestore path just to show "#N of M" / "X more diamonds" / agency avg.
+                const rankedByCurrentDiamonds = [...creators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
+                const overallRankByCid = {};
+                rankedByCurrentDiamonds.forEach((c, idx) => {
+                    overallRankByCid[String(c.creatorId)] = idx + 1;
+                });
+                const totalCreators = creators.length;
+                const agencyAvgDiamonds = totalCreators > 0
+                    ? creators.reduce((sum, c) => sum + (c.diamonds || 0), 0) / totalCreators
+                    : 0;
+                log(`✅ Computed overall rank / agency average for ${totalCreators} creators`);
+
+                // Build one Firestore-ready doc per creator, keyed by cid
+                const docs = creators.map(c => {
+                    const cid = String(c.creatorId);
+                    const rewards = rewardsIndex.byCid[cid] || rewardsIndex.byUsername[c.username] || [];
+                    const overallRank = overallRankByCid[cid];
+                    const nextCreator = overallRank > 1 ? rankedByCurrentDiamonds[overallRank - 2] : null;
+                    const diamondsToNextRank = nextCreator ? Math.max(0, (nextCreator.diamonds || 0) - (c.diamonds || 0)) : 0;
+                    return {
+                        cid,
+                        data: {
+                            ...c,
+                            cid,
+                            username: c.username,
+                            months: monthsMap[cid] ?? 0,
+                            badge: badgesMap[cid] || null,
+                            trends: trendsByUsername[c.username] || null,
+                            rankByMonth: rankByMonthByUsername[c.username] || null,
+                            overallRank,
+                            totalCreators,
+                            diamondsToNextRank,
+                            agencyAvgDiamonds,
+                            rewards,
+                            updatedAt: serverTimestamp()
+                        }
+                    };
+                });
+
+                log(`🔄 Writing ${docs.length} creator docs to Firestore (creators/{cid})...`);
+
+                const BATCH_LIMIT = 500;
+                let written = 0;
+                let failed = 0;
+
+                for (let i = 0; i < docs.length; i += BATCH_LIMIT) {
+                    const chunk = docs.slice(i, i + BATCH_LIMIT);
+                    const batch = writeBatch(db);
+                    chunk.forEach(({ cid, data }) => {
+                        batch.set(doc(db, 'creators', cid), data, { merge: true });
+                    });
+                    try {
+                        await batch.commit();
+                        written += chunk.length;
+                        log(`✅ Written ${written} / ${docs.length}`, 'success');
+                    } catch (e) {
+                        failed += chunk.length;
+                        log(`❌ Batch ${i / BATCH_LIMIT + 1} failed (${chunk.length} docs): ${e.message}`, 'error');
+                        // Continue with remaining batches even if one fails
+                    }
+                }
+
+                summary.textContent = `Done — ${written} written, ${failed} failed, ${docs.length} total.`;
+                log(`🎉 Migration complete — ${written} written, ${failed} failed.`, written === docs.length ? 'success' : 'warning');
+            } catch (err) {
+                console.error(err);
+                log(`❌ Migration failed: ${err.message}`, 'error');
+                summary.textContent = 'Migration failed — see log above.';
+            } finally {
+                btn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
