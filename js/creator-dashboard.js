@@ -533,7 +533,16 @@ function applyCashbackState(myData) {
         // the sheet rolled, AO went to $0, and the tab vanished mid-claim-window.
         // Marco's sheet already applies the Score-70+/tier qualification, so the dashboard only
         // needs: is the amount > $0?
-        const rawAmount = (day === lastDay) ? myData.bonus : myData.lmBonus;
+        // Pick the column that actually holds the QUALIFYING month's bonus, keyed off the
+        // data snapshot's month (myData.snapshotMonth) — robust to a stale snapshot that
+        // predates the month rollover, which is what made this show a month-old figure:
+        //   • snapshot month == qualifying month  → "Bonus" (that month's accrual, near-final)
+        //   • snapshot rolled to a later month     → "LM Bonus" (qualifying month now settled)
+        // Falls back to the day-of-month heuristic when snapshotMonth is unavailable.
+        const useBonusCol = myData.snapshotMonth
+            ? (myData.snapshotMonth === qualMonth)
+            : (day === lastDay);
+        const rawAmount = useBonusCol ? myData.bonus : myData.lmBonus;
         let bonusAmount = parseFloat((rawAmount || '').toString().replace(/[$,]/g, '')) || 0;
 
         // ?cashbackPreview=1234 — inject a synthetic amount when there's no real one
