@@ -70,7 +70,13 @@ service cloud.firestore {
     
     // Creator data - performance metrics
     match /creators/{cid} {
-      // Creator can read their own data (matched by UID in document)
+      // Creator can read their own data. Primary link: their users/{uid}.cid == this doc id.
+      // (creators docs are synced from Sheets and don't carry a uid; the uid->cid mapping
+      //  lives on the user's own account doc, written at signup/claim.)
+      allow read: if isAuthenticated()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.cid == cid;
+
+      // Legacy fallback: some docs may carry a uid field directly.
       allow read: if isAuthenticated()
         && resource.data.uid == request.auth.uid;
 
@@ -106,7 +112,11 @@ service cloud.firestore {
 
     // UK creator data - performance metrics
     match /ukCreators/{cid} {
-      // Creator can read their own data (matched by UID in document)
+      // Creator can read their own data. Primary link: their users/{uid}.cid == this doc id.
+      allow read: if isAuthenticated()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.cid == cid;
+
+      // Legacy fallback: some docs may carry a uid field directly.
       allow read: if isAuthenticated()
         && resource.data.uid == request.auth.uid;
 
