@@ -55,13 +55,15 @@ service cloud.firestore {
       // Only admins can create roster entries
       allow create: if isAdmin();
       
-      // Allow users to update their own entry to mark as claimed
-      // They can only set claimed: true and add their uid
+      // Allow users to update their own entry to mark as claimed.
+      // They can ONLY flip claimed:false->true, set their own uid, and stamp claimedAt.
+      // affectedKeys().hasOnly(...) blocks injecting/overwriting any other roster field.
       allow update: if isAuthenticated()
         && resource.data.claimed == false
         && request.resource.data.claimed == true
-        && request.resource.data.uid == request.auth.uid;
-      
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['claimed', 'uid', 'claimedAt', 'claimedBy']);
+
       // Admins can do anything
       allow delete: if isAdmin();
     }
@@ -90,11 +92,13 @@ service cloud.firestore {
       // Only admins can create roster entries
       allow create: if isAdmin();
 
-      // Allow users to claim their own entry (set claimed: true + their uid)
+      // Allow users to claim their own entry (set claimed: true + their uid).
+      // hasOnly(...) blocks injecting/overwriting any other roster field.
       allow update: if isAuthenticated()
         && resource.data.claimed == false
         && request.resource.data.claimed == true
-        && request.resource.data.uid == request.auth.uid;
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['claimed', 'uid', 'claimedAt', 'claimedBy']);
 
       // Admins can do anything
       allow delete: if isAdmin();
@@ -166,6 +170,22 @@ service cloud.firestore {
       allow create: if isAuthenticated()
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.keys().hasOnly(['uid', 'creatorName', 'month', 'claimedAt']);
+      allow read, write: if isAdmin();
+    }
+
+    // ⚠️ SHARED PROJECT — TABOOST-Shop collection. Kept here so this ruleset is the
+    // complete deployable set for the shared 'taboost-platform' project. Do NOT drop.
+    // TAP bonus claims — one doc per (creator, tier), id = "{uid}_{tier}". Create-only:
+    // a re-claim of the same tier is an update on an existing doc, which no rule allows.
+    // No dollar field permitted; amount is resolved server-side (Apps Script) from tier.
+    match /tapBonusClaims/{claimId} {
+      allow read: if isAuthenticated() && resource.data.uid == request.auth.uid;
+
+      allow create: if isAuthenticated()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid', 'tier', 'creatorName', 'claimedAt'])
+        && request.resource.data.tier in ['tier1', 'tier2', 'tier3'];
+
       allow read, write: if isAdmin();
     }
   }
