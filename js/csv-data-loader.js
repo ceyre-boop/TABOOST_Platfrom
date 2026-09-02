@@ -130,13 +130,16 @@ const CSV_LOADER = {
     // month it belongs to the previous year (handles the Dec→Jan boundary). Used by the
     // cashback/bonus card to pick the right bonus column regardless of sync freshness.
     let snapshotMonth = '';
+    let snapshotDate = ''; // full 'YYYY-MM-DD' of the snapshot; lets the claim window key off the data date
     if (dateCol) {
       const md = String(dateCol).trim().match(/^(\d{1,2})\/(\d{1,2})$/);
       if (md) {
         const _now = new Date();
         const snapM = parseInt(md[1], 10);
+        const snapD = parseInt(md[2], 10);
         const year = (snapM > (_now.getMonth() + 1)) ? _now.getFullYear() - 1 : _now.getFullYear();
         snapshotMonth = year + '-' + String(snapM).padStart(2, '0');
+        snapshotDate = snapshotMonth + '-' + String(snapD).padStart(2, '0');
       }
     }
 
@@ -203,6 +206,7 @@ const CSV_LOADER = {
       bonus: this.cleanValue(get('Bonus', 'bonus'), 'string', '$0.00'),
       lmBonus: this.cleanValue(get('LM Bonus', 'lmBonus'), 'string', '$0.00'), // last month's earned bonus (claimable)
       snapshotMonth: snapshotMonth, // 'YYYY-MM' of this data snapshot; drives bonus-column selection
+      snapshotDate: snapshotDate,   // 'YYYY-MM-DD' of this data snapshot; drives the claim window
       unis: this.cleanValue(get('Unis', 'unis'), 'int', 0), // Column AM — rank boosts available (BOOST tab)
       daysMonth: this.cleanValue(get('Month Goal', 'Days Month', 'daysMonth', 'monthGoal'), 'int', 0),
       hoursMonth: this.cleanValue(get('Hours Month', 'hoursMonth'), 'int', 0),

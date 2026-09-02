@@ -505,9 +505,20 @@ function applyCashbackState(myData) {
         const day = now.getDate();
         const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate(); // 28–31
 
-        // Claim window = the last day of the month (Marco leaves month-end up for a day or two)
-        // through the 5th of the next month.
-        let inWindow = day === lastDay || day <= CASHBACK_WINDOW_DAYS;
+        // The month-end export (dated the last day of the month) is held up for ~2 days into
+        // the new month before the new month's data is uploaded — during that hold the just-ended
+        // month is final and claimable but not yet rolled. Detect that data state directly: a
+        // snapshot dated the LAST DAY OF THE PREVIOUS MONTH means "claim is open", regardless of
+        // the calendar day (so the button doesn't slam shut on the 5th if the upload runs late).
+        const prevMonthEnd = new Date(now.getFullYear(), now.getMonth(), 0); // day 0 = last day of prev month
+        const prevMonthEndISO = prevMonthEnd.getFullYear() + '-'
+            + String(prevMonthEnd.getMonth() + 1).padStart(2, '0') + '-'
+            + String(prevMonthEnd.getDate()).padStart(2, '0');
+        const snapshotIsPrevMonthEnd = !!myData.snapshotDate && myData.snapshotDate === prevMonthEndISO;
+
+        // Claim window = the last day of the month, OR the 1st–5th of the next month, OR while the
+        // live data is still the previous month's month-end snapshot (Marco's hold).
+        let inWindow = day === lastDay || day <= CASHBACK_WINDOW_DAYS || snapshotIsPrevMonthEnd;
         if (CASHBACK_FORCE_WINDOW_UNTIL) { // TEMP rollout: pretend it's the claim window through the set date
             const todayISO = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(day).padStart(2, '0');
             if (todayISO <= CASHBACK_FORCE_WINDOW_UNTIL) inWindow = true;
