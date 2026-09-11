@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-09-10T19:41:13.720Z
+// Generated: 2026-09-11T17:08:24.975Z
 // Total: 1152 creators
 
 const creatorsData = [
@@ -354,11 +354,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1567550,
-    "gifted": 1440400,
-    "running": "147,150",
+    "earned": 1591550,
+    "gifted": 1454400,
+    "running": "157,150",
     "multiply": "1x",
-    "unlocked": "147,150",
+    "unlocked": "157,150",
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -954,11 +954,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 40000,
+    "earned": 45000,
     "gifted": 40000,
-    "running": "0",
+    "running": "5,000",
     "multiply": "1x",
-    "unlocked": "0",
+    "unlocked": "5,000",
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -3474,8 +3474,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "3",
     "growthPercent": 0,
-    "earned": 97000,
-    "gifted": 87000,
+    "earned": 101000,
+    "gifted": 91000,
     "running": "10,000",
     "multiply": "1x",
     "unlocked": "10,000",
@@ -46087,7 +46087,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-09-10T19:41:13.720Z",
+  lastUpdated: "2026-09-11T17:08:24.975Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
