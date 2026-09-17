@@ -494,6 +494,40 @@ const CASHBACK_WINDOW_DAYS = 5;     // claim deadline: the 5th (window opens on 
 // box shows now for the first-launch demo. Auto-reverts to the strict window the day after. '' = off.
 const CASHBACK_FORCE_WINDOW_UNTIL = ''; // OFF → strict last-day→5th only (no launch grace period)
 
+// Resolve a creator's bonus for a given month ('YYYY-MM') from the live snapshot columns.
+// The only place the current/just-closed month's bonus exists is current.csv:
+//   • "Bonus" (myData.bonus)   = the snapshot month's own accrual  → use when month == snapshotMonth
+//   • "LM Bonus" (myData.lmBonus) = the prior month's SETTLED bonus → use for the month before the snapshot
+// Returns a number (0 if this month isn't one the snapshot can speak to, or the value is blank).
+// Used by BOTH the CLAIM card and Earnings History so the two always agree.
+// "Aug 2026" -> "2026-08". Returns '' if it can't parse.
+function monthLabelToKey(label) {
+    if (!label) return '';
+    const names = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+    const m = String(label).trim().match(/^([A-Za-z]{3})[A-Za-z]*\s+(\d{4})$/);
+    if (!m) return '';
+    const mi = names.indexOf(m[1].toLowerCase());
+    if (mi < 0) return '';
+    return m[2] + '-' + String(mi + 1).padStart(2, '0');
+}
+
+function resolveMonthBonus(monthYYYYMM, cData) {
+    if (!cData || !monthYYYYMM) return 0;
+    const snap = cData.snapshotMonth; // 'YYYY-MM' of the live data snapshot
+    let raw = null;
+    if (snap && monthYYYYMM === snap) {
+        raw = cData.bonus;          // that month's own column
+    } else if (snap) {
+        // month immediately before the snapshot month → the settled LM Bonus column
+        const [sy, sm] = snap.split('-').map(Number);
+        const prev = new Date(sy, sm - 2, 1); // sm-1 is snapshot month index; -1 again = prior month
+        const prevKey = prev.getFullYear() + '-' + String(prev.getMonth() + 1).padStart(2, '0');
+        if (monthYYYYMM === prevKey) raw = cData.lmBonus;
+    }
+    if (raw === null) return 0; // not a month this snapshot carries a bonus for
+    return parseFloat((raw || '').toString().replace(/[$,]/g, '')) || 0;
+}
+
 function applyCashbackState(myData) {
     window.__bonusHasBonus = false;  // BONUS tab appears only when there's a bonus amount to show
     window.__bonusClaimLive = false; // claim actionable now (last day → 5th) → tab dot + default-to-BONUS
@@ -550,11 +584,15 @@ function applyCashbackState(myData) {
         //   • snapshot month == qualifying month  → "Bonus" (that month's accrual, near-final)
         //   • snapshot rolled to a later month     → "LM Bonus" (qualifying month now settled)
         // Falls back to the day-of-month heuristic when snapshotMonth is unavailable.
-        const useBonusCol = myData.snapshotMonth
-            ? (myData.snapshotMonth === qualMonth)
-            : (day === lastDay);
-        const rawAmount = useBonusCol ? myData.bonus : myData.lmBonus;
-        let bonusAmount = parseFloat((rawAmount || '').toString().replace(/[$,]/g, '')) || 0;
+        let bonusAmount;
+        if (myData.snapshotMonth) {
+            // Snapshot-aware: resolveMonthBonus picks Bonus vs LM Bonus for the qualifying month.
+            bonusAmount = resolveMonthBonus(qualMonth, myData);
+        } else {
+            // No snapshot date available → fall back to the day-of-month heuristic.
+            const rawAmount = (day === lastDay) ? myData.bonus : myData.lmBonus;
+            bonusAmount = parseFloat((rawAmount || '').toString().replace(/[$,]/g, '')) || 0;
+        }
 
         // ?cashbackPreview=1234 — inject a synthetic amount when there's no real one
         if (preview !== null && bonusAmount <= 0) bonusAmount = parseFloat(preview) || 500;
@@ -1473,7 +1511,15 @@ function updateHistory() {
                 if (!revenue || revenue === 0) {
                     revenue = Math.round(diamonds * 0.005);
                 }
-                const bonus = parseFloat(bonusHist[realIdx]) || 0;
+                let bonus = parseFloat(bonusHist[realIdx]) || 0;
+                // HISTORY.csv has no bonus column for the just-closed month, so the latest
+                // month's bonusHistory entry is 0. Backfill from the live snapshot columns
+                // (the same source the CLAIM card uses) so the row matches the claim figure.
+                if (bonus <= 0) {
+                    const monthKey = monthLabelToKey(trendMonths[realIdx]);
+                    const fb = resolveMonthBonus(monthKey, myData);
+                    if (fb > 0) bonus = fb;
+                }
 
                 return {
                     diamonds: diamonds,
