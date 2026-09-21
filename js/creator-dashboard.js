@@ -605,7 +605,9 @@ function applyCashbackState(myData) {
         // Always render the pane, even at $0 — a 70+ creator gets the BONUS tab on score alone,
         // so the pane has to say something rather than show a stale figure from a previous render.
         const creatorName = myData.username || myData.name || 'Creator';
-        renderCashbackBox(bonusAmount, qualMonth, creatorName, preview !== null, inWindow);
+        // Treat an admin/test preview as a preview too — no Firestore write, email marked [TEST].
+        const isPreviewRender = preview !== null || window.__adminPreviewActive === true;
+        renderCashbackBox(bonusAmount, qualMonth, creatorName, isPreviewRender, inWindow);
     } catch (e) {
         console.warn('cashback state error:', e);
     }

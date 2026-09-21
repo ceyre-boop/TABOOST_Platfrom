@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>TABOOST — Creator Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000000;
+  --bg2:#0a0a0a;
+  --bg3:#111111;
+  --red:#FF0055;
+  --red2:#cc0044;
+  --redt:rgba(255,0,85,0.10);
+  --redb:rgba(255,0,85,0.25);
+  --t1:#ffffff;
+  --t2:#e0e0e0;
+  --t3:#b4b8bf;
+  --t4:#8b9099;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.04);
+  --r:8px;
+  --f:'Poppins',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--f);background:var(--bg);color:var(--t2);
+  min-height:100vh;display:flex;align-items:flex-start;justify-content:center;
+  padding:64px 20px;font-size:15px;
+}
+.wrap{width:100%;max-width:440px}
+.brand{text-align:center;margin-bottom:28px}
+.brand h1{
+  font-size:15px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--t1);
+}
+.brand h1 span{color:var(--red)}
+.brand p{font-size:12px;color:var(--t4);margin-top:6px;letter-spacing:0.04em}
+
+.card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:24px;
+}
+label{
+  display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--t4);margin-bottom:8px;
+}
+input{
+  width:100%;background:var(--bg3);border:1px solid var(--border);
+  border-radius:6px;padding:12px 13px;font-size:14px;color:var(--t2);
+  outline:none;font-family:var(--f);transition:border-color 0.2s;
+}
+input:focus{border-color:var(--redb)}
+input::placeholder{color:var(--t4)}
+input:disabled{opacity:0.4;cursor:not-allowed}
+
+.btn{
+  width:100%;margin-top:12px;padding:12px;border:1px solid var(--red);
+  border-radius:6px;background:var(--red);color:#fff;
+  font-family:var(--f);font-size:12px;font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;cursor:pointer;transition:background 0.15s;
+}
+.btn:hover{background:var(--red2)}
+
+.error{
+  display:none;background:var(--redt);border:1px solid var(--red);
+  color:var(--red);padding:11px 13px;border-radius:6px;
+  font-size:13px;margin-bottom:16px;
+}
+.error.show{display:block}
+
+.hint{font-size:12px;color:var(--t4);margin-top:12px;text-align:center}
+
+#searchView{display:none}
+#searchView.show{display:block}
+#gateView.hide{display:none}
+
+.results{margin-top:14px;display:flex;flex-direction:column}
+.result{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 13px;border-bottom:1px solid var(--border2);
+  background:transparent;border-left:0;border-right:0;border-top:0;
+  color:inherit;font-family:var(--f);text-align:left;width:100%;
+  cursor:pointer;transition:background 0.1s;text-decoration:none;
+}
+.result:hover{background:rgba(255,0,85,0.05)}
+.result:last-child{border-bottom:none}
+.result .handle{font-size:14px;color:var(--t1);font-weight:500}
+.result .mgr{
+  font-size:11px;color:var(--t4);letter-spacing:0.06em;
+  text-transform:uppercase;white-space:nowrap;
+}
+.status{padding:14px 2px;font-size:13px;color:var(--t4);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brand">
+    <h1>TABOOST <span>PREVIEW</span></h1>
+    <p>Internal creator dashboard preview</p>
+  </div>
+
+  <!-- ============ PASSKEY GATE ============ -->
+  <div class="card" id="gateView">
+    <div class="error" id="gateError">Incorrect passkey.</div>
+    <label for="passkey">Passkey</label>
+    <input type="password" id="passkey" placeholder="Enter passkey" autocomplete="off" autofocus>
+    <button class="btn" id="unlockBtn">Unlock</button>
+  </div>
+
+  <!-- ============ SEARCH ============ -->
+  <div class="card" id="searchView">
+    <label for="search">Find creator</label>
+    <input type="text" id="search" placeholder="Start typing a username…" autocomplete="off" disabled>
+    <div class="results" id="results"></div>
+    <div class="status" id="status">Loading roster…</div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // SHA-256 of the passkey — the passkey itself is deliberately not in this file.
+  // To rotate, regenerate the hash and replace the value below:
+  //   node -e "console.log(require('crypto').createHash('sha256').update('NEWPASS').digest('hex'))"
+  var PASSKEY_HASH = '6b9adbe18b43d1a801210fe7b3affe9ebbf94088981cec8202e33e74f57c0ef7';
+
+  var SESSION_KEY = 'tb_preview_unlocked';
+  var MAX_RESULTS  = 10;
+  var MIN_CHARS    = 1;
+
+  // Column 2 holds the TikTok handle, but its header is a rotating date stamp
+  // ("9/15", "3/29", ...) so it can never be looked up by name. Detect the date
+  // header, fall back to the known index.
+  var HANDLE_COL_FALLBACK = 2;
+  var MGR_COL = 8;
+  var DATE_HEADER = /^\d{1,2}\/\d{1,2}$/;
+
+  var gateView  = document.getElementById('gateView');
+  var gateError = document.getElementById('gateError');
+  var passkeyEl = document.getElementById('passkey');
+  var unlockBtn = document.getElementById('unlockBtn');
+  var searchView= document.getElementById('searchView');
+  var searchEl  = document.getElementById('search');
+  var resultsEl = document.getElementById('results');
+  var statusEl  = document.getElementById('status');
+
+  var creators = [];
+
+  // ---- quote-aware CSV parser (values contain commas, e.g. "2,238,685") ----
+  function parseCSV(text) {
+    var rows = [], row = [], cur = '', quoted = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (c === '"') {
+        if (quoted && text[i + 1] === '"') { cur += '"'; i++; }
+        else quoted = !quoted;
+      } else if (c === ',' && !quoted) {
+        row.push(cur); cur = '';
+      } else if (c === '\n' && !quoted) {
+        row.push(cur);
+        if (row.some(function (v) { return v.trim(); })) rows.push(row);
+        row = []; cur = '';
+      } else if (c === '\r') {
+        continue;
+      } else {
+        cur += c;
+      }
+    }
+    if (cur !== '' || row.length) {
+      row.push(cur);
+      if (row.some(function (v) { return v.trim(); })) rows.push(row);
+    }
+    return rows;
+  }
+
+  function isBlank(v) {
+    if (!v) return true;
+    var u = v.trim().toUpperCase();
+    return u === '' || u === '#N/A' || u === 'N/A' || u === '#REF!';
+  }
+
+  function loadRoster() {
+    return fetch('data/current.csv?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.text();
+      })
+      .then(function (text) {
+        var rows = parseCSV(text);
+        if (!rows.length) throw new Error('empty CSV');
+
+        var header = rows[0];
+        var handleCol = -1;
+        for (var i = 0; i < header.length; i++) {
+          if (DATE_HEADER.test((header[i] || '').trim())) { handleCol = i; break; }
+        }
+        if (handleCol < 0) handleCol = HANDLE_COL_FALLBACK;
+
+        creators = rows.slice(1).map(function (r) {
+          return {
+            handle: (r[handleCol] || '').trim(),
+            mgr: (r[MGR_COL] || '').trim()
+          };
+        }).filter(function (c) {
+          // drop blanks and the literal OFF sentinel rows
+          return c.handle && c.handle.toUpperCase() !== 'OFF';
+        });
+
+        creators.forEach(function (c) { c.lc = c.handle.toLowerCase(); });
+
+        searchEl.disabled = false;
+        statusEl.textContent = creators.length + ' creators loaded — start typing.';
+        searchEl.focus();
+      })
+      .catch(function (err) {
+        statusEl.textContent = 'Could not load roster: ' + err.message;
+        console.error('[preview] roster load failed', err);
+      });
+  }
+
+  function render(matches, query) {
+    resultsEl.innerHTML = '';
+
+    if (!query) {
+      statusEl.textContent = creators.length + ' creators loaded — start typing.';
+      return;
+    }
+    if (!matches.length) {
+      statusEl.textContent = 'No creators match "' + query + '".';
+      return;
+    }
+
+    matches.forEach(function (c) {
+      var a = document.createElement('a');
+      a.className = 'result';
+      a.href = 'creator-dashboard.html?testUser=' + encodeURIComponent(c.handle);
+
+      var h = document.createElement('span');
+      h.className = 'handle';
+      h.textContent = '@' + c.handle;
+      a.appendChild(h);
+
+      if (!isBlank(c.mgr)) {
+        var m = document.createElement('span');
+        m.className = 'mgr';
+        m.textContent = c.mgr;
+        a.appendChild(m);
+      }
+      resultsEl.appendChild(a);
+    });
+
+    var total = creators.filter(function (c) { return c.lc.indexOf(query) !== -1; }).length;
+    statusEl.textContent = total > MAX_RESULTS
+      ? 'Showing ' + MAX_RESULTS + ' of ' + total + ' matches — keep typing to narrow.'
+      : total + (total === 1 ? ' match' : ' matches');
+  }
+
+  function onSearch() {
+    var q = searchEl.value.trim().toLowerCase().replace(/^@/, '');
+    if (q.length < MIN_CHARS) { render([], ''); return; }
+    var matches = [];
+    for (var i = 0; i < creators.length && matches.length < MAX_RESULTS; i++) {
+      if (creators[i].lc.indexOf(q) !== -1) matches.push(creators[i]);
+    }
+    render(matches, q);
+  }
+
+  function unlock() {
+    gateView.classList.add('hide');
+    searchView.classList.add('show');
+    loadRoster();
+  }
+
+  function sha256Hex(str) {
+    var bytes = new TextEncoder().encode(str);
+    return crypto.subtle.digest('SHA-256', bytes).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return b.toString(16).padStart(2, '0');
+      }).join('');
+    });
+  }
+
+  function attempt() {
+    var val = passkeyEl.value;
+    if (!val) return;
+    sha256Hex(val).then(function (hex) {
+      if (hex === PASSKEY_HASH) {
+        try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+        gateError.classList.remove('show');
+        unlock();
+      } else {
+        gateError.classList.add('show');
+        passkeyEl.value = '';
+        passkeyEl.focus();
+      }
+    }).catch(function (err) {
+      gateError.textContent = 'Passkey check unavailable (needs HTTPS or localhost).';
+      gateError.classList.add('show');
+      console.error('[preview] crypto.subtle failed', err);
+    });
+  }
+
+  unlockBtn.addEventListener('click', attempt);
+  passkeyEl.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { e.preventDefault(); attempt(); }
+  });
+  searchEl.addEventListener('input', onSearch);
+
+  // Stay unlocked across a refresh, but not across a browser restart.
+  var already = false;
+  try { already = sessionStorage.getItem(SESSION_KEY) === '1'; } catch (e) {}
+  if (already) unlock();
+})();
+</script>
+</body>
+</html>

@@ -30,6 +30,9 @@
         // Skip early auth check in test mode (local dev only — never honored in production)
         const _params = new URLSearchParams(window.location.search);
         const _testModeAllowed = ['localhost', '127.0.0.1'].includes(window.location.hostname) && _params.get('testUser');
+        // Set synchronously, before any onAuthStateChanged callback can fire, so both auth
+        // modules agree on whether an admin preview is in play (see preview.html).
+        window.__previewRequest = _params.get('testUser');
         if (!_testModeAllowed) {
         // Check Firebase Auth state — run setup ONCE only
         let _mod1Init = false;
@@ -50,6 +53,10 @@
                 if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
 
 
+
+                // ADMIN PREVIEW: the second auth module owns this case. Bail out before
+                // stamping the admin's own identity over the previewed creator's.
+                if (window.__previewRequest && role === 'admin') return;
 
                 window.currentUser = {
                     uid: user.uid,
@@ -1038,6 +1045,7 @@
             };
             // Expose currentUser so the Campaigns popup (checkCampaigns) resolves in preview mode too
             window.currentUser = { ...dashboardUser, username: dashboardUser.name };
+            window.__adminPreviewActive = true; // claim emails from a preview are marked [TEST]
             document.getElementById('welcomeMessage').textContent = '🧪 TEST MODE — Previewing: @' + testUser;
             initCreatorDashboard(dashboardUser);
         } else {
@@ -1066,7 +1074,27 @@
             if (firebaseUser.email?.toLowerCase() === 'marco@taboost.me') {
                 role = 'admin';
             }
-            
+
+            // ADMIN PREVIEW: ?testUser= is honored on production only for an authenticated
+            // admin. Non-admins fall through and simply get their own dashboard.
+            if (window.__previewRequest && role === 'admin') {
+                const previewName = window.__previewRequest.toLowerCase().replace(/^@/, '');
+                const previewUser = { name: previewName, email: 'test@taboost.me', creatorId: null, role: 'creator' };
+                window.currentUser = { ...previewUser, username: previewName };
+                // Previewing must never act as the admin: drop the uid so the cashback claim
+                // flow cannot write cashbackClaims/{adminUid}_{month}, and flag the render so
+                // the notification email is marked [TEST]. Mirrors local test mode.
+                window.__adminPreviewActive = true;
+                if (window.__fs) window.__fs.uid = null;
+                const nameEl = document.getElementById('creatorName');
+                if (nameEl) nameEl.textContent = previewName;
+                document.getElementById('welcomeMessage').textContent = '🧪 ADMIN PREVIEW — @' + previewName;
+                console.log('🧪 ADMIN PREVIEW: Loading dashboard for', previewName);
+                _dashInit = true;
+                initCreatorDashboard(previewUser);
+                return;
+            }
+
             // Admins stay on creator dashboard — agent view toggle available
 
 
