@@ -82,18 +82,15 @@ input::placeholder{color:var(--t4)}
 
 </div>
 
+<script src="js/preview-config.js"></script>
 <script>
 (function () {
   'use strict';
 
-  // ─────────────────────────────────────────────────────────────
-  // SHARED TEAM PASSKEY — change this string any time and push.
-  // Everyone uses the same one; there are no accounts to manage.
-  var PASSKEY = 'TABOOST2026';
-  // ─────────────────────────────────────────────────────────────
+  // The passkey lives in js/preview-config.js — change it there and push, and
+  // every already-unlocked session is revoked immediately.
+  var CFG = window.TB_PREVIEW;
 
-  var SESSION_KEY = 'tb_preview';
-  var SESSION_HOURS = 12;
   var MAX_RESULTS = 10;
 
   // Handle lives at column 2. Its header is a rotating date ("9/15"), never a
@@ -119,19 +116,6 @@ input::placeholder{color:var(--t4)}
 
   // Unlocking also authorises ?testUser= on creator-dashboard.html, which is how
   // a manager with no Firebase account can open a creator's dashboard.
-  function writeSession() {
-    try {
-      localStorage.setItem(SESSION_KEY, JSON.stringify({
-        exp: Date.now() + SESSION_HOURS * 3600 * 1000
-      }));
-    } catch (e) {}
-  }
-  function sessionValid() {
-    try {
-      var s = JSON.parse(localStorage.getItem(SESSION_KEY) || 'null');
-      return !!(s && s.exp && Date.now() < s.exp);
-    } catch (e) { return false; }
-  }
 
   function parseCSV(text) {
     var rows = [], row = [], cur = '', quoted = false;
@@ -243,8 +227,8 @@ input::placeholder{color:var(--t4)}
   }
 
   function attempt() {
-    if (passkeyEl.value === PASSKEY) {
-      writeSession();
+    if (CFG.matches(passkeyEl.value)) {
+      CFG.open();
       gateError.classList.remove('show');
       unlock();
     } else {
@@ -265,11 +249,11 @@ input::placeholder{color:var(--t4)}
   openBtn.addEventListener('click', openExact);
   lockLink.addEventListener('click', function (e) {
     e.preventDefault();
-    try { localStorage.removeItem(SESSION_KEY); } catch (x) {}
+    CFG.clear();
     window.location.reload();
   });
 
-  if (sessionValid()) unlock();
+  if (CFG.valid()) unlock();
 })();
 </script>
 </body>

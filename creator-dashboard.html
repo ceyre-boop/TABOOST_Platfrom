@@ -8,6 +8,9 @@
     <meta http-equiv="Expires" content="0">
     <title>Live Dashboard - Taboost</title>
     <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <!-- Creator preview passkey/session rules. Classic script, so it runs before the
+         deferred modules below that read window.TB_PREVIEW. -->
+    <script src="js/preview-config.js"></script>
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -41,13 +44,11 @@
         // and unauthenticated at live.taboost.me/data/current.csv — and __adminPreviewActive
         // blocks every Firestore write and marks claim emails [TEST]. To revoke, change
         // PASSKEY in preview.html and push.
-        window.__previewSession = (function () {
-            try {
-                const s = JSON.parse(localStorage.getItem('tb_preview') || 'null');
-                if (!s || !s.exp || Date.now() >= s.exp) { localStorage.removeItem('tb_preview'); return false; }
-                return true;
-            } catch (e) { return false; }
-        })();
+        // Validated by js/preview-config.js, which also holds the passkey. A session is
+        // stamped with a fingerprint of the passkey that created it, so rotating the
+        // passkey there revokes every live session immediately rather than leaving them
+        // valid until expiry. Fails closed if the config script is missing.
+        window.__previewSession = !!(window.TB_PREVIEW && window.TB_PREVIEW.valid());
 
         const _isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
         const _testModeAllowed = (_isLocalHost || window.__previewSession) && window.__previewRequest;
