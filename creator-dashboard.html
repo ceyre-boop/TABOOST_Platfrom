@@ -27,12 +27,30 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
         
-        // Skip early auth check in test mode (local dev only — never honored in production)
+        // Skip early auth check in test mode (local dev, or an unlocked preview.html session)
         const _params = new URLSearchParams(window.location.search);
-        const _testModeAllowed = ['localhost', '127.0.0.1'].includes(window.location.hostname) && _params.get('testUser');
         // Set synchronously, before any onAuthStateChanged callback can fire, so both auth
-        // modules agree on whether an admin preview is in play (see preview.html).
+        // modules agree on whether a preview is in play (see preview.html).
         window.__previewRequest = _params.get('testUser');
+
+        // An unlocked preview.html session (shared team passkey) authorises ?testUser=.
+        // APPROVED BY MARCO 2026-09-22 so an agency manager with no Firebase account can
+        // open a creator's dashboard from the preview page. Scope of what this exposes:
+        // preview mode runs with creatorId null, which forces the public-roster branch in
+        // js/creator-dashboard.js — it renders data/current.csv, already served publicly
+        // and unauthenticated at live.taboost.me/data/current.csv — and __adminPreviewActive
+        // blocks every Firestore write and marks claim emails [TEST]. To revoke, change
+        // PASSKEY in preview.html and push.
+        window.__previewSession = (function () {
+            try {
+                const s = JSON.parse(localStorage.getItem('tb_preview') || 'null');
+                if (!s || !s.exp || Date.now() >= s.exp) { localStorage.removeItem('tb_preview'); return false; }
+                return true;
+            } catch (e) { return false; }
+        })();
+
+        const _isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
+        const _testModeAllowed = (_isLocalHost || window.__previewSession) && window.__previewRequest;
         if (!_testModeAllowed) {
         // Check Firebase Auth state — run setup ONCE only
         let _mod1Init = false;
@@ -1037,9 +1055,11 @@
         // Usage: creator-dashboard.html?testUser=kaemi.s
         // ============================================
         const urlParams = new URLSearchParams(window.location.search);
-        // SECURITY: testUser bypasses auth — restrict to local dev only, never in production.
+        // testUser bypasses Firebase auth. Honored for local dev, and on production for an
+        // unlocked preview.html session (shared team passkey, approved by Marco 2026-09-22).
+        // An authenticated admin is handled further down, on the normal auth path.
         const _isLocalDev = ['localhost', '127.0.0.1'].includes(window.location.hostname);
-        const testUser = _isLocalDev ? urlParams.get('testUser') : null;
+        const testUser = (_isLocalDev || window.__previewSession) ? urlParams.get('testUser') : null;
 
         if (testUser) {
             console.log('🧪 TEST MODE: Loading dashboard for', testUser);
