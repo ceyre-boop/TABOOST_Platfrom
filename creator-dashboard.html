@@ -88,6 +88,12 @@
                 
             } catch (error) {
                 console.error('Error loading user data:', error);
+                // Same bail-out as the success path: if this read failed mid-preview, do not
+                // overwrite the previewed creator with the admin's own identity. Keyed on the
+                // synchronous flag, not on __adminPreviewActive, so it cannot lose the race
+                // with module 2. Safe for non-admins too — module 2 always sets currentUser
+                // on its normal path, so this fallback assignment is redundant there.
+                if (window.__previewRequest) return;
                 // Continue anyway - user is authenticated
                 window.currentUser = {
                     uid: user.uid,
@@ -1058,7 +1064,10 @@
                 // Module 1 already handles the redirect — don't redirect again here
                 return;
             }
-            if (window.__fs) window.__fs.uid = firebaseUser.uid; // for cashback claim writes
+            // For cashback claim writes. Left unconditional on purpose: a non-admin who lands
+            // here with a stray ?testUser= still needs their own uid for a real claim. The
+            // admin-preview branch below nulls it, and no reader runs before that point.
+            if (window.__fs) window.__fs.uid = firebaseUser.uid;
 
             // Get user data from Firestore
             let userData = null;

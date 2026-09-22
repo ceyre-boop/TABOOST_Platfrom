@@ -647,9 +647,14 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) 
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
     // Unclaimed: CLAIM button during the last-day→5th window, else a "window closed" note.
+    // In preview there is no uid to look up, so real claim state is unknowable — say so
+    // rather than rendering a confident "unclaimed" that may be wrong.
+    const previewNote = isPreview
+        ? `<span style="display:block;margin-top:6px;font-size:11px;color:#8b9099;">Preview — real claim state not shown</span>`
+        : '';
     const showUnclaimed = () => {
-        if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML(); return; }
-        footer.innerHTML = cashbackClaimBtnHTML();
+        if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML() + previewNote; return; }
+        footer.innerHTML = cashbackClaimBtnHTML() + previewNote;
         const btn = document.getElementById('cashbackClaimBtn');
         if (btn) btn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     };
