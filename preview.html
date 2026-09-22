@@ -75,8 +75,8 @@ input:disabled{opacity:0.4;cursor:not-allowed}
 
 .hint{font-size:12px;color:var(--t4);margin-top:12px;text-align:center}
 
-#searchView,#denyView{display:none}
-#searchView.show,#denyView.show{display:block}
+#searchView,#denyView,#signinView{display:none}
+#searchView.show,#denyView.show,#signinView.show{display:block}
 #authView.hide{display:none}
 .whoami{
   font-size:11px;color:var(--t4);margin-bottom:16px;
@@ -120,6 +120,11 @@ input:disabled{opacity:0.4;cursor:not-allowed}
     <div class="error show">Admin access required.</div>
     <div class="status">This page is limited to TABOOST admin accounts.<br>You are signed in as <span id="denyEmail">—</span>.</div>
     <button class="btn" id="switchBtn">Sign in as admin</button>
+  </div>
+
+  <div class="card" id="signinView">
+    <div class="status">You are not signed in.</div>
+    <button class="btn" id="signinBtn">Sign in</button>
   </div>
 
   <!-- ============ SEARCH ============ -->
@@ -288,61 +293,56 @@ input:disabled{opacity:0.4;cursor:not-allowed}
 })();
 </script>
 
-<script type="module">
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore-compat.js"></script>
+<script>
 // ──── SECURITY: Firebase Admin Authentication ────
-// Same gate as dashboard.html. The roster is never fetched until this passes,
-// and ?testUser= on creator-dashboard.html independently re-checks admin role.
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-const firebaseConfig = {
+// Uses the SAME compat SDK + version as firebase-login.html. A modular-v9 build
+// here did not reliably see the session written by the compat login page, which
+// bounced admins straight back to the login screen.
+firebase.initializeApp({
     apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
     authDomain: "taboost-platform.firebaseapp.com",
     projectId: "taboost-platform",
     storageBucket: "taboost-platform.firebasestorage.app",
     messagingSenderId: "379293685859",
     appId: "1:379293685859:web:d89592adbf67360b574056"
-};
+});
+var _auth = firebase.auth();
+var _db = firebase.firestore();
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+function _show(id){ document.getElementById('authView').classList.add('hide');
+                    document.getElementById(id).classList.add('show'); }
 
-function deny(email) {
-    document.getElementById('authView').classList.add('hide');
-    document.getElementById('denyEmail').textContent = email || 'an unknown account';
-    document.getElementById('denyView').classList.add('show');
-}
+_auth.onAuthStateChanged(function (user) {
+    // No silent redirect — a bounce loop is indistinguishable from a dead page.
+    if (!user) { _show('signinView'); return; }
 
-onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-        window.location.href = 'firebase-login.html';
-        return;
-    }
-    let role;
-    try {
-        const userDoc = await getDoc(doc(db, 'users', user.uid));
-        role = userDoc.data()?.role;
-    } catch (e) {
-        console.warn('Could not read user role:', e);
-    }
-    if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
-
-    if (role !== 'admin') { deny(user.email); return; }
-
-    console.log('✅ Admin authenticated:', user.email);
-    window.__unlockPreview(user.email);
+    _db.collection('users').doc(user.uid).get()
+      .then(function (snap) { return snap.exists ? (snap.data() || {}).role : undefined; })
+      .catch(function (e) { console.warn('role read failed', e); return undefined; })
+      .then(function (role) {
+          if ((user.email || '').toLowerCase() === 'marco@taboost.me') role = 'admin';
+          if (role !== 'admin') {
+              document.getElementById('denyEmail').textContent = user.email || 'unknown';
+              _show('denyView');
+              return;
+          }
+          console.log('Admin authenticated:', user.email);
+          window.__unlockPreview(user.email);
+      });
 });
 
-document.getElementById('logoutLink').addEventListener('click', async (e) => {
+document.getElementById('signinBtn').addEventListener('click', function () {
+    window.location.href = 'firebase-login.html';
+});
+document.getElementById('switchBtn').addEventListener('click', function () {
+    _auth.signOut().then(function(){ window.location.href = 'firebase-login.html'; });
+});
+document.getElementById('logoutLink').addEventListener('click', function (e) {
     e.preventDefault();
-    await signOut(auth);
-    window.location.href = 'firebase-login.html';
-});
-document.getElementById('switchBtn').addEventListener('click', async () => {
-    await signOut(auth);
-    window.location.href = 'firebase-login.html';
+    _auth.signOut().then(function(){ window.location.href = 'firebase-login.html'; });
 });
 </script>
 </body>
