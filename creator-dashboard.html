@@ -10,7 +10,7 @@
     <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <!-- Creator preview passkey/session rules. Classic script, so it runs before the
          deferred modules below that read window.TB_PREVIEW. -->
-    <script src="js/preview-config.js"></script>
+    <script src="js/preview-config.js?v=202609221200"></script>
     <!-- Firebase SDK -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
@@ -38,16 +38,19 @@
 
         // An unlocked preview.html session (shared team passkey) authorises ?testUser=.
         // APPROVED BY MARCO 2026-09-22 so an agency manager with no Firebase account can
-        // open a creator's dashboard from the preview page. Scope of what this exposes:
-        // preview mode runs with creatorId null, which forces the public-roster branch in
-        // js/creator-dashboard.js — it renders data/current.csv, already served publicly
-        // and unauthenticated at live.taboost.me/data/current.csv — and __adminPreviewActive
-        // blocks every Firestore write and marks claim emails [TEST]. To revoke, change
-        // PASSKEY in preview.html and push.
-        // Validated by js/preview-config.js, which also holds the passkey. A session is
-        // stamped with a fingerprint of the passkey that created it, so rotating the
-        // passkey there revokes every live session immediately rather than leaving them
-        // valid until expiry. Fails closed if the config script is missing.
+        // open a creator's dashboard from the preview page.
+        //
+        // What it exposes: preview runs with creatorId null, which forces the public-roster
+        // branch in js/creator-dashboard.js — data/current.csv and the other public JSON,
+        // all already served unauthenticated from this same origin.
+        //
+        // What actually prevents writes: window.__fs.uid stays null on every preview path,
+        // and the cashbackClaims write is gated on it. __adminPreviewActive is NOT the
+        // write guard — it only drives the render and the [TEST] email prefix. Do not
+        // weaken the uid check on the assumption that the flag covers it.
+        //
+        // Passkey, session shape and validation all live in js/preview-config.js; see that
+        // file to rotate. Fails closed if the config script is missing or cached stale.
         window.__previewSession = !!(window.TB_PREVIEW && window.TB_PREVIEW.valid());
 
         const _isLocalHost = ['localhost', '127.0.0.1'].includes(window.location.hostname);
@@ -110,8 +113,8 @@
                 // Same bail-out as the success path: if this read failed mid-preview, do not
                 // overwrite the previewed creator with the admin's own identity. Keyed on the
                 // synchronous flag, not on __adminPreviewActive, so it cannot lose the race
-                // with module 2. Safe for non-admins too — module 2 always sets currentUser
-                // on its normal path, so this fallback assignment is redundant there.
+                // with module 2. Module 2 backfills currentUser on its normal path, so a
+                // non-admin who lands here with a stray ?testUser= is not left without one.
                 if (window.__previewRequest) return;
                 // Continue anyway - user is authenticated
                 window.currentUser = {
@@ -126,6 +129,9 @@
         
         // Expose for logout
         window.logout = async () => {
+            // Signing out must also drop any creator-preview session, otherwise the next
+            // person at a shared browser keeps ?testUser= access for up to 12 hours.
+            if (window.TB_PREVIEW) window.TB_PREVIEW.clear();
             await auth.signOut();
             window.location.href = 'firebase-login.html';
         };
@@ -1160,7 +1166,15 @@
             ];
             const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
             document.getElementById('welcomeMessage').textContent = randomGreeting;
-            
+
+            // Set the global on the normal path too. Module 1 skips its own assignment
+            // whenever ?testUser= is present, so without this a stray preview link plus a
+            // failed Firestore read left window.currentUser undefined and checkCampaigns
+            // polled 30x then gave up silently.
+            if (!window.currentUser) {
+                window.currentUser = { ...dashboardUser, uid: firebaseUser.uid, username: username };
+            }
+
             // Initialize dashboard
             _dashInit = true;
             initCreatorDashboard(dashboardUser);
@@ -1168,6 +1182,9 @@
         } // end normal auth flow
         
         window.logout = async () => {
+            // Signing out must also drop any creator-preview session, otherwise the next
+            // person at a shared browser keeps ?testUser= access for up to 12 hours.
+            if (window.TB_PREVIEW) window.TB_PREVIEW.clear();
             await auth.signOut();
             window.location.href = 'firebase-login.html';
         };

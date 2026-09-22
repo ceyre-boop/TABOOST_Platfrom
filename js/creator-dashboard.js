@@ -647,14 +647,9 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) 
     value.textContent = '$' + Math.round(amount).toLocaleString('en-US');
 
     // Unclaimed: CLAIM button during the last-day→5th window, else a "window closed" note.
-    // In preview there is no uid to look up, so real claim state is unknowable — say so
-    // rather than rendering a confident "unclaimed" that may be wrong.
-    const previewNote = isPreview
-        ? `<span style="display:block;margin-top:6px;font-size:11px;color:#8b9099;">Preview — real claim state not shown</span>`
-        : '';
     const showUnclaimed = () => {
-        if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML() + previewNote; return; }
-        footer.innerHTML = cashbackClaimBtnHTML() + previewNote;
+        if (!inWindow) { footer.innerHTML = cashbackWindowNoteHTML(); return; }
+        footer.innerHTML = cashbackClaimBtnHTML();
         const btn = document.getElementById('cashbackClaimBtn');
         if (btn) btn.onclick = () => handleCashbackClaim(amount, qualMonth, creatorName, isPreview);
     };
@@ -662,8 +657,19 @@ function renderCashbackBox(amount, qualMonth, creatorName, isPreview, inWindow) 
     // $0 → nothing to claim and no Firestore doc to look up. Never offer a CLAIM button here.
     if (!(amount > 0)) { footer.innerHTML = cashbackNoBonusHTML(); return; }
 
+    // In preview there is no uid, so real claim state is unknowable AND a claim cannot be
+    // recorded. Never render a working CLAIM button here: clicking it wrote nothing but
+    // still rendered "Claimed", so a creator whose browser held a preview session could
+    // believe they had claimed their bonus when no record existed. It also fired a real
+    // webhook email to Marco with an attacker-controllable creator name.
+    if (isPreview) {
+        footer.innerHTML = `<span style="display:block;margin-top:6px;font-size:11px;color:#8b9099;">`
+            + `Preview only — claim state hidden and claiming is disabled</span>`;
+        return;
+    }
+
     const fs = window.__fs;
-    if (isPreview || !fs || !fs.uid || !fs.getDoc) { showUnclaimed(); return; }
+    if (!fs || !fs.uid || !fs.getDoc) { showUnclaimed(); return; }
 
     // Real mode: "Claimed on [date]" if already claimed this month, else the unclaimed footer.
     const claimId = fs.uid + '_' + qualMonth;

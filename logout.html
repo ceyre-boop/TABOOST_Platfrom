@@ -72,6 +72,7 @@
         });
         
         // Also clear any legacy storage
+        localStorage.removeItem('tb_preview');   // creator-preview session
         localStorage.removeItem('taboost_user');
         localStorage.removeItem('taboost_current_user');
         sessionStorage.clear();

@@ -82,7 +82,7 @@ input::placeholder{color:var(--t4)}
 
 </div>
 
-<script src="js/preview-config.js"></script>
+<script src="js/preview-config.js?v=202609221200"></script>
 <script>
 (function () {
   'use strict';
@@ -113,9 +113,6 @@ input::placeholder{color:var(--t4)}
   function dashUrl(handle) {
     return 'creator-dashboard.html?testUser=' + encodeURIComponent(handle);
   }
-
-  // Unlocking also authorises ?testUser= on creator-dashboard.html, which is how
-  // a manager with no Firebase account can open a creator's dashboard.
 
   function parseCSV(text) {
     var rows = [], row = [], cur = '', quoted = false;
@@ -217,6 +214,16 @@ input::placeholder{color:var(--t4)}
   function openExact() {
     var q = searchEl.value.trim().toLowerCase().replace(/^@/, '');
     if (!q) { searchEl.focus(); return; }
+
+    // A handle that is not in this roster does NOT fail visibly on the dashboard — it
+    // renders a zeroed "Welcome to TABOOST! Your account is being set up" page that looks
+    // real. That is how every UK creator would appear, since this roster is US-only.
+    // Refuse rather than show a plausible, entirely fictional dashboard.
+    if (creators.length && !creators.some(function (c) { return c.lc === q; })) {
+      statusEl.textContent = '"' + q + '" is not in the US roster — check the spelling. '
+        + 'UK creators cannot be previewed here.';
+      return;
+    }
     window.location.href = dashUrl(q);
   }
 
@@ -229,6 +236,15 @@ input::placeholder{color:var(--t4)}
   function attempt() {
     if (CFG.matches(passkeyEl.value)) {
       CFG.open();
+      // If storage is blocked (Safari private mode) the unlock cannot be handed to
+      // creator-dashboard.html, so every link would bounce to a login page the user has
+      // no account for. Say so here instead of failing silently later.
+      if (!CFG.valid()) {
+        gateError.textContent = 'Your browser is blocking site storage, so dashboard links '
+          + 'will not open. Turn off Private Browsing or allow storage for this site.';
+        gateError.classList.add('show');
+        return;
+      }
       gateError.classList.remove('show');
       unlock();
     } else {

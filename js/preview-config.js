@@ -2,11 +2,20 @@
  * Shared config for the creator preview tool (preview.html + creator-dashboard.html).
  *
  * ┌──────────────────────────────────────────────────────────────────────┐
- * │ TO ROTATE THE PASSKEY: change PASSKEY below, commit, push. Done.      │
- * │ Every already-unlocked session is revoked immediately — a session is  │
- * │ stamped with a fingerprint of the passkey that was used to create it, │
- * │ and creator-dashboard.html rejects any stamp that doesn't match the   │
+ * │ TO ROTATE THE PASSKEY                                                 │
+ * │  1. change PASSKEY below                                              │
+ * │  2. bump the ?v= on the <script src="js/preview-config.js?v=..."> tag │
+ * │     in BOTH preview.html and creator-dashboard.html to the same new   │
+ * │     value — otherwise a browser keeps serving the cached old passkey  │
+ * │  3. commit and push                                                   │
+ * │ Every already-unlocked session is then revoked immediately: a session │
+ * │ is stamped with a fingerprint of the passkey that created it, and     │
+ * │ creator-dashboard.html rejects any stamp that doesn't match the       │
  * │ current one. No waiting for the 12h expiry.                           │
+ * │                                                                       │
+ * │ If the two ?v= values ever drift apart, the pages disagree and access │
+ * │ is DENIED rather than granted — safe direction, but it looks like     │
+ * │ "the preview stopped working", so keep them identical.                │
  * └──────────────────────────────────────────────────────────────────────┘
  *
  * This passkey is NOT a secret — it ships in public page source and anyone can
