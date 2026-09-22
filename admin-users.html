@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>TABOOST — Team Accounts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;--bg2:#0a0a0a;--bg3:#111;--red:#FF0055;--red2:#cc0044;
+  --t1:#fff;--t2:#e0e0e0;--t3:#b4b8bf;--t4:#8b9099;
+  --green:#00e676;--border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.04);
+  --r:8px;--f:'Poppins',system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--f);background:var(--bg);color:var(--t2);min-height:100vh;
+  display:flex;align-items:flex-start;justify-content:center;padding:64px 20px;font-size:15px}
+.wrap{width:100%;max-width:480px}
+.brand{text-align:center;margin-bottom:28px}
+.brand h1{font-size:15px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--t1)}
+.brand h1 span{color:var(--red)}
+.brand p{font-size:12px;color:var(--t4);margin-top:6px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+label{display:block;font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--t4);margin-bottom:8px;margin-top:16px}
+label:first-of-type{margin-top:0}
+input,select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:6px;
+  padding:12px 13px;font-size:14px;color:var(--t2);outline:none;font-family:var(--f)}
+input:focus,select:focus{border-color:rgba(255,0,85,0.25)}
+.btn{width:100%;margin-top:20px;padding:12px;border:1px solid var(--red);border-radius:6px;
+  background:var(--red);color:#fff;font-family:var(--f);font-size:12px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer}
+.btn:hover{background:var(--red2)}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.msg{display:none;padding:11px 13px;border-radius:6px;font-size:13px;margin-bottom:16px;line-height:1.5}
+.msg.show{display:block}
+.msg.err{background:rgba(255,0,85,0.10);border:1px solid var(--red);color:var(--red)}
+.msg.ok{background:rgba(0,230,118,0.10);border:1px solid var(--green);color:var(--green)}
+.hint{font-size:11px;color:var(--t4);margin-top:8px;line-height:1.5}
+.whoami{font-size:11px;color:var(--t4);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border2)}
+.whoami a{color:var(--red);text-decoration:none}
+#formView,#denyView{display:none}
+#formView.show,#denyView.show{display:block}
+#authView.hide{display:none}
+.status{padding:14px 2px;font-size:13px;color:var(--t4);text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <h1>TABOOST <span>TEAM ACCOUNTS</span></h1>
+    <p>Create a login for the creator preview tool</p>
+  </div>
+
+  <div class="card" id="authView">
+    <div class="status">Checking admin access…</div>
+  </div>
+
+  <div class="card" id="denyView">
+    <div class="msg err show">Admin access required.</div>
+    <div class="status">Signed in as <span id="denyEmail">—</span>.</div>
+  </div>
+
+  <div class="card" id="formView">
+    <div class="whoami">Signed in as <span id="whoEmail">—</span> · <a href="preview.html">creator preview</a></div>
+    <div class="msg" id="msg"></div>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="admin" autocomplete="off">
+    <div class="hint">They sign in with this at the login page. Becomes <span id="emailPreview">admin@taboost.me</span>.</div>
+
+    <label for="password">Password</label>
+    <input type="text" id="password" placeholder="at least 6 characters" autocomplete="off">
+
+    <label for="role">Role</label>
+    <select id="role">
+      <option value="admin">admin — can use creator preview</option>
+      <option value="creator">creator — own dashboard only</option>
+    </select>
+
+    <button class="btn" id="createBtn">Create account</button>
+    <div class="hint">Your own session stays signed in — the new account is created on a separate connection.</div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp, deleteApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateProfile, signOut }
+  from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+const msg = (text, kind) => {
+    const m = $('msg');
+    m.className = 'msg show ' + kind;
+    m.innerHTML = text;
+};
+
+$('username').addEventListener('input', e => {
+    const u = e.target.value.trim().toLowerCase().replace(/^@/, '') || 'admin';
+    $('emailPreview').textContent = u + '@taboost.me';
+});
+
+// ──── Admin gate (same as dashboard.html) ────
+onAuthStateChanged(auth, async (user) => {
+    if (!user) { window.location.href = 'firebase-login.html'; return; }
+    let role;
+    try { role = (await getDoc(doc(db, 'users', user.uid))).data()?.role; }
+    catch (e) { console.warn('role read failed', e); }
+    if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
+
+    $('authView').classList.add('hide');
+    if (role !== 'admin') { $('denyEmail').textContent = user.email; $('denyView').classList.add('show'); return; }
+    $('whoEmail').textContent = user.email;
+    $('formView').classList.add('show');
+});
+
+$('createBtn').addEventListener('click', async () => {
+    const username = $('username').value.trim().toLowerCase().replace(/^@/, '');
+    const password = $('password').value;
+    const role = $('role').value;
+    const btn = $('createBtn');
+
+    if (!username) { msg('Enter a username.', 'err'); return; }
+    if (!/^[a-z0-9._-]+$/.test(username)) { msg('Username can only contain letters, numbers, dot, dash, underscore.', 'err'); return; }
+    if (password.length < 6) { msg('Password must be at least 6 characters.', 'err'); return; }
+
+    const email = username + '@taboost.me';
+    btn.disabled = true; btn.textContent = 'Creating…';
+
+    // Create the auth account on a SECOND app instance so this admin's own
+    // session is not replaced by the newly created user.
+    const secondary = initializeApp(firebaseConfig, 'secondary-' + Date.now());
+    try {
+        const cred = await createUserWithEmailAndPassword(getAuth(secondary), email, password);
+        const uid = cred.user.uid;
+        try { await updateProfile(cred.user, { displayName: username }); } catch (e) {}
+
+        // Write the profile as THIS admin (primary app) — rules allow create if isAdmin(),
+        // whereas the new user itself could only create a role:'creator' doc.
+        await setDoc(doc(db, 'users', uid), {
+            email: email,
+            username: username,
+            tiktokUsername: username,
+            role: role,
+            name: username,
+            createdAt: serverTimestamp()
+        });
+
+        await signOut(getAuth(secondary));
+        msg('Created <strong>' + username + '</strong> (' + role + ').<br>'
+          + 'They sign in at the login page with username <strong>' + username
+          + '</strong> and the password you set.', 'ok');
+        $('username').value = ''; $('password').value = '';
+    } catch (e) {
+        const map = {
+            'auth/email-already-in-use': 'That username is already taken.',
+            'auth/weak-password': 'Password is too weak — use at least 6 characters.',
+            'auth/invalid-email': 'That username produces an invalid email.',
+            'permission-denied': 'Firestore refused the write — your account may not have role admin.'
+        };
+        msg(map[e.code] || ('Could not create account: ' + (e.message || e.code)), 'err');
+        console.error(e);
+    } finally {
+        try { await deleteApp(secondary); } catch (e) {}
+        btn.disabled = false; btn.textContent = 'Create account';
+    }
+});
+</script>
+</body>
+</html>
