@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-09-24T17:18:33.418Z
+// Generated: 2026-09-25T17:08:30.703Z
 // Total: 1154 creators
 
 const creatorsData = [
@@ -314,11 +314,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1701550,
-    "gifted": 1534400,
-    "running": "187,150",
+    "earned": 1713550,
+    "gifted": 1536400,
+    "running": "197,150",
     "multiply": "1x",
-    "unlocked": "187,150",
+    "unlocked": "197,150",
     "daysMonth": 1,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -1034,8 +1034,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "6",
     "growthPercent": 0,
-    "earned": 1131364,
-    "gifted": 1131364,
+    "earned": 1139364,
+    "gifted": 1139364,
     "running": "0",
     "multiply": "1x",
     "unlocked": "0",
@@ -46167,7 +46167,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-09-24T17:18:33.418Z",
+  lastUpdated: "2026-09-25T17:08:30.703Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
