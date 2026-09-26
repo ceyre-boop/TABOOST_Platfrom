@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-09-25T18:42:06.924Z
+// Generated: 2026-09-26T17:08:37.139Z
 // Total: 1158 creators
 
 const creatorsData = [
@@ -3691,17 +3691,17 @@ const creatorsData = [
     "email": "kenzbraums@taboost.me",
     "status": "GO",
     "level": "4",
-    "month": "",
+    "month": "2",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
-    "score": 27,
+    "score": 28,
     "diamonds": 15256,
     "diamondsGoal": 1,
     "diamondsPace": "19,070",
     "diamondsLast30": 24492,
     "diamondsLastMonth": 12476,
-    "diamonds2MonthsAgo": -2,
+    "diamonds2MonthsAgo": 0,
     "hours": 91,
     "hoursGoal": 90,
     "hoursLeft": "-1",
@@ -31490,8 +31490,8 @@ const creatorsData = [
     "name": "hypotheticallyspeakingtt",
     "email": "hypotheticallyspeakingtt@taboost.me",
     "status": "GO",
-    "level": "-1",
-    "month": "",
+    "level": "0",
+    "month": "1",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -31500,14 +31500,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": -1,
-    "diamonds2MonthsAgo": -2,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
     "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
+    "hoursGoal": 0,
+    "hoursLeft": "0",
     "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
+    "daysGoal": 0,
+    "daysLeft": "0",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -46327,7 +46327,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-09-25T18:42:06.924Z",
+  lastUpdated: "2026-09-26T17:08:37.139Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
