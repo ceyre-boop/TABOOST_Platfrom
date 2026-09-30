@@ -7,7 +7,7 @@
     "Jul 2026",
     "Aug 2026"
   ],
-  "generatedAt": "2026-09-29T18:02:42.522408Z",
+  "generatedAt": "2026-09-30T17:08:33.858447Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -5203,7 +5203,7 @@
         3,
         3
       ],
-      "tierCurrent": 1,
+      "tierCurrent": null,
       "levelHistory": [
         2,
         1,
@@ -96613,7 +96613,7 @@
         0,
         0,
         0,
-        0.0
+        0
       ],
       "growthRates": [
         0,
@@ -96629,7 +96629,7 @@
         null,
         null,
         null,
-        1
+        null
       ],
       "tierCurrent": 1,
       "levelHistory": [
@@ -96689,7 +96689,7 @@
         0,
         0,
         0,
-        0.0
+        0
       ],
       "growthRates": [
         0,
@@ -96705,7 +96705,7 @@
         null,
         null,
         null,
-        1
+        null
       ],
       "tierCurrent": 1,
       "levelHistory": [
@@ -96765,7 +96765,7 @@
         0,
         0,
         0,
-        0.0
+        0
       ],
       "growthRates": [
         0,
@@ -96781,7 +96781,7 @@
         null,
         null,
         null,
-        1
+        null
       ],
       "tierCurrent": 1,
       "levelHistory": [
