@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "js-yaml": "^4.1.1"
+  },
+  "scripts": {
+    "claims-report": "bun scripts/claims-report.ts"
   }
 }
