@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-10-09T16:58:35.366Z
+// Generated: 2026-10-12T17:08:43.116Z
 // Total: 1148 creators
 
 const creatorsData = [
@@ -274,8 +274,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 1023100,
-    "gifted": 1023100,
+    "earned": 1025100,
+    "gifted": 1025100,
     "running": "0",
     "multiply": "1x",
     "unlocked": "0",
@@ -474,8 +474,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "6",
     "growthPercent": 0,
-    "earned": 856450,
-    "gifted": 856450,
+    "earned": 877450,
+    "gifted": 877450,
     "running": "0",
     "multiply": "1x",
     "unlocked": "0",
@@ -714,8 +714,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 117300,
-    "gifted": 117300,
+    "earned": 125300,
+    "gifted": 125300,
     "running": "0",
     "multiply": "1x",
     "unlocked": "0",
@@ -794,8 +794,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 1002850,
-    "gifted": 987850,
+    "earned": 1007850,
+    "gifted": 992850,
     "running": "15,000",
     "multiply": "1x",
     "unlocked": "15,000",
@@ -954,8 +954,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "5",
     "growthPercent": 0,
-    "earned": 700475,
-    "gifted": 627400,
+    "earned": 710475,
+    "gifted": 637400,
     "running": "75",
     "multiply": "1x",
     "unlocked": "75",
@@ -1194,8 +1194,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "4",
     "growthPercent": 0,
-    "earned": 115000,
-    "gifted": 115000,
+    "earned": 121000,
+    "gifted": 121000,
     "running": "0",
     "multiply": "1x",
     "unlocked": "0",
@@ -45927,7 +45927,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-10-09T16:58:35.366Z",
+  lastUpdated: "2026-10-12T17:08:43.116Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
