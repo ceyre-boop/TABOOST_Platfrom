@@ -41,7 +41,7 @@ function generateRollingCalendar() {
             id: 4,
             title: "Rookie Rumble",
             type: "live",
-            time: "5:00PM PT",
+            time: "6:00PM PT",
             recurring: { dayOfWeek: 3 }, // Wednesday
             color: "#ff0044"
         },
@@ -140,7 +140,7 @@ function generateRollingCalendar() {
     });
 
     // Order each day's events chronologically by start time (earliest first),
-    // so multiple same-day events (e.g. Rookie Rumble 5pm before Royal Rumble 6pm)
+    // so multiple same-day events (e.g. two 6pm events on different days, or same-day stacks)
     // read in the order they actually happen. All-day / multi-day markers sort first.
     const timeToMinutes = (t) => {
         const m = String(t || '').match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
