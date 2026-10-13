@@ -296,6 +296,31 @@
     justify-content: flex-start;
 }
 
+/* Rank scope toggle (UK / All) — only shown to opted-in creators */
+.rank-scope-toggle {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+}
+.rank-scope-toggle[hidden] { display: none; }
+.rank-scope-toggle button {
+    border: 0;
+    background: transparent;
+    color: #888;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    cursor: pointer;
+}
+.rank-scope-toggle button.active {
+    background: linear-gradient(135deg, var(--gold), #ffaa00);
+    color: #000;
+}
+
 /* Rank Display */
 .rank-display {
     display: flex;

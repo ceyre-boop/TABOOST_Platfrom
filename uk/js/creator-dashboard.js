@@ -417,15 +417,76 @@ function updateStats() {
     `;
 }
 
+// Global (UK + US combined) rank is a per-creator opt-in. Only these usernames
+// get the UK / All toggle on the rank card; everyone else sees UK-only rank.
+const GLOBAL_RANK_USERS = ['stiansings'];
+let globalCreators = null;      // UK + US merged roster, loaded on demand
+let rankScope = 'uk';           // 'uk' | 'all'
+
 function updateRank() {
-    const sorted = [...allCreators].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
+    const toggle = document.getElementById('rankScopeToggle');
+    const canToggle = myData && GLOBAL_RANK_USERS.includes(String(myData.username || '').toLowerCase());
+    if (toggle) {
+        toggle.hidden = !canToggle;
+        if (canToggle && !toggle.dataset.wired) {
+            toggle.dataset.wired = '1';
+            toggle.querySelectorAll('button').forEach(btn => {
+                btn.addEventListener('click', () => setRankScope(btn.dataset.scope));
+            });
+        }
+    }
+    renderRank(allCreators, 'uk');
+}
+
+async function setRankScope(scope) {
+    if (scope === rankScope) return;
+    if (scope === 'all' && !globalCreators) {
+        try {
+            globalCreators = await loadGlobalCreators();
+        } catch (err) {
+            console.error('Global rank: failed to load US roster', err);
+            return;
+        }
+    }
+    rankScope = scope;
+    renderRank(scope === 'all' ? globalCreators : allCreators, scope);
+}
+
+// Fetch the US roster from the site root and merge it with the UK roster.
+// Dedupe by username so a creator present in both sheets counts once.
+async function loadGlobalCreators() {
+    const res = await fetch('../data/current.csv?t=' + Date.now());
+    if (!res.ok) throw new Error('US current.csv ' + res.status);
+    const { headers, rows } = CSV_LOADER.parseCSV(await res.text());
+    const us = rows.map((row, i) => CSV_LOADER.rowToCreator(row, i, headers)).filter(Boolean);
+    const seen = new Set();
+    const merged = [];
+    [...allCreators, ...us].forEach(c => {
+        const key = String(c.username || '').toLowerCase();
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        merged.push(c);
+    });
+    console.log('Global rank: UK', allCreators.length, '+ US', us.length, '= merged', merged.length);
+    return merged;
+}
+
+function renderRank(pool, scope) {
+    const sorted = [...pool].sort((a, b) => (b.diamonds || 0) - (a.diamonds || 0));
     const myRank = sorted.findIndex(c => c.username === myData.username) + 1;
     
     document.getElementById('currentRank').textContent = '#' + myRank;
-    document.getElementById('totalCreators').textContent = allCreators.length;
+    document.getElementById('totalCreators').textContent = pool.length;
+    
+    const toggle = document.getElementById('rankScopeToggle');
+    if (toggle) {
+        toggle.querySelectorAll('button').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.scope === scope);
+        });
+    }
     
     // Rank progress
-    const progress = Math.max(5, 100 - (myRank / allCreators.length * 100));
+    const progress = Math.max(5, 100 - (myRank / pool.length * 100));
     document.getElementById('rankBar').style.width = progress + '%';
     
     // Next rank goal
