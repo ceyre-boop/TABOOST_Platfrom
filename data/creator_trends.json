@@ -7,7 +7,7 @@
     "Aug 2026",
     "Sep 2026"
   ],
-  "generatedAt": "2026-10-14T16:46:51.073051Z",
+  "generatedAt": "2026-10-15T17:08:30.019021Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -35525,7 +35525,7 @@
         4,
         6,
         6,
-        5
+        6
       ],
       "tierCurrent": 4,
       "levelHistory": [
@@ -35558,7 +35558,7 @@
         0.0,
         282.38,
         399.15,
-        0.0
+        235.09
       ],
       "daysHistory": [
         30,
@@ -84243,7 +84243,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": null,
       "levelHistory": [
         null,
         null,
