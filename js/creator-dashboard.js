@@ -339,6 +339,7 @@ function updateProfile(user) {
     const managerDiscordLinks = {
         'dylan': 'https://discord.com/users/1423031551515430924',
         'levi': 'https://discord.com/users/463575386010157057',
+        'genie': 'https://discord.com/users/1412694021310124072',
         'carrington': 'https://discord.com/users/953826604260417617',
         'marco': 'sms:13235787155',  // Marco uses SMS
         // Add more managers here

@@ -261,7 +261,9 @@ function updateProfile(user) {
     // Discord links for managers
     const managerDiscordLinks = {
         'carrington': 'https://discord.com/users/953826604260417617',
+        'dylan': 'https://discord.com/users/1423031551515430924',
         'levi': 'https://discord.com/users/463575386010157057',
+        'genie': 'https://discord.com/users/1412694021310124072',
         'marco': 'sms:13235787155',  // Marco uses SMS
         // Add more managers here
     };
