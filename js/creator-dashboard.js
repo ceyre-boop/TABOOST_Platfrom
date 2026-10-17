@@ -340,7 +340,6 @@ function updateProfile(user) {
         'dylan': 'https://discord.com/users/1423031551515430924',
         'levi': 'https://discord.com/users/463575386010157057',
         'genie': 'https://discord.com/users/1412694021310124072',
-        'carrington': 'https://discord.com/users/953826604260417617',
         'marco': 'sms:13235787155',  // Marco uses SMS
         // Add more managers here
     };
@@ -377,10 +376,12 @@ function updateProfile(user) {
                 managerIcon.className = 'fab fa-discord';
             }
         } else {
-            managerPill.href = '#';
-            managerPill.style.cursor = 'default';
-            managerPill.style.opacity = '0.7';
-            managerPill.title = 'Manager contact not available';
+            // Departed/unknown manager: route to TABOOST Discord support
+            managerPill.href = supportDiscordLink;
+            managerPill.style.cursor = 'pointer';
+            managerPill.style.opacity = '1';
+            managerPill.title = 'Join TABOOST Discord for support';
+            managerIcon.className = 'fab fa-discord';
         }
     } else {
         // No manager assigned - show purple Discord badge

@@ -260,7 +260,6 @@ function updateProfile(user) {
     
     // Discord links for managers
     const managerDiscordLinks = {
-        'carrington': 'https://discord.com/users/953826604260417617',
         'dylan': 'https://discord.com/users/1423031551515430924',
         'levi': 'https://discord.com/users/463575386010157057',
         'genie': 'https://discord.com/users/1412694021310124072',
@@ -279,11 +278,7 @@ function updateProfile(user) {
         document.getElementById('managerName').textContent = managerName;
         const managerKey = managerName.toLowerCase().trim();
         
-        // Check for exact match first, then check if Carrington is in the name
         let discordLink = managerDiscordLinks[managerKey];
-        if (!discordLink && managerKey.includes('carrington')) {
-            discordLink = managerDiscordLinks['carrington'];
-        }
         
         if (discordLink) {
             managerPill.href = discordLink;
@@ -299,10 +294,12 @@ function updateProfile(user) {
                 managerIcon.className = 'fab fa-discord';
             }
         } else {
-            managerPill.href = '#';
-            managerPill.style.cursor = 'default';
-            managerPill.style.opacity = '0.7';
-            managerPill.title = 'Manager contact not available';
+            // Departed/unknown manager: route to TABOOST Discord support
+            managerPill.href = supportDiscordLink;
+            managerPill.style.cursor = 'pointer';
+            managerPill.style.opacity = '1';
+            managerPill.title = 'Join TABOOST Discord for support';
+            managerIcon.className = 'fab fa-discord';
         }
     } else {
         // No manager assigned - show purple Discord badge
