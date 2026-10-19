@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>Battle Scheduler &middot; TABOOST</title>
+<link rel="icon" href="../images/taboost-logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Battles runs on its own host, so this page on live.taboost.me is the door to it.
+     It forwards to /find rather than / because / sends a visitor with no session
+     straight back here, which would bounce them between the two sites forever. -->
+<meta http-equiv="refresh" content="0; url=https://battle-scheduler.vercel.app/find">
+<script>window.location.replace('https://battle-scheduler.vercel.app/find');</script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #0a0a0a; color: #fff;
+         font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+         display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .box { text-align: center; max-width: 380px; }
+  .mark { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #888; }
+  h1 { margin: 14px 0 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
+  p { margin: 10px 0 0; font-size: 14px; color: #888; line-height: 1.55; }
+  a.go { display: flex; align-items: center; justify-content: center; margin-top: 26px; height: 52px;
+         border-radius: 12px; background: #FF0055; color: #000; font-size: 16px; font-weight: 800;
+         text-decoration: none; }
+  a.back { display: inline-block; margin-top: 16px; font-size: 13px; color: #666; }
+  a.back:hover { color: #FF0055; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="mark">TABOOST Battles</div>
+    <h1>Opening Battle Scheduler</h1>
+    <p>Post the hours you can go live and find a creator whose hours and score match yours. Same login as your dashboard.</p>
+    <a class="go" href="https://battle-scheduler.vercel.app/find">Continue</a>
+    <a class="back" href="../creator-dashboard.html">Back to my dashboard</a>
+  </div>
+</body>
+</html>
