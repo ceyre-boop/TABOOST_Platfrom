@@ -4,37 +4,124 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0a0a">
+<meta name="robots" content="noindex">
 <title>Battle Scheduler &middot; TABOOST</title>
 <link rel="icon" href="../images/taboost-logo.jpg">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<!-- Battles runs on its own host, so this page on live.taboost.me is the door to it.
-     It forwards to /find rather than / because / sends a visitor with no session
-     straight back here, which would bounce them between the two sites forever. -->
-<meta http-equiv="refresh" content="0; url=https://battle-scheduler.vercel.app/find">
-<script>window.location.replace('https://battle-scheduler.vercel.app/find');</script>
 <style>
   * { box-sizing: border-box; }
   body { margin: 0; min-height: 100vh; background: #0a0a0a; color: #fff;
          font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
          display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .box { text-align: center; max-width: 380px; }
+  .box { text-align: center; max-width: 400px; }
   .mark { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #888; }
   h1 { margin: 14px 0 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
   p { margin: 10px 0 0; font-size: 14px; color: #888; line-height: 1.55; }
-  a.go { display: flex; align-items: center; justify-content: center; margin-top: 26px; height: 52px;
-         border-radius: 12px; background: #FF0055; color: #000; font-size: 16px; font-weight: 800;
-         text-decoration: none; }
+  .spinner { width: 28px; height: 28px; margin: 26px auto 0; border: 3px solid rgba(255,255,255,.12);
+             border-top-color: #FF0055; border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spinner { animation: none; border-top-color: #FF0055; } }
+  a.go, button.go { display: flex; align-items: center; justify-content: center; margin-top: 24px; width: 100%;
+         height: 52px; border: 0; border-radius: 12px; background: #FF0055; color: #000; font: inherit;
+         font-size: 16px; font-weight: 800; text-decoration: none; cursor: pointer; }
   a.back { display: inline-block; margin-top: 16px; font-size: 13px; color: #666; }
   a.back:hover { color: #FF0055; }
+  .hide { display: none; }
 </style>
 </head>
 <body>
   <div class="box">
     <div class="mark">TABOOST Battles</div>
-    <h1>Opening Battle Scheduler</h1>
-    <p>Post the hours you can go live and find a creator whose hours and score match yours. Same login as your dashboard.</p>
-    <a class="go" href="https://battle-scheduler.vercel.app/find">Continue</a>
-    <a class="back" href="../creator-dashboard.html">Back to my dashboard</a>
+
+    <div id="working">
+      <h1>Opening Battle Scheduler</h1>
+      <p>Signing you in with your TABOOST account.</p>
+      <div class="spinner" role="status" aria-label="Signing in"></div>
+    </div>
+
+    <div id="needsLogin" class="hide">
+      <h1>Sign in first</h1>
+      <p>Log in to your TABOOST dashboard and open Battle Scheduler from the link at the bottom of the page.</p>
+      <a class="go" href="../firebase-login.html">Go to login</a>
+    </div>
+
+    <div id="failed" class="hide">
+      <h1>Could not hand you over</h1>
+      <p id="failMsg">Something went wrong signing you in automatically.</p>
+      <form id="manualForm" method="POST" action="https://battle-scheduler.vercel.app/auth/sso">
+        <input type="hidden" name="idToken" id="manualToken">
+        <button class="go" type="submit">Try again</button>
+      </form>
+      <a class="back" href="../creator-dashboard.html">Back to my dashboard</a>
+    </div>
   </div>
+
+<!-- The handoff. The dashboard already knows who this creator is, so Battles must not
+     ask a second time. We mint a fresh Firebase ID token and POST it; Battles verifies
+     it against Google's public keys and issues its own session.
+
+     The token goes in a POST body, never in the URL: a query string ends up in access
+     logs, browser history and the Referer header of the next request. And it is a
+     signed, short-lived token rather than a CID or UID — an identifier in a link is a
+     password that every creator can read off their own screen and type in somebody
+     else's. -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+  };
+
+  const show = (id) => {
+    for (const k of ["working", "needsLogin", "failed"]) {
+      document.getElementById(k).classList.toggle("hide", k !== id);
+    }
+  };
+
+  function handOff(token) {
+    const f = document.createElement("form");
+    f.method = "POST";
+    f.action = "https://battle-scheduler.vercel.app/auth/sso";
+    const i = document.createElement("input");
+    i.type = "hidden"; i.name = "idToken"; i.value = token;
+    f.appendChild(i);
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  try {
+    const auth = getAuth(initializeApp(firebaseConfig));
+    // Firebase restores the session asynchronously; this fires once it knows either way.
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) { show("needsLogin"); return; }
+      try {
+        // force-refresh, so the token Battles receives is seconds old
+        const token = await user.getIdToken(true);
+        handOff(token);
+      } catch (e) {
+        document.getElementById("manualToken").value = "";
+        document.getElementById("failMsg").textContent = "We could not get a sign-in token from your account. " + (e && e.message ? e.message : "");
+        show("failed");
+      }
+    }, () => show("needsLogin"));
+  } catch (e) {
+    document.getElementById("failMsg").textContent = "Sign-in did not load. Check your connection and try again.";
+    show("failed");
+  }
+
+  // If Firebase never answers, do not leave a spinner going forever.
+  setTimeout(() => {
+    if (!document.getElementById("working").classList.contains("hide")) {
+      document.getElementById("failMsg").textContent = "Signing in is taking longer than it should.";
+      show("failed");
+    }
+  }, 12000);
+</script>
 </body>
 </html>
