@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'data/*.csv'
+      - 'uk/data/*.csv'
   workflow_dispatch:
 
 concurrency:
@@ -40,6 +41,10 @@ jobs:
       run: |
         python convert_history_csv.py data/history.csv data/creator_trends.json
 
+    - name: Regenerate UK creator_trends.json from UK history
+      run: |
+        python convert_history_csv.py uk/data/history.csv uk/data/creator_trends.json
+
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
@@ -51,7 +56,7 @@ jobs:
         # whatever landed on main, and regenerate both files fresh from the CSVs that
         # are now current — never merge two generated versions together.
         for i in 1 2 3 4 5; do
-          git add js/data.js data/creator_trends.json
+          git add js/data.js data/creator_trends.json uk/data/creator_trends.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
@@ -67,6 +72,7 @@ jobs:
           git reset --hard origin/main
           node update-data.js data/current.csv
           python convert_history_csv.py data/history.csv data/creator_trends.json
+          python convert_history_csv.py uk/data/history.csv uk/data/creator_trends.json
         done
         echo "::error::Failed to push after 5 retries"
         exit 1

@@ -14,6 +14,7 @@ is absent the arrays are all -1 and the two achievements simply render locked --
 import csv
 import json
 import os
+import re
 import sys
 from datetime import datetime
 
@@ -22,7 +23,8 @@ def parse_num(val):
     if not val or val.strip() == '' or val.strip() == '-1' or val.strip() == '#N/A':
         return 0
     try:
-        return float(str(val).replace(',', '').replace('"', '').replace('$', ''))
+        # Strip any currency symbol: US sheet uses "$", UK export arrives as a mangled "?" for the pound sign.
+        return float(re.sub(r'[^0-9.\-]', '', str(val)))
     except:
         return 0
 
