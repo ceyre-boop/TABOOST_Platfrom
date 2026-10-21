@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-10-21T15:27:31.533Z
+// Generated: 2026-10-21T17:08:34.163Z
 // Total: 1151 creators
 
 const creatorsData = [
@@ -29251,7 +29251,7 @@ const creatorsData = [
     "email": "keepupwiithdakota@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "",
+    "month": "2",
     "manager": "N/A",
     "m": "N/A",
     "claimed": false,
@@ -29261,7 +29261,7 @@ const creatorsData = [
     "diamondsPace": "1,122",
     "diamondsLast30": 731,
     "diamondsLastMonth": 190,
-    "diamonds2MonthsAgo": -2,
+    "diamonds2MonthsAgo": 0,
     "hours": 13,
     "hoursGoal": 15,
     "hoursLeft": "2",
@@ -46047,7 +46047,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-10-21T15:27:31.533Z",
+  lastUpdated: "2026-10-21T17:08:34.163Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
