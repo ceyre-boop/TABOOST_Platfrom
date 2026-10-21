@@ -344,6 +344,39 @@
             </div>
         </div>
         
+        <!-- 1b. Monster Mash + the Battle Scheduler. Hidden until the script decides it
+             is still worth showing, so it takes itself down on 1 November. -->
+        <a class="mash-banner" id="mashBanner" href="battle-scheduler/" target="_blank" rel="noopener" hidden>
+            <img src="images/monster-mash.jpg" alt="TABOOST Monster Mash, October 25 to 31" />
+            <div class="mash-text">
+                <span class="mash-kicker" id="mashKicker">Oct 25 – 31</span>
+                <h3 id="mashTitle">Monster Mash is coming</h3>
+                <p>Bonus rewards for every battle you run on our new Battle Scheduler. Put up the hours you can go live and other creators can find you.</p>
+            </div>
+            <span class="mash-cta">Try the Battle Scheduler <i class="fas fa-arrow-right"></i></span>
+        </a>
+        <script>
+            // The banner knows when it is over, so nobody has to remember to take a
+            // Halloween campaign off the dashboard in November.
+            (function () {
+                var el = document.getElementById('mashBanner');
+                if (!el) return;
+                var now = new Date();
+                var start = new Date('2026-10-25T00:00:00-04:00');
+                var end = new Date('2026-11-01T04:00:00-04:00');
+                if (now > end) return;
+                if (now >= start) {
+                    document.getElementById('mashTitle').textContent = 'Monster Mash is live';
+                    document.getElementById('mashKicker').textContent = 'Ends Oct 31';
+                } else {
+                    var days = Math.ceil((start - now) / 86400000);
+                    document.getElementById('mashTitle').textContent =
+                        days <= 1 ? 'Monster Mash starts tomorrow' : 'Monster Mash starts in ' + days + ' days';
+                }
+                el.hidden = false;
+            })();
+        </script>
+
         <!-- 2. Current Diamonds / Rank / Rewards -->
         <div class="stats-grid">
             <div class="stat-card primary">

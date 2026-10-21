@@ -171,6 +171,47 @@
     gap: 15px;
 }
 
+/* Monster Mash. The whole banner is the link, because half of these creators are on a
+   phone and a small "learn more" is a target you miss. Halloween orange and purple
+   against the dashboard red: loud enough to interrupt, still the same building. */
+.mash-banner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(135deg, rgba(255,106,0,.20), rgba(139,43,226,.20) 55%, rgba(255,0,68,.15));
+    border: 1px solid rgba(255,106,0,.38);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+    transition: transform .15s ease, border-color .15s ease;
+}
+.mash-banner:hover { transform: translateY(-2px); border-color: rgba(255,106,0,.75); }
+/* Top of the poster, where the name is — the middle is four faces at 78px, which is mud. */
+.mash-banner img { width: 78px; height: 78px; object-fit: cover; object-position: top; border-radius: 12px; flex: 0 0 auto; }
+.mash-kicker { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #FF8A3D; }
+.mash-text h3 { margin: 5px 0 5px; font-size: 19px; font-weight: 800; }
+.mash-text p { margin: 0; font-size: 13px; line-height: 1.45; color: #aaa; }
+.mash-cta {
+    margin-left: auto;
+    flex: 0 0 auto;
+    background: var(--taboost-red);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 11px 17px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+@media (max-width: 768px) {
+    .mash-banner { flex-wrap: wrap; gap: 14px; padding: 14px 16px; }
+    .mash-banner img { width: 56px; height: 56px; }
+    .mash-text { flex: 1 1 180px; }
+    .mash-text h3 { font-size: 16px; }
+    .mash-cta { margin-left: 0; width: 100%; text-align: center; }
+}
+
 .welcome-content i {
     font-size: 24px;
     color: var(--taboost-red);
