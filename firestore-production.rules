@@ -31,7 +31,10 @@ service cloud.firestore {
       // Users can update their own data (but not role)
       allow update: if isAuthenticated() 
         && isOwner(userId)
-        && request.resource.data.role == resource.data.role;
+        && request.resource.data.role == resource.data.role
+        // username is the key creators' campaign lists hang off (campaignAssignments/{username}),
+        // so it must not be self-editable or one creator could read another's list.
+        && request.resource.data.get('username', null) == resource.data.get('username', null);
       
       // Users can create their own document during signup
       // Must have role: "creator" and match their auth uid
@@ -181,6 +184,38 @@ service cloud.firestore {
         && request.resource.data.uid == request.auth.uid
         && request.resource.data.keys().hasOnly(['uid', 'creatorName', 'month', 'claimedAt']);
       allow read, write: if isAdmin();
+    }
+
+    // Campaigns saved by campaigns-admin.html (shown in the creator dashboard popup).
+    // liveCampaigns: what the campaign is. Readable by a creator only if it is flagged for everyone
+    // (all == true) or their own campaignAssignments doc lists it. Only admins write.
+    // campaignAssignments/{username}: { campaignIds: [...] } — one doc per creator, readable only by
+    // that creator, so nobody can see who else is on a campaign.
+    function isCampaignAdmin() {
+      return isAdmin() || (isAuthenticated() && request.auth.token.email == 'marco@taboost.me');
+    }
+    function myUsername() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.username.lower();
+    }
+
+    match /liveCampaigns/{campaignId} {
+      allow read: if isAuthenticated()
+        && (resource.data.all == true
+            || get(/databases/$(database)/documents/campaignAssignments/$(myUsername())).data.campaignIds.hasAny([campaignId]));
+      allow read, write: if isCampaignAdmin();
+    }
+
+    // campaignIndex/hashes: SHA-256 of every admin-managed campaign title (no readable titles, so a
+    // restricted campaign's name does not leak). The dashboard uses it to hide the Sheet copy of a
+    // campaign the admin form now owns, even from creators the form dropped.
+    match /campaignIndex/{docId} {
+      allow read: if isAuthenticated();
+      allow read, write: if isCampaignAdmin();
+    }
+
+    match /campaignAssignments/{username} {
+      allow read: if isAuthenticated() && myUsername() == username;
+      allow read, write: if isCampaignAdmin();
     }
 
     // ⚠️ SHARED PROJECT — TABOOST-Shop collection. Kept here so this ruleset is the

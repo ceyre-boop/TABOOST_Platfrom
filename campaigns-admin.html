@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Campaign Manager – TABOOST</title>
+<style>
+    :root { --bg:#0a0a0a; --card:#1a1a1a; --line:rgba(255,255,255,0.08); --text:#fff; --mute:#888; --red:#ff0055; --amber:#ffaa00; --ok:#2ecc71; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; }
+    .wrap { max-width:760px; margin:0 auto; padding:24px 16px 80px; }
+    h1 { font-size:22px; margin:0 0 4px; }
+    .sub { color:var(--mute); font-size:13px; margin-bottom:20px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; margin-bottom:12px; }
+    .row { display:flex; align-items:center; gap:12px; }
+    .grow { flex:1; min-width:0; }
+    .emoji { font-size:26px; }
+    .title { font-weight:700; }
+    .meta { color:var(--amber); font-size:12px; }
+    .aud { color:var(--mute); font-size:12px; }
+    .pill { display:inline-block; font-size:10px; font-weight:800; padding:2px 7px; border-radius:8px; background:rgba(255,255,255,0.1); margin-left:4px; vertical-align:middle; }
+    button { font:inherit; cursor:pointer; border-radius:10px; border:1px solid var(--line); background:#262626; color:var(--text); padding:8px 14px; }
+    button.primary { background:var(--red); border-color:var(--red); color:#000; font-weight:700; }
+    button.danger { color:#ff6b6b; }
+    button:disabled { opacity:0.5; cursor:default; }
+    label { display:block; font-size:12px; color:var(--mute); margin:14px 0 6px; }
+    input[type=text], textarea { width:100%; background:#0f0f0f; border:1px solid var(--line); border-radius:10px; color:var(--text); font:inherit; padding:10px 12px; }
+    textarea { min-height:110px; resize:vertical; }
+    .chips { display:flex; flex-wrap:wrap; gap:8px; }
+    .chips label { display:inline-flex; align-items:center; gap:6px; margin:0; padding:7px 12px; border:1px solid var(--line); border-radius:999px; color:var(--text); font-size:13px; cursor:pointer; }
+    .chips input { accent-color:var(--red); }
+    .hint { color:var(--mute); font-size:12px; margin-top:6px; }
+    .bar { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px; }
+    .msg { padding:10px 14px; border-radius:10px; margin-bottom:12px; font-size:13px; }
+    .msg.ok { background:rgba(46,204,113,0.12); color:var(--ok); }
+    .msg.err { background:rgba(255,0,85,0.12); color:#ff6b8f; }
+    .hide { display:none; }
+    .actions { display:flex; gap:8px; margin-top:18px; }
+    a { color:var(--red); }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <h1>Campaign Manager</h1>
+    <div class="sub">Add or edit the campaigns creators see on their dashboard. Changes show up right away, no sheet sync. <a href="dashboard.html">Back to admin</a></div>
+
+    <div id="msg" class="msg hide"></div>
+    <div id="gate" class="card">Checking your login…</div>
+
+    <div id="listView" class="hide">
+        <div class="bar">
+            <button class="primary" id="newBtn">+ New campaign</button>
+            <button id="importBtn" class="hide"></button>
+        </div>
+        <div id="list"></div>
+    </div>
+
+    <div id="formView" class="card hide">
+        <div class="title" id="formTitle">New campaign</div>
+
+        <label for="fName">Name</label>
+        <input type="text" id="fName" maxlength="80" placeholder="Music On Stage">
+
+        <label for="fDates">Dates</label>
+        <input type="text" id="fDates" maxlength="40" placeholder="Aug 1 - Sep 19">
+
+        <label for="fUrl">Link (Discord post or signup page)</label>
+        <input type="text" id="fUrl" placeholder="https://discord.com/channels/…">
+
+        <label for="fEmoji">Emoji</label>
+        <input type="text" id="fEmoji" maxlength="8" placeholder="🎤" style="max-width:120px">
+
+        <label>Badges</label>
+        <div class="chips" id="fBadges">
+            <label><input type="checkbox" value="HOT"> 🔥 HOT</label>
+            <label><input type="checkbox" value="NEW"> NEW</label>
+            <label><input type="checkbox" value="REGISTER"> REGISTER</label>
+            <label><input type="checkbox" value="GAMER"> GAMER</label>
+            <label><input type="checkbox" value="DONE"> DONE (greys it out)</label>
+        </div>
+
+        <label>Who sees it</label>
+        <div class="chips">
+            <label><input type="radio" name="aud" value="all" checked> Every creator</label>
+            <label><input type="radio" name="aud" value="some"> Only these creators</label>
+        </div>
+        <div id="someBox" class="hide">
+            <label for="fCreators">TikTok usernames, one per line (commas or spaces also work)</label>
+            <textarea id="fCreators" placeholder="freekbass&#10;another.creator"></textarea>
+            <div class="hint" id="countHint"></div>
+        </div>
+
+        <div class="actions">
+            <button class="primary" id="saveBtn">Save campaign</button>
+            <button id="cancelBtn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc, deleteDoc, collection, getDocs, query, where,
+         writeBatch, arrayUnion, arrayRemove, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const app = getApps().length ? getApp() : initializeApp({
+    apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
+    authDomain: "taboost-platform.firebaseapp.com",
+    projectId: "taboost-platform",
+    storageBucket: "taboost-platform.firebasestorage.app",
+    messagingSenderId: "379293685859",
+    appId: "1:379293685859:web:d89592adbf67360b574056"
+});
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = id => document.getElementById(id);
+const ADMIN_EMAIL = 'marco@taboost.me';
+const BATCH_MAX = 400; // Firestore caps a batch at 500 writes
+
+let campaigns = [];        // [{id, ...data}]
+let editingId = null;
+let sheetCampaigns = [];   // Sheet rows not yet imported
+
+function say(text, kind) {
+    const m = $('msg');
+    m.textContent = text; m.className = 'msg ' + (kind || 'ok');
+    if (!text) m.className = 'msg hide';
+}
+
+// ── Auth gate: Marco (or any users/{uid}.role == 'admin') only. Firestore rules enforce the same.
+onAuthStateChanged(auth, async user => {
+    if (!user) { location.href = 'firebase-login.html'; return; }
+    let isAdmin = (user.email || '').toLowerCase() === ADMIN_EMAIL;
+    if (!isAdmin) {
+        try { isAdmin = (await getDoc(doc(db, 'users', user.uid))).data()?.role === 'admin'; } catch (e) {}
+    }
+    if (!isAdmin) { $('gate').textContent = 'This page is for admins only.'; return; }
+    $('gate').classList.add('hide');
+    $('listView').classList.remove('hide');
+    await refresh();
+});
+
+async function titleHash(title) {
+    const bytes = new TextEncoder().encode(String(title).trim().toLowerCase());
+    const buf = await crypto.subtle.digest('SHA-256', bytes);
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+// Keep campaignIndex/hashes in step with the campaigns, so the dashboard hides the Sheet copy of any
+// campaign managed here. Hashes only: restricted campaign names stay unreadable to creators.
+async function syncIndex() {
+    const titleHashes = await Promise.all(campaigns.map(c => titleHash(c.title)));
+    await setDoc(doc(db, 'campaignIndex', 'hashes'), { titleHashes, updatedAt: serverTimestamp() });
+}
+
+async function refresh(afterChange) {
+    try {
+        const snap = await getDocs(collection(db, 'liveCampaigns'));
+        campaigns = snap.docs.map(d => ({ id: d.id, ...d.data() }))
+            .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+    } catch (e) {
+        say('Could not load campaigns: ' + e.message + ' (the Firestore rules for liveCampaigns may not be published yet).', 'err');
+        campaigns = [];
+    }
+    renderList();
+    if (afterChange) {
+        try { await syncIndex(); }
+        catch (e) { say('Saved, but the Sheet-hiding index did not update: ' + e.message, 'err'); }
+    }
+    await loadSheetCampaigns();
+}
+
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+function renderList() {
+    $('list').innerHTML = campaigns.length ? campaigns.map(c => `
+        <div class="card"><div class="row">
+            <div class="emoji">${esc(c.emoji || '🎯')}</div>
+            <div class="grow">
+                <div class="title">${esc(c.title)}${(c.badges || []).map(b => `<span class="pill">${esc(b)}</span>`).join('')}</div>
+                <div class="meta">${esc(c.dates)}</div>
+                <div class="aud">${c.all ? 'Every creator' : (c.memberCount || 0) + ' creators'}</div>
+            </div>
+            <button data-edit="${esc(c.id)}">Edit</button>
+            <button class="danger" data-del="${esc(c.id)}">Delete</button>
+        </div></div>`).join('')
+        : '<div class="card aud">No campaigns saved here yet. Click “New campaign”.</div>';
+}
+
+$('list').addEventListener('click', async e => {
+    const edit = e.target.closest('[data-edit]'), del = e.target.closest('[data-del]');
+    if (edit) return openForm(campaigns.find(c => c.id === edit.dataset.edit));
+    if (del) {
+        if (del.dataset.armed !== '1') { del.dataset.armed = '1'; del.textContent = 'Really delete?'; return; }
+        del.disabled = true;
+        try { await removeCampaign(del.dataset.del); say('Campaign deleted.'); await refresh(true); }
+        catch (err) { say('Delete failed: ' + err.message, 'err'); del.disabled = false; }
+    }
+});
+
+// ── Form
+const audRadios = () => document.querySelectorAll('input[name=aud]');
+const audience = () => document.querySelector('input[name=aud]:checked').value;
+audRadios().forEach(r => r.addEventListener('change', () => {
+    $('someBox').classList.toggle('hide', audience() !== 'some');
+}));
+$('fCreators').addEventListener('input', updateCount);
+function parseUsers(text) {
+    return [...new Set(text.split(/[\s,;]+/).map(u => u.replace(/^@/, '').toLowerCase()).filter(Boolean))];
+}
+function updateCount() {
+    const n = parseUsers($('fCreators').value).length;
+    $('countHint').textContent = n ? n + ' creator' + (n === 1 ? '' : 's') : '';
+}
+
+async function openForm(c) {
+    say('');
+    editingId = c ? c.id : null;
+    $('formTitle').textContent = c ? 'Edit campaign' : 'New campaign';
+    $('fName').value = c?.title || '';
+    $('fDates').value = c?.dates || '';
+    $('fUrl').value = c?.url || '';
+    $('fEmoji').value = c?.emoji || '';
+    document.querySelectorAll('#fBadges input').forEach(i => i.checked = (c?.badges || []).includes(i.value));
+    const some = c && !c.all;
+    document.querySelector(`input[name=aud][value=${some ? 'some' : 'all'}]`).checked = true;
+    $('someBox').classList.toggle('hide', !some);
+    $('fCreators').value = '';
+    if (some) $('fCreators').value = (await memberIds(c.id)).join('\n');
+    updateCount();
+    $('listView').classList.add('hide');
+    $('formView').classList.remove('hide');
+    $('fName').focus();
+}
+function closeForm() {
+    $('formView').classList.add('hide');
+    $('listView').classList.remove('hide');
+}
+$('newBtn').onclick = () => openForm(null);
+$('cancelBtn').onclick = closeForm;
+
+$('saveBtn').onclick = async () => {
+    const title = $('fName').value.trim();
+    const url = $('fUrl').value.trim();
+    if (!title) return say('Give the campaign a name.', 'err');
+    if (url && !/^https?:\/\//i.test(url)) return say('The link must start with http:// or https://', 'err');
+    const all = audience() === 'all';
+    const users = all ? [] : parseUsers($('fCreators').value);
+    const bad = users.filter(u => !/^[a-z0-9._-]+$/.test(u) || /^\.+$/.test(u));
+    if (bad.length) return say('These usernames have characters I can’t use: ' + bad.slice(0, 5).join(', '), 'err');
+    if (!all && !users.length) return say('Add at least one username, or choose “Every creator”.', 'err');
+    const dup = campaigns.find(c => c.id !== editingId && c.title.toLowerCase() === title.toLowerCase());
+    if (dup) return say('There is already a campaign called “' + dup.title + '”.', 'err');
+
+    $('saveBtn').disabled = true;
+    try {
+        await saveCampaign(editingId, {
+            title, url, dates: $('fDates').value.trim(), emoji: $('fEmoji').value.trim(),
+            badges: [...document.querySelectorAll('#fBadges input:checked')].map(i => i.value),
+            all
+        }, users);
+        say('Saved. Creators will see it next time they open their dashboard.');
+        closeForm(); await refresh(true);
+    } catch (err) {
+        say('Save failed: ' + err.message, 'err');
+    } finally { $('saveBtn').disabled = false; }
+};
+
+// ── Firestore writes
+// liveCampaigns/{id}        what the campaign is + whether everyone sees it
+// campaignAssignments/{user} { campaignIds: [...] } — which campaigns each creator is on. Kept per creator
+//                            so a creator can only ever read their own list, never who else is on a campaign.
+async function memberIds(campaignId) {
+    const snap = await getDocs(query(collection(db, 'campaignAssignments'), where('campaignIds', 'array-contains', campaignId)));
+    return snap.docs.map(d => d.id).sort();
+}
+
+async function commitInChunks(ops) {
+    for (let i = 0; i < ops.length; i += BATCH_MAX) {
+        const b = writeBatch(db);
+        ops.slice(i, i + BATCH_MAX).forEach(op => op(b));
+        await b.commit();
+    }
+}
+
+async function saveCampaign(id, data, users) {
+    const ref = id ? doc(db, 'liveCampaigns', id) : doc(collection(db, 'liveCampaigns'));
+    id = ref.id;
+    const before = new Set(editingId ? await memberIds(id) : []);
+    const want = new Set(users);
+    const add = [...want].filter(u => !before.has(u));
+    const drop = [...before].filter(u => !want.has(u));
+
+    // Members first, campaign doc last: a failure midway leaves a campaign that still reads correctly.
+    const ops = [
+        ...add.map(u => b => b.set(doc(db, 'campaignAssignments', u), { campaignIds: arrayUnion(id) }, { merge: true })),
+        ...drop.map(u => b => b.set(doc(db, 'campaignAssignments', u), { campaignIds: arrayRemove(id) }, { merge: true })),
+    ];
+    try {
+        await commitInChunks(ops);
+        const base = { ...data, region: 'US', memberCount: users.length, updatedAt: serverTimestamp() };
+        await setDoc(ref, editingId ? base : { ...base, createdAt: serverTimestamp() }, { merge: true });
+    } catch (err) {
+        // A new campaign that failed midway must not leave assignments pointing at an id that never
+        // got a campaign doc (retrying makes a fresh id, so nothing else would clean them up).
+        if (!editingId) {
+            await commitInChunks(add.map(u => b => b.set(doc(db, 'campaignAssignments', u), { campaignIds: arrayRemove(id) }, { merge: true }))).catch(() => {});
+        }
+        throw err;
+    }
+}
+
+async function removeCampaign(id) {
+    const members = await memberIds(id);
+    await commitInChunks(members.map(u => b => b.set(doc(db, 'campaignAssignments', u), { campaignIds: arrayRemove(id) }, { merge: true })));
+    await deleteDoc(doc(db, 'liveCampaigns', id));
+}
+
+// ── One-time migration: bring the Sheet's current campaigns over so Marco can stop using that tab.
+function parseCsvLine(l) {
+    const vals = []; let cur = '', inQ = false;
+    for (const ch of l) {
+        if (ch === '"') inQ = !inQ;
+        else if (ch === ',' && !inQ) { vals.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    vals.push(cur.trim());
+    return vals;
+}
+const decodeEntities = s => { const t = document.createElement('textarea'); t.innerHTML = s; return t.value; };
+
+async function loadSheetCampaigns() {
+    sheetCampaigns = [];
+    $('importBtn').classList.add('hide');
+    try {
+        const r = await fetch('data/campaigns.csv?v=' + Date.now());
+        if (!r.ok) return;
+        const lines = (await r.text()).trim().split(/\r?\n/).map(parseCsvLine);
+        if (lines.length < 6) return;
+        const have = new Set(campaigns.map(c => c.title.toLowerCase()));
+        lines[0].forEach((name, col) => {
+            name = (name || '').trim();
+            if (!name || have.has(name.toLowerCase())) return;
+            const names = lines.slice(5).map(row => (row[col] || '').toLowerCase().trim()).filter(Boolean);
+            const all = names.some(n => n.replace(/[-\s]/g, '') === 'all');
+            sheetCampaigns.push({
+                data: {
+                    title: name, dates: (lines[1][col] || '').trim(), url: (lines[2][col] || '').trim(),
+                    emoji: decodeEntities((lines[3][col] || '').replace(/\?/g, '')).trim(),
+                    badges: (lines[4][col] || '').split(',').map(s => s.trim().toUpperCase())
+                        .map(s => ({ FEATURED:'HOT', FEATURE:'HOT', FINISHED:'DONE', REGISTRATION:'REGISTER' }[s] || s))
+                        .filter(s => ['HOT','NEW','REGISTER','GAMER','DONE'].includes(s)),
+                    all
+                },
+                users: all ? [] : [...new Set(names.filter(n => /^[a-z0-9._-]+$/.test(n) && !/^\.+$/.test(n)))]
+            });
+        });
+        if (sheetCampaigns.length) {
+            $('importBtn').textContent = 'Import ' + sheetCampaigns.length + ' from the Sheet';
+            $('importBtn').classList.remove('hide');
+        }
+    } catch (e) { /* no Sheet campaigns: nothing to offer */ }
+}
+
+$('importBtn').onclick = async () => {
+    $('importBtn').disabled = true;
+    try {
+        editingId = null;
+        for (const sc of sheetCampaigns) await saveCampaign(null, sc.data, sc.users);
+        say('Imported ' + sheetCampaigns.length + ' campaign(s). The Sheet copies are now hidden. Clear the Campaigns tab in the Sheet when you can: if you delete one here, its Sheet copy comes back.');
+        await refresh(true);
+    } catch (err) { say('Import failed: ' + err.message, 'err'); }
+    finally { $('importBtn').disabled = false; }
+};
+</script>
+</body>
+</html>

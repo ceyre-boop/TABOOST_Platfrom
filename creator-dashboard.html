@@ -1038,7 +1038,7 @@
         // Initialize dashboard with Firebase user
         import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
         import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-        import { getFirestore, doc, getDoc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, setDoc, serverTimestamp, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
@@ -1056,7 +1056,7 @@
 
         // Expose a Firestore handle for the classic-script cashback claim flow
         // (mirrors how the Shop dashboard exposes window.__tapFirestore).
-        window.__fs = { db, doc, getDoc, setDoc, serverTimestamp, uid: null };
+        window.__fs = { db, doc, getDoc, setDoc, serverTimestamp, collection, getDocs, query, where, uid: null };
 
         // ============================================
         // TEST MODE: ?testUser=username bypasses auth
@@ -1718,6 +1718,54 @@
             .filter(s => BADGE_SPECS[s]))];  // keep only the 5 valid values
     }
 
+    // Campaigns the admin form saved to Firestore, in the same shape the Sheet rows produce.
+    // Visible to this creator = flagged for everyone (all==true) or listed in their own
+    // campaignAssignments doc. Firestore rules enforce both; any failure returns [] so the
+    // Sheet campaigns above still show.
+    async function loadAdminCampaigns(username) {
+        const fs = window.__fs;
+        if (!fs || !fs.getDocs) return [];
+        // These strings are rendered with innerHTML below: drop anything that could open a tag or attribute.
+        const safe = v => String(v ?? '').replace(/[<>"]/g, '');
+        try {
+            const byId = new Map();
+            (await fs.getDocs(fs.query(fs.collection(fs.db, 'liveCampaigns'), fs.where('all', '==', true))))
+                .forEach(d => byId.set(d.id, d.data()));
+            const mine = await fs.getDoc(fs.doc(fs.db, 'campaignAssignments', username));
+            const ids = (mine.exists() ? mine.data().campaignIds : []) || [];
+            await Promise.all(ids.filter(id => !byId.has(id)).map(async id => {
+                const d = await fs.getDoc(fs.doc(fs.db, 'liveCampaigns', id));
+                if (d.exists()) byId.set(d.id, d.data());
+            }));
+            return [...byId.values()]
+                .filter(c => (c.region || 'US') === 'US' && c.title)
+                .sort((a, b) => (a.createdAt?.seconds || 0) - (b.createdAt?.seconds || 0))
+                .map(c => ({
+                    id: c.title, title: safe(c.title), dates: safe(c.dates), url: /^https?:\/\//i.test(c.url || '') ? safe(c.url) : '',
+                    emoji: safe(c.emoji) || '🎯', badges: normalizeBadges((c.badges || []).join(','))
+                }));
+        } catch (e) {
+            console.warn('Admin campaigns:', e);
+            return [];
+        }
+    }
+
+    // SHA-256 hex of the trimmed, lowercased title. campaigns-admin.html writes the same hashes.
+    async function titleHash(title) {
+        const bytes = new TextEncoder().encode(String(title).trim().toLowerCase());
+        const buf = await crypto.subtle.digest('SHA-256', bytes);
+        return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    // Empty set on any failure: the Sheet campaigns then show exactly as they always did.
+    async function loadOwnedTitleHashes() {
+        const fs = window.__fs;
+        if (!fs || !fs.getDoc || !window.crypto?.subtle) return new Set();
+        try {
+            const d = await fs.getDoc(fs.doc(fs.db, 'campaignIndex', 'hashes'));
+            return new Set((d.exists() ? d.data().titleHashes : []) || []);
+        } catch (e) { return new Set(); }
+    }
+
     async function checkCampaigns() {
         // Wait for currentUser to be set by dashboard auth
         let attempts = 0;
@@ -1730,8 +1778,7 @@
 
         try {
             const resp = await fetch('data/campaigns.csv?v=' + Date.now());
-            if (!resp.ok) return;
-            const text = await resp.text();
+            const text = resp.ok ? await resp.text() : '';
             const lines = text.trim().split(/\r?\n/).map(l => {
                 // Parse CSV line respecting quotes
                 const vals = []; let cur = '', inQ = false;
@@ -1745,14 +1792,14 @@
                 return vals;
             });
 
-            if (lines.length < 6) return;
-
-            const names    = lines[0]; // row 1: campaign names
-            const dates    = lines[1]; // row 2: date ranges
-            const urls     = lines[2]; // row 3: discord/CTA URLs
-            const emojis   = lines[3]; // row 4: emoji/icon per campaign
-            const features = lines[4]; // row 5: FEATURE flag per campaign
-            const creators = lines.slice(5); // row 6+: creator usernames
+            // Fewer than 6 rows = no Sheet campaigns; campaigns-admin.html ones are still merged below.
+            const hasSheet = lines.length >= 6;
+            const names    = hasSheet ? lines[0] : []; // row 1: campaign names
+            const dates    = hasSheet ? lines[1] : []; // row 2: date ranges
+            const urls     = hasSheet ? lines[2] : []; // row 3: discord/CTA URLs
+            const emojis   = hasSheet ? lines[3] : []; // row 4: emoji/icon per campaign
+            const features = hasSheet ? lines[4] : []; // row 5: FEATURE flag per campaign
+            const creators = hasSheet ? lines.slice(5) : []; // row 6+: creator usernames
 
             const toShow = [];
 
@@ -1778,6 +1825,17 @@
                     badges: normalizeBadges(features[col]) // array, e.g. ['GAMER','NEW'] — see BADGE_SPECS
                 });
             }
+
+            // Campaigns saved in campaigns-admin.html (Firestore). Once the form owns a title, the Sheet
+            // copy is hidden for EVERY creator (owned = in the title-hash index), not just those the form
+            // still lists, so narrowing an imported campaign really removes it for the dropped creators.
+            const owned = await loadOwnedTitleHashes();
+            if (owned.size) {
+                for (let i = toShow.length - 1; i >= 0; i--) {
+                    if (owned.has(await titleHash(toShow[i].title))) toShow.splice(i, 1);
+                }
+            }
+            (await loadAdminCampaigns(username)).forEach(c => toShow.push(c));
 
             if (!toShow.length) return;
 
