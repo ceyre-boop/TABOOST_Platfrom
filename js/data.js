@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-10-21T17:08:34.163Z
+// Generated: 2026-10-22T17:08:41.730Z
 // Total: 1151 creators
 
 const creatorsData = [
@@ -194,11 +194,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1955550,
+    "earned": 1965550,
     "gifted": 1768400,
-    "running": "207,150",
+    "running": "217,150",
     "multiply": "1x",
-    "unlocked": "207,150",
+    "unlocked": "217,150",
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -594,8 +594,8 @@ const creatorsData = [
     "tierStatus": "-",
     "tierLastMonth": "6",
     "growthPercent": 0,
-    "earned": 118250,
-    "gifted": 105000,
+    "earned": 153250,
+    "gifted": 140000,
     "running": "-5,750",
     "multiply": "1x",
     "unlocked": "0",
@@ -29930,8 +29930,8 @@ const creatorsData = [
     "name": "whimsicalbunnyland",
     "email": "whimsicalbunnyland@taboost.me",
     "status": "GO",
-    "level": "-1",
-    "month": "",
+    "level": "0",
+    "month": "1",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -29940,14 +29940,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": -1,
-    "diamonds2MonthsAgo": -2,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
     "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
+    "hoursGoal": 0,
+    "hoursLeft": "0",
     "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
+    "daysGoal": 0,
+    "daysLeft": "0",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -46047,7 +46047,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-10-21T17:08:34.163Z",
+  lastUpdated: "2026-10-22T17:08:41.730Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
