@@ -379,6 +379,33 @@
             return -1;
         }
 
+        // current.csv live stats keyed by lowercase creator username.
+        // First row per creator wins (the sheet lists the current month first).
+        async function loadLiveStats() {
+            const out = {};
+            try {
+                const resp = await fetch(`${GITHUB_BASE}/data/current.csv?v=${Date.now()}`);
+                if (!resp.ok) return out;
+                const { headers, rows } = parseCsvRaw(await resp.text());
+                const iUser = 2; // username column has a blank/date header (e.g. "10/22")
+                const iLvl = findCol(headers, 'Level'), iDy = findCol(headers, 'Days'), iHr = findCol(headers, 'Hours');
+                const iDia = findCol(headers, '?'), iTr = findCol(headers, 'Tier');
+                const iTrLeft = findCol(headers, 'Tier Left'), iTrSt = findCol(headers, 'Tier Status');
+                for (const r of rows) {
+                    const key = (r[iUser] || '').toLowerCase().trim();
+                    if (!key || out[key]) continue;
+                    out[key] = {
+                        days: r[iDy], hours: r[iHr], level: r[iLvl], tier: r[iTr],
+                        tierGoal: r[iTrLeft] || '', tierSt: r[iTrSt] || '',
+                        diamondsValue: parseDiamondValue(r[iDia])
+                    };
+                }
+            } catch (e) {
+                console.warn('current.csv fallback unavailable:', e);
+            }
+            return out;
+        }
+
         async function loadAgentData(agentEmail) {
             const emailKey = (agentEmail || '').toLowerCase().trim();
 
@@ -448,12 +475,22 @@
                 const iHours    = findCol(headers, 'Hours');
                 const iDiamonds = findCol(headers, 'Diamonds', '💎');
 
+                // The Agents-C sheet tab sometimes comes through with blank stats
+                // (Days/Hours/Level/Diamonds). When a creator's ledger row is blank,
+                // fall back to their live row in current.csv, matched by username.
+                const liveByCreator = await loadLiveStats();
+
                 const myRows = rows
                     .filter(r => (r[iAgent] || '').toLowerCase().trim() === emailKey)
-                    .map(r => ({
-                        row: r,
-                        diamondsValue: parseDiamondValue(r[iDiamonds])
-                    }))
+                    .map(r => {
+                        const ledgerBlank = !r[iDays] && !r[iHours] && !r[iDiamonds];
+                        const live = ledgerBlank ? liveByCreator[(r[iCreator] || '').toLowerCase().trim()] : null;
+                        return {
+                            row: r,
+                            live,
+                            diamondsValue: live ? live.diamondsValue : parseDiamondValue(r[iDiamonds])
+                        };
+                    })
                     .sort((a, b) => {
                         const diamondsDiff = b.diamondsValue - a.diamondsValue;
                         if (diamondsDiff !== 0) return diamondsDiff;
@@ -478,15 +515,16 @@
                     const r = entry.row;
                     const creator   = r[iCreator]  || '--';
                     const month     = r[iMonth]    || '';
-                    const rawLevel  = r[iLevel]    || '';
+                    const live      = entry.live;
+                    const rawLevel  = (live ? live.level : r[iLevel]) || '';
                     const level     = (rawLevel === '-1' || rawLevel === '') ? '---' : rawLevel;
-                    const tier      = r[iTier]     || '--';
-                    const rawTierGoal = iTierGoal >= 0 ? (r[iTierGoal] || '') : '';
+                    const tier      = (live ? live.tier : r[iTier]) || '--';
+                    const rawTierGoal = live ? live.tierGoal : (iTierGoal >= 0 ? (r[iTierGoal] || '') : '');
                     const isTierGoalNumeric = NUMERIC_VALUE_WITH_SUFFIX_PATTERN.test(String(rawTierGoal).replace(/,/g, ''));
                     const tierGoal  = isTierGoalNumeric ? parseDiamondValue(rawTierGoal).toLocaleString() : '--';
-                    const tierSt    = r[iTierSt]   || '';
-                    const days      = r[iDays]     || '--';
-                    const hours     = r[iHours]    || '--';
+                    const tierSt    = (live ? live.tierSt : r[iTierSt]) || '';
+                    const days      = (live ? live.days : r[iDays]) || '--';
+                    const hours     = (live ? live.hours : r[iHours]) || '--';
                     const diamonds  = fmtK(entry.diamondsValue);
 
                     // Arrow on Tier column only
