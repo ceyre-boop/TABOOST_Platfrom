@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0a0a0a">
+<title>How Battle Scheduler works &middot; TABOOST</title>
+<meta name="description" content="Post your hours, swipe, get accepted, go live. A 40-second walkthrough of TABOOST Battle Scheduler.">
+<link rel="icon" href="../../images/taboost-logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: #0a0a0a; color: #fff;
+         font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 24px 16px 40px; }
+  .wrap { max-width: 420px; margin: 0 auto; }
+  .mark { font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #888; }
+  h1 { margin: 12px 0 0; font-size: 26px; font-weight: 800; letter-spacing: -.02em; }
+  p.sub { margin: 8px 0 0; font-size: 14px; color: #888; line-height: 1.55; }
+  video { display: block; width: 100%; margin-top: 20px; border-radius: 14px; background: #111; aspect-ratio: 9 / 16; }
+  ol { list-style: none; margin: 22px 0 0; padding: 0; counter-reset: s; }
+  li { counter-increment: s; display: flex; gap: 12px; padding: 12px 0; border-top: 1px solid #1c1c1c;
+       font-size: 15px; line-height: 1.45; color: #ddd; }
+  li::before { content: counter(s); flex: none; width: 24px; height: 24px; border-radius: 50%; background: #FF0055;
+               color: #000; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+  li b { color: #fff; }
+  a.go { display: flex; align-items: center; justify-content: center; margin-top: 22px; height: 52px; border-radius: 12px;
+         background: #FF0055; color: #000; font-size: 16px; font-weight: 800; text-decoration: none; }
+  a.back { display: block; text-align: center; margin-top: 16px; font-size: 13px; color: #666; }
+  a.back:hover { color: #FF0055; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="mark">TABOOST Battles</div>
+    <h1>How Battle Scheduler works</h1>
+    <p class="sub">Post your hours, find a match, lock it in. 40 seconds.</p>
+
+    <video src="tutorial.mp4" poster="poster.jpg" controls playsinline muted loop preload="metadata"></video>
+
+    <ol>
+      <li><span><b>Post your hours.</b> Tap the nights and times you can go live under My hours.</span></li>
+      <li><span><b>Swipe.</b> Right to invite someone free at the same time, left to skip. Open calls book instantly.</span></li>
+      <li><span><b>They accept.</b> Invites land in Requests. Accepting sets the battle right away.</span></li>
+      <li><span><b>Go live.</b> You get reminders 60 and 15 minutes before. Start the battle in TikTok at the time.</span></li>
+      <li><span><b>Submit your score.</b> Open the battle in Battles and enter your final score. Both sides must agree within 5%.</span></li>
+    </ol>
+
+    <a class="go" href="../">Open Battle Scheduler</a>
+    <a class="back" href="../../creator-dashboard.html">Back to my dashboard</a>
+  </div>
+</body>
+</html>
