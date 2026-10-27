@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-10-26T17:08:51.428Z
+// Generated: 2026-10-27T17:08:52.445Z
 // Total: 1168 creators
 
 const creatorsData = [
@@ -194,8 +194,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "9",
     "growthPercent": 0,
-    "earned": 1972550,
-    "gifted": 1775400,
+    "earned": 2007550,
+    "gifted": 1810400,
     "running": "217,150",
     "multiply": "1x",
     "unlocked": "217,150",
@@ -1635,8 +1635,8 @@ const creatorsData = [
     "tierLastMonth": "1",
     "growthPercent": 0,
     "earned": 22000,
-    "gifted": 26000,
-    "running": "-4,000",
+    "gifted": 30400,
+    "running": "-8,400",
     "multiply": "1x",
     "unlocked": "0",
     "daysMonth": 0,
@@ -31010,8 +31010,8 @@ const creatorsData = [
     "name": "mysticstorm333",
     "email": "mysticstorm333@taboost.me",
     "status": "GO",
-    "level": "-1",
-    "month": "",
+    "level": "0",
+    "month": "1",
     "manager": "CARRINGTON",
     "m": "CARRINGTON",
     "claimed": false,
@@ -31020,14 +31020,14 @@ const creatorsData = [
     "diamondsGoal": 1,
     "diamondsPace": "0",
     "diamondsLast30": 0,
-    "diamondsLastMonth": -1,
-    "diamonds2MonthsAgo": -2,
+    "diamondsLastMonth": 0,
+    "diamonds2MonthsAgo": 0,
     "hours": 0,
-    "hoursGoal": 15,
-    "hoursLeft": "15",
+    "hoursGoal": 0,
+    "hoursLeft": "0",
     "validLiveDays": 0,
-    "daysGoal": 7,
-    "daysLeft": "7",
+    "daysGoal": 0,
+    "daysLeft": "0",
     "tier": 1,
     "tierGoal": 0,
     "tierLeft": "0",
@@ -46727,7 +46727,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-10-26T17:08:51.428Z",
+  lastUpdated: "2026-10-27T17:08:52.445Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
