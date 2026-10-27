@@ -1,0 +1,4 @@
+{
+  "_help": "Add one object per video. 'src' can be a direct .mp4 URL (Squarespace/any host), a YouTube link, or a Vimeo link. 'thumb' is optional (YouTube auto-fills; .mp4 falls back to its first frame). Order here = order on the page.",
+  "videos": []
+}

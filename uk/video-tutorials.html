@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tutorials - TABOOST UK</title>
+    <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+    <link rel="stylesheet" href="css/styles.css?v=202503092112">
+    <link rel="stylesheet" href="css/video-tutorials.css?v=202610271200">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="vt-body">
+    <header class="vt-header">
+        <a class="vt-back" href="creator-dashboard.html"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        <h1><i class="fas fa-play-circle"></i> Video Tutorials</h1>
+        <p>Short how-to videos to help you get the most out of TABOOST.</p>
+    </header>
+
+    <main class="vt-main">
+        <div class="vt-grid" id="vtGrid"></div>
+        <div class="vt-empty" id="vtEmpty" style="display:none;">
+            <i class="fas fa-film"></i>
+            <h2>Tutorials coming soon</h2>
+            <p>New videos are being added. Check back shortly.</p>
+        </div>
+    </main>
+
+    <div class="vt-modal" id="vtModal" aria-hidden="true">
+        <div class="vt-modal-inner" role="dialog" aria-modal="true" aria-labelledby="vtModalTitle">
+            <button class="vt-close" id="vtClose" aria-label="Close video"><i class="fas fa-times"></i></button>
+            <div class="vt-player" id="vtPlayer"></div>
+            <h2 id="vtModalTitle"></h2>
+            <p id="vtModalDesc"></p>
+        </div>
+    </div>
+
+    <script>
+    (function () {
+        var grid = document.getElementById('vtGrid');
+        var empty = document.getElementById('vtEmpty');
+        var modal = document.getElementById('vtModal');
+        var player = document.getElementById('vtPlayer');
+        var videos = [];
+
+        // Turn a src URL into { kind, embed, thumb }
+        function resolve(v) {
+            var src = v.src || '';
+            var m = src.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+            if (m) return { kind: 'iframe', embed: 'https://www.youtube.com/embed/' + m[1] + '?autoplay=1&rel=0', thumb: v.thumb || 'https://i.ytimg.com/vi/' + m[1] + '/hqdefault.jpg' };
+            m = src.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+            if (m) return { kind: 'iframe', embed: 'https://player.vimeo.com/video/' + m[1] + '?autoplay=1', thumb: v.thumb || '' };
+            return { kind: 'video', embed: src, thumb: v.thumb || '' };
+        }
+
+        function esc(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+            });
+        }
+
+        function render() {
+            if (!videos.length) { empty.style.display = ''; return; }
+            grid.innerHTML = videos.map(function (v, i) {
+                var r = resolve(v);
+                var thumb = r.thumb
+                    ? '<img src="' + esc(r.thumb) + '" alt="" loading="lazy">'
+                    : (r.kind === 'video' ? '<video src="' + esc(r.embed) + '#t=0.5" preload="metadata" muted playsinline></video>' : '<div class="vt-thumb-fallback"></div>');
+                return '<button class="vt-card" data-i="' + i + '">' +
+                    '<div class="vt-thumb">' + thumb + '<span class="vt-play"><i class="fas fa-play"></i></span>' +
+                    (v.duration ? '<span class="vt-dur">' + esc(v.duration) + '</span>' : '') + '</div>' +
+                    '<div class="vt-title">' + esc(v.title) + '</div></button>';
+            }).join('');
+        }
+
+        function open(i) {
+            var v = videos[i], r = resolve(v);
+            player.innerHTML = r.kind === 'iframe'
+                ? '<iframe src="' + esc(r.embed) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
+                : '<video src="' + esc(r.embed) + '" controls autoplay playsinline></video>';
+            document.getElementById('vtModalTitle').textContent = v.title || '';
+            document.getElementById('vtModalDesc').textContent = v.description || '';
+            modal.classList.add('open');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function close() {
+            modal.classList.remove('open');
+            modal.setAttribute('aria-hidden', 'true');
+            player.innerHTML = ''; // stops playback
+            document.body.style.overflow = '';
+        }
+
+        grid.addEventListener('click', function (e) {
+            var card = e.target.closest('.vt-card');
+            if (card) open(+card.dataset.i);
+        });
+        document.getElementById('vtClose').addEventListener('click', close);
+        modal.addEventListener('click', function (e) { if (e.target === modal) close(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+
+        fetch('data/video-tutorials.json?v=' + Date.now())
+            .then(function (r) { return r.json(); })
+            .then(function (d) { videos = d.videos || []; render(); })
+            .catch(function () { empty.style.display = ''; });
+    })();
+    </script>
+</body>
+</html>
