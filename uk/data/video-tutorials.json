@@ -1,12 +1,12 @@
 {
   "_help": "Add one object per video. 'src' can be a direct .mp4 URL, a YouTube link, or a Vimeo link. 'thumb' is optional (YouTube auto-fills). 'vertical': true for 9:16 videos. 'section' groups cards under a heading. Order here = order on the page.",
   "videos": [
-    { "section": "1. Getting Started", "title": "Your First LIVE", "src": "https://www.youtube.com/watch?v=5wEbx8IImFM", "duration": "0:48", "vertical": true },
-    { "section": "1. Getting Started", "title": "Setting a LIVE Schedule", "src": "https://www.youtube.com/watch?v=7hko0AAfpOI", "duration": "0:57", "vertical": true },
-    { "section": "1. Getting Started", "title": "What to Do When Your LIVE Has Low Viewers", "src": "https://www.youtube.com/watch?v=blD1MKQvmFM", "duration": "1:09", "vertical": true },
-    { "section": "1. Getting Started", "title": "How to Keep the Conversation Going", "src": "https://www.youtube.com/watch?v=hFLM74rSNfo", "duration": "1:33", "vertical": true },
-    { "section": "1. Getting Started", "title": "Building a Positive Mindset", "src": "https://www.youtube.com/watch?v=ri8dRRG15gc", "duration": "1:32", "vertical": true },
-    { "section": "2. Audience Growth & Engagement", "title": "How to Grow Your Audience & Build a Loyal Community", "src": "https://www.youtube.com/watch?v=bGITyHUP79c", "duration": "1:49", "vertical": true },
-    { "section": "3. TikTok LIVE Features & Rankings", "title": "Understanding TikTok LIVE Leagues", "src": "https://www.youtube.com/watch?v=DNJhS5k0HOA", "duration": "1:11", "vertical": true }
+    { "section": "1. Getting Started", "title": "Your First LIVE", "src": "https://www.youtube.com/watch?v=5wEbx8IImFM", "thumb": "images/tutorials/1.jpg", "duration": "0:48", "vertical": true },
+    { "section": "1. Getting Started", "title": "Setting a LIVE Schedule", "src": "https://www.youtube.com/watch?v=7hko0AAfpOI", "thumb": "images/tutorials/2.jpg", "duration": "0:57", "vertical": true },
+    { "section": "1. Getting Started", "title": "What to Do When Your LIVE Has Low Viewers", "src": "https://www.youtube.com/watch?v=blD1MKQvmFM", "thumb": "images/tutorials/3.jpg", "duration": "1:09", "vertical": true },
+    { "section": "1. Getting Started", "title": "How to Keep the Conversation Going", "src": "https://www.youtube.com/watch?v=hFLM74rSNfo", "thumb": "images/tutorials/4.jpg", "duration": "1:33", "vertical": true },
+    { "section": "1. Getting Started", "title": "Building a Positive Mindset", "src": "https://www.youtube.com/watch?v=ri8dRRG15gc", "thumb": "images/tutorials/5.jpg", "duration": "1:32", "vertical": true },
+    { "section": "2. Audience Growth & Engagement", "title": "How to Grow Your Audience & Build a Loyal Community", "src": "https://www.youtube.com/watch?v=bGITyHUP79c", "thumb": "images/tutorials/6.jpg", "duration": "1:49", "vertical": true },
+    { "section": "3. TikTok LIVE Features & Rankings", "title": "Understanding TikTok LIVE Leagues", "src": "https://www.youtube.com/watch?v=DNJhS5k0HOA", "thumb": "images/tutorials/7.jpg", "duration": "1:11", "vertical": true }
   ]
 }
