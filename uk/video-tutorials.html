@@ -6,7 +6,7 @@
     <title>Video Tutorials - TABOOST UK</title>
     <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
-    <link rel="stylesheet" href="css/video-tutorials.css?v=202610271300">
+    <link rel="stylesheet" href="css/video-tutorials.css?v=202610271400">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="vt-body">
@@ -60,12 +60,18 @@
 
         function render() {
             if (!videos.length) { empty.style.display = ''; return; }
+            var lastSection = null;
             grid.innerHTML = videos.map(function (v, i) {
                 var r = resolve(v);
+                var heading = '';
+                if (v.section && v.section !== lastSection) {
+                    heading = '<h2 class="vt-section">' + esc(v.section) + '</h2>';
+                    lastSection = v.section;
+                }
                 var thumb = r.thumb
                     ? '<img src="' + esc(r.thumb) + '" alt="" loading="lazy">'
                     : (r.kind === 'video' ? '<video src="' + esc(r.embed) + '#t=0.5" preload="metadata" muted playsinline></video>' : '<div class="vt-thumb-fallback"></div>');
-                return '<button class="vt-card" data-i="' + i + '">' +
+                return heading + '<button class="vt-card' + (v.vertical ? ' vt-vertical' : '') + '" data-i="' + i + '">' +
                     '<div class="vt-thumb">' + thumb + '<span class="vt-play"><i class="fas fa-play"></i></span>' +
                     (v.duration ? '<span class="vt-dur">' + esc(v.duration) + '</span>' : '') + '</div>' +
                     '<div class="vt-title">' + esc(v.title) + '</div></button>';
@@ -77,6 +83,7 @@
             player.innerHTML = r.kind === 'iframe'
                 ? '<iframe src="' + esc(r.embed) + '" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>'
                 : '<video src="' + esc(r.embed) + '" controls autoplay playsinline></video>';
+            player.classList.toggle('vt-player-vertical', !!v.vertical);
             document.getElementById('vtModalTitle').textContent = v.title || '';
             document.getElementById('vtModalDesc').textContent = v.description || '';
             modal.classList.add('open');

@@ -20,6 +20,12 @@
 .vt-dur { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,0.8); padding: 2px 7px; border-radius: 4px; font-size: 0.75rem; }
 .vt-title { padding: 14px 16px; font-weight: 600; font-size: 0.95rem; line-height: 1.35; }
 
+.vt-section { grid-column: 1 / -1; font-size: 1.15rem; margin-top: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.vt-section:first-child { margin-top: 0; }
+.vt-vertical .vt-thumb { aspect-ratio: 9 / 16; }
+.vt-vertical .vt-thumb img, .vt-vertical .vt-thumb video { object-fit: cover; }
+.vt-player-vertical { aspect-ratio: 9 / 16; height: 78vh; width: auto; max-width: 100%; margin: 0 auto; }
+
 .vt-empty { text-align: center; padding: 80px 20px; color: #999; }
 .vt-empty i { font-size: 3rem; color: var(--taboost-red); margin-bottom: 14px; }
 .vt-empty h2 { color: #fff; margin-bottom: 6px; }
