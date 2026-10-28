@@ -23,8 +23,6 @@
 .vt-section { grid-column: 1 / -1; font-size: 1.15rem; margin-top: 18px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .vt-section:first-child { margin-top: 0; }
 .vt-vertical .vt-thumb { aspect-ratio: 9 / 16; }
-.vt-vertical .vt-play { align-items: flex-end; justify-content: flex-start; padding: 0 0 12px 12px; }
-.vt-vertical .vt-play i { width: 38px; height: 38px; font-size: 13px; padding-left: 2px; }
 .vt-vertical .vt-thumb img, .vt-vertical .vt-thumb video { object-fit: cover; }
 .vt-modal-inner.vt-modal-vertical { max-width: calc(78vh * 9 / 16); }
 .vt-player.vt-player-vertical { aspect-ratio: 9 / 16; width: 100%; }
