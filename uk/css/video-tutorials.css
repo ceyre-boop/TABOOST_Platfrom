@@ -8,7 +8,7 @@
 .vt-back:hover { text-decoration: underline; }
 
 .vt-main { max-width: 1200px; margin: 0 auto; padding: 20px; }
-.vt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.vt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 18px; align-items: stretch; }
 
 .vt-card { display: flex; flex-direction: column; justify-content: flex-start; background: var(--taboost-gray); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; cursor: pointer; text-align: left; color: inherit; font: inherit; padding: 0; transition: transform 0.2s, border-color 0.2s; }
 .vt-card:hover { transform: translateY(-3px); border-color: var(--taboost-red); }
@@ -16,11 +16,11 @@
 .vt-thumb img, .vt-thumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .vt-thumb-fallback { width: 100%; height: 100%; background: linear-gradient(135deg, var(--taboost-gray-light), #111); }
 .vt-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-.vt-play i { width: 54px; height: 54px; border-radius: 50%; background: rgba(255,0,85,0.9); display: flex; align-items: center; justify-content: center; font-size: 18px; padding-left: 3px; }
+.vt-play i { width: 46px; height: 46px; border-radius: 50%; background: rgba(255,0,85,0.9); display: flex; align-items: center; justify-content: center; font-size: 18px; padding-left: 3px; }
 .vt-dur { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,0.8); padding: 2px 7px; border-radius: 4px; font-size: 0.75rem; }
-.vt-title { padding: 14px 16px; font-weight: 600; font-size: 0.95rem; line-height: 1.35; }
+.vt-title { flex: 1; padding: 12px 14px 14px; font-weight: 600; font-size: 0.9rem; line-height: 1.35; min-height: calc(2 * 1.35em + 26px); }
 
-.vt-section { grid-column: 1 / -1; font-size: 1.15rem; margin-top: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.vt-section { grid-column: 1 / -1; font-size: 1.15rem; margin-top: 18px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
 .vt-section:first-child { margin-top: 0; }
 .vt-vertical .vt-thumb { aspect-ratio: 9 / 16; }
 .vt-vertical .vt-thumb img, .vt-vertical .vt-thumb video { object-fit: cover; }
@@ -41,6 +41,6 @@
 .vt-close { position: absolute; top: -42px; right: 0; background: none; border: 0; color: #fff; font-size: 1.5rem; cursor: pointer; }
 
 @media (max-width: 600px) {
-    .vt-grid { grid-template-columns: 1fr; }
+    .vt-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
     .vt-header h1 { font-size: 1.5rem; }
 }
