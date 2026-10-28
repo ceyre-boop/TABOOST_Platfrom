@@ -24,7 +24,7 @@
 .vt-section:first-child { margin-top: 0; }
 .vt-vertical .vt-thumb { aspect-ratio: 9 / 16; }
 .vt-vertical .vt-thumb img, .vt-vertical .vt-thumb video { object-fit: cover; }
-.vt-player-vertical { aspect-ratio: 9 / 16; height: 78vh; width: auto; max-width: 100%; margin: 0 auto; }
+.vt-player.vt-player-vertical { aspect-ratio: 9 / 16; height: 78vh; width: auto; max-width: 100%; margin: 0 auto; }
 
 .vt-empty { text-align: center; padding: 80px 20px; color: #999; }
 .vt-empty i { font-size: 3rem; color: var(--taboost-red); margin-bottom: 14px; }
