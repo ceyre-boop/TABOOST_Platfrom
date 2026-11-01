@@ -137,7 +137,7 @@
         };
     </script>
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
-    <link rel="stylesheet" href="css/creator-dashboard.css?v=202610221200">
+    <link rel="stylesheet" href="css/creator-dashboard.css?v=202611011200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -526,38 +526,17 @@
             </div>
         </div>
         
-        <!-- 1b. Monster Mash + the Battle Scheduler. Hidden until the script decides it
-             is still worth showing, so it takes itself down on 1 November. -->
-        <a class="mash-banner" id="mashBanner" href="battle-scheduler/" target="_blank" rel="noopener" hidden>
+        <!-- 1b. Monster Mash results. The campaign ended Oct 31; the whole banner links to
+             the results post in Discord. Remove this block when the next campaign starts. -->
+        <a class="mash-banner" id="mashBanner" href="https://discord.com/channels/958221101182382130/1562601048949137448" target="_blank" rel="noopener">
             <img src="images/monster-mash.jpg" alt="TABOOST Monster Mash, October 25 to 31" />
             <div class="mash-text">
-                <span class="mash-kicker" id="mashKicker">Oct 25 – 31</span>
-                <h3 id="mashTitle">Monster Mash is coming</h3>
-                <p>Earn bonus rewards for every battle you book on the new Battle Scheduler.</p>
+                <span class="mash-kicker">Oct 25 – 31</span>
+                <h3>Monster Mash results are in</h3>
+                <p>See who took it and how the teams finished.</p>
             </div>
-            <span class="mash-cta">Open Battle Scheduler <i class="fas fa-arrow-right"></i></span>
+            <span class="mash-cta">See results on Discord <i class="fas fa-arrow-right"></i></span>
         </a>
-        <script>
-            // The banner knows when it is over, so nobody has to remember to take a
-            // Halloween campaign off the dashboard in November.
-            (function () {
-                var el = document.getElementById('mashBanner');
-                if (!el) return;
-                var now = new Date();
-                var start = new Date('2026-10-25T00:00:00-04:00');
-                var end = new Date('2026-11-01T04:00:00-04:00');
-                if (now > end) return;
-                if (now >= start) {
-                    document.getElementById('mashTitle').textContent = 'Monster Mash is live';
-                    document.getElementById('mashKicker').textContent = 'Ends Oct 31';
-                } else {
-                    var days = Math.ceil((start - now) / 86400000);
-                    document.getElementById('mashTitle').textContent =
-                        days <= 1 ? 'Monster Mash starts tomorrow' : 'Monster Mash starts in ' + days + ' days';
-                }
-                el.hidden = false;
-            })();
-        </script>
 
         <!-- 2. Current Diamonds / Rank / Rewards -->
         <div class="stats-grid">
