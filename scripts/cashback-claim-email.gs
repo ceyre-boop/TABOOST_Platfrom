@@ -1,6 +1,6 @@
 // ============================================================================
 // AGENCY CASH BONUS — CLAIM EMAIL (Google Apps Script web app)
-// Emails marco@taboost.me when a creator taps "CLAIM BONUS" on the Live
+// Emails info@taboost.me when a creator taps "CLAIM BONUS" on the Live
 // creator dashboard (live.taboost.me). Mirrors TABOOST-Shop/scripts/tap-bonus-email.gs.
 //
 // DEPLOY (Marco):
@@ -19,7 +19,7 @@
 // the sheet before paying. The claim is also recorded in Firestore (cashbackClaims).
 // ============================================================================
 
-var RECIPIENT = 'marco@taboost.me';
+var RECIPIENT = 'info@taboost.me';
 
 // Run once from the editor to generate + store the shared secret.
 function setupCashbackSecret() {
@@ -33,7 +33,7 @@ function setupCashbackSecret() {
 // scope and confirm delivery. This is the step that fixes "no emails arriving":
 // setupCashbackSecret() does NOT touch MailApp, so it never triggers the
 // script.send_mail consent — running this does. Authorize when prompted, then
-// check marco@taboost.me for the test message.
+// check info@taboost.me for the test message.
 function testEmail() {
   MailApp.sendEmail(RECIPIENT, 'TABOOST cashback webhook — test', 'If you received this, the send-email permission is granted and claim emails will now work.');
   Logger.log('Test email sent to ' + RECIPIENT);

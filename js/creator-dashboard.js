@@ -485,7 +485,7 @@ function updateStats() {
 // "Current Rewards Available" box becomes a "CASHBACK EARNED" claim card showing
 // column AO "Bonus". Claiming writes a create-only Firestore doc
 // cashbackClaims/{uid}_{YYYY-MM} and fires a fire-and-forget email to
-// marco@taboost.me via an Apps Script web app. From the 6th through the
+// info@taboost.me via an Apps Script web app. From the 6th through the
 // second-to-last day it shows column AP "LM Bonus" with no claim button
 // (unclaimed bonuses get zeroed in that column by the sheet).
 // ============================================================
