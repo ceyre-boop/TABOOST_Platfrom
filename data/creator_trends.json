@@ -7,7 +7,7 @@
     "Sep 2026",
     "Oct 2026"
   ],
-  "generatedAt": "2026-11-04T18:10:04.554709Z",
+  "generatedAt": "2026-11-04T18:31:31.763034Z",
   "creators": [
     {
       "username": "emileeannmiller",
@@ -2847,7 +2847,7 @@
         7,
         6
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         5,
         5,
@@ -3455,7 +3455,7 @@
         8,
         9
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         5,
         5,
@@ -7559,7 +7559,7 @@
         7,
         7
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         4,
         4,
@@ -10751,7 +10751,7 @@
         1,
         4
       ],
-      "tierCurrent": 4,
+      "tierCurrent": 5,
       "levelHistory": [
         2,
         2,
@@ -15387,7 +15387,7 @@
         7,
         8
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 4,
       "levelHistory": [
         5,
         5,
@@ -34919,7 +34919,7 @@
         5,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         0,
         1,
@@ -41430,6 +41430,82 @@
       ]
     },
     {
+      "username": "primed.plat",
+      "diamondsHistory": [
+        7221.0,
+        2490.0,
+        0.0,
+        0.0,
+        0.0,
+        0
+      ],
+      "growthRates": [
+        0,
+        -65.5,
+        -100.0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        32.49,
+        11.21,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "daysHistory": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        -1
+      ],
+      "hoursHistory": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        -1
+      ]
+    },
+    {
       "username": "depttv",
       "diamondsHistory": [
         0.0,
@@ -42874,7 +42950,7 @@
       ]
     },
     {
-      "username": "laddanurv",
+      "username": "notsoteerable",
       "diamondsHistory": [
         0.0,
         0.0,
@@ -43963,7 +44039,7 @@
         6,
         8
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 3,
       "levelHistory": [
         5,
         5,
@@ -45914,7 +45990,7 @@
       ]
     },
     {
-      "username": "shaleenjanay876",
+      "username": "itsdatgirlleen",
       "diamondsHistory": [
         0.0,
         0.0,
@@ -93946,7 +94022,7 @@
       ]
     },
     {
-      "username": "docteurlove",
+      "username": "dreamers3011",
       "diamondsHistory": [
         0,
         0,
@@ -97290,7 +97366,7 @@
       ]
     },
     {
-      "username": "caseyjean000",
+      "username": "caseyjean_",
       "diamondsHistory": [
         0,
         0,
@@ -97329,7 +97405,7 @@
         0.0,
         0.0,
         0.0,
-        9000.0,
+        0.0,
         0.0
       ],
       "revenueHistory": [
@@ -99722,7 +99798,7 @@
       ]
     },
     {
-      "username": "mareng.ja",
+      "username": "#N/A",
       "diamondsHistory": [
         0,
         0,
@@ -105802,7 +105878,7 @@
       ]
     },
     {
-      "username": "domgothacked",
+      "username": "lul.domm",
       "diamondsHistory": [
         0,
         0,
@@ -105954,7 +106030,7 @@
       ]
     },
     {
-      "username": "fchwpo_23",
+      "username": "viperwraith__24",
       "diamondsHistory": [
         0,
         0,
@@ -108458,6 +108534,158 @@
         -1,
         -1,
         0,
+        -1
+      ]
+    },
+    {
+      "username": "kriziamaemanrique",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "daysHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "hoursHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ]
+    },
+    {
+      "username": "kriziamaemanrique",
+      "diamondsHistory": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "growthRates": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "tierHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "tierCurrent": 1,
+      "levelHistory": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "rewardsHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "revenueHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bonusHistory": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "daysHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "hoursHistory": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
         -1
       ]
     },
