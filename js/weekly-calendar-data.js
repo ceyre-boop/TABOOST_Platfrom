@@ -41,7 +41,7 @@ function generateRollingCalendar() {
             id: 4,
             title: "Rookie Rumble",
             type: "live",
-            time: "5:00PM PT",
+            time: "4:00PM PT",
             recurring: { dayOfWeek: 3 }, // Wednesday
             color: "#ff0044"
         },

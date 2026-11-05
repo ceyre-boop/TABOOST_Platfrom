@@ -250,7 +250,7 @@ function updateLastUpdated() {
         });
     }
 
-    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 5:00 PM PT`;
+    document.getElementById('lastUpdatedTime').textContent = `${dateStr} at 4:00 PM PT`;
 }
 
 // Load real month data from CSV (column F - Month)
