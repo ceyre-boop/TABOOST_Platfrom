@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-11-05T17:06:47.628Z
+// Generated: 2026-11-05T18:08:28.468Z
 // Total: 1185 creators
 
 const creatorsData = [
@@ -7531,7 +7531,7 @@ const creatorsData = [
     "email": "caseyjean_@taboost.me",
     "status": "GO",
     "level": "-1",
-    "month": "",
+    "month": "4",
     "manager": "DYLAN",
     "m": "DYLAN",
     "claimed": false,
@@ -47407,7 +47407,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-11-05T17:06:47.628Z",
+  lastUpdated: "2026-11-05T18:08:28.468Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
