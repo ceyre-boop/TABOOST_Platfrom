@@ -44,7 +44,7 @@
                 if (user.email?.toLowerCase() === 'marco@taboost.me') role = 'admin';
 
                 if (role === 'admin')   { _agentRedirecting = true; window.location.href = 'dashboard.html'; return; }
-                if (role === 'manager') { _agentRedirecting = true; window.location.href = 'managers.html'; return; }
+                if (role === 'manager') { _agentRedirecting = true; window.location.href = 'manager-dashboard.html'; return; }
                 if (role === 'creator') { _agentRedirecting = true; window.location.href = 'creator-dashboard.html'; return; }
 
                 // role === 'agent'
@@ -248,6 +248,9 @@
                 </div>
             </div>
             <div class="creator-actions" style="display:flex; gap:10px; align-items:center;">
+                <a href="manager-dashboard.html" id="managerHubBtn" style="padding: 10px 16px; border-radius: 10px; background: #FF0055; border: 1px solid #FF0055; color: #fff; cursor: pointer; font-size: 13px; font-weight: 700; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                    <i class="fas fa-trophy"></i> Manager Hub
+                </a>
                 <a href="creator-dashboard.html?view=creator" style="padding: 10px 16px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #aaa; cursor: pointer; font-size: 13px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
                     <i class="fas fa-user"></i> Creator View
                 </a>

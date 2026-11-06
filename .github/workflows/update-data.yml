@@ -45,6 +45,9 @@ jobs:
       run: |
         python convert_history_csv.py uk/data/history.csv uk/data/creator_trends.json
 
+    - name: Snapshot creator scores (Manager Hub just-hit detection)
+      run: node scripts/snapshot-scores.js data/current.csv
+
     - name: Commit changes
       run: |
         git config --local user.email "action@github.com"
@@ -56,7 +59,7 @@ jobs:
         # whatever landed on main, and regenerate both files fresh from the CSVs that
         # are now current — never merge two generated versions together.
         for i in 1 2 3 4 5; do
-          git add js/data.js data/creator_trends.json uk/data/creator_trends.json
+          git add js/data.js data/creator_trends.json uk/data/creator_trends.json data/score_history.json
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
@@ -73,6 +76,7 @@ jobs:
           node update-data.js data/current.csv
           python convert_history_csv.py data/history.csv data/creator_trends.json
           python convert_history_csv.py uk/data/history.csv uk/data/creator_trends.json
+          node scripts/snapshot-scores.js data/current.csv
         done
         echo "::error::Failed to push after 5 retries"
         exit 1

@@ -203,6 +203,9 @@
     }).then(function (text) {
       var parsed = parseCreators(text);
       S.all = parsed.creators; S.stamp = parsed.stamp;
+      return fetch('data/score_history.json?v=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; })
+        .catch(function () { return null; }).then(function (h) { S.hist = h; return parsed; });
+    }).then(function (parsed) {
       S.canSwitch = !!opts.canSwitch;
       S.viewing = opts.manager;
       var names = managerNames(S.all);
@@ -219,6 +222,9 @@
   }
 
   function loadSnapshot(key) {
+    var base = historyBaseline();
+    if (base) { S.prevSnap = base.snap; S.baselineDate = base.date; S.snapKey = null; return; }
+    S.baselineDate = '';
     var storeKey = 'mh_snap_v1_' + key;
     var stored = safeGet(storeKey);
     var sig = signature(S.all, S.stamp);
@@ -226,6 +232,20 @@
     if (stored && stored.sig === sig) S.prevSnap = stored.prev;          // same data: keep the baseline
     else { S.prevSnap = stored ? stored.cur : null; safeSet(storeKey, { sig: sig, prev: S.prevSnap, cur: cur }); }
     S.snapKey = storeKey;
+  }
+
+  // Baseline = the most recent daily snapshot from a PREVIOUS Pacific-time day (written by the sync workflow).
+  function historyBaseline() {
+    if (!S.hist || !S.hist.days) return null;
+    var today = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles' }).format(new Date());
+    var days = Object.keys(S.hist.days).filter(function (d) { return d < today; }).sort();
+    if (!days.length) return null;
+    var date = days[days.length - 1], src = S.hist.days[date], snap = {};
+    Object.keys(src).forEach(function (u) {
+      var v = src[u];
+      snap[u] = { score: v[0], daysHit: !!(v[1] & 1), hoursHit: !!(v[1] & 2), tierHit: !!(v[1] & 4) };
+    });
+    return { date: date, snap: snap };
   }
 
   function renderSwitcher(names) {
@@ -279,7 +299,7 @@
     S.rows = rows;
     var name = S.viewing === '*' ? 'Everyone' : title(S.viewing);
     $('who').textContent = name + (S.viewing === '*' ? '' : "'s creators");
-    $('stamp').textContent = 'Sheet date ' + (S.stamp || '—');
+    $('stamp').textContent = 'Sheet date ' + (S.stamp || '—') + (S.baselineDate ? ' · changes since ' + S.baselineDate : '');
     renderStats(rows);
     renderWatch();
     renderRoster();
