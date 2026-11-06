@@ -1786,6 +1786,8 @@ function updateScoreAndLevels() {
         }
     }
     
+    if (window.renderScoreNudge) window.renderScoreNudge(score, 'us');
+
     // Score Segmented Bar - 100 segments, fill based on score
     // Score 86 = 86 segments filled, Score 100 = 100 segments filled
     const segmentsContainer = document.getElementById('scoreSegments');
