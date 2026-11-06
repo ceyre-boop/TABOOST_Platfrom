@@ -6,7 +6,7 @@
     <title>Video Tutorials - TABOOST UK</title>
     <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
     <link rel="stylesheet" href="css/styles.css?v=202503092112">
-    <link rel="stylesheet" href="css/video-tutorials.css?v=202610281500">
+    <link rel="stylesheet" href="css/video-tutorials.css?v=202611061200">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="vt-body">
@@ -65,7 +65,8 @@
                 var r = resolve(v);
                 var heading = '';
                 if (v.section && v.section !== lastSection) {
-                    heading = '<h2 class="vt-section">' + esc(v.section) + '</h2>';
+                    var n = videos.filter(function (x) { return x.section === v.section; }).length;
+                    heading = '<h2 class="vt-section">' + esc(v.section) + '<span class="vt-count">' + n + ' video' + (n === 1 ? '' : 's') + '</span></h2>';
                     lastSection = v.section;
                 }
                 var thumb = r.thumb
