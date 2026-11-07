@@ -418,8 +418,8 @@
     $('rwOpen').onclick = function () { this.hidden = true; $('rwForm').hidden = false; $('rwText').focus(); };
     $('rwForm').onsubmit = function (e) { e.preventDefault(); sendReward(c); };
   }
-  var REWARD_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
-  var REWARD_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // public client secret, notify-only email
+  var REWARD_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwBvwG6c9gomANeR3UhdqYA7u-USn3JD5mxksNSbeJ73sTBSQ7wcBWNwd0WIBIQm7Na2w/exec';
+  var REWARD_WEBHOOK_SECRET = 'acc3b343-ea30-459e-9123-da3d3f600ca5'; // public client secret, notify-only email
   function sendReward(c) {
     var btn = $('rwSend'), msg = $('rwMsg');
     btn.disabled = true; msg.textContent = 'Sending…';

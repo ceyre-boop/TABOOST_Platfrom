@@ -489,8 +489,8 @@ function updateStats() {
 // second-to-last day it shows column AP "LM Bonus" with no claim button
 // (unclaimed bonuses get zeroed in that column by the sheet).
 // ============================================================
-const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
-const CASHBACK_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // client secret is public (like Shop's) — email is notify-only, verify before paying
+const CASHBACK_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwBvwG6c9gomANeR3UhdqYA7u-USn3JD5mxksNSbeJ73sTBSQ7wcBWNwd0WIBIQm7Na2w/exec';
+const CASHBACK_WEBHOOK_SECRET = 'acc3b343-ea30-459e-9123-da3d3f600ca5'; // client secret is public (like Shop's) — email is notify-only, verify before paying
 const CASHBACK_WINDOW_DAYS = 5;     // claim deadline: the 5th (window opens on the last day of the prior month)
 // TEMP rollout: treat every day THROUGH this date as if it were inside the claim window, so the
 // box shows now for the first-launch demo. Auto-reverts to the strict window the day after. '' = off.
