@@ -7,7 +7,7 @@
 <title>Manager Hub - TABOOST</title>
 <link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
 <style>
-:root{--bg:#0a0a0a;--panel:#141414;--panel2:#1a1a1a;--line:#2a2a2a;--text:#ffffff;--mute:#9a9a9a;--green:#FF0055;--ok:#00ff88;--gold:#ffd700;--orange:#ffaa00;--pink:#FF0055;--blue:#ffffff}
+:root{--bg:#000;--panel:#1a1a1a;--panel2:#222;--line:rgba(255,255,255,.07);--text:#ffffff;--mute:#9a9a9a;--green:#FF0055;--ok:#00ff88;--gold:#ffd700;--orange:#ffaa00;--pink:#FF0055;--blue:#ffffff}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
 button{font:inherit;color:inherit;cursor:pointer}
@@ -92,6 +92,50 @@ section h2 .sp{flex:1}
 @media (prefers-reduced-motion:reduce){.toast{animation:none}}
 @media (max-width:700px){#watchBody{grid-template-columns:1fr}.big-score span{font-size:42px}}
 .addrw{margin-top:14px}.addrw form{display:grid;gap:8px;margin-top:8px}.addrw input,.addrw textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px 10px;font:inherit}.addrw button.go{cursor:pointer;border:0}
+
+/* ── TABOOST look: matches the creator dashboard (black, #1a1a1a cards, hot-pink accent, uppercase labels) ── */
+body{background:radial-gradient(900px 380px at 50% -140px,rgba(255,0,85,.14),transparent 70%),#000;background-attachment:fixed;letter-spacing:.005em}
+header{border-bottom:1px solid var(--line);margin-bottom:6px;padding:18px 0}
+header h1{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px}
+header h1::before{content:"";width:38px;height:38px;border-radius:50%;background:url(images/taboost-genie.jpg) center/cover;border:2px solid var(--pink);flex:none}
+header h1 small{text-transform:none;letter-spacing:0;color:#888}
+.hb{border-radius:10px;background:var(--panel)}.hb:hover{border-color:var(--pink);box-shadow:0 0 14px rgba(255,0,85,.25)}
+#switcher{border-bottom:1px solid var(--line);background:rgba(0,0,0,.92);backdrop-filter:blur(6px);padding:10px 0}
+.chip{border-radius:10px;font-weight:600;font-size:14px;padding:7px 14px;background:var(--panel);border:1px solid var(--line)}
+.chip:hover{border-color:var(--pink)}
+.chip.on{background:var(--pink);box-shadow:0 0 16px rgba(255,0,85,.45)}
+.chip.nav{color:#888}.chip.nav:hover{color:#fff}
+.stat,.wcol,.ccard{background:var(--panel);border:1px solid var(--line);border-radius:16px}
+.stat{padding:18px;position:relative;overflow:hidden}
+.stat:first-child{background:linear-gradient(135deg,rgba(255,0,85,.16),rgba(255,0,85,.03));border-color:rgba(255,0,85,.3)}
+.stat:first-child .v{color:var(--pink)}
+.stat .l{order:-1;text-transform:uppercase;letter-spacing:1px;font-size:11px;color:#888;font-weight:600}
+.stat{display:flex;flex-direction:column;gap:6px}.stat .v{font-size:30px;letter-spacing:-.5px}
+section h2{text-transform:uppercase;letter-spacing:1.2px;font-size:14px;font-weight:800;color:#fff;padding-left:12px;border-left:3px solid var(--pink)}
+.wcol h3{text-transform:uppercase;letter-spacing:.8px;font-size:12px;color:#aaa}
+.mcard{border-radius:12px;background:var(--panel2);border:1px solid var(--line)}
+.mcard:hover,.ccard:hover{border-color:var(--pink);box-shadow:0 0 16px rgba(255,0,85,.18)}
+.mcard.big.hit{border-color:var(--gold);box-shadow:none}
+#kinds button{border-radius:8px;text-transform:uppercase;letter-spacing:.6px;font-size:11px;font-weight:700;color:#aaa}
+#kinds button.on{background:var(--pink);color:#fff;border-color:var(--pink)}
+#tools input[type=search],#tools select{border-radius:10px;background:var(--panel)}
+#tools input:focus,#tools select:focus{outline:none;border-color:var(--pink)}
+.tag{border-radius:6px;text-transform:uppercase;letter-spacing:.5px;font-size:10px;font-weight:700}
+.sc{color:#fff}.ccard .sc{letter-spacing:-.5px}
+#modal{background:var(--panel);border:1px solid rgba(255,0,85,.3);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.7),0 0 40px rgba(255,0,85,.12)}
+#modalBg{background:rgba(0,0,0,.75);backdrop-filter:blur(4px)}
+.go{border-radius:10px}
+#gate{background:radial-gradient(700px 320px at 50% 30%,rgba(255,0,85,.16),transparent 70%),#000}
+#gateForm{border-radius:18px;border:1px solid rgba(255,0,85,.3);box-shadow:0 0 50px rgba(255,0,85,.12)}
+#gateForm h2{text-transform:uppercase;letter-spacing:2px;font-size:18px}
+#gateForm h2::before{content:"";display:block;width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:url(images/taboost-genie.jpg) center/cover;border:2px solid var(--pink);box-shadow:0 0 24px rgba(255,0,85,.5)}
+#gateForm button{border-radius:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+/* texture: fine film grain + faint diagonal weave, pointer-events off so it never blocks clicks */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;mix-blend-mode:screen;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:repeating-linear-gradient(135deg,rgba(255,0,85,.035) 0 1px,transparent 1px 14px)}
+.wrap,#gate{position:relative;z-index:1}#gate{position:fixed;z-index:100}
+.stat,.wcol,.ccard,#modal,#gateForm{background-image:linear-gradient(180deg,rgba(255,255,255,.035),transparent 45%)}
+.stat:first-child{background-image:linear-gradient(135deg,rgba(255,0,85,.16),rgba(255,0,85,.03))}
 </style>
 </head>
 <body>
@@ -126,7 +170,7 @@ section h2 .sp{flex:1}
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611062300"></script>
+<script src="js/manager-hub.js?v=202611062330"></script>
 <div id="gate"><form id="gateForm"><h2>Manager Hub</h2><p>Enter the team passcode</p><input type="password" id="gatePw" autocomplete="off" autofocus placeholder="Passcode"><button type="submit">Unlock</button><p id="gateErr"></p></form></div>
 <script>
 // Shared team passcode (SHA-256 hash only). Soft lock: the data shown is already public CSV.
