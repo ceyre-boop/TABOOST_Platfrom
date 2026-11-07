@@ -126,13 +126,13 @@ section h2 .sp{flex:1}
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611062230"></script>
+<script src="js/manager-hub.js?v=202611062300"></script>
 <div id="gate"><form id="gateForm"><h2>Manager Hub</h2><p>Enter the team passcode</p><input type="password" id="gatePw" autocomplete="off" autofocus placeholder="Passcode"><button type="submit">Unlock</button><p id="gateErr"></p></form></div>
 <script>
 // Shared team passcode (SHA-256 hash only). Soft lock: the data shown is already public CSV.
 var PASS_HASH='c3beb9f3597f62f0a64673591c36e4802f55551e5ef65f5611f47993abfcab0e', LS='mh_unlocked_v1';
 function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,'0')}).join('')})}
-function startHub(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='';ManagerHub.init({manager:'*',canSwitch:true});}
+function startHub(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='';ManagerHub.init({manager:'MARCO',canSwitch:true});}
 function isUnlocked(){try{return localStorage.getItem(LS)===PASS_HASH}catch(e){return false}}
 document.getElementById('logoutBtn').onclick=function(){try{localStorage.removeItem(LS)}catch(e){}location.reload()};
 document.getElementById('gateForm').onsubmit=function(e){e.preventDefault();sha(document.getElementById('gatePw').value.trim()).then(function(h){

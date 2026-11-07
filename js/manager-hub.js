@@ -179,11 +179,25 @@
 
   var S = { all: [], stamp: '', viewing: '', canSwitch: false, prevSnap: null, filters: { q: '', recruited: false, activeOnly: true, kind: 'all', sort: 'close' }, byUser: {} };
 
+  // Live team shown in the switcher (key -> label + sheet-name aliases). OTHER = everyone not on this team.
+  var TEAM = [
+    { key: 'MARCO', label: 'Marco', alias: ['MARCO'] }, { key: 'SKYLER', label: 'Skyler', alias: ['SKYLER'] },
+    { key: 'LEVI', label: 'Levi', alias: ['LEVI'] }, { key: 'DYLAN', label: 'Dylan', alias: ['DYLAN'] },
+    { key: 'EMILEE', label: 'Emilee', alias: ['EMILEE', 'EMILY'] }, { key: 'MANDY', label: 'Mandy', alias: ['MANDY', 'MANDI'] },
+    { key: 'OTHER', label: 'Other', alias: [] }
+  ];
+  var TEAM_ALIASES = [].concat.apply([], TEAM.map(function (t) { return t.alias; }));
+  function teamOf(key) { return TEAM.filter(function (t) { return t.key === key; })[0]; }
+  function isTeam(c, aliases) { return c.managers.some(function (m) { return aliases.indexOf(m) >= 0; }) || aliases.indexOf(c.recruiter) >= 0; }
   function rosterFor(name) {
+    var t = teamOf(name);
     return S.all.filter(function (c) {
+      if (t && name === 'OTHER') return !isTeam(c, TEAM_ALIASES);
+      if (t) return isTeam(c, t.alias);
       return name === '*' ? c.managers.length > 0 : (c.managers.indexOf(name) >= 0 || c.recruiter === name);
     });
   }
+  function viewLabel(k) { var t = teamOf(k); return t ? t.label : (k === '*' ? 'Everyone' : title(k)); }
 
   function bestMilestone(items) { return items.length ? items[0] : null; }
 
@@ -209,7 +223,7 @@
       S.canSwitch = !!opts.canSwitch;
       S.viewing = opts.manager;
       var names = managerNames(S.all);
-      if (opts.manager !== '*' && !names[opts.manager]) {
+      if (opts.manager !== '*' && !teamOf(opts.manager) && !names[opts.manager]) {
         $('hubBody').innerHTML = '<div class="empty"><h3>No creators linked to ' + esc(title(opts.manager)) + ' yet</h3><p>Ask Marco to confirm which manager name your account maps to.</p></div>';
         return;
       }
@@ -251,11 +265,10 @@
   function renderSwitcher(names) {
     var el = $('switcher');
     if (!S.canSwitch) { el.innerHTML = ''; return; }
-    var list = Object.keys(names).filter(function (n) { return n !== 'GENIE' && names[n] > 1; }).sort(function (a, b) { return names[b] - names[a]; });
-    var chips = ['*'].concat(list);
+    var chips = TEAM.map(function (t) { return t.key; });
     el.innerHTML = chips.map(function (n) {
-      var label = n === '*' ? 'Everyone' : title(n);
-      var count = n === '*' ? S.all.filter(function (c) { return c.managers.length; }).length : names[n];
+      var label = viewLabel(n);
+      var count = rosterFor(n).length;
       return '<button class="chip' + (S.viewing === n ? ' on' : '') + '" data-mgr="' + esc(n) + '">' + esc(label) + ' <b>' + count + '</b></button>';
     }).join('');
     el.innerHTML = '<button class="chip nav" data-step="-1" aria-label="Previous manager">‹</button>' + el.innerHTML + '<button class="chip nav" data-step="1" aria-label="Next manager">›</button>';
@@ -301,8 +314,8 @@
   function render() {
     var rows = currentRows();
     S.rows = rows;
-    var name = S.viewing === '*' ? 'Everyone' : title(S.viewing);
-    $('who').textContent = name + (S.viewing === '*' ? '' : "'s creators");
+    var name = viewLabel(S.viewing);
+    $('who').textContent = S.viewing === '*' ? name : (S.viewing === 'OTHER' ? 'Other creators' : name + "'s creators");
     $('stamp').textContent = 'Sheet date ' + (S.stamp || '—') + (S.baselineDate ? ' · changes since ' + S.baselineDate : '');
     renderStats(rows);
     renderWatch();
@@ -339,7 +352,7 @@
       return '<button class="mcard ' + i.m.state + (i.m.big ? ' big' : '') + '" data-open="' + esc(i.c.user) + '">' +
         '<span class="ico">' + KIND_ICON[i.m.kind] + '</span>' +
         '<span class="mt"><b>' + esc(i.c.user) + '</b><small>' + esc(i.m.title) + '</small></span>' +
-        (S.viewing === '*' && i.c.manager ? '<em>' + esc(titleList(i.c.manager)) + '</em>' : '') + '</button>';
+        ((S.viewing === '*' || S.viewing === 'OTHER') && i.c.manager ? '<em>' + esc(titleList(i.c.manager)) + '</em>' : '') + '</button>';
     };
     var col = function (head, cls, list, empty) {
       return '<div class="wcol ' + cls + '"><h3>' + head + ' <span>' + list.length + '</span></h3>' +
@@ -382,7 +395,7 @@
       var rec = isRecruit(c);
       return '<button class="ccard' + (c.active ? '' : ' off') + '" data-open="' + esc(c.user) + '">' +
         '<div class="top"><span class="av">' + esc(c.user.charAt(0).toUpperCase()) + '</span>' +
-        '<span class="nm"><b>' + esc(c.user) + '</b><small>' + (S.viewing === '*' || c.managers.length > 1 ? esc(titleList(c.manager)) + ' · ' : '') + 'Lv ' + c.level + ' · Tier ' + c.tier + '</small></span>' +
+        '<span class="nm"><b>' + esc(c.user) + '</b><small>' + (S.viewing === '*' || S.viewing === 'OTHER' || c.managers.length > 1 ? esc(titleList(c.manager)) + ' · ' : '') + 'Lv ' + c.level + ' · Tier ' + c.tier + '</small></span>' +
         '<span class="sc">' + c.score + '</span></div>' + scoreBar(c.score) +
         '<div class="mini"><span>Days ' + c.days + '/' + c.daysGoal + miniBar(c.days, c.daysGoal) + '</span>' +
         '<span>Hrs ' + c.hours + '/' + c.hrsGoal + miniBar(c.hours, c.hrsGoal) + '</span>' +
@@ -430,7 +443,7 @@
     fetch(REWARD_WEBHOOK_URL, {
       method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify({ type: 'reward', secret: REWARD_WEBHOOK_SECRET, creatorName: c.user,
-        reward: $('rwText').value.trim(), note: $('rwNote').value.trim(), addedBy: S.viewing === '*' ? 'Admin' : title(S.viewing) })
+        reward: $('rwText').value.trim(), note: $('rwNote').value.trim(), addedBy: viewLabel(S.viewing) })
     }).then(function (r) { return r.json(); }).then(function (j) {
       if (!j.ok) throw new Error(j.error || 'failed');
       msg.textContent = 'Sent ✓'; $('rwText').value = ''; $('rwNote').value = ''; btn.disabled = false;
