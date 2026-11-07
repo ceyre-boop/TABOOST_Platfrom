@@ -94,6 +94,60 @@ function generateRollingCalendar() {
             startDate: createLocalDate('2026-05-05'),
             endDate: createLocalDate('2026-06-05'),
             color: "#ffd166"
+        },
+        {
+            id: 30,
+            title: "Live Fest: Sign-Up Open",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-11-06'),
+            endDate: createLocalDate('2026-11-19'),
+            color: "#ff0055"
+        },
+        {
+            id: 31,
+            title: "Live Fest: Power League Rd 1",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-11-20'),
+            endDate: createLocalDate('2026-11-24'),
+            color: "#ff0055"
+        },
+        {
+            id: 32,
+            title: "Live Fest: Power League Rd 2",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-11-27'),
+            endDate: createLocalDate('2026-12-01'),
+            color: "#ff0055"
+        },
+        {
+            id: 33,
+            title: "Live Fest: Power League Rd 3",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-12-04'),
+            endDate: createLocalDate('2026-12-06'),
+            color: "#ff0055"
+        },
+        {
+            id: 34,
+            title: "Live Fest: Talent & Fandom Leagues",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-12-09'),
+            endDate: createLocalDate('2026-12-15'),
+            color: "#ff0055"
+        },
+        {
+            id: 35,
+            title: "Live Fest: Global Finale",
+            type: "live",
+            time: "All Day",
+            startDate: createLocalDate('2026-12-17'),
+            endDate: createLocalDate('2026-12-21'),
+            color: "#ff0055"
         }
     ];
     
