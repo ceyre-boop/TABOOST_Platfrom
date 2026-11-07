@@ -221,6 +221,32 @@
     .mash-cta { margin-left: 0; width: 100%; justify-content: center; }
 }
 
+/* TikTok LIVE Fest banner: whole card is the sign-up link (mobile-friendly target). */
+.lf-banner {
+    display: flex; align-items: center; gap: 20px; text-decoration: none; color: inherit;
+    background: linear-gradient(90deg, rgba(255,0,85,.14), rgba(0,204,255,.08) 60%, transparent), var(--taboost-gray);
+    border: 1px solid rgba(255,255,255,.06); border-left: 3px solid var(--taboost-red);
+    border-radius: 16px; padding: 14px 20px 14px 14px; margin-bottom: 25px;
+    transition: border-color .15s ease;
+}
+.lf-banner:hover { border-color: rgba(255,0,85,.45); border-left-color: var(--taboost-red); }
+.lf-banner:focus { outline: none; }
+.lf-banner:focus-visible { outline: 2px solid #00ccff; outline-offset: 3px; }
+.lf-banner img { width: 176px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 10px; flex: 0 0 auto; }
+.lf-text { min-width: 0; }
+.lf-kicker { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #00ccff; }
+.lf-text h3 { margin: 4px 0 4px; font-size: 18px; font-weight: 800; letter-spacing: -.01em; }
+.lf-text p { margin: 0; font-size: 13px; line-height: 1.45; color: #999; }
+.lf-cta { margin-left: auto; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; background: var(--taboost-red); color: #fff; font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 10px; white-space: nowrap; }
+.lf-cta i { font-size: 12px; }
+@media (max-width: 768px) {
+    .lf-banner { flex-wrap: wrap; gap: 12px; padding: 12px; }
+    .lf-banner img { width: 100%; }
+    .lf-text { flex: 1 1 100%; }
+    .lf-text h3 { font-size: 16px; }
+    .lf-cta { margin-left: 0; width: 100%; justify-content: center; }
+}
+
 .welcome-content i {
     font-size: 24px;
     color: var(--taboost-red);
