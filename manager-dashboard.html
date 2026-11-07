@@ -85,6 +85,7 @@ section h2 .sp{flex:1}
 @keyframes in{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.toast{animation:none}}
 @media (max-width:700px){#watchBody{grid-template-columns:1fr}.big-score span{font-size:42px}}
+.addrw{margin-top:14px}.addrw form{display:grid;gap:8px;margin-top:8px}.addrw input,.addrw textarea{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:8px 10px;font:inherit}.addrw button.go{cursor:pointer;border:0}
 </style>
 </head>
 <body>
@@ -119,7 +120,7 @@ section h2 .sp{flex:1}
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611061200"></script>
+<script src="js/manager-hub.js?v=202611061600"></script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";

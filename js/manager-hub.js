@@ -409,8 +409,28 @@
       '<div><small>Tier</small><b>' + c.tier + (c.tierStatus ? ' · ' + esc(c.tierStatus) : '') + '</b></div>' +
       '<div><small>To tier goal</small><b>' + (c.tierLeft > 0 ? fmt(c.tierLeft) : 'Reached') + '</b></div>' +
       '<div><small>Level</small><b>' + c.level + '</b></div></div>' +
-      (c.link && /^https:\/\/www\.tiktok\.com\//.test(c.link) ? '<a class="go" target="_blank" rel="noopener" href="' + esc(c.link) + '">Open TikTok ↗</a>' : '');
+      (c.link && /^https:\/\/www\.tiktok\.com\//.test(c.link) ? '<a class="go" target="_blank" rel="noopener" href="' + esc(c.link) + '">Open TikTok ↗</a>' : '') +
+      '<div class="addrw"><button type="button" class="go" id="rwOpen">+ Add Reward</button>' +
+      '<form id="rwForm" hidden><input id="rwText" maxlength="120" placeholder="Reward (e.g. $50 bonus, free sample box)" required>' +
+      '<textarea id="rwNote" maxlength="400" rows="2" placeholder="Note (optional)"></textarea>' +
+      '<button type="submit" class="go" id="rwSend">Send to Info + Levi</button><p id="rwMsg" class="sub"></p></form></div>';
     $('modalBg').classList.add('open');
+    $('rwOpen').onclick = function () { this.hidden = true; $('rwForm').hidden = false; $('rwText').focus(); };
+    $('rwForm').onsubmit = function (e) { e.preventDefault(); sendReward(c); };
+  }
+  var REWARD_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbypuUml7yEkOO2BLGoO492MEG3OBlNalKssdtqgFCEWH4-cRVBkwgPOOcCtdtn_po3V/exec';
+  var REWARD_WEBHOOK_SECRET = '5240e7f1-2ead-4b00-af55-7dfd4f9a670e'; // public client secret, notify-only email
+  function sendReward(c) {
+    var btn = $('rwSend'), msg = $('rwMsg');
+    btn.disabled = true; msg.textContent = 'Sending…';
+    fetch(REWARD_WEBHOOK_URL, {
+      method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ type: 'reward', secret: REWARD_WEBHOOK_SECRET, creatorName: c.user,
+        reward: $('rwText').value.trim(), note: $('rwNote').value.trim(), addedBy: S.viewing === '*' ? 'Admin' : title(S.viewing) })
+    }).then(function (r) { return r.json(); }).then(function (j) {
+      if (!j.ok) throw new Error(j.error || 'failed');
+      msg.textContent = 'Sent ✓'; $('rwText').value = ''; $('rwNote').value = ''; btn.disabled = false;
+    }).catch(function (err) { msg.textContent = 'Failed to send (' + err.message + ') — try again'; btn.disabled = false; });
   }
   function closeModal() { $('modalBg').classList.remove('open'); }
 

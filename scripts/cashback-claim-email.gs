@@ -49,6 +49,15 @@ function doPost(e) {
         .setMimeType(ContentService.MimeType.JSON);
     }
 
+    if (body.type === 'reward') {
+      var rc = (body.creatorName || 'Unknown creator').toString();
+      MailApp.sendEmail(RECIPIENT + ',levi@taboost.me', 'Add Reward: ' + rc + ' — ' + (body.reward || '').toString(),
+        'A manager added a reward on the manager dashboard.\n\nCreator: ' + rc +
+        '\nReward:  ' + (body.reward || '') + '\nNote:    ' + (body.note || '') +
+        '\nAdded by: ' + (body.addedBy || '') + '\nWhen:    ' + new Date().toString());
+      return ContentService.createTextOutput(JSON.stringify({ ok: true })).setMimeType(ContentService.MimeType.JSON);
+    }
+
     var creatorName = (body.creatorName || 'Unknown creator').toString();
     var month = (body.month || '').toString();
     var amountNum = parseFloat(('' + (body.amount || 0)).replace(/[$,]/g, '')) || 0;
