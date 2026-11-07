@@ -258,9 +258,13 @@
       var count = n === '*' ? S.all.filter(function (c) { return c.managers.length; }).length : names[n];
       return '<button class="chip' + (S.viewing === n ? ' on' : '') + '" data-mgr="' + esc(n) + '">' + esc(label) + ' <b>' + count + '</b></button>';
     }).join('');
+    el.innerHTML = '<button class="chip nav" data-step="-1" aria-label="Previous manager">‹</button>' + el.innerHTML + '<button class="chip nav" data-step="1" aria-label="Next manager">›</button>';
+    var on = el.querySelector('.chip.on'); if (on && on.scrollIntoView) on.scrollIntoView({ block: 'nearest', inline: 'center' });
     el.onclick = function (e) {
-      var b = e.target.closest('[data-mgr]'); if (!b) return;
-      S.viewing = b.getAttribute('data-mgr');
+      var st = e.target.closest('[data-step]'), b = e.target.closest('[data-mgr]');
+      if (st) { var i = chips.indexOf(S.viewing) + parseInt(st.getAttribute('data-step'), 10); b = { getAttribute: function () { return chips[(i + chips.length) % chips.length]; } }; }
+      if (!b) return;
+      S.viewing = b.getAttribute("data-mgr");
       loadSnapshot(S.viewing === '*' ? 'ALL' : S.viewing);
       renderSwitcher(names); render();
     };

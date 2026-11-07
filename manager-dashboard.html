@@ -18,7 +18,13 @@ header h1 small{display:block;font-size:12px;color:var(--mute);font-weight:400}
 .hb{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;position:relative}
 .hb:hover{border-color:var(--green)}
 #bellN{position:absolute;top:-7px;right:-7px;background:var(--pink);color:#fff;border-radius:99px;font-size:11px;padding:1px 6px;font-weight:700}
-#switcher{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+#switcher{display:flex;gap:8px;overflow-x:auto;padding:8px 0;position:sticky;top:0;z-index:20;background:var(--bg,#0b0e17)}
+.chip.nav{font-weight:800;padding:6px 12px}
+#gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--bg,#0b0e17);z-index:100}
+#gateForm{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:28px;width:min(340px,90vw);display:grid;gap:12px;text-align:center}
+#gateForm h2{margin:0}#gateForm p{margin:0;color:var(--mute)}#gateErr{color:var(--pink);min-height:1em}
+#gateForm input{background:var(--panel2);border:1px solid var(--line);border-radius:8px;color:var(--text);padding:10px;font:inherit;text-align:center}
+#gateForm button{background:var(--green);color:#fff;border:0;border-radius:8px;padding:10px;font:inherit;cursor:pointer}
 .chip{background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:6px 14px;white-space:nowrap}
 .chip b{color:var(--mute);font-weight:600;margin-left:4px}
 .chip.on{background:var(--green);color:#fff;border-color:var(--green)}.chip.on b{color:#fff}
@@ -89,12 +95,12 @@ section h2 .sp{flex:1}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap" id="app" style="display:none">
   <header>
     <h1>Manager Hub <small><span id="who">Loading…</span> · <span id="stamp"></span></small></h1>
     <button class="hb" id="bell" title="Milestone watch">🔔<span id="bellN" style="display:none">0</span></button>
     <a class="hb" id="agentLink" href="agent-dashboard.html" style="color:inherit;text-decoration:none;display:none">Agent page</a>
-    <button class="hb" id="logoutBtn">Log out</button>
+    <button class="hb" id="logoutBtn">Lock</button>
   </header>
   <div id="switcher"></div>
   <div id="hubBody">
@@ -120,62 +126,18 @@ section h2 .sp{flex:1}
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611062130"></script>
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-const app = initializeApp({
-  apiKey: "AIzaSyBrApQHC1Fvbjm9EVTptt2kNG2mDb1PzXE",
-  authDomain: "taboost-platform.firebaseapp.com",
-  projectId: "taboost-platform",
-  storageBucket: "taboost-platform.firebasestorage.app",
-  messagingSenderId: "379293685859",
-  appId: "1:379293685859:web:d89592adbf67360b574056"
-});
-const auth = getAuth(app), db = getFirestore(app);
-let redirecting = false;
-const go = (u) => { redirecting = true; window.location.href = u; };
-
-document.getElementById('logoutBtn').onclick = async () => { await signOut(auth); go('agent-login.html'); };
-
-// agents.csv: email -> display name (e.g. dylanv2300@gmail.com -> Dylan)
-async function agentNameByEmail(email) {
-  try {
-    const t = await (await fetch('data/agents.csv?v=' + Date.now())).text();
-    const rows = ManagerHub.core.parseCsv(t);
-    const hit = rows.find(r => (r[0] || '').trim().toLowerCase() === email);
-    return hit && hit[1] ? hit[1].trim().toUpperCase() : '';
-  } catch (e) { return ''; }
-}
-
-onAuthStateChanged(auth, async (user) => {
-  if (redirecting) return;
-  if (!user) return go('agent-login.html');
-  try {
-    const d = (await getDoc(doc(db, 'users', user.uid))).data() || {};
-    const email = (user.email || '').toLowerCase();
-    let role = d.role || 'creator';
-    if (email === 'marco@taboost.me') role = 'admin';
-    if (role === 'creator') return go('creator-dashboard.html');
-
-    if (role === 'admin') {
-      ManagerHub.init({ manager: '*', canSwitch: true });
-      return;
-    }
-    // manager / agent: scoped to their own name only
-    const first = (v) => String(v || '').trim().split(/[\s@]/)[0].toUpperCase();
-    const name = String(d.managerName || '').trim().toUpperCase()
-      || await agentNameByEmail(email)
-      || first(d.displayName || d.name || d.agentName || user.displayName);
-    if (role === 'agent') document.getElementById('agentLink').style.display = '';
-    ManagerHub.init({ manager: name, canSwitch: false });
-  } catch (err) {
-    console.error('Manager hub auth error:', err);
-    document.getElementById('who').textContent = 'Error loading — please refresh';
-  }
-});
+<script src="js/manager-hub.js?v=202611062230"></script>
+<div id="gate"><form id="gateForm"><h2>Manager Hub</h2><p>Enter the team passcode</p><input type="password" id="gatePw" autocomplete="off" autofocus placeholder="Passcode"><button type="submit">Unlock</button><p id="gateErr"></p></form></div>
+<script>
+// Shared team passcode (SHA-256 hash only). Soft lock: the data shown is already public CSV.
+var PASS_HASH='c3beb9f3597f62f0a64673591c36e4802f55551e5ef65f5611f47993abfcab0e', LS='mh_unlocked_v1';
+function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return x.toString(16).padStart(2,'0')}).join('')})}
+function startHub(){document.getElementById('gate').style.display='none';document.getElementById('app').style.display='';ManagerHub.init({manager:'*',canSwitch:true});}
+function isUnlocked(){try{return localStorage.getItem(LS)===PASS_HASH}catch(e){return false}}
+document.getElementById('logoutBtn').onclick=function(){try{localStorage.removeItem(LS)}catch(e){}location.reload()};
+document.getElementById('gateForm').onsubmit=function(e){e.preventDefault();sha(document.getElementById('gatePw').value.trim()).then(function(h){
+  if(h===PASS_HASH){try{localStorage.setItem(LS,PASS_HASH)}catch(e){}startHub()}else{document.getElementById('gateErr').textContent='Wrong passcode';document.getElementById('gatePw').select()}})};
+if(isUnlocked())startHub();
 </script>
 </body>
 </html>
