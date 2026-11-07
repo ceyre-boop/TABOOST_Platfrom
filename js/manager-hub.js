@@ -363,11 +363,15 @@
       col('🔥 About to hit', 'aboutcol', about, 'Nobody is close right now.');
   }
 
+  // The bar is a 0-100 score track split into the real reward tiers; the fill takes the colour of the
+  // highest tier actually reached, and each tick says what it unlocks.
+  var TIER_NAME = { 30: 'Rewards', 50: 'Score 50', 70: 'Cash Bonus', 90: 'Rank Boost' };
+  function scoreZone(score) { return score >= 90 ? 'z90' : score >= 70 ? 'z70' : score >= 50 ? 'z50' : score >= 30 ? 'z30' : 'z0'; }
   function scoreBar(score) {
     var ticks = ALL_SCORES.map(function (t) {
-      return '<i class="tick' + (score >= t ? ' pass' : '') + (BIG_SCORES.indexOf(t) >= 0 ? ' bigt' : '') + '" style="left:' + t + '%"><u>' + t + '</u></i>';
+      return '<i class="tick' + (score >= t ? ' pass' : '') + (BIG_SCORES.indexOf(t) >= 0 ? ' bigt' : '') + '" style="left:' + t + '%" title="' + t + ' · ' + TIER_NAME[t] + '"><u>' + t + '</u></i>';
     }).join('');
-    return '<div class="sbar"><div class="sfill" style="width:' + Math.min(100, score) + '%"></div>' + ticks + '</div>';
+    return '<div class="sbar" title="Score ' + score + '"><div class="sfill ' + scoreZone(score) + '" style="width:' + Math.min(100, score) + '%"></div>' + ticks + '</div>';
   }
   function miniBar(v, goal) {
     var p = goal > 0 ? Math.min(100, (v / goal) * 100) : 0;
