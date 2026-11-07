@@ -363,15 +363,17 @@
       col('🔥 About to hit', 'aboutcol', about, 'Nobody is close right now.');
   }
 
-  // The bar is a 0-100 score track split into the real reward tiers; the fill takes the colour of the
-  // highest tier actually reached, and each tick says what it unlocks.
+  // The bar shows progress to the NEXT milestone only (e.g. 52 -> 70 = 18 pts left): it fills from the
+  // last tier passed to the next one, and heats up (grey > amber > hot pink) as the creator gets close.
   var TIER_NAME = { 30: 'Rewards', 50: 'Score 50', 70: 'Cash Bonus', 90: 'Rank Boost' };
-  function scoreZone(score) { return score >= 90 ? 'z90' : score >= 70 ? 'z70' : score >= 50 ? 'z50' : score >= 30 ? 'z30' : 'z0'; }
   function scoreBar(score) {
-    var ticks = ALL_SCORES.map(function (t) {
-      return '<i class="tick' + (score >= t ? ' pass' : '') + (BIG_SCORES.indexOf(t) >= 0 ? ' bigt' : '') + '" style="left:' + t + '%" title="' + t + ' · ' + TIER_NAME[t] + '"><u>' + t + '</u></i>';
-    }).join('');
-    return '<div class="sbar" title="Score ' + score + '"><div class="sfill ' + scoreZone(score) + '" style="width:' + Math.min(100, score) + '%"></div>' + ticks + '</div>';
+    var next = ALL_SCORES.filter(function (t) { return t > score; })[0];
+    if (!next) return '<div class="sbar"><div class="sfill top" style="width:100%"></div><div class="sbl"><span>90</span><b>Top tier reached</b><span></span></div></div>';
+    var prev = ALL_SCORES.filter(function (t) { return t <= score; }).pop() || 0;
+    var pct = Math.max(0, Math.min(100, ((score - prev) / (next - prev)) * 100)), left = next - score;
+    var heat = left <= 3 || pct >= 80 ? 'hot' : pct >= 50 ? 'warm' : 'cold';
+    return '<div class="sbar" title="Score ' + score + ' · ' + left + ' to ' + next + '"><div class="sfill ' + heat + '" style="width:' + pct.toFixed(0) + '%"></div>' +
+      '<div class="sbl"><span>' + prev + '</span><b>' + left + ' pt' + (left === 1 ? '' : 's') + ' to ' + next + ' · ' + TIER_NAME[next] + '</b><span>' + next + '</span></div></div>';
   }
   function miniBar(v, goal) {
     var p = goal > 0 ? Math.min(100, (v / goal) * 100) : 0;

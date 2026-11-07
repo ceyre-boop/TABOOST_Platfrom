@@ -136,15 +136,15 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;back
 .wrap,#gate{position:relative;z-index:1}#gate{position:fixed;z-index:100}
 .stat,.wcol,.ccard,#modal,#gateForm{background-image:linear-gradient(180deg,rgba(255,255,255,.035),transparent 45%)}
 .stat:first-child{background-image:linear-gradient(135deg,rgba(255,0,85,.16),rgba(255,0,85,.03))}
-/* score bar: track is banded by tier (0-30 | 30-50 | 50-70 | 70-90 | 90-100); fill colour = highest tier reached */
-.sbar{height:10px;background:linear-gradient(90deg,rgba(255,255,255,.05) 0 30%,rgba(255,0,85,.12) 30% 50%,rgba(255,255,255,.10) 50% 70%,rgba(0,255,136,.12) 70% 90%,rgba(255,215,0,.14) 90% 100%);border-radius:99px}
-.sfill{background:#555;box-shadow:none}
-.sfill.z0{background:#6b6b6b}
-.sfill.z30{background:#FF0055;box-shadow:0 0 10px rgba(255,0,85,.6)}
-.sfill.z50{background:#fff;box-shadow:0 0 10px rgba(255,255,255,.35)}
-.sfill.z70{background:#00ff88;box-shadow:0 0 10px rgba(0,255,136,.55)}
-.sfill.z90{background:#ffd700;box-shadow:0 0 12px rgba(255,215,0,.65)}
-.tick{background:rgba(255,255,255,.25)}.tick.pass{background:#000}
+/* score bar = progress to the NEXT milestone; colour = how close (cold grey > warm amber > hot pink, gold at top tier) */
+.sbar{height:10px;background:rgba(255,255,255,.07);border-radius:99px;margin:4px 0 24px;position:relative}
+.sfill{border-radius:99px;transition:width .3s}
+.sfill.cold{background:#6b6b6b}
+.sfill.warm{background:#ffaa00;box-shadow:0 0 10px rgba(255,170,0,.4)}
+.sfill.hot{background:#FF0055;box-shadow:0 0 14px rgba(255,0,85,.7)}
+.sfill.top{background:#ffd700;box-shadow:0 0 12px rgba(255,215,0,.65)}
+.sbl{position:absolute;top:14px;left:0;right:0;display:flex;justify-content:space-between;font-size:10px;color:#777}
+.sbl b{font-weight:600;color:#bbb;letter-spacing:.2px}
 </style>
 </head>
 <body>
@@ -179,7 +179,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;back
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611070010"></script>
+<script src="js/manager-hub.js?v=202611070040"></script>
 <div id="gate"><form id="gateForm"><h2>Manager Hub</h2><p>Enter the team passcode</p><input type="password" id="gatePw" autocomplete="off" autofocus placeholder="Passcode"><button type="submit">Unlock</button><p id="gateErr"></p></form></div>
 <script>
 // Shared team passcode (SHA-256 hash only). Soft lock: the data shown is already public CSV.
