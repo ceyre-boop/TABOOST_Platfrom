@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TABOOST — Creator Dashboard (design preview v3)</title>
+<link rel="icon" type="image/jpeg" href="images/taboost-genie.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Same tokens as the live creator dashboard (css/styles.css + creator-dashboard.css) */
+:root{--red:#FF0055;--red-dark:#cc0044;--black:#000;--dark:#0a0a0a;--gray:#1a1a1a;--gray2:#222;--line:rgba(255,255,255,.05);--line2:rgba(255,255,255,.09);--white:#fff;--gold:#ffd700;--ok:#00ff88;--warn:#ffaa00;--mute:#888;--faint:#666;--serif:'Instrument Serif',Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--black);color:var(--white);line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+.num{font-variant-numeric:tabular-nums}
+button,input{font:inherit;color:inherit}
+.main{max-width:1180px;margin:0 auto;padding:0 clamp(14px,3vw,32px) 70px}
+/* header — same bar as the live dashboard */
+.top{display:flex;align-items:center;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);margin-bottom:24px}
+.logo{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:.14em;font-size:18px}
+.logo img{width:36px;height:36px;border-radius:50%;border:2px solid var(--red)}
+.logo i{font-style:normal;color:var(--red)}
+.pv{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red);border:1px solid rgba(255,0,85,.45);padding:3px 8px;border-radius:6px}
+.grow{flex:1}
+.stamp{font-size:12px;color:var(--mute)}.stamp b{color:#ddd;font-weight:600}
+.who input{width:min(220px,48vw);background:var(--gray);border:1px solid var(--line2);border-radius:10px;padding:8px 12px;font-size:13px;outline:none}
+.who input:focus{border-color:var(--red)}.who input::placeholder{color:var(--faint)}
+/* welcome line (replaces the banner) */
+.welcome{margin-bottom:22px}
+.welcome h2{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-.02em}
+.welcome h2 span{color:var(--red)}
+.welcome p{color:var(--mute);font-size:14px;margin-top:2px}
+/* cards — identical recipe to .stat-card */
+.card{background:var(--gray);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
+.card.primary{background:linear-gradient(135deg,rgba(255,0,85,.12),rgba(255,0,85,.02) 60%),var(--gray);border-color:rgba(255,0,85,.22)}
+.label{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:1px;display:flex;align-items:center;gap:8px;font-weight:500}
+.label i{color:var(--red);font-size:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-bottom:18px}
+.bigv{font-size:clamp(30px,3.4vw,40px);font-weight:800;letter-spacing:-.03em;margin:12px 0 4px;line-height:1.1}
+.card.primary .bigv{color:var(--red)}
+.sub{font-size:13px;color:var(--mute)}
+.sub b{color:#ddd;font-weight:600}.sub .up{color:var(--ok)}.sub .dn{color:#ff7a7a}
+.bar{height:6px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--red);border-radius:99px;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;padding:2px 8px;border-radius:8px;vertical-align:2px;margin-left:8px;background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff}
+.pill.gold{background:rgba(255,200,0,.12);color:var(--gold);border:1px solid rgba(255,200,0,.3)}
+/* next-unlock hero card */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(22px,4vw,56px);margin-bottom:18px;padding:clamp(22px,3vw,34px)}
+.hero h1{font-size:clamp(34px,4.8vw,60px);font-weight:800;letter-spacing:-.04em;line-height:1.02;margin:16px 0 10px;text-wrap:balance}
+.hero h1 .n{color:var(--red)}
+.hero h1 em{font:italic 400 1.1em/.9 var(--serif);letter-spacing:0;color:#ff4d86}
+.hero .lede{color:var(--mute);font-size:15px}
+.levers{margin-top:26px}
+.lever{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:16px;align-items:center;padding:13px 0;border-top:1px solid var(--line2)}
+.lever .k{font-size:11.5px;text-transform:uppercase;letter-spacing:1px;color:var(--mute);font-weight:600}
+.lever .k small{display:block;margin-top:2px;font-size:12.5px;text-transform:none;letter-spacing:0;color:#ddd;font-weight:500}
+.lever .track{height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.lever .track i{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.lever.near .track i{background:var(--red)}.lever.done .track i{background:var(--ok)}
+.lever .need{text-align:right;font-weight:700;font-size:14px;min-width:128px}
+.lever .need span{display:block;font-size:12px;font-weight:400;color:var(--mute)}
+.lever.done .need{color:var(--ok)}
+/* ladder */
+.ladder h3{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:1px;font-weight:500;margin-bottom:16px}
+.rungs{position:relative}
+.spine{position:absolute;left:21px;top:20px;bottom:20px;width:2px;background:rgba(255,255,255,.08)}
+.spine i{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(to top,var(--red),#ff4d86);transition:height 1.3s cubic-bezier(.2,.8,.2,1)}
+.rung{position:relative;display:grid;grid-template-columns:44px 1fr;align-items:center;min-height:84px}
+.dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:15px;background:var(--gray);border:1px solid var(--line2);color:var(--faint);position:relative;z-index:1}
+.rung.hit .dot{background:var(--red);border-color:var(--red);color:#fff}
+.rung.next .dot{border-color:var(--red);color:#fff;box-shadow:0 0 0 6px rgba(255,0,85,.15)}
+.rung .t{padding-left:16px}.rung .t b{display:block;font-size:19px;font-weight:700;letter-spacing:-.01em;color:var(--faint)}
+.rung.hit .t b,.rung.next .t b{color:#fff}.rung .t span{font-size:12.5px;color:var(--faint)}.rung.next .t span{color:#ff4d86}
+.pin{position:absolute;left:14px;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--gray);transform:translateY(-50%);z-index:2;box-shadow:0 0 0 1px #fff}
+.you{position:absolute;right:0;transform:translateY(-50%);font-size:11px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;background:#fff;color:#000;padding:3px 9px;border-radius:6px;white-space:nowrap}
+.you::before{content:"";position:absolute;right:100%;top:50%;width:var(--lead,90px);height:1px;background:rgba(255,255,255,.4)}
+/* two-up */
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:18px;margin-bottom:18px}
+.cashfig{font-size:clamp(44px,6vw,72px);font-weight:800;letter-spacing:-.05em;line-height:1;margin:14px 0 6px}
+.cashfig sup{font-size:.42em;color:var(--red);vertical-align:.9em;margin-right:3px;letter-spacing:0}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 0;border-top:1px solid var(--line2)}
+.row .a{font-weight:600;font-size:14.5px}.row .a small{display:block;font-weight:400;font-size:12px;color:var(--mute)}
+.row .v{font-size:20px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.pts{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
+.pts div{background:rgba(255,255,255,.035);border-radius:10px;padding:10px 12px}
+.pts b{display:block;font-size:15px;font-weight:700}.pts span{font-size:10.5px;color:var(--mute);text-transform:uppercase;letter-spacing:.8px}
+/* months */
+.bars{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:clamp(6px,1.6vw,16px);align-items:end;height:280px;margin-top:20px;padding-top:26px;border-bottom:1px solid var(--line2)}
+.b{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end}
+.b .col{background:rgba(255,255,255,.1);border-radius:8px 8px 0 0;height:0;width:100%;position:relative;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
+.b.best .col{background:#fff}.b.now .col{background:var(--red)}
+.b .proj{position:absolute;left:0;right:0;bottom:0;height:0;border:1px dashed rgba(255,77,134,.75);border-bottom:0;border-radius:8px 8px 0 0;transition:height 1.1s cubic-bezier(.2,.8,.2,1)}
+.b .val{position:absolute;top:-19px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:600;color:var(--mute)}
+.b.best .val,.b.now .val{color:#fff}
+.mons{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:clamp(6px,1.6vw,16px);margin-top:8px}
+.mons div{text-align:center;font-size:11px;letter-spacing:.8px;text-transform:uppercase;color:var(--mute)}
+.mons small{display:block;font-size:11px;letter-spacing:0;text-transform:none;color:var(--faint)}.mons small.up{color:var(--ok)}.mons small.dn{color:#ff7a7a}
+.callout{margin-top:18px;font:italic 400 21px/1.25 var(--serif);color:#eee}
+.callout b{font:700 15px 'Inter',sans-serif;font-style:normal;color:#ff4d86}
+/* campaigns — same rows as the live popup */
+.camps{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-top:16px}
+.camp{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line2);transition:.15s}
+.camp:hover{border-color:var(--red)}
+.camp.hot{background:rgba(255,200,0,.07);border-color:rgba(255,200,0,.45)}.camp.new{background:rgba(255,0,85,.07);border-color:rgba(255,0,85,.45)}.camp.reg{background:rgba(255,122,0,.07);border-color:rgba(255,122,0,.45)}
+.camp .n{font-weight:700;font-size:15px}.camp .d{font-size:12px;color:var(--mute)}.camp .grow{min-width:0}
+.badge{font-size:9.5px;font-weight:800;letter-spacing:.5px;padding:2px 8px;border-radius:8px;flex:none;background:rgba(255,255,255,.1);color:#ccc}
+.badge.HOT{background:rgba(255,200,0,.12);color:var(--gold);border:1px solid rgba(255,200,0,.3)}
+.badge.NEW{background:linear-gradient(135deg,#ff0055,#ff3366);color:#fff}
+.badge.REGISTER{background:linear-gradient(135deg,#ff6a00,#ff9500);color:#fff}.badge.GAMER{background:#7c3aed;color:#fff}
+.empty{color:var(--mute);padding:14px 0;font-size:14px}
+footer{margin-top:30px;color:var(--faint);font-size:12px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+@media (max-width:900px){.grid3,.grid2,.hero{grid-template-columns:minmax(0,1fr)}.pts{grid-template-columns:repeat(2,1fr)}.lever{grid-template-columns:1fr;gap:8px}.lever .need{text-align:left}.top{flex-wrap:wrap}}
+@media (prefers-reduced-motion:reduce){.bar i,.lever .track i,.spine i,.b .col,.b .proj{transition:none}}
+</style>
+</head>
+<body>
+<div class="main">
+  <header class="top">
+    <div class="logo"><img src="images/taboost-genie.jpg" alt=""><span>TAB<i>O</i>OST</span></div>
+    <span class="pv">Design preview v3</span>
+    <div class="grow"></div>
+    <div class="stamp" id="stamp"></div>
+    <div class="who"><input id="who" list="handles" placeholder="Preview as… (creator handle)" autocomplete="off" spellcheck="false"><datalist id="handles"></datalist></div>
+  </header>
+  <main id="app" aria-live="polite"></main>
+  <footer><span>Preview build. Same live sheet data as the real dashboard; nothing here is saved or sent.</span><span id="foot"></span></footer>
+</div>
+
+<script>
+(function () {
+  var TIERS = [{ s: 90, n: 'Rank Boost', d: 'A free rank boost' }, { s: 70, n: 'Cash Bonus', d: 'Paid out on your month' }, { s: 50, n: 'Score 50', d: 'Halfway to the big rewards' }, { s: 30, n: 'Rewards', d: 'Your rewards unlock' }];
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+  var num = function (v) { var n = parseFloat(String(v == null ? '' : v).replace(/[$,%\s]/g, '').replace(/,/g, '')); return isNaN(n) ? 0 : n; };
+  var fmtK = function (n) { n = Math.round(n); var a = Math.abs(n); return a >= 1e6 ? (n / 1e6).toFixed(a >= 1e7 ? 1 : 2).replace(/\.?0+$/, '') + 'M' : a >= 1e3 ? Math.round(n / 1e3) + 'K' : String(n); };
+  var money = function (n) { return '$' + Math.round(n).toLocaleString('en-US'); };
+
+  function parseCsv(t) {
+    var rows = [], row = [], f = '', q = false;
+    for (var i = 0; i < t.length; i++) {
+      var c = t[i];
+      if (q) { if (c === '"') { if (t[i + 1] === '"') { f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true;
+      else if (c === ',') { row.push(f); f = ''; }
+      else if (c === '\n') { row.push(f); rows.push(row); row = []; f = ''; }
+      else if (c !== '\r') f += c;
+    }
+    if (f || row.length) { row.push(f); rows.push(row); }
+    return rows;
+  }
+
+  var S = { rows: [], H: {}, trends: {}, months: [], camps: [] };
+  function col(name) { var i = S.h.findIndex(function (x) { return (x || '').trim() === name; }); return i; }
+
+  function creatorFrom(r) {
+    var g = function (n) { var i = S.H[n]; return i >= 0 ? r[i] : ''; };
+    return {
+      user: (r[2] || '').trim(), link: g('Link'), active: (g('Active') || '').toUpperCase() === 'Y',
+      level: num(g('Level')), score: num(g('Score')),
+      days: num(g('Days')), daysGoal: num(g('Days Goal')), daysLeft: num(g('Days Left')),
+      hours: num(g('Hours')), hrsGoal: num(g('Hrs Goal')), hoursLeft: num(g('Hours Left')),
+      dia: num(r[S.H.dia]), pace: num(r[S.H.pace]), tier: num(g('Tier')), tierGoal: num(g('Tier Goal')), tierLeft: num(g('Tier Left')), tierStatus: (g('Tier Status') || '').trim(),
+      earned: num(g('Earned')), gifted: num(g('Gifted')), running: num(g('Running')), unlocked: num(g('Unlocked')), unis: num(g('Unis')),
+      est: num(g('Est Rev')), bonus: num(g('Bonus')), lmBonus: num(g('LM Bonus'))
+    };
+  }
+
+  function daysLeftInMonth() {
+    var m = /^(\d{1,2})\/(\d{1,2})/.exec(S.stampRaw || ''); if (!m) return null;
+    var mo = +m[1], d = +m[2], y = new Date().getFullYear();
+    return new Date(y, mo, 0).getDate() - d;
+  }
+
+  function countUp(el, to, fmt) {
+    if (matchMedia('(prefers-reduced-motion:reduce)').matches) { el.textContent = fmt(to); return; }
+    var t0 = performance.now(), dur = 1100;
+    (function step(t) { var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(to * e); if (p < 1) requestAnimationFrame(step); })(t0);
+  }
+
+  function render(c) {
+    var next = TIERS.slice().reverse().filter(function (t) { return t.s > c.score; })[0];
+    var left = next ? next.s - c.score : 0, dl = daysLeftInMonth();
+    var name = c.user.replace(/[._\d]+$/, '').replace(/[._]/g, ' ');
+    var T = S.trends[c.user.toLowerCase()];
+    var lastM = T && T.diamondsHistory && T.diamondsHistory.length ? T.diamondsHistory[T.diamondsHistory.length - 1] : 0;
+    var dayNo = +((/^\d{1,2}\/(\d{1,2})/.exec(S.stampRaw || '') || [])[1] || 0);
+    var vs = dayNo >= 10 && lastM > 0 && c.pace ? Math.round((c.pace / lastM - 1) * 100) : null;
+
+    // top row — same three cards as the live dashboard, tightened
+    var rankPct = c.tierGoal > 0 ? Math.max(0, Math.min(100, c.dia / c.tierGoal * 100)) : 0;
+    var top =
+      '<div class="grid3">' +
+      '<div class="card primary"><div class="label"><i class="fas fa-gem"></i>This month’s diamonds</div><div class="bigv num" id="diaFig">0</div>' +
+      '<div class="sub">' + (c.pace ? 'Pacing to <b>' + fmtK(c.pace) + '</b>' : '&nbsp;') + (vs != null ? ' · <span class="' + (vs >= 0 ? 'up' : 'dn') + '">' + (vs >= 0 ? '+' : '') + vs + '% vs last month</span>' : '') + '</div></div>' +
+      '<div class="card"><div class="label"><i class="fas fa-layer-group"></i>Tier ' + c.tier + '</div><div class="bigv num">' + fmtK(c.dia) + '<span style="color:var(--faint);font-weight:600;font-size:.5em"> / ' + fmtK(c.tierGoal) + '</span></div>' +
+      '<div class="sub">' + (c.tierLeft > 0 ? '<b>' + fmtK(c.tierLeft) + '</b> to hold this tier' : 'Tier goal cleared') + (c.tierStatus ? ' · ' + esc(c.tierStatus) : '') + '</div><div class="bar"><i data-w="' + rankPct + '"></i></div></div>' +
+      '<div class="card"><div class="label"><i class="fas fa-gift"></i>Agency benefits</div><div class="bigv num">' + money(c.lmBonus) + (c.lmBonus > 0 ? '<span class="pill gold" style="font-size:10px">CLAIMABLE</span>' : '') + '</div>' +
+      '<div class="sub">Last month’s cash bonus · claim the <b>1st–5th</b>' + (c.unis ? ' · <b>' + c.unis + '</b> rank boost' + (c.unis === 1 ? '' : 's') : '') + '</div></div></div>';
+
+    // next-unlock hero
+    var headline = !next ? '<span class="n">Top tier.</span> <em>Keep the streak</em> going.' : (left <= 5 ? 'So close — ' : '') + '<span class="n num" data-count="' + left + '">' + left + '</span> point' + (left === 1 ? '' : 's') + ' to <em>' + esc(next.n) + '</em>.';
+    var lede = !next ? 'You’re in the top band this month.' : c.score + ' right now. ' + esc(next.n) + ' unlocks at ' + next.s + '.';
+    function lever(label, now, goal, have, needTxt, sub, near) {
+      var p = goal > 0 ? Math.max(0, Math.min(100, now / goal * 100)) : 0, done = goal > 0 && now >= goal;
+      return '<div class="lever ' + (done ? 'done' : near ? 'near' : '') + '"><div class="k">' + label + '<small class="num">' + have + '</small></div><div class="track"><i data-w="' + p + '"></i></div><div class="need num">' + (done ? 'Done' : needTxt) + '<span>' + (done ? sub.done : sub.todo) + '</span></div></div>';
+    }
+    var perDay = (dl && c.tierLeft > 0) ? c.tierLeft / Math.max(1, dl) : 0;
+    var lv = lever('Live days', c.days, c.daysGoal, c.days + ' of ' + c.daysGoal, c.daysLeft + ' more day' + (c.daysLeft === 1 ? '' : 's'), { done: c.days > c.daysGoal ? (c.days - c.daysGoal) + ' extra' : 'goal hit', todo: dl != null ? dl + ' days left in the month' : 'this month' }, c.daysLeft > 0 && c.daysLeft <= 2) +
+      lever('Live hours', c.hours, c.hrsGoal, c.hours + ' of ' + c.hrsGoal + ' hrs', Math.max(0, c.hoursLeft) + ' more hrs', { done: c.hours > c.hrsGoal ? (c.hours - c.hrsGoal) + ' hrs over' : 'goal hit', todo: 'across your next streams' }, c.hoursLeft > 0 && c.hoursLeft <= 4) +
+      lever('Diamonds', c.dia, c.tierGoal, fmtK(c.dia) + ' of ' + fmtK(c.tierGoal), fmtK(c.tierLeft) + ' to go', { done: 'Tier ' + c.tier + ' goal cleared', todo: perDay ? '≈ ' + fmtK(perDay) + ' a day to land it' : 'to hold Tier ' + c.tier }, c.tierGoal > 0 && c.dia / c.tierGoal >= .85);
+    var rungs = TIERS.map(function (t) {
+      var cls = c.score >= t.s ? 'hit' : (next && t.s === next.s ? 'next' : '');
+      return '<div class="rung ' + cls + '"><div class="dot num">' + t.s + '</div><div class="t"><b>' + esc(t.n) + '</b><span>' + (cls === 'hit' ? 'Unlocked' : cls === 'next' ? left + ' to go' : esc(t.d)) + '</span></div></div>';
+    }).join('');
+    var steps = TIERS.slice().reverse(), idx = steps.filter(function (t) { return t.s <= c.score; }).length;
+    var lo = idx ? steps[idx - 1].s : 0, hi = idx < steps.length ? steps[idx].s : 100;
+    var within = hi > lo ? Math.max(0, Math.min(1, (c.score - lo) / (hi - lo))) : 1;
+    var posFromBottom = idx === 0 ? 0 : Math.max(0, Math.min(1, (idx - 1 + within) / (steps.length - 1)));
+    var spineH = posFromBottom * 100, youTop = 100 - spineH;
+    var hero = '<div class="card primary hero"><div><div class="label"><i class="fas fa-bolt"></i>Your next unlock · ' + esc(name) + '</div><h1>' + headline + '</h1><p class="lede">' + lede + '</p><div class="levers">' + lv + '</div></div>' +
+      '<aside class="ladder"><h3>Your climb</h3><div class="rungs"><div class="spine"><i data-h="' + spineH + '"></i></div>' + rungs +
+      (c.score > 0 ? '<i class="pin" style="top:' + Math.max(4, Math.min(96, youTop)) + '%"></i><div class="you num" style="top:' + Math.max(4, Math.min(96, youTop)) + '%">You · ' + c.score + '</div>' : '') + '</div></aside></div>';
+
+    // earned + months
+    var ledger = '<div class="row"><div class="a">Cash bonus, last month<small>Claim on the 1st–5th</small></div><div class="v num">' + money(c.lmBonus) + '</div></div>' +
+      '<div class="row"><div class="a">Cash bonus, building now<small>Resets when the month rolls</small></div><div class="v num">' + money(c.bonus) + '</div></div>' +
+      '<div class="row"><div class="a">Rank boosts in hand<small>Unlock at score 90</small></div><div class="v num">' + c.unis + '</div></div>' +
+      '<div class="pts"><div><b class="num">' + c.running.toLocaleString() + '</b><span>Running</span></div><div><b class="num">' + c.unlocked.toLocaleString() + '</b><span>Unlocked</span></div><div><b class="num">' + c.earned.toLocaleString() + '</b><span>Earned</span></div><div><b class="num">' + c.gifted.toLocaleString() + '</b><span>Gifted</span></div></div>';
+    var earned = '<div class="card"><div class="label"><i class="fas fa-dollar-sign"></i>What you’ve earned</div><div class="cashfig num"><sup>$</sup><span id="estFig">0</span></div><div class="sub" style="margin-bottom:14px">Estimated revenue this month. Final figures settle when the month closes.</div>' + ledger + '</div>';
+
+    var months = '<div class="card"><div class="label"><i class="fas fa-chart-column"></i>Your months</div>', callout = '';
+    if (T && T.diamondsHistory && T.diamondsHistory.length) {
+      var hist = T.diamondsHistory.concat([c.dia]), labels = S.months.concat(['Now']);
+      var max = Math.max.apply(null, hist.concat([c.pace])) || 1, bestI = hist.slice(0, -1).indexOf(Math.max.apply(null, hist.slice(0, -1)));
+      months += '<div class="bars">' + hist.map(function (v, i) {
+        var now = i === hist.length - 1, ghost = now && c.pace > v ? '<div class="proj" data-h="' + Math.min(100, c.pace / max * 100) + '"></div>' : '';
+        return '<div class="b ' + (now ? 'now' : i === bestI ? 'best' : '') + '">' + ghost + '<div class="col" data-h="' + (v / max * 100) + '"><span class="val num">' + (v ? fmtK(v) : '—') + '</span></div></div>';
+      }).join('') + '</div><div class="mons">' + labels.map(function (l, i) {
+        var g = i === hist.length - 1 ? 0 : (T.growthRates ? T.growthRates[i] : 0);
+        var small = i === hist.length - 1 ? (c.pace ? 'pace ' + fmtK(c.pace) : '') : (g ? '<small class="' + (g > 0 ? 'up' : 'dn') + '">' + (g > 0 ? '+' : '') + Math.round(g) + '%</small>' : '');
+        return '<div>' + esc(l.split(' ')[0]) + (i === hist.length - 1 ? '<small>' + small + '</small>' : small) + '</div>';
+      }).join('') + '</div>';
+      var bestV = hist[bestI];
+      if (bestV > 0) callout = 'Your best month was <b>' + esc(S.months[bestI]) + '</b> at ' + fmtK(bestV) + (c.pace > bestV ? ' — and this month is pacing past it.' : c.pace ? '. This month is pacing to ' + fmtK(c.pace) + '.' : '.');
+    } else months += '<div class="empty">Not enough month history to chart yet.</div>';
+    months += (callout ? '<p class="callout">' + callout + '</p>' : '') + '</div>';
+
+    // campaigns
+    var mine = S.camps.filter(function (cm) { return cm.all || cm.users.indexOf(c.user.toLowerCase()) >= 0; });
+    var camps = '<div class="card"><div class="label"><i class="fas fa-bullhorn"></i>Campaigns on now</div>' + (mine.length ? '<div class="camps">' + mine.map(function (cm) {
+      var bd = cm.badges[0] || '', cls = bd === 'HOT' ? 'hot' : bd === 'NEW' ? 'new' : bd === 'REGISTER' ? 'reg' : '';
+      return '<a class="camp ' + cls + '" href="' + esc(cm.url || '#') + '" target="_blank" rel="noopener"><div class="grow"><div class="n">' + esc(cm.name) + '</div><div class="d">' + esc(cm.dates) + '</div></div>' + (bd ? '<span class="badge ' + esc(bd) + '">' + esc(bd) + '</span>' : '') + '</a>';
+    }).join('') + '</div>' : '<div class="empty">Nothing open for you right now.</div>') + '</div>';
+
+    $('app').innerHTML = '<div class="welcome"><h2>Welcome back, <span>' + esc(name) + '</span></h2><p>Here’s where you stand and the quickest way up.</p></div>' + top + hero + '<div class="grid2">' + earned + months + '</div>' + camps;
+
+    requestAnimationFrame(function () {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-w]'), function (e) { e.style.width = e.getAttribute('data-w') + '%'; });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-h]'), function (e) { e.style.height = e.getAttribute('data-h') + '%'; });
+      var big = document.querySelector('.hero h1 .n[data-count]'); if (big) countUp(big, +big.getAttribute('data-count'), function (v) { return String(Math.round(v)); });
+      countUp($('estFig'), c.est, function (v) { return Math.round(v).toLocaleString('en-US'); });
+      countUp($('diaFig'), c.dia, function (v) { return Math.round(v).toLocaleString('en-US'); });
+    });
+    $('foot').textContent = c.user;
+    try { localStorage.setItem('cv3_user', c.user); } catch (e) { }
+    document.title = c.user + ' — TABOOST Creator Dashboard (design preview v3)';
+  }
+
+  function pick(handle) {
+    handle = (handle || '').trim().toLowerCase();
+    var r = S.rows.filter(function (x) { return (x[2] || '').trim().toLowerCase() === handle; })[0];
+    if (!r) return false;
+    render(creatorFrom(r)); $('who').value = ''; return true;
+  }
+
+  function load() {
+    var bust = '?v=' + Date.now();
+    Promise.all([
+      fetch('data/current.csv' + bust).then(function (r) { return r.text(); }),
+      fetch('data/creator_trends.json' + bust).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }),
+      fetch('data/campaigns.csv' + bust).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; })
+    ]).then(function (res) {
+      var rows = parseCsv(res[0]); S.h = rows[0].map(function (x) { return (x || '').trim(); }); S.stampRaw = S.h[2] || '';
+      var seen = {}; S.rows = rows.slice(1).filter(function (r) { var u = (r[2] || '').trim().toLowerCase(); if (!u || seen[u]) return false; seen[u] = 1; return true; });
+      ['Link', 'Active', 'Level', 'Score', 'Days', 'Days Goal', 'Days Left', 'Hours', 'Hrs Goal', 'Hours Left', 'Tier', 'Tier Goal', 'Tier Left', 'Tier Status', 'Earned', 'Gifted', 'Running', 'Unlocked', 'Unis', 'Est Rev', 'Bonus', 'LM Bonus'].forEach(function (n) { S.H[n] = col(n); });
+      S.H.dia = S.h.findIndex(function (x) { return x === '💎' || x === '?'; });
+      S.H.pace = S.H.dia + 1;
+      if (res[1]) { S.months = res[1].months || []; (res[1].creators || []).forEach(function (t) { S.trends[(t.username || '').toLowerCase()] = t; }); }
+      // campaigns.csv is column-per-campaign: name, dates, url, emoji, badge(s), then usernames
+      var cr = parseCsv(res[2] || ''), w = cr.reduce(function (m, r) { return Math.max(m, r.length); }, 0);
+      for (var k = 0; k < w; k++) {
+        var cell = function (i) { return ((cr[i] || [])[k] || '').trim(); }, name = cell(0); if (!name) continue;
+        var users = [], all = false;
+        for (var i = 5; i < cr.length; i++) { var v = cell(i).toLowerCase(); if (!v) continue; if (/^-*all-*$/.test(v)) all = true; else users.push(v.replace(/^@/, '')); }
+        var badges = cell(4).toUpperCase().split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        if (badges.indexOf('DONE') >= 0 || badges.indexOf('FINISHED') >= 0) continue;
+        S.camps.push({ name: name, dates: cell(1), url: cell(2), badges: badges, users: users, all: all });
+      }
+      $('stamp').innerHTML = 'Sheet · <b>' + esc(S.stampRaw) + '</b>';
+      $('handles').innerHTML = S.rows.map(function (r) { return '<option value="' + esc((r[2] || '').trim()) + '">'; }).join('');
+      var q = new URLSearchParams(location.search).get('u'), last = ''; try { last = localStorage.getItem('cv3_user') || ''; } catch (e) { }
+      if (q && pick(q)) return; if (last && pick(last)) return;
+      var best = S.rows.map(creatorFrom).filter(function (c) { return c.active && c.score >= 55 && c.score < 70 && c.lmBonus > 0 && S.trends[c.user.toLowerCase()]; })[0] || creatorFrom(S.rows[0]);
+      render(best);
+    }).catch(function (e) { $('app').innerHTML = '<p class="empty">Could not load the data (' + esc(e.message) + ').</p>'; });
+  }
+  $('who').addEventListener('change', function () { if (!pick(this.value)) this.select(); });
+  load();
+})();
+</script>
+</body>
+</html>
