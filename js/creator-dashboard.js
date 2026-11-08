@@ -1136,6 +1136,26 @@ async function loadCreatorTrends() {
     }
 }
 
+// Extra insight chips for the all-time chart (lifetime total + best month). Empty otherwise.
+function allTimeInsights() {
+    if (!allTimeOverride || !allTimeOverride.diamondsHistory) return '';
+    const hist = allTimeOverride.diamondsHistory, months = allTimeOverride.months || [];
+    let total = 0, best = -1, bestIdx = -1;
+    hist.forEach((v, i) => { if (v == null) return; total += v; if (v > best) { best = v; bestIdx = i; } });
+    if (bestIdx < 0) return '';
+    const bm = (months[bestIdx] || '').split(' ');
+    const bestLabel = bm.length === 2 ? bm[0].slice(0, 3) + " '" + bm[1].slice(2) : (months[bestIdx] || '');
+    return `
+        <div class="insight-item">
+            <i class="fas fa-gem"></i>
+            <span>${formatNumber(total)} lifetime diamonds</span>
+        </div>
+        <div class="insight-item positive">
+            <i class="fas fa-trophy"></i>
+            <span>Best month: ${bestLabel} · ${formatNumber(best)} 💎</span>
+        </div>`;
+}
+
 function initPerformanceChart() {
     console.log('DEBUG - initPerformanceChart called');
     try {
@@ -1194,9 +1214,23 @@ function initPerformanceChart() {
                 const parts = m.split(' ');
                 return parts[0].slice(0, 3) + " '" + parts[1].slice(2);
             };
-            trimmedLabels = [...allTimeOverride.months.map(shortMonth), 'Current'];
-            trimmedData = [...allTimeOverride.diamondsHistory, currentDiamonds];
-            trimmedTier = [...allTimeOverride.diamondsHistory.map(() => null), currentTierPlot];
+            const atHist = allTimeOverride.diamondsHistory;
+            // Start the chart at her first real month instead of a year of empty slots
+            let atFirst = atHist.findIndex(v => v != null && v > 0);
+            if (atFirst < 0) atFirst = 0;
+            const nowD = new Date();
+            const curLabel = nowD.toLocaleString('en-US', { month: 'short' }) + " '" + String(nowD.getFullYear()).slice(2) + ' (so far)';
+            trimmedLabels = [...allTimeOverride.months.slice(atFirst).map(shortMonth), curLabel];
+            trimmedData = [...atHist.slice(atFirst), currentDiamonds];
+            // Tier isn't tracked that far back — a single live-tier dot is noise, so no tier series here
+            trimmedTier = trimmedData.map(() => null);
+
+            // Her all-time chart is the headline: sit it directly under the stat cards
+            const atSection = document.getElementById('performanceChart').closest('.section-card');
+            const atGrid = document.querySelector('#creatorPanel .stats-grid');
+            if (atSection && atGrid && atGrid.parentNode === atSection.parentNode) {
+                atGrid.insertAdjacentElement('afterend', atSection);
+            }
         } else {
             // Check if we have real history data
             hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5;
@@ -1302,7 +1336,15 @@ function initPerformanceChart() {
             pointBackgroundColor: '#ff0044',
             pointBorderColor: '#fff',
             pointBorderWidth: 2,
-            pointRadius: hasRealData ? 4 : 6,
+            pointRadius: allTimeOverride
+                ? (c => c.dataIndex >= trimmedData.length - 2 ? 4 : 0)
+                : (hasRealData ? 4 : 6),
+            pointHoverRadius: 5,
+            spanGaps: !!allTimeOverride,
+            // Current month is still in progress: draw its connector dashed
+            segment: allTimeOverride ? {
+                borderDash: c => c.p1DataIndex === trimmedData.length - 1 ? [6, 6] : undefined
+            } : undefined,
             yAxisID: 'y'
         },
         {
@@ -1315,6 +1357,7 @@ function initPerformanceChart() {
             tension: 0,
             pointRadius: 4,
             pointBackgroundColor: '#00ff88',
+            hidden: !!allTimeOverride,
             yAxisID: 'y1'
         }]
     };
@@ -1341,7 +1384,7 @@ function initPerformanceChart() {
             },
             plugins: {
                 legend: { 
-                    display: hasRealData && !isMobile,
+                    display: hasRealData && !isMobile && !allTimeOverride,
                     labels: { 
                         color: '#888',
                         font: { size: isMobile ? 10 : 12 }
@@ -1382,7 +1425,7 @@ function initPerformanceChart() {
                 },
                 y1: {
                     type: 'linear',
-                    display: true,
+                    display: !allTimeOverride,
                     position: 'right',
                     grid: { display: false },
                     min: 1,
@@ -1395,9 +1438,20 @@ function initPerformanceChart() {
                     }
                 },
                 x: {
-                    offset: true,
+                    offset: !allTimeOverride,
                     grid: { display: false },
-                    ticks: {
+                    ticks: allTimeOverride ? {
+                        // Years only along the bottom; tooltips carry the month
+                        color: '#888',
+                        font: { size: isMobile ? 10 : 11 },
+                        autoSkip: false,
+                        maxRotation: 0,
+                        callback: function (v, i) {
+                            const l = this.getLabelForValue(v) || '';
+                            if (i === trimmedLabels.length - 1) return 'Now';
+                            return l.indexOf('Jan') === 0 ? '20' + l.slice(-3).replace("'", '').trim() : '';
+                        }
+                    } : {
                         color: '#888',
                         font: { size: isMobile ? 8 : 10 }
                     }
@@ -1478,6 +1532,7 @@ function initPerformanceChart() {
             <i class="fas fa-calculator"></i>
             <span>${formatNumber((myData.diamonds || 0) / (myData.hours || 1))} diamonds per hour</span>
         </div>
+        ${allTimeInsights()}
     `;
     
     console.log('DEBUG - Chart created successfully');
