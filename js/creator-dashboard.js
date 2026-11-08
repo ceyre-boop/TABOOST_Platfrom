@@ -10,6 +10,22 @@ let historyPeriods = []; // Period labels for Earnings History rows (true index,
 let historyRowsData = []; // Computed row data for Earnings History, indexed to match historyPeriods
 let historyTrends = null; // Resolved creatorTrends[username] entry for the current creator, if found
 
+// Full all-time diamond history for specific creators' dashboard chart, opt-in by username
+// only. Everyone else keeps the standard 6-month windowed chart untouched.
+const ALL_TIME_OVERRIDE_USERNAMES = ['skylerclarkk'];
+let allTimeOverride = null;
+async function loadAllTimeOverride(username) {
+    if (!username || !ALL_TIME_OVERRIDE_USERNAMES.includes(username.toLowerCase())) return null;
+    try {
+        const res = await fetch(`data/${username.toLowerCase()}-alltime.json?v=` + Date.now());
+        if (!res.ok) return null;
+        return await res.json();
+    } catch (e) {
+        console.error('Failed to load all-time override:', e);
+        return null;
+    }
+}
+
 async function initCreatorDashboard(user) {
     // --- Firestore-first PII lookup ---------------------------------------
     // If this creator's roster row has already been migrated to
@@ -185,6 +201,9 @@ async function initCreatorDashboard(user) {
         }
     }
     
+    // All-time chart override — opt-in by username only (see loadAllTimeOverride).
+    allTimeOverride = await loadAllTimeOverride(myData.username);
+
     try {
         console.log('DEBUG - Starting updateProfile');
         updateProfile(user);
@@ -1159,93 +1178,113 @@ function initPerformanceChart() {
         const currentDiamonds = myData.diamonds || 0;
         const currentTier = myData.tier || 0;
         
-        // Check if we have real history data
-        const hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5;
-        
-        // Build dataPoints: Past months from history JSON, Current from live data
-        let dataPoints;
-        if (hasRealData) {
-            // Use indices from end of array to get the 5 past months dynamically
-            const hist = trends.diamondsHistory;
-            const len = hist.length;
-            dataPoints = [
-                hist[len - 5] || 0,
-                hist[len - 4] || 0,
-                hist[len - 3] || 0,
-                hist[len - 2] || 0,
-                hist[len - 1] || 0,
-                currentDiamonds            // Current (live from daily CSV)
-            ];
-            console.log('DEBUG - Using merged data (history + live Current):', dataPoints);
-        } else {
-            // Fallback: use available data
-            const lastMonth = myData.diamondsLastMonth || currentDiamonds;
-            const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
-            dataPoints = [
-                twoMonthsAgo * 0.85 || currentDiamonds * 0.7,
-                twoMonthsAgo * 0.92 || currentDiamonds * 0.8,
-                twoMonthsAgo || currentDiamonds * 0.85,
-                lastMonth * 0.95 || currentDiamonds * 0.9,
-                lastMonth || currentDiamonds * 0.95,
-                currentDiamonds
-            ];
-            console.log('DEBUG - Using fallback data:', dataPoints);
-        }
-        
         // Tier data: completed months only — current month tier isn't final yet
         // -1 = not applicable → null (not plotted), 0 = 0, 1+ = as-is
         const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
         const currentTierPlot = tierVal(myData.tier);
-        const tierLM = tierVal(myData.tierLastMonth);
-        // Default for first-month creators: Tier LM in the March slot, current tier in Current slot
-        let tierData = [null, null, null, null, tierLM, currentTierPlot];
-        if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
-            const hist = trends.tierHistory;
-            const len = hist.length;
-            // Take the 5 most recent completed months, Current slot = live April tier
-            tierData = [
-                tierVal(hist[len - 5]),
-                tierVal(hist[len - 4]),
-                tierVal(hist[len - 3]),
-                tierVal(hist[len - 2]),
-                tierVal(hist[len - 1]),
-                currentTierPlot
-            ];
-        }
-        
-        // For newer creators, trim leading zero months so chart starts at first real data point
-        let trimStart = 0;
-        for (let i = 0; i < dataPoints.length - 1; i++) {
-            if ((dataPoints[i] || 0) === 0 && (tierData[i] === null || tierData[i] === 0)) {
-                trimStart = i + 1;
+
+        let hasRealData, trimmedLabels, trimmedData, trimmedTier;
+
+        if (allTimeOverride && allTimeOverride.diamondsHistory) {
+            // Opt-in full multi-year history for this one creator (see loadAllTimeOverride) —
+            // replaces the standard 6-month window for HER chart only. Tier isn't tracked
+            // that far back, so only the live Current tier is plotted.
+            hasRealData = true;
+            const shortMonth = (m) => {
+                const parts = m.split(' ');
+                return parts[0].slice(0, 3) + " '" + parts[1].slice(2);
+            };
+            trimmedLabels = [...allTimeOverride.months.map(shortMonth), 'Current'];
+            trimmedData = [...allTimeOverride.diamondsHistory, currentDiamonds];
+            trimmedTier = [...allTimeOverride.diamondsHistory.map(() => null), currentTierPlot];
+        } else {
+            // Check if we have real history data
+            hasRealData = trends && trends.diamondsHistory && trends.diamondsHistory.length >= 5;
+
+            // Build dataPoints: Past months from history JSON, Current from live data
+            let dataPoints;
+            if (hasRealData) {
+                // Use indices from end of array to get the 5 past months dynamically
+                const hist = trends.diamondsHistory;
+                const len = hist.length;
+                dataPoints = [
+                    hist[len - 5] || 0,
+                    hist[len - 4] || 0,
+                    hist[len - 3] || 0,
+                    hist[len - 2] || 0,
+                    hist[len - 1] || 0,
+                    currentDiamonds            // Current (live from daily CSV)
+                ];
+                console.log('DEBUG - Using merged data (history + live Current):', dataPoints);
             } else {
-                break;
+                // Fallback: use available data
+                const lastMonth = myData.diamondsLastMonth || currentDiamonds;
+                const twoMonthsAgo = myData.diamondsTwoMonthsAgo || lastMonth;
+                dataPoints = [
+                    twoMonthsAgo * 0.85 || currentDiamonds * 0.7,
+                    twoMonthsAgo * 0.92 || currentDiamonds * 0.8,
+                    twoMonthsAgo || currentDiamonds * 0.85,
+                    lastMonth * 0.95 || currentDiamonds * 0.9,
+                    lastMonth || currentDiamonds * 0.95,
+                    currentDiamonds
+                ];
+                console.log('DEBUG - Using fallback data:', dataPoints);
+            }
+
+            const tierLM = tierVal(myData.tierLastMonth);
+            // Default for first-month creators: Tier LM in the March slot, current tier in Current slot
+            let tierData = [null, null, null, null, tierLM, currentTierPlot];
+            if (trends && trends.tierHistory && trends.tierHistory.length >= 5) {
+                const hist = trends.tierHistory;
+                const len = hist.length;
+                // Take the 5 most recent completed months, Current slot = live April tier
+                tierData = [
+                    tierVal(hist[len - 5]),
+                    tierVal(hist[len - 4]),
+                    tierVal(hist[len - 3]),
+                    tierVal(hist[len - 2]),
+                    tierVal(hist[len - 1]),
+                    currentTierPlot
+                ];
+            }
+
+            // For newer creators, trim leading zero months so chart starts at first real data point
+            let trimStart = 0;
+            for (let i = 0; i < dataPoints.length - 1; i++) {
+                if ((dataPoints[i] || 0) === 0 && (tierData[i] === null || tierData[i] === 0)) {
+                    trimStart = i + 1;
+                } else {
+                    break;
+                }
+            }
+            trimmedLabels = labels.slice(trimStart);
+            trimmedData = dataPoints.slice(trimStart);
+            trimmedTier = tierData.slice(trimStart);
+
+            // Month-1 creators trim down to a single "Current" point. If a last-month tier
+            // exists, prepend a previous-month slot that plots ONLY the Tier LM (no diamonds
+            // dot), so the green Tier line shows a short trajectory into Current.
+            if (trimmedData.length === 1 && tierLM !== null) {
+                const prevLabel = labels[labels.length - 2] || 'Last Month';
+                trimmedLabels = [prevLabel, ...trimmedLabels];
+                trimmedData = [null, ...trimmedData];        // no pink dot for the prior month
+                trimmedTier = [tierLM, ...trimmedTier];      // green Tier-LM dot only
+            }
+
+            // Center the real data: pad an EQUAL number of empty slots on each side so the
+            // data cluster always sits dead-center, regardless of how many points there are.
+            const MIN_WIDTH = 5;
+            if (trimmedLabels.length < MIN_WIDTH) {
+                const padEach = Math.ceil((MIN_WIDTH - trimmedLabels.length) / 2);
+                const blanks = () => Array(padEach).fill(null);
+                trimmedLabels = [...Array(padEach).fill(''), ...trimmedLabels, ...Array(padEach).fill('')];
+                trimmedData  = [...blanks(), ...trimmedData, ...blanks()];
+                trimmedTier  = [...blanks(), ...trimmedTier, ...blanks()];
             }
         }
-        let trimmedLabels = labels.slice(trimStart);
-        let trimmedData = dataPoints.slice(trimStart);
-        let trimmedTier = tierData.slice(trimStart);
 
-        // Month-1 creators trim down to a single "Current" point. If a last-month tier
-        // exists, prepend a previous-month slot that plots ONLY the Tier LM (no diamonds
-        // dot), so the green Tier line shows a short trajectory into Current.
-        if (trimmedData.length === 1 && tierLM !== null) {
-            const prevLabel = labels[labels.length - 2] || 'Last Month';
-            trimmedLabels = [prevLabel, ...trimmedLabels];
-            trimmedData = [null, ...trimmedData];        // no pink dot for the prior month
-            trimmedTier = [tierLM, ...trimmedTier];      // green Tier-LM dot only
-        }
-
-        // Center the real data: pad an EQUAL number of empty slots on each side so the
-        // data cluster always sits dead-center, regardless of how many points there are.
-        const MIN_WIDTH = 5;
-        if (trimmedLabels.length < MIN_WIDTH) {
-            const padEach = Math.ceil((MIN_WIDTH - trimmedLabels.length) / 2);
-            const blanks = () => Array(padEach).fill(null);
-            trimmedLabels = [...Array(padEach).fill(''), ...trimmedLabels, ...Array(padEach).fill('')];
-            trimmedData  = [...blanks(), ...trimmedData, ...blanks()];
-            trimmedTier  = [...blanks(), ...trimmedTier, ...blanks()];
-        }
+        const tabLabelEl = document.querySelector('.chart-tab[data-period="history"]');
+        if (tabLabelEl) tabLabelEl.textContent = allTimeOverride ? 'All-Time History' : '6 Month History';
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
         console.log('DEBUG - Chart dataPoints:', trimmedData);
@@ -1372,7 +1411,12 @@ function initPerformanceChart() {
         tab.addEventListener('click', function() {
             document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
             this.classList.add('active');
-            
+
+            if (allTimeOverride) {
+                // Full all-time view is already showing — nothing else to switch to.
+                return;
+            }
+
             // Always show real 6-month historical data with month names
             performanceChart.data.labels = labels;
             if (hasRealData) {

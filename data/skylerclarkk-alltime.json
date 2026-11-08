@@ -1,0 +1,20 @@
+{
+  "username": "skylerclarkk",
+  "note": "Manually supplied all-time diamond history for this one creator's dashboard chart only. Oldest -> newest. null = no data for that month.",
+  "months": [
+    "Nov 2021", "Dec 2021",
+    "Jan 2022", "Feb 2022", "Mar 2022", "Apr 2022", "May 2022", "Jun 2022", "Jul 2022", "Aug 2022", "Sep 2022", "Oct 2022", "Nov 2022", "Dec 2022",
+    "Jan 2023", "Feb 2023", "Mar 2023", "Apr 2023", "May 2023", "Jun 2023", "Jul 2023", "Aug 2023", "Sep 2023", "Oct 2023", "Nov 2023", "Dec 2023",
+    "Jan 2024", "Feb 2024", "Mar 2024", "Apr 2024", "May 2024", "Jun 2024", "Jul 2024", "Aug 2024", "Sep 2024", "Oct 2024", "Nov 2024", "Dec 2024",
+    "Jan 2025", "Feb 2025", "Mar 2025", "Apr 2025", "May 2025", "Jun 2025", "Jul 2025", "Aug 2025", "Sep 2025", "Oct 2025", "Nov 2025", "Dec 2025",
+    "Jan 2026", "Feb 2026", "Mar 2026", "Apr 2026", "May 2026", "Jun 2026", "Jul 2026", "Aug 2026", "Sep 2026", "Oct 2026"
+  ],
+  "diamondsHistory": [
+    null, null,
+    null, null, null, null, null, null, null, null, null, null, null, 18015,
+    214866, null, null, null, 67834, 125531, 89928, 51230, 63544, 111219, 99357, 124709,
+    121597, 66451, 238809, 210671, 264395, 322547, 372225, 394276, 186956, 197527, 272281, 215852,
+    219894, 615363, 705309, 986665, 436098, 1497907, 412688, 202795, 313849, 757776, 631954, 2203511,
+    2765414, 2530421, 4011955, 6663460, 6045527, 7911737, 6229461, 5005841, 5062401, 4055839
+  ]
+}
