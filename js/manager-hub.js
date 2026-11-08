@@ -88,6 +88,58 @@
     return { creators: out, stamp: (h[2] || '').trim() };
   }
 
+  /* ───────────── TikTok LIVE Fest sign-up (data/livefest.csv) ─────────────
+   * Synced from the "LiveFest" tab of the Live Data sheet. Matched by CID first, then by TikTok handle.
+   * A creator counts as signed up only when "Signed up" = YES AND "Valid LIVE" = YES (sheet cols H and I).
+   * Header names are matched first; positional H/I is the fallback. No file / no rows → the whole
+   * feature stays silent. File present but creator missing → needs to sign up. */
+  function yes(v) { v = (v == null ? '' : String(v)).trim().toUpperCase(); return v === 'YES' || v === 'Y' || v === 'TRUE'; }
+  function parseLiveFest(csvText) {
+    var rows = parseCsv(csvText || '');
+    if (rows.length < 2) return null;
+    // TikTok's export puts a "Campaign time …" title row above the header: the header is the first
+    // row that mentions "signed up" (or row 0 if none does). Header names are matched by prefix so
+    // "Valid LIVE (1 session ≥ 25 min)" and "Creator ID:" still resolve.
+    var hr = 0;
+    for (var k0 = 0; k0 < Math.min(rows.length, 10); k0++) {
+      if (rows[k0].some(function (x) { return /signed\s*up/i.test(x || ''); })) { hr = k0; break; }
+    }
+    var h = rows[hr].map(function (x) { return (x || '').trim().toLowerCase(); });
+    var find = function (names, fallback) {
+      for (var i = 0; i < names.length; i++) { var k = h.indexOf(names[i]); if (k >= 0) return k; }
+      for (var j = 0; j < names.length; j++) { var p = h.findIndex(function (x) { return x.indexOf(names[j]) === 0; }); if (p >= 0) return p; }
+      return fallback;
+    };
+    var iCid = find(['cid', 'host', 'uid', 'creator id'], -1);
+    var iUser = find(['tiktok', 'creator username', 'username', 'user', 'handle', 'creator', 'name'], -1);
+    var iSigned = find(['signed up', 'signed', 'signup', 'sign up', 'registered'], 7);   // sheet col H
+    var iValid = find(['valid live', 'valid', 'live valid', 'eligible'], 8);             // sheet col I
+    if (iCid < 0 && iUser < 0) { iCid = 0; iUser = 1; }
+    var byCid = {}, byUser = {}, n = 0;
+    for (var r = hr + 1; r < rows.length; r++) {
+      var x = rows[r], ok = yes(x[iSigned]) && yes(x[iValid]);
+      var cid = iCid >= 0 ? (x[iCid] || '').trim() : '';
+      var user = iUser >= 0 ? (x[iUser] || '').trim().replace(/^@/, '').toLowerCase() : '';
+      if (!cid && !user) continue;
+      n++;
+      if (cid) byCid[cid] = ok;
+      if (user) byUser[user] = ok;
+    }
+    return n ? { byCid: byCid, byUser: byUser, count: n } : null;
+  }
+  // true = signed up + valid LIVE, false = needs to sign up, null = no Live Fest data loaded
+  function liveFest(c) {
+    var L = S.livefest; if (!L) return null;
+    var cid = (c.cid || '').trim(), u = c.user.toLowerCase();
+    if (cid && Object.prototype.hasOwnProperty.call(L.byCid, cid)) return L.byCid[cid];
+    if (Object.prototype.hasOwnProperty.call(L.byUser, u)) return L.byUser[u];
+    return false;
+  }
+  function lfBadge(c) {
+    var s = liveFest(c); if (s === null) return '';
+    return s ? '<i class="lf ok" title="Live Fest: signed up">✓</i>' : '<i class="lf no" title="Live Fest: needs to sign up">!</i>';
+  }
+
   /* ───────────── Milestones ───────────── */
   // Which score thresholds a creator is near / has crossed. `prev` = last-seen snapshot (or null).
   function milestonesFor(c, prev) {
@@ -177,7 +229,7 @@
   function safeGet(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } }
   function safeSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
 
-  var S = { all: [], stamp: '', viewing: '', canSwitch: false, prevSnap: null, filters: { q: '', recruited: false, activeOnly: true, kind: 'all', sort: 'close' }, byUser: {} };
+  var S = { all: [], stamp: '', viewing: '', canSwitch: false, prevSnap: null, filters: { q: '', recruited: false, livefest: false, activeOnly: true, kind: 'all', sort: 'close' }, byUser: {} };
 
   // Live team shown in the switcher (key -> label + sheet-name aliases). OTHER = everyone not on this team.
   var TEAM = [
@@ -218,7 +270,9 @@
       var parsed = parseCreators(text);
       S.all = parsed.creators; S.stamp = parsed.stamp;
       return fetch('data/score_history.json?v=' + Date.now()).then(function (r) { return r.ok ? r.json() : null; })
-        .catch(function () { return null; }).then(function (h) { S.hist = h; return parsed; });
+        .catch(function () { return null; }).then(function (h) { S.hist = h; })
+        .then(function () { return fetch('data/livefest.csv?v=' + Date.now()).then(function (r) { return r.ok ? r.text() : ''; }).catch(function () { return ''; }); })
+        .then(function (t) { S.livefest = parseLiveFest(t); return parsed; });
     }).then(function (parsed) {
       S.canSwitch = !!opts.canSwitch;
       S.viewing = opts.manager;
@@ -287,6 +341,8 @@
     if (S.bound) return; S.bound = true;
     $('q').addEventListener('input', function (e) { S.filters.q = e.target.value.toLowerCase().trim(); renderRoster(); });
     $('fRecruited').addEventListener('change', function (e) { S.filters.recruited = e.target.checked; renderRoster(); });
+    $('fLiveFest').addEventListener('change', function (e) { S.filters.livefest = e.target.checked; renderRoster(); });
+    $('fLiveFest').parentNode.style.display = S.livefest ? '' : 'none';
     $('fActive').addEventListener('change', function (e) { S.filters.activeOnly = e.target.checked; render(); });
     $('sortBy').addEventListener('change', function (e) { S.filters.sort = e.target.value; renderRoster(); });
     $('kinds').addEventListener('click', function (e) {
@@ -334,6 +390,10 @@
       ['Score 50+', at(50), 's50'], ['Score 70+', at(70), 's70'], ['Score 90+', at(90), 's90'],
       ['Close to a big one', near, 'near']
     ];
+    if (S.livefest) {
+      var lfOk = cs.filter(function (c) { return liveFest(c) === true; }).length;
+      tiles.push(['Live Fest signed up', lfOk + ' / ' + cs.length, lfOk === cs.length ? 'lfok' : 'lfno']);
+    }
     $('stats').innerHTML = tiles.map(function (t) {
       return '<div class="stat ' + t[2] + '"><div class="v">' + esc(t[1]) + '</div><div class="l">' + esc(t[0]) + '</div></div>';
     }).join('');
@@ -385,6 +445,7 @@
     var rows = (S.rows || []).filter(function (r) {
       if (f.q && r.c.user.toLowerCase().indexOf(f.q) < 0) return false;
       if (f.recruited && !isRecruit(r.c)) return false;
+      if (f.livefest && liveFest(r.c) !== false) return false;
       return true;
     });
     var nextGap = function (r) { var m = r.ms.filter(function (x) { return x.kind === 'score' && x.state === 'about'; })[0]; return m ? m.gap : 999; };
@@ -400,13 +461,14 @@
       var c = r.c, top = bestMilestone(r.ms);
       var rec = isRecruit(c);
       return '<button class="ccard' + (c.active ? '' : ' off') + '" data-open="' + esc(c.user) + '">' +
-        '<div class="top"><span class="av">' + esc(c.user.charAt(0).toUpperCase()) + '</span>' +
+        '<div class="top"><span class="av">' + esc(c.user.charAt(0).toUpperCase()) + lfBadge(c) + '</span>' +
         '<span class="nm"><b>' + esc(c.user) + '</b><small>' + (S.viewing === '*' || S.viewing === 'OTHER' || c.managers.length > 1 ? esc(titleList(c.manager)) + ' · ' : '') + 'Lv ' + c.level + ' · Tier ' + c.tier + '</small></span>' +
         '<span class="sc">' + c.score + '</span></div>' + scoreBar(c.score) +
         '<div class="mini"><span>Days ' + c.days + '/' + c.daysGoal + miniBar(c.days, c.daysGoal) + '</span>' +
         '<span>Hrs ' + c.hours + '/' + c.hrsGoal + miniBar(c.hours, c.hrsGoal) + '</span>' +
         '<span>💎 ' + short(c.diamonds) + miniBar(c.diamonds, c.tierGoal) + '</span></div>' +
         '<div class="tags">' + (rec ? '<span class="tag rec">Recruited</span>' : '') + (c.active ? '' : '<span class="tag">Inactive</span>') +
+        (liveFest(c) === false ? '<span class="tag lfno">Live Fest: sign up</span>' : '') +
         (top ? '<span class="tag ' + top.state + '">' + esc(top.title) + '</span>' : '') + '</div></button>';
     }).join('') : '<div class="empty"><p>No creators match.</p></div>';
   }
@@ -423,6 +485,7 @@
       '<button class="x" data-close aria-label="Close">×</button>' +
       '<h2>' + esc(c.user) + '</h2><p class="sub">' + esc(titleList(c.manager) || 'Unassigned') +
       (isRecruit(c) ? ' · recruited' : '') + (c.active ? '' : ' · inactive') + '</p>' +
+      (liveFest(c) === null ? '' : '<p class="lfline ' + (liveFest(c) ? 'ok' : 'no') + '">' + (liveFest(c) ? '✓ Signed up for TikTok LIVE Fest' : '! Needs to sign up for TikTok LIVE Fest') + '</p>') +
       '<div class="big-score"><span>' + c.score + '</span><small>' + (nextTarget ? (nextTarget - c.score) + ' to ' + nextTarget : 'Top tier — 90+') + '</small></div>' +
       scoreBar(c.score) +
       '<ul class="mlist">' + lines + '</ul>' +

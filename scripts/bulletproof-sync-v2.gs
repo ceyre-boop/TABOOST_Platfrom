@@ -12,7 +12,10 @@ const SYNC_CONFIG = {
     { name: 'Rewards', csvPath: 'data/rewards.csv' },
     { name: 'Current-UK', csvPath: 'data/current-uk.csv' },
     { name: 'Agents', csvPath: 'data/agents.csv' },
-    { name: 'Agents-C', csvPath: 'data/agents-dash-c.csv' }
+    { name: 'Agents-C', csvPath: 'data/agents-dash-c.csv' },
+    // TikTok LIVE Fest sign-ups → Manager Hub bubble badge. Needs CID or TikTok handle column,
+    // plus "Signed up" (col H) and "Valid LIVE" (col I). Missing tab is skipped, not an error.
+    { name: 'LiveFest', csvPath: 'data/livefest.csv' }
   ],
   dataJsPath: 'js/data.js',
   github: {
