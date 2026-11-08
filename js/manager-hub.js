@@ -461,15 +461,16 @@
       var c = r.c, top = bestMilestone(r.ms);
       var rec = isRecruit(c);
       return '<button class="ccard' + (c.active ? '' : ' off') + '" data-open="' + esc(c.user) + '">' +
-        '<div class="top"><span class="av">' + esc(c.user.charAt(0).toUpperCase()) + lfBadge(c) + '</span>' +
+        '<div class="top"><span class="av">' + esc(c.user.charAt(0).toUpperCase()) + '</span>' +
         '<span class="nm"><b>' + esc(c.user) + '</b><small>' + (S.viewing === '*' || S.viewing === 'OTHER' || c.managers.length > 1 ? esc(titleList(c.manager)) + ' · ' : '') + 'Lv ' + c.level + ' · Tier ' + c.tier + '</small></span>' +
         '<span class="sc">' + c.score + '</span></div>' + scoreBar(c.score) +
         '<div class="mini"><span>Days ' + c.days + '/' + c.daysGoal + miniBar(c.days, c.daysGoal) + '</span>' +
         '<span>Hrs ' + c.hours + '/' + c.hrsGoal + miniBar(c.hours, c.hrsGoal) + '</span>' +
-        '<span>💎 ' + short(c.diamonds) + miniBar(c.diamonds, c.tierGoal) + '</span></div>' +
+        '<span>Dia ' + short(c.diamonds) + miniBar(c.diamonds, c.tierGoal) + '</span></div>' +
         '<div class="tags">' + (rec ? '<span class="tag rec">Recruited</span>' : '') + (c.active ? '' : '<span class="tag">Inactive</span>') +
-        (liveFest(c) === false ? '<span class="tag lfno">Live Fest: sign up</span>' : '') +
-        (top ? '<span class="tag ' + top.state + '">' + esc(top.title) + '</span>' : '') + '</div></button>';
+        (top && top.kind !== 'score' ? '<span class="tag ' + top.state + '">' + esc(top.title) + '</span>' : '') +
+        (liveFest(c) === null ? '' : liveFest(c) ? '<span class="tag lfok">Live Fest ✓</span>' : '<span class="tag lfno">Not signed up for Live Fest</span>') +
+        '</div></button>';
     }).join('') : '<div class="empty"><p>No creators match.</p></div>';
   }
 

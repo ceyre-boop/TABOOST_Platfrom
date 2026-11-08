@@ -151,6 +151,28 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;back
 .sfill.top{background:#ffd700;box-shadow:0 0 12px rgba(255,215,0,.65)}
 .sbl{position:absolute;top:14px;left:0;right:0;display:flex;justify-content:space-between;font-size:10px;color:#777}
 .sbl b{font-weight:600;color:#bbb;letter-spacing:.2px}
+/* ── Roster cards, plainer pass (dev): flat surfaces, no glow, no pills, no emoji, quieter type ── */
+#roster{gap:10px}
+.ccard{background:#161616;background-image:none;border:1px solid #262626;border-radius:8px;padding:12px 14px 11px}
+.ccard:hover{border-color:#3a3a3a;box-shadow:none}
+.ccard .top{gap:10px;margin-bottom:8px}
+.ccard .av{width:28px;height:28px;border-radius:6px;background:#242424;color:#bdbdbd;font-weight:600;font-size:13px}
+.ccard .nm b{font-weight:600;font-size:15px}
+.ccard .nm small{color:#8a8a8a;font-size:12px}
+.ccard .sc{font-size:22px;font-weight:600;letter-spacing:0;font-variant-numeric:tabular-nums;color:#f2f2f2}
+.ccard .sbar{height:4px;border-radius:2px;background:#262626;margin:8px 0 26px}
+.ccard .sfill{border-radius:2px;box-shadow:none}
+.ccard .sfill.cold{background:#555}.ccard .sfill.warm{background:#c98f00}.ccard .sfill.hot{background:#d6004a}.ccard .sfill.top{background:#d4b400}
+.ccard .sbl{top:9px;font-size:11px;color:#6f6f6f}.ccard .sbl b{color:#a8a8a8;font-weight:500;letter-spacing:0}
+.ccard .tick{display:none}
+.ccard .mini{font-size:12px;color:#8a8a8a;gap:10px}
+.ccard .mbar{height:2px;background:#262626;border-radius:1px;margin-top:4px}.ccard .mbar i{background:#8a8a8a}
+.ccard .tags{margin-top:9px;gap:0 10px;font-size:11px;align-items:baseline}
+.ccard .tag{background:none;padding:0;border-radius:0;text-transform:none;letter-spacing:0;font-weight:500;font-size:11px;color:#8a8a8a}
+.ccard .tag+.tag::before{content:"·";margin-right:10px;color:#444}
+.ccard .tag.rec{color:#8a8a8a}.ccard .tag.about{color:#c98f00}.ccard .tag.hit{color:#d4b400}
+.ccard .tag.lfok{color:#4cc27a}.ccard .tag.lfno{color:#c98f00}
+.ccard.off{opacity:.5}
 </style>
 </head>
 <body>
@@ -186,7 +208,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;back
 <div id="modalBg"><div id="modal" role="dialog" aria-modal="true"></div></div>
 <div id="toasts" aria-live="polite"></div>
 
-<script src="js/manager-hub.js?v=202611081600"></script>
+<script src="js/manager-hub.js?v=202611081900"></script>
 <div id="gate"><form id="gateForm"><h2>Manager Hub</h2><p>Enter the team passcode</p><input type="password" id="gatePw" autocomplete="off" autofocus placeholder="Passcode"><button type="submit">Unlock</button><p id="gateErr"></p></form></div>
 <script>
 // Shared team passcode (SHA-256 hash only). Soft lock: the data shown is already public CSV.
