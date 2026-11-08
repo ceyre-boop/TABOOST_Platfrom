@@ -97,15 +97,26 @@
   function parseLiveFest(csvText) {
     var rows = parseCsv(csvText || '');
     if (rows.length < 2) return null;
-    var h = rows[0].map(function (x) { return (x || '').trim().toLowerCase(); });
-    var find = function (names, fallback) { for (var i = 0; i < names.length; i++) { var k = h.indexOf(names[i]); if (k >= 0) return k; } return fallback; };
+    // TikTok's export puts a "Campaign time …" title row above the header: the header is the first
+    // row that mentions "signed up" (or row 0 if none does). Header names are matched by prefix so
+    // "Valid LIVE (1 session ≥ 25 min)" and "Creator ID:" still resolve.
+    var hr = 0;
+    for (var k0 = 0; k0 < Math.min(rows.length, 10); k0++) {
+      if (rows[k0].some(function (x) { return /signed\s*up/i.test(x || ''); })) { hr = k0; break; }
+    }
+    var h = rows[hr].map(function (x) { return (x || '').trim().toLowerCase(); });
+    var find = function (names, fallback) {
+      for (var i = 0; i < names.length; i++) { var k = h.indexOf(names[i]); if (k >= 0) return k; }
+      for (var j = 0; j < names.length; j++) { var p = h.findIndex(function (x) { return x.indexOf(names[j]) === 0; }); if (p >= 0) return p; }
+      return fallback;
+    };
     var iCid = find(['cid', 'host', 'uid', 'creator id'], -1);
-    var iUser = find(['tiktok', 'username', 'user', 'creator', 'handle', 'name'], -1);
-    var iSigned = find(['signed up', 'signed up?', 'signed', 'signup', 'sign up', 'registered'], 7);   // sheet col H
-    var iValid = find(['valid live', 'valid live?', 'valid', 'live valid', 'eligible'], 8);            // sheet col I
+    var iUser = find(['tiktok', 'creator username', 'username', 'user', 'handle', 'creator', 'name'], -1);
+    var iSigned = find(['signed up', 'signed', 'signup', 'sign up', 'registered'], 7);   // sheet col H
+    var iValid = find(['valid live', 'valid', 'live valid', 'eligible'], 8);             // sheet col I
     if (iCid < 0 && iUser < 0) { iCid = 0; iUser = 1; }
     var byCid = {}, byUser = {}, n = 0;
-    for (var r = 1; r < rows.length; r++) {
+    for (var r = hr + 1; r < rows.length; r++) {
       var x = rows[r], ok = yes(x[iSigned]) && yes(x[iValid]);
       var cid = iCid >= 0 ? (x[iCid] || '').trim() : '';
       var user = iUser >= 0 ? (x[iUser] || '').trim().replace(/^@/, '').toLowerCase() : '';
