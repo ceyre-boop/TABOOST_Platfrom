@@ -1147,11 +1147,11 @@ function allTimeInsights() {
     const bestLabel = bm.length === 2 ? bm[0].slice(0, 3) + " '" + bm[1].slice(2) : (months[bestIdx] || '');
     return `
         <div class="insight-item">
-            <i class="fas fa-gem"></i>
+            <span>🌈</span>
             <span>${formatNumber(total)} lifetime diamonds</span>
         </div>
         <div class="insight-item positive">
-            <i class="fas fa-trophy"></i>
+            <span>⭐</span>
             <span>Best month: ${bestLabel} · ${formatNumber(best)} 💎</span>
         </div>`;
 }
@@ -1204,6 +1204,7 @@ function initPerformanceChart() {
         const currentTierPlot = tierVal(myData.tier);
 
         let hasRealData, trimmedLabels, trimmedData, trimmedTier;
+        let atBestIdx = -1; // index of the best completed month (all-time view only)
 
         if (allTimeOverride && allTimeOverride.diamondsHistory) {
             // Opt-in full multi-year history for this one creator (see loadAllTimeOverride) —
@@ -1225,8 +1226,31 @@ function initPerformanceChart() {
             // Tier isn't tracked that far back — a single live-tier dot is noise, so no tier series here
             trimmedTier = trimmedData.map(() => null);
 
+            trimmedData.forEach((v, i) => { if (i < trimmedData.length - 1 && v != null && (atBestIdx < 0 || v > trimmedData[atBestIdx])) atBestIdx = i; });
+
             // Her all-time chart is the headline: sit it directly under the stat cards
             const atSection = document.getElementById('performanceChart').closest('.section-card');
+            if (atSection) {
+                // Rainbows-and-unicorns theme, scoped to this card only
+                atSection.classList.add('at-unicorn');
+                if (!document.getElementById('atUnicornCss')) {
+                    const st = document.createElement('style');
+                    st.id = 'atUnicornCss';
+                    st.textContent = `
+.section-card.at-unicorn{position:relative;border:1px solid transparent;background:linear-gradient(#15101c,#15101c) padding-box,linear-gradient(135deg,#ff6ec7,#c084fc,#7dd3fc,#6ee7b7,#fde68a,#ff6ec7) border-box;box-shadow:0 0 48px rgba(192,132,252,.16),0 0 0 1px rgba(255,255,255,.02) inset}
+.section-card.at-unicorn::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:.9;background:radial-gradient(circle at 12% 22%,rgba(255,255,255,.14) 0 1.5px,transparent 2.5px),radial-gradient(circle at 78% 18%,rgba(255,255,255,.16) 0 1px,transparent 2px),radial-gradient(circle at 55% 72%,rgba(255,255,255,.1) 0 1.5px,transparent 2.5px),radial-gradient(circle at 32% 86%,rgba(255,255,255,.1) 0 1px,transparent 2px),radial-gradient(circle at 91% 76%,rgba(255,255,255,.12) 0 1.5px,transparent 2.5px),radial-gradient(circle at 44% 12%,rgba(255,255,255,.08) 0 1px,transparent 2px),radial-gradient(ellipse at 50% 0%,rgba(192,132,252,.12),transparent 60%)}
+.section-card.at-unicorn>*{position:relative}
+.section-card.at-unicorn .at-title{background:linear-gradient(90deg,#ff6ec7,#c084fc,#7dd3fc,#6ee7b7,#fde68a);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800;letter-spacing:-.2px}
+.section-card.at-unicorn .chart-tab.active{background:linear-gradient(90deg,#ff6ec7,#c084fc,#7dd3fc);color:#1a1020;border:0;font-weight:700}
+.section-card.at-unicorn .chart-insights{border-color:rgba(192,132,252,.18)}
+.section-card.at-unicorn .insight-item{color:#e9ddff}
+.section-card.at-unicorn .insight-item.positive{color:#6ee7b7}
+`;
+                    document.head.appendChild(st);
+                }
+                const atH2 = atSection.querySelector('.section-header h2');
+                if (atH2) atH2.innerHTML = '🦄 <span class="at-title">Your Journey</span> 🌈';
+            }
             const atGrid = document.querySelector('#creatorPanel .stats-grid');
             if (atSection && atGrid && atGrid.parentNode === atSection.parentNode) {
                 atGrid.insertAdjacentElement('afterend', atSection);
@@ -1328,16 +1352,31 @@ function initPerformanceChart() {
         datasets: [{
             label: 'My Diamonds',
             data: trimmedData,
-            borderColor: '#ff0044',
-            backgroundColor: 'rgba(255, 0, 68, 0.1)',
+            borderColor: allTimeOverride ? (c => {
+                const { ctx: g, chartArea: a } = c.chart;
+                if (!a) return '#c084fc';
+                const gr = g.createLinearGradient(a.left, 0, a.right, 0);
+                ['#ff6ec7', '#c084fc', '#7dd3fc', '#6ee7b7', '#fde68a', '#ff9ecf'].forEach((col, i, arr) => gr.addColorStop(i / (arr.length - 1), col));
+                return gr;
+            }) : '#ff0044',
+            backgroundColor: allTimeOverride ? (c => {
+                const { ctx: g, chartArea: a } = c.chart;
+                if (!a) return 'rgba(192,132,252,0.15)';
+                const gr = g.createLinearGradient(0, a.top, 0, a.bottom);
+                gr.addColorStop(0, 'rgba(255,110,199,0.38)');
+                gr.addColorStop(0.5, 'rgba(192,132,252,0.18)');
+                gr.addColorStop(1, 'rgba(125,211,252,0.02)');
+                return gr;
+            }) : 'rgba(255, 0, 68, 0.1)',
             fill: true,
             tension: 0.4,
             borderWidth: 3,
-            pointBackgroundColor: '#ff0044',
-            pointBorderColor: '#fff',
+            pointStyle: allTimeOverride ? (c => c.dataIndex === atBestIdx ? 'star' : 'circle') : 'circle',
+            pointBackgroundColor: allTimeOverride ? (c => c.dataIndex === atBestIdx ? '#fde68a' : '#fff') : '#ff0044',
+            pointBorderColor: allTimeOverride ? (c => c.dataIndex === atBestIdx ? '#fde68a' : '#c084fc') : '#fff',
             pointBorderWidth: 2,
             pointRadius: allTimeOverride
-                ? (c => c.dataIndex >= trimmedData.length - 2 ? 4 : 0)
+                ? (c => c.dataIndex === atBestIdx ? 9 : (c.dataIndex >= trimmedData.length - 2 ? 4 : 0))
                 : (hasRealData ? 4 : 6),
             pointHoverRadius: 5,
             spanGaps: !!allTimeOverride,
@@ -1391,8 +1430,8 @@ function initPerformanceChart() {
                     }
                 },
                 tooltip: {
-                    backgroundColor: '#1a1a1a',
-                    borderColor: '#333',
+                    backgroundColor: allTimeOverride ? '#1b1326' : '#1a1a1a',
+                    borderColor: allTimeOverride ? '#c084fc' : '#333',
                     borderWidth: 1,
                     titleColor: '#fff',
                     bodyColor: '#ccc',
@@ -1408,6 +1447,7 @@ function initPerformanceChart() {
                             }
                             const v = context.parsed.y;
                             if (v === null || v === undefined || isNaN(v)) return null;
+                            if (allTimeOverride && context.dataIndex === atBestIdx) return formatNumber(v) + ' 💎  ⭐ best month';
                             return formatNumber(v) + ' 💎';
                         }
                     }
