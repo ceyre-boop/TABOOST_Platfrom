@@ -14,7 +14,9 @@ let historyIndexOffset = 0; // Rows prepended ahead of the trends window (all-ti
 // Full all-time diamond history for specific creators' dashboard chart, opt-in by username
 // only. Everyone else keeps the standard 6-month windowed chart untouched.
 const ALL_TIME_OVERRIDE_USERNAMES = ['skylerclarkk'];
-let allTimeOverride = null;
+let allTimeOverride = null;   // active all-time data for the current chart render (null = standard chart)
+let allTimeData = null;       // loaded all-time data for this creator, if any
+let allTimeActive = true;     // toggle: true = All-Time view, false = standard 6-month view
 async function loadAllTimeOverride(username) {
     if (!username || !ALL_TIME_OVERRIDE_USERNAMES.includes(username.toLowerCase())) return null;
     try {
@@ -203,7 +205,8 @@ async function initCreatorDashboard(user) {
     }
     
     // All-time chart override — opt-in by username only (see loadAllTimeOverride).
-    allTimeOverride = await loadAllTimeOverride(myData.username);
+    allTimeData = await loadAllTimeOverride(myData.username);
+    allTimeOverride = allTimeActive ? allTimeData : null;
 
     try {
         console.log('DEBUG - Starting updateProfile');
@@ -1204,6 +1207,25 @@ function initPerformanceChart() {
         const tierVal = (v) => { const n = parseInt(v); return (isNaN(n) || n < 0) ? null : n; };
         const currentTierPlot = tierVal(myData.tier);
 
+        allTimeOverride = allTimeActive ? allTimeData : null;
+
+        // Creators with all-time data get two tabs: 6 Month | All-Time (toggle re-renders the chart)
+        const chartSec = document.getElementById('performanceChart').closest('.section-card');
+        if (allTimeData && chartSec) {
+            const tabsEl = chartSec.querySelector('.chart-tabs');
+            if (tabsEl && !tabsEl.querySelector('[data-period="alltime"]')) {
+                tabsEl.innerHTML = '<button class="chart-tab" data-period="history">6 Month History</button>' +
+                                   '<button class="chart-tab" data-period="alltime">All-Time History</button>';
+            }
+            chartSec.querySelectorAll('.chart-tab').forEach(t => t.classList.toggle('active', (t.dataset.period === 'alltime') === allTimeActive));
+            const h2El = chartSec.querySelector('.section-header h2');
+            if (h2El && !chartSec.dataset.origH2) chartSec.dataset.origH2 = h2El.innerHTML;
+            if (!allTimeActive) {
+                chartSec.classList.remove('at-unicorn');
+                if (h2El) h2El.innerHTML = chartSec.dataset.origH2;
+            }
+        }
+
         let hasRealData, trimmedLabels, trimmedData, trimmedTier;
         let atBestIdx = -1; // index of the best completed month (all-time view only)
 
@@ -1355,7 +1377,7 @@ function initPerformanceChart() {
         }
 
         const tabLabelEl = document.querySelector('.chart-tab[data-period="history"]');
-        if (tabLabelEl) tabLabelEl.textContent = allTimeOverride ? 'All-Time History' : '6 Month History';
+        if (tabLabelEl && !allTimeData) tabLabelEl.textContent = '6 Month History';
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
         console.log('DEBUG - Chart dataPoints:', trimmedData);
@@ -1560,14 +1582,19 @@ function initPerformanceChart() {
     
     // Chart tabs - only real data, no estimation
     document.querySelectorAll('.chart-tab').forEach(tab => {
+        if (tab.dataset.bound) return; // initPerformanceChart can re-run on toggle; bind once
+        tab.dataset.bound = '1';
         tab.addEventListener('click', function() {
-            document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-
-            if (allTimeOverride) {
-                // Full all-time view is already showing — nothing else to switch to.
+            if (allTimeData) {
+                // Toggle between her All-Time view and the standard 6-month chart
+                const wantAllTime = this.dataset.period === 'alltime';
+                if (wantAllTime === allTimeActive) return;
+                allTimeActive = wantAllTime;
+                initPerformanceChart();
                 return;
             }
+            document.querySelectorAll('.chart-tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
 
             // Always show real 6-month historical data with month names
             performanceChart.data.labels = labels;
