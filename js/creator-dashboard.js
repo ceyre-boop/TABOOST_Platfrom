@@ -1224,8 +1224,16 @@ function initPerformanceChart() {
             const curLabel = nowD.toLocaleString('en-US', { month: 'short' }) + " '" + String(nowD.getFullYear()).slice(2) + ' (so far)';
             trimmedLabels = [...allTimeOverride.months.slice(atFirst).map(shortMonth), curLabel];
             trimmedData = [...atHist.slice(atFirst), currentDiamonds];
-            // Tier isn't tracked that far back — a single live-tier dot is noise, so no tier series here
+            // Tier: plot the months we have tier data for (the trends window) + live current tier
             trimmedTier = trimmedData.map(() => null);
+            if (trends && Array.isArray(trends.tierHistory) && trendMonths.length) {
+                const atMonths = allTimeOverride.months.slice(atFirst);
+                trendMonths.forEach((m, i) => {
+                    const k = atMonths.indexOf(m);
+                    if (k >= 0) trimmedTier[k] = tierVal(trends.tierHistory[i]);
+                });
+            }
+            trimmedTier[trimmedTier.length - 1] = currentTierPlot;
 
             trimmedData.forEach((v, i) => { if (i < trimmedData.length - 1 && v != null && (atBestIdx < 0 || v > trimmedData[atBestIdx])) atBestIdx = i; });
 
@@ -1393,14 +1401,13 @@ function initPerformanceChart() {
         {
             label: 'Tier',
             data: trimmedTier,
-            borderColor: '#00ff88',
+            borderColor: allTimeOverride ? '#6ee7b7' : '#00ff88',
             backgroundColor: 'transparent',
             borderWidth: 2,
             borderDash: [5, 5],
             tension: 0,
             pointRadius: 4,
-            pointBackgroundColor: '#00ff88',
-            hidden: !!allTimeOverride,
+            pointBackgroundColor: allTimeOverride ? '#6ee7b7' : '#00ff88',
             yAxisID: 'y1'
         }]
     };
@@ -1474,7 +1481,7 @@ function initPerformanceChart() {
             },
             plugins: {
                 legend: { 
-                    display: hasRealData && !isMobile && !allTimeOverride,
+                    display: hasRealData && !isMobile,
                     labels: { 
                         color: '#888',
                         font: { size: isMobile ? 10 : 12 }
@@ -1516,13 +1523,13 @@ function initPerformanceChart() {
                 },
                 y1: {
                     type: 'linear',
-                    display: !allTimeOverride,
+                    display: true,
                     position: 'right',
                     grid: { display: false },
                     min: 1,
                     max: 10,
                     ticks: {
-                        color: '#00ff88',
+                        color: allTimeOverride ? '#6ee7b7' : '#00ff88',
                         font: { size: 9 },
                         stepSize: 1,
                         callback: v => 'T' + v
