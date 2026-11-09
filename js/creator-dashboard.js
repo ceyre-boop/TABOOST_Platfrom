@@ -1939,7 +1939,7 @@ const MONTH_ACHIEVEMENT_DEFS = [
     { name: 'Stream Master', icon: '📺', desc: '22+ days streamed' },
     { name: 'Reward King', icon: '💰', desc: 'Earned a bonus' },
     { name: 'Hour Crusher', icon: '⏰', desc: '90+ hours' },
-    { name: 'Growth Star', icon: '🌟', desc: 'Ranked up tier' },
+    { name: 'Growth Star', icon: '🌟', desc: 'Tier or rank went up' },
     { name: 'Top 10', icon: '👑', desc: 'Reached top 10' }
 ];
 
@@ -1952,13 +1952,17 @@ function renderMonthAchievements(index) {
     const curTier = row.tier || 0;
     const tierUp = prevTier > 0 && curTier > prevTier;
     const rank = getRankForMonth(myData.username, index);
+    // Growth Star: tier went up OR agency rank improved vs the previous month
+    const prevRank = index > 0 ? getRankForMonth(myData.username, index - 1) : null;
+    const rankUp = rank !== null && prevRank !== null && rank < prevRank;
+    const grew = tierUp || rankUp;
 
     const unlocked = [
         row.diamonds >= 1000000,            // Million Diamond Club
         (row.days ?? -1) >= 22,             // Stream Master  (days-based)
         (row.bonusRaw || 0) > 0,            // Reward King
         (row.hours ?? -1) >= 90,            // Hour Crusher   (hours-based)
-        tierUp,                             // Growth Star
+        grew,                               // Growth Star (tier up or rank up)
         rank !== null && rank <= 10         // Top 10
     ];
 
