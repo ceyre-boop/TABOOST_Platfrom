@@ -7,7 +7,7 @@
     "Sep 2026",
     "Oct 2026"
   ],
-  "generatedAt": "2026-11-09T16:59:02.169916Z",
+  "generatedAt": "2026-11-09T16:59:21.208555Z",
   "creators": [
     {
       "username": "stiansings",
@@ -111,7 +111,7 @@
         4,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         2,
         4,
@@ -238,7 +238,7 @@
       ]
     },
     {
-      "username": "mkloafer4",
+      "username": "imranoriakhel4",
       "diamondsHistory": [
         0,
         0,
@@ -263,7 +263,7 @@
         1,
         2
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -278,7 +278,7 @@
         0.0,
         0.0,
         0.0,
-        1500.0
+        0.0
       ],
       "revenueHistory": [
         0.0,
@@ -2974,7 +2974,7 @@
       ]
     },
     {
-      "username": "kennyyasser",
+      "username": "#N/A",
       "diamondsHistory": [
         0,
         0,
@@ -21898,82 +21898,6 @@
       ]
     },
     {
-      "username": "erincosgrove26",
-      "diamondsHistory": [
-        0,
-        0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "growthRates": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        1,
-        1,
-        1
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "daysHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ],
-      "hoursHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ]
-    },
-    {
       "username": "ollyvert",
       "diamondsHistory": [
         0.0,
@@ -32006,7 +31930,7 @@
       ]
     },
     {
-      "username": "terrazoom18",
+      "username": "funnyplanet880",
       "diamondsHistory": [
         0,
         0,
