@@ -9,6 +9,7 @@ let creatorIdMap = {}; // Map creatorId to creator data
 let historyPeriods = []; // Period labels for Earnings History rows (true index, pre-filter)
 let historyRowsData = []; // Computed row data for Earnings History, indexed to match historyPeriods
 let historyTrends = null; // Resolved creatorTrends[username] entry for the current creator, if found
+let historyIndexOffset = 0; // Rows prepended ahead of the trends window (all-time override only)
 
 // Full all-time diamond history for specific creators' dashboard chart, opt-in by username
 // only. Everyone else keeps the standard 6-month windowed chart untouched.
@@ -1151,7 +1152,7 @@ function allTimeInsights() {
             <span>${formatNumber(total)} lifetime diamonds</span>
         </div>
         <div class="insight-item positive">
-            <span>⭐</span>
+            <span>🦄</span>
             <span>Best month: ${bestLabel} · ${formatNumber(best)} 💎</span>
         </div>`;
 }
@@ -1228,7 +1229,6 @@ function initPerformanceChart() {
 
             trimmedData.forEach((v, i) => { if (i < trimmedData.length - 1 && v != null && (atBestIdx < 0 || v > trimmedData[atBestIdx])) atBestIdx = i; });
 
-            // Her all-time chart is the headline: sit it directly under the stat cards
             const atSection = document.getElementById('performanceChart').closest('.section-card');
             if (atSection) {
                 // Rainbows-and-unicorns theme, scoped to this card only
@@ -1245,15 +1245,20 @@ function initPerformanceChart() {
 .section-card.at-unicorn .chart-insights{border-color:rgba(192,132,252,.18)}
 .section-card.at-unicorn .insight-item{color:#e9ddff}
 .section-card.at-unicorn .insight-item.positive{color:#6ee7b7}
+.at-history-wrap{max-height:460px;overflow:auto;border-radius:10px}
+.at-history-wrap thead th{position:sticky;top:0;background:#111;z-index:1}
 `;
                     document.head.appendChild(st);
                 }
                 const atH2 = atSection.querySelector('.section-header h2');
                 if (atH2) atH2.innerHTML = '🦄 <span class="at-title">Your Journey</span> 🌈';
-            }
-            const atGrid = document.querySelector('#creatorPanel .stats-grid');
-            if (atSection && atGrid && atGrid.parentNode === atSection.parentNode) {
-                atGrid.insertAdjacentElement('afterend', atSection);
+                const atTable = document.querySelector('.history-table');
+                if (atTable && !atTable.parentNode.classList.contains('at-history-wrap')) {
+                    const wrap = document.createElement('div');
+                    wrap.className = 'at-history-wrap';
+                    atTable.parentNode.insertBefore(wrap, atTable);
+                    wrap.appendChild(atTable);
+                }
             }
         } else {
             // Check if we have real history data
@@ -1371,12 +1376,11 @@ function initPerformanceChart() {
             fill: true,
             tension: 0.4,
             borderWidth: 3,
-            pointStyle: allTimeOverride ? (c => c.dataIndex === atBestIdx ? 'star' : 'circle') : 'circle',
-            pointBackgroundColor: allTimeOverride ? (c => c.dataIndex === atBestIdx ? '#fde68a' : '#fff') : '#ff0044',
+            pointBackgroundColor: allTimeOverride ? '#fff' : '#ff0044',
             pointBorderColor: allTimeOverride ? (c => c.dataIndex === atBestIdx ? '#fde68a' : '#c084fc') : '#fff',
             pointBorderWidth: 2,
             pointRadius: allTimeOverride
-                ? (c => c.dataIndex === atBestIdx ? 9 : (c.dataIndex >= trimmedData.length - 2 ? 4 : 0))
+                ? (c => (c.dataIndex === atBestIdx || c.dataIndex >= trimmedData.length - 2) ? 4 : 0)
                 : (hasRealData ? 4 : 6),
             pointHoverRadius: 5,
             spanGaps: !!allTimeOverride,
@@ -1411,12 +1415,59 @@ function initPerformanceChart() {
     // Detect mobile for smaller chart elements
     const isMobile = window.innerWidth < 768;
     
+    // Unicorn horn rising from her best month (all-time view only)
+    const unicornHornPlugin = {
+        id: 'unicornHorn',
+        afterDatasetsDraw(chart) {
+            if (!allTimeOverride || atBestIdx < 0) return;
+            const pt = chart.getDatasetMeta(0).data[atBestIdx];
+            if (!pt) return;
+            const { x, y } = pt.getProps(['x', 'y'], true);
+            const g = chart.ctx, H = isMobile ? 34 : 46, W = isMobile ? 11 : 14;
+            g.save();
+            g.translate(x, y - 3);
+            g.rotate(-0.14);
+            g.beginPath();
+            g.moveTo(-W / 2, 0);
+            g.quadraticCurveTo(-W / 4, -H * 0.55, 0, -H);
+            g.quadraticCurveTo(W / 4, -H * 0.55, W / 2, 0);
+            g.closePath();
+            const grad = g.createLinearGradient(0, 0, 0, -H);
+            grad.addColorStop(0, '#ff9ecf');
+            grad.addColorStop(0.5, '#fde68a');
+            grad.addColorStop(1, '#fffbe6');
+            g.fillStyle = grad;
+            g.shadowColor = 'rgba(253,230,138,0.85)';
+            g.shadowBlur = 14;
+            g.fill();
+            g.shadowBlur = 0;
+            g.clip();
+            g.strokeStyle = 'rgba(192,132,252,0.8)';
+            g.lineWidth = 2;
+            for (let i = 1; i <= 5; i++) {
+                const yy = -H * i / 6;
+                g.beginPath();
+                g.moveTo(-W / 2, yy + 5);
+                g.lineTo(W / 2, yy - 5);
+                g.stroke();
+            }
+            g.restore();
+            g.save();
+            g.font = (isMobile ? 11 : 13) + 'px sans-serif';
+            g.textAlign = 'center';
+            g.fillText('✨', x + (isMobile ? 10 : 13), y - H - 2);
+            g.restore();
+        }
+    };
+
     performanceChart = new Chart(ctx, {
         type: 'line',
         data: data,
+        plugins: allTimeOverride ? [unicornHornPlugin] : [],
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            layout: { padding: { top: allTimeOverride ? (isMobile ? 40 : 54) : 0 } },
             interaction: {
                 mode: 'index',
                 intersect: false
@@ -1447,7 +1498,7 @@ function initPerformanceChart() {
                             }
                             const v = context.parsed.y;
                             if (v === null || v === undefined || isNaN(v)) return null;
-                            if (allTimeOverride && context.dataIndex === atBestIdx) return formatNumber(v) + ' 💎  ⭐ best month';
+                            if (allTimeOverride && context.dataIndex === atBestIdx) return formatNumber(v) + ' 💎  🦄 best month';
                             return formatNumber(v) + ' 💎';
                         }
                     }
@@ -1702,6 +1753,1013 @@ function updateHistory() {
         }
     }
     
+    // All-time override (opt-in by username): prepend her earlier months ahead of the
+    // standard 6-month window. Older months have diamonds only — $ is estimated at 0.005,
+    // bonus/tier/days/hours weren't tracked. Everyone else: untouched.
+    let atOffset = 0;
+    let periodsOut = periods;
+    if (allTimeOverride && allTimeOverride.diamondsHistory && trendMonths.length >= 6 && earningsData.length >= 6) {
+        const atM = allTimeOverride.months || [], atH = allTimeOverride.diamondsHistory;
+        const cut = atM.indexOf(trendMonths[0]);
+        const end = cut >= 0 ? cut : atM.length;
+        let first = atH.findIndex(v => v != null && v > 0);
+        if (first < 0) first = 0;
+        const pre = [], preP = [];
+        for (let i = first; i < end; i++) {
+            const d = atH[i] || 0;
+            const rev = Math.round(d * 0.005);
+            pre.push({ diamonds: d, revenue: '
+    // earnings-history path above (which leaves `trends` null for creators with a myData.earningsHistory).
+    let hdTrend = creatorTrends[myData.username];
+    if (!hdTrend) {
+        const ul = myData.username.toLowerCase();
+        const k = Object.keys(creatorTrends).find(key => key.toLowerCase() === ul);
+        if (k) hdTrend = creatorTrends[k];
+    }
+    const daysHist = (hdTrend && hdTrend.daysHistory) || [];
+    const hoursHist = (hdTrend && hdTrend.hoursHistory) || [];
+
+    // Build rows with calculated changes using Revenue + Bonus
+    const rows = periodsOut.map((period, index) => {
+        const data = earningsData[index] || { diamonds: 0, revenue: '$0.00', rawRevenue: 0, bonus: 0, bonusStr: '--', tier: null };
+        const diamonds = parseInt(data.diamonds) || 0;
+        const prevData = index > 0 ? earningsData[index - 1] : null;
+
+        let change = '--';
+        if (prevData) {
+            const currentTotal = (data.rawRevenue || (diamonds * 0.005)) + (data.bonus || 0);
+            const prevTotal = (prevData.rawRevenue || (parseInt(prevData.diamonds || 0) * 0.005)) + (prevData.bonus || 0);
+
+            if (prevTotal > 0) {
+                const changeVal = ((currentTotal - prevTotal) / prevTotal * 100);
+                change = (changeVal >= 0 ? '↑ ' : '↓ ') + Math.abs(changeVal).toFixed(1) + '%';
+            }
+        }
+
+        // Revenue from CSV
+        let revenueRaw = data.revenue || '$0.00';
+        const revenue = revenueRaw.startsWith('≈') ? revenueRaw : '≈' + revenueRaw;
+
+        return {
+            period: period,
+            diamonds: diamonds,
+            usd: revenue,
+            bonus: data.bonusStr,
+            bonusRaw: data.bonus || 0,
+            tier: data.tier ?? null,
+            days: (daysHist[index - atOffset] ?? -1),
+            hours: (hoursHist[index - atOffset] ?? -1),
+            change: change
+        };
+    });
+
+    historyPeriods = periodsOut;
+    historyRowsData = rows;
+    historyTrends = trends;
+
+    // Earnings History shows completed months only — every bonus here is final,
+    // so it always renders gold and is never greyed out or marked "est.".
+
+    // Filter out months with no data (newer creators won't have all 6 months),
+    // but keep each rendered row's true index (into rows/trends arrays) for the click handler.
+    const histList = rows.map((r, index) => ({ r, index })).filter(({ r }) => r.diamonds > 0);
+    if (allTimeOverride) histList.reverse(); // long all-time list reads newest first
+    document.getElementById('historyTableBody').innerHTML = histList.map(({ r, index }) => {
+        const isChange = r.change !== '--';
+        const changeClass = isChange ? (r.change.includes('↑') ? 'up' : 'down') : '';
+        const changeIcon = isChange ? (r.change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down') : '';
+        const changeText = isChange ? r.change.replace(/[↑↓] /, '') : '--';
+
+        return `
+            <tr class="history-row-clickable" data-month-index="${index}" onclick="openMonthDetail(${index})">
+                <td><strong>${r.period}</strong></td>
+                <td>${formatNumber(r.diamonds)} 💎</td>
+                <td style="color: var(--success);">${r.usd}</td>
+                <td style="color: #ffd700;">${r.bonus === '--' ? '--' : r.bonus}</td>
+                <td>
+                    ${isChange ? `
+                        <span class="trend-indicator ${changeClass}">
+                            <i class="fas ${changeIcon}"></i> ${changeText}
+                        </span>
+                    ` : '--'}
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function formatChangeBadge(change) {
+    if (change === '--') return '--';
+    const changeClass = change.includes('↑') ? 'up' : 'down';
+    const changeIcon = change.includes('↑') ? 'fa-arrow-up' : 'fa-arrow-down';
+    const changeText = change.replace(/[↑↓] /, '');
+    return `
+        <span class="trend-indicator ${changeClass}">
+            <i class="fas ${changeIcon}"></i> ${changeText}
+        </span>
+    `;
+}
+
+function getRankForMonth(username, monthIndex) {
+    if (!username) return null;
+    // Rows prepended by the all-time override predate the trends window — no rank data.
+    monthIndex = monthIndex - (historyIndexOffset || 0);
+    if (monthIndex < 0) return null;
+
+    // Firestore path — creatorTrends only holds this one creator (the public
+    // multi-creator trends fetch is skipped), so a cross-creator sort here
+    // would always return #1. The migration embeds a precomputed rankByMonth
+    // array (aligned to the trends months[] array) on the creator's own doc —
+    // use that directly instead.
+    // overallRank is only set on embedded Firestore docs — use it as the path marker.
+    // On the Firestore path we have NO cross-creator trends, so never fall through to
+    // the sort below (it would return a false #1); return the precomputed rank or null.
+    if (myData && myData.overallRank != null && (myData.username || '').toLowerCase() === username.toLowerCase()) {
+        const rank = Array.isArray(myData.rankByMonth) ? myData.rankByMonth[monthIndex] : null;
+        return (rank === undefined || rank === null) ? null : rank;
+    }
+
+    const usernameLower = username.toLowerCase();
+    const ranked = Object.values(creatorTrends)
+        .map(c => ({ username: c.username, diamonds: (c.diamondsHistory && c.diamondsHistory[monthIndex]) || 0 }))
+        .sort((a, b) => b.diamonds - a.diamonds);
+    const idx = ranked.findIndex(c => (c.username || '').toLowerCase() === usernameLower);
+    return idx === -1 ? null : idx + 1;
+}
+
+function openMonthDetail(index) {
+    const row = historyRowsData[index];
+    if (!row) return;
+
+    document.getElementById('monthDetailTitle').innerHTML = `<i class="fas fa-calendar-check"></i> ${row.period}`;
+    document.getElementById('monthDetailDiamonds').textContent = formatNumber(row.diamonds) + ' 💎';
+
+    const rank = getRankForMonth(myData.username, index);
+    document.getElementById('monthDetailRank').textContent = rank ? ('#' + rank) : '--';
+
+    document.getElementById('monthDetailTier').textContent = (row.tier && row.tier > 0) ? 'Tier ' + row.tier : 'No Tier';
+    document.getElementById('monthDetailUsd').textContent = row.usd;
+    const bonusDetailEl = document.getElementById('monthDetailBonus');
+    // Completed months only — bonus is always final (gold), never an estimate.
+    bonusDetailEl.textContent = row.bonus === '--' ? '--' : row.bonus;
+    bonusDetailEl.style.color = '#ffd700';
+    bonusDetailEl.title = '';
+    document.getElementById('monthDetailChange').innerHTML = formatChangeBadge(row.change);
+
+    renderMonthAchievements(index);
+
+    document.getElementById('monthDetailModal').classList.add('active');
+}
+
+function closeMonthDetail() {
+    document.getElementById('monthDetailModal').classList.remove('active');
+}
+
+const MONTH_ACHIEVEMENT_DEFS = [
+    { name: 'Million Diamond Club', icon: '💎', desc: '1M+ diamonds' },
+    { name: 'Stream Master', icon: '📺', desc: '22+ days streamed' },
+    { name: 'Reward King', icon: '💰', desc: 'Earned a bonus' },
+    { name: 'Hour Crusher', icon: '⏰', desc: '90+ hours' },
+    { name: 'Growth Star', icon: '🌟', desc: 'Ranked up tier' },
+    { name: 'Top 10', icon: '👑', desc: 'Reached top 10' }
+];
+
+function renderMonthAchievements(index) {
+    const container = document.getElementById('monthAchievementsStrip');
+    const row = historyRowsData[index];
+    if (!row) return;
+
+    const prevTier = index > 0 ? (historyRowsData[index - 1]?.tier || 0) : 0;
+    const curTier = row.tier || 0;
+    const tierUp = prevTier > 0 && curTier > prevTier;
+    const rank = getRankForMonth(myData.username, index);
+
+    const unlocked = [
+        row.diamonds >= 1000000,            // Million Diamond Club
+        (row.days ?? -1) >= 22,             // Stream Master  (days-based)
+        (row.bonusRaw || 0) > 0,            // Reward King
+        (row.hours ?? -1) >= 90,            // Hour Crusher   (hours-based)
+        tierUp,                             // Growth Star
+        rank !== null && rank <= 10         // Top 10
+    ];
+
+    // Stream Master (index 1) and Hour Crusher (index 3) come from per-month stream stats.
+    // Some past months predate our stream-stat history — for those, show a neutral "not
+    // recorded" state rather than "locked", so an active month never looks like a failure.
+    const missing = v => v === undefined || v === null || v === -1;
+    const noData = [false, missing(row.days), false, missing(row.hours), false, false];
+
+    const tiles = MONTH_ACHIEVEMENT_DEFS.map((a, i) => {
+        const state = noData[i] ? 'nodata' : (unlocked[i] ? 'unlocked' : 'locked');
+        const title = noData[i] ? `${a.name} — stream stats not recorded for this month` : a.desc;
+        return `
+        <div class="mini-achievement ${state}" title="${title}">
+            <span class="mini-achievement-icon">${a.icon}</span>
+            <span class="mini-achievement-name">${a.name}</span>
+        </div>`;
+    }).join('');
+
+    const note = noData.some(Boolean)
+        ? `<div class="mini-achievement-note">📊 Days &amp; hours weren't recorded for this month yet</div>`
+        : '';
+    container.innerHTML = tiles + note;
+}
+
+function updateScoreAndLevels() {
+    // Score from Google Sheets column AG (0-100)
+    const score = myData.score || 0;
+    console.log('DEBUG - Creator ID:', myData.creatorId, 'Score:', score, 'from myData.score');
+
+    // Rank check: bonus requires rank Same or Up (not Down)
+    const tierStatusRaw = (myData.tierStatus || '').toLowerCase().trim();
+    const rankOk = tierStatusRaw === '' || tierStatusRaw === '-' ||
+                   tierStatusRaw.includes('same') || tierStatusRaw.includes('up') ||
+                   tierStatusRaw.includes('maintained');
+
+    // Update Score Badge
+    const scoreBadgeEl = document.getElementById('scoreBadge');
+    if (scoreBadgeEl) {
+        if (score >= 90 && rankOk) {
+            scoreBadgeEl.className = 'score-badge bonus-masters';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus + Rank Boost</span>`;
+        } else if (score >= 70 && rankOk) {
+            scoreBadgeEl.className = 'score-badge bonus-pros';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Cash Bonus Unlocked</span>`;
+        } else if (score >= 70 && !rankOk) {
+            scoreBadgeEl.className = 'score-badge bonus-pros';
+            scoreBadgeEl.innerHTML = `<span class="badge-score-num">Score: ${score}</span><span class="badge-score-label">Need Rank Same or Up</span>`;
+        } else {
+            scoreBadgeEl.className = 'score-badge';
+            scoreBadgeEl.textContent = `Score: ${score}`;
+        }
+    }
+    
+    if (window.renderScoreNudge) window.renderScoreNudge(score, 'us');
+
+    // Score Segmented Bar - 100 segments, fill based on score
+    // Score 86 = 86 segments filled, Score 100 = 100 segments filled
+    const segmentsContainer = document.getElementById('scoreSegments');
+    if (segmentsContainer) {
+        // Generate 100 segments if not already generated
+        if (segmentsContainer.children.length === 0) {
+            for (let i = 0; i < 100; i++) {
+                const segment = document.createElement('div');
+                segment.className = 'score-segment';
+                segmentsContainer.appendChild(segment);
+            }
+        }
+        
+        // Fill segments based on score
+        const filledCount = Math.min(100, Math.max(0, Math.round(score)));
+        const segments = segmentsContainer.querySelectorAll('.score-segment');
+        segments.forEach((seg, index) => {
+            if (index < filledCount) {
+                seg.classList.add('filled');
+            } else {
+                seg.classList.remove('filled');
+            }
+        });
+    }
+    
+    // Dynamic tier badge logic — only show ONE fancy badge at a time
+    const prosItem = document.getElementById('prosScaleItem');
+    const mastersItem = document.getElementById('mastersScaleItem');
+
+    if (prosItem) {
+        if (score > 70 && score <= 90) {
+            // Show gold PROS badge
+            prosItem.innerHTML = `<div class="tier-badge badge-pros"><span class="badge-num">70</span><span class="badge-label">PROS</span></div>`;
+        } else {
+            // Normal text
+            prosItem.innerHTML = `<span class="scale-num">70</span><span class="scale-tier tier-pros">PROS</span>`;
+        }
+    }
+
+    if (mastersItem) {
+        if (score > 90) {
+            // Show red MASTERS badge
+            mastersItem.innerHTML = `<div class="tier-badge badge-masters"><span class="badge-num">90</span><span class="badge-label">MASTERS</span></div>`;
+        } else {
+            // Normal text
+            mastersItem.innerHTML = `<span class="scale-num">90</span><span class="scale-tier tier-masters">MASTERS</span>`;
+        }
+    }
+
+    console.log(`DEBUG - Score: ${score}, Segments filled: ${Math.round(score)}`);
+
+    // Current Score Reward
+    const rewardTiers = [
+        { min: 95, reward: 450 },
+        { min: 90, reward: 300 },
+        { min: 85, reward: 200 },
+        { min: 80, reward: 100 },
+        { min: 75, reward: 75 },
+        { min: 70, reward: 75 },
+        { min: 0, reward: 0 }
+    ];
+    
+    // Score reward display removed - only showing score bar now
+    
+    // Score Breakdown
+    const threeMonthDiamonds = (myData.diamonds || 0) + (myData.diamondsLastMonth || 0) + (myData.diamondsTwoMonthsAgo || 0);
+    const growth = parseFloat(myData.growthPercent) || 0;
+    
+    // Activity Level based on Column E (Level 0-5)
+    const level = myData.level;
+    let activityLevel = '--';
+    let activityColor = '#888';
+    
+    if (level === -1 || level === '-1') {
+        activityLevel = '--';
+        activityColor = '#888';
+    } else if (parseInt(level) === 0) {
+        activityLevel = 'Low';
+        activityColor = '#60a5fa';
+    } else if (parseInt(level) >= 1 && parseInt(level) <= 2) {
+        activityLevel = 'Good';
+        activityColor = '#4ade80';
+    } else if (parseInt(level) >= 3) {
+        activityLevel = 'Great';
+        activityColor = '#00d4ff';
+    }
+    
+    const activityEl = document.getElementById('scoreActivity');
+    activityEl.textContent = activityLevel;
+    activityEl.style.color = activityColor;
+    document.getElementById('scoreDiamonds').textContent = formatNumber(threeMonthDiamonds);
+    // Rank Change - Column Y (Tier Status: Up/Down)
+    const tierStatus = myData.tierStatus || '';
+    const rankChangeEl = document.getElementById('rankChange');
+    
+    if (tierStatus.toLowerCase().includes('up')) {
+        rankChangeEl.textContent = '⬆ Tier Up';
+        rankChangeEl.style.color = '#00ff88'; // Green
+    } else if (tierStatus.toLowerCase().includes('down')) {
+        rankChangeEl.textContent = '⬇ Tier Down';
+        rankChangeEl.style.color = '#ff0044'; // Red
+    } else {
+        rankChangeEl.textContent = '➡ Tier Same';
+        rankChangeEl.style.color = '#888';
+    }
+    
+    // Activity Level Visual - DEBUG
+    console.log('DEBUG - Activity Level data:', myData.level, 'Raw:', myData._levelRaw, 'Header:', myData._levelHeader);
+    
+    // Use level from CSV column E
+    // Handle: -1=blank, 0=starter, 1-5=actual levels
+    let currentLevelDisplay = '--';
+    let currentLevelNum = null;
+    
+    if (myData.level === -1 || myData.level === '-1') {
+        // Blank level - show '--'
+        currentLevelDisplay = '--';
+        currentLevelNum = null;
+    } else {
+        // Has a value (including 0)
+        currentLevelNum = parseInt(myData.level);
+        currentLevelDisplay = currentLevelNum.toString();
+    }
+    
+    console.log('DEBUG - Parsed currentLevel:', currentLevelNum, 'Display:', currentLevelDisplay, 'for creator:', myData.username);
+    
+    document.getElementById('currentLevelBadge').textContent = `Level ${currentLevelDisplay}`;
+    
+    // Update level steps
+    document.querySelectorAll('.level-step').forEach(step => {
+        const levelNum = parseInt(step.dataset.level);
+        step.classList.remove('completed', 'current');
+        if (currentLevelNum !== null && currentLevelNum > 0 && levelNum < currentLevelNum) {
+            step.classList.add('completed');
+        } else if (levelNum === currentLevelNum) {
+            // Highlight current level (including 0)
+            step.classList.add('current');
+        }
+    });
+    
+    // Current progress toward CURRENT level goal (not next level)
+    // Matching the HTML display requirements
+    // TikTok Activity Level thresholds — updated per TikTok's tier-requirement change
+    // effective 2026-07-01. Levels 0-1 unchanged. Level 2 days 11->12; hours for
+    // levels 2-5 increased (days unchanged for levels 3-5). Keep in sync with
+    // TOOLTIPS.activity and the .level-req labels in creator-dashboard.html.
+    const levelReqs = [
+        { level: 0, days: 7, hours: 15 },
+        { level: 1, days: 8, hours: 20 },
+        { level: 2, days: 12, hours: 35 },
+        { level: 3, days: 15, hours: 50 },
+        { level: 4, days: 18, hours: 70 },
+        { level: 5, days: 22, hours: 90 }
+    ];
+    
+    // Activity Level uses activityDaysGoal (column O) and activityHoursGoal (column R)
+    const currentDays = myData.validLiveDays || 0;
+    const currentHours = myData.hours || 0;
+    const daysGoal = myData.activityDaysGoal || myData.daysGoal || 0;
+    const hoursGoal = myData.activityHoursGoal || myData.hoursGoal || 0;
+    
+    // Check if at max level (Level 5) - remove "/0" display
+    const isMaxLevel = myData.level === '5' || myData.level === 5;
+    
+    if (isMaxLevel && daysGoal === 0) {
+        document.getElementById('daysStreamed').textContent = `${currentDays} days`;
+    } else {
+        document.getElementById('daysStreamed').textContent = `${currentDays} / ${daysGoal} days`;
+    }
+
+    if (isMaxLevel && hoursGoal === 0) {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} hrs`;
+    } else {
+        document.getElementById('hoursStreamedLevel').textContent = `${currentHours.toFixed(0)} / ${hoursGoal} hrs`;
+    }
+    
+    document.getElementById('daysFill').style.width = `${daysGoal > 0 ? Math.min(100, (currentDays / daysGoal) * 100) : 0}%`;
+    document.getElementById('hoursFillLevel').style.width = `${hoursGoal > 0 ? Math.min(100, (currentHours / hoursGoal) * 100) : 0}%`;
+    
+    // Revenue Streams - show diamonds
+    const diamonds = myData.diamonds || 0;
+    // Update Dollars display (main value - using estRev from column AM)
+    const diamondRevenueUSDEl = document.getElementById('diamondRevenueUSD');
+    if (diamondRevenueUSDEl) {
+        const estRev = myData.estRev || 0;
+        console.log('DEBUG - estRev value:', estRev, 'from myData:', myData.username);
+        diamondRevenueUSDEl.textContent = '≈ $' + Math.round(estRev).toLocaleString('en-US');
+    }
+    
+    // Update diamonds as note on right side (matching Cash Bonus layout)
+    const diamondRevenueEl = document.getElementById('diamondRevenue');
+    if (diamondRevenueEl) {
+        diamondRevenueEl.textContent = formatNumber(diamonds) + ' 💎';
+        diamondRevenueEl.style.color = '#00d4ff';
+        diamondRevenueEl.style.fontSize = '12px';
+    }
+    
+    // PRO BONUS CALCULATION
+    // Qualification: Score >= 70 AND Tier maintained (same) or up
+    const proBonusBadge = document.getElementById('proBonusBadge');
+    const scoreSection = document.querySelector('.score-section');
+    
+    console.log('DEBUG PRO BONUS - Badge found:', !!proBonusBadge, 'Score section found:', !!scoreSection);
+    
+    if (proBonusBadge) {
+        // Remove old badge if exists (for backward compatibility)
+        const oldBadge = document.querySelector('.pro-bonus-badge');
+        if (oldBadge && oldBadge !== proBonusBadge) {
+            oldBadge.remove();
+        }
+        const scoreValue = parseInt(myData.score) || 0;
+        const tierStatusRaw = myData.tierStatus || '';
+        const tierStatusValue = tierStatusRaw.toLowerCase().trim();
+        const currentDiamonds = parseInt(myData.diamonds) || 0;
+        
+        console.log('DEBUG PRO BONUS - Score:', scoreValue, 'Tier Status Raw:', tierStatusRaw, 'Tier Status Lower:', tierStatusValue, 'Diamonds:', currentDiamonds);
+        
+        // Check qualification: Score >= 70 AND (tier same or up)
+        // Treat blank, '-', or 'same' as maintained (qualified)
+        const scoreQualified = scoreValue >= 70;
+        const tierQualified = tierStatusValue === '' || 
+                              tierStatusValue === '-' || 
+                              tierStatusValue.includes('same') || 
+                              tierStatusValue.includes('up') || 
+                              tierStatusValue.includes('maintained');
+        const qualifiesForPro = scoreQualified && tierQualified;
+        
+        console.log('DEBUG PRO BONUS - Score Qualified:', scoreQualified, 'Tier Qualified:', tierQualified, 'Overall:', qualifiesForPro);
+        
+        if (qualifiesForPro) {
+            // Show Pro Bonus badge
+            proBonusBadge.style.display = 'flex';
+            console.log('DEBUG PRO BONUS - Badge DISPLAYED');
+            
+            // Add halo effect to score section
+            if (scoreSection) {
+                scoreSection.classList.add('pro-active');
+                console.log('DEBUG PRO BONUS - Halo effect ADDED');
+            }
+            
+            // Use real Pro Bonus from column AO (Rewards Month)
+            const cashBonus = parseFloat(myData.rewardsMonth?.replace(/[$,]/g, '')) || 0;
+            console.log('PRO BONUS UNLOCKED - Score:', scoreValue, 'Bonus: $' + cashBonus.toFixed(2));
+        } else {
+            // Hide Pro Bonus badge
+            proBonusBadge.style.display = 'none';
+            console.log('DEBUG PRO BONUS - Badge HIDDEN (not qualified)');
+            
+            // Remove halo effect
+            if (scoreSection) {
+                scoreSection.classList.remove('pro-active');
+            }
+            
+            console.log('PRO BONUS NOT QUALIFIED - Score:', scoreValue, 'Tier Status:', tierStatusValue, 'Need score>=70 AND tier same/up');
+        }
+    } else {
+        console.error('DEBUG PRO BONUS - proBonusBadge element NOT FOUND in DOM');
+    }
+    
+    // Hide the separate proBonusBadge — info now lives in the score badge pill
+    const proBonusBadgeEl = document.getElementById('proBonusBadge');
+    if (proBonusBadgeEl) proBonusBadgeEl.style.display = 'none';
+
+    // Update Pro Bonus in Revenue Streams section
+    const proBonusRevenueValue = document.getElementById('proBonusRevenueValue');
+    const proBonusRevenueNote = document.getElementById('proBonusRevenueNote');
+    const proBonusRevenueItem = document.getElementById('proBonusRevenueItem');
+
+    if (proBonusRevenueValue && proBonusRevenueNote) {
+        const scoreValue = parseInt(myData.score) || 0;
+        const tsr = (myData.tierStatus || '').toLowerCase().trim();
+        const rankQualified = tsr === '' || tsr === '-' ||
+                              tsr.includes('same') || tsr.includes('up') || tsr.includes('maintained');
+
+        // 3-stage Agency Cash Bonus logic:
+        //   Score < 70              -> "Need Score 70+"  + badge "{score}/70 Score"
+        //   Score 70+ & tier down   -> "Need Tier Same/Up" + badge "Tier Down"
+        //   Score 70+ & tier same/up-> dollar amount       + badge "Must Maintain 70+"
+        if (scoreValue >= 70 && rankQualified) {
+            // Stage 3 — Qualified: show bonus dollar amount in gold
+            const cashBonus = parseFloat(myData.bonus?.replace(/[$,]/g, '')) || 0;
+            proBonusRevenueValue.textContent = '$' + Math.round(cashBonus).toLocaleString('en-US');
+            proBonusRevenueValue.style.color = '#ffd700';
+            proBonusRevenueValue.classList.remove('is-text'); // money — keep full size
+            proBonusRevenueNote.textContent = 'Must Maintain 70+';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.add('pro-revenue-active');
+
+            if (scoreSection) {
+                if (scoreValue >= 90) {
+                    scoreSection.classList.add('masters-active');
+                    scoreSection.classList.remove('pro-active');
+                } else {
+                    scoreSection.classList.remove('masters-active');
+                }
+            }
+        } else if (scoreValue >= 70 && !rankQualified) {
+            // Stage 2 — Score qualified but tier dropped: must recover tier to earn the bonus
+            proBonusRevenueValue.textContent = 'Need Tier Same/Up';
+            proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueValue.classList.add('is-text'); // status text — shrink to one line
+            proBonusRevenueNote.textContent = 'Tier Down';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
+
+            if (scoreSection) {
+                scoreSection.classList.remove('masters-active');
+            }
+        } else {
+            // Stage 1 — Score below 70: show progress toward the 70 threshold
+            proBonusRevenueValue.textContent = 'Need Score 70+';
+            proBonusRevenueValue.style.color = '#888';
+            proBonusRevenueValue.classList.add('is-text'); // status text — shrink to one line
+            proBonusRevenueNote.textContent = scoreValue + '/70 Score';
+            if (proBonusRevenueItem) proBonusRevenueItem.classList.remove('pro-revenue-active');
+
+            if (scoreSection) {
+                scoreSection.classList.remove('masters-active');
+            }
+        }
+    }
+}
+
+// Global variable to store detailed rewards
+let detailedRewardsData = {};
+
+// Discord channel links for events
+const eventDiscordLinks = {
+    'Royal Rumble': 'https://discord.com/channels/958221101182382130/1088940490847690762',
+    'Music Cypher': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Music Match-Up': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Sunday Knockout': 'https://discord.com/channels/958221101182382130/1088940490847690762',
+    'Stage Takeover': 'https://discord.com/channels/958221101182382130/1376985833327951872',
+    'Monthly Award': 'https://discord.com/channels/958221101182382130/1376985833327951872'
+};
+
+function updateAwards() {
+    console.log('🔥 UPDATE_AWARDS_v202503091555 RUNNING');
+    const username = myData.username?.toLowerCase();
+    const ledgerRows = [];
+    
+    console.log('🔥 Checking rewards for:', username);
+    console.log('🔥 detailedRewardsData keys:', Object.keys(detailedRewardsData || {}).slice(0, 5));
+    
+    // Use detailed rewards from rewards-history.csv
+    // LEDGER FORMAT: Last 5 reward events
+    // SAME row when both + and - exist: +GREEN / -RED
+    if (detailedRewardsData && username && detailedRewardsData[username]) {
+        const myDetailedRewards = detailedRewardsData[username];
+        
+        // Parse numbers - handle negative values in minus column
+        const parseNum = (str) => {
+            if (!str || str === '') return 0;
+            return parseInt(str.toString().replace(/,/g, '')) || 0;
+        };
+        
+        // Group by unique events (type + date combination)
+        const eventMap = new Map();
+        
+        console.log('DEBUG updateAwards - Loading rewards for', username);
+        console.log('DEBUG updateAwards - Raw rewards count:', myDetailedRewards.length);
+        console.log('DEBUG updateAwards - Sample raw data:', myDetailedRewards.slice(0, 3));
+        
+        myDetailedRewards.forEach(r => {
+            const eventKey = `${r.type}|${r.date}`;
+            
+            if (!eventMap.has(eventKey)) {
+                // Parse M/D/YYYY format properly
+                let parsedDate;
+                if (r.date.includes('/')) {
+                    const parts = r.date.split('/');
+                    if (parts.length === 3) {
+                        // M/D/YYYY -> YYYY-MM-DD for reliable parsing
+                        parsedDate = new Date(`${parts[2]}-${parts[0].padStart(2,'0')}-${parts[1].padStart(2,'0')}`);
+                    } else {
+                        parsedDate = new Date(r.date);
+                    }
+                } else {
+                    parsedDate = new Date(r.date);
+                }
+                console.log('DEBUG - Parsing date:', r.date, '->', parsedDate, 'Valid:', !isNaN(parsedDate));
+                eventMap.set(eventKey, {
+                    type: r.type,
+                    date: r.date,
+                    dateObj: parsedDate,
+                    icon: r.icon || '🏆',
+                    totalPlus: 0,
+                    totalMinus: 0
+                });
+            }
+            
+            const event = eventMap.get(eventKey);
+            const plusVal = parseNum(r.plus);
+            // Minus column has negative numbers like -2000, so we take absolute value
+            const minusVal = Math.abs(parseNum(r.minus));
+            
+            console.log('DEBUG - Event:', event.type, 'Plus:', plusVal, 'Minus:', minusVal, 'Raw minus:', r.minus);
+            
+            event.totalPlus += plusVal;
+            event.totalMinus += minusVal;
+        });
+        
+        // Convert to array and filter out invalid dates
+        const events = Array.from(eventMap.values()).filter(e => !isNaN(e.dateObj));
+        console.log('DEBUG - Valid events count:', events.length);
+        
+        // Sort by date (newest first)
+        events.sort((a, b) => b.dateObj - a.dateObj);
+        console.log('DEBUG - Sorted events:', events.slice(0, 5).map(e => ({type: e.type, date: e.date, dateObj: e.dateObj})));
+        
+        // Take last 5 unique events
+        const recentEvents = events.slice(0, 5);
+        
+        // Build rows - SAME row when both +Plus and -Minus exist
+        recentEvents.forEach(event => {
+            // Make event title clickable if Discord link exists
+            const discordLink = eventDiscordLinks[event.type];
+            const titleDisplay = discordLink 
+                ? `<a href="${discordLink}" target="_blank" class="award-title-link" title="Open ${event.type} in Discord">${event.type}</a>`
+                : `<div class="award-title">${event.type}</div>`;
+            
+            // Format amount: SAME row when both exist
+            let amountDisplay = '';
+            if (event.totalPlus > 0 && event.totalMinus > 0) {
+                // Both exist - show on same line: +GREEN / -RED
+                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span> / <span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
+            } else if (event.totalPlus > 0) {
+                // Only Plus
+                amountDisplay = `<span style="color: var(--success);">+${formatNumberPlain(event.totalPlus)}</span>`;
+            } else if (event.totalMinus > 0) {
+                // Only Minus
+                amountDisplay = `<span style="color: var(--danger);">-${formatNumberPlain(event.totalMinus)}</span>`;
+            }
+            
+            ledgerRows.push({
+                icon: event.icon,
+                title: titleDisplay,
+                date: event.date,
+                amount: amountDisplay,
+                dateObj: event.dateObj
+            });
+        });
+        
+        // Sort all rows by date (newest first)
+        ledgerRows.sort((a, b) => b.dateObj - a.dateObj);
+    }
+    
+    console.log('DEBUG - ledgerRows count:', ledgerRows.length);
+    console.log('DEBUG - ledgerRows sample:', ledgerRows.slice(0, 3));
+    
+    // Default message if no rewards
+    if (ledgerRows.length === 0) {
+        document.getElementById('awardsList').innerHTML = `
+            <div class="award-item">
+                <div class="award-icon">⭐</div>
+                <div class="award-content">
+                    <div class="award-title">Keep streaming to earn rewards!</div>
+                </div>
+            </div>
+        `;
+        return;
+    }
+    
+    // DEBUG: Check what's about to be displayed
+    console.log('DEBUG - About to display', ledgerRows.length, 'rows');
+    console.log('DEBUG - First row to display:', ledgerRows[0]);
+    console.log('DEBUG - awardsList element:', document.getElementById('awardsList'));
+    
+    // Display all rows
+    document.getElementById('awardsList').innerHTML = ledgerRows.map(row => `
+        <div class="award-item">
+            <div class="award-icon">${row.icon}</div>
+            <div class="award-content">
+                ${row.title}
+                <div class="award-date">${row.date}</div>
+            </div>
+            <div class="award-ledger">
+                ${row.amount}
+            </div>
+        </div>
+    `).join('');
+}
+
+// ===== SETTINGS FUNCTIONS =====
+
+function openSettings() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.add('active');
+    loadSettings();
+}
+
+function closeSettings() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.remove('active');
+}
+
+function loadSettings() {
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    
+    // Show admin section for admins
+    if (user.role === 'admin') {
+        const adminSection = document.getElementById('adminSection');
+        if (adminSection) adminSection.style.display = 'block';
+    }
+    
+    // Data Source
+    const savedUrl = localStorage.getItem('taboost_sheet_url') || '';
+    const sheetUrlInput = document.getElementById('settingSheetUrl');
+    if (sheetUrlInput) sheetUrlInput.value = savedUrl;
+    
+    // Profile
+    document.getElementById('settingDisplayName').value = settings.displayName || myData.username || '';
+    document.getElementById('settingEmail').value = settings.email || '';
+    
+    // Notifications
+    document.getElementById('toggleEmail').checked = settings.emailNotifications !== false;
+    document.getElementById('togglePush').checked = settings.pushNotifications === true;
+    document.getElementById('toggleWeekly').checked = settings.weeklyReports !== false;
+    document.getElementById('toggleSounds').checked = settings.alertSounds !== false;
+    
+    // Appearance
+    document.getElementById('settingTheme').value = settings.theme || 'dark';
+    document.getElementById('settingLayout').value = settings.layout || 'grid';
+    document.getElementById('settingItemsPerPage').value = settings.itemsPerPage || '50';
+    
+    // Security
+    document.getElementById('toggle2FA').checked = settings.twoFAEnabled === true;
+    document.getElementById('setup2FA').style.display = settings.twoFAEnabled ? 'none' : 'none';
+}
+
+function saveSheetUrl() {
+    const url = document.getElementById('settingSheetUrl').value.trim();
+    if (!url) {
+        alert('Please enter a valid Google Sheets CSV URL');
+        return;
+    }
+    
+    localStorage.setItem('taboost_sheet_url', url);
+    
+    // Update the data service
+    if (typeof taboostData !== 'undefined') {
+        taboostData.setSheetUrl(url);
+    }
+    
+    alert('Data source updated! Refresh the page to load from the new source.');
+}
+
+function saveProfileSettings() {
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    settings.displayName = document.getElementById('settingDisplayName').value;
+    settings.email = document.getElementById('settingEmail').value;
+    
+    localStorage.setItem('creator_settings', JSON.stringify(settings));
+    alert('Profile settings saved!');
+}
+
+function updatePassword() {
+    const currentPass = document.getElementById('settingCurrentPassword').value;
+    const newPass = document.getElementById('settingNewPassword').value;
+    const confirmPass = document.getElementById('settingConfirmPassword').value;
+    
+    if (!currentPass || !newPass || !confirmPass) {
+        alert('Please fill in all password fields');
+        return;
+    }
+    
+    if (newPass !== confirmPass) {
+        alert('New passwords do not match');
+        return;
+    }
+    
+    if (newPass.length < 8) {
+        alert('Password must be at least 8 characters');
+        return;
+    }
+    
+    // Get current user
+    const user = JSON.parse(localStorage.getItem('taboost_user') || '{}');
+    const username = user.username?.toLowerCase();
+    
+    console.log('DEBUG UPDATE PASSWORD - User:', username, 'from myData:', myData?.username);
+    
+    if (!username) {
+        alert('Error: User not found');
+        return;
+    }
+    
+    // Get stored passwords
+    const storedPasswords = JSON.parse(localStorage.getItem('creator_passwords') || '{}');
+    console.log('DEBUG UPDATE PASSWORD - Current stored passwords:', Object.keys(storedPasswords));
+    
+    const currentStoredPass = storedPasswords[username] || 'creator';
+    
+    // Verify current password
+    if (currentPass !== currentStoredPass) {
+        console.log('DEBUG UPDATE PASSWORD - Current pass mismatch. Entered:', currentPass, 'Expected:', currentStoredPass === 'creator' ? 'creator' : '***');
+        alert('Current password is incorrect');
+        return;
+    }
+    
+    // Save new password for this specific creator
+    storedPasswords[username] = newPass;
+    localStorage.setItem('creator_passwords', JSON.stringify(storedPasswords));
+    console.log('DEBUG UPDATE PASSWORD - Saved new password for:', username);
+    
+    alert('Password updated successfully! You will now use your new password to log in.');
+    
+    // Clear fields
+    document.getElementById('settingCurrentPassword').value = '';
+    document.getElementById('settingNewPassword').value = '';
+    document.getElementById('settingConfirmPassword').value = '';
+}
+
+function toggle2FA() {
+    const enabled = document.getElementById('toggle2FA').checked;
+    const setupDiv = document.getElementById('setup2FA');
+    
+    if (enabled) {
+        setupDiv.style.display = 'block';
+    } else {
+        setupDiv.style.display = 'none';
+        const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+        settings.twoFAEnabled = false;
+        localStorage.setItem('creator_settings', JSON.stringify(settings));
+        alert('Two-Factor Authentication disabled');
+    }
+}
+
+function verify2FA() {
+    const code = document.getElementById('setting2FACode').value;
+    
+    if (code.length !== 6) {
+        alert('Please enter a 6-digit verification code');
+        return;
+    }
+    
+    // In production, this would verify with backend
+    const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+    settings.twoFAEnabled = true;
+    localStorage.setItem('creator_settings', JSON.stringify(settings));
+    
+    document.getElementById('setup2FA').style.display = 'none';
+    alert('Two-Factor Authentication enabled!');
+}
+
+// Save notification and appearance settings on change
+document.addEventListener('change', function(e) {
+    if (e.target.closest('.settings-modal')) {
+        const settings = JSON.parse(localStorage.getItem('creator_settings') || '{}');
+        
+        // Notifications
+        if (e.target.id === 'toggleEmail') settings.emailNotifications = e.target.checked;
+        if (e.target.id === 'togglePush') settings.pushNotifications = e.target.checked;
+        if (e.target.id === 'toggleWeekly') settings.weeklyReports = e.target.checked;
+        if (e.target.id === 'toggleSounds') settings.alertSounds = e.target.checked;
+        
+        // Appearance
+        if (e.target.id === 'settingTheme') settings.theme = e.target.value;
+        if (e.target.id === 'settingLayout') settings.layout = e.target.value;
+        if (e.target.id === 'settingItemsPerPage') settings.itemsPerPage = e.target.value;
+        
+        localStorage.setItem('creator_settings', JSON.stringify(settings));
+    }
+});
+
+// ===== 3x3 ROLLING CALENDAR =====
+
+function updateEventsCalendar() {
+    // Use the new rolling calendar data
+    const calendarData = typeof getRollingCalendarData === 'function' ? getRollingCalendarData() : 
+                         (typeof rollingCalendar !== 'undefined' ? rollingCalendar : null);
+    
+    if (!calendarData) {
+        console.log('Calendar data not available');
+        return;
+    }
+    
+    // Update date range header
+    const weekEl = document.getElementById('calendarWeek');
+    if (weekEl) {
+        weekEl.textContent = calendarData.currentDateRange;
+    }
+    
+    // Update TABOOST Campaign Banner
+    const bannerEl = document.getElementById('taboostCampaignBanner');
+    if (bannerEl && calendarData.taboostCampaigns && calendarData.taboostCampaigns.length > 0) {
+        const campaign = calendarData.taboostCampaigns[0];
+        const tagHtml = campaign.tagLink 
+            ? `<a href="${campaign.tagLink}" target="_blank" class="campaign-tag" style="text-decoration: none; color: #fff;">${campaign.tag}</a>`
+            : `<span class="campaign-tag">${campaign.tag}</span>`;
+        const nameHtml = campaign.name ? `<span class="campaign-name">${campaign.name}</span>` : '';
+        const statusHtml = campaign.status ? `<span class="campaign-status">${campaign.status}</span>` : '';
+        bannerEl.innerHTML = `
+            <div class="campaign-badge" style="background: ${campaign.color}20; border-color: ${campaign.color};">
+                ${tagHtml}
+                ${nameHtml}
+                ${statusHtml}
+            </div>
+        `;
+    }
+    
+    // Update 3x3 Rolling Calendar Grid
+    const calendarEl = document.getElementById('weeklyCalendar');
+    if (calendarEl && calendarData.days) {
+        calendarEl.innerHTML = calendarData.days.map((day, index) => {
+            const hasEvents = day.events && day.events.length > 0;
+            const isToday = day.isToday;
+            
+            const eventsHtml = day.events.map(evt => {
+                let eventClass = `calendar-event ${evt.type}`;
+                if (evt.isMultiDay) {
+                    eventClass += ' multiday';
+                    if (evt.isStart) eventClass += ' multiday-start';
+                    else if (evt.isEnd) eventClass += ' multiday-end';
+                    else eventClass += ' multiday-middle';
+                }
+                
+                return `
+                    <div class="${eventClass}" style="${evt.color ? `border-left-color: ${evt.color}` : ''}">
+                        ${evt.isMultiDay ? `<span class="event-status">${evt.time}</span>` : `<span class="event-time-badge">${evt.time}</span>`}
+                        <span class="event-title-small">${evt.title}</span>
+                    </div>
+                `;
+            }).join('');
+            
+            return `
+                <div class="calendar-day ${hasEvents ? 'has-events' : ''} ${isToday ? 'is-today' : ''}">
+                    <div class="day-header">
+                        <span class="day-name">${isToday ? 'TODAY' : day.dayName}</span>
+                        <span class="day-date">${day.date}</span>
+                    </div>
+                    <div class="day-events">
+                        ${hasEvents ? eventsHtml : '<span class="no-event">-</span>'}
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+    
+    // Update TikTok Campaigns
+    const tiktokEl = document.getElementById('tiktokCampaignsList');
+    if (tiktokEl && calendarData.tiktokCampaigns) {
+        tiktokEl.innerHTML = calendarData.tiktokCampaigns.map(camp => `
+            <div class="tiktok-campaign-item">
+                <i class="fas fa-music"></i>
+                <div>
+                    <span class="campaign-title">${camp.name}</span>
+                    <span class="campaign-dates">${camp.dates}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+ + rev.toLocaleString('en-US'), rawRevenue: rev, bonus: 0, bonusStr: '--', tier: null });
+            preP.push(atM[i]);
+        }
+        atOffset = pre.length;
+        earningsData = [...pre, ...earningsData];
+        periodsOut = [...preP, ...trendMonths].map(m => {
+            const q = m.split(' ');
+            return q.length === 2 ? q[0].slice(0, 3) + " '" + q[1].slice(2) : m;
+        });
+    }
+    historyIndexOffset = atOffset;
+
     // Resolve this creator's trend record for per-month Days/Hours. Done independently of the
     // earnings-history path above (which leaves `trends` null for creators with a myData.earningsHistory).
     let hdTrend = creatorTrends[myData.username];
