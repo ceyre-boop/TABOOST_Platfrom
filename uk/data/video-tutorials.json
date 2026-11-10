@@ -42,60 +42,11 @@
       "vertical": true
     },
     {
-      "section": "1. Getting Started",
-      "title": "From Beginner to Established Creator",
-      "src": "https://www.youtube.com/watch?v=wFE9RLXvI4Q",
-      "duration": "2:19",
-      "vertical": true
-    },
-    {
-      "section": "1. Getting Started",
-      "title": "Creating a Professional LIVE Setup & Personal Brand",
-      "src": "https://www.youtube.com/watch?v=0SZJqGCOjpI",
-      "duration": "2:13",
-      "vertical": true
-    },
-    {
-      "section": "1. Getting Started",
-      "title": "Choosing and Managing Your LIVE Moderators",
-      "src": "https://www.youtube.com/watch?v=cYEwgf3xzjA",
-      "duration": "1:52",
-      "vertical": true
-    },
-    {
-      "section": "1. Getting Started",
-      "title": "Understanding Gifts, Diamonds & Gifter Badges",
-      "src": "https://www.youtube.com/watch?v=pIBlgZpTcKU",
-      "duration": "1:38",
-      "vertical": true
-    },
-    {
-      "section": "1. Getting Started",
-      "title": "Getting Started with TikTok LIVE Battles & Co-hosting",
-      "src": "https://www.youtube.com/watch?v=HmhezPwUP8A",
-      "duration": "1:50",
-      "vertical": true
-    },
-    {
       "section": "2. Audience Growth & Engagement",
       "title": "How to Grow Your Audience & Build a Loyal Community",
       "src": "https://www.youtube.com/watch?v=bGITyHUP79c",
       "thumb": "images/tutorials/6.jpg?v=3",
       "duration": "1:49",
-      "vertical": true
-    },
-    {
-      "section": "2. Audience Growth & Engagement",
-      "title": "How to Build a Loyal TikTok LIVE Community",
-      "src": "https://www.youtube.com/watch?v=sGEMM8pR0Bk",
-      "duration": "2:06",
-      "vertical": true
-    },
-    {
-      "section": "2. Audience Growth & Engagement",
-      "title": "Building Supporter Relationships & Setting Healthy Boundaries",
-      "src": "https://www.youtube.com/watch?v=VS4AD55-OMc",
-      "duration": "2:16",
       "vertical": true
     },
     {
@@ -107,24 +58,73 @@
       "vertical": true
     },
     {
-      "section": "3. TikTok LIVE Features & Rankings",
+      "section": "4. Gifting & Monetization",
+      "title": "Understanding Gifts, Diamonds & Gifter Badges",
+      "src": "https://www.youtube.com/watch?v=pIBlgZpTcKU",
+      "duration": "1:38",
+      "vertical": true
+    },
+    {
+      "section": "4. Gifting & Monetization",
       "title": "How to Use the TikTok LIVE Gift Gallery",
       "src": "https://www.youtube.com/watch?v=6SvRSGODvAg",
       "duration": "1:18",
       "vertical": true
     },
     {
-      "section": "3. TikTok LIVE Features & Rankings",
+      "section": "4. Gifting & Monetization",
+      "title": "How TikTok LIVE Earnings Work & What to Expect",
+      "src": "https://www.youtube.com/watch?v=g6RTBAiQQnk",
+      "duration": "2:07",
+      "vertical": true
+    },
+    {
+      "section": "5. Community & Supporters",
+      "title": "How to Build a Loyal TikTok LIVE Community",
+      "src": "https://www.youtube.com/watch?v=sGEMM8pR0Bk",
+      "duration": "2:06",
+      "vertical": true
+    },
+    {
+      "section": "5. Community & Supporters",
+      "title": "Building Supporter Relationships & Setting Healthy Boundaries",
+      "src": "https://www.youtube.com/watch?v=VS4AD55-OMc",
+      "duration": "2:16",
+      "vertical": true
+    },
+    {
+      "section": "5. Community & Supporters",
+      "title": "Choosing and Managing Your LIVE Moderators",
+      "src": "https://www.youtube.com/watch?v=cYEwgf3xzjA",
+      "duration": "1:52",
+      "vertical": true
+    },
+    {
+      "section": "6. Creator Growth & Progression",
+      "title": "From Beginner to Established Creator",
+      "src": "https://www.youtube.com/watch?v=wFE9RLXvI4Q",
+      "duration": "2:19",
+      "vertical": true
+    },
+    {
+      "section": "7. Battles, Co-hosting & Networking",
+      "title": "Getting Started with TikTok LIVE Battles & Co-hosting",
+      "src": "https://www.youtube.com/watch?v=HmhezPwUP8A",
+      "duration": "1:50",
+      "vertical": true
+    },
+    {
+      "section": "7. Battles, Co-hosting & Networking",
       "title": "Creative TikTok LIVE Battle Formats",
       "src": "https://www.youtube.com/watch?v=n9tCgtNYS9g",
       "duration": "2:02",
       "vertical": true
     },
     {
-      "section": "3. TikTok LIVE Features & Rankings",
-      "title": "How TikTok LIVE Earnings Work & What to Expect",
-      "src": "https://www.youtube.com/watch?v=g6RTBAiQQnk",
-      "duration": "2:07",
+      "section": "8. LIVE Production & Personal Branding",
+      "title": "Creating a Professional LIVE Setup & Personal Brand",
+      "src": "https://www.youtube.com/watch?v=0SZJqGCOjpI",
+      "duration": "2:13",
       "vertical": true
     }
   ]
