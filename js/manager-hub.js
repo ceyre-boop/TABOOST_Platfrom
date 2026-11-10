@@ -235,7 +235,7 @@
   var TEAM = [
     { key: 'MARCO', label: 'Marco', alias: ['MARCO'] }, { key: 'SKYLER', label: 'Skyler', alias: ['SKYLER'] },
     { key: 'LEVI', label: 'Levi', alias: ['LEVI'] }, { key: 'DYLAN', label: 'Dylan', alias: ['DYLAN'] },
-    { key: 'EMILEE', label: 'Emilee', alias: ['EMILEE', 'EMILY'] }, { key: 'MANDY', label: 'Mandy', alias: ['MANDY', 'MANDI'] },
+    { key: 'MANDY', label: 'Mandy', alias: ['MANDY', 'MANDI'] },
     { key: 'OTHER', label: 'Other', alias: [] }
   ];
   var TEAM_ALIASES = [].concat.apply([], TEAM.map(function (t) { return t.alias; }));
