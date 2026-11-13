@@ -1,5 +1,5 @@
 // Taboost Agency - Complete Creator Data
-// Generated: 2026-11-12T23:01:25.412Z
+// Generated: 2026-11-13T18:08:39.774Z
 // Total: 1199 creators
 
 const creatorsData = [
@@ -154,11 +154,11 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "8",
     "growthPercent": 0,
-    "earned": 2124550,
-    "gifted": 1916800,
-    "running": "227,750",
+    "earned": 2145550,
+    "gifted": 1927800,
+    "running": "237,750",
     "multiply": "1x",
-    "unlocked": "227,750",
+    "unlocked": "237,750",
     "daysMonth": 2,
     "hoursMonth": 0,
     "rewardsMonth": "$0.00"
@@ -515,10 +515,10 @@ const creatorsData = [
     "tierLastMonth": "6",
     "growthPercent": 0,
     "earned": 3700000,
-    "gifted": 653000,
-    "running": "10,000",
+    "gifted": 663000,
+    "running": "0",
     "multiply": "1x",
-    "unlocked": "10,000",
+    "unlocked": "0",
     "daysMonth": 0,
     "hoursMonth": 0,
     "rewardsMonth": "$252.50"
@@ -754,8 +754,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "7",
     "growthPercent": 0,
-    "earned": 1032850,
-    "gifted": 1002850,
+    "earned": 1037850,
+    "gifted": 1007850,
     "running": "30,000",
     "multiply": "1x",
     "unlocked": "30,000",
@@ -794,8 +794,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "5",
     "growthPercent": 0,
-    "earned": 1181364,
-    "gifted": 1171364,
+    "earned": 1187364,
+    "gifted": 1177364,
     "running": "10,000",
     "multiply": "1x",
     "unlocked": "10,000",
@@ -994,8 +994,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "4",
     "growthPercent": 0,
-    "earned": 49000,
-    "gifted": 44000,
+    "earned": 52000,
+    "gifted": 47000,
     "running": "5,000",
     "multiply": "1x",
     "unlocked": "5,000",
@@ -13394,8 +13394,8 @@ const creatorsData = [
     "tierStatus": "Down",
     "tierLastMonth": "1",
     "growthPercent": 0,
-    "earned": 0,
-    "gifted": 0,
+    "earned": 3000,
+    "gifted": 3000,
     "running": "0",
     "multiply": "-",
     "unlocked": "0",
@@ -47967,7 +47967,7 @@ const creatorsData = [
 
 const taboostData = {
   creators: creatorsData,
-  lastUpdated: "2026-11-12T23:01:25.412Z",
+  lastUpdated: "2026-11-13T18:08:39.774Z",
   getAllCreators: function() { return this.creators; },
   getCreator: function(username) { return this.creators.find(c => c.username === username.toLowerCase()); },
   loadFromCSV: async function() { return this.creators; }
