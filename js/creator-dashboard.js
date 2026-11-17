@@ -13,7 +13,7 @@ let historyIndexOffset = 0; // Rows prepended ahead of the trends window (all-ti
 
 // Full all-time diamond history for specific creators' dashboard chart, opt-in by username
 // only. Everyone else keeps the standard 6-month windowed chart untouched.
-const ALL_TIME_OVERRIDE_USERNAMES = ['skylerclarkk'];
+const ALL_TIME_OVERRIDE_USERNAMES = []; // 2026-11-16: everyone now gets the Lifetime tab (js/lifetime-chart.js); Skyler's old unicorn tab retired
 let allTimeOverride = null;   // active all-time data for the current chart render (null = standard chart)
 let allTimeData = null;       // loaded all-time data for this creator, if any
 let allTimeActive = true;     // toggle: true = All-Time view, false = standard 6-month view
