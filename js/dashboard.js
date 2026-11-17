@@ -644,6 +644,7 @@ function initPerformanceChart() {
             <span>${formatNumber((myData.diamonds || 0) / (myData.liveStreams || 1))} diamonds per stream</span>
         </div>
     `;
+    if (window.LifetimeChart) LifetimeChart.attach({ uid: myData.creatorId, currentDiamonds: myData.diamonds || 0 });
     
     console.log('DEBUG - Chart created successfully');
     

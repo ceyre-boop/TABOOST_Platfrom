@@ -1214,10 +1214,10 @@ function initPerformanceChart() {
         if (allTimeData && chartSec) {
             const tabsEl = chartSec.querySelector('.chart-tabs');
             if (tabsEl && !tabsEl.querySelector('[data-period="alltime"]')) {
-                tabsEl.innerHTML = '<button class="chart-tab" data-period="history">6 Month History</button>' +
+                tabsEl.innerHTML = '<button class="chart-tab" data-period="history">6-Month</button>' +
                                    '<button class="chart-tab" data-period="alltime">All-Time History</button>';
             }
-            chartSec.querySelectorAll('.chart-tab').forEach(t => t.classList.toggle('active', (t.dataset.period === 'alltime') === allTimeActive));
+            chartSec.querySelectorAll('.chart-tab').forEach(t => { if (t.dataset.period !== 'lifetime') t.classList.toggle('active', (t.dataset.period === 'alltime') === allTimeActive); });
             const h2El = chartSec.querySelector('.section-header h2');
             if (h2El && !chartSec.dataset.origH2) chartSec.dataset.origH2 = h2El.innerHTML;
             if (!allTimeActive) {
@@ -1377,7 +1377,7 @@ function initPerformanceChart() {
         }
 
         const tabLabelEl = document.querySelector('.chart-tab[data-period="history"]');
-        if (tabLabelEl && !allTimeData) tabLabelEl.textContent = '6 Month History';
+        if (tabLabelEl && !allTimeData) tabLabelEl.textContent = '6-Month';
 
         console.log('DEBUG - Chart labels:', trimmedLabels);
         console.log('DEBUG - Chart dataPoints:', trimmedData);
@@ -1659,6 +1659,7 @@ function initPerformanceChart() {
         </div>
         ${allTimeInsights()}
     `;
+    if (window.LifetimeChart) LifetimeChart.attach({ uid: myData.creatorId, currentDiamonds: myData.diamonds || 0 });
     
     console.log('DEBUG - Chart created successfully');
     
