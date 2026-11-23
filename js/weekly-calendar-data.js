@@ -41,7 +41,7 @@ function generateRollingCalendar() {
             id: 4,
             title: "Rookie Rumble",
             type: "live",
-            time: "4:00PM PT",
+            time: "4:45PM PT",
             recurring: { dayOfWeek: 3 }, // Wednesday
             color: "#ff0044"
         },
@@ -118,8 +118,8 @@ function generateRollingCalendar() {
             title: "Live Fest: Power League Rd 2",
             type: "live",
             time: "All Day",
-            startDate: createLocalDate('2026-11-27'),
-            endDate: createLocalDate('2026-12-01'),
+            startDate: createLocalDate('2026-11-28'), // moved (TikTok, 2026-11-21): 12:00 AM ET Nov 28 (9 PM PT Nov 27)
+            endDate: createLocalDate('2026-12-02'),
             color: "#ff0055"
         },
         {
@@ -142,10 +142,19 @@ function generateRollingCalendar() {
         },
         {
             id: 35,
-            title: "Live Fest: Global Finale",
+            title: "Live Fest: Global Finale Rd 1",
             type: "live",
-            time: "All Day",
-            startDate: createLocalDate('2026-12-17'),
+            time: "7:00PM ET",
+            startDate: createLocalDate('2026-12-16'), // runs on UTC, so it opens the evening before in the US
+            endDate: createLocalDate('2026-12-19'),
+            color: "#ff0055"
+        },
+        {
+            id: 36,
+            title: "Live Fest: Global Finale Rd 2",
+            type: "live",
+            time: "7:05PM ET",
+            startDate: createLocalDate('2026-12-19'), // opens 5 minutes after Rd 1 closes
             endDate: createLocalDate('2026-12-21'),
             color: "#ff0055"
         }
