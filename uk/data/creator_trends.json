@@ -7,7 +7,7 @@
     "Sep 2026",
     "Oct 2026"
   ],
-  "generatedAt": "2026-11-28T18:08:38.970917Z",
+  "generatedAt": "2026-11-28T18:08:57.781502Z",
   "creators": [
     {
       "username": "stiansings",
@@ -187,7 +187,7 @@
         1,
         4
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -263,7 +263,7 @@
         1,
         2
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
@@ -643,7 +643,7 @@
         1,
         1
       ],
-      "tierCurrent": 1,
+      "tierCurrent": 3,
       "levelHistory": [
         null,
         null,
@@ -39302,82 +39302,6 @@
       ]
     },
     {
-      "username": "katie.lee03",
-      "diamondsHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        3970.0
-      ],
-      "growthRates": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        4
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        13.4
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "daysHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ],
-      "hoursHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ]
-    },
-    {
       "username": "uzzyexplorer",
       "diamondsHistory": [
         0,
@@ -41403,82 +41327,6 @@
         0.0,
         0.0,
         0.24
-      ],
-      "bonusHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "daysHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ],
-      "hoursHistory": [
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-      ]
-    },
-    {
-      "username": "babbleq",
-      "diamondsHistory": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        449.0
-      ],
-      "growthRates": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
-      "tierHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        1
-      ],
-      "tierCurrent": 1,
-      "levelHistory": [
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
-      ],
-      "rewardsHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0
-      ],
-      "revenueHistory": [
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        0.0,
-        1.52
       ],
       "bonusHistory": [
         0,
@@ -44495,7 +44343,7 @@
         1,
         2
       ],
-      "tierCurrent": 3,
+      "tierCurrent": 2,
       "levelHistory": [
         null,
         null,
